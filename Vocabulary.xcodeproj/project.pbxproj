@@ -20,8 +20,6 @@
 		A46A7E681630296800DF4696 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E661630296800DF4696 /* ViewController.xib */; };
 		A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E6E16302A2C00DF4696 /* CoreData.framework */; };
 		A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */; };
-		A46A7E7916302C3D00DF4696 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7816302C3D00DF4696 /* Word.m */; };
-		A46A7E7C16302C4800DF4696 /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7B16302C4800DF4696 /* WordList.m */; };
 		A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7EEB16304F9800DF4696 /* libxml2.dylib */; };
 		A46A7F131630537200DF4696 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7EF81630537200DF4696 /* CXMLDocument_CreationExtensions.m */; };
 		A46A7F141630537200DF4696 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7EFA1630537200DF4696 /* CXMLNode_CreationExtensions.m */; };
@@ -36,6 +34,8 @@
 		A46A7F1D1630537200DF4696 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F0C1630537200DF4696 /* CXMLNode_XPathExtensions.m */; };
 		A46A7F1E1630537200DF4696 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F0E1630537200DF4696 /* CXMLNode.m */; };
 		A46A7F1F1630537200DF4696 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F111630537200DF4696 /* CTidy.m */; };
+		A46A7F2B1630583A00DF4696 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F281630583A00DF4696 /* Word.m */; };
+		A46A7F2C1630583A00DF4696 /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F2A1630583A00DF4696 /* WordList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,10 +57,6 @@
 		A46A7E671630296800DF4696 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		A46A7E6E16302A2C00DF4696 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		A46A7E7716302C3D00DF4696 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		A46A7E7816302C3D00DF4696 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
-		A46A7E7A16302C4800DF4696 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
-		A46A7E7B16302C4800DF4696 /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordList.m; sourceTree = "<group>"; };
 		A46A7EEB16304F9800DF4696 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A46A7EF71630537200DF4696 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		A46A7EF81630537200DF4696 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
@@ -89,6 +85,10 @@
 		A46A7F101630537200DF4696 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTidy.h; sourceTree = "<group>"; };
 		A46A7F111630537200DF4696 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		A46A7F121630537200DF4696 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchXML.h; path = ../TouchXML/Source/TouchXML.h; sourceTree = "<group>"; };
+		A46A7F271630583A00DF4696 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Word.h; path = Vocabulary/Word.h; sourceTree = "<group>"; };
+		A46A7F281630583A00DF4696 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Vocabulary/Word.m; sourceTree = "<group>"; };
+		A46A7F291630583A00DF4696 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordList.h; path = Vocabulary/WordList.h; sourceTree = "<group>"; };
+		A46A7F2A1630583A00DF4696 /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordList.m; path = Vocabulary/WordList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,10 +176,10 @@
 		A46A7E7D16302C5500DF4696 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				A46A7E7716302C3D00DF4696 /* Word.h */,
-				A46A7E7816302C3D00DF4696 /* Word.m */,
-				A46A7E7A16302C4800DF4696 /* WordList.h */,
-				A46A7E7B16302C4800DF4696 /* WordList.m */,
+				A46A7F271630583A00DF4696 /* Word.h */,
+				A46A7F281630583A00DF4696 /* Word.m */,
+				A46A7F291630583A00DF4696 /* WordList.h */,
+				A46A7F2A1630583A00DF4696 /* WordList.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -315,8 +315,6 @@
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A46A7E651630296800DF4696 /* ViewController.m in Sources */,
 				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
-				A46A7E7916302C3D00DF4696 /* Word.m in Sources */,
-				A46A7E7C16302C4800DF4696 /* WordList.m in Sources */,
 				A46A7F131630537200DF4696 /* CXMLDocument_CreationExtensions.m in Sources */,
 				A46A7F141630537200DF4696 /* CXMLNode_CreationExtensions.m in Sources */,
 				A46A7F151630537200DF4696 /* CXHTMLDocument.m in Sources */,
@@ -330,6 +328,8 @@
 				A46A7F1D1630537200DF4696 /* CXMLNode_XPathExtensions.m in Sources */,
 				A46A7F1E1630537200DF4696 /* CXMLNode.m in Sources */,
 				A46A7F1F1630537200DF4696 /* CTidy.m in Sources */,
+				A46A7F2B1630583A00DF4696 /* Word.m in Sources */,
+				A46A7F2C1630583A00DF4696 /* WordList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
