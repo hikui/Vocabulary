@@ -18,6 +18,11 @@
 		A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E611630296800DF4696 /* Default-568h@2x.png */; };
 		A46A7E651630296800DF4696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E641630296800DF4696 /* ViewController.m */; };
 		A46A7E681630296800DF4696 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E661630296800DF4696 /* ViewController.xib */; };
+		A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E6E16302A2C00DF4696 /* CoreData.framework */; };
+		A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */; };
+		A46A7E7916302C3D00DF4696 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7816302C3D00DF4696 /* Word.m */; };
+		A46A7E7C16302C4800DF4696 /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7B16302C4800DF4696 /* WordList.m */; };
+		A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7EEB16304F9800DF4696 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,13 @@
 		A46A7E631630296800DF4696 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A46A7E641630296800DF4696 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A46A7E671630296800DF4696 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		A46A7E6E16302A2C00DF4696 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		A46A7E7716302C3D00DF4696 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		A46A7E7816302C3D00DF4696 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		A46A7E7A16302C4800DF4696 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
+		A46A7E7B16302C4800DF4696 /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordList.m; sourceTree = "<group>"; };
+		A46A7EEB16304F9800DF4696 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */,
+				A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */,
 				A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */,
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
 				A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */,
@@ -56,6 +70,9 @@
 		A46A7E3C1630296800DF4696 = {
 			isa = PBXGroup;
 			children = (
+				A46A7EBF16304F6500DF4696 /* lib */,
+				A46A7E7D16302C5500DF4696 /* models */,
+				A46A7E7316302A6B00DF4696 /* Resources */,
 				A46A7E511630296800DF4696 /* Vocabulary */,
 				A46A7E4A1630296800DF4696 /* Frameworks */,
 				A46A7E481630296800DF4696 /* Products */,
@@ -73,6 +90,7 @@
 		A46A7E4A1630296800DF4696 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A46A7E6E16302A2C00DF4696 /* CoreData.framework */,
 				A46A7E4B1630296800DF4696 /* UIKit.framework */,
 				A46A7E4D1630296800DF4696 /* Foundation.framework */,
 				A46A7E4F1630296800DF4696 /* CoreGraphics.framework */,
@@ -105,6 +123,33 @@
 				A46A7E611630296800DF4696 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A46A7E7316302A6B00DF4696 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A46A7E7D16302C5500DF4696 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7E7716302C3D00DF4696 /* Word.h */,
+				A46A7E7816302C3D00DF4696 /* Word.m */,
+				A46A7E7A16302C4800DF4696 /* WordList.h */,
+				A46A7E7B16302C4800DF4696 /* WordList.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		A46A7EBF16304F6500DF4696 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7EEB16304F9800DF4696 /* libxml2.dylib */,
+			);
+			name = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +221,9 @@
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A46A7E651630296800DF4696 /* ViewController.m in Sources */,
+				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
+				A46A7E7916302C3D00DF4696 /* Word.m in Sources */,
+				A46A7E7C16302C4800DF4696 /* WordList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +304,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -267,6 +316,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -292,8 +342,22 @@
 				A46A7E6D1630296800DF4696 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */,
+			);
+			currentVersion = A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A46A7E3E1630296800DF4696 /* Project object */;
 }

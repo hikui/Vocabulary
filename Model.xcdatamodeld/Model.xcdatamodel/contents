@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Model" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Word" representedClassName="Word" syncable="YES">
+        <attribute name="lastReviewDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="meaning" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qualification" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="wordList" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WordList" inverseName="words" inverseEntity="WordList" syncable="YES"/>
+    </entity>
+    <entity name="WordList" representedClassName="WordList" syncable="YES">
+        <attribute name="addTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastReviewTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="reviewCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="wordList" inverseEntity="Word" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Word" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="WordList" positionX="439" positionY="207" width="128" height="105"/>
+    </elements>
 </model>
