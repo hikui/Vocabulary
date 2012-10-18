@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "Word.h"
 #import "WordList.h"
+#import "TouchXML.h"
 
 @implementation AppDelegate
 
@@ -45,19 +46,19 @@
 //    [self saveContext];
 //    [self saveContext];
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    
-    // 根据指定Entity名称和被管理对象上下文，创建NSEntityDescription对象，
-    NSEntityDescription *myEntityQuery = [NSEntityDescription
-                                          entityForName:@"WordList"
-                                          inManagedObjectContext:self.managedObjectContext];
-    // 指定实体
-    [request setEntity:myEntityQuery];
-    WordList *wl = [[self.managedObjectContext executeFetchRequest:request error:nil]objectAtIndex:0];
-    NSLog(@"%@",wl.words);
-    for (Word *w in wl.words) {
-        NSLog(@"word:%@",w.word);
-    }
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    
+//    // 根据指定Entity名称和被管理对象上下文，创建NSEntityDescription对象，
+//    NSEntityDescription *myEntityQuery = [NSEntityDescription
+//                                          entityForName:@"WordList"
+//                                          inManagedObjectContext:self.managedObjectContext];
+//    // 指定实体
+//    [request setEntity:myEntityQuery];
+//    WordList *wl = [[self.managedObjectContext executeFetchRequest:request error:nil]objectAtIndex:0];
+//    NSLog(@"%@",wl.words);
+//    for (Word *w in wl.words) {
+//        NSLog(@"word:%@",w.word);
+//    }
 //
 //    NSError *error = nil;
 //    // 返回符合查询条件NSFetchRequest的记录数组
@@ -65,7 +66,11 @@
 //    NSLog(@"%@",wordsArr);
 //    Word *w = [wordsArr objectAtIndex:0];
 //    NSLog(@"%@",w.word);
+    NSURL *url = [NSURL URLWithString:@"http://dict-co.iciba.com/api/dictionary.php?w=good"];
     
+    NSData *xmlData = [NSData dataWithContentsOfURL:url];
+    CXMLDocument *document = [[CXMLDocument alloc]initWithData:xmlData encoding:NSUTF8StringEncoding options:0 error:nil];
+    CXMLElement *wordElement = [document rootElement];
     
     
     self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
