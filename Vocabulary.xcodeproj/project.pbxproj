@@ -52,6 +52,8 @@
 		EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942681630E95C00E6AE18 /* CibaXMLParser.m */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
+		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
+		ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +109,9 @@
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
+		ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
+		ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateWordListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +172,9 @@
 				ECB6EC9016311D9800A34438 /* TestViewController.h */,
 				ECB6EC9116311D9800A34438 /* TestViewController.m */,
 				ECB6EC9216311D9800A34438 /* TestViewController.xib */,
+				ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */,
+				ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */,
+				ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */,
 			);
 			path = Vocabulary;
 			sourceTree = "<group>";
@@ -322,6 +330,7 @@
 				A46A7E601630296800DF4696 /* Default@2x.png in Resources */,
 				A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */,
 				ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */,
+				ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +376,7 @@
 				EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */,
 				EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */,
 				ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */,
+				ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

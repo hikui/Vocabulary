@@ -12,6 +12,7 @@
 #import "TouchXML.h"
 #import "CibaXMLParser.h"
 #import "TestViewController.h"
+#import "CreateWordListViewController.h"
 
 @implementation AppDelegate
 
@@ -76,7 +77,7 @@
 //    for (CXMLElement *element in posArray) {
 //        NSLog(@"%@,%@",[element stringValue],[element name]);
 //    }
-    TestViewController *tv = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
+    CreateWordListViewController *tv = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
     self.window.rootViewController = tv;
     [self.window makeKeyAndVisible];
     return YES;
