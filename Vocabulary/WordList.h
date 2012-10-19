@@ -2,7 +2,7 @@
 //  WordList.h
 //  Vocabulary
 //
-//  Created by 缪和光 on 12-10-18.
+//  Created by 缪 和光 on 12-10-19.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSDate * addTime;
 @property (nonatomic, retain) NSDate * lastReviewTime;
-@property (nonatomic, retain) NSNumber * reviewCount;
+@property (nonatomic, retain) NSNumber * effectiveCount;
 @property (nonatomic, retain) NSSet *words;
 @end
 

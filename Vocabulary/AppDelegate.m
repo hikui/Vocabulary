@@ -7,11 +7,11 @@
 //
 
 #import "AppDelegate.h"
-
-#import "ViewController.h"
 #import "Word.h"
 #import "WordList.h"
 #import "TouchXML.h"
+#import "CibaXMLParser.h"
+#import "TestViewController.h"
 
 @implementation AppDelegate
 
@@ -66,15 +66,18 @@
 //    NSLog(@"%@",wordsArr);
 //    Word *w = [wordsArr objectAtIndex:0];
 //    NSLog(@"%@",w.word);
-    NSURL *url = [NSURL URLWithString:@"http://dict-co.iciba.com/api/dictionary.php?w=good"];
-    
-    NSData *xmlData = [NSData dataWithContentsOfURL:url];
-    CXMLDocument *document = [[CXMLDocument alloc]initWithData:xmlData encoding:NSUTF8StringEncoding options:0 error:nil];
-    CXMLElement *wordElement = [document rootElement];
-    
-    
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+//    NSURL *url = [NSURL URLWithString:@"http://dict-co.iciba.com/api/dictionary.php?w=good"];
+//    NSString *str = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+//    NSDictionary *dict = [CibaXMLParser parseWithXMLString:str];
+//    NSLog(@"%@",dict);
+//    NSData *xmlData = [NSData dataWithContentsOfURL:url];
+//    CXMLDocument *document = [[CXMLDocument alloc]initWithData:xmlData encoding:NSUTF8StringEncoding options:0 error:nil];
+//    NSArray *posArray = [document nodesForXPath:@"//pos" error:nil];
+//    for (CXMLElement *element in posArray) {
+//        NSLog(@"%@,%@",[element stringValue],[element name]);
+//    }
+    TestViewController *tv = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
+    self.window.rootViewController = tv;
     [self.window makeKeyAndVisible];
     return YES;
 }

@@ -16,8 +16,6 @@
 		A46A7E5E1630296800DF4696 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E5D1630296800DF4696 /* Default.png */; };
 		A46A7E601630296800DF4696 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E5F1630296800DF4696 /* Default@2x.png */; };
 		A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E611630296800DF4696 /* Default-568h@2x.png */; };
-		A46A7E651630296800DF4696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E641630296800DF4696 /* ViewController.m */; };
-		A46A7E681630296800DF4696 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E661630296800DF4696 /* ViewController.xib */; };
 		A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E6E16302A2C00DF4696 /* CoreData.framework */; };
 		A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */; };
 		A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7EEB16304F9800DF4696 /* libxml2.dylib */; };
@@ -50,6 +48,10 @@
 		EC3942621630E54D00E6AE18 /* CTidy.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942471630E54D00E6AE18 /* CTidy.h */; };
 		EC3942631630E54D00E6AE18 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942481630E54D00E6AE18 /* CTidy.m */; };
 		EC3942641630E54D00E6AE18 /* TouchXML.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942491630E54D00E6AE18 /* TouchXML.h */; };
+		EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942671630E95C00E6AE18 /* CibaXMLParser.h */; };
+		EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942681630E95C00E6AE18 /* CibaXMLParser.m */; };
+		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
+		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,9 +68,6 @@
 		A46A7E5D1630296800DF4696 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A46A7E5F1630296800DF4696 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		A46A7E611630296800DF4696 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		A46A7E631630296800DF4696 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A46A7E641630296800DF4696 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		A46A7E671630296800DF4696 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		A46A7E6E16302A2C00DF4696 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A46A7EEB16304F9800DF4696 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -103,6 +102,11 @@
 		EC3942471630E54D00E6AE18 /* CTidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CTidy.h; sourceTree = "<group>"; };
 		EC3942481630E54D00E6AE18 /* CTidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTidy.m; sourceTree = "<group>"; };
 		EC3942491630E54D00E6AE18 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = TouchXML.h; path = Vocabulary/lib/TouchXML/TouchXML.h; sourceTree = "<group>"; };
+		EC3942671630E95C00E6AE18 /* CibaXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CibaXMLParser.h; sourceTree = "<group>"; };
+		EC3942681630E95C00E6AE18 /* CibaXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaXMLParser.m; sourceTree = "<group>"; };
+		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				A46A7EBF16304F6500DF4696 /* lib */,
-				A46A7E7D16302C5500DF4696 /* models */,
 				A46A7E7316302A6B00DF4696 /* Resources */,
 				A46A7E511630296800DF4696 /* Vocabulary */,
 				A46A7E4A1630296800DF4696 /* Frameworks */,
@@ -155,12 +158,15 @@
 		A46A7E511630296800DF4696 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
+				A46A7E7D16302C5500DF4696 /* models */,
 				A46A7E5A1630296800DF4696 /* AppDelegate.h */,
 				A46A7E5B1630296800DF4696 /* AppDelegate.m */,
-				A46A7E631630296800DF4696 /* ViewController.h */,
-				A46A7E641630296800DF4696 /* ViewController.m */,
-				A46A7E661630296800DF4696 /* ViewController.xib */,
 				A46A7E521630296800DF4696 /* Supporting Files */,
+				EC3942671630E95C00E6AE18 /* CibaXMLParser.h */,
+				EC3942681630E95C00E6AE18 /* CibaXMLParser.m */,
+				ECB6EC9016311D9800A34438 /* TestViewController.h */,
+				ECB6EC9116311D9800A34438 /* TestViewController.m */,
+				ECB6EC9216311D9800A34438 /* TestViewController.xib */,
 			);
 			path = Vocabulary;
 			sourceTree = "<group>";
@@ -196,6 +202,7 @@
 				A46A7F2A1630583A00DF4696 /* WordList.m */,
 			);
 			name = models;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		A46A7EBF16304F6500DF4696 /* lib */ = {
@@ -314,7 +321,7 @@
 				A46A7E5E1630296800DF4696 /* Default.png in Resources */,
 				A46A7E601630296800DF4696 /* Default@2x.png in Resources */,
 				A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */,
-				A46A7E681630296800DF4696 /* ViewController.xib in Resources */,
+				ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +334,6 @@
 			files = (
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
-				A46A7E651630296800DF4696 /* ViewController.m in Sources */,
 				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
 				A46A7F2B1630583A00DF4696 /* Word.m in Sources */,
 				A46A7F2C1630583A00DF4696 /* WordList.m in Sources */,
@@ -358,6 +364,9 @@
 				EC3942621630E54D00E6AE18 /* CTidy.h in Sources */,
 				EC3942631630E54D00E6AE18 /* CTidy.m in Sources */,
 				EC3942641630E54D00E6AE18 /* TouchXML.h in Sources */,
+				EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */,
+				EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */,
+				ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,14 +379,6 @@
 				A46A7E551630296800DF4696 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A46A7E661630296800DF4696 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A46A7E671630296800DF4696 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -405,7 +406,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -426,7 +427,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -440,6 +441,7 @@
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -452,6 +454,7 @@
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
