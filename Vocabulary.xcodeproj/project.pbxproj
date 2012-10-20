@@ -22,6 +22,12 @@
 		A46A7F2B1630583A00DF4696 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F281630583A00DF4696 /* Word.m */; };
 		A46A7F2C1630583A00DF4696 /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F2A1630583A00DF4696 /* WordList.m */; };
 		A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F381632C44800DF4696 /* CoreDataHelper.m */; };
+		A46A7F431632DA5900DF4696 /* ShowWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F411632DA5800DF4696 /* ShowWordListViewController.m */; };
+		A46A7F441632DA5900DF4696 /* ShowWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F421632DA5800DF4696 /* ShowWordListViewController.xib */; };
+		A46A7F481632DE4100DF4696 /* ShowWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */; };
+		A46A7F491632DE4100DF4696 /* ShowWordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */; };
+		A46A7F4D1632E5F300DF4696 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F4B1632E5F300DF4696 /* HomeViewController.m */; };
+		A46A7F4E1632E5F300DF4696 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */; };
 		EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */; };
 		EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */; };
 		EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */; };
@@ -80,6 +86,15 @@
 		A46A7F2A1630583A00DF4696 /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordList.m; path = Vocabulary/WordList.m; sourceTree = "<group>"; };
 		A46A7F371632C44800DF4696 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		A46A7F381632C44800DF4696 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		A46A7F401632DA5800DF4696 /* ShowWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWordListViewController.h; sourceTree = "<group>"; };
+		A46A7F411632DA5800DF4696 /* ShowWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordListViewController.m; sourceTree = "<group>"; };
+		A46A7F421632DA5800DF4696 /* ShowWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowWordListViewController.xib; sourceTree = "<group>"; };
+		A46A7F451632DE4000DF4696 /* ShowWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWordsViewController.h; sourceTree = "<group>"; };
+		A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordsViewController.m; sourceTree = "<group>"; };
+		A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowWordsViewController.xib; sourceTree = "<group>"; };
+		A46A7F4A1632E5F300DF4696 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		A46A7F4B1632E5F300DF4696 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -179,6 +194,15 @@
 				ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */,
 				ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */,
 				ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */,
+				A46A7F401632DA5800DF4696 /* ShowWordListViewController.h */,
+				A46A7F411632DA5800DF4696 /* ShowWordListViewController.m */,
+				A46A7F421632DA5800DF4696 /* ShowWordListViewController.xib */,
+				A46A7F451632DE4000DF4696 /* ShowWordsViewController.h */,
+				A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */,
+				A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */,
+				A46A7F4A1632E5F300DF4696 /* HomeViewController.h */,
+				A46A7F4B1632E5F300DF4696 /* HomeViewController.m */,
+				A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */,
 			);
 			path = Vocabulary;
 			sourceTree = "<group>";
@@ -344,6 +368,9 @@
 				A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */,
 				ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */,
 				ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */,
+				A46A7F441632DA5900DF4696 /* ShowWordListViewController.xib in Resources */,
+				A46A7F491632DE4100DF4696 /* ShowWordsViewController.xib in Resources */,
+				A46A7F4E1632E5F300DF4696 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +418,9 @@
 				ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */,
 				ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */,
 				A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */,
+				A46A7F431632DA5900DF4696 /* ShowWordListViewController.m in Sources */,
+				A46A7F481632DE4100DF4696 /* ShowWordsViewController.m in Sources */,
+				A46A7F4D1632E5F300DF4696 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -116,17 +116,31 @@
     newList.title = self.titleField.text;
     
     for (NSString *aWord in wordSet) {
+        if (aWord.length == 0) {
+            continue;
+        }
         NSString *lowercaseWord = [aWord lowercaseString];
+        lowercaseWord = [lowercaseWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
         newWord.key = lowercaseWord;
         newWord.wordList = newList;
     }
-    [helper saveContext];
+    if (newList.words.count>0) {
+        [helper saveContext];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                       message:@"还没有单词哦"
+                                                      delegate:nil
+                                             cancelButtonTitle:@"知道了"
+                                             otherButtonTitles:nil];
+        [alert show];
+        [moc deleteObject:newList];
+    }
     
 }
 - (IBAction)btnCancelPressed:(id)sender
 {
-    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

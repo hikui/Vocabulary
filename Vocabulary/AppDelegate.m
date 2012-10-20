@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "CoreDataHelper.h"
 #import "TestViewController.h"
-#import "CreateWordListViewController.h"
+#import "HomeViewController.h"
 
 @implementation AppDelegate
 
@@ -70,8 +70,9 @@
 //    for (CXMLElement *element in posArray) {
 //        NSLog(@"%@,%@",[element stringValue],[element name]);
 //    }
-    CreateWordListViewController *tv = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
-    self.window.rootViewController = tv;
+    HomeViewController *home = [[HomeViewController alloc]initWithNibName:@"HomeViewController" bundle:nil];
+    UINavigationController *ntv = [[UINavigationController alloc]initWithRootViewController:home];
+    self.window.rootViewController = ntv;
     [self.window makeKeyAndVisible];
     return YES;
 }
