@@ -2,7 +2,7 @@
 //  WordList.h
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-10-19.
+//  Created by 缪和光 on 12-10-20.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
@@ -14,8 +14,9 @@
 @interface WordList : NSManagedObject
 
 @property (nonatomic, retain) NSDate * addTime;
-@property (nonatomic, retain) NSDate * lastReviewTime;
 @property (nonatomic, retain) NSNumber * effectiveCount;
+@property (nonatomic, retain) NSDate * lastReviewTime;
+@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *words;
 @end
 

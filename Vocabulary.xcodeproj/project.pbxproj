@@ -21,6 +21,7 @@
 		A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7EEB16304F9800DF4696 /* libxml2.dylib */; };
 		A46A7F2B1630583A00DF4696 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F281630583A00DF4696 /* Word.m */; };
 		A46A7F2C1630583A00DF4696 /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F2A1630583A00DF4696 /* WordList.m */; };
+		A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F381632C44800DF4696 /* CoreDataHelper.m */; };
 		EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */; };
 		EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */; };
 		EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */; };
@@ -77,6 +78,8 @@
 		A46A7F281630583A00DF4696 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Vocabulary/Word.m; sourceTree = "<group>"; };
 		A46A7F291630583A00DF4696 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WordList.h; path = Vocabulary/WordList.h; sourceTree = "<group>"; };
 		A46A7F2A1630583A00DF4696 /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordList.m; path = Vocabulary/WordList.m; sourceTree = "<group>"; };
+		A46A7F371632C44800DF4696 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		A46A7F381632C44800DF4696 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		A46A7E511630296800DF4696 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
+				A46A7F351632C42900DF4696 /* utils */,
 				A46A7E7D16302C5500DF4696 /* models */,
 				A46A7E5A1630296800DF4696 /* AppDelegate.h */,
 				A46A7E5B1630296800DF4696 /* AppDelegate.m */,
@@ -250,6 +254,15 @@
 				EC3942491630E54D00E6AE18 /* TouchXML.h */,
 			);
 			name = TouchXML;
+			sourceTree = "<group>";
+		};
+		A46A7F351632C42900DF4696 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7F371632C44800DF4696 /* CoreDataHelper.h */,
+				A46A7F381632C44800DF4696 /* CoreDataHelper.m */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
@@ -377,6 +390,7 @@
 				EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */,
 				ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */,
 				ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */,
+				A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 @interface CreateWordListViewController : UIViewController<UITextViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,weak) IBOutlet UITextView *textView;
+@property (nonatomic,weak) IBOutlet UITextField *titleField;
 
 - (void)keyboardWillAppear:(NSNotification *)notification;
 - (void)keyboardwillChangeFrame:(NSNotification *)notification;

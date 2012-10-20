@@ -2,7 +2,7 @@
 //  WordList.m
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-10-19.
+//  Created by 缪和光 on 12-10-20.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
@@ -13,8 +13,9 @@
 @implementation WordList
 
 @dynamic addTime;
-@dynamic lastReviewTime;
 @dynamic effectiveCount;
+@dynamic lastReviewTime;
+@dynamic title;
 @dynamic words;
 
 @end

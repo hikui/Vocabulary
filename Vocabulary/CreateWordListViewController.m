@@ -7,7 +7,9 @@
 //
 
 #import "CreateWordListViewController.h"
-#import "AppDelegate.h"
+#import "CoreDataHelper.h"
+#import "Word.h"
+#import "WordList.h"
 
 @interface CreateWordListViewController ()
 
@@ -64,14 +66,14 @@
     CGRect targetKeyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
     CGFloat offsetY = targetKeyboardFrame.size.height;
     [UIView animateWithDuration:showAnimationDuration animations:^{
-        self.textView.frame = CGRectMake(0, 44, 320,416-offsetY);
+        self.textView.frame = CGRectMake(20, 116, 280,344-offsetY);
     }];
     
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    self.textView.frame = CGRectMake(0, 44, 320,416);
+    self.textView.frame = CGRectMake(20, 116, 280,344);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -89,8 +91,37 @@
     NSLog(@"ok");
     NSString *text = self.textView.text;
     NSArray *words = [text componentsSeparatedByString:@"\n"];
-    NSSet *wordSet = [NSSet setWithArray:words];
+    NSSet *wordSet = [NSSet setWithArray:words]; //remove duplications
     
+    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
+    NSManagedObjectContext *moc = helper.managedObjectContext;
+    
+    
+    //search if a word list with same title already exist
+    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"WordList"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@",self.titleField.text];
+    [request setPredicate:predicate];
+    NSArray *result = [moc executeFetchRequest:request error:nil];
+    if (result.count>0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                       message:@"Word list名字重复啦"
+                                                      delegate:nil
+                                             cancelButtonTitle:@"知道了"
+                                             otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    WordList *newList = [NSEntityDescription insertNewObjectForEntityForName:@"WordList" inManagedObjectContext:moc];
+    newList.title = self.titleField.text;
+    
+    for (NSString *aWord in wordSet) {
+        NSString *lowercaseWord = [aWord lowercaseString];
+        Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
+        newWord.key = lowercaseWord;
+        newWord.wordList = newList;
+    }
+    [helper saveContext];
     
 }
 - (IBAction)btnCancelPressed:(id)sender

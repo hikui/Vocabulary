@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12C54" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Word" representedClassName="Word" syncable="YES">
         <attribute name="acceptation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="familiarity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -17,10 +17,11 @@
         <attribute name="addTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="effectiveCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="lastReviewTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="wordList" inverseEntity="Word" syncable="YES"/>
     </entity>
     <elements>
         <element name="Word" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="WordList" positionX="439" positionY="207" width="128" height="105"/>
+        <element name="WordList" positionX="439" positionY="207" width="128" height="118"/>
     </elements>
 </model>
