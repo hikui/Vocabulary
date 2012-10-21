@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WordList.h"
 @interface ShowWordsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *wordsSet;
+
+- (IBAction)btnBeginStudyOnPress:(id)sender;
+- (IBAction)btnBeginTestOnPress:(id)sender;
 
 @end

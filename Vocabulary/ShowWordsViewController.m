@@ -8,6 +8,7 @@
 
 #import "ShowWordsViewController.h"
 #import "Word.h"
+#import "LearningBackboneViewController.h"
 
 @interface ShowWordsViewController ()
 
@@ -59,5 +60,16 @@
     Word *w = [self.wordsSet objectAtIndex:indexPath.row];
     cell.textLabel.text = w.key;
     return cell;
+}
+
+#pragma mark - tool bar actions
+- (IBAction)btnBeginStudyOnPress:(id)sender
+{
+    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithWords:self.wordsSet];
+    [self.navigationController pushViewController:lvc animated:YES];
+}
+- (IBAction)btnBeginTestOnPress:(id)sender
+{
+    
 }
 @end

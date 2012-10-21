@@ -127,6 +127,7 @@
     }
     if (newList.words.count>0) {
         [helper saveContext];
+        [self dismissModalViewControllerAnimated:YES];
     }else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
                                                        message:@"还没有单词哦"
