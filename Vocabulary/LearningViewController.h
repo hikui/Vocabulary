@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) Word *word;
 @property (nonatomic,strong) IBOutlet UILabel *lblKey;
+@property (nonatomic,strong) IBOutlet UITextView *acceptationTextView;
 
 - (id)initWithWord:(Word *)word;
 - (void)refreshView;

@@ -7,6 +7,7 @@
 //
 
 #import "LearningViewController.h"
+#import "CibaEngine.h"
 
 @interface LearningViewController ()
 
@@ -27,6 +28,29 @@
 {
     [super viewDidLoad];
     self.lblKey.text = self.word.key;
+    
+    if (!self.word.hasGotDataFromAPI) {
+        CibaEngine *engine = [CibaEngine sharedInstance];
+        [engine infomationForWord:self.word.key onCompletion:^(NSDictionary *parsedDict) {
+            self.acceptationTextView.text = [parsedDict objectForKey:@"acceptation"];
+            //load voice
+            NSString *pronURL = [parsedDict objectForKey:@"pronounceUS"];
+            if (pronURL) {
+                [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
+                    NSLog(@"voice succeed");
+                } onError:^(NSError *error) {
+                    NSLog(@"VOICE ERROR");
+                }];
+            }
+            
+        } onError:^(NSError *error) {
+            NSLog(@"ERROR");
+        }];
+    }else{
+        self.acceptationTextView.text = self.word.acceptation;
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
