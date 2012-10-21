@@ -12,8 +12,9 @@
 @interface LearningBackboneViewController : UIViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray *learningViewControllerArray;
-@property (nonatomic,strong) NSArray * words;
+@property (nonatomic,strong) NSMutableArray * words;
+@property (nonatomic,strong) UIPageViewController *pageViewController;
 
-- (id)initWithWords:(NSArray *)words;
+- (id)initWithWords:(NSMutableArray *)words;
 
 @end

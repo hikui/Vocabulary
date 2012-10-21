@@ -11,7 +11,7 @@
 @interface ShowWordsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *wordsSet;
+@property (strong, nonatomic) NSMutableArray *wordsSet;
 
 - (IBAction)btnBeginStudyOnPress:(id)sender;
 - (IBAction)btnBeginTestOnPress:(id)sender;
