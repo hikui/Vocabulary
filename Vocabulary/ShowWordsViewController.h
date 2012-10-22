@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
-@interface ShowWordsViewController : UIViewController
+@interface ShowWordsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *wordsSet;

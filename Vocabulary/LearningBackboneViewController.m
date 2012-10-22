@@ -42,14 +42,16 @@
     
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.view.backgroundColor = [UIColor redColor];
-    [[self.pageViewController view] setFrame:[[self view] bounds]];
+    CGRect pageViewControllerFrame = self.view.bounds;
+    pageViewControllerFrame.size.height = pageViewControllerFrame.size.height-51;
+    [[self.pageViewController view] setFrame:pageViewControllerFrame];
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
-    
+    self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",1,self.words.count];
 //    //只使用3个LVC，代表当前页，前页和后页
 //    for (int i = 0; i< MIN(self.words.count, 2); i++) {
 //        LearningViewController *lvc = [[LearningViewController alloc]initWithWord:[self.words objectAtIndex:i]];
@@ -87,8 +89,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+static bool forward = true;
+
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController{
+    forward = true;
     LearningViewController *lvc = (LearningViewController *)viewController;
     Word *wd = lvc.word;
     int index = [self.words indexOfObject:wd];
@@ -101,6 +106,7 @@
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
 viewControllerBeforeViewController:(UIViewController *)viewController{
+    forward = false;
     LearningViewController *lvc = (LearningViewController *)viewController;
     Word *wd = lvc.word;
     int index = [self.words indexOfObject:wd];
@@ -110,6 +116,24 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     LearningViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index-1)%2];
     nlvc.word = [self.words objectAtIndex:index-1];
     return nlvc;
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    if (finished && completed) {
+        LearningViewController *lvc = (LearningViewController *)[previousViewControllers objectAtIndex:0];
+        if ([lvc isKindOfClass:[LearningViewController class]]) {
+            Word *wd = lvc.word;
+            int index = [self.words indexOfObject:wd];
+            if (forward) {
+                self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index+2,self.words.count];
+                [self.pageIndicator sizeToFit];
+            }else{
+                self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index,self.words.count];
+                [self.pageIndicator sizeToFit];
+            }
+        }
+    }
 }
 
 - (void)shuffleWords

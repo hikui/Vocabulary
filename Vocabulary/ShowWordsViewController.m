@@ -9,6 +9,7 @@
 #import "ShowWordsViewController.h"
 #import "Word.h"
 #import "LearningBackboneViewController.h"
+#import "LearningViewController.h"
 
 @interface ShowWordsViewController ()
 
@@ -60,6 +61,14 @@
     Word *w = [self.wordsSet objectAtIndex:indexPath.row];
     cell.textLabel.text = w.key;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Word *w = [self.wordsSet objectAtIndex:indexPath.row];
+    LearningViewController *lvc = [[LearningViewController alloc]initWithWord:w];
+    [self.navigationController pushViewController:lvc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - tool bar actions

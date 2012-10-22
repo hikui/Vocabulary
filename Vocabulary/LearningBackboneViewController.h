@@ -14,6 +14,7 @@
 @property (nonatomic,strong) NSMutableArray *learningViewControllerArray;
 @property (nonatomic,strong) NSMutableArray * words;
 @property (nonatomic,strong) UIPageViewController *pageViewController;
+@property (nonatomic,strong) IBOutlet UILabel *pageIndicator;
 
 - (id)initWithWords:(NSMutableArray *)words;
 
