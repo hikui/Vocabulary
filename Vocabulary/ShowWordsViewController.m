@@ -29,7 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [_wordsSet sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        Word *wobj1 = (Word *)obj1;
+        Word *wobj2 = (Word *)obj2;
+        return [wobj1.key compare:wobj2.key];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning

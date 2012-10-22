@@ -25,8 +25,14 @@
  */
 + (NSDictionary *)parseWithXMLString:(NSString *)str
 {
+    str = [str stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
     NSMutableDictionary *resultDict = [[NSMutableDictionary alloc]init];
-    CXMLDocument *document = [[CXMLDocument alloc]initWithXMLString:str options:0 error:nil];
+    NSError *parseError = nil;
+    CXMLDocument *document = [[CXMLDocument alloc]initWithXMLString:str options:0 error:&parseError];
+    if (parseError != nil) {
+        NSLog(@"parse Error!");
+        return nil;
+    }
     
     NSArray *posArray = [document nodesForXPath:@"//pos" error:nil];
     NSArray *acceptationArray = [document nodesForXPath:@"//acceptation" error:nil];

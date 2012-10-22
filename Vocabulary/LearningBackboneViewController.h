@@ -17,5 +17,5 @@
 @property (nonatomic,strong) IBOutlet UILabel *pageIndicator;
 
 - (id)initWithWords:(NSMutableArray *)words;
-
+- (IBAction)btnShowInfoOnPressed:(id)sender;
 @end

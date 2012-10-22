@@ -146,4 +146,24 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     
 }
 
+#pragma mark - ibactions
+- (IBAction)btnShowInfoOnPressed:(id)sender
+{
+    UIButton *btn = (UIButton *)sender;
+    
+    btn.selected = !btn.selected;
+    
+
+    for (LearningViewController *lvc in self.learningViewControllerArray) {
+        if (!btn.selected) {
+            [lvc showInfo];
+        }else{
+            [lvc hideInfo];
+        }
+
+    }
+    
+    
+}
+
 @end

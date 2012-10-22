@@ -18,10 +18,13 @@
 @property (nonatomic,strong) IBOutlet UITextView *acceptationTextView;
 @property (nonatomic,strong) MKNetworkOperation *downloadOp;
 @property (nonatomic,strong) MKNetworkOperation *voiceOp;
+@property (nonatomic,unsafe_unretained) BOOL shouldHideInfo;
 
 - (id)initWithWord:(Word *)word;
 - (void)refreshView;
 
 - (IBAction)btnReadOnPressed:(id)sender;
+- (void)showInfo;
+- (void)hideInfo;
 
 @end
