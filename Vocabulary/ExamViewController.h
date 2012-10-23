@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface ExamViewController : UIViewController
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *examContentsQueueS2E;
 @property (nonatomic, strong) NSMutableArray *examViewReuseQueue;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightButton;
+@property (nonatomic, strong) AVAudioPlayer *soundPlayer;
 
 - (IBAction)rightButtonOnPress:(id)sender;
 - (IBAction)wrongButtonOnPress:(id)sender;

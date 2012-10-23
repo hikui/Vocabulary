@@ -28,6 +28,7 @@
     }else{
         self.keyLabel.text = @"听读音";
     }
+    [self.keyLabel sizeToFit];
     self.acceptationView.hidden = YES;
     self.acceptationView.text = content.word.acceptation;
     self.showAcceptationButton.hidden = NO;

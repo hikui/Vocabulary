@@ -27,14 +27,22 @@
     //权值=等待时间/熟悉度
     //熟悉度=正确次数/错误次数
     //权值=错误次数*时间/正确次数
-    NSDate *lastViewDate = self.word.lastVIewDate;
-    NSTimeInterval time = [lastViewDate timeIntervalSinceNow]*(-1);
-    //假定初始值，防止除零
-    float familiarity = 0.001f;
+    
+    NSTimeInterval time = [_lastReviewDate timeIntervalSinceNow]*(-1);
+    
+    float familiarity = 0;
     if (self.rightTimes != 0 || self.wrongTimes != 0) {
-        familiarity = (float)(self.rightTimes)/(self.rightTimes+self.wrongTimes); //归一化
+        familiarity = ((float)(self.rightTimes))/(self.rightTimes+self.wrongTimes); //归一化
     }
-    int weight = (int)(time/familiarity);
+    if (familiarity == 0) {
+        //防止除0
+        familiarity = 0.01;
+    }
+    int weight = (int)(time/(familiarity*familiarity));
+    if (weight <0) {
+        //溢出
+        weight = -weight;
+    }
     return weight;
 }
 

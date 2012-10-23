@@ -22,6 +22,7 @@ typedef enum {
 @property (nonatomic, strong) Word *word;
 @property (nonatomic, unsafe_unretained) int rightTimes;
 @property (nonatomic, unsafe_unretained) int wrongTimes;
+@property (nonatomic, strong) NSDate *lastReviewDate;
 
 - (id)initWithWord:(Word *)word examType:(ExamType)examType;
 - (int)weight;   //计算权值
