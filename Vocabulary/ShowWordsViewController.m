@@ -91,7 +91,7 @@
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    ExamViewController *evc = [[ExamViewController alloc]initWithNibName:@"ExamViewCOntroller" bundle:nil];
+    ExamViewController *evc = [[ExamViewController alloc]initWithNibName:@"ExamViewController" bundle:nil];
     evc.wordsArray = self.wordsSet;
     [self.navigationController pushViewController:evc animated:YES];
 }

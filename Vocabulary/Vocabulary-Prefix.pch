@@ -13,4 +13,5 @@
     #import <Foundation/Foundation.h>
     #import "MKNetworkKit.h"
     #import "Reachability.h"
+    #import "CoreDataHelper.h"
 #endif

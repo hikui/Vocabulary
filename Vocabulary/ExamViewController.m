@@ -109,6 +109,7 @@
         int familiarityInt = (int)(familiarity *10);
         c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
     }
+    [[CoreDataHelper sharedInstance]saveContext];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
