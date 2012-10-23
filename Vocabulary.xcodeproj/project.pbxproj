@@ -78,6 +78,14 @@
 		EC3942641630E54D00E6AE18 /* TouchXML.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942491630E54D00E6AE18 /* TouchXML.h */; };
 		EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942671630E95C00E6AE18 /* CibaXMLParser.h */; };
 		EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942681630E95C00E6AE18 /* CibaXMLParser.m */; };
+		EC4FCFE1163646C500EF429B /* ExamViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDE163646C500EF429B /* ExamViewController.h */; };
+		EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDF163646C500EF429B /* ExamViewController.m */; };
+		EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFE0163646C500EF429B /* ExamViewController.xib */; };
+		EC4FCFE716365B0A00EF429B /* ExamContent.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFE516365B0A00EF429B /* ExamContent.h */; };
+		EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFE616365B0A00EF429B /* ExamContent.m */; };
+		EC4FCFEE16367CEE00EF429B /* ExamView.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFEC16367CEE00EF429B /* ExamView.h */; };
+		EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFED16367CEE00EF429B /* ExamView.m */; };
+		EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFF016367D0B00EF429B /* ExamView.xib */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -179,6 +187,14 @@
 		EC3942491630E54D00E6AE18 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = TouchXML.h; path = Vocabulary/lib/TouchXML/TouchXML.h; sourceTree = "<group>"; };
 		EC3942671630E95C00E6AE18 /* CibaXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CibaXMLParser.h; sourceTree = "<group>"; };
 		EC3942681630E95C00E6AE18 /* CibaXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaXMLParser.m; sourceTree = "<group>"; };
+		EC4FCFDE163646C500EF429B /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamViewController.h; sourceTree = "<group>"; };
+		EC4FCFDF163646C500EF429B /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
+		EC4FCFE0163646C500EF429B /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
+		EC4FCFE516365B0A00EF429B /* ExamContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamContent.h; sourceTree = "<group>"; };
+		EC4FCFE616365B0A00EF429B /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
+		EC4FCFEC16367CEE00EF429B /* ExamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamView.h; sourceTree = "<group>"; };
+		EC4FCFED16367CEE00EF429B /* ExamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamView.m; sourceTree = "<group>"; };
+		EC4FCFF016367D0B00EF429B /* ExamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamView.xib; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -244,32 +260,12 @@
 		A46A7E511630296800DF4696 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
+				EC4FCFE916367C5500EF429B /* ViewControllers */,
 				A46A7F351632C42900DF4696 /* utils */,
 				A46A7E7D16302C5500DF4696 /* models */,
 				A46A7E5A1630296800DF4696 /* AppDelegate.h */,
 				A46A7E5B1630296800DF4696 /* AppDelegate.m */,
 				A46A7E521630296800DF4696 /* Supporting Files */,
-				ECB6EC9016311D9800A34438 /* TestViewController.h */,
-				ECB6EC9116311D9800A34438 /* TestViewController.m */,
-				ECB6EC9216311D9800A34438 /* TestViewController.xib */,
-				ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */,
-				ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */,
-				ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */,
-				A46A7F401632DA5800DF4696 /* ShowWordListViewController.h */,
-				A46A7F411632DA5800DF4696 /* ShowWordListViewController.m */,
-				A46A7F421632DA5800DF4696 /* ShowWordListViewController.xib */,
-				A46A7F451632DE4000DF4696 /* ShowWordsViewController.h */,
-				A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */,
-				A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */,
-				A46A7F4A1632E5F300DF4696 /* HomeViewController.h */,
-				A46A7F4B1632E5F300DF4696 /* HomeViewController.m */,
-				A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */,
-				A46A7F4F1632ED4D00DF4696 /* LearningBackboneViewController.h */,
-				A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */,
-				A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */,
-				A46A7F591633A35900DF4696 /* LearningViewController.h */,
-				A46A7F5A1633A35900DF4696 /* LearningViewController.m */,
-				A46A7F5B1633A35900DF4696 /* LearningViewController.xib */,
 			);
 			path = Vocabulary;
 			sourceTree = "<group>";
@@ -446,6 +442,58 @@
 			path = Vocabulary/lib/TouchXML/Tidy;
 			sourceTree = "<group>";
 		};
+		EC4FCFE916367C5500EF429B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FCFEB16367C9E00EF429B /* Examing */,
+				EC4FCFEA16367C8700EF429B /* Learning */,
+				ECB6EC9016311D9800A34438 /* TestViewController.h */,
+				ECB6EC9116311D9800A34438 /* TestViewController.m */,
+				ECB6EC9216311D9800A34438 /* TestViewController.xib */,
+				ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */,
+				ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */,
+				ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */,
+				A46A7F401632DA5800DF4696 /* ShowWordListViewController.h */,
+				A46A7F411632DA5800DF4696 /* ShowWordListViewController.m */,
+				A46A7F421632DA5800DF4696 /* ShowWordListViewController.xib */,
+				A46A7F451632DE4000DF4696 /* ShowWordsViewController.h */,
+				A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */,
+				A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */,
+				A46A7F4A1632E5F300DF4696 /* HomeViewController.h */,
+				A46A7F4B1632E5F300DF4696 /* HomeViewController.m */,
+				A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EC4FCFEA16367C8700EF429B /* Learning */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7F4F1632ED4D00DF4696 /* LearningBackboneViewController.h */,
+				A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */,
+				A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */,
+				A46A7F591633A35900DF4696 /* LearningViewController.h */,
+				A46A7F5A1633A35900DF4696 /* LearningViewController.m */,
+				A46A7F5B1633A35900DF4696 /* LearningViewController.xib */,
+			);
+			name = Learning;
+			sourceTree = "<group>";
+		};
+		EC4FCFEB16367C9E00EF429B /* Examing */ = {
+			isa = PBXGroup;
+			children = (
+				EC4FCFDE163646C500EF429B /* ExamViewController.h */,
+				EC4FCFDF163646C500EF429B /* ExamViewController.m */,
+				EC4FCFE0163646C500EF429B /* ExamViewController.xib */,
+				EC4FCFE516365B0A00EF429B /* ExamContent.h */,
+				EC4FCFE616365B0A00EF429B /* ExamContent.m */,
+				EC4FCFEC16367CEE00EF429B /* ExamView.h */,
+				EC4FCFED16367CEE00EF429B /* ExamView.m */,
+				EC4FCFF016367D0B00EF429B /* ExamView.xib */,
+			);
+			name = Examing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -511,6 +559,8 @@
 				A46A7FCD1635909D00DF4696 /* audio.png in Resources */,
 				A46A7FCE1635909D00DF4696 /* hide-info.png in Resources */,
 				A46A7FCF1635909D00DF4696 /* show-info.png in Resources */,
+				EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */,
+				EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +623,12 @@
 				A46A7FC61635646D00DF4696 /* MKNetworkEngine.m in Sources */,
 				A46A7FC71635646D00DF4696 /* MKNetworkOperation.m in Sources */,
 				A46A7FC81635646D00DF4696 /* Reachability.m in Sources */,
+				EC4FCFE1163646C500EF429B /* ExamViewController.h in Sources */,
+				EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */,
+				EC4FCFE716365B0A00EF429B /* ExamContent.h in Sources */,
+				EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */,
+				EC4FCFEE16367CEE00EF429B /* ExamView.h in Sources */,
+				EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

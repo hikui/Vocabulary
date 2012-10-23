@@ -10,6 +10,7 @@
 #import "Word.h"
 #import "LearningBackboneViewController.h"
 #import "LearningViewController.h"
+#import "ExamViewController.h"
 
 @interface ShowWordsViewController ()
 
@@ -84,6 +85,8 @@
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    
+    ExamViewController *evc = [[ExamViewController alloc]initWithNibName:@"ExamViewCOntroller" bundle:nil];
+    evc.wordsArray = self.wordsSet;
+    [self.navigationController pushViewController:evc animated:YES];
 }
 @end
