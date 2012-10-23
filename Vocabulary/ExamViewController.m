@@ -88,6 +88,29 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    //统计各个word的familiarity
+    for (ExamContent *c1 in self.examContentsQueueE2C) {
+        int rightCount = c1.rightTimes;
+        int wrongCount = c1.wrongTimes;
+        for (int i = 0; i<self.examContentsQueueS2E.count; i++) {
+            ExamContent *c2 = [self.examContentsQueueS2E objectAtIndex:i];
+            if (c2.word == c1.word) {
+                rightCount += c2.rightTimes;
+                wrongCount += c2.wrongTimes;
+                break;
+            }
+        }
+        float familiarity = 0;
+        if (rightCount != 0 || wrongCount != 0) {
+            familiarity = ((float)(rightCount))/(rightCount+wrongCount);
+        }
+        int familiarityInt = (int)(familiarity *10);
+        c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
