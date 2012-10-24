@@ -13,6 +13,8 @@
 
 @interface CreateWordListViewController ()
 
+@property (nonatomic, unsafe_unretained) BOOL firstEdit;
+
 @end
 
 @implementation CreateWordListViewController
@@ -29,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _firstEdit = YES;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
 //    [notificationCenter addObserver:self selector:@selector(keyboardwillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -50,11 +53,10 @@
 #pragma mark UITextViewDelegate
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    static BOOL firstEdit = YES;
-    if (firstEdit) {
+    if (_firstEdit) {
         textView.text = @"";
     }
-    firstEdit = NO;
+    _firstEdit = NO;
     return YES;
 }
 
