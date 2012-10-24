@@ -15,7 +15,6 @@
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
 
 - (ExamView *)pickAnExamView;
-- (NSMutableArray *)choseExamContentQueueRandomly;
 - (void)shuffleMutableArray:(NSMutableArray *)array;
 - (void)prepareNextExamView;
 
@@ -25,12 +24,33 @@
 
 @implementation ExamViewController
 
+- (id)initWithWordList:(WordList *)wordList
+{
+    self = [super initWithNibName:@"ExamViewController" bundle:nil];
+    if (self) {
+        _wordList = wordList;
+        _examContentsQueue = [[NSMutableArray alloc]init];
+        _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
+    }
+    return self;
+}
+- (id)initWithWordArray:(NSMutableArray *)wordArray
+{
+    self = [super initWithNibName:@"ExamViewController" bundle:nil];
+    if (self) {
+        _wordsArray = wordArray;
+        _examContentsQueue = [[NSMutableArray alloc]init];
+        _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _examContentsQueueE2C = [[NSMutableArray alloc]init];
-        _examContentsQueueS2E = [[NSMutableArray alloc]init];
+
+        _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
     }
     return self;
@@ -41,15 +61,32 @@
     [super viewDidLoad];
     
     _cursor1 = 0;
-    _cursor2 = 0;
+    
+    self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
+    self.roundNotificatonLabel.clipsToBounds = YES;
+
+    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonLabel.bounds.size.height/2);
+    self.roundNotificatonLabel.center = center;
+    [self.view addSubview:self.roundNotificatonLabel];
+    
+    if (self.wordList != nil) {
+        NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
+        for (Word *w in self.wordList.words) {
+            [words addObject:w];
+        }
+        self.wordsArray = words;
+    }
     
     //create examContents
     for (Word *word in self.wordsArray) {
+        NSLog(@"creating exam contents...");
         ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
-        [self.examContentsQueueE2C addObject:contentE2C];
+        [self.examContentsQueue addObject:contentE2C];
+        NSLog(@"%@",contentE2C);
         if ( word.pronounceUS != nil || word.pronounceEN != nil) {
             ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
-            [self.examContentsQueueS2E addObject:contentS2E];
+            [self.examContentsQueue addObject:contentS2E];
+            NSLog(@"%@",contentS2E);
         }
     }
     
@@ -62,18 +99,10 @@
     [self.examViewReuseQueue addObject:ev2];
     
     //shuffle array
-    [self shuffleMutableArray:self.examContentsQueueE2C];
-    [self shuffleMutableArray:self.examContentsQueueS2E];
-    
-    int rand = arc4random() % 2;
-    ExamContent *content = nil;
-    if (rand == 0) {
-        content = [self.examContentsQueueE2C objectAtIndex:_cursor1];
-        _cursor1 = ++_cursor1;
-    }else{
-        content = [self.examContentsQueueS2E objectAtIndex:_cursor2];
-        _cursor2 = ++_cursor2;
-    }
+    [self shuffleMutableArray:self.examContentsQueue];
+
+    ExamContent *content = [self.examContentsQueue objectAtIndex:_cursor1];;
+
     ExamView *ev = [self pickAnExamView];
     ev.content = content;
     self.currentExamContent = content;
@@ -91,17 +120,60 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     //统计各个word的familiarity
-    for (ExamContent *c1 in self.examContentsQueueE2C) {
+    
+    //排序
+    
+    [self calculateFamiliarityForEveryWords];
+    
+//    for (ExamContent *c1 in self.examContentsQueueE2C) {
+//        int rightCount = c1.rightTimes;
+//        int wrongCount = c1.wrongTimes;
+//        for (int i = 0; i<self.examContentsQueueS2E.count; i++) {
+//            ExamContent *c2 = [self.examContentsQueueS2E objectAtIndex:i];
+//            if (c2.word == c1.word) {
+//                rightCount += c2.rightTimes;
+//                wrongCount += c2.wrongTimes;
+//                break;
+//            }
+//        }
+//        float familiarity = 0;
+//        if (rightCount != 0 || wrongCount != 0) {
+//            familiarity = ((float)(rightCount))/(rightCount+wrongCount);
+//        }
+//        int familiarityInt = (int)(familiarity *10);
+//        c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
+//    }
+    
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)calculateFamiliarityForEveryWords
+{
+    [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        ExamContent *c1 = (ExamContent *)obj1;
+        ExamContent *c2 = (ExamContent *)obj2;
+        NSString *str1 = c1.word.key;
+        NSString *str2 = c2.word.key;
+        return [str1 compare:str2];
+    }];
+    int i = 0;
+    while (i<self.examContentsQueue.count) {
+        ExamContent *c1 = [self.examContentsQueue objectAtIndex:i];
+        ExamContent *c2 = [self.examContentsQueue objectAtIndex:i+1];
         int rightCount = c1.rightTimes;
         int wrongCount = c1.wrongTimes;
-        for (int i = 0; i<self.examContentsQueueS2E.count; i++) {
-            ExamContent *c2 = [self.examContentsQueueS2E objectAtIndex:i];
-            if (c2.word == c1.word) {
-                rightCount += c2.rightTimes;
-                wrongCount += c2.wrongTimes;
-                break;
-            }
+        if (c1.word == c2.word) {
+            rightCount += c2.rightTimes;
+            wrongCount += c2.wrongTimes;
+            i += 2;
+        }else{
+            i += 1;
         }
+        
         float familiarity = 0;
         if (rightCount != 0 || wrongCount != 0) {
             familiarity = ((float)(rightCount))/(rightCount+wrongCount);
@@ -112,10 +184,7 @@
     [[CoreDataHelper sharedInstance]saveContext];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
+#pragma mark - ibactions
 
 - (IBAction)rightButtonOnPress:(id)sender
 {
@@ -146,15 +215,15 @@
     return view;
 }
 
-- (NSMutableArray *)choseExamContentQueueRandomly
-{
-    int index = arc4random() % 2;
-    if (index == 0) {
-        return self.examContentsQueueE2C;
-    }else{
-        return self.examContentsQueueS2E;
-    }
-}
+//- (NSMutableArray *)choseExamContentQueueRandomly
+//{
+//    int index = arc4random() % 2;
+//    if (index == 0) {
+//        return self.examContentsQueueE2C;
+//    }else{
+//        return self.examContentsQueueS2E;
+//    }
+//}
 
 - (void)shuffleMutableArray:(NSMutableArray *)array
 {
@@ -169,54 +238,36 @@
 {
     ExamView *ev = [self pickAnExamView];
     ev.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
-    int rand = arc4random() % 2;
-    ExamContent *content = nil;
-    if (rand == 0) {
-        content = [self.examContentsQueueE2C objectAtIndex:_cursor1];
-        _cursor1 = ++_cursor1 % self.examContentsQueueE2C.count;
-        if (_cursor1 == 0) {
-            //已循环一遍了，根据权重排序
-            [self.examContentsQueueE2C sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                ExamContent *c1 = (ExamContent *)obj1;
-                ExamContent *c2 = (ExamContent *)obj2;
-                int weight1 = [c1 weight];
-                int weight2 = [c2 weight];
-                if (weight1>weight2) {
-                    return NSOrderedAscending;
-                }else if(weight1==weight2){
-                    return NSOrderedSame;
-                }else{
-                    return NSOrderedDescending;
-                }
-            }];
-//            NSLog(@"E2C sorted");
-//            for (ExamContent *c in self.examContentsQueueE2C) {
-//                NSLog(@"weight:%d",[c weight]);
-//            }
-        }
-    }else{
-        content = [self.examContentsQueueS2E objectAtIndex:_cursor2];
-        _cursor2 = ++_cursor2 % self.examContentsQueueS2E.count;
-        if (_cursor1 == 0) {
-            //已循环一遍了，根据权重排序
-            [self.examContentsQueueS2E sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                ExamContent *c1 = (ExamContent *)obj1;
-                ExamContent *c2 = (ExamContent *)obj2;
-                int weight1 = [c1 weight];
-                int weight2 = [c2 weight];
-                if (weight1>weight2) {
-                    return NSOrderedAscending;
-                }else if(weight1==weight2){
-                    return NSOrderedSame;
-                }else{
-                    return NSOrderedDescending;
-                }
-            }];
-//            NSLog(@"S2E sorted");
-//            for (ExamContent *c in self.examContentsQueueS2E) {
-//                NSLog(@"weight:%d",[c weight]);
-//            }
-        }
+    _cursor1 = ++_cursor1 % self.examContentsQueue.count;
+    ExamContent * content = [self.examContentsQueue objectAtIndex:_cursor1];
+    if (_cursor1 == 0) {
+        //已经循环一遍了
+        NSLog(@"已经循环一遍了");
+        //显示提示
+        [self.view bringSubviewToFront:self.roundNotificatonLabel];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.roundNotificatonLabel.transform = CGAffineTransformMakeTranslation(0, 0-self.roundNotificatonLabel.frame.origin.y+3);
+        } completion:^(BOOL finished){
+            if (finished) {
+                [UIView animateWithDuration:0.5 delay:2 options:UIViewAnimationOptionCurveLinear animations:^{
+                    self.roundNotificatonLabel.transform = CGAffineTransformMakeTranslation(0,0);
+                } completion:nil];
+            }
+        }];
+        
+        [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            ExamContent *c1 = (ExamContent *)obj1;
+            ExamContent *c2 = (ExamContent *)obj2;
+            int weight1 = [c1 weight];
+            int weight2 = [c2 weight];
+            if (weight1>weight2) {
+                return NSOrderedAscending;
+            }else if(weight1==weight2){
+                return NSOrderedSame;
+            }else{
+                return NSOrderedDescending;
+            }
+        }];
     }
     ev.content = content;
     self.currentExamContent = content;

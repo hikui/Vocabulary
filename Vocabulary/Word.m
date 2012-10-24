@@ -24,4 +24,9 @@
 @dynamic hasGotDataFromAPI;
 @dynamic wordList;
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@",self.key];
+}
+
 @end

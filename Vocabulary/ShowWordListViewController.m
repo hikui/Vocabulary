@@ -70,13 +70,8 @@
 {
     
     NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    NSSet *wordsSet = [object valueForKey:@"words"];
-    NSMutableArray *wordsArray = [[NSMutableArray alloc]initWithCapacity:wordsSet.count];
-    for (Word *w in wordsSet) {
-        [wordsArray addObject:w];
-    }
     ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-    subVC.wordsSet = wordsArray;
+    subVC.wordList = (WordList *)object;
     [self.navigationController pushViewController:subVC animated:YES];
 }
 

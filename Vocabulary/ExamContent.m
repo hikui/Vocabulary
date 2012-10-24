@@ -46,4 +46,15 @@
     return weight;
 }
 
+- (NSString *)description
+{
+    NSString *type = nil;
+    if (self.examType == ExamTypeE2C) {
+        type = @"E2C";
+    }else{
+        type = @"S2E";
+    }
+    return [NSString stringWithFormat:@"content of %@ with type %@",[self.word description],type];
+}
+
 @end

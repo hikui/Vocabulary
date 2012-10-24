@@ -30,6 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.wordList != nil) {
+        NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
+        for (Word *w in self.wordList.words) {
+            [words addObject:w];
+        }
+        self.wordsSet = words;
+    }
     [_wordsSet sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Word *wobj1 = (Word *)obj1;
         Word *wobj2 = (Word *)obj2;
@@ -91,8 +98,8 @@
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    ExamViewController *evc = [[ExamViewController alloc]initWithNibName:@"ExamViewController" bundle:nil];
-    evc.wordsArray = self.wordsSet;
+    ExamViewController *evc = [[ExamViewController alloc]initWithWordList:self.wordList];
+//    evc.wordsArray = self.wordsSet;
     [self.navigationController pushViewController:evc animated:YES];
 }
 @end

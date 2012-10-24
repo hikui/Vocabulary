@@ -39,6 +39,7 @@
     UIButton *btn = (UIButton *)sender;
     btn.hidden = YES;
     self.acceptationView.hidden = NO;
+    self.keyLabel.text = self.content.word.key;
 }
 
 @end

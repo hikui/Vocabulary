@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *wordsSet;
+@property (strong, nonatomic) WordList *wordList;
 
 - (IBAction)btnBeginStudyOnPress:(id)sender;
 - (IBAction)btnBeginTestOnPress:(id)sender;
