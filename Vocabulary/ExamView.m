@@ -40,6 +40,7 @@
     btn.hidden = YES;
     self.acceptationView.hidden = NO;
     self.keyLabel.text = self.content.word.key;
+    [self.keyLabel sizeToFit];
 }
 
 @end

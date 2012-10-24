@@ -79,14 +79,14 @@
     
     //create examContents
     for (Word *word in self.wordsArray) {
-        NSLog(@"creating exam contents...");
+        //NSLog(@"creating exam contents...");
         ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
         [self.examContentsQueue addObject:contentE2C];
-        NSLog(@"%@",contentE2C);
+        //NSLog(@"%@",contentE2C);
         if ( word.pronounceUS != nil || word.pronounceEN != nil) {
             ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
             [self.examContentsQueue addObject:contentS2E];
-            NSLog(@"%@",contentS2E);
+            //NSLog(@"%@",contentS2E);
         }
     }
     
@@ -255,6 +255,7 @@
             }
         }];
         
+        //根据权值算法排序
         [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             ExamContent *c1 = (ExamContent *)obj1;
             ExamContent *c2 = (ExamContent *)obj2;
@@ -268,6 +269,27 @@
                 return NSOrderedDescending;
             }
         }];
+        
+        //更新本WordList的信息
+        if (self.wordList != nil) {
+            NSDate *lastReviewTime = self.wordList.lastReviewTime;
+            if (lastReviewTime != nil) {
+                NSTimeInterval passedTime = 0 - [lastReviewTime timeIntervalSinceNow];
+                if (passedTime > 24*60*60) {
+                    //如果距离上次复习时间大于一天，视为有效次数
+                    int effictiveCount = [self.wordList.effectiveCount intValue];
+                    effictiveCount++;
+                    self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
+                    self.wordList.lastReviewTime = [NSDate date]; //设为现在
+                }
+            }else{
+                int effictiveCount = [self.wordList.effectiveCount intValue];
+                effictiveCount++;
+                self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
+                self.wordList.lastReviewTime = [NSDate date]; //设为现在
+            }
+            
+        }
     }
     ev.content = content;
     self.currentExamContent = content;

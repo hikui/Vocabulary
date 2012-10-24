@@ -56,7 +56,7 @@
 								<int key="IBUISystemItemIdentifier">6</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="862609239">
-								<string key="IBUITitle">对</string>
+								<string key="IBUITitle">√</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="988787349"/>
@@ -71,7 +71,7 @@
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="764251605">
-								<string key="IBUITitle">错</string>
+								<string key="IBUITitle">X</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="988787349"/>
@@ -107,12 +107,13 @@
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUILabel" id="256416326">
+			<object class="IBUILabel" id="142492522">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{153, 24}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -165,7 +166,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">roundNotificatonLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="256416326"/>
+						<reference key="destination" ref="142492522"/>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
@@ -252,7 +253,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="256416326"/>
+						<reference key="object" ref="142492522"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</array>
