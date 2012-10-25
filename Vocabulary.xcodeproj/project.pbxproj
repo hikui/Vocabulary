@@ -49,6 +49,7 @@
 		A46A7FCD1635909D00DF4696 /* audio.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCA1635909D00DF4696 /* audio.png */; };
 		A46A7FCE1635909D00DF4696 /* hide-info.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCB1635909D00DF4696 /* hide-info.png */; };
 		A46A7FCF1635909D00DF4696 /* show-info.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCC1635909D00DF4696 /* show-info.png */; };
+		A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FF31639702A00DF4696 /* PlanningVIewController.m */; };
 		EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */; };
 		EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */; };
 		EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */; };
@@ -158,6 +159,8 @@
 		A46A7FCA1635909D00DF4696 /* audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = audio.png; path = artwork/audio.png; sourceTree = "<group>"; };
 		A46A7FCB1635909D00DF4696 /* hide-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hide-info.png"; path = "artwork/hide-info.png"; sourceTree = "<group>"; };
 		A46A7FCC1635909D00DF4696 /* show-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show-info.png"; path = "artwork/show-info.png"; sourceTree = "<group>"; };
+		A46A7FF21639702A00DF4696 /* PlanningVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningVIewController.h; sourceTree = "<group>"; };
+		A46A7FF31639702A00DF4696 /* PlanningVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningVIewController.m; sourceTree = "<group>"; };
 		EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -420,6 +423,15 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		A46A7FF016396FE600DF4696 /* Planning */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7FF21639702A00DF4696 /* PlanningVIewController.h */,
+				A46A7FF31639702A00DF4696 /* PlanningVIewController.m */,
+			);
+			name = Planning;
+			sourceTree = "<group>";
+		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +457,7 @@
 		EC4FCFE916367C5500EF429B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A46A7FF016396FE600DF4696 /* Planning */,
 				EC4FCFEB16367C9E00EF429B /* Examing */,
 				EC4FCFEA16367C8700EF429B /* Learning */,
 				ECB6EC9016311D9800A34438 /* TestViewController.h */,
@@ -629,6 +642,7 @@
 				EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */,
 				EC4FCFEE16367CEE00EF429B /* ExamView.h in Sources */,
 				EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */,
+				A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

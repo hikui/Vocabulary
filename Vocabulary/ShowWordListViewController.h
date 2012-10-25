@@ -10,9 +10,15 @@
 #import <CoreData/CoreData.h>
 
 @interface ShowWordListViewController : UIViewController<NSFetchedResultsControllerDelegate>
+{
+    @protected
+    NSFetchedResultsController *_fetchedResultsController;
+}
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end

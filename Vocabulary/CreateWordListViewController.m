@@ -116,7 +116,7 @@
     
     WordList *newList = [NSEntityDescription insertNewObjectForEntityForName:@"WordList" inManagedObjectContext:moc];
     newList.title = self.titleField.text;
-    
+    newList.addTime = [NSDate date];
     for (NSString *aWord in wordSet) {
         if (aWord.length == 0) {
             continue;

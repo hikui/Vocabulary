@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "CreateWordListViewController.h"
 #import "ShowWordListViewController.h"
+#import "PlanningVIewController.h"
 
 @interface HomeViewController ()
 
@@ -46,6 +47,9 @@
     }else if(btn.tag == 2){
         ShowWordListViewController *vc = [[ShowWordListViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:YES];
+    }else if(btn.tag == 3){
+        PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
+        [self.navigationController pushViewController:pvc animated:YES];
     }
 }
 
