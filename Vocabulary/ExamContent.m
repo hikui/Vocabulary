@@ -38,7 +38,7 @@
         //防止除0
         familiarity = 0.01;
     }
-    int weight = (int)(time/(familiarity*familiarity));
+    int weight = (int)(sqrt(time)/(familiarity*familiarity));
     if (weight <0) {
         //溢出
         weight = -weight;
