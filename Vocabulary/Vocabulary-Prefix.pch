@@ -14,4 +14,5 @@
     #import "MKNetworkKit.h"
     #import "Reachability.h"
     #import "CoreDataHelper.h"
+    #import "MBProgressHUD.h"
 #endif

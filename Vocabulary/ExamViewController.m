@@ -8,17 +8,23 @@
 
 #import "ExamViewController.h"
 #import "ExamView.h"
+#import "CibaEngine.h"
 
 @interface ExamViewController ()
 
 @property (nonatomic, unsafe_unretained) BOOL animationLock;
+@property (nonatomic, unsafe_unretained) BOOL downloadLock;
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
+@property (nonatomic, unsafe_unretained) BOOL shouldUpdateWordFamiliarity;
 
 - (ExamView *)pickAnExamView;
 - (void)shuffleMutableArray:(NSMutableArray *)array;
 - (void)prepareNextExamView;
 
 - (void)examViewExchangeDidFinish:(ExamView *)currExamView;
+- (void)backButtonPressed;
+
+- (void)downloadInfoForWord:(Word *)word;
 
 @end
 
@@ -60,7 +66,10 @@
 {
     [super viewDidLoad];
     
+    
+    //adjust views
     _cursor1 = 0;
+    _shouldUpdateWordFamiliarity = NO;
     
     self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
     self.roundNotificatonLabel.clipsToBounds = YES;
@@ -76,6 +85,11 @@
         }
         self.wordsArray = words;
     }
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
+                                                                  style:UIBarButtonItemStyleBordered target:self
+                                                                 action:@selector(backButtonPressed)];
+    self.navigationItem.leftBarButtonItem = backButton;
     
     //create examContents
     for (Word *word in self.wordsArray) {
@@ -117,34 +131,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    //统计各个word的familiarity
-    
-    //排序
-    
-    [self calculateFamiliarityForEveryWords];
-    
-//    for (ExamContent *c1 in self.examContentsQueueE2C) {
-//        int rightCount = c1.rightTimes;
-//        int wrongCount = c1.wrongTimes;
-//        for (int i = 0; i<self.examContentsQueueS2E.count; i++) {
-//            ExamContent *c2 = [self.examContentsQueueS2E objectAtIndex:i];
-//            if (c2.word == c1.word) {
-//                rightCount += c2.rightTimes;
-//                wrongCount += c2.wrongTimes;
-//                break;
-//            }
-//        }
-//        float familiarity = 0;
-//        if (rightCount != 0 || wrongCount != 0) {
-//            familiarity = ((float)(rightCount))/(rightCount+wrongCount);
-//        }
-//        int familiarityInt = (int)(familiarity *10);
-//        c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
-//    }
-    
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -290,6 +276,9 @@
             }
             
         }
+        
+        //标记Word熟悉度可更新
+        _shouldUpdateWordFamiliarity = YES;
     }
     ev.content = content;
     self.currentExamContent = content;
@@ -326,5 +315,96 @@
         }
     }
 }
+
+- (void)backButtonPressed
+{
+    if (_shouldUpdateWordFamiliarity) {
+        [self calculateFamiliarityForEveryWords];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"您还没背完一遍呢"
+                                                           message:@"本次测试将作废"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"继续背"
+                                                 otherButtonTitles:@"确认作废",nil];
+        [alertView show];
+    }
+}
+
+#pragma mark - alert view delegate methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"确认作废"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark - network methods
+//- (void)downloadInfoForWord:(Word *)word
+//{
+//
+//    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+//    if ([reachability currentReachabilityStatus] == NotReachable) {
+////        self.acceptationTextView.text = @"无网络连接，首次访问需要通过网络。";
+//        return;
+//    }
+//    
+//        //            NSLog(@"iscancelled:%d,isfinished:%d",self.downloadOp.isFinished,self.downloadOp.isFinished);
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hud.labelText = @"正在取词";
+//        CibaEngine *engine = [CibaEngine sharedInstance];
+//
+//        [engine infomationForWord:word.key onCompletion:^(NSDictionary *parsedDict) {
+//            
+//            if (parsedDict == nil) {
+//                // error on parsing
+//                hud.labelText = @"词义加载失败";
+//                [hud hide:YES afterDelay:1];
+//            }
+//            word.acceptation = [parsedDict objectForKey:@"acceptation"];
+//            word.psEN = [parsedDict objectForKey:@"psEN"];
+//            word.psUS = [parsedDict objectForKey:@"psUS"];
+//            word.sentences = [parsedDict objectForKey:@"sentence"];
+//            //self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+//            [[CoreDataHelper sharedInstance]saveContext];
+//            //load voice
+//            NSString *pronURL = [parsedDict objectForKey:@"pronounceUS"];
+//            if (pronURL == nil) {
+//                pronURL = [parsedDict objectForKey:@"pronounceEN"];
+//            }
+//            if (pronURL != nil) {
+//                [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
+//                    NSLog(@"voice succeed");
+//                    if (data == nil) {
+//                        NSLog(@"data nil");
+//                        return;
+//                    }
+//                    word.pronounceUS = data;
+//                    word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+//                    [[CoreDataHelper sharedInstance]saveContext];
+//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//
+//                    
+//                } onError:^(NSError *error) {
+//                    NSLog(@"VOICE ERROR");
+//
+//                    word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
+//                    [[CoreDataHelper sharedInstance]saveContext];
+//                    hud.labelText = @"语音加载失败";
+//                    [hud hide:YES afterDelay:1];
+//                }];
+//            }else{
+//                hud.labelText = @"语音加载失败";
+//                [hud hide:YES afterDelay:1];
+//            }
+//            
+//        } onError:^(NSError *error) {
+//            hud.labelText = @"词义加载失败";
+//            [hud hide:YES afterDelay:1];
+//            NSLog(@"ERROR");
+//        }];
+//
+//}
 
 @end
