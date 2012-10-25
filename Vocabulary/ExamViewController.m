@@ -178,7 +178,14 @@
         if (rightCount != 0 || wrongCount != 0) {
             familiarity = ((float)(rightCount))/(rightCount+wrongCount);
         }
-        int familiarityInt = (int)(familiarity *10);
+        if (c1.word.familiarity != nil) {
+            //与以前的值做平均
+            float oldFamiliarity = [c1.word.familiarity floatValue];
+            familiarity = (oldFamiliarity + familiarity)/2;
+        }
+        
+        
+        int familiarityInt = (int)((familiarity *10));
         c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
     }
     [[CoreDataHelper sharedInstance]saveContext];

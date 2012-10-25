@@ -32,7 +32,7 @@
     
     float familiarity = 0;
     if (self.rightTimes != 0 || self.wrongTimes != 0) {
-        familiarity = ((float)(self.rightTimes))/(self.rightTimes+self.wrongTimes); //归一化
+        familiarity = ((float)(self.rightTimes))/(self.rightTimes+self.wrongTimes);
     }
     if (familiarity == 0) {
         //防止除0
