@@ -164,15 +164,15 @@
         if (rightCount != 0 || wrongCount != 0) {
             familiarity = ((float)(rightCount))/(rightCount+wrongCount);
         }
-        if (c1.word.familiarity != nil) {
+        if (c1.word.lastVIewDate != nil) {
             //与以前的值做平均
-            float oldFamiliarity = [c1.word.familiarity floatValue];
+            float oldFamiliarity = [c1.word.familiarity floatValue]/10;
             familiarity = (oldFamiliarity + familiarity)/2;
         }
         
-        
-        int familiarityInt = (int)((familiarity *10));
+        int familiarityInt = (int)(roundf(familiarity*10));
         c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
+        c1.word.lastVIewDate = [NSDate date];
     }
     [[CoreDataHelper sharedInstance]saveContext];
 }
