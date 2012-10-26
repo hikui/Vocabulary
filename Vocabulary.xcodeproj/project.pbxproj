@@ -37,7 +37,6 @@
 		A46A7F921633C5CF00DF4696 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7F911633C5CF00DF4696 /* Security.framework */; };
 		A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F981633C8AF00DF4696 /* CibaEngine.m */; };
 		A46A7F9F1633D4C600DF4696 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */; };
-		A46A7FAB1635644100DF4696 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FAA1635644100DF4696 /* MBProgressHUD.m */; };
 		A46A7FC11635646D00DF4696 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FB01635646D00DF4696 /* NSData+Base64.m */; };
 		A46A7FC21635646D00DF4696 /* NSDate+RFC1123.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FB21635646D00DF4696 /* NSDate+RFC1123.m */; };
 		A46A7FC31635646D00DF4696 /* NSDictionary+RequestEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FB41635646D00DF4696 /* NSDictionary+RequestEncoding.m */; };
@@ -52,6 +51,8 @@
 		A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FF31639702A00DF4696 /* PlanningVIewController.m */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
+		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
+		EC11520D163A8FFB0039A5FA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC11520B163A8FFB0039A5FA /* MBProgressHUD.m */; };
 		EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */; };
 		EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */; };
 		EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */; };
@@ -139,8 +140,6 @@
 		A46A7F971633C8AF00DF4696 /* CibaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaEngine.h; sourceTree = "<group>"; };
 		A46A7F981633C8AF00DF4696 /* CibaEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaEngine.m; sourceTree = "<group>"; };
 		A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		A46A7FA91635644100DF4696 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Vocabulary/lib/MDProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
-		A46A7FAA1635644100DF4696 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Vocabulary/lib/MDProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		A46A7FAF1635646D00DF4696 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		A46A7FB01635646D00DF4696 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		A46A7FB11635646D00DF4696 /* NSDate+RFC1123.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+RFC1123.h"; sourceTree = "<group>"; };
@@ -165,6 +164,8 @@
 		A46A7FF31639702A00DF4696 /* PlanningVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningVIewController.m; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
+		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		EC11520B163A8FFB0039A5FA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -369,8 +370,8 @@
 		A46A7FAC1635644700DF4696 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				A46A7FA91635644100DF4696 /* MBProgressHUD.h */,
-				A46A7FAA1635644100DF4696 /* MBProgressHUD.m */,
+				EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */,
+				EC11520B163A8FFB0039A5FA /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
 			sourceTree = "<group>";
@@ -633,7 +634,6 @@
 				A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */,
 				A46A7F5C1633A35900DF4696 /* LearningViewController.m in Sources */,
 				A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */,
-				A46A7FAB1635644100DF4696 /* MBProgressHUD.m in Sources */,
 				A46A7FC11635646D00DF4696 /* NSData+Base64.m in Sources */,
 				A46A7FC21635646D00DF4696 /* NSDate+RFC1123.m in Sources */,
 				A46A7FC31635646D00DF4696 /* NSDictionary+RequestEncoding.m in Sources */,
@@ -651,6 +651,8 @@
 				A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */,
 				EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */,
 				EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */,
+				EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */,
+				EC11520D163A8FFB0039A5FA /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
