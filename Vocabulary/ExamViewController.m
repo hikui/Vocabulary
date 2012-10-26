@@ -7,6 +7,7 @@
 //
 
 #import "ExamViewController.h"
+#import "ShowWrongWordsViewController.h"
 #import "ExamView.h"
 #import "CibaEngine.h"
 
@@ -37,6 +38,7 @@
         _wordList = wordList;
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
+        _wrongWordsSet = [[NSMutableSet alloc]init];
     }
     return self;
 }
@@ -47,6 +49,7 @@
         _wordsArray = wordArray;
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
+        _wrongWordsSet = [[NSMutableSet alloc]init];
     }
     return self;
 }
@@ -196,6 +199,7 @@
     }
     self.rightButton.enabled = YES;
     self.currentExamContent.wrongTimes++;
+    [self.wrongWordsSet addObject:self.currentExamContent.word];
     [self prepareNextExamView];
 }
 
@@ -327,7 +331,18 @@
 {
     if (_shouldUpdateWordFamiliarity) {
         [self calculateFamiliarityForEveryWords];
-        [self.navigationController popViewControllerAnimated:YES];
+        if (self.wrongWordsSet.count == 0) {
+            //没有错词，直接返回
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            NSMutableArray *wrongWordsArray = [[NSMutableArray alloc]init];
+            for (Word *w in self.wrongWordsSet) {
+                [wrongWordsArray addObject:w];
+            }
+            ShowWrongWordsViewController *svc = [[ShowWrongWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+            svc.wordsSet = wrongWordsArray;
+            [self.navigationController pushViewController:svc animated:YES];
+        }
     }else{
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"您还没背完一遍呢"
                                                            message:@"本次测试将作废"

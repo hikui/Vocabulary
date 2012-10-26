@@ -10,6 +10,7 @@
 #import "CreateWordListViewController.h"
 #import "ShowWordListViewController.h"
 #import "PlanningVIewController.h"
+#import "ShowWordsViewController.h"
 
 @interface HomeViewController ()
 
@@ -50,6 +51,23 @@
     }else if(btn.tag == 3){
         PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
         [self.navigationController pushViewController:pvc animated:YES];
+    }else if(btn.tag == 4){
+        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+        NSFetchRequest *request = [[NSFetchRequest alloc]init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+        NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"key" ascending:NO];
+        NSArray *sortDescriptors = @[sortDescriptor1];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(wordList.effectiveCount > 0 AND familiarity <= 5)"];
+        [request setEntity:entity];
+        [request setSortDescriptors:sortDescriptors];
+        [request setPredicate:predicate];
+        [request setFetchLimit:7];
+        NSArray *result = [ctx executeFetchRequest:request error:nil];
+
+        NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
+        ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+        svc.wordsSet = mResult;
+        [self.navigationController pushViewController:svc animated:YES];
     }
 }
 

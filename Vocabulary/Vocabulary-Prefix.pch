@@ -15,4 +15,6 @@
     #import "Reachability.h"
     #import "CoreDataHelper.h"
     #import "MBProgressHUD.h"
+    #import "Word.h"
+    #import "WordList.h"
 #endif

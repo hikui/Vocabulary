@@ -98,8 +98,13 @@
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    ExamViewController *evc = [[ExamViewController alloc]initWithWordList:self.wordList];
-//    evc.wordsArray = self.wordsSet;
+    ExamViewController *evc = nil;
+    if (self.wordList != nil) {
+        evc = [[ExamViewController alloc]initWithWordList:self.wordList];
+    }else{
+        evc = [[ExamViewController alloc]initWithWordArray:self.wordsSet];
+    }
+    
     [self.navigationController pushViewController:evc animated:YES];
 }
 @end

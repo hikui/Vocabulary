@@ -23,6 +23,7 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightButton;
 @property (nonatomic, strong) IBOutlet UILabel *roundNotificatonLabel;
 @property (nonatomic, strong) AVAudioPlayer *soundPlayer;
+@property (nonatomic, strong) NSMutableSet *wrongWordsSet;
 
 - (id)initWithWordList:(WordList *)wordList;
 - (id)initWithWordArray:(NSMutableArray *)wordArray;
