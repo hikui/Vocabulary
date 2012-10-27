@@ -31,6 +31,8 @@
     [super viewDidLoad];
     CoreDataHelper *helper = [CoreDataHelper sharedInstance];
     self.managedObjectContext = helper.managedObjectContext;
+    self.title = @"已有的列表";
+    self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -178,7 +180,8 @@
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"title"] description];
-    cell.detailTextLabel.text = [[object valueForKey:@"effectiveCount"] description];
+    NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[object valueForKey:@"effectiveCount"] description]];
+    cell.detailTextLabel.text = detailTxt;
 }
 
 @end

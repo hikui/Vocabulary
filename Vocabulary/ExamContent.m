@@ -54,7 +54,7 @@
     }else{
         type = @"S2E";
     }
-    return [NSString stringWithFormat:@"content of %@ with type %@",[self.word description],type];
+    return [NSString stringWithFormat:@"word:%@,type:%@,weight:%d",[self.word description],type,[self weight]];
 }
 
 @end

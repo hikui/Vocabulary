@@ -30,13 +30,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.title = @"背单词助手";
+    self.navigationController.navigationBar.tintColor = RGBA(48, 16, 17, 1);
+    UIImage *buttonImage = [[UIImage imageNamed:@"orangeButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlighted = [[UIImage imageNamed:@"orangeButtonHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    for (UIButton *btn in self.view.subviews) {
+        if ([btn isKindOfClass:[UIButton class]]) {
+            [btn setBackgroundImage:buttonImage forState:UIControlStateNormal];
+            [btn setBackgroundImage:buttonImageHighlighted forState:UIControlStateHighlighted];
+        }
+    }
+    self.view.backgroundColor = RGBA(227, 227, 227, 1);
+    
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount>0)"];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    NSUInteger count = [ctx countForFetchRequest:request error:nil];
+    self.countLabel.text = [NSString stringWithFormat:@"%d",count];
+    [self.countLabel sizeToFit];
+    UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];
+    tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)btnSelected:(id)sender
@@ -61,7 +82,6 @@
         [request setEntity:entity];
         [request setSortDescriptors:sortDescriptors];
         [request setPredicate:predicate];
-        [request setFetchLimit:7];
         NSArray *result = [ctx executeFetchRequest:request error:nil];
 
         NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];

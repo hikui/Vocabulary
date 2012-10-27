@@ -39,10 +39,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 7;
-    }
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+    if (section == 0) {
+        return MIN([sectionInfo numberOfObjects], 7);
+    }
     return [sectionInfo numberOfObjects];
 }
 
@@ -67,7 +67,7 @@
     NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"addTime" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor1];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount < 7)"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount>0 AND effectiveCount < 7)"];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     [fetchRequest setPredicate:predicate];

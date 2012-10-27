@@ -49,6 +49,14 @@
 		A46A7FCE1635909D00DF4696 /* hide-info.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCB1635909D00DF4696 /* hide-info.png */; };
 		A46A7FCF1635909D00DF4696 /* show-info.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCC1635909D00DF4696 /* show-info.png */; };
 		A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FF31639702A00DF4696 /* PlanningVIewController.m */; };
+		A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFD163BC7CA00DF4696 /* whiteButton.png */; };
+		A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */; };
+		A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFF163BC7CA00DF4696 /* whiteButtonHighlight.png */; };
+		A46A8004163BC7CA00DF4696 /* whiteButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8000163BC7CA00DF4696 /* whiteButtonHighlight@2x.png */; };
+		A46A8009163BCCE700DF4696 /* orangeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8005163BCCE500DF4696 /* orangeButton.png */; };
+		A46A800A163BCCE700DF4696 /* orangeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8006163BCCE600DF4696 /* orangeButton@2x.png */; };
+		A46A800B163BCCE700DF4696 /* orangeButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8007163BCCE600DF4696 /* orangeButtonHighlight.png */; };
+		A46A800C163BCCE700DF4696 /* orangeButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8008163BCCE700DF4696 /* orangeButtonHighlight@2x.png */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
 		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
@@ -162,6 +170,15 @@
 		A46A7FCC1635909D00DF4696 /* show-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "show-info.png"; path = "artwork/show-info.png"; sourceTree = "<group>"; };
 		A46A7FF21639702A00DF4696 /* PlanningVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningVIewController.h; sourceTree = "<group>"; };
 		A46A7FF31639702A00DF4696 /* PlanningVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningVIewController.m; sourceTree = "<group>"; };
+		A46A7FFB163BC1E800DF4696 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		A46A7FFD163BC7CA00DF4696 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButton.png; path = artwork/whiteButton.png; sourceTree = "<group>"; };
+		A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "whiteButton@2x.png"; path = "artwork/whiteButton@2x.png"; sourceTree = "<group>"; };
+		A46A7FFF163BC7CA00DF4696 /* whiteButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButtonHighlight.png; path = artwork/whiteButtonHighlight.png; sourceTree = "<group>"; };
+		A46A8000163BC7CA00DF4696 /* whiteButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "whiteButtonHighlight@2x.png"; path = "artwork/whiteButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		A46A8005163BCCE500DF4696 /* orangeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orangeButton.png; path = artwork/orangeButton.png; sourceTree = "<group>"; };
+		A46A8006163BCCE600DF4696 /* orangeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orangeButton@2x.png"; path = "artwork/orangeButton@2x.png"; sourceTree = "<group>"; };
+		A46A8007163BCCE600DF4696 /* orangeButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orangeButtonHighlight.png; path = artwork/orangeButtonHighlight.png; sourceTree = "<group>"; };
+		A46A8008163BCCE700DF4696 /* orangeButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orangeButtonHighlight@2x.png"; path = "artwork/orangeButtonHighlight@2x.png"; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -363,6 +380,7 @@
 				A46A7F381632C44800DF4696 /* CoreDataHelper.m */,
 				A46A7F971633C8AF00DF4696 /* CibaEngine.h */,
 				A46A7F981633C8AF00DF4696 /* CibaEngine.m */,
+				A46A7FFB163BC1E800DF4696 /* common.h */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -421,6 +439,14 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A46A8005163BCCE500DF4696 /* orangeButton.png */,
+				A46A8006163BCCE600DF4696 /* orangeButton@2x.png */,
+				A46A8007163BCCE600DF4696 /* orangeButtonHighlight.png */,
+				A46A8008163BCCE700DF4696 /* orangeButtonHighlight@2x.png */,
+				A46A7FFD163BC7CA00DF4696 /* whiteButton.png */,
+				A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */,
+				A46A7FFF163BC7CA00DF4696 /* whiteButtonHighlight.png */,
+				A46A8000163BC7CA00DF4696 /* whiteButtonHighlight@2x.png */,
 				A46A7FCA1635909D00DF4696 /* audio.png */,
 				A46A7FCB1635909D00DF4696 /* hide-info.png */,
 				A46A7FCC1635909D00DF4696 /* show-info.png */,
@@ -581,6 +607,14 @@
 				A46A7FCF1635909D00DF4696 /* show-info.png in Resources */,
 				EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */,
 				EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */,
+				A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */,
+				A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */,
+				A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */,
+				A46A8004163BC7CA00DF4696 /* whiteButtonHighlight@2x.png in Resources */,
+				A46A8009163BCCE700DF4696 /* orangeButton.png in Resources */,
+				A46A800A163BCCE700DF4696 /* orangeButton@2x.png in Resources */,
+				A46A800B163BCCE700DF4696 /* orangeButtonHighlight.png in Resources */,
+				A46A800C163BCCE700DF4696 /* orangeButtonHighlight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,4 +17,5 @@
     #import "MBProgressHUD.h"
     #import "Word.h"
     #import "WordList.h"
+    #import "common.h"
 #endif

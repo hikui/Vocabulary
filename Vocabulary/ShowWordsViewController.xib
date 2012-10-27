@@ -71,18 +71,22 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<array class="NSMutableArray" key="IBUIItems">
 							<object class="IBUIBarButtonItem" id="28884162">
-								<string key="IBUITitle">开始学习</string>
+								<string key="IBUITitle">浏览</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="191937191"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="247179335">
-								<string key="IBUITitle">开始测验</string>
+								<string key="IBUITitle">评估</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="191937191"/>
 							</object>
 						</array>
+						<object class="NSColor" key="IBUITintColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4yNDIyNjcyMTk0IDAuMTA4OTk3Mjg0OCAwLjA2NzQ1MTIxMzkxAA</bytes>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>

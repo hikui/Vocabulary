@@ -42,6 +42,7 @@
         Word *wobj2 = (Word *)obj2;
         return [wobj1.key compare:wobj2.key];
     }];
+    self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     
 }
 
@@ -78,7 +79,7 @@
     }
     Word *w = [self.wordsSet objectAtIndex:indexPath.row];
     cell.textLabel.text = w.key;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",w.familiarity];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
     return cell;
 }
 

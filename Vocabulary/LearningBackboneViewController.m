@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"浏览词汇";
+    
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.view.backgroundColor = [UIColor redColor];
     CGRect pageViewControllerFrame = self.view.bounds;

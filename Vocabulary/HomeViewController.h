@@ -10,6 +10,8 @@
 
 @interface HomeViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UILabel *countLabel;
+
 - (IBAction)btnSelected:(id)sender;
 
 @end

@@ -69,7 +69,7 @@
 {
     [super viewDidLoad];
     
-    
+    self.title = @"评估";
     //adjust views
     _cursor1 = 0;
     _shouldUpdateWordFamiliarity = NO;
