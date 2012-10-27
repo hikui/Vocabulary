@@ -7,6 +7,7 @@
 * 完全使用 ARC
 * 使用了Core Data
 * 使用了金山词霸公开的API
+* build文件夹里有最新的测试包供已越狱的、不方便编译的同学测试
 
 # 依赖关系
 * [MBProgressHUD](https://github.com/jdg/MBProgressHUD)

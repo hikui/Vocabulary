@@ -14,6 +14,8 @@
 
 @interface HomeViewController ()
 
+- (NSUInteger)countOfLearnedWordlist;
+
 @end
 
 @implementation HomeViewController
@@ -41,15 +43,11 @@
         }
     }
     self.view.backgroundColor = RGBA(227, 227, 227, 1);
-    
-    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount>0)"];
-    [request setEntity:entity];
-    [request setPredicate:predicate];
-    NSUInteger count = [ctx countForFetchRequest:request error:nil];
-    self.countLabel.text = [NSString stringWithFormat:@"%d",count];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
     [self.countLabel sizeToFit];
     UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];
     tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
@@ -89,6 +87,18 @@
         svc.wordsSet = mResult;
         [self.navigationController pushViewController:svc animated:YES];
     }
+}
+
+- (NSUInteger)countOfLearnedWordlist
+{
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount>0)"];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    NSUInteger count = [ctx countForFetchRequest:request error:nil];
+    return count;
 }
 
 @end
