@@ -57,6 +57,10 @@
 		A46A800A163BCCE700DF4696 /* orangeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8006163BCCE600DF4696 /* orangeButton@2x.png */; };
 		A46A800B163BCCE700DF4696 /* orangeButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8007163BCCE600DF4696 /* orangeButtonHighlight.png */; };
 		A46A800C163BCCE700DF4696 /* orangeButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8008163BCCE700DF4696 /* orangeButtonHighlight@2x.png */; };
+		A46A8011163BDBAB00DF4696 /* greenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800D163BDBAA00DF4696 /* greenButton.png */; };
+		A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800E163BDBAA00DF4696 /* greenButton@2x.png */; };
+		A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */; };
+		A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
 		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
@@ -179,6 +183,10 @@
 		A46A8006163BCCE600DF4696 /* orangeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orangeButton@2x.png"; path = "artwork/orangeButton@2x.png"; sourceTree = "<group>"; };
 		A46A8007163BCCE600DF4696 /* orangeButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orangeButtonHighlight.png; path = artwork/orangeButtonHighlight.png; sourceTree = "<group>"; };
 		A46A8008163BCCE700DF4696 /* orangeButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "orangeButtonHighlight@2x.png"; path = "artwork/orangeButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		A46A800D163BDBAA00DF4696 /* greenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButton.png; path = artwork/greenButton.png; sourceTree = "<group>"; };
+		A46A800E163BDBAA00DF4696 /* greenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButton@2x.png"; path = "artwork/greenButton@2x.png"; sourceTree = "<group>"; };
+		A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonHighlight.png; path = artwork/greenButtonHighlight.png; sourceTree = "<group>"; };
+		A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonHighlight@2x.png"; path = "artwork/greenButtonHighlight@2x.png"; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -439,6 +447,10 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A46A800D163BDBAA00DF4696 /* greenButton.png */,
+				A46A800E163BDBAA00DF4696 /* greenButton@2x.png */,
+				A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */,
+				A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */,
 				A46A8005163BCCE500DF4696 /* orangeButton.png */,
 				A46A8006163BCCE600DF4696 /* orangeButton@2x.png */,
 				A46A8007163BCCE600DF4696 /* orangeButtonHighlight.png */,
@@ -615,6 +627,10 @@
 				A46A800A163BCCE700DF4696 /* orangeButton@2x.png in Resources */,
 				A46A800B163BCCE700DF4696 /* orangeButtonHighlight.png in Resources */,
 				A46A800C163BCCE700DF4696 /* orangeButtonHighlight@2x.png in Resources */,
+				A46A8011163BDBAB00DF4696 /* greenButton.png in Resources */,
+				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
+				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
+				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
