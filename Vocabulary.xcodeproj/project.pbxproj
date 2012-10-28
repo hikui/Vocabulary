@@ -61,6 +61,10 @@
 		A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800E163BDBAA00DF4696 /* greenButton@2x.png */; };
 		A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */; };
 		A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */; };
+		A46A8026163D335F00DF4696 /* v.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8025163D335E00DF4696 /* v.png */; };
+		A46A8029163D336700DF4696 /* v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8028163D336600DF4696 /* v@2x.png */; };
+		A46A802D163D35E500DF4696 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A802B163D35DE00DF4696 /* HelpViewController.m */; };
+		A46A802E163D35E500DF4696 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A802C163D35E100DF4696 /* HelpViewController.xib */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
 		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
@@ -187,6 +191,11 @@
 		A46A800E163BDBAA00DF4696 /* greenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButton@2x.png"; path = "artwork/greenButton@2x.png"; sourceTree = "<group>"; };
 		A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonHighlight.png; path = artwork/greenButtonHighlight.png; sourceTree = "<group>"; };
 		A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonHighlight@2x.png"; path = "artwork/greenButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		A46A8025163D335E00DF4696 /* v.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = v.png; sourceTree = "<group>"; };
+		A46A8028163D336600DF4696 /* v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "v@2x.png"; sourceTree = "<group>"; };
+		A46A802A163D35DC00DF4696 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		A46A802B163D35DE00DF4696 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		A46A802C163D35E100DF4696 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -259,6 +268,8 @@
 		A46A7E3C1630296800DF4696 = {
 			isa = PBXGroup;
 			children = (
+				A46A8028163D336600DF4696 /* v@2x.png */,
+				A46A8025163D335E00DF4696 /* v.png */,
 				A46A7EBF16304F6500DF4696 /* lib */,
 				A46A7E7316302A6B00DF4696 /* Resources */,
 				A46A7E511630296800DF4696 /* Vocabulary */,
@@ -518,6 +529,9 @@
 				A46A7F4A1632E5F300DF4696 /* HomeViewController.h */,
 				A46A7F4B1632E5F300DF4696 /* HomeViewController.m */,
 				A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */,
+				A46A802A163D35DC00DF4696 /* HelpViewController.h */,
+				A46A802B163D35DE00DF4696 /* HelpViewController.m */,
+				A46A802C163D35E100DF4696 /* HelpViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -631,6 +645,9 @@
 				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
 				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
+				A46A8026163D335F00DF4696 /* v.png in Resources */,
+				A46A8029163D336700DF4696 /* v@2x.png in Resources */,
+				A46A802E163D35E500DF4696 /* HelpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,6 +720,7 @@
 				EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */,
 				EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */,
 				EC11520D163A8FFB0039A5FA /* MBProgressHUD.m in Sources */,
+				A46A802D163D35E500DF4696 /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

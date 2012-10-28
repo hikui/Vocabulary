@@ -11,6 +11,7 @@
 #import "ShowWordListViewController.h"
 #import "PlanningVIewController.h"
 #import "ShowWordsViewController.h"
+#import "HelpViewController.h"
 
 @interface HomeViewController ()
 
@@ -35,9 +36,9 @@
     self.title = @"背单词助手";
     self.navigationController.navigationBar.tintColor = RGBA(48, 16, 17, 1);
     UIImage *buttonImage = [[UIImage imageNamed:@"orangeButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageHighlighted = [[UIImage imageNamed:@"orangeButtonHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlighted = [[UIImage imageNamed:@"orangeButtonHighlight.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     for (UIButton *btn in self.view.subviews) {
-        if ([btn isKindOfClass:[UIButton class]]) {
+        if ([btn isKindOfClass:[UIButton class]] && btn.tag>=1) {
             [btn setBackgroundImage:buttonImage forState:UIControlStateNormal];
             [btn setBackgroundImage:buttonImageHighlighted forState:UIControlStateHighlighted];
         }
@@ -99,6 +100,13 @@
     [request setPredicate:predicate];
     NSUInteger count = [ctx countForFetchRequest:request error:nil];
     return count;
+}
+
+- (IBAction)infoButtonOnPress:(id)sender
+{
+    HelpViewController *hvc = [[HelpViewController alloc]initWithNibName:@"HelpViewController" bundle:nil];
+    hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:hvc animated:YES];
 }
 
 @end

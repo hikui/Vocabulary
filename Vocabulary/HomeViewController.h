@@ -13,5 +13,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *countLabel;
 
 - (IBAction)btnSelected:(id)sender;
+- (IBAction)infoButtonOnPress:(id)sender;
 
 @end

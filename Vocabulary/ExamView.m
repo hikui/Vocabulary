@@ -18,7 +18,7 @@
                                                     options:nil];
     ExamView *view = [nibViews objectAtIndex:0];
     UIImage *buttonImage = [[UIImage imageNamed:@"greenButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
-    UIImage *buttonImageHighlighted = [[UIImage imageNamed:@"greenButtonHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
+    UIImage *buttonImageHighlighted = [[UIImage imageNamed:@"greenButtonHighlight.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     for (UIButton *btn in view.subviews) {
         if ([btn isKindOfClass:[UIButton class]]) {
             [btn setBackgroundImage:buttonImage forState:UIControlStateNormal];
