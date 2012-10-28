@@ -8,7 +8,7 @@
 
 #import "CibaEngine.h"
 #import "CibaXMLParser.h"
-#define CIBA_URL(__W__)[NSString stringWithFormat:@"http://dict-co.iciba.com/api/dictionary.php?w=%@", __W__]
+#define CIBA_URL(__W__)[NSString stringWithFormat:@"api/dictionary.php?w=%@", __W__]
 
 @implementation CibaEngine
 
@@ -17,7 +17,7 @@
     static dispatch_once_t pred = 0;
     __strong static id _sharedObject = nil;
     dispatch_once(&pred, ^{
-        _sharedObject = [[self alloc] init]; // or some other init method
+        _sharedObject = [[self alloc] initWithHostName:@"dict-co.iciba.com"]; // or some other init method
     });
     return _sharedObject;
 }
@@ -26,7 +26,8 @@
                               onCompletion:(CompleteBlockWithStr) completionBlock
                                    onError:(MKNKErrorBlock) errorBlock
 {
-    MKNetworkOperation *op = [[MKNetworkOperation alloc]initWithURLString:CIBA_URL(word) params:nil httpMethod:@"GET"];
+    MKNetworkOperation *op = [self operationWithPath:CIBA_URL(word)];
+    //[[MKNetworkOperation alloc]initWithURLString:CIBA_URL(word) params:nil httpMethod:@"GET"];
     //NSLog(@"%@",op.url);
     [op onCompletion:^(MKNetworkOperation *completedOperation) {
         NSString *xmlString = [completedOperation responseString];

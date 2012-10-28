@@ -64,7 +64,7 @@
     [fetchRequest setFetchBatchSize:7];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"addTime" ascending:NO];
+    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"addTime" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor1];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount>0 AND effectiveCount < 7)"];

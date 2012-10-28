@@ -10,6 +10,7 @@
 #import "ShowWrongWordsViewController.h"
 #import "ExamView.h"
 #import "CibaEngine.h"
+#import "CibaXMLParser.h"
 
 @interface ExamViewController ()
 
@@ -18,7 +19,11 @@
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
 @property (nonatomic, unsafe_unretained) BOOL shouldUpdateWordFamiliarity;
 
+@property (nonatomic, strong) NSMutableSet *wordsWithNoInfoSet;
+@property (nonatomic, strong) NSMutableArray *networkOperationQueue;
+
 - (ExamView *)pickAnExamView;
+- (void)createExamContentsArray;
 - (void)shuffleMutableArray:(NSMutableArray *)array;
 - (void)prepareNextExamView;
 
@@ -39,6 +44,8 @@
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
         _wrongWordsSet = [[NSMutableSet alloc]init];
+        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
+        _networkOperationQueue = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -50,6 +57,8 @@
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
         _wrongWordsSet = [[NSMutableSet alloc]init];
+        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
+        _networkOperationQueue = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -58,9 +67,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
+        _wrongWordsSet = [[NSMutableSet alloc]init];
+        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
+        _networkOperationQueue = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -94,37 +105,66 @@
                                                                  action:@selector(backButtonPressed)];
     self.navigationItem.leftBarButtonItem = backButton;
     
-    //create examContents
-    for (Word *word in self.wordsArray) {
-        //NSLog(@"creating exam contents...");
-        ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
-        [self.examContentsQueue addObject:contentE2C];
-        //NSLog(@"%@",contentE2C);
-        if ( word.pronounceUS != nil || word.pronounceEN != nil) {
-            ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
-            [self.examContentsQueue addObject:contentS2E];
-            //NSLog(@"%@",contentS2E);
+    
+    //扫描是否有未加载的word
+    for (Word *w in self.wordsArray) {
+        if ([w.hasGotDataFromAPI boolValue] == NO) {
+            
+            [self.wordsWithNoInfoSet addObject:w];
+            
+            CibaEngine *engine = [CibaEngine sharedInstance];
+            __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
+                [self.networkOperationQueue removeObject:infoDownloadOp];
+                [CibaXMLParser fillWord:w withResultDict:parsedDict];
+                [[CoreDataHelper sharedInstance]saveContext];
+                
+                NSString *pronURL = [parsedDict objectForKey:@"pronounceUS"];
+                if (pronURL == nil) {
+                    pronURL = [parsedDict objectForKey:@"pronounceEN"];
+                }
+                if (pronURL) {
+                    __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
+                        [self.wordsWithNoInfoSet removeObject:w];
+                        [self.networkOperationQueue removeObject:voiceOp];
+                        w.pronounceUS = data;
+                        w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                        [[CoreDataHelper sharedInstance]saveContext];
+                        if (self.wordsWithNoInfoSet.count == 0) {
+                            //all ok
+                            [self createExamContentsArray];
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        }
+                        
+                    } onError:^(NSError *error) {
+                        [self.wordsWithNoInfoSet removeObject:w];
+                        [self.networkOperationQueue removeObject:voiceOp];
+                        w.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
+                        [[CoreDataHelper sharedInstance]saveContext];
+                        if (self.wordsWithNoInfoSet.count == 0) {
+                            //all ok
+                            [self createExamContentsArray];
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        }
+                    }];
+                    [self.networkOperationQueue addObject:voiceOp];
+                }
+            } onError:^(NSError *error) {
+                [self.wordsWithNoInfoSet removeObject:w];
+                [self.networkOperationQueue removeObject:infoDownloadOp];
+                if (self.wordsWithNoInfoSet.count == 0) {
+                    [self createExamContentsArray];
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                }
+            }];
+            [self.networkOperationQueue addObject:infoDownloadOp];
         }
     }
-    
-    //create 2 exam views;
-    ExamView *ev1 = [ExamView newInstance];
-    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
-    ExamView *ev2 = [ExamView newInstance];
-    ev2.frame = ev1.frame;
-    [self.examViewReuseQueue addObject:ev1];
-    [self.examViewReuseQueue addObject:ev2];
-    
-    //shuffle array
-    [self shuffleMutableArray:self.examContentsQueue];
-
-    ExamContent *content = [self.examContentsQueue objectAtIndex:_cursor1];;
-
-    ExamView *ev = [self pickAnExamView];
-    ev.content = content;
-    self.currentExamContent = content;
-    [self.view addSubview:ev];
-    [self examViewExchangeDidFinish:ev];
+    if (self.wordsWithNoInfoSet.count == 0) {
+        [self createExamContentsArray];
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.detailsLabelText = @"正在取词";
+    }
 }
 
 - (void)viewDidUnload
@@ -212,15 +252,44 @@
     return view;
 }
 
-//- (NSMutableArray *)choseExamContentQueueRandomly
-//{
-//    int index = arc4random() % 2;
-//    if (index == 0) {
-//        return self.examContentsQueueE2C;
-//    }else{
-//        return self.examContentsQueueS2E;
-//    }
-//}
+- (void)createExamContentsArray
+{
+    self.rightButton.enabled = NO;
+    self.wrongButton.enabled = NO;
+    //create examContents and detect if the word has acceptation.
+    for (Word *word in self.wordsArray) {
+        //NSLog(@"creating exam contents...");
+        ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
+        [self.examContentsQueue addObject:contentE2C];
+        //NSLog(@"%@",contentE2C);
+        if ( word.pronounceUS != nil || word.pronounceEN != nil) {
+            ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
+            [self.examContentsQueue addObject:contentS2E];
+            //NSLog(@"%@",contentS2E);
+        }
+    }
+    
+    //create 2 exam views;
+    ExamView *ev1 = [ExamView newInstance];
+    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
+    ExamView *ev2 = [ExamView newInstance];
+    ev2.frame = ev1.frame;
+    [self.examViewReuseQueue addObject:ev1];
+    [self.examViewReuseQueue addObject:ev2];
+    
+    //shuffle array
+    [self shuffleMutableArray:self.examContentsQueue];
+    
+    ExamContent *content = [self.examContentsQueue objectAtIndex:_cursor1];;
+    
+    ExamView *ev = [self pickAnExamView];
+    ev.content = content;
+    self.currentExamContent = content;
+    [self.view addSubview:ev];
+    [self examViewExchangeDidFinish:ev];
+    self.rightButton.enabled = YES;
+    self.wrongButton.enabled = YES;
+}
 
 - (void)shuffleMutableArray:(NSMutableArray *)array
 {

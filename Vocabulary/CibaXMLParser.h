@@ -11,5 +11,5 @@
 @interface CibaXMLParser : NSObject
 
 + (NSDictionary *)parseWithXMLString:(NSString *)str;
-
++ (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict;
 @end

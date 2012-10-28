@@ -101,6 +101,15 @@
 {
     NSLog(@"ok");
     NSString *text = self.textView.text;
+    if ([text isEqualToString:@"一行一个词"]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                       message:@"还没有单词哦"
+                                                      delegate:nil
+                                             cancelButtonTitle:@"知道了"
+                                             otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
     NSArray *words = [text componentsSeparatedByString:@"\n"];
     NSSet *wordSet = [NSSet setWithArray:words]; //remove duplications
     

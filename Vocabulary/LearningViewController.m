@@ -121,10 +121,6 @@
                 if (pronURL && (self.voiceOp == nil || self.voiceOp.isCancelled)) {
                     self.voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
                         NSLog(@"voice succeed");
-                        if (data == nil) {
-                            NSLog(@"data nil");
-                            return;
-                        }
                         self.word.pronounceUS = data;
                         self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
                         [[CoreDataHelper sharedInstance]saveContext];

@@ -78,4 +78,18 @@
     return resultDict;
 }
 
++ (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict
+{
+    Word *targetWord = word;
+    if (resultDict == nil) {
+        // error on parsing
+        return;
+    }
+    targetWord.acceptation = [resultDict objectForKey:@"acceptation"];
+    targetWord.psEN = [resultDict objectForKey:@"psEN"];
+    targetWord.psUS = [resultDict objectForKey:@"psUS"];
+    targetWord.sentences = [resultDict objectForKey:@"sentence"];
+}
+
+
 @end
