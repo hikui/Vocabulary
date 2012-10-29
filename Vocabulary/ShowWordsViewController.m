@@ -44,7 +44,10 @@
     }];
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    if (self.wordsSet.count == 0) {
+        self.beginStudyButton.enabled = NO;
+        self.beginTestButton.enabled = NO;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
