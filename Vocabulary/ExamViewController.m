@@ -340,8 +340,20 @@
         if (self.wordList != nil) {
             NSDate *lastReviewTime = self.wordList.lastReviewTime;
             if (lastReviewTime != nil) {
-                NSTimeInterval passedTime = 0 - [lastReviewTime timeIntervalSinceNow];
-                if (passedTime > 24*60*60) {
+                NSDateComponents *components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:lastReviewTime];
+                NSInteger lastReviewYear = components.year;
+                NSInteger lastReviewMonth = components.month;
+                NSInteger lastReviewDay = components.day;
+                components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:[NSDate date]];
+                NSInteger currYear = components.year;
+                NSInteger currMonth = components.month;
+                NSInteger currDay = components.day;
+                BOOL effect = YES;
+                if (currYear-lastReviewYear==0 && currMonth-lastReviewMonth==0) {
+                    effect = (currDay-lastReviewDay)>0;
+                }
+                
+                if (effect) {
                     //如果距离上次复习时间大于一天，视为有效次数
                     int effictiveCount = [self.wordList.effectiveCount intValue];
                     effictiveCount++;
