@@ -43,6 +43,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+    int num = [sectionInfo numberOfObjects];
+    if (num == 0) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"你还没有Word list哦" message:@"请先“增加word list”" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[self.fetchedResultsController sections] count];
