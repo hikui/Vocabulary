@@ -7,8 +7,11 @@
 //
 
 #import "PlanningVIewController.h"
+#import "ShowWordsViewController.h"
 
 @interface PlanningVIewController ()
+
+@property (nonatomic, strong) WordList *todaysPlan;
 
 @end
 
@@ -27,7 +30,17 @@
 {
     [super viewDidLoad];
     self.title = @"今日复习计划";
-    // Do any additional setup after loading the view from its nib.
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount==0)"];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    [request setFetchLimit:1];
+    NSArray *result = [ctx executeFetchRequest:request error:nil];
+    if (result.count > 0) {
+        self.todaysPlan = [result objectAtIndex:0];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,14 +49,65 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSInteger count = [[self.fetchedResultsController sections] count];
+    if (self.todaysPlan != nil) {
+        count ++;
+    }
+    return count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     if (section == 0) {
-        return MIN([sectionInfo numberOfObjects], 7);
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
+        return [sectionInfo numberOfObjects];
+    }else if (section == 1) {
+        return 1;
     }
-    return [sectionInfo numberOfObjects];
+    return 0;
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        cell.textLabel.text = [[object valueForKey:@"title"] description];
+        NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[object valueForKey:@"effectiveCount"] description]];
+        cell.detailTextLabel.text = detailTxt;
+    }else{
+        cell.textLabel.text = self.todaysPlan.title;
+        NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.effectiveCount];
+        cell.detailTextLabel.text = detailTxt;
+    }
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"今日需要复习的Word list";
+        case 1:
+            return @"今日需要学习的Word list";
+        default:
+            break;
+    }
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+    if (indexPath.section == 0) {
+        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        subVC.wordList = (WordList *)object;
+    }else{
+        subVC.wordList = self.todaysPlan;
+    }
+    
+    [self.navigationController pushViewController:subVC animated:YES];
 }
 
 /**

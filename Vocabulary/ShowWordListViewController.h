@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface ShowWordListViewController : UIViewController<NSFetchedResultsControllerDelegate>
+@interface ShowWordListViewController : UIViewController<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     @protected
     NSFetchedResultsController *_fetchedResultsController;
