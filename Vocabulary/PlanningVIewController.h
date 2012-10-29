@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowWordListViewController.h"
-@interface PlanningVIewController : ShowWordListViewController
+@interface PlanningVIewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong) NSMutableArray *wordListsArray;
 
 @end

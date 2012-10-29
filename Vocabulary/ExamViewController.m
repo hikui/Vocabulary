@@ -11,6 +11,7 @@
 #import "ExamView.h"
 #import "CibaEngine.h"
 #import "CibaXMLParser.h"
+#import "AppDelegate.h"
 
 @interface ExamViewController ()
 
@@ -356,12 +357,18 @@
                 if (effect) {
                     //如果距离上次复习时间大于一天，视为有效次数
                     int effictiveCount = [self.wordList.effectiveCount intValue];
+                    if (effictiveCount == 0) {
+                        ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
+                    }
                     effictiveCount++;
                     self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
                     self.wordList.lastReviewTime = [NSDate date]; //设为现在
                 }
             }else{
                 int effictiveCount = [self.wordList.effectiveCount intValue];
+                if (effictiveCount == 0) {
+                    ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
+                }
                 effictiveCount++;
                 self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
                 self.wordList.lastReviewTime = [NSDate date]; //设为现在
@@ -443,71 +450,5 @@
     }
 }
 
-#pragma mark - network methods
-//- (void)downloadInfoForWord:(Word *)word
-//{
-//
-//    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-//    if ([reachability currentReachabilityStatus] == NotReachable) {
-////        self.acceptationTextView.text = @"无网络连接，首次访问需要通过网络。";
-//        return;
-//    }
-//    
-//        //            NSLog(@"iscancelled:%d,isfinished:%d",self.downloadOp.isFinished,self.downloadOp.isFinished);
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        hud.labelText = @"正在取词";
-//        CibaEngine *engine = [CibaEngine sharedInstance];
-//
-//        [engine infomationForWord:word.key onCompletion:^(NSDictionary *parsedDict) {
-//            
-//            if (parsedDict == nil) {
-//                // error on parsing
-//                hud.labelText = @"词义加载失败";
-//                [hud hide:YES afterDelay:1];
-//            }
-//            word.acceptation = [parsedDict objectForKey:@"acceptation"];
-//            word.psEN = [parsedDict objectForKey:@"psEN"];
-//            word.psUS = [parsedDict objectForKey:@"psUS"];
-//            word.sentences = [parsedDict objectForKey:@"sentence"];
-//            //self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//            [[CoreDataHelper sharedInstance]saveContext];
-//            //load voice
-//            NSString *pronURL = [parsedDict objectForKey:@"pronounceUS"];
-//            if (pronURL == nil) {
-//                pronURL = [parsedDict objectForKey:@"pronounceEN"];
-//            }
-//            if (pronURL != nil) {
-//                [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
-//                    NSLog(@"voice succeed");
-//                    if (data == nil) {
-//                        NSLog(@"data nil");
-//                        return;
-//                    }
-//                    word.pronounceUS = data;
-//                    word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                    [[CoreDataHelper sharedInstance]saveContext];
-//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//
-//                    
-//                } onError:^(NSError *error) {
-//                    NSLog(@"VOICE ERROR");
-//
-//                    word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
-//                    [[CoreDataHelper sharedInstance]saveContext];
-//                    hud.labelText = @"语音加载失败";
-//                    [hud hide:YES afterDelay:1];
-//                }];
-//            }else{
-//                hud.labelText = @"语音加载失败";
-//                [hud hide:YES afterDelay:1];
-//            }
-//            
-//        } onError:^(NSError *error) {
-//            hud.labelText = @"词义加载失败";
-//            [hud hide:YES afterDelay:1];
-//            NSLog(@"ERROR");
-//        }];
-//
-//}
 
 @end
