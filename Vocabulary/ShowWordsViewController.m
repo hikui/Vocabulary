@@ -43,12 +43,18 @@
         return [wobj1.key compare:wobj2.key];
     }];
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[CoreDataHelper sharedInstance]saveContext];
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +95,44 @@
     LearningViewController *lvc = [[LearningViewController alloc]initWithWord:w];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_tableView beginUpdates];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSUInteger row = indexPath.row;
+        Word *wordShouldBeDeleted = [self.wordsSet objectAtIndex:row];
+        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
+            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
+        }
+        [self.wordsSet removeLastObject];
+        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+        [ctx deleteObject:wordShouldBeDeleted];
+        [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    [_tableView endUpdates];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // The table view should not be re-orderable.
+    return NO;
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:animated];
+    if (editing == NO) {
+        [[CoreDataHelper sharedInstance]saveContext];
+    }
 }
 
 #pragma mark - tool bar actions
