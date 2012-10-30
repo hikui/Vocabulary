@@ -10,6 +10,7 @@
 #import "CoreDataHelper.h"
 #import "TestViewController.h"
 #import "HomeViewController.h"
+#import "UINavigationController+Rotation_IOS6.h"
 
 @implementation AppDelegate
 

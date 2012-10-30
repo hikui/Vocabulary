@@ -54,21 +54,6 @@
     self.pageViewController.delegate = self;
     
     self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",1,self.words.count];
-//    //只使用3个LVC，代表当前页，前页和后页
-//    for (int i = 0; i< MIN(self.words.count, 2); i++) {
-//        LearningViewController *lvc = [[LearningViewController alloc]initWithWord:[self.words objectAtIndex:i]];
-//        if (lvc) {
-//            [self.learningViewControllerArray addObject:lvc];
-//        }
-//    }
-//    if (self.learningViewControllerArray.count > 0) {
-//        [self.pageViewController setViewControllers:@[[self.learningViewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-//    }
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -89,6 +74,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 static bool forward = true;

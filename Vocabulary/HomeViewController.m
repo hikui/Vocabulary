@@ -59,6 +59,21 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (IBAction)btnSelected:(id)sender
 {
     UIButton *btn = (UIButton *)sender;

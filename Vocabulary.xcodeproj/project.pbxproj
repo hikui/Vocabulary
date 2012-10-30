@@ -63,6 +63,7 @@
 		A46A8029163D336700DF4696 /* v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8028163D336600DF4696 /* v@2x.png */; };
 		A46A802D163D35E500DF4696 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A802B163D35DE00DF4696 /* HelpViewController.m */; };
 		A46A802E163D35E500DF4696 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A802C163D35E100DF4696 /* HelpViewController.xib */; };
+		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
 		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
@@ -194,6 +195,8 @@
 		A46A802A163D35DC00DF4696 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		A46A802B163D35DE00DF4696 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		A46A802C163D35E100DF4696 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
+		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -402,6 +405,8 @@
 				A46A7F971633C8AF00DF4696 /* CibaEngine.h */,
 				A46A7F981633C8AF00DF4696 /* CibaEngine.m */,
 				A46A7FFB163BC1E800DF4696 /* common.h */,
+				A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */,
+				A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -725,6 +730,7 @@
 				ECAAE27A163FBEAB0082227A /* Word.m in Sources */,
 				EC3CA301163FCA9A000423EE /* WordList.h in Sources */,
 				EC3CA302163FCA9A000423EE /* WordList.m in Sources */,
+				A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
