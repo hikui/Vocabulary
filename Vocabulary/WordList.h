@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSNumber * effectiveCount;
 @property (nonatomic, retain) NSDate * lastReviewTime;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * synchronizeTag;
 @property (nonatomic, retain) NSSet *words;
 @end
 
@@ -26,5 +27,11 @@
 - (void)removeWordsObject:(Word *)value;
 - (void)addWords:(NSSet *)values;
 - (void)removeWords:(NSSet *)values;
+
+@end
+
+@interface WordList (CustomMethods)
+
+- (void)updateSynchronizeTag;
 
 @end

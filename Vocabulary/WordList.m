@@ -16,6 +16,12 @@
 @dynamic effectiveCount;
 @dynamic lastReviewTime;
 @dynamic title;
+@dynamic synchronizeTag;
 @dynamic words;
+
+- (void)updateSynchronizeTag
+{
+    //to be continued
+}
 
 @end

@@ -150,7 +150,7 @@
         //检查是否已经存在这个单词
         NSPredicate *wordPredicate = [NSPredicate predicateWithFormat:@"(key == %@)",lowercaseWord];
         [wordRequest setPredicate:wordPredicate];
-        NSArray *resultWords = [moc executeFetchRequest:request error:nil];
+        NSArray *resultWords = [moc executeFetchRequest:wordRequest error:nil];
         if (resultWords.count > 0) {
             //存在，直接添加
             Word *w = [resultWords objectAtIndex:0];
@@ -159,7 +159,7 @@
             //不存在，新建
             Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
             newWord.key = lowercaseWord;
-            [[newList mutableSetValueForKey:@"words"]addObject:newWord];
+            [newList addWordsObject:newWord];
         }
     }
     if (newList.words.count>0) {
