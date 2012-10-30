@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) WordList *todaysPlan;
 @property (nonatomic, strong) NSDictionary *effectiveCount_deltaDay_map;
+@property (nonatomic, unsafe_unretained) BOOL finishTodaysLearningPlan;
 
 @end
 
@@ -44,7 +45,21 @@
     };
     
     self.title = @"今日复习计划";
-    BOOL finishTodaysLearningPlan = ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan;
+    
+    BOOL isPlanExpire = NO;
+    NSDate *planExpireTime = ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime;
+    //获取当前日期，忽略具体时间
+    unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:flags fromDate:[NSDate date]];
+    NSDate* currDate = [calendar dateFromComponents:components];
+    if ([planExpireTime compare:currDate] == NSOrderedAscending || [planExpireTime compare:currDate] == NSOrderedSame) {
+        //expire于现在之前，为过期
+        isPlanExpire = YES;
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = NO;
+    }
+    
+    _finishTodaysLearningPlan = ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan;
     
     NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
@@ -56,11 +71,22 @@
     [request setSortDescriptors:@[sort]];
     [request setFetchLimit:1];
     //筛选学习计划
-    if (!finishTodaysLearningPlan) {
+    if (!_finishTodaysLearningPlan) {
         //pick a word list
         NSArray *result = [ctx executeFetchRequest:request error:nil];
         if (result.count > 0) {
             self.todaysPlan = [result objectAtIndex:0];
+            ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation = [self.todaysPlan.objectID URIRepresentation];
+        }
+    }else{
+        //如果今日的学习计划已经被学习一遍了，将其加入到复习计划中.
+        NSURL *objIDURI = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation;
+        NSPersistentStoreCoordinator *coordinator = [[CoreDataHelper sharedInstance] persistentStoreCoordinator];
+        NSManagedObjectID *objId = [coordinator managedObjectIDForURIRepresentation:objIDURI];
+
+        WordList *wl = (WordList *)[ctx objectWithID:objId];
+        if ([wl isKindOfClass:[WordList class]]) {
+            [self.wordListsArray addObject:wl];
         }
     }
     //筛选复习计划
@@ -89,7 +115,6 @@
             [self.wordListsArray addObject:wl];
         }
     }
-
     
 }
 
@@ -164,15 +189,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-//    if (indexPath.section == 0) {
-//        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-//        subVC.wordList = (WordList *)object;
-//    }else{
-//        subVC.wordList = self.todaysPlan;
-//    }
-//    
-//    [self.navigationController pushViewController:subVC animated:YES];
+    ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+    if (indexPath.section == 0) {
+        WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
+        subVC.wordList = wl;
+    }else{
+        subVC.wordList = self.todaysPlan;
+    }
+    
+    [self.navigationController pushViewController:subVC animated:YES];
 }
 
 

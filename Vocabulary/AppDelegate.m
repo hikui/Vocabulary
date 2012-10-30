@@ -15,6 +15,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //载入必要的预存设置
+    _finishTodaysLearningPlan = [[NSUserDefaults standardUserDefaults]boolForKey:kFinishTodaysPlan];
+    _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
+    NSString *uriStr = [[NSUserDefaults standardUserDefaults]objectForKey:kTodaysPlanWordListIdURIRepresentation];
+    
+    _todaysPlanWordListIdURIRepresentation = [NSURL URLWithString:uriStr];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
@@ -33,8 +40,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
+    [helper saveContext];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -57,15 +64,18 @@
 - (void)setFinishTodaysLearningPlan:(BOOL)finishTodaysPlan
 {
     _finishTodaysLearningPlan = finishTodaysPlan;
-    //[[NSUserDefaults standardUserDefaults]setBool:finishTodaysPlan forKey:kFinishTodaysPlan];
+    [[NSUserDefaults standardUserDefaults]setBool:finishTodaysPlan forKey:kFinishTodaysPlan];
 }
 
-- (void)setLastTimeOpenThisApp:(NSDate *)lastTimeOpenThisApp
+- (void)setPlanExpireTime:(NSDate *)planExpireTime
 {
-    _lastTimeOpenThisApp = lastTimeOpenThisApp;
-    //[[NSUserDefaults standardUserDefaults]setObject:lastTimeOpenThisApp forKey:kLastTimeOpenThisApp];
+    _planExpireTime = planExpireTime;
+    [[NSUserDefaults standardUserDefaults]setObject:planExpireTime forKey:kPlanExpireTime];
 }
 
-
-
+- (void)setTodaysPlanWordListIdURIRepresentation:(NSURL *)todaysPlanWordListIdURIRepresentation
+{
+    _todaysPlanWordListIdURIRepresentation = todaysPlanWordListIdURIRepresentation;
+    [[NSUserDefaults standardUserDefaults]setObject:[todaysPlanWordListIdURIRepresentation absoluteString]forKey:kTodaysPlanWordListIdURIRepresentation];
+}
 @end

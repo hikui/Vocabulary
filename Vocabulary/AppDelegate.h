@@ -8,16 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #define kFinishTodaysPlan @"finishTodaysPlan"
-#define kLastTimeOpenThisApp @"LastTimeOpenThisApp"
-#define kEffectiveCount @"effectiveCount"
+#define kPlanExpireTime @"planExpireTime"
+#define kTodaysPlanWordListIdURIRepresentation @"todaysPlanWordListIdURIRepresentation"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (unsafe_unretained ,nonatomic) BOOL finishTodaysLearningPlan;
-@property (strong, nonatomic) NSMutableArray *todaysReviewPlan;
-@property (strong, nonatomic) NSDate *lastTimeOpenThisApp;
-
-- (void)updateTodaysReviewPlan;
+@property (unsafe_unretained, nonatomic) BOOL finishTodaysLearningPlan;
+@property (strong, nonatomic) NSDate *planExpireTime;
+@property (copy, nonatomic) NSURL *todaysPlanWordListIdURIRepresentation;
 
 @end

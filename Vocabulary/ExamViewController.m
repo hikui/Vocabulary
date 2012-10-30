@@ -357,8 +357,11 @@
                 if (effect) {
                     //如果距离上次复习时间大于一天，视为有效次数
                     int effictiveCount = [self.wordList.effectiveCount intValue];
+                    NSAssert(effictiveCount != 0, @"effectiveCount > 0 while lastReviewTime is nil");
                     if (effictiveCount == 0) {
                         ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
+                        NSDate *planExpireDate = [[NSDate date]dateByAddingTimeInterval:24*60*60];//往后推一天
+                        ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime = planExpireDate;
                     }
                     effictiveCount++;
                     self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
@@ -368,6 +371,8 @@
                 int effictiveCount = [self.wordList.effectiveCount intValue];
                 if (effictiveCount == 0) {
                     ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
+                    NSDate *planExpireDate = [[NSDate date]dateByAddingTimeInterval:24*60*60];//往后推一天
+                    ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime = planExpireDate;
                 }
                 effictiveCount++;
                 self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
