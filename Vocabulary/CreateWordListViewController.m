@@ -135,15 +135,32 @@
     WordList *newList = [NSEntityDescription insertNewObjectForEntityForName:@"WordList" inManagedObjectContext:moc];
     newList.title = self.titleField.text;
     newList.addTime = [NSDate date];
+    
+    
+    NSFetchRequest *wordRequest = [[NSFetchRequest alloc]init];
+    NSEntityDescription *wordEntity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:moc];
+    [wordRequest setEntity:wordEntity];
     for (NSString *aWord in wordSet) {
         if (aWord.length == 0) {
             continue;
         }
         NSString *lowercaseWord = [aWord lowercaseString];
         lowercaseWord = [lowercaseWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
-        newWord.key = lowercaseWord;
-        newWord.wordList = newList;
+        
+        //检查是否已经存在这个单词
+        NSPredicate *wordPredicate = [NSPredicate predicateWithFormat:@"(key == %@)",lowercaseWord];
+        [wordRequest setPredicate:wordPredicate];
+        NSArray *resultWords = [moc executeFetchRequest:request error:nil];
+        if (resultWords.count > 0) {
+            //存在，直接添加
+            Word *w = [resultWords objectAtIndex:0];
+            [newList addWordsObject:w];
+        }else{
+            //不存在，新建
+            Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
+            newWord.key = lowercaseWord;
+            [[newList mutableSetValueForKey:@"words"]addObject:newWord];
+        }
     }
     if (newList.words.count>0) {
         [helper saveContext];

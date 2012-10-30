@@ -2,7 +2,7 @@
 //  Word.m
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-10-19.
+//  Created by 缪 和光 on 12-10-30.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
@@ -12,21 +12,16 @@
 
 @implementation Word
 
-@dynamic key;
 @dynamic acceptation;
-@dynamic psEN;
-@dynamic psUS;
+@dynamic familiarity;
+@dynamic hasGotDataFromAPI;
+@dynamic key;
+@dynamic lastVIewDate;
 @dynamic pronounceEN;
 @dynamic pronounceUS;
+@dynamic psEN;
+@dynamic psUS;
 @dynamic sentences;
-@dynamic familiarity;
-@dynamic lastVIewDate;
-@dynamic hasGotDataFromAPI;
-@dynamic wordList;
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"%@",self.key];
-}
+@dynamic wordLists;
 
 @end
