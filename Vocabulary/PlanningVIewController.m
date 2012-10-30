@@ -97,7 +97,7 @@
     NSArray *result = [ctx executeFetchRequest:request error:nil];
     
     for (WordList *wl in result) {
-        //上次复习日期+(effectiveCount对应的艾宾浩斯递增天数)>=现在日期
+        //上次复习日期+(effectiveCount对应的艾宾浩斯递增天数)=预计复习日期
         NSDate *lastReviewTime = wl.lastReviewTime;
         NSNumber *effectiveCount = wl.effectiveCount;
         int deltaDay = [[self.effectiveCount_deltaDay_map objectForKey:effectiveCount]intValue];
@@ -111,7 +111,7 @@
         NSDate* currDate = [calendar dateFromComponents:components];
         //比较两个时间
         if ([expectedNextReviewDate compare:currDate] == NSOrderedAscending || [expectedNextReviewDate compare:currDate] == NSOrderedSame) {
-            //expected<curr 需要复习
+            //预计复习日期≤现在日期 需要复习
             [self.wordListsArray addObject:wl];
         }
     }
