@@ -88,19 +88,27 @@
         [self.navigationController pushViewController:pvc animated:YES];
     }else if(btn.tag == 4){
         NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+        
+        //筛选出所有背过的词汇表
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-        NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"key" ascending:NO];
-        NSArray *sortDescriptors = @[sortDescriptor1];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(wordList.effectiveCount > 0 AND familiarity <= 5)"];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0)"];
         [request setEntity:entity];
-        [request setSortDescriptors:sortDescriptors];
         [request setPredicate:predicate];
-        NSArray *result = [ctx executeFetchRequest:request error:nil];
-
-        NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
+        NSArray *resultWordLists = [ctx executeFetchRequest:request error:nil];
+        
+        NSMutableArray *result = [[NSMutableArray alloc]init];
+        
+        for (WordList *wl in resultWordLists) {
+            for (Word *w in wl.words) {
+                if ([w.familiarity intValue] <= 5) {
+                    [result addObject:w];
+                }
+            }
+        }
+        
         ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-        svc.wordsSet = mResult;
+        svc.wordsSet = result;
         [self.navigationController pushViewController:svc animated:YES];
     }
 }

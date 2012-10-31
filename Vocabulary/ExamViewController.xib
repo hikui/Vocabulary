@@ -55,7 +55,7 @@
 								<int key="IBUISystemItemIdentifier">6</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="862609239">
-								<string key="IBUITitle">√</string>
+								<string key="IBUITitle">知道</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="988787349"/>
@@ -70,7 +70,7 @@
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="764251605">
-								<string key="IBUITitle">X</string>
+								<string key="IBUITitle">不知道</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="988787349"/>
