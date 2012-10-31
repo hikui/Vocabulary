@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
-@interface ShowWordsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface ShowWordsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addWordButton;
 @property (strong, nonatomic) NSMutableArray *wordsSet;
 @property (strong, nonatomic) WordList *wordList;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *beginStudyButton;
@@ -18,5 +19,5 @@
 
 - (IBAction)btnBeginStudyOnPress:(id)sender;
 - (IBAction)btnBeginTestOnPress:(id)sender;
-
+- (IBAction)btnAddWordOnPress:(id)sender;
 @end

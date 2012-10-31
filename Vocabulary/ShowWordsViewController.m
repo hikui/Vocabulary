@@ -36,6 +36,8 @@
             [words addObject:w];
         }
         self.wordsSet = words;
+    }else{
+        self.addWordButton.enabled = NO;
     }
     [_wordsSet sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Word *wobj1 = (Word *)obj1;
@@ -169,4 +171,33 @@
     
     [self.navigationController pushViewController:evc animated:YES];
 }
+
+- (IBAction)btnAddWordOnPress:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"增加一个单词" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+}
+
+#pragma mark - alertview delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"确定"]) {
+        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
+        w.key = [[alertView textFieldAtIndex:0]text];
+        [w addWordListsObject:self.wordList];
+        [ctx save:nil];
+        [self.wordsSet addObject:w];
+        [_tableView beginUpdates];
+        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordsSet.count-1 inSection:0];
+        [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_tableView endUpdates];
+    }
+}
+
+
+
 @end
