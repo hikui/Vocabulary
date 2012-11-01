@@ -12,6 +12,7 @@
 #import "PlanningVIewController.h"
 #import "ShowWordsViewController.h"
 #import "HelpViewController.h"
+#import "ConfigViewController.h"
 
 @interface HomeViewController ()
 
@@ -44,6 +45,10 @@
         }
     }
     self.view.backgroundColor = RGBA(227, 227, 227, 1);
+    
+    
+    UIBarButtonItem *configButton = [[UIBarButtonItem alloc]initWithTitle:@"设置"  style:UIBarButtonItemStyleBordered target:self action:@selector(preferenceButtonOnPress)];
+    self.navigationItem.rightBarButtonItem = configButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -125,11 +130,10 @@
     return count;
 }
 
-- (IBAction)infoButtonOnPress:(id)sender
+- (IBAction)preferenceButtonOnPress
 {
-    HelpViewController *hvc = [[HelpViewController alloc]initWithNibName:@"HelpViewController" bundle:nil];
-    hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:hvc animated:YES];
+    ConfigViewController *configVC = [[ConfigViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:configVC animated:YES];
 }
 
 @end

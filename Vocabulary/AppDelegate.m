@@ -19,9 +19,9 @@
     //载入必要的预存设置
     _finishTodaysLearningPlan = [[NSUserDefaults standardUserDefaults]boolForKey:kFinishTodaysPlan];
     _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
-    NSString *uriStr = [[NSUserDefaults standardUserDefaults]objectForKey:kTodaysPlanWordListIdURIRepresentation];
+//    NSString *uriStr = [[NSUserDefaults standardUserDefaults]objectForKey:kTodaysPlanWordListIdURIRepresentation];
     
-    _todaysPlanWordListIdURIRepresentation = [NSURL URLWithString:uriStr];
+//    _todaysPlanWordListIdURIRepresentation = [NSURL URLWithString:uriStr];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -74,9 +74,9 @@
     [[NSUserDefaults standardUserDefaults]setObject:planExpireTime forKey:kPlanExpireTime];
 }
 
-- (void)setTodaysPlanWordListIdURIRepresentation:(NSURL *)todaysPlanWordListIdURIRepresentation
-{
-    _todaysPlanWordListIdURIRepresentation = todaysPlanWordListIdURIRepresentation;
-    [[NSUserDefaults standardUserDefaults]setObject:[todaysPlanWordListIdURIRepresentation absoluteString]forKey:kTodaysPlanWordListIdURIRepresentation];
-}
+//- (void)setTodaysPlanWordListIdURIRepresentation:(NSURL *)todaysPlanWordListIdURIRepresentation
+//{
+//    _todaysPlanWordListIdURIRepresentation = todaysPlanWordListIdURIRepresentation;
+//    [[NSUserDefaults standardUserDefaults]setObject:[todaysPlanWordListIdURIRepresentation absoluteString]forKey:kTodaysPlanWordListIdURIRepresentation];
+//}
 @end

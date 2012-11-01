@@ -139,7 +139,7 @@
                     } onError:^(NSError *error) {
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
-                        w.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
+                        w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
                         [[CoreDataHelper sharedInstance]saveContext];
                         if (self.wordsWithNoInfoSet.count == 0) {
                             //all ok
@@ -325,7 +325,7 @@
             self.roundNotificatonLabel.transform = CGAffineTransformMakeTranslation(0, 0-self.roundNotificatonLabel.frame.origin.y+3);
         } completion:^(BOOL finished){
             if (finished) {
-                [UIView animateWithDuration:0.5 delay:2 options:UIViewAnimationOptionCurveLinear animations:^{
+                [UIView animateWithDuration:0.5 delay:3 options:UIViewAnimationOptionCurveLinear animations:^{
                     self.roundNotificatonLabel.transform = CGAffineTransformMakeTranslation(0,0);
                 } completion:nil];
             }

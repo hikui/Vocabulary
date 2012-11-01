@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#define kFinishTodaysPlan @"finishTodaysPlan"
-#define kPlanExpireTime @"planExpireTime"
-#define kTodaysPlanWordListIdURIRepresentation @"todaysPlanWordListIdURIRepresentation"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -17,6 +14,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (unsafe_unretained, nonatomic) BOOL finishTodaysLearningPlan;
 @property (strong, nonatomic) NSDate *planExpireTime;
-@property (copy, nonatomic) NSURL *todaysPlanWordListIdURIRepresentation;
+//@property (copy, nonatomic) NSURL *todaysPlanWordListIdURIRepresentation;
 
 @end

@@ -49,6 +49,7 @@
     [self.voiceOp cancel];
     self.downloadOp = nil;
     self.voiceOp = nil;
+    [self.player stop];
     
 }
 
@@ -88,8 +89,12 @@
     if (self.word.hasGotDataFromAPI) {
         NSString *jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
         self.acceptationTextView.text = jointStr;
+        BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
         self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronounceUS error:nil];
-        [self.player play];
+        [self.player prepareToPlay];
+        if (shouldPerformSound) {
+            [self.player play];
+        }
     }else{
         Reachability *reachability = [Reachability reachabilityForInternetConnection];
         if ([reachability currentReachabilityStatus] == NotReachable) {
@@ -130,7 +135,7 @@
                     } onError:^(NSError *error) {
                         NSLog(@"VOICE ERROR");
                         [self refreshView];
-                        self.word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
+                        self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
                         [[CoreDataHelper sharedInstance]saveContext];
                         hud.labelText = @"语音加载失败";
                         [hud hide:YES afterDelay:1];

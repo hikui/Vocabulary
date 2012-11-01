@@ -63,6 +63,12 @@
 		A46A8029163D336700DF4696 /* v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8028163D336600DF4696 /* v@2x.png */; };
 		A46A802D163D35E500DF4696 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A802B163D35DE00DF4696 /* HelpViewController.m */; };
 		A46A802E163D35E500DF4696 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A802C163D35E100DF4696 /* HelpViewController.xib */; };
+		A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D2F1642A354005EB1E0 /* MessageUI.framework */; };
+		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
+		A4B3D79E1642351C00F9772F /* preferences-system-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79C1642351C00F9772F /* preferences-system-3.png */; };
+		A4B3D79F1642351C00F9772F /* system-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79D1642351C00F9772F /* system-2.png */; };
+		A4B3D7A2164235D700F9772F /* applications-system-6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A1164235D700F9772F /* applications-system-6.png */; };
+		A4B3D7A41642366400F9772F /* applications-system-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A31642366400F9772F /* applications-system-6@2x.png */; };
 		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
@@ -195,6 +201,13 @@
 		A46A802A163D35DC00DF4696 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		A46A802B163D35DE00DF4696 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		A46A802C163D35E100DF4696 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		A4754D2F1642A354005EB1E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		A4B3D79116420BD100F9772F /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		A4B3D79C1642351C00F9772F /* preferences-system-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferences-system-3.png"; path = "artwork/preferences-system-3.png"; sourceTree = "<group>"; };
+		A4B3D79D1642351C00F9772F /* system-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "system-2.png"; path = "artwork/system-2.png"; sourceTree = "<group>"; };
+		A4B3D7A1164235D700F9772F /* applications-system-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "applications-system-6.png"; path = "artwork/applications-system-6.png"; sourceTree = "<group>"; };
+		A4B3D7A31642366400F9772F /* applications-system-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "applications-system-6@2x.png"; path = "artwork/applications-system-6@2x.png"; sourceTree = "<group>"; };
 		A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
 		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
@@ -255,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */,
 				A46A7F9F1633D4C600DF4696 /* AVFoundation.framework in Frameworks */,
 				A46A7F921633C5CF00DF4696 /* Security.framework in Frameworks */,
 				A46A7F901633C5C800DF4696 /* SystemConfiguration.framework in Frameworks */,
@@ -294,6 +308,7 @@
 		A46A7E4A1630296800DF4696 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4754D2F1642A354005EB1E0 /* MessageUI.framework */,
 				A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */,
 				A46A7F911633C5CF00DF4696 /* Security.framework */,
 				A46A7F8F1633C5C800DF4696 /* SystemConfiguration.framework */,
@@ -465,6 +480,10 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A4B3D7A31642366400F9772F /* applications-system-6@2x.png */,
+				A4B3D7A1164235D700F9772F /* applications-system-6.png */,
+				A4B3D79C1642351C00F9772F /* preferences-system-3.png */,
+				A4B3D79D1642351C00F9772F /* system-2.png */,
 				A46A800D163BDBAA00DF4696 /* greenButton.png */,
 				A46A800E163BDBAA00DF4696 /* greenButton@2x.png */,
 				A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */,
@@ -539,6 +558,8 @@
 				A46A802A163D35DC00DF4696 /* HelpViewController.h */,
 				A46A802B163D35DE00DF4696 /* HelpViewController.m */,
 				A46A802C163D35E100DF4696 /* HelpViewController.xib */,
+				A4B3D79016420BD100F9772F /* ConfigViewController.h */,
+				A4B3D79116420BD100F9772F /* ConfigViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -655,6 +676,10 @@
 				A46A8026163D335F00DF4696 /* v.png in Resources */,
 				A46A8029163D336700DF4696 /* v@2x.png in Resources */,
 				A46A802E163D35E500DF4696 /* HelpViewController.xib in Resources */,
+				A4B3D79E1642351C00F9772F /* preferences-system-3.png in Resources */,
+				A4B3D79F1642351C00F9772F /* system-2.png in Resources */,
+				A4B3D7A2164235D700F9772F /* applications-system-6.png in Resources */,
+				A4B3D7A41642366400F9772F /* applications-system-6@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +756,7 @@
 				EC3CA301163FCA9A000423EE /* WordList.h in Sources */,
 				EC3CA302163FCA9A000423EE /* WordList.m in Sources */,
 				A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */,
+				A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

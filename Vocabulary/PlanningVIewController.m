@@ -38,10 +38,11 @@
     //艾宾浩斯曲线日期递增映射
     self.effectiveCount_deltaDay_map = 
     @{
-        [NSNumber numberWithInt:1]:[NSNumber numberWithInt:1],
-        [NSNumber numberWithInt:2]:[NSNumber numberWithInt:2],
-        [NSNumber numberWithInt:3]:[NSNumber numberWithInt:3],
-        [NSNumber numberWithInt:4]:[NSNumber numberWithInt:8],
+        [NSNumber numberWithInt:1]:[NSNumber numberWithInt:0],
+        [NSNumber numberWithInt:2]:[NSNumber numberWithInt:1],
+        [NSNumber numberWithInt:3]:[NSNumber numberWithInt:2],
+        [NSNumber numberWithInt:4]:[NSNumber numberWithInt:3],
+        [NSNumber numberWithInt:5]:[NSNumber numberWithInt:8],
     };
     
     self.title = @"今日复习计划";
@@ -76,21 +77,21 @@
         NSArray *result = [ctx executeFetchRequest:request error:nil];
         if (result.count > 0) {
             self.todaysPlan = [result objectAtIndex:0];
-            ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation = [self.todaysPlan.objectID URIRepresentation];
+//            ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation = [self.todaysPlan.objectID URIRepresentation];
         }
     }else{
         //如果今日的学习计划已经被学习一遍了，将其加入到复习计划中.
-        NSURL *objIDURI = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation;
-        NSPersistentStoreCoordinator *coordinator = [[CoreDataHelper sharedInstance] persistentStoreCoordinator];
-        NSManagedObjectID *objId = [coordinator managedObjectIDForURIRepresentation:objIDURI];
-
-        WordList *wl = (WordList *)[ctx objectWithID:objId];
-        if ([wl isKindOfClass:[WordList class]]) {
-            [self.wordListsArray addObject:wl];
-        }
+//        NSURL *objIDURI = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation;
+//        NSPersistentStoreCoordinator *coordinator = [[CoreDataHelper sharedInstance] persistentStoreCoordinator];
+//        NSManagedObjectID *objId = [coordinator managedObjectIDForURIRepresentation:objIDURI];
+//
+//        WordList *wl = (WordList *)[ctx objectWithID:objId];
+//        if ([wl isKindOfClass:[WordList class]]) {
+//            [self.wordListsArray addObject:wl];
+//        }
     }
     //筛选复习计划
-    predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0 AND effectiveCount < 5)"];
+    predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0 AND effectiveCount <= 5)"];
     [request setPredicate:predicate];
     [request setFetchLimit:0];
     
@@ -107,7 +108,7 @@
         //获取当前日期，忽略具体时间
         unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
         NSCalendar* calendar = [NSCalendar currentCalendar];
-        NSDateComponents* components = [calendar components:flags fromDate:[NSDate date]];
+        NSDateComponents* components = [calendar components:flags fromDate:expectedNextReviewDate];
         expectedNextReviewDate = [calendar dateFromComponents:components];
         NSDate* currDate = [NSDate date];
         //比较两个时间
