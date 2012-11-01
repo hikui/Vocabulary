@@ -51,9 +51,9 @@
     //获取当前日期，忽略具体时间
     unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:flags fromDate:[NSDate date]];
-    NSDate* currDate = [calendar dateFromComponents:components];
-    if ([planExpireTime compare:currDate] == NSOrderedAscending || [planExpireTime compare:currDate] == NSOrderedSame) {
+    NSDateComponents* components = [calendar components:flags fromDate:planExpireTime];
+    planExpireTime = [calendar dateFromComponents:components];
+    if ([planExpireTime compare:[NSDate date]] == NSOrderedAscending || [planExpireTime compare:[NSDate date]] == NSOrderedSame) {
         //expire于现在之前，为过期
         isPlanExpire = YES;
         ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = NO;
@@ -108,7 +108,8 @@
         unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
         NSCalendar* calendar = [NSCalendar currentCalendar];
         NSDateComponents* components = [calendar components:flags fromDate:[NSDate date]];
-        NSDate* currDate = [calendar dateFromComponents:components];
+        expectedNextReviewDate = [calendar dateFromComponents:components];
+        NSDate* currDate = [NSDate date];
         //比较两个时间
         if ([expectedNextReviewDate compare:currDate] == NSOrderedAscending || [expectedNextReviewDate compare:currDate] == NSOrderedSame) {
             //预计复习日期≤现在日期 需要复习
