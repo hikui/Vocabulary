@@ -9,6 +9,7 @@
 #import "ConfigViewController.h"
 #import "HelpViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import "ActionSheetPicker.h"
 
 @interface ConfigViewController ()
 
@@ -16,6 +17,8 @@
 - (void)soundEnablerDidChange:(id)sender;
 - (void)setTimeButtonOnTouch:(UIButton *)sender;
 - (void)datePickerValueDidChange:(UIDatePicker *)sender;
+- (NSString *)getTimeStringFromDate:(NSDate *)date;
+- (void)setNotificationWithDate:(NSDate *)date;
 
 @end
 
@@ -34,17 +37,21 @@
 {
     [super viewDidLoad];
     self.title = @"设置";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.dayNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kDayNotificationTime];
+    self.nightNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kNightNotificationTime];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"HH:mm"];
+    if (self.dayNotificationTime == nil) {
+        self.dayNotificationTime = [format dateFromString:@"08:00"];
+    }
+    if (self.nightNotificationTime == nil) {
+        self.nightNotificationTime = [format dateFromString:@"20:00"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -84,7 +91,7 @@
         }else if (indexPath.row == 1 && notificationEnabled){
             cell.textLabel.text = @"早上提醒时间";
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [btn setTitle:@"1:30" forState:UIControlStateNormal];
+            [btn setTitle:[self getTimeStringFromDate:self.dayNotificationTime] forState:UIControlStateNormal];
             btn.frame = CGRectMake(0, 0, 90, 35);
             btn.tag = 1;
             [btn addTarget:self action:@selector(setTimeButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
@@ -99,7 +106,7 @@
         }else if (indexPath.row == 2){
             cell.textLabel.text = @"晚上提醒时间";
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [btn setTitle:@"1:30" forState:UIControlStateNormal];
+            [btn setTitle:[self getTimeStringFromDate:self.nightNotificationTime] forState:UIControlStateNormal];
             btn.frame = CGRectMake(0, 0, 90, 35);
             btn.tag = 2;
             [btn addTarget:self action:@selector(setTimeButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
@@ -124,44 +131,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -191,9 +160,16 @@
     }
 }
 
+#pragma mark - private methods
+
 - (void)notificationEnablerDidChange:(id)sender
 {
     UISwitch *theSwitch = (UISwitch *)sender;
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    if (theSwitch.isOn) {
+        [self setNotificationWithDate:self.dayNotificationTime];
+        [self setNotificationWithDate:self.nightNotificationTime];
+    }
     [[NSUserDefaults standardUserDefaults]setBool:theSwitch.isOn forKey:@"NotificationEnabled"];
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:0];
     [self.tableView reloadSections:indexes withRowAnimation:UITableViewRowAnimationFade];
@@ -207,11 +183,72 @@
 
 - (void)setTimeButtonOnTouch:(UIButton *)sender
 {
-
+    NSDate *selectedTime = nil;
+    if (sender.tag == 1) {
+        selectedTime = self.dayNotificationTime;
+    }else if (sender.tag == 2){
+        selectedTime = self.nightNotificationTime;
+    }
+    ActionSheetDatePicker *picker = [[ActionSheetDatePicker alloc] initWithTitle:@"" datePickerMode:UIDatePickerModeTime selectedDate:selectedTime target:self action:@selector(dateWasSelected:element:) origin:sender];
+    picker.hideCancel = YES;
+    [picker showActionSheetPicker];
 }
-- (void)datePickerValueDidChange:(UIDatePicker *)sender
+- (void)dateWasSelected:(NSDate *)selectedDate element:(id)element
 {
+    UIButton *btn = (UIButton *)element;
+    if (btn.tag == 1) {
+        self.dayNotificationTime = selectedDate;
+        [[NSUserDefaults standardUserDefaults]setObject:selectedDate forKey:kDayNotificationTime];
+    }else if (btn.tag == 2){
+        self.nightNotificationTime = selectedDate;
+        [[NSUserDefaults standardUserDefaults]setObject:selectedDate forKey:kNightNotificationTime];
+    }
+    [btn setTitle:[self getTimeStringFromDate:selectedDate] forState:UIControlStateNormal];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [self setNotificationWithDate:self.dayNotificationTime];
+    [self setNotificationWithDate:self.nightNotificationTime];
     
+}
+
+- (NSString *)getTimeStringFromDate:(NSDate *)date
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"HH:mm"];
+    NSString *result = [format stringFromDate:date];
+    return result;
+}
+
+- (void)setNotificationWithDate:(NSDate *)date
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *now = [NSDate date];
+    NSDateComponents *dateComponents = [calendar components:( NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit )fromDate:now];
+    
+    NSDateComponents *timeComponents = [calendar components:( NSHourCalendarUnit | NSMinuteCalendarUnit)fromDate:date];
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    
+    [dateComps setDay:[dateComponents day]];
+    [dateComps setMonth:[dateComponents month]];
+    [dateComps setYear:[dateComponents year]];
+    
+    [dateComps setHour:[timeComponents hour]];
+    [dateComps setMinute:[timeComponents minute]];
+    NSDate *itemDate = [calendar dateFromComponents:dateComps];
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    if (localNotif == nil)
+        return;
+    
+    localNotif.fireDate = itemDate;
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    
+    // Notification details
+    localNotif.alertBody = @"背单词的时间到了";
+    
+    // Set the action button
+    localNotif.alertAction = @"开始学习";
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    localNotif.repeatInterval = NSDayCalendarUnit;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
 #pragma mark - mail delegate 

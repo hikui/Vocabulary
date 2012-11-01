@@ -16,5 +16,7 @@
 #define kFinishTodaysPlan @"finishTodaysPlan"
 #define kPlanExpireTime @"planExpireTime"
 #define kTodaysPlanWordListIdURIRepresentation @"todaysPlanWordListIdURIRepresentation"
+#define kDayNotificationTime @"dayNotificationTime"
+#define kNightNotificationTime @"nightNotificationTime"
 
 #endif
