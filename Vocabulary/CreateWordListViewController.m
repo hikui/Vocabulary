@@ -11,6 +11,7 @@
 #import "Word.h"
 #import "WordList.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WordListCreator.h"
 
 
 @interface CreateWordListViewController ()
@@ -108,81 +109,33 @@
 #pragma mark - ibactions
 - (IBAction)btnOkPressed:(id)sender
 {
-    NSLog(@"ok");
     NSString *text = self.textView.text;
-    if ([text isEqualToString:@"一行一个词"]) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                       message:@"还没有单词哦"
-                                                      delegate:nil
-                                             cancelButtonTitle:@"知道了"
-                                             otherButtonTitles:nil];
-        [alert show];
-        return;
-    }
     NSArray *words = [text componentsSeparatedByString:@"\n"];
-    NSSet *wordSet = [NSSet setWithArray:words]; //remove duplications
-    
-    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-    NSManagedObjectContext *moc = helper.managedObjectContext;
-    
-    
-    //search if a word list with same title already exist
-    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"WordList"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@",self.titleField.text];
-    [request setPredicate:predicate];
-    NSArray *result = [moc executeFetchRequest:request error:nil];
-    if (result.count>0) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                       message:@"Word list名字重复啦"
-                                                      delegate:nil
-                                             cancelButtonTitle:@"知道了"
-                                             otherButtonTitles:nil];
-        [alert show];
+    NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
+    NSError *error = NULL;
+    [WordListCreator createWordListWithTitle:self.titleField.text wordSet:wordSet error:&error];
+    if (error != NULL) {
+        NSLog(@"%@",[error localizedDescription]);
+        if (error.code == WordListCreatorEmptyWordSetError) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                           message:@"还没有单词哦"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"知道了"
+                                                 otherButtonTitles:nil];
+            [alert show];
+        }else if (error.code == WordListCreatorNoTitleError){
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                           message:@"还没有起名字哦"
+                                                          delegate:nil
+                                                 cancelButtonTitle:@"知道了"
+                                                 otherButtonTitles:nil];
+            [alert show];
+        }
         return;
-    }
-    
-    WordList *newList = [NSEntityDescription insertNewObjectForEntityForName:@"WordList" inManagedObjectContext:moc];
-    newList.title = self.titleField.text;
-    newList.addTime = [NSDate date];
-    
-    
-    NSFetchRequest *wordRequest = [[NSFetchRequest alloc]init];
-    NSEntityDescription *wordEntity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:moc];
-    [wordRequest setEntity:wordEntity];
-    for (NSString *aWord in wordSet) {
-        if (aWord.length == 0) {
-            continue;
-        }
-        NSString *lowercaseWord = [aWord lowercaseString];
-        lowercaseWord = [lowercaseWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        
-        //检查是否已经存在这个单词
-        NSPredicate *wordPredicate = [NSPredicate predicateWithFormat:@"(key == %@)",lowercaseWord];
-        [wordRequest setPredicate:wordPredicate];
-        NSArray *resultWords = [moc executeFetchRequest:wordRequest error:nil];
-        if (resultWords.count > 0) {
-            //存在，直接添加
-            Word *w = [resultWords objectAtIndex:0];
-            [newList addWordsObject:w];
-        }else{
-            //不存在，新建
-            Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
-            newWord.key = lowercaseWord;
-            [newList addWordsObject:newWord];
-        }
-    }
-    if (newList.words.count>0) {
-        [helper saveContext];
-        [self dismissModalViewControllerAnimated:YES];
     }else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                       message:@"还没有单词哦"
-                                                      delegate:nil
-                                             cancelButtonTitle:@"知道了"
-                                             otherButtonTitles:nil];
-        [alert show];
-        [moc deleteObject:newList];
+        [self dismissModalViewControllerAnimated:YES];
     }
+
     
 }
 - (IBAction)btnCancelPressed:(id)sender

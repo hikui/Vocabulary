@@ -69,6 +69,9 @@
 		A4754D401642A7E4005EB1E0 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D391642A7E4005EB1E0 /* ActionSheetDistancePicker.m */; };
 		A4754D411642A7E4005EB1E0 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D3B1642A7E4005EB1E0 /* ActionSheetStringPicker.m */; };
 		A4754D421642A7E4005EB1E0 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D3D1642A7E4005EB1E0 /* DistancePickerView.m */; };
+		A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */; };
+		A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */; };
+		A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D671644E5E2005EB1E0 /* WordListCreator.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4B3D79E1642351C00F9772F /* preferences-system-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79C1642351C00F9772F /* preferences-system-3.png */; };
 		A4B3D79F1642351C00F9772F /* system-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79D1642351C00F9772F /* system-2.png */; };
@@ -132,7 +135,6 @@
 		A46A7E4D1630296800DF4696 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A46A7E4F1630296800DF4696 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A46A7E531630296800DF4696 /* Vocabulary-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Vocabulary-Info.plist"; sourceTree = "<group>"; };
-		A46A7E551630296800DF4696 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A46A7E571630296800DF4696 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A46A7E591630296800DF4696 /* Vocabulary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vocabulary-Prefix.pch"; sourceTree = "<group>"; };
 		A46A7E5A1630296800DF4696 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -218,6 +220,12 @@
 		A4754D3B1642A7E4005EB1E0 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
 		A4754D3C1642A7E4005EB1E0 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
 		A4754D3D1642A7E4005EB1E0 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		A4754D541644BE33005EB1E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A4754D5F1644D7FA005EB1E0 /* WordListFromDiskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListFromDiskViewController.h; sourceTree = "<group>"; };
+		A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListFromDiskViewController.m; sourceTree = "<group>"; };
+		A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
+		A4754D661644E5E2005EB1E0 /* WordListCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCreator.h; sourceTree = "<group>"; };
+		A4754D671644E5E2005EB1E0 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		A4B3D79116420BD100F9772F /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		A4B3D79C1642351C00F9772F /* preferences-system-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferences-system-3.png"; path = "artwork/preferences-system-3.png"; sourceTree = "<group>"; };
@@ -439,6 +447,8 @@
 				A46A7FFB163BC1E800DF4696 /* common.h */,
 				A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */,
 				A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */,
+				A4754D661644E5E2005EB1E0 /* WordListCreator.h */,
+				A4754D671644E5E2005EB1E0 /* WordListCreator.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -604,6 +614,9 @@
 				A46A802C163D35E100DF4696 /* HelpViewController.xib */,
 				A4B3D79016420BD100F9772F /* ConfigViewController.h */,
 				A4B3D79116420BD100F9772F /* ConfigViewController.m */,
+				A4754D5F1644D7FA005EB1E0 /* WordListFromDiskViewController.h */,
+				A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */,
+				A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -673,6 +686,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = A46A7E3C1630296800DF4696;
 			productRefGroup = A46A7E481630296800DF4696 /* Products */;
@@ -724,6 +738,7 @@
 				A4B3D79F1642351C00F9772F /* system-2.png in Resources */,
 				A4B3D7A2164235D700F9772F /* applications-system-6.png in Resources */,
 				A4B3D7A41642366400F9772F /* applications-system-6@2x.png in Resources */,
+				A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +821,8 @@
 				A4754D401642A7E4005EB1E0 /* ActionSheetDistancePicker.m in Sources */,
 				A4754D411642A7E4005EB1E0 /* ActionSheetStringPicker.m in Sources */,
 				A4754D421642A7E4005EB1E0 /* DistancePickerView.m in Sources */,
+				A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */,
+				A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,7 +832,7 @@
 		A46A7E541630296800DF4696 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A46A7E551630296800DF4696 /* en */,
+				A4754D541644BE33005EB1E0 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

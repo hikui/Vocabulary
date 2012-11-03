@@ -13,6 +13,7 @@
 #import "ShowWordsViewController.h"
 #import "HelpViewController.h"
 #import "ConfigViewController.h"
+#import "WordListFromDiskViewController.h"
 
 @interface HomeViewController ()
 
@@ -83,8 +84,12 @@
 {
     UIButton *btn = (UIButton *)sender;
     if (btn.tag == 1) {
-        CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
-        [self presentModalViewController:vc animated:YES];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择导入方式"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"取消"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"批量输入",@"从文件扫描", nil];
+        [actionSheet showInView:self.view];
     }else if(btn.tag == 2){
         ShowWordListViewController *vc = [[ShowWordListViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:YES];
@@ -134,6 +139,19 @@
 {
     ConfigViewController *configVC = [[ConfigViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:configVC animated:YES];
+}
+
+#pragma mark - action sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"批量输入"]) {
+        CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
+        [self presentModalViewController:vc animated:YES];
+    }else if ([title isEqualToString:@"从文件扫描"]){
+        WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
+        [self presentModalViewController:fdvc animated:YES];
+    }
 }
 
 @end
