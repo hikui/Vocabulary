@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "AdBaseViewController.h"
 
-@interface ShowWordListViewController : UIViewController<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ShowWordListViewController : AdBaseViewController<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     @protected
     NSFetchedResultsController *_fetchedResultsController;

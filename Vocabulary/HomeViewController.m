@@ -94,7 +94,7 @@
         ShowWordListViewController *vc = [[ShowWordListViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }else if(btn.tag == 3){
-        PlanningVIewController *pvc = [[PlanningVIewController alloc]init];
+        PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
         [self.navigationController pushViewController:pvc animated:YES];
     }else if(btn.tag == 4){
         NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];

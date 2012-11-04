@@ -11,6 +11,7 @@
 
 @interface LearningBackboneViewController ()
 
+@property (nonatomic, unsafe_unretained) CGRect originalPageViewFrame;
 - (void)shuffleWords;
 
 @end
@@ -42,6 +43,10 @@
     
     self.title = @"浏览词汇";
     
+    //广告
+    self.bannerFrame = CGRectMake(0, -50, 320, 50);
+    self.banner.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.view.backgroundColor = [UIColor redColor];
     CGRect pageViewControllerFrame = self.view.bounds;
@@ -58,6 +63,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
         LearningViewController *lvc = [[LearningViewController alloc]initWithWord:[self.words objectAtIndex:i]];
@@ -68,6 +74,12 @@
     if (self.learningViewControllerArray.count > 0) {
         [self.pageViewController setViewControllers:@[[self.learningViewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.originalPageViewFrame = self.pageViewController.view.frame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -166,6 +178,29 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     }
     
     
+}
+
+#pragma - mark GADBannerViewDelegate
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    [super adViewDidReceiveAd:view];
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect targetFrame = self.originalPageViewFrame;
+        targetFrame.origin.y = 50;
+        targetFrame.size.height -= 50;
+        self.pageViewController.view.frame = targetFrame;
+        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
+    }];
+}
+
+- (void)adView:(GADBannerView *)view
+didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    [super adView:view didFailToReceiveAdWithError:error];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.pageViewController.view.frame = self.originalPageViewFrame;
+        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
 }
 
 @end

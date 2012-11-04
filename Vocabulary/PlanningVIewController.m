@@ -29,9 +29,15 @@
     return self;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor redColor];
+    //广告
+    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height, 320, 50);
+    self.banner.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    [self.view bringSubviewToFront:self.banner];
     
     self.wordListsArray = [[NSMutableArray alloc]init];
     
@@ -217,5 +223,25 @@
     [self.navigationController pushViewController:subVC animated:YES];
 }
 
+
+#pragma - mark GADBannerViewDelegate
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    [super adViewDidReceiveAd:view];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
+        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
+    }];
+}
+
+- (void)adView:(GADBannerView *)view
+didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    [super adView:view didFailToReceiveAdWithError:error];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tableView.frame = self.view.bounds;
+        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
+}
 
 @end

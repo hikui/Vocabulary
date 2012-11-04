@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ShowWordListViewController.h"
-@interface PlanningVIewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
+#import "AdBaseViewController.h"
+@interface PlanningVIewController : AdBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *wordListsArray;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
