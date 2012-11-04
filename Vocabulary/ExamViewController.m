@@ -434,8 +434,13 @@
     if (_shouldUpdateWordFamiliarity) {
         [self calculateFamiliarityForEveryWords];
         if (self.wrongWordsSet.count == 0) {
-            //没有错词，直接返回
-            [self.navigationController popViewControllerAnimated:YES];
+
+            for (UIViewController *vc in self.navigationController.viewControllers) {
+                if ([vc isKindOfClass:[ShowWordsViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
+                    [self.navigationController popToViewController:vc animated:YES];
+                    break;
+                }
+            }
         }else{
             NSMutableArray *wrongWordsArray = [[NSMutableArray alloc]init];
             for (Word *w in self.wrongWordsSet) {

@@ -38,7 +38,7 @@
 - (void)backToWordList
 {
     for (UIViewController *vc in self.navigationController.viewControllers) {
-        if (vc != self && [vc isKindOfClass:[ShowWordsViewController class]]) {
+        if ([vc isKindOfClass:[ShowWordsViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
             [self.navigationController popToViewController:vc animated:YES];
             break;
         }

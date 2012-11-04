@@ -108,7 +108,9 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         NSString*path =[paths objectAtIndex:0];
-        for (NSString *fileName in self.fileList) {
+        for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
+            int row = selectedIndexPath.row;
+            NSString *fileName = [self.fileList objectAtIndex:row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;
             NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
