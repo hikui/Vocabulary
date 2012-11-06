@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
-#import "AdBaseViewController.h"
-@interface LearningBackboneViewController : AdBaseViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+@interface LearningBackboneViewController : UIViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray *learningViewControllerArray;
-@property (nonatomic,strong) NSMutableArray * words;
+@property (nonatomic,copy) NSMutableArray * words;
 @property (nonatomic,strong) UIPageViewController *pageViewController;
 @property (nonatomic,strong) IBOutlet UILabel *pageIndicator;
 

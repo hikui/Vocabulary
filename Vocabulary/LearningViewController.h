@@ -10,7 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MKNetworkKit.h"
 #import "Word.h"
-@interface LearningViewController : UIViewController
+#import "AdBaseViewController.h"
+@interface LearningViewController : AdBaseViewController
 
 @property (nonatomic,strong) Word *word;
 @property (nonatomic,strong) IBOutlet UILabel *lblKey;

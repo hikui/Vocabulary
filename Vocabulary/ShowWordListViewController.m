@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     self.bannerFrame = CGRectMake(0, self.view.bounds.size.height, 320, 50);
-    self.banner.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     CoreDataHelper *helper = [CoreDataHelper sharedInstance];
     self.managedObjectContext = helper.managedObjectContext;
     self.title = @"已有的列表";

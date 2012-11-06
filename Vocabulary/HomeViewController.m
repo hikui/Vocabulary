@@ -88,7 +88,7 @@
                                                                 delegate:self
                                                        cancelButtonTitle:@"取消"
                                                   destructiveButtonTitle:nil
-                                                       otherButtonTitles:@"批量输入",@"从文件扫描", nil];
+                                                       otherButtonTitles:@"批量输入",@"从iTunes上传", nil];
         [actionSheet showInView:self.view];
     }else if(btn.tag == 2){
         ShowWordListViewController *vc = [[ShowWordListViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
@@ -148,7 +148,7 @@
     if ([title isEqualToString:@"批量输入"]) {
         CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
         [self presentModalViewController:vc animated:YES];
-    }else if ([title isEqualToString:@"从文件扫描"]){
+    }else if ([title isEqualToString:@"从iTunes上传"]){
         WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
         [self presentModalViewController:fdvc animated:YES];
     }

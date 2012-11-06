@@ -33,10 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
     //广告
     self.bannerFrame = CGRectMake(0, self.view.bounds.size.height, 320, 50);
-    self.banner.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self.view bringSubviewToFront:self.banner];
     
     self.wordListsArray = [[NSMutableArray alloc]init];

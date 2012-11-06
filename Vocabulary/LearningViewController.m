@@ -34,10 +34,18 @@
     }else{
         self.acceptationTextView.hidden = NO;
     }
+    UIView *content = [self.view viewWithTag:1];
+    self.view.backgroundColor = RGBA(246, 255, 222, 1);
+    content.backgroundColor = RGBA(246, 255, 222, 1);
+    //广告
+    self.bannerFrame = CGRectMake(0, -50, self.view.bounds.size.width, 50);
+    self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [self.view bringSubviewToFront:self.banner];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     [self refreshView];
 }
 
@@ -171,5 +179,29 @@
 {
     self.shouldHideInfo = YES;
     self.acceptationTextView.hidden = YES;
+}
+
+#pragma - mark GADBannerViewDelegate
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    [super adViewDidReceiveAd:view];
+    [UIView animateWithDuration:0.5 animations:^{
+        UIView *content = [self.view viewWithTag:1];
+        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
+        content.frame = targetFrame;
+        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
+    }];
+}
+
+- (void)adView:(GADBannerView *)view
+didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    [super adView:view didFailToReceiveAdWithError:error];
+    [UIView animateWithDuration:0.5 animations:^{
+        UIView *content = [self.view viewWithTag:1];
+        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height);
+        content.frame = targetFrame;
+        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+    }];
 }
 @end

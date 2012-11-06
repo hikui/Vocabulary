@@ -39,10 +39,9 @@
 					<object class="IBUIButton" id="158288616">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{20, 271}, {280, 48}}</string>
+						<string key="NSFrame">{{20, 86}, {280, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
@@ -75,7 +74,7 @@
 					<object class="IBUIButton" id="55243144">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{20, 71}, {280, 49}}</string>
+						<string key="NSFrame">{{20, 213}, {280, 49}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="48476829"/>
@@ -95,7 +94,7 @@
 					<object class="IBUIButton" id="48476829">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{20, 139}, {280, 48}}</string>
+						<string key="NSFrame">{{20, 149}, {280, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="530488982"/>
@@ -105,7 +104,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">复习计划</string>
+						<string key="IBUINormalTitle">学习任务安排</string>
 						<reference key="IBUIHighlightedTitleColor" ref="599719761"/>
 						<reference key="IBUINormalTitleColor" ref="519234118"/>
 						<reference key="IBUINormalTitleShadowColor" ref="375651667"/>
@@ -115,7 +114,7 @@
 					<object class="IBUIButton" id="530488982">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{20, 206}, {280, 48}}</string>
+						<string key="NSFrame">{{20, 278}, {280, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="158288616"/>
@@ -135,7 +134,7 @@
 					<object class="IBUILabel" id="515357445">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 26}, {102, 21}}</string>
+						<string key="NSFrame">{{20, 30}, {102, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="489377076"/>
@@ -167,7 +166,7 @@
 					<object class="IBUILabel" id="489377076">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{122, 22}, {33, 29}}</string>
+						<string key="NSFrame">{{122, 26}, {33, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="491797938"/>
@@ -200,7 +199,7 @@
 					<object class="IBUILabel" id="491797938">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{158, 26}, {142, 21}}</string>
+						<string key="NSFrame">{{158, 30}, {142, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="55243144"/>
@@ -322,13 +321,13 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="55243144"/>
-							<reference ref="48476829"/>
 							<reference ref="530488982"/>
-							<reference ref="158288616"/>
 							<reference ref="515357445"/>
 							<reference ref="489377076"/>
 							<reference ref="491797938"/>
+							<reference ref="48476829"/>
+							<reference ref="55243144"/>
+							<reference ref="158288616"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -411,15 +410,15 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="btnSelected:">id</string>
-						<string key="infoButtonOnPress:">id</string>
+						<string key="preferenceButtonOnPress">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="btnSelected:">
 							<string key="name">btnSelected:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="infoButtonOnPress:">
-							<string key="name">infoButtonOnPress:</string>
+						<object class="IBActionInfo" key="preferenceButtonOnPress">
+							<string key="name">preferenceButtonOnPress</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>

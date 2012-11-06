@@ -35,8 +35,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.banner.frame = self.bannerFrame;
-    [self.view addSubview:self.banner];
+    BOOL shouldAddToView = YES;
+    for (UIView *view in self.view.subviews) {
+        if (view == self.banner) {
+            shouldAddToView = NO;
+            break;
+        }
+    }
+    if (shouldAddToView) {
+        [self.view addSubview:self.banner];
+        self.banner.frame = self.bannerFrame;
+    }
+    CGPoint bannerCenter = self.banner.center;
+    bannerCenter.x = self.view.bounds.size.width/2;
+    self.banner.center = bannerCenter;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
