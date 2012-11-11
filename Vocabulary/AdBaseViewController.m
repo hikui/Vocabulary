@@ -7,8 +7,11 @@
 //
 
 #import "AdBaseViewController.h"
+#import "GADAdMobExtras.h"
 
 @interface AdBaseViewController ()
+
+- (NSString *)hexStringWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue;
 
 @end
 
@@ -30,7 +33,21 @@
     self.banner.adUnitID = @"75ec8a2a75764c0e";
     self.banner.rootViewController = self;
     self.banner.delegate = self;
-    [self.banner loadRequest:[GADRequest request]];
+    GADRequest *request = [GADRequest request];
+    GADAdMobExtras *extras = [[GADAdMobExtras alloc] init] ;
+    extras.additionalParameters =
+    [NSMutableDictionary dictionaryWithObjectsAndKeys:
+     [self hexStringWithRed:141 green:198 blue:65], @"color_bg",
+     [self hexStringWithRed:141 green:198 blue:65], @"color_bg_top",
+     [self hexStringWithRed:141 green:198 blue:65], @"color_border",
+     [self hexStringWithRed:88 green:87 blue:92], @"color_link",
+     [self hexStringWithRed:255 green:255 blue:255], @"color_text",
+     [self hexStringWithRed:88 green:87 blue:92], @"color_url",
+     nil];
+    
+    [request registerAdNetworkExtras:extras];
+    [self.banner loadRequest:request];
+    NSLog(@"hex:%@",[self hexStringWithRed:244 green:233 blue:215]);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,6 +90,12 @@
 didFailToReceiveAdWithError:(GADRequestError *)error
 {
     NSLog(@"%@",error);
+}
+
+- (NSString *)hexStringWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue
+{
+    NSString *str = [[NSString stringWithFormat:@"%02x%02x%02x",red,green,blue] capitalizedString];
+    return str;
 }
 
 @end

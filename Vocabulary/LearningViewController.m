@@ -199,7 +199,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     [super adView:view didFailToReceiveAdWithError:error];
     [UIView animateWithDuration:0.5 animations:^{
         UIView *content = [self.view viewWithTag:1];
-        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height);
+        CGRect targetFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
         content.frame = targetFrame;
         self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
     }];

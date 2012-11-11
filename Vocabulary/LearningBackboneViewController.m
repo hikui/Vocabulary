@@ -31,7 +31,7 @@
     self = [super initWithNibName:@"LearningBackboneViewController" bundle:nil];
     if (self) {
         _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
-        _words = words;
+        _words = [words mutableCopy];
     }
     return self;
 }
