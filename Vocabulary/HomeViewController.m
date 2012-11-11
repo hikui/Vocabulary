@@ -97,28 +97,38 @@
         PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
         [self.navigationController pushViewController:pvc animated:YES];
     }else if(btn.tag == 4){
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+//        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+//        
+//        //筛选出所有背过的词汇表
+//        NSFetchRequest *request = [[NSFetchRequest alloc]init];
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0)"];
+//        [request setEntity:entity];
+//        [request setPredicate:predicate];
+//        NSArray *resultWordLists = [ctx executeFetchRequest:request error:nil];
+//        
+//        NSMutableArray *result = [[NSMutableArray alloc]init];
+//        
+//        for (WordList *wl in resultWordLists) {
+//            for (Word *w in wl.words) {
+//                if ([w.familiarity intValue] <= 5) {
+//                    [result addObject:w];
+//                }
+//            }
+//        }
         
-        //筛选出所有背过的词汇表
+        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0)"];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(familiarity <= 5 AND lastVIewDate != nil)"];
         [request setEntity:entity];
         [request setPredicate:predicate];
-        NSArray *resultWordLists = [ctx executeFetchRequest:request error:nil];
+        NSArray *result = [ctx executeFetchRequest:request error:nil];
+        NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
         
-        NSMutableArray *result = [[NSMutableArray alloc]init];
-        
-        for (WordList *wl in resultWordLists) {
-            for (Word *w in wl.words) {
-                if ([w.familiarity intValue] <= 5) {
-                    [result addObject:w];
-                }
-            }
-        }
         
         ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-        svc.wordsSet = result;
+        svc.wordsSet = mResult;
         [self.navigationController pushViewController:svc animated:YES];
     }
 }
