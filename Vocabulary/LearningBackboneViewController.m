@@ -137,10 +137,8 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
             int index = [self.words indexOfObject:wd];
             if (forward) {
                 self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index+2,self.words.count];
-                [self.pageIndicator sizeToFit];
             }else{
                 self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index,self.words.count];
-                [self.pageIndicator sizeToFit];
             }
         }
     }
@@ -159,20 +157,32 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 #pragma mark - ibactions
 - (IBAction)btnShowInfoOnPressed:(id)sender
 {
-    UIButton *btn = (UIButton *)sender;
-    
-    btn.selected = !btn.selected;
-    
-
-    for (LearningViewController *lvc in self.learningViewControllerArray) {
-        if (!btn.selected) {
-            [lvc showInfo];
-        }else{
+//    UIButton *btn = (UIButton *)sender;
+//    
+//    btn.selected = !btn.selected;
+//    
+//
+//    for (LearningViewController *lvc in self.learningViewControllerArray) {
+//        if (!btn.selected) {
+//            [lvc showInfo];
+//        }else{
+//            [lvc hideInfo];
+//        }
+//
+//    }
+    UIBarButtonItem *btn = (UIBarButtonItem *)sender;
+    if ([btn.title isEqualToString:@"隐藏词义"]) {
+        btn.title = @"显示词义";
+        for (LearningViewController *lvc in self.learningViewControllerArray) {
             [lvc hideInfo];
         }
 
+    }else{
+        btn.title = @"隐藏词义";
+        for (LearningViewController *lvc in self.learningViewControllerArray) {
+            [lvc showInfo];
+        }
     }
-    
     
 }
 

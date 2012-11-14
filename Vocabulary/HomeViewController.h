@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController <UIActionSheetDelegate>
+@interface HomeViewController : UIViewController <UIActionSheetDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *countLabel;
 

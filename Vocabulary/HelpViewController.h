@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HelpViewController : UIViewController
+@interface HelpViewController : UIViewController <UIWebViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
 
 - (IBAction)okButtonOnPress:(id)sender;
 

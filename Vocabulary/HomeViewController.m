@@ -60,6 +60,17 @@
     tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    BOOL isNotFirstRun = [[NSUserDefaults standardUserDefaults]boolForKey:@"kIsNotFirstRun"];
+    if (!isNotFirstRun) {
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"这是您第一次运行，是否显示帮助？" delegate:self cancelButtonTitle:@"不显示" otherButtonTitles:@"显示", nil];
+        alertView.tag = 1;
+        [alertView show];
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"kIsNotFirstRun"];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -161,6 +172,19 @@
     }else if ([title isEqualToString:@"从iTunes上传"]){
         WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
         [self presentModalViewController:fdvc animated:YES];
+    }
+}
+
+#pragma mark - alert view delegate 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        NSString *selectedBtnTitle = [alertView buttonTitleAtIndex:buttonIndex];
+        if ([selectedBtnTitle isEqualToString:@"显示"]) {
+            HelpViewController *helpViewController = [[HelpViewController alloc]initWithNibName:@"HelpViewController" bundle:nil];
+            helpViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [self presentModalViewController:helpViewController animated:YES];
+        }
     }
 }
 
