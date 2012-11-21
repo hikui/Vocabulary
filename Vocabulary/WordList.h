@@ -2,7 +2,7 @@
 //  WordList.h
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-10-30.
+//  Created by 缪 和光 on 12-11-21.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
@@ -16,8 +16,8 @@
 @property (nonatomic, retain) NSDate * addTime;
 @property (nonatomic, retain) NSNumber * effectiveCount;
 @property (nonatomic, retain) NSDate * lastReviewTime;
-@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * synchronizeTag;
+@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *words;
 @end
 
@@ -27,11 +27,5 @@
 - (void)removeWordsObject:(Word *)value;
 - (void)addWords:(NSSet *)values;
 - (void)removeWords:(NSSet *)values;
-
-@end
-
-@interface WordList (CustomMethods)
-
-- (void)updateSynchronizeTag;
 
 @end

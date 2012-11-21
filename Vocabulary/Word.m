@@ -2,10 +2,11 @@
 //  Word.m
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-10-30.
+//  Created by 缪 和光 on 12-11-21.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
+#import "Word.h"
 #import "Word.h"
 #import "WordList.h"
 
@@ -23,5 +24,6 @@
 @dynamic psUS;
 @dynamic sentences;
 @dynamic wordLists;
+@dynamic similarWords;
 
 @end
