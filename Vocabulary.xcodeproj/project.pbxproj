@@ -1017,7 +1017,7 @@
 				EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */,
 				A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */,
 			);
-			currentVersion = A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */;
+			currentVersion = EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
