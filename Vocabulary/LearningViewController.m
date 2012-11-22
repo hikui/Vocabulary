@@ -95,7 +95,13 @@
     self.lblKey.text = self.word.key;
     [self.lblKey sizeToFit];
     if (self.word.hasGotDataFromAPI) {
-        NSString *jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
+        
+        NSMutableString *confusingWordsStr = [[NSMutableString alloc]init];
+        for (Word *aConfusingWord in self.word.similarWords) {
+            [confusingWordsStr appendFormat:@"%@ ",aConfusingWord.key];
+        }
+        
+        NSString *jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n易混淆单词:%@\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
         self.acceptationTextView.text = jointStr;
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
         self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronounceUS error:nil];

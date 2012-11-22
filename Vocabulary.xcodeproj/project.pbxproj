@@ -134,6 +134,8 @@
 		EC723CBE165DB698001F5B1B /* SearchWordViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723CBB165DB698001F5B1B /* SearchWordViewController.h */; };
 		EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CBC165DB698001F5B1B /* SearchWordViewController.m */; };
 		EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */; };
+		EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */; };
+		EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -312,6 +314,9 @@
 		EC723CBB165DB698001F5B1B /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
 		EC723CBC165DB698001F5B1B /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
 		EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordViewController.xib; sourceTree = "<group>"; };
+		EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModelIndexedKey.xcdatamodel; sourceTree = "<group>"; };
+		EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ConfusingWordsIndexer.h; sourceTree = "<group>"; };
+		EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfusingWordsIndexer.m; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -492,6 +497,8 @@
 				A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */,
 				A4754D661644E5E2005EB1E0 /* WordListCreator.h */,
 				A4754D671644E5E2005EB1E0 /* WordListCreator.m */,
+				EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */,
+				EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -896,6 +903,8 @@
 				EC723CB6165D17AF001F5B1B /* WordList.m in Sources */,
 				EC723CBE165DB698001F5B1B /* SearchWordViewController.h in Sources */,
 				EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */,
+				EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */,
+				EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,9 +1036,10 @@
 			isa = XCVersionGroup;
 			children = (
 				EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */,
+				EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */,
 				A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */,
 			);
-			currentVersion = EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */;
+			currentVersion = EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -8,8 +8,8 @@
 
 #import "ConfigViewController.h"
 #import "HelpViewController.h"
-#import <MessageUI/MFMailComposeViewController.h>
 #import "ActionSheetPicker.h"
+#import "ConfusingWordsIndexer.h"
 
 @interface ConfigViewController ()
 
@@ -66,9 +66,9 @@
     if (section == 0) {
         BOOL notificationEnabled = [[NSUserDefaults standardUserDefaults]boolForKey:@"NotificationEnabled"];
         if (notificationEnabled) {
-            return 4;
+            return 5;
         }else{
-            return 2;
+            return 3;
         }
     }else{
         return 2;
@@ -82,6 +82,9 @@
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     BOOL notificationEnabled = [[NSUserDefaults standardUserDefaults]boolForKey:@"NotificationEnabled"];
     if (indexPath.section == 0) {
+        
+        int offset = notificationEnabled?2:0;
+        
         if (indexPath.row == 0) {
             cell.textLabel.text = @"开启提醒";
             UISwitch *switcher = [[UISwitch alloc]initWithFrame:CGRectZero];
@@ -96,14 +99,7 @@
             btn.tag = 1;
             [btn addTarget:self action:@selector(setTimeButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
             cell.accessoryView = btn;
-        }else if (indexPath.row == 1 && !notificationEnabled){
-            BOOL enabledSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
-            cell.textLabel.text = @"浏览单词时自动发音";
-            UISwitch *switcher = [[UISwitch alloc]initWithFrame:CGRectZero];
-            switcher.on = enabledSound;
-            [switcher addTarget:self action:@selector(soundEnablerDidChange:) forControlEvents:UIControlEventValueChanged];
-            cell.accessoryView = switcher;
-        }else if (indexPath.row == 2){
+        }else if (indexPath.row == 2 && notificationEnabled){
             cell.textLabel.text = @"晚上提醒时间";
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [btn setTitle:[self getTimeStringFromDate:self.nightNotificationTime] forState:UIControlStateNormal];
@@ -111,13 +107,15 @@
             btn.tag = 2;
             [btn addTarget:self action:@selector(setTimeButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
             cell.accessoryView = btn;
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == 1 + offset){
             BOOL enabledSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
             cell.textLabel.text = @"浏览单词时自动发音";
             UISwitch *switcher = [[UISwitch alloc]initWithFrame:CGRectZero];
             switcher.on = enabledSound;
             [switcher addTarget:self action:@selector(soundEnablerDidChange:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = switcher;
+        }else if (indexPath.row == 2 + offset){
+            cell.textLabel.text = @"重新索引易混淆单词";
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if(indexPath.section == 1){
@@ -137,7 +135,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 1) {
+    BOOL notificationEnabled = [[NSUserDefaults standardUserDefaults]boolForKey:@"NotificationEnabled"];
+    int offset = notificationEnabled?2:0;
+    if (indexPath.section == 0) {
+        if (indexPath.row == 2 + offset) {
+            NSLog(@"aaaa");
+            
+            [ConfusingWordsIndexer beginIndex];
+            
+            
+            
+        }
+    }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             HelpViewController *hvc = [[HelpViewController alloc]initWithNibName:@"HelpViewController" bundle:nil];
             hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

@@ -1,33 +1,17 @@
 //
-//  TestViewController.m
+//  ConfusingWordsIndexer.m
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-10-19.
+//  Created by 缪 和光 on 12-11-22.
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "TestViewController.h"
-#import "CibaXMLParser.h"
+#import "ConfusingWordsIndexer.h"
 
-@interface TestViewController ()
+@implementation ConfusingWordsIndexer
 
-@end
-
-@implementation TestViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
++ (void)beginIndex
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
     NSDate *date = [NSDate date];
     
     NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
@@ -37,41 +21,47 @@
     [request setPropertiesToFetch:@[@"key"]];
     [request setResultType:NSDictionaryResultType];
     [request setReturnsObjectsAsFaults:YES];
-    NSArray *result = [ctx executeFetchRequest:request error:nil];
-    NSLog(@"result.count:%d",result.count);
+    NSArray *allWords = [ctx executeFetchRequest:request error:nil];
+    NSLog(@"result.count:%d",allWords.count);
     NSTimeInterval timeCost = -[date timeIntervalSinceNow];
     NSLog(@"cost time in fetch :%f",timeCost);
     
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(similarWords.@count == 0)"];
+    //request for unindexed words
+    [request setPredicate:predicate];
+    [request setResultType:NSManagedObjectResultType];
+    NSArray *notIndexedWords = [ctx executeFetchRequest:request error:nil];
     
     date = [NSDate date];
     
-    for (NSDictionary *dict in result) {
-        NSString *key = [dict objectForKey:@"key"];
-        float distance = [self compareString:key withString:@"diversion"];
-        NSInteger lcs = [self longestCommonSubstringWithStr1:key str2:@"diversion"];
-        if (distance<3 || ((float)lcs)/MAX(key.length, 9)>0.5) {
-            NSLog(@"%@,%f,%d",key,distance,lcs);
-            NSLog(@"%f",((float)lcs)/MAX(key.length, 9));
-
+    //request for all words real obj
+    [request setIncludesPropertyValues:NO];
+    [request setFetchLimit:1];
+    
+    for (Word *w in notIndexedWords) {
+        for (NSDictionary *dict in allWords) {
+            NSString *key = [dict objectForKey:@"key"];
+            float distance = [self compareString:key withString:w.key];
+            if (distance >0/*等于0为这个词本身*/ && (distance<3 ||
+                ((float)[self longestCommonSubstringWithStr1:key str2:w.key])/MAX(key.length, 9)>0.5)) {
+                
+                NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"key == %@",key];
+                [request setPredicate:predicate2];
+                NSArray *similarWordArr = [ctx executeFetchRequest:request error:nil];
+                if (similarWordArr.count>0) {
+                    Word *similarWord = [similarWordArr objectAtIndex:0];
+                    [w addSimilarWordsObject:similarWord];
+                    NSLog(@"原单词：%@ 易混淆：%@",w.key,key);
+                }
+            }
         }
     }
+    [[CoreDataHelper sharedInstance]saveContext];
     timeCost = -[date timeIntervalSinceNow];
     NSLog(@"cost time in filter :%f",timeCost);
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString
++ (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString
 {
     // Normalize strings
     [originalString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
@@ -134,7 +124,7 @@
 }
 
 // Return the minimum of a, b and c - used by compareString:withString:
-- (NSInteger)smallestOf:(NSInteger)a andOf:(NSInteger)b andOf:(NSInteger)c
++ (NSInteger)smallestOf:(NSInteger)a andOf:(NSInteger)b andOf:(NSInteger)c
 {
     NSInteger min = a;
     if ( b < min )
@@ -146,7 +136,7 @@
     return min;
 }
 
-- (NSInteger)smallestOf:(NSInteger)a andOf:(NSInteger)b
++ (NSInteger)smallestOf:(NSInteger)a andOf:(NSInteger)b
 {
     NSInteger min=a;
     if (b < min)
@@ -156,7 +146,7 @@
 }
 
 #pragma mark - lcs
-- (NSInteger)longestCommonSubstringWithStr1:(NSString *)str1 str2:(NSString *)str2
++ (NSInteger)longestCommonSubstringWithStr1:(NSString *)str1 str2:(NSString *)str2
 {
     NSInteger m, n, *d, maxLen;
     m = str1.length;
@@ -184,6 +174,5 @@
     free(d);
     return maxLen;
 }
-
 
 @end

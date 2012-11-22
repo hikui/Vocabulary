@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface ConfigViewController : UITableViewController
+@interface ConfigViewController : UITableViewController<MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, unsafe_unretained) BOOL notificationEnabled;
 @property (nonatomic, strong) NSDate *dayNotificationTime;
