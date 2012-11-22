@@ -8,10 +8,13 @@
 
 #import "LearningBackboneViewController.h"
 #import "LearningViewController.h"
+#import "SearchWordViewController.h"
 
 @interface LearningBackboneViewController ()
 
 - (void)shuffleWords;
+
+- (void)searchButtonOnPress:(id)sender;
 
 @end
 
@@ -54,13 +57,10 @@
     [self.pageViewController didMoveToParentViewController:self];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
-    
     self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",1,self.words.count];
-}
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonOnPress:)];
+    self.navigationItem.rightBarButtonItem = searchButton;
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
         LearningViewController *lvc = [[LearningViewController alloc]initWithWord:[self.words objectAtIndex:i]];
@@ -73,10 +73,6 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -157,19 +153,6 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 #pragma mark - ibactions
 - (IBAction)btnShowInfoOnPressed:(id)sender
 {
-//    UIButton *btn = (UIButton *)sender;
-//    
-//    btn.selected = !btn.selected;
-//    
-//
-//    for (LearningViewController *lvc in self.learningViewControllerArray) {
-//        if (!btn.selected) {
-//            [lvc showInfo];
-//        }else{
-//            [lvc hideInfo];
-//        }
-//
-//    }
     UIBarButtonItem *btn = (UIBarButtonItem *)sender;
     if ([btn.title isEqualToString:@"隐藏词义"]) {
         btn.title = @"显示词义";
@@ -183,7 +166,14 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
             [lvc showInfo];
         }
     }
-    
+}
+
+- (void)searchButtonOnPress:(id)sender
+{
+    SearchWordViewController *svc = [[SearchWordViewController alloc]initWithNibName:@"SearchWordViewController" bundle:nil];
+    UINavigationController *nsvc = [[UINavigationController alloc]initWithRootViewController:svc];
+    nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:nsvc animated:YES];
 }
 
 @end

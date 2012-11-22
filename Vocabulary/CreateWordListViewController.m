@@ -54,6 +54,12 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (BOOL)shouldAutorotate
 {
     return NO;
@@ -80,6 +86,7 @@
 }
 
 #pragma mark Receive Notification
+
 - (void)keyboardWillAppear:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
@@ -89,7 +96,6 @@
     [UIView animateWithDuration:showAnimationDuration animations:^{
         self.textView.frame = CGRectMake(20, 116, 280,344-offsetY);
     }];
-    
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
@@ -97,14 +103,19 @@
     self.textView.frame = CGRectMake(20, 116, 280,344);
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    static CGFloat lastOffset = 0.0f;
-    if (lastOffset > scrollView.contentOffset.y && ![scrollView isDecelerating]) {
-        [scrollView resignFirstResponder];
-    }
-    lastOffset = scrollView.contentOffset.y;
+    [scrollView resignFirstResponder];
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    static CGFloat lastOffset = 0.0f;
+//    if (lastOffset > scrollView.contentOffset.y && ![scrollView isDecelerating]) {
+//        [scrollView resignFirstResponder];
+//    }
+//    lastOffset = scrollView.contentOffset.y;
+//}
 
 #pragma mark - ibactions
 - (IBAction)btnOkPressed:(id)sender
