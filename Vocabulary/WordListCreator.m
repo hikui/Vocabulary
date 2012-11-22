@@ -7,6 +7,7 @@
 //
 
 #import "WordListCreator.h"
+#import "ConfusingWordsIndexer.h"
 
 @implementation WordListCreator
 
@@ -48,6 +49,9 @@
     NSFetchRequest *wordRequest = [[NSFetchRequest alloc]init];
     NSEntityDescription *wordEntity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:moc];
     [wordRequest setEntity:wordEntity];
+
+    NSMutableArray *newWordsToBeIndexed = [[NSMutableArray alloc]initWithCapacity:wordSet.count];
+    
     for (NSString *aWord in wordSet) {
         if (aWord.length == 0) {
             //出现空字符串
@@ -71,12 +75,16 @@
             Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
             newWord.key = lowercaseWord;
             [newList addWordsObject:newWord];
+            [newWordsToBeIndexed addObject:newWord];
         }
     }
-    
     //再次检查是否为空，排除空字符串干扰
     if (newList.words.count>0) {
         [helper saveContext];
+        //索引易混淆词
+        if (newWordsToBeIndexed.count > 0) {
+            [ConfusingWordsIndexer indexNewWords:newWordsToBeIndexed saveContextAfterIndex:YES];
+        }
     }else{
         *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
         [moc deleteObject:newList];

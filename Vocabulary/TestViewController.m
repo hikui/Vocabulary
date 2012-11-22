@@ -32,29 +32,44 @@
     
     NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     [request setEntity:entity];
     [request setPropertiesToFetch:@[@"key"]];
     [request setResultType:NSDictionaryResultType];
     [request setReturnsObjectsAsFaults:YES];
+    [request setSortDescriptors:@[sortDescriptor]];
     NSArray *result = [ctx executeFetchRequest:request error:nil];
     NSLog(@"result.count:%d",result.count);
     NSTimeInterval timeCost = -[date timeIntervalSinceNow];
     NSLog(@"cost time in fetch :%f",timeCost);
     
+    [request setResultType:NSManagedObjectResultType];
+    [request setIncludesPropertyValues:NO];
+    NSArray *result2 = [ctx executeFetchRequest:request error:nil];
+    NSAssert(result.count == result2.count, @"wrong");
     
-    date = [NSDate date];
+//    for (int i = 0; i<result.count; i++) {
+//        NSDictionary *dict = [result objectAtIndex:i];
+//        NSString *key = [dict objectForKey:@"key"];
+//        Word *w = [result2 objectAtIndex:i];
+//        NSString *key2 = w.key;
+////        NSAssert([key isEqualToString:key2], @"not equal");
+//       // NSLog(@"key1:%@, key2:%@",key,key2);
+//    }
     
-    for (NSDictionary *dict in result) {
-        NSString *key = [dict objectForKey:@"key"];
-        float distance = [self compareString:key withString:@"diversion"];
-        NSInteger lcs = [self longestCommonSubstringWithStr1:key str2:@"diversion"];
-        if (distance<3 || ((float)lcs)/MAX(key.length, 9)>0.5) {
-            NSLog(@"%@,%f,%d",key,distance,lcs);
-            NSLog(@"%f",((float)lcs)/MAX(key.length, 9));
-
-        }
-    }
+//    date = [NSDate date];
+//    
+//    for (NSDictionary *dict in result) {
+//        NSString *key = [dict objectForKey:@"key"];
+//        float distance = [self compareString:key withString:@"diversion"];
+//        NSInteger lcs = [self longestCommonSubstringWithStr1:key str2:@"diversion"];
+//        if (distance<3 || ((float)lcs)/MAX(key.length, 9)>0.5) {
+//            NSLog(@"%@,%f,%d",key,distance,lcs);
+//            NSLog(@"%f",((float)lcs)/MAX(key.length, 9));
+//
+//        }
+//    }
     timeCost = -[date timeIntervalSinceNow];
     NSLog(@"cost time in filter :%f",timeCost);
 }

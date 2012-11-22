@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^callback)(float progress);
+
 @interface ConfusingWordsIndexer : NSObject
 
 + (void)beginIndex;
+
++ (void)indexNewWords:(NSArray *)newWordsArray saveContextAfterIndex:(BOOL)save;
+
++ (void)reIndexForAllWithCallback:(callback)callback;
 
 @end
