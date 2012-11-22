@@ -18,20 +18,22 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     [request setEntity:entity];
-    [request setPropertiesToFetch:@[@"key"]];
-    [request setResultType:NSDictionaryResultType];
+//    [request setPropertiesToFetch:@[@"key"]];
+//    [request setResultType:NSDictionaryResultType];
+    [request setIncludesPropertyValues:NO];
     [request setReturnsObjectsAsFaults:YES];
     NSArray *allWords = [ctx executeFetchRequest:request error:nil];
     NSLog(@"result.count:%d",allWords.count);
-    NSTimeInterval timeCost = -[date timeIntervalSinceNow];
-    NSLog(@"cost time in fetch :%f",timeCost);
+    
+    
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(similarWords.@count == 0)"];
     //request for unindexed words
     [request setPredicate:predicate];
     [request setResultType:NSManagedObjectResultType];
     NSArray *notIndexedWords = [ctx executeFetchRequest:request error:nil];
-    
+    NSTimeInterval timeCost = -[date timeIntervalSinceNow];
+    NSLog(@"查询用时 :%f",timeCost);
     date = [NSDate date];
     
     //request for all words real obj
@@ -39,26 +41,27 @@
     [request setFetchLimit:1];
     
     for (Word *w in notIndexedWords) {
-        for (NSDictionary *dict in allWords) {
-            NSString *key = [dict objectForKey:@"key"];
-            float distance = [self compareString:key withString:w.key];
+        for (Word *similarWord in allWords) {
+//            NSString *key = [dict objectForKey:@"key"];
+            float distance = [self compareString:similarWord.key withString:w.key];
             if (distance >0/*等于0为这个词本身*/ && (distance<3 ||
-                ((float)[self longestCommonSubstringWithStr1:key str2:w.key])/MAX(key.length, 9)>0.5)) {
+                ((float)[self longestCommonSubstringWithStr1:similarWord.key str2:w.key])/MAX(similarWord.key.length, w.key.length)>0.5)) {
                 
-                NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"key == %@",key];
-                [request setPredicate:predicate2];
-                NSArray *similarWordArr = [ctx executeFetchRequest:request error:nil];
-                if (similarWordArr.count>0) {
-                    Word *similarWord = [similarWordArr objectAtIndex:0];
-                    [w addSimilarWordsObject:similarWord];
-                    NSLog(@"原单词：%@ 易混淆：%@",w.key,key);
-                }
+//                NSPredicate *predicate2 = [NSPredicate predicateWithFormat:@"key == %@",key];
+//                [request setPredicate:predicate2];
+//                NSArray *similarWordArr = [ctx executeFetchRequest:request error:nil];
+//                if (similarWordArr.count>0) {
+//                    Word *similarWord = [similarWordArr objectAtIndex:0];
+//                    [w addSimilarWordsObject:similarWord];
+//
+//                }
+                [w addSimilarWordsObject:similarWord];
             }
         }
     }
     [[CoreDataHelper sharedInstance]saveContext];
     timeCost = -[date timeIntervalSinceNow];
-    NSLog(@"cost time in filter :%f",timeCost);
+    NSLog(@"索引用时:%f",timeCost);
 }
 
 + (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString
