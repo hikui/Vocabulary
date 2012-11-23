@@ -19,4 +19,9 @@
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
 
+
+// bock define
+typedef void (^HKVProgressCallback)(float progress);
+typedef void (^HKVVoidBlock)(void);
+typedef void (^HKVErrorBlock)(NSError *error);
 #endif

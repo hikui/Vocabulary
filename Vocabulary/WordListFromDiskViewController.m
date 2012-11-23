@@ -104,34 +104,64 @@
 - (IBAction)finishButtonOnPress:(id)sender
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    //在新线程中导入wordlist
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        NSString*path =[paths objectAtIndex:0];
-        for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
-            int row = selectedIndexPath.row;
-            NSString *fileName = [self.fileList objectAtIndex:row];
-            NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
-            NSError *readFileError = NULL;
-            NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
-            if (readFileError != NULL) {
-                //faild
-                continue;
-            }
-            
-            NSArray *words = [content componentsSeparatedByString:@"\n"];
-            NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
-            NSError *wordListCreatorError = NULL;
-            [WordListCreator createWordListWithTitle:fileName wordSet:wordSet error:&wordListCreatorError];
-            if (wordListCreatorError != NULL) {
-                NSLog(@"%@",[wordListCreatorError localizedDescription]);
-            }
+
+    __block int totalCount = self.selectedIndexPath.count;
+    
+    NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString*path =[paths objectAtIndex:0];
+    for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
+        int row = selectedIndexPath.row;
+        NSString *fileName = [self.fileList objectAtIndex:row];
+        NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
+        NSError *readFileError = NULL;
+        NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
+        if (readFileError != NULL) {
+            //faild
+            continue;
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        });
-    });
+        
+        NSArray *words = [content componentsSeparatedByString:@"\n"];
+        NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
+
+        [WordListCreator createWordListAsyncWithTitle:fileName wordSet:wordSet completion:^(NSError *error) {
+            if (error != nil) {
+                NSLog(@"%@",[error localizedDescription]);
+            }
+            totalCount--;
+            if (totalCount <= 0) {
+                [hud hide:YES];
+            }
+        }];
+        
+    }
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//        NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+//        NSString*path =[paths objectAtIndex:0];
+//        for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
+//            int row = selectedIndexPath.row;
+//            NSString *fileName = [self.fileList objectAtIndex:row];
+//            NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
+//            NSError *readFileError = NULL;
+//            NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
+//            if (readFileError != NULL) {
+//                //faild
+//                continue;
+//            }
+//            
+//            NSArray *words = [content componentsSeparatedByString:@"\n"];
+//            NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
+//            NSError *wordListCreatorError = NULL;
+//            [WordListCreator createWordListWithTitle:fileName wordSet:wordSet error:&wordListCreatorError];
+//            if (wordListCreatorError != NULL) {
+//                NSLog(@"%@",[wordListCreatorError localizedDescription]);
+//            }
+//        }
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//            [self dismissViewControllerAnimated:YES completion:nil];
+//        });
+//    });
 }
 
 - (IBAction)refreshButtonOnPress:(id)sender

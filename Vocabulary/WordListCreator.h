@@ -14,8 +14,12 @@
 
 @interface WordListCreator : NSObject
 
-+ (void)createWordListWithTitle:(NSString *)title
-                        wordSet:(NSSet *)wordSet
-                          error:(NSError **)error;
+//+ (void)createWordListWithTitle:(NSString *)title
+//                        wordSet:(NSSet *)wordSet
+//                          error:(NSError **)error;
+
++ (void)createWordListAsyncWithTitle:(NSString *)title
+                             wordSet:(NSSet *)wordSet
+                          completion:(HKVErrorBlock)completion;
 
 @end

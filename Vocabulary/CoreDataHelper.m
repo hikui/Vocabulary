@@ -52,8 +52,21 @@
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+//        [_managedObjectContext setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
     }
     return _managedObjectContext;
+}
+
+- (NSManagedObjectContext *)newManagedObjectContext
+{
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        NSManagedObjectContext *ctx = [[NSManagedObjectContext alloc]init];
+        [ctx setPersistentStoreCoordinator:coordinator];
+//        [ctx setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
+        return ctx;
+    }
+    return nil;
 }
 
 // Returns the managed object model for the application.

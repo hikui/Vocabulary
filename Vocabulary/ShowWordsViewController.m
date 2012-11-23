@@ -11,6 +11,7 @@
 #import "LearningBackboneViewController.h"
 #import "LearningViewController.h"
 #import "ExamViewController.h"
+#import "ConfusingWordsIndexer.h"
 
 @interface ShowWordsViewController ()
 
@@ -195,6 +196,11 @@
         NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordsSet.count-1 inSection:0];
         [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
         [_tableView endUpdates];
+        
+        //后台做索引
+        
+        [ConfusingWordsIndexer indexNewWordsAsyncById:@[w.objectID] completion:NULL];
+        
     }
 }
 

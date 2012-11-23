@@ -19,4 +19,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+// create new managed object context especially for core data concurrency
+- (NSManagedObjectContext *)newManagedObjectContext;
+
 @end

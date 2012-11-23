@@ -139,18 +139,14 @@
     int offset = notificationEnabled?2:0;
     if (indexPath.section == 0) {
         if (indexPath.row == 2 + offset) {
-            NSLog(@"aaaa");
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.detailsLabelText = @"正在索引";
             hud.mode = MBProgressHUDModeAnnularDeterminate;
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-                [ConfusingWordsIndexer reIndexForAllWithCallback:^(float progress){
-                    hud.progress = progress;
-                }];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [hud hide:YES];
-                });
-            });
+            [ConfusingWordsIndexer reIndexForAllWithProgressCallback:^(float progress) {
+                hud.progress = progress;
+            } completion:^{
+                [hud hide:YES];
+            }];
         }
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {

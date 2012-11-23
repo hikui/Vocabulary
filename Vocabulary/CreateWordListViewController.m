@@ -123,29 +123,36 @@
     NSString *text = self.textView.text;
     NSArray *words = [text componentsSeparatedByString:@"\n"];
     NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
-    NSError *error = NULL;
-    [WordListCreator createWordListWithTitle:self.titleField.text wordSet:wordSet error:&error];
-    if (error != NULL) {
-        NSLog(@"%@",[error localizedDescription]);
-        if (error.code == WordListCreatorEmptyWordSetError) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                           message:@"还没有单词哦"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"知道了"
-                                                 otherButtonTitles:nil];
-            [alert show];
-        }else if (error.code == WordListCreatorNoTitleError){
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                           message:@"还没有起名字哦"
-                                                          delegate:nil
-                                                 cancelButtonTitle:@"知道了"
-                                                 otherButtonTitles:nil];
-            [alert show];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [WordListCreator createWordListAsyncWithTitle:self.titleField.text wordSet:wordSet completion:^(NSError *error) {
+        if (error != NULL) {
+            NSLog(@"%@",error);
+            if (error.code == WordListCreatorEmptyWordSetError) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                               message:@"还没有单词哦"
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"知道了"
+                                                     otherButtonTitles:nil];
+                [alert show];
+            }else if (error.code == WordListCreatorNoTitleError){
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                               message:@"还没有起名字哦"
+                                                              delegate:nil
+                                                     cancelButtonTitle:@"知道了"
+                                                     otherButtonTitles:nil];
+                [alert show];
+            }else{
+                abort();
+            }
+            return;
+        }else{
+            [self dismissModalViewControllerAnimated:YES];
         }
-        return;
-    }else{
-        [self dismissModalViewControllerAnimated:YES];
-    }
+    }];
+    
+    
 
     
 }

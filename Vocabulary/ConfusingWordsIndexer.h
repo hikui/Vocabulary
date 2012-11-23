@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^callback)(float progress);
-
 @interface ConfusingWordsIndexer : NSObject
 
 + (void)beginIndex;
 
-+ (void)indexNewWords:(NSArray *)newWordsArray saveContextAfterIndex:(BOOL)save;
+/**
+ 对新插入的words进行索引。调用此方法前，先插入到数据库中（执行context save）
+ @param newWordsIDArray 传managedObjectID数组
+ */
++ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray completion:(HKVErrorBlock)completion;
 
-+ (void)reIndexForAllWithCallback:(callback)callback;
++ (void)indexNewWordsSyncById:(NSArray *)newWordsIDArray managedObjectContext:(NSManagedObjectContext *)ctx error:(NSError **)error;
+
++ (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)callback completion:(HKVVoidBlock)completion;
 
 @end
