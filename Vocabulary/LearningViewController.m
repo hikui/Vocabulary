@@ -100,8 +100,14 @@
         for (Word *aConfusingWord in self.word.similarWords) {
             [confusingWordsStr appendFormat:@"%@ ",aConfusingWord.key];
         }
+        NSString *jointStr = nil;
+        if (self.word.similarWords.count == 0) {
+            jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
+        }else{
+            jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
+        }
         
-        NSString *jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n易混淆单词:%@\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
+       
         self.acceptationTextView.text = jointStr;
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
         self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronounceUS error:nil];
@@ -155,6 +161,8 @@
                         [hud hide:YES afterDelay:1];
                     }];
                 }else{
+                    self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                    [[CoreDataHelper sharedInstance]saveContext];
                     hud.labelText = @"语音加载失败";
                     [hud hide:YES afterDelay:1];
                     [self refreshView];

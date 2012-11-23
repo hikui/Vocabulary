@@ -219,7 +219,7 @@
                 @autoreleasepool {
                     float distance = [self compareString:key1 withString:key2];
                     NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
+                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>=0.5) {
                         Word *targetWord = [allWordsPlaceholderArray objectAtIndex:i];
                         //                    NSLog(@"key1: %@, key2: %@, target:%@",key1,key2,targetWord.key);
                         [aNewWord addSimilarWordsObject:targetWord];
@@ -259,6 +259,9 @@
         [request setEntity:entity];
         NSArray *allWords = [ctx executeFetchRequest:request error:nil];
         
+        NSTimeInterval queryTime = - [date timeIntervalSinceNow];
+        NSLog(@"数据库查询时间：%f",queryTime);
+        
         int totalNum = allWords.count;
         int finishedNum = 0;
         
@@ -274,7 +277,7 @@
                         }
                         float distance = [self compareString:w1.key withString:w2.key];
                         NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
-                        if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
+                        if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>=0.5) {
                             [w1 addSimilarWordsObject:w2];
                         }
                     }
