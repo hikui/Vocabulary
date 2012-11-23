@@ -170,7 +170,7 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 
 - (void)searchButtonOnPress:(id)sender
 {
-    SearchWordViewController *svc = [[SearchWordViewController alloc]initWithNibName:@"SearchWordViewController" bundle:nil];
+    SearchWordViewController *svc = [[SearchWordViewController alloc]initWithModalViewControllerMode:YES];
     UINavigationController *nsvc = [[UINavigationController alloc]initWithRootViewController:svc];
     nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:nsvc animated:YES];

@@ -14,8 +14,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>vocabulary-logo.png</string>
-				<string>vocabulary-logo@2x.png</string>
+				<string>v.png</string>
+				<string>v@2x.png</string>
 			</array>
 		</dict>
 	</dict>

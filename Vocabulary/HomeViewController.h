@@ -14,5 +14,6 @@
 
 - (IBAction)btnSelected:(id)sender;
 - (IBAction)preferenceButtonOnPress;
+- (void)searchButtonOnPress;
 
 @end

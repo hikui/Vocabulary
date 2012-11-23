@@ -29,13 +29,24 @@
     return self;
 }
 
+- (id)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
+{
+    self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
+    if (self) {
+        _modalViewControllerMode = modalViewControllerMode;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    self.navigationController.navigationBar.tintColor = RGBA(48, 16, 17, 1);
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
-    self.navigationItem.leftBarButtonItem = backButton;
+    if (self.modalViewControllerMode) {
+        self.navigationController.navigationBar.tintColor = RGBA(48, 16, 17, 1);
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
+        self.navigationItem.leftBarButtonItem = backButton;
+    }
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     indicator.hidesWhenStopped = YES;

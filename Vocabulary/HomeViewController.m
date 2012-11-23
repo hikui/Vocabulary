@@ -14,7 +14,7 @@
 #import "HelpViewController.h"
 #import "ConfigViewController.h"
 #import "WordListFromDiskViewController.h"
-#import "TestViewController.h";
+#import "SearchWordViewController.h"
 
 @interface HomeViewController ()
 
@@ -50,7 +50,10 @@
     
     
     UIBarButtonItem *configButton = [[UIBarButtonItem alloc]initWithTitle:@"设置"  style:UIBarButtonItemStyleBordered target:self action:@selector(preferenceButtonOnPress)];
-    self.navigationItem.rightBarButtonItem = configButton;
+    self.navigationItem.leftBarButtonItem = configButton;
+    
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonOnPress)];
+    self.navigationItem.rightBarButtonItem = searchButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -123,9 +126,6 @@
         ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
         svc.wordsSet = mResult;
         [self.navigationController pushViewController:svc animated:YES];
-    }else if(btn.tag == 5){
-        TestViewController *tvc = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];
-        [self.navigationController pushViewController:tvc animated:YES];
     }
 }
 
@@ -145,6 +145,12 @@
 {
     ConfigViewController *configVC = [[ConfigViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:configVC animated:YES];
+}
+
+- (void)searchButtonOnPress
+{
+    SearchWordViewController *swvc = [[SearchWordViewController alloc]initWithModalViewControllerMode:NO];
+    [self.navigationController pushViewController:swvc animated:YES];
 }
 
 #pragma mark - action sheet delegate

@@ -16,8 +16,12 @@
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+@property (nonatomic, unsafe_unretained, readonly) BOOL modalViewControllerMode;
+
 @property (nonatomic, strong) NSOperationQueue *queryOperationQueue;
 
 - (IBAction)back:(id)sender;
+
+- (id)initWithModalViewControllerMode:(BOOL)modalViewControllerMode;
 
 @end
