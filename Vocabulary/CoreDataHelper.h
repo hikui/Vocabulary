@@ -22,4 +22,6 @@
 // create new managed object context especially for core data concurrency
 - (NSManagedObjectContext *)newManagedObjectContext;
 
+- (void)receiveContextSaveNotification:(NSNotification *)notification;
+
 @end

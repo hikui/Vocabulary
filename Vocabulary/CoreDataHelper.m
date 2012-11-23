@@ -20,6 +20,7 @@
     __strong static id _sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init]; // or some other init method
+        [[NSNotificationCenter defaultCenter]addObserver:_sharedObject selector:@selector(receiveContextSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
     });
     return _sharedObject;
 }
@@ -52,6 +53,8 @@
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+//        //各个context之间同步
+//        [[NSNotificationCenter defaultCenter]addObserver:_managedObjectContext selector:@selector(mergeChangesFromContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
 //        [_managedObjectContext setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
     }
     return _managedObjectContext;
@@ -63,7 +66,9 @@
     if (coordinator != nil) {
         NSManagedObjectContext *ctx = [[NSManagedObjectContext alloc]init];
         [ctx setPersistentStoreCoordinator:coordinator];
-//        [ctx setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
+//        //各个context之间同步
+//        [[NSNotificationCenter defaultCenter]addObserver:ctx selector:@selector(mergeChangesFromContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
+        [ctx setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
         return ctx;
     }
     return nil;
@@ -134,6 +139,15 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)receiveContextSaveNotification:(NSNotification *)notification
+{
+    NSLog(@"- (void)receiveContextSaveNotification:(NSNotification *)notification;");
+    if (notification.object != self.managedObjectContext) {
+        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+        NSLog(@"do merge");
+    }
 }
 
 @end
