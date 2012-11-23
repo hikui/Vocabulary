@@ -314,7 +314,7 @@
 		EC723CBB165DB698001F5B1B /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
 		EC723CBC165DB698001F5B1B /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
 		EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordViewController.xib; sourceTree = "<group>"; };
-		EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModelIndexedKey.xcdatamodel; sourceTree = "<group>"; };
+		EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelIndexedKey.xcdatamodel; sourceTree = "<group>"; };
 		EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ConfusingWordsIndexer.h; sourceTree = "<group>"; };
 		EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfusingWordsIndexer.m; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };

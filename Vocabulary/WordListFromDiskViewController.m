@@ -107,6 +107,12 @@
 
     __block int totalCount = self.selectedIndexPath.count;
     
+    if (totalCount == 0) {
+        [hud hide:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    
     NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString*path =[paths objectAtIndex:0];
     for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
@@ -130,6 +136,7 @@
             totalCount--;
             if (totalCount <= 0) {
                 [hud hide:YES];
+                [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
         
