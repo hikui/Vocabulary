@@ -57,6 +57,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.searchBar becomeFirstResponder];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.searchBar resignFirstResponder];

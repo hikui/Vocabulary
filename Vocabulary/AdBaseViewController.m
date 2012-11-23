@@ -46,7 +46,7 @@
      nil];
     
     [request registerAdNetworkExtras:extras];
-    //[self.banner loadRequest:request];
+    [self.banner loadRequest:request];
     NSLog(@"hex:%@",[self hexStringWithRed:244 green:233 blue:215]);
 }
 
