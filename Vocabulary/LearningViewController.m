@@ -218,4 +218,27 @@ didFailToReceiveAdWithError:(GADRequestError *)error
         self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
 }
+
+//#pragma - mark youmi delegate
+//- (void)didReceiveAd:(YouMiView *)adView
+//{
+//    [super didReceiveAd:adView];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        UIView *content = [self.view viewWithTag:1];
+//        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
+//        content.frame = targetFrame;
+//        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
+//    }];
+//}
+////
+//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
+//{
+//    [super didFailToReceiveAd:adView error:error];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        UIView *content = [self.view viewWithTag:1];
+//        CGRect targetFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+//        content.frame = targetFrame;
+//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+//    }];
+//}
 @end

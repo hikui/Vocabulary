@@ -330,11 +330,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */,
 				A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */,
 				A46A7F901633C5C800DF4696 /* SystemConfiguration.framework in Frameworks */,
 				A4754D9116466ED3005EB1E0 /* AudioToolbox.framework in Frameworks */,
 				A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */,
-				A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */,
 				A46A7F9F1633D4C600DF4696 /* AVFoundation.framework in Frameworks */,
 				A46A7F921633C5CF00DF4696 /* Security.framework in Frameworks */,
 				A46A7F8E1633C5BF00DF4696 /* CFNetwork.framework in Frameworks */,
@@ -983,6 +983,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
+					"\"$(SRCROOT)/Vocabulary/lib/Youmi\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1001,6 +1002,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
+					"\"$(SRCROOT)/Vocabulary/lib/Youmi\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

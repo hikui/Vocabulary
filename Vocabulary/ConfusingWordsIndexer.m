@@ -138,7 +138,7 @@
                         NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
                         if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
                             Word *targetWord = [allWordsPlaceholderArray objectAtIndex:i];
-                            NSLog(@"key1: %@, key2: %@, target:%@",key1,key2,targetWord.key);
+                            //NSLog(@"key1: %@, key2: %@, target:%@",key1,key2,targetWord.key);
                             [aNewWord addSimilarWordsObject:targetWord];
                         }
                     }
@@ -160,9 +160,6 @@
 
 + (void)indexNewWordsSyncById:(NSArray *)newWordsIDArray managedObjectContext:(NSManagedObjectContext *)context error:(NSError **)_error
 {
-    Word *test = (Word *)[context existingObjectWithID:newWordsIDArray[0] error:nil];
-    NSLog(@"word test :%@",test);
-
     NSDate *date = [NSDate date];
     NSError *error = nil;
 
@@ -279,7 +276,7 @@
                         NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
                         if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
                             [w1 addSimilarWordsObject:w2];
-                            NSLog(@"%@,%@",w1.key,w2.key);
+                            //NSLog(@"%@,%@",w1.key,w2.key);
                         }
                     }
                 }

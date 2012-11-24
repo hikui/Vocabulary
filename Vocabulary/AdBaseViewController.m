@@ -48,10 +48,20 @@
     [request registerAdNetworkExtras:extras];
     [self.banner loadRequest:request];
     NSLog(@"hex:%@",[self hexStringWithRed:244 green:233 blue:215]);
+    
+    
+//    self.banner = [[YouMiView alloc]initWithContentSizeIdentifier:YouMiBannerContentSizeIdentifier320x50 delegate:self];
+//    self.banner.appID = @"d3ff59c20eec9ef5";
+//    self.banner.appSecret = @"a7b790693ba72b85";
+//    self.banner.appVersion = @"1.2.2";
+//    self.banner.indicateBackgroundColor = RGBA(141, 198, 65, 1);
+//    self.banner.testing = NO;
+//    [self.view addSubview:self.banner];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+//    [self.banner start];
     BOOL shouldAddToView = YES;
     for (UIView *view in self.view.subviews) {
         if (view == self.banner) {
@@ -97,5 +107,18 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     NSString *str = [[NSString stringWithFormat:@"%02x%02x%02x",red,green,blue] capitalizedString];
     return str;
 }
+
+//#pragma - mark youmi delegate
+//- (void)didReceiveAd:(YouMiView *)adView
+//{
+//    self.banner.frame = self.bannerFrame;
+//    NSLog(@"receive ad succeed");
+//}
+//
+//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
+//{
+//    self.banner.frame = self.bannerFrame;
+//    NSLog(@"%@",error);
+//}
 
 @end
