@@ -7,11 +7,11 @@
 //
 
 #import "MKNetworkEngine.h"
+#import "CibaNetworkOperation.h"
 
 @interface CibaEngine : MKNetworkEngine
 
-typedef void (^CompleteBlockWithStr)(NSDictionary *parsedDict);
-typedef void (^CompleteBlockWithData)(NSData *data);
+@property (nonatomic, strong) NSMutableSet *livingOperations;
 
 + (id)sharedInstance;
 
@@ -22,4 +22,15 @@ typedef void (^CompleteBlockWithData)(NSData *data);
 - (MKNetworkOperation *) getPronWithURL:(NSString *)url
                            onCompletion:(CompleteBlockWithData) completionBlock
                                 onError:(MKNKErrorBlock) errorBlock;
+
+/**
+ 一次性填充整个word
+ */
+- (CibaNetworkOperation *) fillWord:(Word *)word
+                     onCompletion:(HKVVoidBlock)completion
+                          onError:(HKVErrorBlock)error;
+
+//删除一个单词的请求
+- (void) cancelOperationOfWord:(Word *)word;
+
 @end

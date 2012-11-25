@@ -80,6 +80,7 @@
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
 		A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D981646792C005EB1E0 /* AdBaseViewController.m */; };
 		A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */; };
+		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4B3D79E1642351C00F9772F /* preferences-system-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79C1642351C00F9772F /* preferences-system-3.png */; };
 		A4B3D79F1642351C00F9772F /* system-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79D1642351C00F9772F /* system-2.png */; };
@@ -257,6 +258,8 @@
 		A4754D971646792C005EB1E0 /* AdBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdBaseViewController.h; sourceTree = "<group>"; };
 		A4754D981646792C005EB1E0 /* AdBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBaseViewController.m; sourceTree = "<group>"; };
 		A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningVIewController.xib; sourceTree = "<group>"; };
+		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
+		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		A4B3D79116420BD100F9772F /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		A4B3D79C1642351C00F9772F /* preferences-system-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "preferences-system-3.png"; path = "artwork/preferences-system-3.png"; sourceTree = "<group>"; };
@@ -395,6 +398,7 @@
 		A46A7E511630296800DF4696 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
+				A4A6B31F16623A91002D4E46 /* Network */,
 				EC4FCFE916367C5500EF429B /* ViewControllers */,
 				A46A7F351632C42900DF4696 /* utils */,
 				A46A7E7D16302C5500DF4696 /* models */,
@@ -490,8 +494,6 @@
 				EC3942681630E95C00E6AE18 /* CibaXMLParser.m */,
 				A46A7F371632C44800DF4696 /* CoreDataHelper.h */,
 				A46A7F381632C44800DF4696 /* CoreDataHelper.m */,
-				A46A7F971633C8AF00DF4696 /* CibaEngine.h */,
-				A46A7F981633C8AF00DF4696 /* CibaEngine.m */,
 				A46A7FFB163BC1E800DF4696 /* common.h */,
 				A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */,
 				A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */,
@@ -632,6 +634,17 @@
 				A4754D8C16466EA6005EB1E0 /* libGoogleAdMobAds.a */,
 			);
 			name = AdMob;
+			sourceTree = "<group>";
+		};
+		A4A6B31F16623A91002D4E46 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A46A7F971633C8AF00DF4696 /* CibaEngine.h */,
+				A46A7F981633C8AF00DF4696 /* CibaEngine.m */,
+				A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */,
+				A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
@@ -905,6 +918,7 @@
 				EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */,
 				EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */,
 				EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */,
+				A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

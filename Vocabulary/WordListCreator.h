@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define WordListCreatorDormain @"wordListCreatorDormain"
-#define WordListCreatorEmptyWordSetError -1
-#define WordListCreatorNoTitleError -2
-
 @interface WordListCreator : NSObject
 
 //+ (void)createWordListWithTitle:(NSString *)title

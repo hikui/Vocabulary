@@ -17,9 +17,10 @@
 + (id)sharedInstance
 {
     static dispatch_once_t pred = 0;
-    __strong static id _sharedObject = nil;
+    __strong static CoreDataHelper *_sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init]; // or some other init method
+        _sharedObject.globalContextSavingLock = [[NSLock alloc]init];
         [[NSNotificationCenter defaultCenter]addObserver:_sharedObject selector:@selector(receiveContextSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
     });
     return _sharedObject;
@@ -30,12 +31,14 @@
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
+        [self.globalContextSavingLock lock];
         if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+        [self.globalContextSavingLock unlock];
     }
 }
 

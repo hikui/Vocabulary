@@ -19,9 +19,20 @@
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
 
+#define WordListCreatorDormain @"wordListCreatorDormain"
+#define WordListCreatorEmptyWordSetError -1
+#define WordListCreatorNoTitleError -2
+#define CibaEngineDormain @"info.herkuang.vocabulary.CibaEngine"
+#define FillWordError -3
+#define FillWordPronError -4
 
 // bock define
 typedef void (^HKVProgressCallback)(float progress);
 typedef void (^HKVVoidBlock)(void);
 typedef void (^HKVErrorBlock)(NSError *error);
+
+typedef void (^CompleteBlockWithStr)(NSDictionary *parsedDict);
+typedef void (^CompleteBlockWithData)(NSData *data);
+typedef void (^CompleteBlockWithWord)(Word *word);
+
 #endif
