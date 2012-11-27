@@ -62,6 +62,15 @@
     [helper saveContext];
 }
 
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"crush");
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+}
+
 - (void)setFinishTodaysLearningPlan:(BOOL)finishTodaysPlan
 {
     _finishTodaysLearningPlan = finishTodaysPlan;
