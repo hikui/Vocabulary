@@ -40,6 +40,26 @@
     self.acceptationView.hidden = YES;
     self.acceptationView.text = content.word.acceptation;
     self.showAcceptationButton.hidden = NO;
+    NSData *pronData = content.word.pronounceUS;
+    if (pronData == nil) {
+        pronData = content.word.pronounceEN;
+    }
+    if (pronData != nil) {
+        self.soundPlayer = [[AVAudioPlayer alloc]initWithData:pronData error:nil];
+    }else{
+        self.soundPlayer = nil;
+    }
+    
+}
+
+- (void)playSound
+{
+    [self.soundPlayer play];
+}
+
+- (void)stopSound
+{
+    [self.soundPlayer stop];
 }
 
 - (IBAction)showAcceptationButtonOnPressed:(id)sender
@@ -49,6 +69,7 @@
     self.acceptationView.hidden = NO;
     self.keyLabel.text = self.content.word.key;
     [self.keyLabel sizeToFit];
+    [self playSound];
 }
 
 @end

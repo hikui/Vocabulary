@@ -116,7 +116,7 @@
         NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(familiarity <= 5 AND lastVIewDate != nil)"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
         [request setEntity:entity];
         [request setPredicate:predicate];
         NSArray *result = [ctx executeFetchRequest:request error:nil];
