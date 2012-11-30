@@ -120,6 +120,9 @@
 		EC3942641630E54D00E6AE18 /* TouchXML.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942491630E54D00E6AE18 /* TouchXML.h */; };
 		EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942671630E95C00E6AE18 /* CibaXMLParser.h */; };
 		EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942681630E95C00E6AE18 /* CibaXMLParser.m */; };
+		EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */; };
+		EC4BCEA516687A80004887B4 /* MobClick.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4BCEA316687A80004887B4 /* MobClick.h */; };
+		EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA716687AD3004887B4 /* libz.dylib */; };
 		EC4FCFE1163646C500EF429B /* ExamViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDE163646C500EF429B /* ExamViewController.h */; };
 		EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDF163646C500EF429B /* ExamViewController.m */; };
 		EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFE0163646C500EF429B /* ExamViewController.xib */; };
@@ -301,6 +304,9 @@
 		EC3942491630E54D00E6AE18 /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = TouchXML.h; path = Vocabulary/lib/TouchXML/TouchXML.h; sourceTree = "<group>"; };
 		EC3942671630E95C00E6AE18 /* CibaXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CibaXMLParser.h; sourceTree = "<group>"; };
 		EC3942681630E95C00E6AE18 /* CibaXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaXMLParser.m; sourceTree = "<group>"; };
+		EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		EC4BCEA316687A80004887B4 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = MobClick.h; sourceTree = "<group>"; };
+		EC4BCEA716687AD3004887B4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		EC4FCFDE163646C500EF429B /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamViewController.h; sourceTree = "<group>"; };
 		EC4FCFDF163646C500EF429B /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
 		EC4FCFE0163646C500EF429B /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
@@ -333,6 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */,
 				A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */,
 				A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */,
 				A46A7F901633C5C800DF4696 /* SystemConfiguration.framework in Frameworks */,
@@ -347,6 +354,7 @@
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
 				A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */,
 				A4754D8D16466EA6005EB1E0 /* libGoogleAdMobAds.a in Frameworks */,
+				EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,12 +455,14 @@
 		A46A7EBF16304F6500DF4696 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */,
 				A4754D8216466E8B005EB1E0 /* AdMob */,
 				A4754D311642A7E4005EB1E0 /* ActionSheetPicker */,
 				A46A7FAD1635645A00DF4696 /* MKNetworkKit */,
 				A46A7FAC1635644700DF4696 /* MBProgressHUD */,
 				A46A7F211630537500DF4696 /* TouchXML */,
 				A46A7EEB16304F9800DF4696 /* libxml2.dylib */,
+				EC4BCEA716687AD3004887B4 /* libz.dylib */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -667,6 +677,16 @@
 			);
 			name = Tidy;
 			path = Vocabulary/lib/TouchXML/Tidy;
+			sourceTree = "<group>";
+		};
+		EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */,
+				EC4BCEA316687A80004887B4 /* MobClick.h */,
+			);
+			name = Analytics_iOS_SDK;
+			path = Vocabulary/Analytics_iOS_SDK;
 			sourceTree = "<group>";
 		};
 		EC4FCFE916367C5500EF429B /* ViewControllers */ = {
@@ -919,6 +939,7 @@
 				EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */,
 				EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */,
 				A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */,
+				EC4BCEA516687A80004887B4 /* MobClick.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1019,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
 					"\"$(SRCROOT)/Vocabulary/lib/Youmi\"",
+					"\"$(SRCROOT)/Vocabulary/Analytics_iOS_SDK\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1017,6 +1039,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
 					"\"$(SRCROOT)/Vocabulary/lib/Youmi\"",
+					"\"$(SRCROOT)/Vocabulary/Analytics_iOS_SDK\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
