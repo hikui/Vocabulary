@@ -115,6 +115,7 @@
     
     NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString*path =[paths objectAtIndex:0];
+    
     for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
         int row = selectedIndexPath.row;
         NSString *fileName = [self.fileList objectAtIndex:row];
@@ -128,8 +129,16 @@
         
         NSArray *words = [content componentsSeparatedByString:@"\n"];
         NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
-
-        [WordListCreator createWordListAsyncWithTitle:fileName wordSet:wordSet completion:^(NSError *error) {
+        
+        NSString *wordListName = [fileName stringByDeletingPathExtension];
+        
+        
+        [WordListCreator createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:^(float progress) {
+//            [hud setMode:MBProgressHUDModeAnnularDeterminate];
+//            hud.progress = progress;
+            hud.detailsLabelText = @"正在索引易混淆单词";
+            
+        } completion:^(NSError *error) {
             if (error != nil) {
                 NSLog(@"%@",[error localizedDescription]);
             }
@@ -139,6 +148,17 @@
                 [self dismissViewControllerAnimated:YES completion:nil];
             }
         }];
+        
+//        [WordListCreator createWordListAsyncWithTitle:wordListName wordSet:wordSet completion:^(NSError *error) {
+//            if (error != nil) {
+//                NSLog(@"%@",[error localizedDescription]);
+//            }
+//            totalCount--;
+//            if (totalCount <= 0) {
+//                [hud hide:YES];
+//                [self dismissViewControllerAnimated:YES completion:nil];
+//            }
+//        }];
         
     }
     

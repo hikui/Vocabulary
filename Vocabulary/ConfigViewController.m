@@ -15,6 +15,7 @@
 
 - (void)notificationEnablerDidChange:(id)sender;
 - (void)soundEnablerDidChange:(id)sender;
+- (void)autoIndexEnablerDidChange:(id)sender;
 - (void)setTimeButtonOnTouch:(UIButton *)sender;
 - (void)datePickerValueDidChange:(UIDatePicker *)sender;
 - (NSString *)getTimeStringFromDate:(NSDate *)date;
@@ -66,9 +67,9 @@
     if (section == 0) {
         BOOL notificationEnabled = [[NSUserDefaults standardUserDefaults]boolForKey:@"NotificationEnabled"];
         if (notificationEnabled) {
-            return 5;
+            return 6;
         }else{
-            return 3;
+            return 4;
         }
     }else{
         return 2;
@@ -114,8 +115,15 @@
             switcher.on = enabledSound;
             [switcher addTarget:self action:@selector(soundEnablerDidChange:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = switcher;
-        }else if (indexPath.row == 2 + offset){
+        }else if (indexPath.row == 3 + offset){
             cell.textLabel.text = @"重新索引易混淆单词";
+        }else if (indexPath.row == 2 + offset){
+            cell.textLabel.text = @"自动索引易混淆单词";
+            BOOL autoIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
+            UISwitch *switcher = [[UISwitch alloc]initWithFrame:CGRectZero];
+            switcher.on = autoIndex;
+            [switcher addTarget:self action:@selector(autoIndexEnablerDidChange:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = switcher;
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else if(indexPath.section == 1){
@@ -138,7 +146,7 @@
     BOOL notificationEnabled = [[NSUserDefaults standardUserDefaults]boolForKey:@"NotificationEnabled"];
     int offset = notificationEnabled?2:0;
     if (indexPath.section == 0) {
-        if (indexPath.row == 2 + offset) {
+        if (indexPath.row == 3 + offset) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.detailsLabelText = @"正在索引";
             hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -190,6 +198,12 @@
 {
     UISwitch *theSwitch = (UISwitch *)sender;
     [[NSUserDefaults standardUserDefaults]setBool:theSwitch.isOn forKey:kPerformSoundAutomatically];
+}
+
+- (void)autoIndexEnablerDidChange:(id)sender
+{
+    UISwitch *theSwitch = (UISwitch *)sender;
+    [[NSUserDefaults standardUserDefaults]setBool:theSwitch.isOn forKey:kAutoIndex];
 }
 
 - (void)setTimeButtonOnTouch:(UIButton *)sender

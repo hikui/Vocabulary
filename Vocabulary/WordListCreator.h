@@ -16,6 +16,11 @@
 
 + (void)createWordListAsyncWithTitle:(NSString *)title
                              wordSet:(NSSet *)wordSet
+                       progressBlock:(HKVProgressCallback)progressBlock
+                          completion:(HKVErrorBlock)completion;
+
++ (void)createWordListAsyncWithTitle:(NSString *)title
+                             wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion;
 
 @end
