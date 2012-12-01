@@ -12,10 +12,17 @@
 #import "HomeViewController.h"
 #import "UINavigationController+Rotation_IOS6.h"
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //友盟统计
+    [MobClick startWithAppkey:@"50b828715270152727000018" reportPolicy:REALTIME channelId:@"91Store"];
+    [MobClick updateOnlineConfig];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
+    
     //载入必要的预存设置
     _finishTodaysLearningPlan = [[NSUserDefaults standardUserDefaults]boolForKey:kFinishTodaysPlan];
     _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
@@ -62,6 +69,15 @@
     [helper saveContext];
 }
 
+void uncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"crush");
+}
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+}
+
 - (void)setFinishTodaysLearningPlan:(BOOL)finishTodaysPlan
 {
     _finishTodaysLearningPlan = finishTodaysPlan;
@@ -79,4 +95,26 @@
 //    _todaysPlanWordListIdURIRepresentation = todaysPlanWordListIdURIRepresentation;
 //    [[NSUserDefaults standardUserDefaults]setObject:[todaysPlanWordListIdURIRepresentation absoluteString]forKey:kTodaysPlanWordListIdURIRepresentation];
 //}
+
+- (void)onlineConfigCallBack:(NSNotification *)notification {
+    NSLog(@"online config has fininshed and params = %@", notification.userInfo);
+    NSString *newHelpDocVersion = [MobClick getConfigParams:@"helpDocVersion"];
+    NSString *currentHelpVersion = [[NSUserDefaults standardUserDefaults]stringForKey:@"kCurrHelpDocVersion"];
+    
+    if (newHelpDocVersion.length > 0) {
+        
+        if (![newHelpDocVersion isEqualToString:currentHelpVersion]) {
+            BOOL isNotFirstRun = [[NSUserDefaults standardUserDefaults]boolForKey:@"kIsNotFirstRun"];
+            if (isNotFirstRun) {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"帮助文档更新了，请查看" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [alert show];
+                });
+            }
+            [[NSUserDefaults standardUserDefaults]setObject:newHelpDocVersion forKey:@"kCurrHelpDocVersion"];
+        }
+        
+        
+    }
+}
 @end

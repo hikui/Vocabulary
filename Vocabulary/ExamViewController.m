@@ -398,6 +398,7 @@
     NSLog(@"%d",[content weight]);
     int i = [self.examViewReuseQueue indexOfObject:ev];
     ExamView *oldView = [self.examViewReuseQueue objectAtIndex:++i%2];
+    [oldView stopSound];
     [self.view insertSubview:ev belowSubview:oldView];
     [UIView animateWithDuration:0.5 animations:^{
         _animationLock = YES;
@@ -417,15 +418,16 @@
     ExamContent *content = currExamView.content;
     content.lastReviewDate = [NSDate date];
     if (content.examType == ExamTypeS2E) {
-        Word *word = content.word;
-        NSData *pronData = word.pronounceUS;
-        if (pronData == nil) {
-            pronData = word.pronounceEN;
-        }
-        if (pronData != nil) {
-            self.soundPlayer = [[AVAudioPlayer alloc]initWithData:pronData error:nil];
-            [self.soundPlayer play];
-        }
+//        Word *word = content.word;
+//        NSData *pronData = word.pronounceUS;
+//        if (pronData == nil) {
+//            pronData = word.pronounceEN;
+//        }
+//        if (pronData != nil) {
+//            self.soundPlayer = [[AVAudioPlayer alloc]initWithData:pronData error:nil];
+//            [self.soundPlayer play];
+//        }
+        [currExamView playSound];
     }
 }
 

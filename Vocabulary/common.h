@@ -18,6 +18,7 @@
 #define kTodaysPlanWordListIdURIRepresentation @"todaysPlanWordListIdURIRepresentation"
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
+#define kAutoIndex @"autoIndex"
 
 #define WordListCreatorDormain @"wordListCreatorDormain"
 #define WordListCreatorEmptyWordSetError -1

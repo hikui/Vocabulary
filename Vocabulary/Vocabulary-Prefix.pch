@@ -18,4 +18,5 @@
     #import "Word.h"
     #import "WordList.h"
     #import "common.h"
+    #import "MobClick.h"
 #endif

@@ -98,14 +98,27 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    Word *w = [self.contentsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = w.key;
+    NSDictionary *contentDict = [self.contentsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [contentDict objectForKey:@"key"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Word *w = [self.contentsArray objectAtIndex:indexPath.row];
+    NSString *word = [[self.contentsArray objectAtIndex:indexPath.row] objectForKey:@"key"];
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+    [request setEntity:entity];
+    [request setFetchLimit:1];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key = %@)",word];
+    [request setPredicate:predicate];
+    NSArray *resultArr = [ctx executeFetchRequest:request error:nil];
+    
+    if (resultArr.count == 0) {
+        return;
+    }
+    Word *w = [resultArr objectAtIndex:0];
     LearningViewController *lvc = [[LearningViewController alloc]initWithWord:w];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -160,6 +173,8 @@
         NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
         [self.fetchRequest setEntity:entity];
         [self.fetchRequest setSortDescriptors:@[sort]];
+        [self.fetchRequest setResultType:NSDictionaryResultType];
+        [self.fetchRequest setPropertiesToFetch:@[@"key"]];
     }
     NSOperation *op = [self makeQueryOperationWithText:searchText];
     
