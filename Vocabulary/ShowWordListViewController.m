@@ -29,7 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height, 320, 50);
+    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
     self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     CoreDataHelper *helper = [CoreDataHelper sharedInstance];
     self.managedObjectContext = helper.managedObjectContext;
@@ -267,23 +267,26 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     }];
 }
 
-//#pragma - mark youmi delegate
-//- (void)didReceiveAd:(YouMiView *)adView
-//{
-//    [super didReceiveAd:adView];
+#pragma - mark youmi delegate
+- (void)didReceiveAd:(YouMiView *)adView
+{
+    [super didReceiveAd:adView];
+    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
 //    [UIView animateWithDuration:0.5 animations:^{
+//        
 //        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
 //        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
 //    }];
-//}
-////
-//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
-//{
-//    [super didFailToReceiveAd:adView error:error];
+}
+//
+- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
+{
+    [super didFailToReceiveAd:adView error:error];
+    self.tableView.frame = self.view.bounds;
 //    [UIView animateWithDuration:0.5 animations:^{
 //        self.tableView.frame = self.view.bounds;
 //        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
 //    }];
-//}
+}
 
 @end

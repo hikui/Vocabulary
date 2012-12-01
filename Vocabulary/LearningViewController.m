@@ -38,9 +38,15 @@
     self.view.backgroundColor = RGBA(246, 255, 222, 1);
     content.backgroundColor = RGBA(246, 255, 222, 1);
     //广告
-    self.bannerFrame = CGRectMake(0, -50, self.view.bounds.size.width, 50);
-    self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.view bringSubviewToFront:self.banner];
+    if (ShowAds) {
+        UIView *content = [self.view viewWithTag:1];
+        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
+        content.frame = targetFrame;
+        self.bannerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+        self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+        [self.view bringSubviewToFront:self.banner];
+    }
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -255,7 +261,9 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 //        UIView *content = [self.view viewWithTag:1];
 //        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
 //        content.frame = targetFrame;
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
+////        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
+//        NSLog(@"banner frame:%@",[NSValue valueWithCGRect:self.banner.frame]);
+//        NSLog(@"banner hidden:%d",self.banner.hidden);
 //    }];
 //}
 ////

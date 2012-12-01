@@ -87,6 +87,13 @@
 		A4B3D7A2164235D700F9772F /* applications-system-6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A1164235D700F9772F /* applications-system-6.png */; };
 		A4B3D7A41642366400F9772F /* applications-system-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A31642366400F9772F /* applications-system-6@2x.png */; };
 		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
+		A4F6CDF2166A14A500BC2B17 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDF1166A14A500BC2B17 /* libYouMi.a */; };
+		A4F6CDF5166A15B900BC2B17 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDF4166A15B900BC2B17 /* CoreLocation.framework */; };
+		A4F6CDF7166A15C100BC2B17 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDF6166A15C100BC2B17 /* CoreTelephony.framework */; };
+		A4F6CDF9166A15C800BC2B17 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDF8166A15C800BC2B17 /* ImageIO.framework */; };
+		A4F6CDFB166A15CE00BC2B17 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFA166A15CE00BC2B17 /* MapKit.framework */; };
+		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
+		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
 		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
@@ -271,6 +278,23 @@
 		A4B3D7A31642366400F9772F /* applications-system-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "applications-system-6@2x.png"; path = "artwork/applications-system-6@2x.png"; sourceTree = "<group>"; };
 		A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
 		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
+		A4F6CDE6166A14A500BC2B17 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
+		A4F6CDE7166A14A500BC2B17 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
+		A4F6CDE8166A14A500BC2B17 /* YouMiSpotDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpotDelegateProtocol.h; sourceTree = "<group>"; };
+		A4F6CDE9166A14A500BC2B17 /* YouMiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiView.h; sourceTree = "<group>"; };
+		A4F6CDEA166A14A500BC2B17 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
+		A4F6CDEB166A14A500BC2B17 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
+		A4F6CDEC166A14A500BC2B17 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
+		A4F6CDEE166A14A500BC2B17 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
+		A4F6CDEF166A14A500BC2B17 /* YouMiDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDataCenter.h; sourceTree = "<group>"; };
+		A4F6CDF0166A14A500BC2B17 /* YouMiPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiPush.h; sourceTree = "<group>"; };
+		A4F6CDF1166A14A500BC2B17 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
+		A4F6CDF4166A15B900BC2B17 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A4F6CDF6166A15C100BC2B17 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A4F6CDF8166A15C800BC2B17 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A4F6CDFA166A15CE00BC2B17 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -339,10 +363,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */,
+				A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */,
+				A4F6CDFB166A15CE00BC2B17 /* MapKit.framework in Frameworks */,
+				A4F6CDF9166A15C800BC2B17 /* ImageIO.framework in Frameworks */,
+				A4F6CDF7166A15C100BC2B17 /* CoreTelephony.framework in Frameworks */,
+				A4F6CDF5166A15B900BC2B17 /* CoreLocation.framework in Frameworks */,
+				A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */,
+				A46A7F901633C5C800DF4696 /* SystemConfiguration.framework in Frameworks */,
 				EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */,
 				A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */,
 				A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */,
-				A46A7F901633C5C800DF4696 /* SystemConfiguration.framework in Frameworks */,
 				A4754D9116466ED3005EB1E0 /* AudioToolbox.framework in Frameworks */,
 				A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */,
 				A46A7F9F1633D4C600DF4696 /* AVFoundation.framework in Frameworks */,
@@ -352,9 +383,9 @@
 				A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */,
 				A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */,
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
-				A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */,
 				A4754D8D16466EA6005EB1E0 /* libGoogleAdMobAds.a in Frameworks */,
 				EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */,
+				A4F6CDF2166A14A500BC2B17 /* libYouMi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +418,11 @@
 		A46A7E4A1630296800DF4696 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */,
+				A4F6CDFA166A15CE00BC2B17 /* MapKit.framework */,
+				A4F6CDF8166A15C800BC2B17 /* ImageIO.framework */,
+				A4F6CDF6166A15C100BC2B17 /* CoreTelephony.framework */,
+				A4F6CDF4166A15B900BC2B17 /* CoreLocation.framework */,
 				A4754D9216466EE6005EB1E0 /* AdSupport.framework */,
 				A4754D9016466ED3005EB1E0 /* AudioToolbox.framework */,
 				A4754D8E16466ECB005EB1E0 /* StoreKit.framework */,
@@ -455,6 +491,7 @@
 		A46A7EBF16304F6500DF4696 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				A4F6CDE3166A14A500BC2B17 /* Youmi */,
 				EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */,
 				A4754D8216466E8B005EB1E0 /* AdMob */,
 				A4754D311642A7E4005EB1E0 /* ActionSheetPicker */,
@@ -463,6 +500,7 @@
 				A46A7F211630537500DF4696 /* TouchXML */,
 				A46A7EEB16304F9800DF4696 /* libxml2.dylib */,
 				EC4BCEA716687AD3004887B4 /* libz.dylib */,
+				A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -655,6 +693,49 @@
 				A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		A4F6CDE3166A14A500BC2B17 /* Youmi */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDE4166A14A500BC2B17 /* include */,
+				A4F6CDF1166A14A500BC2B17 /* libYouMi.a */,
+			);
+			name = Youmi;
+			path = Vocabulary/lib/Youmi;
+			sourceTree = "<group>";
+		};
+		A4F6CDE4166A14A500BC2B17 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDE5166A14A500BC2B17 /* AD */,
+				A4F6CDED166A14A500BC2B17 /* TK */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A4F6CDE5166A14A500BC2B17 /* AD */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDE6166A14A500BC2B17 /* YouMiDelegateProtocol.h */,
+				A4F6CDE7166A14A500BC2B17 /* YouMiSpot.h */,
+				A4F6CDE8166A14A500BC2B17 /* YouMiSpotDelegateProtocol.h */,
+				A4F6CDE9166A14A500BC2B17 /* YouMiView.h */,
+				A4F6CDEA166A14A500BC2B17 /* YouMiWall.h */,
+				A4F6CDEB166A14A500BC2B17 /* YouMiWallAppModel.h */,
+				A4F6CDEC166A14A500BC2B17 /* YouMiWallDelegateProtocol.h */,
+			);
+			path = AD;
+			sourceTree = "<group>";
+		};
+		A4F6CDED166A14A500BC2B17 /* TK */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDEE166A14A500BC2B17 /* YouMiConfig.h */,
+				A4F6CDEF166A14A500BC2B17 /* YouMiDataCenter.h */,
+				A4F6CDF0166A14A500BC2B17 /* YouMiPush.h */,
+			);
+			path = TK;
 			sourceTree = "<group>";
 		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
