@@ -87,6 +87,7 @@
 		A4B3D7A2164235D700F9772F /* applications-system-6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A1164235D700F9772F /* applications-system-6.png */; };
 		A4B3D7A41642366400F9772F /* applications-system-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A31642366400F9772F /* applications-system-6@2x.png */; };
 		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
+		A4F6CDDD166A138E00BC2B17 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDDC166A138E00BC2B17 /* libYouMi.a */; };
 		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
 		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
@@ -268,6 +269,17 @@
 		A4B3D7A31642366400F9772F /* applications-system-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "applications-system-6@2x.png"; path = "artwork/applications-system-6@2x.png"; sourceTree = "<group>"; };
 		A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
 		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
+		A4F6CDD1166A138E00BC2B17 /* YouMiDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDelegateProtocol.h; sourceTree = "<group>"; };
+		A4F6CDD2166A138E00BC2B17 /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
+		A4F6CDD3166A138E00BC2B17 /* YouMiSpotDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpotDelegateProtocol.h; sourceTree = "<group>"; };
+		A4F6CDD4166A138E00BC2B17 /* YouMiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiView.h; sourceTree = "<group>"; };
+		A4F6CDD5166A138E00BC2B17 /* YouMiWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWall.h; sourceTree = "<group>"; };
+		A4F6CDD6166A138E00BC2B17 /* YouMiWallAppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallAppModel.h; sourceTree = "<group>"; };
+		A4F6CDD7166A138E00BC2B17 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
+		A4F6CDD9166A138E00BC2B17 /* YouMiConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiConfig.h; sourceTree = "<group>"; };
+		A4F6CDDA166A138E00BC2B17 /* YouMiDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDataCenter.h; sourceTree = "<group>"; };
+		A4F6CDDB166A138E00BC2B17 /* YouMiPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiPush.h; sourceTree = "<group>"; };
+		A4F6CDDC166A138E00BC2B17 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -347,6 +359,7 @@
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
 				A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */,
 				A4754D8D16466EA6005EB1E0 /* libGoogleAdMobAds.a in Frameworks */,
+				A4F6CDDD166A138E00BC2B17 /* libYouMi.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +460,7 @@
 		A46A7EBF16304F6500DF4696 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				A4F6CDCE166A138E00BC2B17 /* Youmi */,
 				A4754D8216466E8B005EB1E0 /* AdMob */,
 				A4754D311642A7E4005EB1E0 /* ActionSheetPicker */,
 				A46A7FAD1635645A00DF4696 /* MKNetworkKit */,
@@ -645,6 +659,49 @@
 				A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		A4F6CDCE166A138E00BC2B17 /* Youmi */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDCF166A138E00BC2B17 /* include */,
+				A4F6CDDC166A138E00BC2B17 /* libYouMi.a */,
+			);
+			name = Youmi;
+			path = Vocabulary/lib/Youmi;
+			sourceTree = "<group>";
+		};
+		A4F6CDCF166A138E00BC2B17 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDD0166A138E00BC2B17 /* AD */,
+				A4F6CDD8166A138E00BC2B17 /* TK */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		A4F6CDD0166A138E00BC2B17 /* AD */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDD1166A138E00BC2B17 /* YouMiDelegateProtocol.h */,
+				A4F6CDD2166A138E00BC2B17 /* YouMiSpot.h */,
+				A4F6CDD3166A138E00BC2B17 /* YouMiSpotDelegateProtocol.h */,
+				A4F6CDD4166A138E00BC2B17 /* YouMiView.h */,
+				A4F6CDD5166A138E00BC2B17 /* YouMiWall.h */,
+				A4F6CDD6166A138E00BC2B17 /* YouMiWallAppModel.h */,
+				A4F6CDD7166A138E00BC2B17 /* YouMiWallDelegateProtocol.h */,
+			);
+			path = AD;
+			sourceTree = "<group>";
+		};
+		A4F6CDD8166A138E00BC2B17 /* TK */ = {
+			isa = PBXGroup;
+			children = (
+				A4F6CDD9166A138E00BC2B17 /* YouMiConfig.h */,
+				A4F6CDDA166A138E00BC2B17 /* YouMiDataCenter.h */,
+				A4F6CDDB166A138E00BC2B17 /* YouMiPush.h */,
+			);
+			path = TK;
 			sourceTree = "<group>";
 		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
