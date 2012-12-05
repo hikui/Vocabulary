@@ -1,27 +1,24 @@
 # 注意事项
-本程序刚刚进入开发阶段，所以功能较少，或者部分功能尚待商榷。   
-施主，您就过几天再来看吧。
+由于本人时间有限，本项目的代码并不是非常漂亮，而且不保证没有逻辑上的错误。有兴趣的同学可以根据自己的需求来修改功能。   
+软件在91助手上面发布，可搜索“记词助手”。   
 
-* Xcode 4.4及以上
+*不得将此软件**直接**用于大作业、毕业设计!*
+#技术要点
+* Xcode 4.5及以上
 * iOS 5.0及以上
 * 完全使用 ARC
 * 使用了Core Data
 * 使用了金山词霸公开的API
-* build文件夹里有最新的测试包供已越狱的、不方便编译的同学测试
-
-# 依赖关系
-* [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
-* [MKNetworkKit](https://github.com/MugunthKumar/MKNetworkKit)
-* [TouchXML](https://github.com/TouchCode/TouchXML)
-
-# 编译步骤
->### 注意！！！！
->TouchXML需要下载ARC版本！！！   
-
-如图在Vocabulary文件夹下建立lib文件夹，并在Lib下建立MBProgressHUD, MKNetworkKit, TouchXML三个文件夹（如图）。
-
-![dir](https://gitcafe.com/hikui/Vocabulary/blob/master/docs/img/dir.png?raw=true)
-
-将依赖关系中提到的各个项目的代码，按照各个项目的说明分别拷贝到对应文件夹下。
+* 加了友盟的统计，加了有米的广告
 
 打开Xcode即可编译。
+
+#说明
+功能如下:
+
+* 根据艾宾浩斯记忆法管理word list的学习进度。
+* 学习（乱序、读音、解释），评估。
+* 手动批量输入新单词，或者用iTunes导入。
+* 根据编辑距离和最长子串，求易混淆单词。
+* 每日定时提醒
+
