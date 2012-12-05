@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
-@interface ShowWordsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface ShowWordsViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addWordButton;

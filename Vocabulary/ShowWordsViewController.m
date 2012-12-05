@@ -12,6 +12,7 @@
 #import "LearningViewController.h"
 #import "ExamViewController.h"
 #import "ConfusingWordsIndexer.h"
+#import "WordListFromDiskViewController.h"
 
 @interface ShowWordsViewController ()
 
@@ -31,6 +32,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     if (self.wordList != nil) {
         NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
         for (Word *w in self.wordList.words) {
@@ -45,16 +54,10 @@
         Word *wobj2 = (Word *)obj2;
         return [wobj1.key compare:wobj2.key];
     }];
-    self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     if (self.wordsSet.count == 0) {
         self.beginStudyButton.enabled = NO;
         self.beginTestButton.enabled = NO;
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
     [self.tableView reloadData];
 }
 
@@ -175,9 +178,8 @@
 
 - (IBAction)btnAddWordOnPress:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"增加一个单词" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert show];
+    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
+    [actions showInView:self.view];
 }
 
 #pragma mark - alertview delegate
@@ -204,6 +206,22 @@
     }
 }
 
-
+#pragma mark - actionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"输入一个单词"]) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"增加一个单词" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [alert show];
+    }else if ([buttonTitle isEqualToString:@"从iTunes导入"]) {
+        if (self.wordList == nil) {
+            return;
+        }
+        WordListFromDiskViewController *wfdvc = [[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
+        wfdvc.wordList = self.wordList;
+        [self presentModalViewController:wfdvc animated:YES];
+    }
+}
 
 @end

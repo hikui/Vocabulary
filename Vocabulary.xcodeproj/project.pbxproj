@@ -284,6 +284,10 @@
 		A4F6CDFA166A15CE00BC2B17 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		A4F90650166F739F00FA7FEA /* YouMiDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiDataCenter.h; sourceTree = "<group>"; };
+		A4F90651166F739F00FA7FEA /* YouMiPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiPush.h; sourceTree = "<group>"; };
+		A4F90652166F739F00FA7FEA /* YouMiSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpot.h; sourceTree = "<group>"; };
+		A4F90653166F739F00FA7FEA /* YouMiSpotDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiSpotDelegateProtocol.h; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -804,6 +808,10 @@
 		EC717515166F4FA600CE1C80 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				A4F90650166F739F00FA7FEA /* YouMiDataCenter.h */,
+				A4F90651166F739F00FA7FEA /* YouMiPush.h */,
+				A4F90652166F739F00FA7FEA /* YouMiSpot.h */,
+				A4F90653166F739F00FA7FEA /* YouMiSpotDelegateProtocol.h */,
 				EC717516166F4FA600CE1C80 /* YouMiConfig.h */,
 				EC717517166F4FA600CE1C80 /* YouMiDelegateProtocol.h */,
 				EC717518166F4FA600CE1C80 /* YouMiView.h */,
