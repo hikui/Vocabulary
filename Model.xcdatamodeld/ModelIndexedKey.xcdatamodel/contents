@@ -11,7 +11,7 @@
         <attribute name="psEN" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="psUS" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sentences" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="similarWords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Word" inverseName="similarWords" inverseEntity="Word" syncable="YES"/>
+        <relationship name="similarWords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="similarWords" inverseEntity="Word" syncable="YES"/>
         <relationship name="wordLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WordList" inverseName="words" inverseEntity="WordList" syncable="YES"/>
     </entity>
     <entity name="WordList" representedClassName="WordList" syncable="YES">
