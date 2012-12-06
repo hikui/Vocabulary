@@ -23,4 +23,8 @@
                              wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion;
 
++ (void)addWords:(NSSet *)wordSet
+      toWordListId:(NSManagedObjectID *)wordlistId
+   progressBlock:(HKVProgressCallback)progressBlock
+      completion:(HKVErrorBlock)completion;
 @end
