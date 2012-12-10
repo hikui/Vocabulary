@@ -51,14 +51,16 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
+//    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
     NSString *url = [MobClick getConfigParams:@"helpUrl"];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.webView loadHTMLString:html baseURL:nil];
-        });
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+//        NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.webView loadHTMLString:html baseURL:nil];
+//        });
+//    });
+    NSURLRequest *req = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    [self.webView loadRequest:req];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,7 +93,7 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
     
-    
+    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
