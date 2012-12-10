@@ -24,6 +24,7 @@
 //
 
 #import "HelpViewController.h"
+#import "MobClick.h"
 
 @interface HelpViewController ()
 
@@ -43,11 +44,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://herkuang.info/index.php/archives/54262"]];
-    [self.webView loadRequest:request];
     UIToolbar *bar = (UIToolbar *)[self.view viewWithTag:1];
     bar.tintColor = RGBA(48, 16, 17, 1);
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
+    NSString *url = [MobClick getConfigParams:@"helpUrl"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.webView loadHTMLString:html baseURL:nil];
+        });
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,7 +90,8 @@
 #pragma mark - webview delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
+    
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
@@ -89,6 +101,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    NSLog(@"error:%@",error);
     [MBProgressHUD hideAllHUDsForView:self.webView animated:YES];
 }
 
