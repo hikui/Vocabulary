@@ -30,5 +30,6 @@
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 
 - (IBAction)okButtonOnPress:(id)sender;
+- (IBAction)backButtonPressed:(id)sender;
 
 @end

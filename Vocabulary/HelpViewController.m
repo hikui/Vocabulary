@@ -88,7 +88,10 @@
 {
     [self dismissModalViewControllerAnimated:YES];
 }
-
+- (IBAction)backButtonPressed:(id)sender
+{
+    [self.webView goBack];
+}
 #pragma mark - webview delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {

@@ -13,7 +13,6 @@
 		A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E541630296800DF4696 /* InfoPlist.strings */; };
 		A46A7E581630296800DF4696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E571630296800DF4696 /* main.m */; };
 		A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E5B1630296800DF4696 /* AppDelegate.m */; };
-		A46A7E5E1630296800DF4696 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E5D1630296800DF4696 /* Default.png */; };
 		A46A7E601630296800DF4696 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E5F1630296800DF4696 /* Default@2x.png */; };
 		A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E611630296800DF4696 /* Default-568h@2x.png */; };
 		A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E6E16302A2C00DF4696 /* CoreData.framework */; };
@@ -881,7 +880,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */,
-				A46A7E5E1630296800DF4696 /* Default.png in Resources */,
 				A46A7E601630296800DF4696 /* Default@2x.png in Resources */,
 				A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */,
 				ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */,
