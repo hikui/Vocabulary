@@ -207,6 +207,7 @@
         [self setNotificationWithDate:self.nightNotificationTime];
     }
     [[NSUserDefaults standardUserDefaults]setBool:theSwitch.isOn forKey:@"NotificationEnabled"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndex:0];
     [self.tableView reloadSections:indexes withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -215,12 +216,14 @@
 {
     UISwitch *theSwitch = (UISwitch *)sender;
     [[NSUserDefaults standardUserDefaults]setBool:theSwitch.isOn forKey:kPerformSoundAutomatically];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)autoIndexEnablerDidChange:(id)sender
 {
     UISwitch *theSwitch = (UISwitch *)sender;
     [[NSUserDefaults standardUserDefaults]setBool:theSwitch.isOn forKey:kAutoIndex];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setTimeButtonOnTouch:(UIButton *)sender
@@ -241,9 +244,11 @@
     if (btn.tag == 1) {
         self.dayNotificationTime = selectedDate;
         [[NSUserDefaults standardUserDefaults]setObject:selectedDate forKey:kDayNotificationTime];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }else if (btn.tag == 2){
         self.nightNotificationTime = selectedDate;
         [[NSUserDefaults standardUserDefaults]setObject:selectedDate forKey:kNightNotificationTime];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [btn setTitle:[self getTimeStringFromDate:selectedDate] forState:UIControlStateNormal];
     [[UIApplication sharedApplication] cancelAllLocalNotifications];

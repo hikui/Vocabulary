@@ -99,12 +99,14 @@ void uncaughtExceptionHandler(NSException *exception) {
 {
     _finishTodaysLearningPlan = finishTodaysPlan;
     [[NSUserDefaults standardUserDefaults]setBool:finishTodaysPlan forKey:kFinishTodaysPlan];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setPlanExpireTime:(NSDate *)planExpireTime
 {
     _planExpireTime = planExpireTime;
     [[NSUserDefaults standardUserDefaults]setObject:planExpireTime forKey:kPlanExpireTime];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //- (void)setTodaysPlanWordListIdURIRepresentation:(NSURL *)todaysPlanWordListIdURIRepresentation
@@ -129,6 +131,7 @@ void uncaughtExceptionHandler(NSException *exception) {
                 });
             }
             [[NSUserDefaults standardUserDefaults]setObject:newHelpDocVersion forKey:@"kCurrHelpDocVersion"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         
         

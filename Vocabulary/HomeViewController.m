@@ -89,6 +89,7 @@
         alertView.tag = 1;
         [alertView show];
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"kIsNotFirstRun"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
