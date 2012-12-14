@@ -46,44 +46,45 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.banner = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
-//    self.banner.adUnitID = @"75ec8a2a75764c0e";
-//    self.banner.rootViewController = self;
-//    self.banner.delegate = self;
-//    GADRequest *request = [GADRequest request];
-//    GADAdMobExtras *extras = [[GADAdMobExtras alloc] init] ;
-//    extras.additionalParameters =
-//    [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//     [self hexStringWithRed:141 green:198 blue:65], @"color_bg",
-//     [self hexStringWithRed:141 green:198 blue:65], @"color_bg_top",
-//     [self hexStringWithRed:141 green:198 blue:65], @"color_border",
-//     [self hexStringWithRed:88 green:87 blue:92], @"color_link",
-//     [self hexStringWithRed:255 green:255 blue:255], @"color_text",
-//     [self hexStringWithRed:88 green:87 blue:92], @"color_url",
-//     nil];
-//    
-//    [request registerAdNetworkExtras:extras];
-//    [self.banner loadRequest:request];
-//    NSLog(@"hex:%@",[self hexStringWithRed:244 green:233 blue:215]);
-    
     if (ShowAds) {
-        [YouMiView setShouldGetLocation:NO];
-        self.banner = [[YouMiView alloc]initWithContentSizeIdentifier:YouMiBannerContentSizeIdentifier320x50 delegate:self];
-        self.banner.appID = @"d3ff59c20eec9ef5";
-        self.banner.appSecret = @"a7b790693ba72b85";
-        self.banner.appVersion = @"1.2.3";
-        self.banner.indicateBackgroundColor = RGBA(246, 255, 222, 1);
-        self.banner.indicateRounded = NO;
-        self.banner.indicateBorder = NO;
-        self.banner.indicateTranslucency = NO;
-        self.banner.textColor = [UIColor blackColor];
-        self.banner.subTextColor = RGBA(66, 66, 66, 1);
-        [self.banner addKeyword:@"雅思"];
-        [self.banner addKeyword:@"托福"];
-        [self.banner addKeyword:@"GRE"];
-        [self.banner addKeyword:@"留学"];
-        self.banner.testing = NO;
+        self.banner = [[GADBannerView alloc]initWithAdSize:kGADAdSizeBanner];
+        self.banner.adUnitID = @"75ec8a2a75764c0e";
+        self.banner.rootViewController = self;
+        self.banner.delegate = self;
+        GADRequest *request = [GADRequest request];
+        GADAdMobExtras *extras = [[GADAdMobExtras alloc] init] ;
+        extras.additionalParameters =
+        [NSMutableDictionary dictionaryWithObjectsAndKeys:
+         [self hexStringWithRed:141 green:198 blue:65], @"color_bg",
+         [self hexStringWithRed:141 green:198 blue:65], @"color_bg_top",
+         [self hexStringWithRed:141 green:198 blue:65], @"color_border",
+         [self hexStringWithRed:88 green:87 blue:92], @"color_link",
+         [self hexStringWithRed:255 green:255 blue:255], @"color_text",
+         [self hexStringWithRed:88 green:87 blue:92], @"color_url",
+         nil];
+        
+        [request registerAdNetworkExtras:extras];
+        [self.banner loadRequest:request];
     }
+    
+//    if (ShowAds) {
+//        [YouMiView setShouldGetLocation:NO];
+//        self.banner = [[YouMiView alloc]initWithContentSizeIdentifier:YouMiBannerContentSizeIdentifier320x50 delegate:self];
+//        self.banner.appID = @"d3ff59c20eec9ef5";
+//        self.banner.appSecret = @"a7b790693ba72b85";
+//        self.banner.appVersion = @"1.2.3";
+//        self.banner.indicateBackgroundColor = RGBA(246, 255, 222, 1);
+//        self.banner.indicateRounded = NO;
+//        self.banner.indicateBorder = NO;
+//        self.banner.indicateTranslucency = NO;
+//        self.banner.textColor = [UIColor blackColor];
+//        self.banner.subTextColor = RGBA(66, 66, 66, 1);
+//        [self.banner addKeyword:@"雅思"];
+//        [self.banner addKeyword:@"托福"];
+//        [self.banner addKeyword:@"GRE"];
+//        [self.banner addKeyword:@"留学"];
+//        self.banner.testing = NO;
+//    }
     
     
 //    [self.banner start];
@@ -93,7 +94,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if (ShowAds) {
-        [self.banner start];
+//        [self.banner start];
         BOOL shouldAddToView = YES;
         for (UIView *view in self.view.subviews) {
             if (view == self.banner) {

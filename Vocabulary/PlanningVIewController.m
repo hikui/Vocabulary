@@ -51,7 +51,6 @@
 {
     [super viewDidLoad];
     //广告
-    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
     self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self.view bringSubviewToFront:self.banner];
     
@@ -140,6 +139,12 @@
         }
     }
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -246,7 +251,7 @@
     [super adViewDidReceiveAd:view];
     [UIView animateWithDuration:0.5 animations:^{
         self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
+//        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
     }];
 }
 
@@ -256,7 +261,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     [super adView:view didFailToReceiveAdWithError:error];
     [UIView animateWithDuration:0.5 animations:^{
         self.tableView.frame = self.view.bounds;
-        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
 }
 

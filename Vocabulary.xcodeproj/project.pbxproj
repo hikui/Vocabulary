@@ -398,12 +398,6 @@
 		A46A7E3C1630296800DF4696 = {
 			isa = PBXGroup;
 			children = (
-				A4F906601670EBDE00FA7FEA /* Default@2x.png */,
-				A4F9065D1670EBCC00FA7FEA /* Default.png */,
-				A4754D7C164666EA005EB1E0 /* vocabulary-logo@2x.png */,
-				A4754D79164666E4005EB1E0 /* vocabulary-logo.png */,
-				A46A8028163D336600DF4696 /* v@2x.png */,
-				A46A8025163D335E00DF4696 /* v.png */,
 				A46A7EBF16304F6500DF4696 /* lib */,
 				A46A7E7316302A6B00DF4696 /* Resources */,
 				A46A7E511630296800DF4696 /* Vocabulary */,
@@ -612,6 +606,12 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A4F906601670EBDE00FA7FEA /* Default@2x.png */,
+				A4F9065D1670EBCC00FA7FEA /* Default.png */,
+				A4754D7C164666EA005EB1E0 /* vocabulary-logo@2x.png */,
+				A4754D79164666E4005EB1E0 /* vocabulary-logo.png */,
+				A46A8028163D336600DF4696 /* v@2x.png */,
+				A46A8025163D335E00DF4696 /* v.png */,
 				A4B3D7A31642366400F9772F /* applications-system-6@2x.png */,
 				A4B3D7A1164235D700F9772F /* applications-system-6.png */,
 				A4B3D79C1642351C00F9772F /* preferences-system-3.png */,

@@ -29,8 +29,8 @@
 
 @interface AdBaseViewController : UIViewController <GADBannerViewDelegate, YouMiDelegate>
 
-//@property (nonatomic, strong) GADBannerView *banner;
-@property (nonatomic, strong) YouMiView *banner;
+@property (nonatomic, strong) GADBannerView *banner;
+//@property (nonatomic, strong) YouMiView *banner;
 @property (nonatomic, unsafe_unretained) CGRect bannerFrame;
 
 @end

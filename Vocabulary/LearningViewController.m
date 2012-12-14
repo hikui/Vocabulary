@@ -59,7 +59,6 @@
         UIView *content = [self.view viewWithTag:1];
         CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
         content.frame = targetFrame;
-        self.bannerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
         self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self.view bringSubviewToFront:self.banner];
     }
@@ -68,6 +67,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.bannerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
     [super viewWillAppear:animated];
     [self refreshView];
 }
@@ -246,29 +246,29 @@
     self.acceptationTextView.hidden = YES;
 }
 
-#pragma - mark GADBannerViewDelegate
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    [super adViewDidReceiveAd:view];
-    [UIView animateWithDuration:0.5 animations:^{
-        UIView *content = [self.view viewWithTag:1];
-        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
-        content.frame = targetFrame;
-        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
-    }];
-}
-
-- (void)adView:(GADBannerView *)view
-didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    [super adView:view didFailToReceiveAdWithError:error];
-    [UIView animateWithDuration:0.5 animations:^{
-        UIView *content = [self.view viewWithTag:1];
-        CGRect targetFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-        content.frame = targetFrame;
-        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-    }];
-}
+//#pragma - mark GADBannerViewDelegate
+//- (void)adViewDidReceiveAd:(GADBannerView *)view
+//{
+//    [super adViewDidReceiveAd:view];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        UIView *content = [self.view viewWithTag:1];
+//        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
+//        content.frame = targetFrame;
+//        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
+//    }];
+//}
+//
+//- (void)adView:(GADBannerView *)view
+//didFailToReceiveAdWithError:(GADRequestError *)error
+//{
+//    [super adView:view didFailToReceiveAdWithError:error];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        UIView *content = [self.view viewWithTag:1];
+//        CGRect targetFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+//        content.frame = targetFrame;
+//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+//    }];
+//}
 
 //#pragma - mark youmi delegate
 //- (void)didReceiveAd:(YouMiView *)adView
