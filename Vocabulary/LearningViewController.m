@@ -27,6 +27,7 @@
 #import "CoreDataHelper.h"
 #import "MBProgressHUD.h"
 #import "CibaEngine.h"
+#import "CibaWebView.h"
 
 @interface LearningViewController ()
 
@@ -146,10 +147,6 @@
             return;
         }
         
-        //======================
-        // new method
-        //======================
-        
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         CibaEngine *engine = [CibaEngine sharedInstance];
         [engine fillWord:self.word onCompletion:^{
@@ -165,66 +162,7 @@
                 [hud hide:YES afterDelay:1.5];
             }
         }];
-        
-        
-        
-        //======================
-        // new method end
-        //======================
-        
-//        if (self.downloadOp == nil || self.downloadOp.isCancelled) {
-////            NSLog(@"iscancelled:%d,isfinished:%d",self.downloadOp.isFinished,self.downloadOp.isFinished);
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//            hud.labelText = @"正在取词";
-//            CibaEngine *engine = [CibaEngine sharedInstance];
-//            self.downloadOp = [engine infomationForWord:self.word.key onCompletion:^(NSDictionary *parsedDict) {
-//                if (parsedDict == nil) {
-//                    // error on parsing
-//                    hud.labelText = @"词义加载失败";
-//                    [hud hide:YES afterDelay:1];
-//                }
-//                self.word.acceptation = [parsedDict objectForKey:@"acceptation"];
-//                self.word.psEN = [parsedDict objectForKey:@"psEN"];
-//                self.word.psUS = [parsedDict objectForKey:@"psUS"];
-//                self.word.sentences = [parsedDict objectForKey:@"sentence"];
-//                //self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                [[CoreDataHelper sharedInstance]saveContext];
-//                //load voice
-//                NSString *pronURL = [parsedDict objectForKey:@"pronounceUS"];
-//                if (pronURL == nil) {
-//                    pronURL = [parsedDict objectForKey:@"pronounceEN"];
-//                }
-//                if (pronURL && (self.voiceOp == nil || self.voiceOp.isCancelled)) {
-//                    self.voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
-//                        NSLog(@"voice succeed");
-//                        self.word.pronounceUS = data;
-//                        self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                        [[CoreDataHelper sharedInstance]saveContext];
-//                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                        [self refreshView];
-//                        
-//                    } onError:^(NSError *error) {
-//                        NSLog(@"VOICE ERROR");
-//                        [self refreshView];
-//                        self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                        [[CoreDataHelper sharedInstance]saveContext];
-//                        hud.labelText = @"语音加载失败";
-//                        [hud hide:YES afterDelay:1];
-//                    }];
-//                }else{
-//                    self.word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                    [[CoreDataHelper sharedInstance]saveContext];
-//                    hud.labelText = @"语音加载失败";
-//                    [hud hide:YES afterDelay:1];
-//                    [self refreshView];
-//                }
-//                
-//            } onError:^(NSError *error) {
-//                hud.labelText = @"词义加载失败";
-//                [hud hide:YES afterDelay:1];
-//                NSLog(@"ERROR");
-//            }];
-//        }
+
     }
 }
 - (IBAction)btnReadOnPressed:(id)sender
@@ -232,6 +170,15 @@
     if (self.player != nil) {
         [self.player play];
     }
+}
+
+- (IBAction)fullInfomation:(id)sender
+{
+    UIButton *btn = (UIButton *)sender;
+    CibaWebView *webView = [[CibaWebView alloc]initWithView:self.view word:self.word.key];
+    webView.showAnimation = YES;
+    webView.animationBeginPoint = btn.center;
+    [webView show];
 }
 
 - (void)showInfo

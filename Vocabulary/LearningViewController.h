@@ -42,6 +42,8 @@
 - (void)refreshView;
 
 - (IBAction)btnReadOnPressed:(id)sender;
+// use iciba web page
+- (IBAction)fullInfomation:(id)sender;
 - (void)showInfo;
 - (void)hideInfo;
 
