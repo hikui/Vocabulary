@@ -33,7 +33,7 @@
         _closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_closeButton setImage:[UIImage imageNamed:@"closeButton"] forState:UIControlStateNormal];
         [_closeButton setFrame:CGRectMake(0, 0, 40, 40)];
-        [_closeButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
+        [_closeButton addTarget:self action:@selector(hideCibaWebViewWithAnimation) forControlEvents:UIControlEventTouchUpInside];
         
         _webView = [[UIWebView alloc]init];
         _webView.delegate = self;
@@ -53,18 +53,18 @@
     return self;
 }
 
-- (void)show
+- (void)showCibaWebViewAnimated:(BOOL)animated
 {
     [self adjustFrame];
     [self.parentView addSubview:self];
     
-    if (self.showAnimation) {
+    if (animated) {
         self.transform = CGAffineTransformMakeScale(0.0, 0.0);
         if (!CGPointEqualToPoint(self.animationBeginPoint, HKVPointNull)) {
             self.center = self.animationBeginPoint;
         }
         self.alpha = 0.0;
-        [UIView animateWithDuration:0.6 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             self.transform = CGAffineTransformMakeScale(1.0, 1.0);
             self.alpha = 1.0;
             self.center = self.animationEndPoint;
@@ -75,10 +75,10 @@
     [self refresh];
 }
 
-- (void)hide
+- (void)hideCibaWebViewAnimated:(BOOL)animated
 {
-    if (self.showAnimation) {
-        [UIView animateWithDuration:0.6 animations:^{
+    if (animated) {
+        [UIView animateWithDuration:0.4 animations:^{
             self.transform = CGAffineTransformMakeScale(0.0, 0.0);
             if (!CGPointEqualToPoint(self.animationBeginPoint, HKVPointNull)) {
                 self.center = self.animationBeginPoint;
@@ -95,7 +95,7 @@
 - (void)refresh
 {
     NSURL *url = [NSURL URLWithString:CIBA_URL(self.word)];
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0];
     [self.webView loadRequest:request];
 }
 
@@ -122,5 +122,9 @@
     self.closeButton.center = CGPointMake(self.webView.frame.size.width+10, self.webView.frame.origin.y+10);
 }
 
+- (void)hideCibaWebViewWithAnimation
+{
+    [self hideCibaWebViewAnimated:YES];
+}
 
 @end

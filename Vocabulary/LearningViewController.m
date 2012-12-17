@@ -90,6 +90,12 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     self.acceptationTextView.text = @"";
+    for (UIView *view in self.view.subviews) {
+        if ([view isKindOfClass:[CibaWebView class]]) {
+            [view removeFromSuperview];
+            break;
+        }
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -174,11 +180,10 @@
 
 - (IBAction)fullInfomation:(id)sender
 {
-    UIButton *btn = (UIButton *)sender;
+//    UIButton *btn = (UIButton *)sender;
     CibaWebView *webView = [[CibaWebView alloc]initWithView:self.view word:self.word.key];
-    webView.showAnimation = YES;
-    webView.animationBeginPoint = btn.center;
-    [webView show];
+//    webView.animationBeginPoint = btn.center;
+    [webView showCibaWebViewAnimated:YES];
 }
 
 - (void)showInfo

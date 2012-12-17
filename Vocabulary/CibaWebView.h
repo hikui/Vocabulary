@@ -13,14 +13,13 @@
 @property (nonatomic, copy) NSString *word;
 @property (nonatomic, weak) UIView *parentView;
 @property (nonatomic, strong) UIWebView *webView;
-@property (nonatomic, unsafe_unretained) BOOL showAnimation;
 @property (nonatomic, unsafe_unretained) CGPoint animationBeginPoint;
 @property (nonatomic, unsafe_unretained) CGPoint animationEndPoint;
 
 - (id)initWithView:(UIView *)superView word:(NSString *)word;
 
-- (void)show;
-- (void)hide;
+- (void)showCibaWebViewAnimated:(BOOL)animated;
+- (void)hideCibaWebViewAnimated:(BOOL)animated;
 - (void)refresh;
 
 @end
