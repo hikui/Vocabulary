@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A410467F167C3E2200988DAC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A410467E167C3E2200988DAC /* Default-568h@2x.png */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
 		A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4F1630296800DF4696 /* CoreGraphics.framework */; };
@@ -14,7 +15,6 @@
 		A46A7E581630296800DF4696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E571630296800DF4696 /* main.m */; };
 		A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E5B1630296800DF4696 /* AppDelegate.m */; };
 		A46A7E601630296800DF4696 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E5F1630296800DF4696 /* Default@2x.png */; };
-		A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7E611630296800DF4696 /* Default-568h@2x.png */; };
 		A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E6E16302A2C00DF4696 /* CoreData.framework */; };
 		A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */; };
 		A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7EEB16304F9800DF4696 /* libxml2.dylib */; };
@@ -159,6 +159,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A410467E167C3E2200988DAC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46A7E4B1630296800DF4696 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A46A7E4D1630296800DF4696 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -616,6 +617,7 @@
 			children = (
 				EC1EC266167F2091003B1C69 /* closeButton.png */,
 				EC1EC267167F2091003B1C69 /* closeButton@2x.png */,
+				A410467E167C3E2200988DAC /* Default-568h@2x.png */,
 				A4F906601670EBDE00FA7FEA /* Default@2x.png */,
 				A4F9065D1670EBCC00FA7FEA /* Default.png */,
 				A4754D7C164666EA005EB1E0 /* vocabulary-logo@2x.png */,
@@ -893,7 +895,6 @@
 			files = (
 				A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */,
 				A46A7E601630296800DF4696 /* Default@2x.png in Resources */,
-				A46A7E621630296800DF4696 /* Default-568h@2x.png in Resources */,
 				ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */,
 				ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */,
 				A46A7F441632DA5900DF4696 /* ShowWordListViewController.xib in Resources */,
@@ -934,6 +935,7 @@
 				A4F906611670EBDE00FA7FEA /* Default@2x.png in Resources */,
 				EC1EC268167F2091003B1C69 /* closeButton.png in Resources */,
 				EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */,
+				A410467F167C3E2200988DAC /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
