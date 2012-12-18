@@ -126,7 +126,7 @@
 #pragma - mark GADBannerViewDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
-    NSLog(@"receive ad succeed");
+//    NSLog(@"receive ad succeed");
     
 }
 

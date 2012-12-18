@@ -34,6 +34,7 @@
         [_closeButton setImage:[UIImage imageNamed:@"closeButton"] forState:UIControlStateNormal];
         [_closeButton setFrame:CGRectMake(0, 0, 40, 40)];
         [_closeButton addTarget:self action:@selector(hideCibaWebViewWithAnimation) forControlEvents:UIControlEventTouchUpInside];
+        _closeButton.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
         
         _webView = [[UIWebView alloc]init];
         _webView.delegate = self;
@@ -42,11 +43,11 @@
         [_webView.layer setBorderWidth:5];
         UIColor *borderColor = RGBA(200, 200, 200, 1);
         [_webView.layer setBorderColor:borderColor.CGColor];
-        
+        _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_webView];
         [self addSubview:_closeButton];
         self.backgroundColor = [UIColor clearColor];
-        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _animationBeginPoint = HKVPointNull;
         _animationEndPoint = CGPointMake(superView.frame.size.width/2.0, superView.frame.size.height/2.0);
     }

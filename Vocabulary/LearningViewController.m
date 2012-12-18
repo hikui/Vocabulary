@@ -75,7 +75,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"view will disappear");
+//    NSLog(@"view will disappear");
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 //    [self.downloadOp cancel];
 //    [self.voiceOp cancel];
