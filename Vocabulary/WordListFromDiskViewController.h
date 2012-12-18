@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WordListFromDiskViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface WordListFromDiskViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *fileList;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -35,6 +35,7 @@
 
 - (IBAction)finishButtonOnPress:(id)sender;
 - (IBAction)refreshButtonOnPress:(id)sender;
-- (IBAction)clearAllFiles:(id)sender;
+- (IBAction)clearAllFilesButtonPressed:(id)sender;
+- (void)clearAllFiles;
 
 @end

@@ -64,6 +64,11 @@
     return self.fileList.count;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"已上传的文件";
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -115,6 +120,22 @@
         }
         NSLog(@"%@",fileName);
     }
+}
+
+- (void)clearAllFiles
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString*path =[paths objectAtIndex:0];
+    NSArray *directoryContent = [fileManager contentsOfDirectoryAtPath:path error:NULL];
+    
+    for (NSString *fileName in directoryContent) {
+        if ([fileName hasSuffix:@".txt"]) {
+            NSString *fullPath = [path stringByAppendingPathComponent:fileName];
+            [fileManager removeItemAtPath:fullPath error:nil];
+        }
+    }
+    [self refreshButtonOnPress:nil];
 }
 
 #pragma mark - actions
@@ -205,19 +226,23 @@
     [self.tableView reloadData];
 }
 
-- (IBAction)clearAllFiles:(id)sender
+- (IBAction)clearAllFilesButtonPressed:(id)sender
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString*path =[paths objectAtIndex:0];
-    NSArray *directoryContent = [fileManager contentsOfDirectoryAtPath:path error:NULL];
-    
-    for (NSString *fileName in directoryContent) {
-        if ([fileName hasSuffix:@".txt"]) {
-            NSString *fullPath = [path stringByAppendingPathComponent:fileName];
-            BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:nil];
-        }
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"确定删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+    [alert show];
+}
+
+
+#pragma mark - alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *btnTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([btnTitle isEqualToString:@"确定"]) {
+        [self clearAllFiles];
     }
 }
+
+
 
 @end
