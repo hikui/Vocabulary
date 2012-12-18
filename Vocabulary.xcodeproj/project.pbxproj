@@ -79,6 +79,7 @@
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
 		A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D981646792C005EB1E0 /* AdBaseViewController.m */; };
 		A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */; };
+		A4852ECF1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A4852ECE1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel */; };
 		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4B3D79E1642351C00F9772F /* preferences-system-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79C1642351C00F9772F /* preferences-system-3.png */; };
@@ -274,6 +275,8 @@
 		A4754D971646792C005EB1E0 /* AdBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdBaseViewController.h; sourceTree = "<group>"; };
 		A4754D981646792C005EB1E0 /* AdBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBaseViewController.m; sourceTree = "<group>"; };
 		A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningVIewController.xib; sourceTree = "<group>"; };
+		A4852EC91680BA7600A4602C /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model4.xcdatamodel; sourceTree = "<group>"; };
+		A4852ECE1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV3ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV3ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
 		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -486,6 +489,7 @@
 		A46A7E7D16302C5500DF4696 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				A4852ECD1680BB9B00A4602C /* migration */,
 				A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */,
 				EC723CB3165D17AF001F5B1B /* WordList.h */,
 				EC723CB4165D17AF001F5B1B /* WordList.m */,
@@ -699,6 +703,14 @@
 				A4754D8C16466EA6005EB1E0 /* libGoogleAdMobAds.a */,
 			);
 			name = AdMob;
+			sourceTree = "<group>";
+		};
+		A4852ECD1680BB9B00A4602C /* migration */ = {
+			isa = PBXGroup;
+			children = (
+				A4852ECE1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel */,
+			);
+			name = migration;
 			sourceTree = "<group>";
 		};
 		A4A6B31F16623A91002D4E46 /* Network */ = {
@@ -1029,6 +1041,7 @@
 				EC4BCEA516687A80004887B4 /* MobClick.h in Sources */,
 				EC1EC228167EF233003B1C69 /* CibaWebView.h in Sources */,
 				EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */,
+				A4852ECF1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,11 +1176,12 @@
 		A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A4852EC91680BA7600A4602C /* Model4.xcdatamodel */,
 				EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */,
 				EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */,
 				A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */,
 			);
-			currentVersion = EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */;
+			currentVersion = A4852EC91680BA7600A4602C /* Model4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
