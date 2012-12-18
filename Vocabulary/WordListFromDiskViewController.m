@@ -205,4 +205,19 @@
     [self.tableView reloadData];
 }
 
+- (IBAction)clearAllFiles:(id)sender
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString*path =[paths objectAtIndex:0];
+    NSArray *directoryContent = [fileManager contentsOfDirectoryAtPath:path error:NULL];
+    
+    for (NSString *fileName in directoryContent) {
+        if ([fileName hasSuffix:@".txt"]) {
+            NSString *fullPath = [path stringByAppendingPathComponent:fileName];
+            BOOL removeSuccess = [fileManager removeItemAtPath:fullPath error:nil];
+        }
+    }
+}
+
 @end
