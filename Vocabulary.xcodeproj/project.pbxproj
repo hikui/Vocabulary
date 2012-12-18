@@ -1101,7 +1101,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
-				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1121,7 +1121,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
-				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2/**";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
