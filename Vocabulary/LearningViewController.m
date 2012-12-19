@@ -141,7 +141,7 @@
        
         self.acceptationTextView.text = jointStr;
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
-        self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronounceUS error:nil];
+        self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronunciation.pronData error:nil];
         [self.player prepareToPlay];
         if (shouldPerformSound) {
             [self.player play];

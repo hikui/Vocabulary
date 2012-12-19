@@ -57,10 +57,10 @@
     self.acceptationView.hidden = YES;
     self.acceptationView.text = content.word.acceptation;
     self.showAcceptationButton.hidden = NO;
-    NSData *pronData = content.word.pronounceUS;
-    if (pronData == nil) {
-        pronData = content.word.pronounceEN;
-    }
+    NSData *pronData = content.word.pronunciation.pronData;
+//    if (pronData == nil) {
+//        pronData = content.word.pronunciation.pronUK;
+//    }
     if (pronData != nil) {
         self.soundPlayer = [[AVAudioPlayer alloc]initWithData:pronData error:nil];
     }else{

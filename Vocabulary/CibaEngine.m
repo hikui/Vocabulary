@@ -114,7 +114,7 @@
             NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
             [self.livingOperations removeObject:completedGetPronOp];
             NSData *data = [completedGetPronOp responseData];
-            word.pronounceUS = data;
+            word.pronunciation.pronData = data;
             word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
             [[CoreDataHelper sharedInstance]saveContext];
             completion();

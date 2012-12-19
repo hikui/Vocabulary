@@ -164,7 +164,7 @@
 - (void)receiveContextSaveNotification:(NSNotification *)notification
 {
     NSLog(@"- (void)receiveContextSaveNotification:(NSNotification *)notification;");
-    if (notification.object != self.managedObjectContext) {
+    if (_managedObjectContext != nil && notification.object != self.managedObjectContext) {
         [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
         NSLog(@"do merge");
     }

@@ -144,7 +144,7 @@
                     __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
-                        w.pronounceUS = data;
+                        w.pronunciation.pronData = data;
                         w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
                         [[CoreDataHelper sharedInstance]saveContext];
                         if (self.wordsWithNoInfoSet.count == 0) {
@@ -289,7 +289,7 @@
         ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
         [self.examContentsQueue addObject:contentE2C];
         //NSLog(@"%@",contentE2C);
-        if ( word.pronounceUS != nil || word.pronounceEN != nil) {
+        if ( word.pronunciation.pronData != nil) {
             ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
             [self.examContentsQueue addObject:contentS2E];
             //NSLog(@"%@",contentS2E);

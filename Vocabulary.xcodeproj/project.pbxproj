@@ -79,7 +79,6 @@
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
 		A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D981646792C005EB1E0 /* AdBaseViewController.m */; };
 		A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */; };
-		A4852ECF1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A4852ECE1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel */; };
 		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4B3D79E1642351C00F9772F /* preferences-system-3.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79C1642351C00F9772F /* preferences-system-3.png */; };
@@ -103,6 +102,11 @@
 		EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC227167EF232003B1C69 /* CibaWebView.m */; };
 		EC1EC268167F2091003B1C69 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1EC266167F2091003B1C69 /* closeButton.png */; };
 		EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1EC267167F2091003B1C69 /* closeButton@2x.png */; };
+		EC1EC3201681894A003B1C69 /* Word.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC31E16818949003B1C69 /* Word.h */; };
+		EC1EC3211681894A003B1C69 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC31F16818949003B1C69 /* Word.m */; };
+		EC1EC3241681894A003B1C69 /* PronunciationData.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC3221681894A003B1C69 /* PronunciationData.h */; };
+		EC1EC3251681894A003B1C69 /* PronunciationData.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC3231681894A003B1C69 /* PronunciationData.m */; };
+		EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */; };
 		EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */; };
 		EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */; };
 		EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */; };
@@ -144,8 +148,6 @@
 		EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFED16367CEE00EF429B /* ExamView.m */; };
 		EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFF016367D0B00EF429B /* ExamView.xib */; };
 		EC71751D166F4FA600CE1C80 /* libYouMi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC71751C166F4FA600CE1C80 /* libYouMi.a */; };
-		EC723CB1165D17AF001F5B1B /* Word.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723CAF165D17AF001F5B1B /* Word.h */; };
-		EC723CB2165D17AF001F5B1B /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CB0165D17AF001F5B1B /* Word.m */; };
 		EC723CB5165D17AF001F5B1B /* WordList.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723CB3165D17AF001F5B1B /* WordList.h */; };
 		EC723CB6165D17AF001F5B1B /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CB4165D17AF001F5B1B /* WordList.m */; };
 		EC723CBE165DB698001F5B1B /* SearchWordViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723CBB165DB698001F5B1B /* SearchWordViewController.h */; };
@@ -275,8 +277,7 @@
 		A4754D971646792C005EB1E0 /* AdBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdBaseViewController.h; sourceTree = "<group>"; };
 		A4754D981646792C005EB1E0 /* AdBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBaseViewController.m; sourceTree = "<group>"; };
 		A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningVIewController.xib; sourceTree = "<group>"; };
-		A4852EC91680BA7600A4602C /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model4.xcdatamodel; sourceTree = "<group>"; };
-		A4852ECE1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV3ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV3ToV4.xcmappingmodel; sourceTree = "<group>"; };
+		A4852EC91680BA7600A4602C /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model4.xcdatamodel; sourceTree = "<group>"; };
 		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
 		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -307,6 +308,11 @@
 		EC1EC227167EF232003B1C69 /* CibaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaWebView.m; sourceTree = "<group>"; };
 		EC1EC266167F2091003B1C69 /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = closeButton.png; path = artwork/closeButton.png; sourceTree = "<group>"; };
 		EC1EC267167F2091003B1C69 /* closeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "closeButton@2x.png"; path = "artwork/closeButton@2x.png"; sourceTree = "<group>"; };
+		EC1EC31E16818949003B1C69 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = Word.h; path = Vocabulary/Word.h; sourceTree = "<group>"; };
+		EC1EC31F16818949003B1C69 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Vocabulary/Word.m; sourceTree = "<group>"; };
+		EC1EC3221681894A003B1C69 /* PronunciationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = PronunciationData.h; path = Vocabulary/PronunciationData.h; sourceTree = "<group>"; };
+		EC1EC3231681894A003B1C69 /* PronunciationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PronunciationData.m; path = Vocabulary/PronunciationData.m; sourceTree = "<group>"; };
+		EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV3ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV3ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -355,8 +361,6 @@
 		EC71751B166F4FA600CE1C80 /* YouMiWallDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouMiWallDelegateProtocol.h; sourceTree = "<group>"; };
 		EC71751C166F4FA600CE1C80 /* libYouMi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libYouMi.a; sourceTree = "<group>"; };
 		EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
-		EC723CAF165D17AF001F5B1B /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = Word.h; path = Vocabulary/Word.h; sourceTree = "<group>"; };
-		EC723CB0165D17AF001F5B1B /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Vocabulary/Word.m; sourceTree = "<group>"; };
 		EC723CB3165D17AF001F5B1B /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = WordList.h; path = Vocabulary/WordList.h; sourceTree = "<group>"; };
 		EC723CB4165D17AF001F5B1B /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordList.m; path = Vocabulary/WordList.m; sourceTree = "<group>"; };
 		EC723CBB165DB698001F5B1B /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
@@ -491,10 +495,12 @@
 			children = (
 				A4852ECD1680BB9B00A4602C /* migration */,
 				A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */,
+				EC1EC3221681894A003B1C69 /* PronunciationData.h */,
+				EC1EC3231681894A003B1C69 /* PronunciationData.m */,
+				EC1EC31E16818949003B1C69 /* Word.h */,
+				EC1EC31F16818949003B1C69 /* Word.m */,
 				EC723CB3165D17AF001F5B1B /* WordList.h */,
 				EC723CB4165D17AF001F5B1B /* WordList.m */,
-				EC723CAF165D17AF001F5B1B /* Word.h */,
-				EC723CB0165D17AF001F5B1B /* Word.m */,
 			);
 			name = models;
 			path = ..;
@@ -708,7 +714,7 @@
 		A4852ECD1680BB9B00A4602C /* migration */ = {
 			isa = PBXGroup;
 			children = (
-				A4852ECE1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel */,
+				EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */,
 			);
 			name = migration;
 			sourceTree = "<group>";
@@ -1029,8 +1035,6 @@
 				A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */,
 				A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */,
 				A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */,
-				EC723CB1165D17AF001F5B1B /* Word.h in Sources */,
-				EC723CB2165D17AF001F5B1B /* Word.m in Sources */,
 				EC723CB5165D17AF001F5B1B /* WordList.h in Sources */,
 				EC723CB6165D17AF001F5B1B /* WordList.m in Sources */,
 				EC723CBE165DB698001F5B1B /* SearchWordViewController.h in Sources */,
@@ -1041,7 +1045,11 @@
 				EC4BCEA516687A80004887B4 /* MobClick.h in Sources */,
 				EC1EC228167EF233003B1C69 /* CibaWebView.h in Sources */,
 				EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */,
-				A4852ECF1680BBCF00A4602C /* MigrationV3ToV4.xcmappingmodel in Sources */,
+				EC1EC3201681894A003B1C69 /* Word.h in Sources */,
+				EC1EC3211681894A003B1C69 /* Word.m in Sources */,
+				EC1EC3241681894A003B1C69 /* PronunciationData.h in Sources */,
+				EC1EC3251681894A003B1C69 /* PronunciationData.m in Sources */,
+				EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

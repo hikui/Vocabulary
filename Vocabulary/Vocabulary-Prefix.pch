@@ -17,6 +17,7 @@
     #import "MBProgressHUD.h"
     #import "Word.h"
     #import "WordList.h"
+    #import "PronunciationData.h"
     #import "common.h"
     #import "MobClick.h"
 #endif
