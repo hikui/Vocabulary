@@ -61,6 +61,29 @@
 
 #pragma mark - Core Data stack
 
+- (BOOL)isMigrationNeeded
+{
+    NSError *error = nil;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]]; ;
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"db.sqlite"];
+    
+    // Determine if a migration is needed
+    NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType
+                                                                                              URL:storeURL
+                                                                                            error:&error];
+    NSManagedObjectModel *destinationModel = [persistentStoreCoordinator managedObjectModel];
+    BOOL pscCompatibile = [destinationModel isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    NSLog(@"Migration needed? %d", !pscCompatibile);
+    return !pscCompatibile;
+}
+
+- (void)migrateDatabase
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
+    [self persistentStoreCoordinator];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+}
+
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContext
@@ -121,7 +144,6 @@
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
                              [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-    
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -149,7 +171,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 

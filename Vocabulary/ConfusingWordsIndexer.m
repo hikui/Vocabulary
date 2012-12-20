@@ -144,90 +144,6 @@
     [ConfusingWordsIndexer indexNewWordsAsyncById:newWordsIDArray progressBlock:NULL completion:completion];
 }
 
-+ (void)indexNewWordsSyncById:(NSArray *)newWordsIDArray managedObjectContext:(NSManagedObjectContext *)context error:(NSError **)_error
-{
-    BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
-    if (!needIndex) {
-        return;
-    }
-    
-    NSDate *date = [NSDate date];
-    NSError *error = nil;
-
-    NSManagedObjectContext *ctx = nil;
-    if (context != nil) {
-        ctx = context;
-    }else{
-        ctx = [[CoreDataHelper sharedInstance]newManagedObjectContext];
-    }
-
-    
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
-    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-    [request setEntity:entity];
-    [request setPropertiesToFetch:@[@"key"]];
-    [request setResultType:NSDictionaryResultType];
-    [request setReturnsObjectsAsFaults:YES];
-    [request setSortDescriptors:@[sortDescriptor]];
-    
-    NSArray *allWordsKey = [ctx executeFetchRequest:request error:&error];
-    
-    if (error != nil) {
-        if (_error != NULL) {
-            *_error = error;
-        }
-        return;
-    }
-    
-    [request setResultType:NSManagedObjectResultType];
-    [request setIncludesPropertyValues:NO];
-    
-    NSArray *allWordsPlaceholderArray = [ctx executeFetchRequest:request error:&error];
-    if (error != nil) {
-        if (_error != NULL) {
-            *_error = error;
-        }
-        return;
-    }
-    
-    NSTimeInterval timeCost = -[date timeIntervalSinceNow];
-    NSLog(@"查询用时 :%f",timeCost);
-    
-    date = [NSDate date];
-    
-    //与已有的words做比较
-    for (NSManagedObjectID *aNewWordId in newWordsIDArray) {
-        Word *aNewWord = (Word *)[ctx objectRegisteredForID:aNewWordId];
-        NSString *key1 = aNewWord.key;
-        for (int i = 0; i< allWordsKey.count; i++) {
-            NSDictionary *dict = [allWordsKey objectAtIndex:i];
-            NSString *key2 = [dict objectForKey:@"key"];
-            if (![key1 isEqualToString:key2]) {
-                @autoreleasepool {
-                    float distance = [self compareString:key1 withString:key2];
-                    NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>=0.5) {
-                        Word *targetWord = [allWordsPlaceholderArray objectAtIndex:i];
-                       // NSLog(@"key1: %@, key2: %@, target:%@",key1,key2,targetWord.key);
-                        [aNewWord addSimilarWordsObject:targetWord];
-                    }
-                }
-            }
-        }
-    }
-    
-    [ctx save:&error];
-    timeCost = -[date timeIntervalSinceNow];
-    NSLog(@"索引用时 :%f",timeCost);
-    if (error != nil) {
-        if (_error != NULL) {
-            *_error = error;
-        }
-        return;
-    }
-}
-
 + (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)callback completion:(HKVVoidBlock)completion
 {
     dispatch_queue_t originDispatchQueue = dispatch_get_current_queue();
@@ -241,16 +157,7 @@
     
     dispatch_async(indexQueue, ^{
         //创建新的context，适应并发
-//        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]newManagedObjectContext];
-//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-//        NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//        [request setEntity:entity];
-//        NSArray *allWords = [ctx executeFetchRequest:request error:nil];
-//        
-//        NSTimeInterval queryTime = - [date timeIntervalSinceNow];
-//        NSLog(@"数据库查询时间：%f",queryTime);
-        
-        
+
         NSError *error = nil;
         
         NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]newManagedObjectContext];

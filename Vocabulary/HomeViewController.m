@@ -36,6 +36,7 @@
 @interface HomeViewController ()
 
 - (NSUInteger)countOfLearnedWordlist;
+- (void)databaseMigrationFinished:(NSNotification *)notification;
 
 @end
 
@@ -75,10 +76,21 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
-    [self.countLabel sizeToFit];
-    UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];
-    tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
+    BOOL needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
+    if (!needMigration) {
+        self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
+        [self.countLabel sizeToFit];
+        UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];
+        tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
+    }else{
+        UIWindow *window = [[UIApplication sharedApplication]keyWindow];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
+        hud.detailsLabelText = @"正在升级数据库";
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [[CoreDataHelper sharedInstance]migrateDatabase];
+        });
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -91,6 +103,12 @@
         [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"kIsNotFirstRun"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -195,6 +213,17 @@
             [self presentModalViewController:helpViewController animated:YES];
         }
     }
+}
+
+#pragma mark - database notification
+- (void)databaseMigrationFinished:(NSNotification *)notification
+{
+    UIWindow *window = [[UIApplication sharedApplication]keyWindow];
+    [MBProgressHUD hideHUDForView:window animated:YES];
+    self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
+    [self.countLabel sizeToFit];
+    UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];
+    tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
 }
 
 @end

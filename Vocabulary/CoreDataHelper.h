@@ -26,6 +26,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#define kStartMigrationNotification @"startMigration"
+#define kMigrationFinishedNotification @"migrationFinished"
+
 @interface CoreDataHelper : NSObject
 
 + (id)sharedInstance;
@@ -41,5 +44,7 @@
 - (NSManagedObjectContext *)newManagedObjectContext;
 
 - (void)receiveContextSaveNotification:(NSNotification *)notification;
+- (BOOL)isMigrationNeeded;
+- (void)migrateDatabase;
 
 @end
