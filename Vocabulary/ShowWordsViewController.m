@@ -156,12 +156,18 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSUInteger row = indexPath.row;
         Word *wordShouldBeDeleted = [self.wordsSet objectAtIndex:row];
-        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
-            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
+//        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
+//            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
+//        }
+        
+        [self.wordsSet removeObjectAtIndex:row];
+        
+//        [self.wordsSet removeLastObject];
+        if (self.wordList != nil) {
+            [self.wordList removeWordsObject:wordShouldBeDeleted];
         }
-        [self.wordsSet removeLastObject];
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
-        [ctx deleteObject:wordShouldBeDeleted];
+//        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+//        [ctx deleteObject:wordShouldBeDeleted];
         [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     [_tableView endUpdates];

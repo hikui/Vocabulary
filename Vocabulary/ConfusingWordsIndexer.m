@@ -60,13 +60,10 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         [request setEntity:entity];
-        [request setPropertiesToFetch:@[@"key"]];
-        [request setResultType:NSDictionaryResultType];
         [request setReturnsObjectsAsFaults:YES];
         [request setSortDescriptors:@[sortDescriptor]];
-        
-        NSArray *allWordsKey = [ctx executeFetchRequest:request error:&error];
-        
+                
+        NSArray *allWords = [ctx executeFetchRequest:request error:&error];
         if (error != nil) {
             if (completion != NULL) {
                 dispatch_async(originDispatchQueue, ^{
@@ -77,21 +74,7 @@
             dispatch_release(originDispatchQueue);
             return;
         }
-        
-        [request setResultType:NSManagedObjectResultType];
-        [request setIncludesPropertyValues:NO];
-        
-        NSArray *allWordsPlaceholderArray = [ctx executeFetchRequest:request error:&error];
-        if (error != nil) {
-            if (completion != NULL) {
-                dispatch_async(originDispatchQueue, ^{
-                    completion(error);
-                });
-            }
-            dispatch_release(originDispatchQueue);
-            return;
-        }
-        
+                
         NSTimeInterval timeCost = -[date timeIntervalSinceNow];
         NSLog(@"查询用时 :%f",timeCost);
         
@@ -100,22 +83,21 @@
         
         int totalNum = newWordsIDArray.count;
         int finishedNum = 0;
-        
+                
         //与已有的words做比较
         for (NSManagedObjectID *aNewWordId in newWordsIDArray) {
             Word *aNewWord = (Word *)[ctx objectRegisteredForID:aNewWordId];
             NSString *key1 = aNewWord.key;
-            for (int i = 0; i< allWordsKey.count; i++) {
-                NSDictionary *dict = [allWordsKey objectAtIndex:i];
-                NSString *key2 = [dict objectForKey:@"key"];
+            for (int i = 0; i< allWords.count; i++) {
+                Word *wordToCompare = [allWords objectAtIndex:i];
+                NSString *key2 = wordToCompare.key;
                 if (![key1 isEqualToString:key2]) {
                     @autoreleasepool {
                         float distance = [self compareString:key1 withString:key2];
                         NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
                         if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
-                            Word *targetWord = [allWordsPlaceholderArray objectAtIndex:i];
-                            //NSLog(@"key1: %@, key2: %@, target:%@",key1,key2,targetWord.key);
-                            [aNewWord addSimilarWordsObject:targetWord];
+                            NSLog(@"key1: %@, key2: %@",key1,key2);
+                            [aNewWord addSimilarWordsObject:wordToCompare];
                         }
                     }
                 }
@@ -165,67 +147,46 @@
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         [request setEntity:entity];
-        [request setPropertiesToFetch:@[@"key"]];
-        [request setResultType:NSDictionaryResultType];
         [request setReturnsObjectsAsFaults:YES];
         [request setSortDescriptors:@[sortDescriptor]];
         
-        NSArray *allWordsKey = [ctx executeFetchRequest:request error:&error];
-        NSAssert(error == nil, @"has error");
+        NSArray *allWords = [ctx executeFetchRequest:request error:&error];
         
-        [request setResultType:NSManagedObjectResultType];
-        [request setIncludesPropertyValues:NO];
-        
-        NSArray *allWordsPlaceholderArray = [ctx executeFetchRequest:request error:&error];
         NSAssert(error == nil, @"has error");
         
         NSTimeInterval timeCost = -[date timeIntervalSinceNow];
         NSLog(@"查询用时 :%f",timeCost);
         
+        //删除原有的表
+        for (Word *w in allWords) {
+            [w removeSimilarWords:w.similarWords];
+        }
+
         
-        
-        NSMutableDictionary *wordRelativeMap = [[NSMutableDictionary alloc]initWithCapacity:allWordsKey.count];
-        
-        
-        
-        
-        int totalNum = allWordsKey.count;
+        int totalNum = allWords.count;
         int finishedNum = 0;
         
         
-        for (int i = 0; i < allWordsPlaceholderArray.count; i++) {
-            Word *w1 = [allWordsPlaceholderArray objectAtIndex:i];
-            NSString *key1 = [[allWordsKey objectAtIndex:i]objectForKey:@"key"];
-            for (int j = 0; j < allWordsPlaceholderArray.count; j++) {
-                Word *w2 = [allWordsPlaceholderArray objectAtIndex:j];
-                NSString *key2 = [[allWordsKey objectAtIndex:j]objectForKey:@"key"];
+        for (int i = 0; i < allWords.count; i++) {
+            
+            Word *w1 = [allWords objectAtIndex:i];
+            
+            for (int j = 0; j < allWords.count; j++) {
+                Word *w2 = [allWords objectAtIndex:j];
                 if (i != j) {
                     @autoreleasepool {
-                        NSMutableSet *_simularWords = [wordRelativeMap objectForKey:key1];
-                        if ([_simularWords containsObject:key2]) {
+                        if ([w1.similarWords containsObject:w2]) {
                             continue;
                         }
-                        float distance = [self compareString:key1 withString:key2];
-                        NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-                        if (distance < 3 || ((float)lcs)/MAX(key1.length, key2.length)>0.5) {
+                        float distance = [self compareString:w1.key withString:w2.key];
+                        NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
+                        if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
                             [w1 addSimilarWordsObject:w2];
-                            
-                            NSMutableSet *simularWords1 = [wordRelativeMap objectForKey:key1];
-                            if (simularWords1 == nil) {
-                                simularWords1 = [[NSMutableSet alloc]init];
-                            }
-                            [simularWords1 addObject:key2];
-                            
-                            NSMutableSet *simularWords2 = [wordRelativeMap objectForKey:key2];
-                            if (simularWords2 == nil) {
-                                simularWords2 = [[NSMutableSet alloc]init];
-                            }
-                            [simularWords2 addObject:key1];
-                            //NSLog(@"%@,%@",w1.key,w2.key);
                         }
                     }
                 }
             }
+            
             finishedNum ++;
             float progress = ((float)finishedNum)/totalNum;
             dispatch_async(originDispatchQueue, ^{

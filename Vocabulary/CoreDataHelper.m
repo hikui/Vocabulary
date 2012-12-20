@@ -79,9 +79,28 @@
 
 - (void)migrateDatabase
 {
-    [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
+    
+    dispatch_queue_t currentQueue = dispatch_get_current_queue();
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    
+    if (currentQueue == mainQueue) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
+    }else{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
+        });
+    }
+    
     [self persistentStoreCoordinator];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+    
+    if (currentQueue == mainQueue) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+        });
+    }
+    
 }
 
 // Returns the managed object context for the application.
