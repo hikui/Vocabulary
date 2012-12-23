@@ -219,7 +219,10 @@
     int i = 0;
     while (i<self.examContentsQueue.count) {
         ExamContent *c1 = [self.examContentsQueue objectAtIndex:i];
-        ExamContent *c2 = [self.examContentsQueue objectAtIndex:i+1];
+        ExamContent *c2 = nil;
+        if (i+1 < self.examContentsQueue.count) {
+            c2 = [self.examContentsQueue objectAtIndex:i+1];
+        }
         int rightCount = c1.rightTimes;
         int wrongCount = c1.wrongTimes;
         if (c1.word == c2.word) {
