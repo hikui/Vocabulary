@@ -76,7 +76,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    BOOL needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
+    __block BOOL needMigration = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
+    });
     if (!needMigration) {
         self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
         [self.countLabel sizeToFit];
@@ -85,11 +89,13 @@
     }else{
         UIWindow *window = [[UIApplication sharedApplication]keyWindow];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
-        hud.detailsLabelText = @"正在升级数据库";
+        hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
+
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [[CoreDataHelper sharedInstance]migrateDatabase];
         });
+
     }
 }
 
