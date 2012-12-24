@@ -142,19 +142,19 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     return str;
 }
 
-#pragma - mark youmi delegate
-- (void)didReceiveAd:(YouMiView *)adView
-{
-    self.banner.frame = self.bannerFrame;
-    self.banner.hidden = NO;
-    NSLog(@"receive ad succeed");
-}
-
-- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
-{
-    self.banner.frame = self.bannerFrame;
-    self.banner.hidden = YES;
-    NSLog(@"%@",error);
-}
+//#pragma - mark youmi delegate
+//- (void)didReceiveAd:(YouMiView *)adView
+//{
+//    self.banner.frame = self.bannerFrame;
+//    self.banner.hidden = NO;
+//    NSLog(@"receive ad succeed");
+//}
+//
+//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
+//{
+//    self.banner.frame = self.bannerFrame;
+//    self.banner.hidden = YES;
+//    NSLog(@"%@",error);
+//}
 
 @end
