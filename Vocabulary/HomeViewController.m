@@ -76,6 +76,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    
+    
     BOOL needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
     if (!needMigration) {
         self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
@@ -83,9 +85,9 @@
         UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];
         tailLabel.frame = CGRectMake(self.countLabel.frame.origin.x+self.countLabel.frame.size.width, tailLabel.frame.origin.y, tailLabel.frame.size.width, tailLabel.frame.size.height);
     }else{
-        UIWindow *window = [[UIApplication sharedApplication]keyWindow];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:window animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.detailsLabelText = @"正在升级数据库";
+        self.navigationController.view.userInteractionEnabled = NO;
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [[CoreDataHelper sharedInstance]migrateDatabase];
@@ -93,21 +95,8 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)dealloc
 {
-    BOOL isNotFirstRun = [[NSUserDefaults standardUserDefaults]boolForKey:@"kIsNotFirstRun"];
-    if (!isNotFirstRun) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:@"这是您第一次运行，是否显示帮助？" delegate:self cancelButtonTitle:@"不显示" otherButtonTitles:@"显示", nil];
-        alertView.tag = 1;
-        [alertView show];
-        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"kIsNotFirstRun"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
@@ -202,24 +191,12 @@
     }
 }
 
-#pragma mark - alert view delegate 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == 1) {
-        NSString *selectedBtnTitle = [alertView buttonTitleAtIndex:buttonIndex];
-        if ([selectedBtnTitle isEqualToString:@"显示"]) {
-            HelpViewController *helpViewController = [[HelpViewController alloc]initWithNibName:@"HelpViewController" bundle:nil];
-            helpViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentModalViewController:helpViewController animated:YES];
-        }
-    }
-}
 
 #pragma mark - database notification
 - (void)databaseMigrationFinished:(NSNotification *)notification
 {
-    UIWindow *window = [[UIApplication sharedApplication]keyWindow];
-    [MBProgressHUD hideHUDForView:window animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    self.navigationController.view.userInteractionEnabled = YES;
     self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
     [self.countLabel sizeToFit];
     UILabel *tailLabel = (UILabel *)[self.view viewWithTag:2000];

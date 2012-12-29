@@ -109,11 +109,6 @@ void uncaughtExceptionHandler(NSException *exception) {
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-//- (void)setTodaysPlanWordListIdURIRepresentation:(NSURL *)todaysPlanWordListIdURIRepresentation
-//{
-//    _todaysPlanWordListIdURIRepresentation = todaysPlanWordListIdURIRepresentation;
-//    [[NSUserDefaults standardUserDefaults]setObject:[todaysPlanWordListIdURIRepresentation absoluteString]forKey:kTodaysPlanWordListIdURIRepresentation];
-//}
 
 - (void)onlineConfigCallBack:(NSNotification *)notification {
     NSLog(@"online config has fininshed and params = %@", notification.userInfo);
@@ -123,13 +118,10 @@ void uncaughtExceptionHandler(NSException *exception) {
     if (newHelpDocVersion.length > 0) {
         
         if (![newHelpDocVersion isEqualToString:currentHelpVersion]) {
-            BOOL isNotFirstRun = [[NSUserDefaults standardUserDefaults]boolForKey:@"kIsNotFirstRun"];
-            if (isNotFirstRun) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"帮助文档更新了，请查看" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [alert show];
-                });
-            }
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"帮助文档更新了，请查看" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [alert show];
+            });
             [[NSUserDefaults standardUserDefaults]setObject:newHelpDocVersion forKey:@"kCurrHelpDocVersion"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }

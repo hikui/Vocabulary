@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController <UIActionSheetDelegate,UIAlertViewDelegate>
+@interface HomeViewController : UIViewController <UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *countLabel;
 
