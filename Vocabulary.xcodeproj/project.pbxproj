@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */; };
 		A408DA8C168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */; };
+		A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */; };
 		A410467F167C3E2200988DAC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A410467E167C3E2200988DAC /* Default-568h@2x.png */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
@@ -161,6 +162,8 @@
 /* Begin PBXFileReference section */
 		A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV2ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV2ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV1ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV1ToV4.xcmappingmodel; sourceTree = "<group>"; };
+		A408DB471692C3DB00B45B2C /* NSMutableString+HTMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+HTMLEscape.h"; sourceTree = "<group>"; };
+		A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+HTMLEscape.m"; sourceTree = "<group>"; };
 		A410467E167C3E2200988DAC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46A7E4B1630296800DF4696 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -541,6 +544,8 @@
 				A4754D671644E5E2005EB1E0 /* WordListCreator.m */,
 				EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */,
 				EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */,
+				A408DB471692C3DB00B45B2C /* NSMutableString+HTMLEscape.h */,
+				A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1001,6 +1006,7 @@
 				EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */,
 				A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */,
 				A408DA8C168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel in Sources */,
+				A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

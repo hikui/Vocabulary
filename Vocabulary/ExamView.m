@@ -24,6 +24,7 @@
 //
 
 #import "ExamView.h"
+#import "NSMutableString+HTMLEscape.h"
 
 @implementation ExamView
 
@@ -55,7 +56,10 @@
     }
     [self.keyLabel sizeToFit];
     self.acceptationView.hidden = YES;
-    self.acceptationView.text = content.word.acceptation;
+    
+    NSMutableString *acceptation = [[NSMutableString alloc]initWithString:content.word.acceptation];
+    [acceptation htmlUnescape];
+    self.acceptationView.text = acceptation;
     self.showAcceptationButton.hidden = NO;
     NSData *pronData = content.word.pronunciation.pronData;
 //    if (pronData == nil) {

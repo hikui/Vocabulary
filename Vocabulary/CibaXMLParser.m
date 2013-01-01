@@ -42,7 +42,7 @@
  */
 + (NSDictionary *)parseWithXMLString:(NSString *)str
 {
-    str = [str stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    str = [str stringByReplacingOccurrencesOfString:@"&" withString:@" "]; //不进行这个转义有一定几率出错
     NSMutableDictionary *resultDict = [[NSMutableDictionary alloc]init];
     NSError *parseError = nil;
     CXMLDocument *document = [[CXMLDocument alloc]initWithXMLString:str options:0 error:&parseError];

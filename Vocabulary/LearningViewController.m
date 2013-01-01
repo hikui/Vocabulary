@@ -28,6 +28,7 @@
 #import "MBProgressHUD.h"
 #import "CibaEngine.h"
 #import "CibaWebView.h"
+#import "NSMutableString+HTMLEscape.h"
 
 @interface LearningViewController ()
 
@@ -131,14 +132,15 @@
         for (Word *aConfusingWord in self.word.similarWords) {
             [confusingWordsStr appendFormat:@"%@ ",aConfusingWord.key];
         }
-        NSString *jointStr = nil;
+        NSMutableString *jointStr = nil;
         if (self.word.similarWords.count == 0) {
-            jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
+            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@] 美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
         }else{
-            jointStr = [NSString stringWithFormat:@"英[%@] 美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
+            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@] 美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
         }
         
-       
+        [jointStr htmlUnescape];
+        
         self.acceptationTextView.text = jointStr;
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
         self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronunciation.pronData error:nil];
