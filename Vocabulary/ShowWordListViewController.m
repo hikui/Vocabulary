@@ -26,6 +26,8 @@
 #import "ShowWordListViewController.h"
 #import "ShowWordsViewController.h"
 #import "CoreDataHelper.h"
+#import "AppDelegate.h"
+#import "IIViewDeckController.h"
 #import "Word.h"
 
 @interface ShowWordListViewController ()
@@ -54,7 +56,7 @@
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.view.backgroundColor = RGBA(227, 227, 227, 1);
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    // Do any additional setup after loading the view from its nib.
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"]  style:UIBarButtonItemStyleBordered target:self action:@selector(revealLeftSidebar:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -270,7 +272,12 @@
     [self.tableView setEditing:editing animated:animated];
 }
 
-#pragma - mark GADBannerViewDelegate
+#pragma mark - actions
+- (void)revealLeftSidebar:(id)sender {
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
+}
+
+#pragma mark - GADBannerViewDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
     [super adViewDidReceiveAd:view];

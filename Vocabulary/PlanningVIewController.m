@@ -26,6 +26,7 @@
 #import "PlanningVIewController.h"
 #import "ShowWordsViewController.h"
 #import "AppDelegate.h"
+#import "IIViewDeckController.h"
 
 @interface PlanningVIewController ()
 
@@ -53,6 +54,9 @@
     //广告
     self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self.view bringSubviewToFront:self.banner];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"]  style:UIBarButtonItemStyleBordered target:self action:@selector(revealLeftSidebar:)];
+    
     
     self.wordListsArray = [[NSMutableArray alloc]init];
     
@@ -98,18 +102,7 @@
         NSArray *result = [ctx executeFetchRequest:request error:nil];
         if (result.count > 0) {
             self.todaysPlan = [result objectAtIndex:0];
-//            ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation = [self.todaysPlan.objectID URIRepresentation];
         }
-    }else{
-        //如果今日的学习计划已经被学习一遍了，将其加入到复习计划中.
-//        NSURL *objIDURI = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlanWordListIdURIRepresentation;
-//        NSPersistentStoreCoordinator *coordinator = [[CoreDataHelper sharedInstance] persistentStoreCoordinator];
-//        NSManagedObjectID *objId = [coordinator managedObjectIDForURIRepresentation:objIDURI];
-//
-//        WordList *wl = (WordList *)[ctx objectWithID:objId];
-//        if ([wl isKindOfClass:[WordList class]]) {
-//            [self.wordListsArray addObject:wl];
-//        }
     }
     //筛选复习计划
     predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0 AND effectiveCount <= 5)"];
@@ -244,8 +237,13 @@
     [self.navigationController pushViewController:subVC animated:YES];
 }
 
+#pragma mark - actions
+- (void)revealLeftSidebar:(id)sender {
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
+}
 
-#pragma - mark GADBannerViewDelegate
+
+#pragma mark - GADBannerViewDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
     [super adViewDidReceiveAd:view];
@@ -265,25 +263,6 @@ didFailToReceiveAdWithError:(GADRequestError *)error
     }];
 }
 
-//- (void)didReceiveAd:(YouMiView *)adView
-//{
-//    [super didReceiveAd:adView];
-//    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-//    //    [UIView animateWithDuration:0.5 animations:^{
-//    //
-//    //        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-//    //        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
-//    //    }];
-//}
-////
-//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
-//{
-//    [super didFailToReceiveAd:adView error:error];
-//    self.tableView.frame = self.view.bounds;
-//    //    [UIView animateWithDuration:0.5 animations:^{
-//    //        self.tableView.frame = self.view.bounds;
-//    //        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-//    //    }];
-//}
+
 
 @end

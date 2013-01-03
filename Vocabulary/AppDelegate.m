@@ -28,6 +28,10 @@
 #import "TestViewController.h"
 #import "HomeViewController.h"
 #import "UINavigationController+Rotation_IOS6.h"
+#import "LeftBarViewController.h"
+#import "SearchWordViewController.h"
+#import "IIViewDeckController.h"
+#import "PlanningVIewController.h"
 
 
 @implementation AppDelegate
@@ -43,16 +47,19 @@
     //载入必要的预存设置
     _finishTodaysLearningPlan = [[NSUserDefaults standardUserDefaults]boolForKey:kFinishTodaysPlan];
     _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
-//    NSString *uriStr = [[NSUserDefaults standardUserDefaults]objectForKey:kTodaysPlanWordListIdURIRepresentation];
+
     
-//    _todaysPlanWordListIdURIRepresentation = [NSURL URLWithString:uriStr];
+    LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithStyle:UITableViewStylePlain];
+        
+    PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
+    UINavigationController *npvc = [[UINavigationController alloc]initWithRootViewController:pvc];
     
+    IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
+    viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+    self.viewDeckController = viewDeckController;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     
-    HomeViewController *home = [[HomeViewController alloc]initWithNibName:@"HomeViewController" bundle:nil];
-    UINavigationController *ntv = [[UINavigationController alloc]initWithRootViewController:home];
-    self.window.rootViewController = ntv;
+    self.window.rootViewController = viewDeckController;
     [self.window makeKeyAndVisible];
     return YES;
 }

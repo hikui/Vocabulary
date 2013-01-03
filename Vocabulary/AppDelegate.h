@@ -25,12 +25,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class IIViewDeckController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (unsafe_unretained, nonatomic) BOOL finishTodaysLearningPlan;
 @property (strong, nonatomic) NSDate *planExpireTime;
-//@property (copy, nonatomic) NSURL *todaysPlanWordListIdURIRepresentation;
+@property (strong, nonatomic) IIViewDeckController *viewDeckController;
 
 @end

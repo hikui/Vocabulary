@@ -32,6 +32,7 @@
 #import "ConfigViewController.h"
 #import "WordListFromDiskViewController.h"
 #import "SearchWordViewController.h"
+#import "IIViewDeckController.h"
 
 @interface HomeViewController ()
 

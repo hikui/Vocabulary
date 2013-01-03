@@ -84,6 +84,11 @@
 		A4B3D79F1642351C00F9772F /* system-2.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D79D1642351C00F9772F /* system-2.png */; };
 		A4B3D7A2164235D700F9772F /* applications-system-6.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A1164235D700F9772F /* applications-system-6.png */; };
 		A4B3D7A41642366400F9772F /* applications-system-6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4B3D7A31642366400F9772F /* applications-system-6@2x.png */; };
+		A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8911695A840008F013C /* LeftBarViewController.m */; };
+		A4E8C8951695ADA1008F013C /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8941695ADA1008F013C /* IIWrapController.m */; };
+		A4E8C8961695AEE0008F013C /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C88D1695A790008F013C /* IIViewDeckController.m */; };
+		A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89C1695B556008F013C /* ButtonMenu.png */; };
+		A4E8C89F1695B556008F013C /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */; };
 		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
 		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
 		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
@@ -284,6 +289,14 @@
 		A4B3D79D1642351C00F9772F /* system-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "system-2.png"; path = "artwork/system-2.png"; sourceTree = "<group>"; };
 		A4B3D7A1164235D700F9772F /* applications-system-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "applications-system-6.png"; path = "artwork/applications-system-6.png"; sourceTree = "<group>"; };
 		A4B3D7A31642366400F9772F /* applications-system-6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "applications-system-6@2x.png"; path = "artwork/applications-system-6@2x.png"; sourceTree = "<group>"; };
+		A4E8C88C1695A790008F013C /* IIViewDeckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = Vocabulary/lib/ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
+		A4E8C88D1695A790008F013C /* IIViewDeckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Vocabulary/lib/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
+		A4E8C8901695A840008F013C /* LeftBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftBarViewController.h; sourceTree = "<group>"; };
+		A4E8C8911695A840008F013C /* LeftBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftBarViewController.m; sourceTree = "<group>"; };
+		A4E8C8931695ADA1008F013C /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIWrapController.h; path = Vocabulary/lib/ViewDeck/IIWrapController.h; sourceTree = "<group>"; };
+		A4E8C8941695ADA1008F013C /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIWrapController.m; path = Vocabulary/lib/ViewDeck/IIWrapController.m; sourceTree = "<group>"; };
+		A4E8C89C1695B556008F013C /* ButtonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonMenu.png; path = artwork/ButtonMenu.png; sourceTree = "<group>"; };
+		A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonMenu@2x.png"; path = "artwork/ButtonMenu@2x.png"; sourceTree = "<group>"; };
 		A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
 		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
 		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -487,6 +500,7 @@
 		A46A7EBF16304F6500DF4696 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				A4E8C8891695A77F008F013C /* ViewDeck */,
 				EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */,
 				A4754D8216466E8B005EB1E0 /* AdMob */,
 				A4754D311642A7E4005EB1E0 /* ActionSheetPicker */,
@@ -604,6 +618,8 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A4E8C89C1695B556008F013C /* ButtonMenu.png */,
+				A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */,
 				EC1EC266167F2091003B1C69 /* closeButton.png */,
 				EC1EC267167F2091003B1C69 /* closeButton@2x.png */,
 				A410467E167C3E2200988DAC /* Default-568h@2x.png */,
@@ -711,6 +727,17 @@
 			name = Network;
 			sourceTree = "<group>";
 		};
+		A4E8C8891695A77F008F013C /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				A4E8C8931695ADA1008F013C /* IIWrapController.h */,
+				A4E8C8941695ADA1008F013C /* IIWrapController.m */,
+				A4E8C88C1695A790008F013C /* IIViewDeckController.h */,
+				A4E8C88D1695A790008F013C /* IIViewDeckController.m */,
+			);
+			name = ViewDeck;
+			sourceTree = "<group>";
+		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +801,8 @@
 				A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */,
 				A4754D971646792C005EB1E0 /* AdBaseViewController.h */,
 				A4754D981646792C005EB1E0 /* AdBaseViewController.m */,
+				A4E8C8901695A840008F013C /* LeftBarViewController.h */,
+				A4E8C8911695A840008F013C /* LeftBarViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -908,6 +937,8 @@
 				EC1EC268167F2091003B1C69 /* closeButton.png in Resources */,
 				EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */,
 				A410467F167C3E2200988DAC /* Default-568h@2x.png in Resources */,
+				A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */,
+				A4E8C89F1695B556008F013C /* ButtonMenu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +950,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A46A7E581630296800DF4696 /* main.m in Sources */,
+				A4E8C8961695AEE0008F013C /* IIViewDeckController.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
 				EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */,
@@ -1007,6 +1039,8 @@
 				A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */,
 				A408DA8C168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel in Sources */,
 				A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */,
+				A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */,
+				A4E8C8951695ADA1008F013C /* IIWrapController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
