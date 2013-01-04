@@ -55,8 +55,15 @@
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"]  style:UIBarButtonItemStyleBordered target:self action:@selector(revealLeftSidebar:)];
-    
+    if (self.isTopLevel) {
+        UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        menuButton.frame = CGRectMake(0, 0, 46, 26);
+        [menuButton setBackgroundImage:[UIImage imageNamed:@"barButtonBG.png"] forState:UIControlStateNormal];
+        [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
+        [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
+        self.navigationItem.leftBarButtonItem = menuBarButton;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

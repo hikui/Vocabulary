@@ -45,8 +45,6 @@
 {
     [super viewDidLoad];
     UIToolbar *bar = (UIToolbar *)[self.view viewWithTag:1];
-    bar.tintColor = RGBA(48, 16, 17, 1);
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated

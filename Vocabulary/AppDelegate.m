@@ -32,6 +32,7 @@
 #import "SearchWordViewController.h"
 #import "IIViewDeckController.h"
 #import "PlanningVIewController.h"
+#import "VNavigationController.h"
 
 
 @implementation AppDelegate
@@ -52,7 +53,7 @@
     LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithStyle:UITableViewStylePlain];
         
     PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
-    UINavigationController *npvc = [[UINavigationController alloc]initWithRootViewController:pvc];
+    VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];
     
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;

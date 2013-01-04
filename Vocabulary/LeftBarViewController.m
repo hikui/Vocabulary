@@ -14,6 +14,7 @@
 #import "ShowWordsViewController.h"
 #import "ConfigViewController.h"
 #import "CreateWordListViewController.h"
+#import "VNavigationController.h"
 
 #import "AppDelegate.h"
 
@@ -38,6 +39,7 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor darkGrayColor];
+    self.tableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"splitline.png"]];
     self.rows = @[@"今日学习安排",@"添加词汇列表",@"查看已有词汇",@"查看低熟悉度词汇",@"设置"];
 }
 
@@ -66,8 +68,6 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.contentView.backgroundColor = [UIColor darkGrayColor];
         cell.textLabel.textColor = [UIColor whiteColor];
     }
     
@@ -85,11 +85,11 @@
     
     IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
     if (indexPath.row == 0) {
-        if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PlanningVIewController class]]) {
+        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PlanningVIewController class]]) {
             [viewDeckController closeLeftView];
         }else{
             PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
-            UINavigationController *npvc = [[UINavigationController alloc]initWithRootViewController:pvc];
+            VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];
             [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                 controller.centerController = npvc;
             }];
@@ -102,17 +102,17 @@
                                                        otherButtonTitles:@"批量输入",@"从iTunes上传", nil];
         [actionSheet showInView:self.view];
     }else if (indexPath.row == 2) {
-        if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordListViewController class]]) {
+        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordListViewController class]]) {
             [viewDeckController closeLeftView];
         }else{
             ShowWordListViewController *swlvc = [[ShowWordListViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
-            UINavigationController *nswlvc = [[UINavigationController alloc]initWithRootViewController:swlvc];
+            VNavigationController *nswlvc = [[VNavigationController alloc]initWithRootViewController:swlvc];
             [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                 controller.centerController = nswlvc;
             }];
         }
     }else if (indexPath.row == 3) {
-        if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordsViewController class]]) {
+        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordsViewController class]]) {
             [viewDeckController closeLeftView];
         }else{
             
@@ -127,18 +127,18 @@
             
             ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
             svc.wordsSet = mResult;
-            
-            UINavigationController *nsvc = [[UINavigationController alloc]initWithRootViewController:svc];
+            svc.topLevel = YES;
+            VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
             [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                 controller.centerController = nsvc;
             }];
         }
     }else if (indexPath.row == 4) {
-        if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
+        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
             [viewDeckController closeLeftView];
         }else{
             ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStylePlain];
-            UINavigationController *ncvc = [[UINavigationController alloc]initWithRootViewController:cvc];
+            VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
             [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                 controller.centerController = ncvc;
             }];

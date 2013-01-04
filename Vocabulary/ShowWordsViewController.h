@@ -34,6 +34,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *beginStudyButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *beginTestButton;
 
+@property (assign, nonatomic, getter = isTopLevel) BOOL topLevel;
+
 - (IBAction)btnBeginStudyOnPress:(id)sender;
 - (IBAction)btnBeginTestOnPress:(id)sender;
 - (IBAction)btnAddWordOnPress:(id)sender;
