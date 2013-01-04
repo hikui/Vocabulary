@@ -28,6 +28,7 @@
 #import "ExamView.h"
 #import "CibaEngine.h"
 #import "CibaXMLParser.h"
+#import "IIViewDeckController.h"
 #import "AppDelegate.h"
 
 @interface ExamViewController ()
@@ -47,8 +48,6 @@
 
 - (void)examViewExchangeDidFinish:(ExamView *)currExamView;
 - (void)backButtonPressed;
-
-- (void)downloadInfoForWord:(Word *)word;
 
 @end
 
@@ -183,6 +182,16 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.detailsLabelText = @"正在取词";
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckNoPanning;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckFullViewPanning;
 }
 
 - (void)viewDidUnload
