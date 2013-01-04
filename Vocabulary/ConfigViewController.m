@@ -27,6 +27,8 @@
 #import "HelpViewController.h"
 #import "ActionSheetPicker.h"
 #import "ConfusingWordsIndexer.h"
+#import "AppDelegate.h"
+#import "IIViewDeckController.h"
 
 @interface ConfigViewController ()
 
@@ -55,6 +57,8 @@
 {
     [super viewDidLoad];
     self.title = @"设置";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"]  style:UIBarButtonItemStyleBordered target:self action:@selector(revealLeftSidebar:)];
+    
     self.dayNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kDayNotificationTime];
     self.nightNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kNightNotificationTime];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
@@ -194,6 +198,11 @@
             }
         }
     }
+}
+
+#pragma mark - actions
+- (void)revealLeftSidebar:(id)sender {
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
 }
 
 #pragma mark - private methods

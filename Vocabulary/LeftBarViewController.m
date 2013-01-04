@@ -11,7 +11,10 @@
 #import "PlanningVIewController.h"
 #import "WordListFromDiskViewController.h"
 #import "ShowWordListViewController.h"
+#import "ShowWordsViewController.h"
 #import "ConfigViewController.h"
+#import "CreateWordListViewController.h"
+
 #import "AppDelegate.h"
 
 @interface LeftBarViewController ()
@@ -35,7 +38,7 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor darkGrayColor];
-    self.rows = @[@"今日学习安排",@"添加词汇列表",@"查看已有词汇",@"设置"];
+    self.rows = @[@"今日学习安排",@"添加词汇列表",@"查看已有词汇",@"查看低熟悉度词汇",@"设置"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,8 +66,7 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor darkGrayColor];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.contentView.backgroundColor = [UIColor darkGrayColor];
         cell.textLabel.textColor = [UIColor whiteColor];
     }
@@ -93,7 +95,12 @@
             }];
         }
     }else if (indexPath.row == 1) {
-        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择导入方式"
+                                                                delegate:self
+                                                       cancelButtonTitle:@"取消"
+                                                  destructiveButtonTitle:nil
+                                                       otherButtonTitles:@"批量输入",@"从iTunes上传", nil];
+        [actionSheet showInView:self.view];
     }else if (indexPath.row == 2) {
         if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordListViewController class]]) {
             [viewDeckController closeLeftView];
@@ -105,6 +112,28 @@
             }];
         }
     }else if (indexPath.row == 3) {
+        if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordsViewController class]]) {
+            [viewDeckController closeLeftView];
+        }else{
+            
+            NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc]init];
+            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
+            [request setEntity:entity];
+            [request setPredicate:predicate];
+            NSArray *result = [ctx executeFetchRequest:request error:nil];
+            NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
+            
+            ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+            svc.wordsSet = mResult;
+            
+            UINavigationController *nsvc = [[UINavigationController alloc]initWithRootViewController:svc];
+            [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+                controller.centerController = nsvc;
+            }];
+        }
+    }else if (indexPath.row == 4) {
         if ([[((UINavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
             [viewDeckController closeLeftView];
         }else{
@@ -114,6 +143,19 @@
                 controller.centerController = ncvc;
             }];
         }
+    }
+}
+
+#pragma mark - action sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"批量输入"]) {
+        CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
+        [self presentModalViewController:vc animated:YES];
+    }else if ([title isEqualToString:@"从iTunes上传"]){
+        WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
+        [self presentModalViewController:fdvc animated:YES];
     }
 }
 

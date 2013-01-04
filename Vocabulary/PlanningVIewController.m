@@ -30,7 +30,6 @@
 
 @interface PlanningVIewController ()
 
-@property (nonatomic, strong) WordList *todaysPlan;
 @property (nonatomic, strong) NSDictionary *effectiveCount_deltaDay_map;
 @property (nonatomic, unsafe_unretained) BOOL finishTodaysLearningPlan;
 
@@ -56,8 +55,6 @@
     [self.view bringSubviewToFront:self.banner];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"]  style:UIBarButtonItemStyleBordered target:self action:@selector(revealLeftSidebar:)];
-    
-    
     self.wordListsArray = [[NSMutableArray alloc]init];
     
     //艾宾浩斯曲线日期递增映射
@@ -163,22 +160,39 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.todaysPlan != nil) {
-        return 2;
+    NSInteger count = 2;
+    if (self.todaysPlan == nil) {
+        count--;
     }
-    return 1;
+    if (self.wordListsArray.count == 0) {
+        count--;
+    }
+    
+    return count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return self.wordListsArray.count;
-        case 1:
+    NSInteger numberOfSections = [tableView numberOfSections];
+    
+    if (numberOfSections == 2) {
+        switch (section) {
+            case 0:
+                return 1;
+            case 1:
+                return self.wordListsArray.count;
+            default:
+                break;
+        }
+    }else if (numberOfSections == 1) {
+        if (self.todaysPlan != nil) {
             return 1;
-        default:
-            break;
+        }else if (self.wordListsArray.count != 0) {
+            return self.wordListsArray.count;
+        }
     }
+    
+    
     return 0;
 }
 
@@ -198,28 +212,55 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = [[wl valueForKey:@"title"] description];
-        NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
-        cell.detailTextLabel.text = detailTxt;
-    }else{
-        cell.textLabel.text = self.todaysPlan.title;
-        NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.effectiveCount];
-        cell.detailTextLabel.text = detailTxt;
+    
+    NSInteger numberOfSections = [self.tableView numberOfSections];
+    if (numberOfSections == 2) {
+        if (indexPath.section == 0) {
+            cell.textLabel.text = self.todaysPlan.title;
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.effectiveCount];
+            cell.detailTextLabel.text = detailTxt;
+        }else{
+            WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
+            cell.textLabel.text = [[wl valueForKey:@"title"] description];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
+            cell.detailTextLabel.text = detailTxt;
+        }
+    }else if (numberOfSections == 1) {
+        if (self.todaysPlan != nil) {
+            cell.textLabel.text = self.todaysPlan.title;
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.effectiveCount];
+            cell.detailTextLabel.text = detailTxt;
+        }else if (self.wordListsArray.count != 0) {
+            WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
+            cell.textLabel.text = [[wl valueForKey:@"title"] description];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
+            cell.detailTextLabel.text = detailTxt;
+        }
     }
+    
+    
     
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return @"今日需要复习的Word list";
-        case 1:
-            return @"今日需要学习的Word list";
-        default:
-            break;
+    NSInteger numOfSections = [tableView numberOfSections];
+    
+    if (numOfSections == 2) {
+        switch (section) {
+            case 1:
+                return @"今日复习计划";
+            case 0:
+                return @"今日学习计划";
+            default:
+                break;
+        }
+    }else if (numOfSections == 1) {
+        if (self.todaysPlan != nil) {
+            return @"今日学习计划";
+        }else if (self.wordListsArray.count != 0) {
+            return @"今日复习计划";
+        }
     }
     return nil;
 }
@@ -227,13 +268,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-    if (indexPath.section == 0) {
-        WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
-        subVC.wordList = wl;
-    }else{
-        subVC.wordList = self.todaysPlan;
-    }
     
+    NSInteger numOfSections = [tableView numberOfSections];
+    
+    if (numOfSections == 2) {
+        if (indexPath.section == 0) {
+            subVC.wordList = self.todaysPlan;
+        }else{
+            WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
+            subVC.wordList = wl;
+        }
+    }else if (numOfSections == 1) {
+        if (self.todaysPlan != nil) {
+            subVC.wordList = self.todaysPlan;
+        }else if (self.wordListsArray.count != 0) {
+            WordList *wl = [self.wordListsArray objectAtIndex:indexPath.row];
+            subVC.wordList = wl;
+        }
+    }
     [self.navigationController pushViewController:subVC animated:YES];
 }
 

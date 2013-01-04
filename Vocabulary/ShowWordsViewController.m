@@ -30,6 +30,8 @@
 #import "ExamViewController.h"
 #import "ConfusingWordsIndexer.h"
 #import "WordListFromDiskViewController.h"
+#import "AppDelegate.h"
+#import "IIViewDeckController.h"
 
 @interface ShowWordsViewController ()
 
@@ -52,6 +54,8 @@
     
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ButtonMenu.png"]  style:UIBarButtonItemStyleBordered target:self action:@selector(revealLeftSidebar:)];
     
 }
 
@@ -234,6 +238,11 @@
         [ConfusingWordsIndexer indexNewWordsAsyncById:@[w.objectID] completion:NULL];
         
     }
+}
+
+#pragma mark - actions
+- (void)revealLeftSidebar:(id)sender {
+    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
 }
 
 #pragma mark - actionsheet delegate

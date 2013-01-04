@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeftBarViewController : UITableViewController
+@interface LeftBarViewController : UITableViewController<UIActionSheetDelegate>
 
 @end

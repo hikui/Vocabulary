@@ -29,6 +29,7 @@
 @interface PlanningVIewController : AdBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *wordListsArray;
+@property (nonatomic, strong) WordList *todaysPlan;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
