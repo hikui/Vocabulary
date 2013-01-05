@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LeftBarViewController : UITableViewController<UIActionSheetDelegate>
+@interface LeftBarViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

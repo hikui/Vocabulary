@@ -29,6 +29,7 @@
 #import "CibaEngine.h"
 #import "CibaWebView.h"
 #import "NSMutableString+HTMLEscape.h"
+#import "VNavigationController.h"
 
 @interface LearningViewController ()
 
@@ -53,9 +54,6 @@
     }else{
         self.acceptationTextView.hidden = NO;
     }
-    UIView *content = [self.view viewWithTag:1];
-    self.view.backgroundColor = RGBA(246, 255, 222, 1);
-    content.backgroundColor = RGBA(246, 255, 222, 1);
     //广告
     if (ShowAds) {
         UIView *content = [self.view viewWithTag:1];
@@ -64,6 +62,9 @@
         self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self.view bringSubviewToFront:self.banner];
     }
+    
+    UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem = backBtn;
     
 }
 
@@ -198,6 +199,11 @@
 {
     self.shouldHideInfo = YES;
     self.acceptationTextView.hidden = YES;
+}
+
+#pragma mark - actions
+- (void)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //#pragma - mark GADBannerViewDelegate

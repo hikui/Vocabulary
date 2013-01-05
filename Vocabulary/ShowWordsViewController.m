@@ -32,6 +32,7 @@
 #import "WordListFromDiskViewController.h"
 #import "AppDelegate.h"
 #import "IIViewDeckController.h"
+#import "VNavigationController.h"
 
 @interface ShowWordsViewController ()
 
@@ -53,16 +54,24 @@
     [super viewDidLoad];
     
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
+    self.navigationItem.rightBarButtonItem = editButtonItem;
     
     if (self.isTopLevel) {
         UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        menuButton.frame = CGRectMake(0, 0, 46, 26);
-        [menuButton setBackgroundImage:[UIImage imageNamed:@"barButtonBG.png"] forState:UIControlStateNormal];
+        menuButton.frame = CGRectMake(0, 0, 40, 29);
+        
+        UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+        
+        [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
         [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
         [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
         self.navigationItem.leftBarButtonItem = menuBarButton;
+    }else {
+        UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
+        self.navigationItem.leftBarButtonItem = backButton;
     }
 }
 
@@ -190,15 +199,6 @@
     return NO;
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:animated];
-    if (editing == NO) {
-        [[CoreDataHelper sharedInstance]saveContext];
-    }
-}
-
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
@@ -215,6 +215,22 @@
     }
     
     [self.navigationController pushViewController:evc animated:YES];
+}
+
+- (void)editButtonItemPressed:(id)sender
+{
+    //!!!触发这个方法的实际上是barButtonItem里面的customView，故sender应为UIButton
+    if (!self.isEditing) {
+        self.editing = YES;
+        UIButton *realButton = (UIButton *)sender;
+        [realButton setTitle:@"完成" forState:UIControlStateNormal];
+        [self.tableView setEditing:YES animated:YES];
+    }else{
+        self.editing = NO;
+        UIButton *realButton = (UIButton *)sender;
+        [realButton setTitle:@"编辑" forState:UIControlStateNormal];
+        [self.tableView setEditing:NO animated:YES];
+    }
 }
 
 - (IBAction)btnAddWordOnPress:(id)sender
@@ -250,6 +266,10 @@
 #pragma mark - actions
 - (void)revealLeftSidebar:(id)sender {
     [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
+}
+
+- (void)back:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - actionsheet delegate

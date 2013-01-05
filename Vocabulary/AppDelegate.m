@@ -50,7 +50,7 @@
     _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
 
     
-    LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithStyle:UITableViewStylePlain];
+    LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithNibName:@"LeftBarViewController" bundle:nil];
         
     PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
     VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];

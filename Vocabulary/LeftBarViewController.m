@@ -26,20 +26,11 @@
 
 @implementation LeftBarViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor darkGrayColor];
-    self.tableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"splitline.png"]];
+    self.tableView.backgroundView = nil;
     self.rows = @[@"今日学习安排",@"添加词汇列表",@"查看已有词汇",@"查看低熟悉度词汇",@"设置"];
 }
 
@@ -69,6 +60,9 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.textColor = [UIColor whiteColor];
+        UIImage *cellBG = [[UIImage imageNamed:@"CellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+        cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
+        cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBG];
     }
     
     cell.textLabel.text = self.rows[indexPath.row];
@@ -76,6 +70,10 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
 
 #pragma mark - Table view delegate
 
@@ -134,15 +132,16 @@
             }];
         }
     }else if (indexPath.row == 4) {
-        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
-            [viewDeckController closeLeftView];
-        }else{
-            ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStylePlain];
-            VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
-            [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-                controller.centerController = ncvc;
-            }];
-        }
+//        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
+//            [viewDeckController closeLeftView];
+//        }else{
+//            ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStylePlain];
+//            VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
+//            [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+//                controller.centerController = ncvc;
+//            }];
+//        }
+        [self.tableView setNeedsDisplay];
     }
 }
 

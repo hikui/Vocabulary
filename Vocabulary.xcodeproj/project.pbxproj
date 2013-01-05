@@ -157,6 +157,19 @@
 		EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */; };
 		EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */; };
 		EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */; };
+		EC9D1E961697CD5300A8C5B9 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8C1697CD5300A8C5B9 /* back.png */; };
+		EC9D1E971697CD5300A8C5B9 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8D1697CD5300A8C5B9 /* back@2x.png */; };
+		EC9D1E981697CD5300A8C5B9 /* barbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8E1697CD5300A8C5B9 /* barbutton.png */; };
+		EC9D1E991697CD5300A8C5B9 /* barbutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8F1697CD5300A8C5B9 /* barbutton@2x.png */; };
+		EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E901697CD5300A8C5B9 /* CellBG.png */; };
+		EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E911697CD5300A8C5B9 /* CellBG@2x.png */; };
+		EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E921697CD5300A8C5B9 /* nav.png */; };
+		EC9D1E9D1697CD5300A8C5B9 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E931697CD5300A8C5B9 /* nav@2x.png */; };
+		EC9D1E9E1697CD5300A8C5B9 /* tableheader.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E941697CD5300A8C5B9 /* tableheader.png */; };
+		EC9D1E9F1697CD5300A8C5B9 /* tableheader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E951697CD5300A8C5B9 /* tableheader@2x.png */; };
+		EC9D1EA11697D47400A8C5B9 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */; };
+		EC9D1EA41697E42800A8C5B9 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA21697E42800A8C5B9 /* search.png */; };
+		EC9D1EA51697E42800A8C5B9 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA31697E42800A8C5B9 /* search@2x.png */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -371,6 +384,19 @@
 		EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ConfusingWordsIndexer.h; sourceTree = "<group>"; };
 		EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfusingWordsIndexer.m; sourceTree = "<group>"; };
 		EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		EC9D1E8C1697CD5300A8C5B9 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = artwork/back.png; sourceTree = "<group>"; };
+		EC9D1E8D1697CD5300A8C5B9 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "artwork/back@2x.png"; sourceTree = "<group>"; };
+		EC9D1E8E1697CD5300A8C5B9 /* barbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barbutton.png; path = artwork/barbutton.png; sourceTree = "<group>"; };
+		EC9D1E8F1697CD5300A8C5B9 /* barbutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barbutton@2x.png"; path = "artwork/barbutton@2x.png"; sourceTree = "<group>"; };
+		EC9D1E901697CD5300A8C5B9 /* CellBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellBG.png; path = artwork/CellBG.png; sourceTree = "<group>"; };
+		EC9D1E911697CD5300A8C5B9 /* CellBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellBG@2x.png"; path = "artwork/CellBG@2x.png"; sourceTree = "<group>"; };
+		EC9D1E921697CD5300A8C5B9 /* nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nav.png; path = artwork/nav.png; sourceTree = "<group>"; };
+		EC9D1E931697CD5300A8C5B9 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
+		EC9D1E941697CD5300A8C5B9 /* tableheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tableheader.png; path = artwork/tableheader.png; sourceTree = "<group>"; };
+		EC9D1E951697CD5300A8C5B9 /* tableheader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tableheader@2x.png"; path = "artwork/tableheader@2x.png"; sourceTree = "<group>"; };
+		EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
+		EC9D1EA21697E42800A8C5B9 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = artwork/search.png; sourceTree = "<group>"; };
+		EC9D1EA31697E42800A8C5B9 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search@2x.png"; path = "artwork/search@2x.png"; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -625,6 +651,18 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC9D1EA21697E42800A8C5B9 /* search.png */,
+				EC9D1EA31697E42800A8C5B9 /* search@2x.png */,
+				EC9D1E8C1697CD5300A8C5B9 /* back.png */,
+				EC9D1E8D1697CD5300A8C5B9 /* back@2x.png */,
+				EC9D1E8E1697CD5300A8C5B9 /* barbutton.png */,
+				EC9D1E8F1697CD5300A8C5B9 /* barbutton@2x.png */,
+				EC9D1E901697CD5300A8C5B9 /* CellBG.png */,
+				EC9D1E911697CD5300A8C5B9 /* CellBG@2x.png */,
+				EC9D1E921697CD5300A8C5B9 /* nav.png */,
+				EC9D1E931697CD5300A8C5B9 /* nav@2x.png */,
+				EC9D1E941697CD5300A8C5B9 /* tableheader.png */,
+				EC9D1E951697CD5300A8C5B9 /* tableheader@2x.png */,
 				EC2290141696BF9C00D7E0D8 /* barButtonBG.png */,
 				EC2290151696BF9E00D7E0D8 /* barButtonBG@2x.png */,
 				EC22900C1696B62A00D7E0D8 /* navBg.png */,
@@ -810,6 +848,7 @@
 				A4754D981646792C005EB1E0 /* AdBaseViewController.m */,
 				A4E8C8901695A840008F013C /* LeftBarViewController.h */,
 				A4E8C8911695A840008F013C /* LeftBarViewController.m */,
+				EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */,
 				EC2290101696B81900D7E0D8 /* VNavigationController.h */,
 				EC2290111696B81A00D7E0D8 /* VNavigationController.m */,
 			);
@@ -949,6 +988,19 @@
 				EC2290161696BFA100D7E0D8 /* barButtonBG.png in Resources */,
 				EC2290171696BFA100D7E0D8 /* barButtonBG@2x.png in Resources */,
 				EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */,
+				EC9D1E961697CD5300A8C5B9 /* back.png in Resources */,
+				EC9D1E971697CD5300A8C5B9 /* back@2x.png in Resources */,
+				EC9D1E981697CD5300A8C5B9 /* barbutton.png in Resources */,
+				EC9D1E991697CD5300A8C5B9 /* barbutton@2x.png in Resources */,
+				EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */,
+				EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */,
+				EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */,
+				EC9D1E9D1697CD5300A8C5B9 /* nav@2x.png in Resources */,
+				EC9D1E9E1697CD5300A8C5B9 /* tableheader.png in Resources */,
+				EC9D1E9F1697CD5300A8C5B9 /* tableheader@2x.png in Resources */,
+				EC9D1EA11697D47400A8C5B9 /* LeftBarViewController.xib in Resources */,
+				EC9D1EA41697E42800A8C5B9 /* search.png in Resources */,
+				EC9D1EA51697E42800A8C5B9 /* search@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

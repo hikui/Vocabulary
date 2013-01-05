@@ -57,9 +57,13 @@
 {
     [super viewDidLoad];
     self.title = @"设置";
+    
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 46, 26);
-    [menuButton setBackgroundImage:[UIImage imageNamed:@"barButtonBG.png"] forState:UIControlStateNormal];
+    menuButton.frame = CGRectMake(0, 0, 40, 29);
+    
+    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    
+    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];

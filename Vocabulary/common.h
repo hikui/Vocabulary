@@ -44,7 +44,7 @@
 #define FillWordError -3
 #define FillWordPronError -4
 
-#define ShowAds YES
+#define ShowAds NO
 
 // bock define
 typedef void (^HKVProgressCallback)(float progress);

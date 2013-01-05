@@ -26,6 +26,7 @@
 #import "LearningBackboneViewController.h"
 #import "LearningViewController.h"
 #import "SearchWordViewController.h"
+#import "VNavigationController.h"
 
 @interface LearningBackboneViewController ()
 
@@ -62,10 +63,9 @@
     
     self.title = @"浏览词汇";
     
-    
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    self.pageViewController.view.backgroundColor = RGBA(246, 255, 222, 1);
-    self.view.backgroundColor = RGBA(246, 255, 222, 1);
+    self.pageViewController.view.backgroundColor = RGBA(227, 227, 227, 1);
+    self.view.backgroundColor = RGBA(227, 227, 227, 1);
     CGRect pageViewControllerFrame = self.view.bounds;
     pageViewControllerFrame.size.height = pageViewControllerFrame.size.height-51;
     [[self.pageViewController view] setFrame:pageViewControllerFrame];
@@ -75,7 +75,12 @@
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",1,self.words.count];
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButtonOnPress:)];
+    
+    UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
+    self.navigationItem.leftBarButtonItem = backBtn;
+    
+    UIBarButtonItem *searchButton = [VNavigationController generateSearchItemWithTarget:self action:@selector(searchButtonOnPress:)];
+    
     self.navigationItem.rightBarButtonItem = searchButton;
 
     [self shuffleWords];//每次都乱序
@@ -203,6 +208,11 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     UINavigationController *nsvc = [[UINavigationController alloc]initWithRootViewController:svc];
     nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:nsvc animated:YES];
+}
+
+- (void)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

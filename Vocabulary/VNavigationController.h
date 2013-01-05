@@ -10,4 +10,14 @@
 
 @interface VNavigationController : UINavigationController
 
++ (UIBarButtonItem *)generateBackItemWithTarget:(id)target action:(SEL)action;
++ (UIBarButtonItem *)generateSearchItemWithTarget:(id)target action:(SEL)action;
+
+@end
+
+@interface UIBarButtonItem(VNavigationController)
+
+- (id)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
+- (id)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action;
+
 @end

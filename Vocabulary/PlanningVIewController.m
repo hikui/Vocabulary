@@ -55,8 +55,11 @@
     [self.view bringSubviewToFront:self.banner];
     
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 46, 26);
-    [menuButton setBackgroundImage:[UIImage imageNamed:@"barButtonBG.png"] forState:UIControlStateNormal];
+    menuButton.frame = CGRectMake(0, 0, 40, 29);
+    
+    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    
+    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
@@ -77,7 +80,7 @@
         [NSNumber numberWithInt:5]:[NSNumber numberWithInt:8],
     };
     
-    self.title = @"今日复习计划";
+    self.title = @"记词助手";
     
     BOOL isPlanExpire = NO;
     NSDate *planExpireTime = ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime;
