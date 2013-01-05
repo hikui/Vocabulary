@@ -33,5 +33,6 @@
 @property (unsafe_unretained, nonatomic) BOOL finishTodaysLearningPlan;
 @property (strong, nonatomic) NSDate *planExpireTime;
 @property (strong, nonatomic) IIViewDeckController *viewDeckController;
+@property (strong, nonatomic) IBOutlet UIView *welcomeView;
 
 @end

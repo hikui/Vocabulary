@@ -58,9 +58,31 @@
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
     self.viewDeckController = viewDeckController;
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = viewDeckController;
+    //如果不需要数据库升级，直接进主页。如果需要数据库升级，近welcome view
+    __block BOOL needMigration = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
+    });
+    if (!needMigration) {
+        self.window.rootViewController = viewDeckController;
+    }else{
+        
+        [[NSBundle mainBundle]loadNibNamed:@"WelcomeView" owner:self options:nil];
+        self.welcomeView.frame = CGRectMake(0, 20, 320, self.window.frame.size.height - 20);
+        [self.window addSubview:self.welcomeView];
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:YES];
+        hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [[CoreDataHelper sharedInstance]migrateDatabase];
+        });
+        
+    }
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -136,5 +158,12 @@ void uncaughtExceptionHandler(NSException *exception) {
         
         
     }
+}
+
+#pragma mark - database notification
+- (void)databaseMigrationFinished:(NSNotification *)notification
+{
+    [self.welcomeView removeFromSuperview];
+    self.window.rootViewController = self.viewDeckController;
 }
 @end

@@ -156,6 +156,7 @@
 		EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */; };
 		EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */; };
 		EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */; };
+		EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -369,6 +370,7 @@
 		EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelIndexedKey.xcdatamodel; sourceTree = "<group>"; };
 		EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ConfusingWordsIndexer.h; sourceTree = "<group>"; };
 		EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfusingWordsIndexer.m; sourceTree = "<group>"; };
+		EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				A46A7E7D16302C5500DF4696 /* models */,
 				A46A7E5A1630296800DF4696 /* AppDelegate.h */,
 				A46A7E5B1630296800DF4696 /* AppDelegate.m */,
+				EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */,
 				A46A7E521630296800DF4696 /* Supporting Files */,
 			);
 			path = Vocabulary;
@@ -945,6 +948,7 @@
 				EC22900F1696B62D00D7E0D8 /* navBg@2x.png in Resources */,
 				EC2290161696BFA100D7E0D8 /* barButtonBG.png in Resources */,
 				EC2290171696BFA100D7E0D8 /* barButtonBG@2x.png in Resources */,
+				EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
