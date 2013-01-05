@@ -29,6 +29,7 @@
 #import "WordList.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WordListCreator.h"
+#import "UIToolbar+VToolBar.h"
 
 
 @interface CreateWordListViewController ()
@@ -62,7 +63,6 @@
     self.textView.layer.cornerRadius = 4.0f;
     
     UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:1000];
-    toolbar.tintColor = RGBA(48, 16, 17, 1);
 }
 
 - (void)viewDidUnload

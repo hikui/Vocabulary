@@ -26,6 +26,7 @@
 #import "SearchWordViewController.h"
 #import "LearningViewController.h"
 #import "IIViewDeckController.h"
+#import "VNavigationController.h"
 
 @interface SearchWordViewController ()
 
@@ -61,8 +62,7 @@
     [super viewDidLoad];
 
     if (self.modalViewControllerMode) {
-        self.navigationController.navigationBar.tintColor = RGBA(48, 16, 17, 1);
-        UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(back:)];
+        UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
         self.navigationItem.leftBarButtonItem = backButton;
     }
     

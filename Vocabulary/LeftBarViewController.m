@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    self.rows = @[@"今日学习安排",@"添加词汇列表",@"查看已有词汇",@"查看低熟悉度词汇",@"设置"];
+    self.rows = @[@"今日学习安排",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,7 +149,7 @@
         if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
             [viewDeckController closeLeftView];
         }else{
-            ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStylePlain];
+            ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStyleGrouped];
             VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
             [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                 controller.centerController = ncvc;

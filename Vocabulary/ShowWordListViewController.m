@@ -55,6 +55,7 @@
     self.managedObjectContext = helper.managedObjectContext;
     self.title = @"已有的列表";
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
+    self.tableView.separatorColor = RGBA(210, 210, 210, 1);
     self.view.backgroundColor = RGBA(227, 227, 227, 1);
     
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -168,6 +169,11 @@
     ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
     subVC.wordList = (WordList *)object;
     [self.navigationController pushViewController:subVC animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
 }
 
 #pragma mark - Fetched results controller

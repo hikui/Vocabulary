@@ -28,8 +28,11 @@
 @interface HelpViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
+@property (nonatomic, weak) IBOutlet UIView *toolBarView;
 
-- (IBAction)okButtonOnPress:(id)sender;
+- (IBAction)closeButtonOnPress:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
+- (IBAction)forwardButtonPressed:(id)sender;
+
 
 @end

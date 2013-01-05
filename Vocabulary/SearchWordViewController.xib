@@ -44,8 +44,8 @@
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC44OTAxOTYwNzg0IDAuODkwMTk2MDc4NCAwLjg5MDE5NjA3ODQAA</bytes>
 						</object>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -68,7 +68,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSColor" key="IBTintColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xODgyMzUyOTQxIDAuMDYyNzQ1MDk4MDQgMC4wNjY2NjY2NjY2NwA</bytes>
+							<bytes key="NSRGB">MC4wOTk5OTU5MDI2IDAuNDE5MTI4NzMzMyAwLjcwNzAxNzA0NTUAA</bytes>
 						</object>
 						<object class="IBUITextInputTraits" key="IBTextInputTraits">
 							<int key="IBUIAutocorrectionType">1</int>

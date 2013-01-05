@@ -27,6 +27,10 @@
 #import "MobClick.h"
 #import "VNavigationController.h"
 
+#define BackwardButtonTag 1000
+#define ForwardButtonTag 1001
+#define CloseButtonTag 1002
+
 @interface HelpViewController ()
 
 @end
@@ -45,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.toolBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"nav.png"]];
     
 }
 
@@ -78,7 +83,7 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
-- (IBAction)okButtonOnPress:(id)sender
+- (IBAction)closeButtonOnPress:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -86,6 +91,12 @@
 {
     [self.webView goBack];
 }
+
+- (void)forwardButtonPressed:(id)sender
+{
+    [self.webView goForward];
+}
+
 #pragma mark - webview delegate
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
