@@ -30,6 +30,7 @@
 #import "CibaXMLParser.h"
 #import "IIViewDeckController.h"
 #import "AppDelegate.h"
+#import "VNavigationController.h"
 
 @interface ExamViewController ()
 
@@ -117,9 +118,13 @@
         self.wordsArray = words;
     }
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
-                                                                  style:UIBarButtonItemStyleBordered target:self
-                                                                 action:@selector(backButtonPressed)];
+    
+    
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
+//                                                                  style:UIBarButtonItemStyleBordered target:self
+//                                                                 action:@selector(backButtonPressed)];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"评估完成" target:self action:@selector(backButtonPressed)];
     self.navigationItem.leftBarButtonItem = backButton;
     
     

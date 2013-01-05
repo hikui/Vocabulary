@@ -57,7 +57,7 @@
 						</array>
 						<object class="NSColor" key="IBUITintColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yNDIyNjcyMTk0IDAuMTA4OTk3Mjg0OCAwLjA2NzQ1MTIxMzkxAA</bytes>
+							<bytes key="NSRGB">MC4wOTk5OTU5MDI2IDAuNDE5MTI4NzMzMyAwLjcwNzAxNzA0NTUAA</bytes>
 						</object>
 					</object>
 					<object class="IBUILabel" id="1040773577">
@@ -74,10 +74,15 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBUIText">indicator</string>
 						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4wNTQ5NTMxMTg1NCAwLjI0NTA5MjE1OTYgMC40MjE4ODkyMDQ1AA</bytes>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<object class="NSColor" key="IBUIShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<nil key="IBUIHighlightedColor"/>
+						<string key="IBUIShadowOffset">{0, 1}</string>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
 						<int key="IBUITextAlignment">1</int>
@@ -96,7 +101,6 @@
 				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>

@@ -21,6 +21,7 @@
 @interface LeftBarViewController ()
 
 @property (nonatomic, strong) NSArray *rows;
+@property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
 @end
 
@@ -30,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundView = nil;
+    self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.rows = @[@"今日学习安排",@"添加词汇列表",@"查看已有词汇",@"查看低熟悉度词汇",@"设置"];
 }
 
@@ -38,6 +39,14 @@
 {
     [super didReceiveMemoryWarning];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+    });
 }
 
 #pragma mark - Table view data source
@@ -61,12 +70,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.textLabel.textColor = [UIColor whiteColor];
         UIImage *cellBG = [[UIImage imageNamed:@"CellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+        UIImage *cellBGHighlighted = [[UIImage imageNamed:@"CellBGHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
         cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
-        cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBG];
+        cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     }
-    
     cell.textLabel.text = self.rows[indexPath.row];
-    
     return cell;
 }
 
@@ -79,7 +88,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row != 1) {
+        self.selectedIndexPath = indexPath;
+    }
     
     IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
     if (indexPath.row == 0) {
@@ -93,6 +104,8 @@
             }];
         }
     }else if (indexPath.row == 1) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView selectRowAtIndexPath:self.selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择导入方式"
                                                                 delegate:self
                                                        cancelButtonTitle:@"取消"
@@ -126,22 +139,22 @@
             ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
             svc.wordsSet = mResult;
             svc.topLevel = YES;
+            svc.title = @"低熟悉度词汇";
             VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
             [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                 controller.centerController = nsvc;
             }];
         }
     }else if (indexPath.row == 4) {
-//        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
-//            [viewDeckController closeLeftView];
-//        }else{
-//            ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStylePlain];
-//            VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
-//            [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-//                controller.centerController = ncvc;
-//            }];
-//        }
-        [self.tableView setNeedsDisplay];
+        if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
+            [viewDeckController closeLeftView];
+        }else{
+            ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStylePlain];
+            VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
+            [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+                controller.centerController = ncvc;
+            }];
+        }
     }
 }
 

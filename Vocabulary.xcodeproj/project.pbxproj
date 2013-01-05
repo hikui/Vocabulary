@@ -170,6 +170,8 @@
 		EC9D1EA11697D47400A8C5B9 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */; };
 		EC9D1EA41697E42800A8C5B9 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA21697E42800A8C5B9 /* search.png */; };
 		EC9D1EA51697E42800A8C5B9 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA31697E42800A8C5B9 /* search@2x.png */; };
+		EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA61698002D00A8C5B9 /* CellBGHighlighted.png */; };
+		EC9D1EA91698002E00A8C5B9 /* CellBGHighlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA71698002E00A8C5B9 /* CellBGHighlighted@2x.png */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -397,6 +399,8 @@
 		EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
 		EC9D1EA21697E42800A8C5B9 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = artwork/search.png; sourceTree = "<group>"; };
 		EC9D1EA31697E42800A8C5B9 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search@2x.png"; path = "artwork/search@2x.png"; sourceTree = "<group>"; };
+		EC9D1EA61698002D00A8C5B9 /* CellBGHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellBGHighlighted.png; path = artwork/CellBGHighlighted.png; sourceTree = "<group>"; };
+		EC9D1EA71698002E00A8C5B9 /* CellBGHighlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CellBGHighlighted@2x.png"; path = "artwork/CellBGHighlighted@2x.png"; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -651,6 +655,8 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC9D1EA61698002D00A8C5B9 /* CellBGHighlighted.png */,
+				EC9D1EA71698002E00A8C5B9 /* CellBGHighlighted@2x.png */,
 				EC9D1EA21697E42800A8C5B9 /* search.png */,
 				EC9D1EA31697E42800A8C5B9 /* search@2x.png */,
 				EC9D1E8C1697CD5300A8C5B9 /* back.png */,
@@ -1001,6 +1007,8 @@
 				EC9D1EA11697D47400A8C5B9 /* LeftBarViewController.xib in Resources */,
 				EC9D1EA41697E42800A8C5B9 /* search.png in Resources */,
 				EC9D1EA51697E42800A8C5B9 /* search@2x.png in Resources */,
+				EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */,
+				EC9D1EA91698002E00A8C5B9 /* CellBGHighlighted@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

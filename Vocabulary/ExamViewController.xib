@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
 		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1929</string>
+			<string key="NS.object.0">1930</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -61,7 +61,7 @@
 								<reference key="IBUIToolbar" ref="988787349"/>
 								<object class="NSColor" key="IBUITintColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4zMjQzMTk2NTY0IDAuNzc4Nzc4Njk5IDAuMTczMzM5NTU0AA</bytes>
+									<bytes key="NSRGB">MC42MDA1NDQ5MjkxIDAuNzUzMjI0NDMxOCAwLjU0MTQ4MjQzNQA</bytes>
 								</object>
 							</object>
 							<object class="IBUIBarButtonItem" id="871210687">
@@ -76,7 +76,7 @@
 								<reference key="IBUIToolbar" ref="988787349"/>
 								<object class="NSColor" key="IBUITintColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC45NTE0NDc4NjAxIDAuMTc0NzkzMDYwNCAwLjE1MjM1NjEwNDYAA</bytes>
+									<bytes key="NSRGB">MC43NjU3MjQ0MzE4IDAuNTU1MTg1OTI3OCAwLjYwMzc5MzIzMzYAA</bytes>
 								</object>
 							</object>
 							<object class="IBUIBarButtonItem" id="803837433">
@@ -88,7 +88,7 @@
 						</array>
 						<object class="NSColor" key="IBUITintColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4yNDIyNjcyMTk0IDAuMTA4OTk3Mjg0OCAwLjA2NzQ1MTIxMzkxAA</bytes>
+							<bytes key="NSRGB">MC4wOTk5OTU5MDI2IDAuNDE5MTI4NzMzMyAwLjcwNzAxNzA0NTUAA</bytes>
 						</object>
 					</object>
 				</array>
@@ -97,18 +97,16 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="988787349"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MC45Njg2Mjc1MTI1IDEgMC44NTg4MjM1OTc0AA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC44OTAxOTYwNzg0IDAuODkwMTk2MDc4NCAwLjg5MDE5NjA3ODQAA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUILabel" id="142492522">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{153, 24}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -334,6 +332,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">1929</string>
+		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>

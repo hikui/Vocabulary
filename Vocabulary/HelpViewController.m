@@ -25,6 +25,7 @@
 
 #import "HelpViewController.h"
 #import "MobClick.h"
+#import "VNavigationController.h"
 
 @interface HelpViewController ()
 
@@ -44,20 +45,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIToolbar *bar = (UIToolbar *)[self.view viewWithTag:1];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
     NSString *url = [MobClick getConfigParams:@"helpUrl"];
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-//        NSString *html = [NSString stringWithContentsOfURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding error:nil];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.webView loadHTMLString:html baseURL:nil];
-//        });
-//    });
     NSURLRequest *req = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    self.title = @"帮助";
+
     [self.webView loadRequest:req];
 }
 
