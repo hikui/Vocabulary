@@ -36,4 +36,6 @@
 @dynamic title;
 @dynamic words;
 
+@synthesize finished = _finished;
+
 @end

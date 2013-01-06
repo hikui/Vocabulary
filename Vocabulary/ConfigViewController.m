@@ -24,7 +24,7 @@
 //
 
 #import "ConfigViewController.h"
-#import "HelpViewController.h"
+#import "VWebViewController.h"
 #import "ActionSheetPicker.h"
 #import "ConfusingWordsIndexer.h"
 #import "AppDelegate.h"
@@ -189,7 +189,9 @@
         }
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            HelpViewController *hvc = [[HelpViewController alloc]initWithNibName:@"HelpViewController" bundle:nil];
+            VWebViewController *hvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
+            NSURL *url = [NSURL URLWithString:[MobClick getConfigParams:@"helpUrl"]];
+            hvc.requestURL = url;
             hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentModalViewController:hvc animated:YES];
         }else if (indexPath.row == 1){

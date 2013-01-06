@@ -15,7 +15,5 @@
 
 @property (nonatomic, copy) NSArray *reviewPlan;
 @property (nonatomic, strong) WordList *learningPlan;
-@property (nonatomic, assign) BOOL reviewPlanFinished;
-@property (nonatomic, assign) BOOL learningPlanFinished;
 
 @end

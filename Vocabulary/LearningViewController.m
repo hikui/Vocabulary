@@ -30,6 +30,9 @@
 #import "CibaWebView.h"
 #import "NSMutableString+HTMLEscape.h"
 #import "VNavigationController.h"
+#import "VWebViewController.h"
+
+#define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
 @interface LearningViewController ()
 
@@ -183,10 +186,14 @@
 
 - (IBAction)fullInfomation:(id)sender
 {
-//    UIButton *btn = (UIButton *)sender;
-    CibaWebView *webView = [[CibaWebView alloc]initWithView:self.view word:self.word.key];
-//    webView.animationBeginPoint = btn.center;
-    [webView showCibaWebViewAnimated:YES];
+////    UIButton *btn = (UIButton *)sender;
+//    CibaWebView *webView = [[CibaWebView alloc]initWithView:self.view word:self.word.key];
+////    webView.animationBeginPoint = btn.center;
+//    [webView showCibaWebViewAnimated:YES];
+    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
+    NSURL *url = [NSURL URLWithString:CIBA_URL(self.word.key)];
+    wvc.requestURL = url;
+    [self presentModalViewController:wvc animated:YES];
 }
 
 - (void)showInfo
@@ -206,52 +213,4 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//#pragma - mark GADBannerViewDelegate
-//- (void)adViewDidReceiveAd:(GADBannerView *)view
-//{
-//    [super adViewDidReceiveAd:view];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        UIView *content = [self.view viewWithTag:1];
-//        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
-//        content.frame = targetFrame;
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
-//    }];
-//}
-//
-//- (void)adView:(GADBannerView *)view
-//didFailToReceiveAdWithError:(GADRequestError *)error
-//{
-//    [super adView:view didFailToReceiveAdWithError:error];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        UIView *content = [self.view viewWithTag:1];
-//        CGRect targetFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-//        content.frame = targetFrame;
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-//    }];
-//}
-
-//#pragma - mark youmi delegate
-//- (void)didReceiveAd:(YouMiView *)adView
-//{
-//    [super didReceiveAd:adView];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        UIView *content = [self.view viewWithTag:1];
-//        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
-//        content.frame = targetFrame;
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, 50);
-//        NSLog(@"banner frame:%@",[NSValue valueWithCGRect:self.banner.frame]);
-//        NSLog(@"banner hidden:%d",self.banner.hidden);
-//    }];
-//}
-////
-//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
-//{
-//    [super didFailToReceiveAd:adView error:error];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        UIView *content = [self.view viewWithTag:1];
-//        CGRect targetFrame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-//        content.frame = targetFrame;
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-//    }];
-//}
 @end

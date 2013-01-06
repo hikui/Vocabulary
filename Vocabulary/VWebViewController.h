@@ -23,10 +23,12 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 
-@interface HelpViewController : UIViewController <UIWebViewDelegate>
+@interface VWebViewController : UIViewController <UIWebViewDelegate>
 
+@property (nonatomic, strong) NSURL *requestURL;
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIView *toolBarView;
 

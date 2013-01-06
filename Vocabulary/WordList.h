@@ -36,6 +36,9 @@
 @property (nonatomic, retain) NSString * synchronizeTag;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *words;
+
+// transient property
+@property (nonatomic, unsafe_unretained) BOOL finished;
 @end
 
 @interface WordList (CoreDataGeneratedAccessors)

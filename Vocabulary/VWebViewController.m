@@ -23,19 +23,15 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "HelpViewController.h"
+#import "VWebViewController.h"
 #import "MobClick.h"
 #import "VNavigationController.h"
 
-#define BackwardButtonTag 1000
-#define ForwardButtonTag 1001
-#define CloseButtonTag 1002
-
-@interface HelpViewController ()
+@interface VWebViewController ()
 
 @end
 
-@implementation HelpViewController
+@implementation VWebViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,10 +51,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSString *url = [MobClick getConfigParams:@"helpUrl"];
-    NSURLRequest *req = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-    self.title = @"帮助";
-
+//    NSString *url = [MobClick getConfigParams:@"helpUrl"];
+    NSURLRequest *req = [[NSURLRequest alloc]initWithURL:self.requestURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     [self.webView loadRequest:req];
 }
 

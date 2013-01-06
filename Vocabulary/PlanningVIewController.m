@@ -149,6 +149,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
+    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -232,23 +233,23 @@
     if (numberOfSections == 2) {
         if (indexPath.section == 0) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@ 完成:%d",self.todaysPlan.learningPlan.effectiveCount,self.todaysPlan.learningPlan.finished];
             cell.detailTextLabel.text = detailTxt;
         }else{
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@,完成:%d",[[wl valueForKey:@"effectiveCount"] description],wl.finished];
             cell.detailTextLabel.text = detailTxt;
         }
     }else if (numberOfSections == 1) {
         if (self.todaysPlan != nil) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@ 完成:%d",self.todaysPlan.learningPlan.effectiveCount,self.todaysPlan.learningPlan.finished];
             cell.detailTextLabel.text = detailTxt;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@,完成:%d",[[wl valueForKey:@"effectiveCount"] description],wl.finished];
             cell.detailTextLabel.text = detailTxt;
         }
     }

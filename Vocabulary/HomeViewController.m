@@ -28,7 +28,7 @@
 #import "ShowWordListViewController.h"
 #import "PlanningVIewController.h"
 #import "ShowWordsViewController.h"
-#import "HelpViewController.h"
+#import "VWebViewController.h"
 #import "ConfigViewController.h"
 #import "WordListFromDiskViewController.h"
 #import "SearchWordViewController.h"

@@ -382,6 +382,7 @@
         
         //更新本WordList的信息
         if (self.wordList != nil) {
+            self.wordList.finished = YES;
             NSDate *lastReviewTime = self.wordList.lastReviewTime;
             if (lastReviewTime != nil) {
                 NSDateComponents *components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:lastReviewTime];
