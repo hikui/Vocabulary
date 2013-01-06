@@ -64,6 +64,8 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    self.todaysPlan = [[Plan alloc]init];
+    
     //如果不需要数据库升级，直接进主页。如果需要数据库升级，近welcome view
     __block BOOL needMigration = NO;
     static dispatch_once_t onceToken;
@@ -174,8 +176,6 @@ void uncaughtExceptionHandler(NSException *exception) {
 #pragma mark - custom methods
 - (void)refreshTodaysPlan
 {
-    self.todaysPlan = [[Plan alloc]init];
-    
     //艾宾浩斯曲线日期递增映射
     NSDictionary *effectiveCount_deltaDay_map =
     @{

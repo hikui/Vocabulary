@@ -25,6 +25,7 @@
 
 #import "WordListFromDiskViewController.h"
 #import "WordListCreator.h"
+#import "AppDelegate.h"
 
 @interface WordListFromDiskViewController ()
 
@@ -174,6 +175,7 @@
                     NSLog(@"%@",[error localizedDescription]);
                 }
                 [hud hide:YES];
+                [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
             }];

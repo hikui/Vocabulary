@@ -66,7 +66,7 @@
     self.navigationItem.leftBarButtonItem = menuBarButton;
     
     self.todaysPlan = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlan;
-    
+    self.title = @"记词助手";
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg.png"] forBarMetrics:UIBarMetricsDefault];
     

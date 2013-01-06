@@ -30,7 +30,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WordListCreator.h"
 #import "UIToolbar+VToolBar.h"
-
+#import "AppDelegate.h"
 
 @interface CreateWordListViewController ()
 
@@ -165,6 +165,7 @@
             }
             return;
         }else{
+            [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
             [self dismissModalViewControllerAnimated:YES];
         }
     }];
