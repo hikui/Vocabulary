@@ -26,10 +26,12 @@
 #import <UIKit/UIKit.h>
 #import "ShowWordListViewController.h"
 #import "AdBaseViewController.h"
+#import "Plan.h"
 @interface PlanningVIewController : AdBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *wordListsArray;
-@property (nonatomic, strong) WordList *todaysPlan;
+//@property (nonatomic, strong) NSMutableArray *wordListsArray;
+//@property (nonatomic, strong) WordList *todaysPlan;
+@property (nonatomic, strong) Plan *todaysPlan;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

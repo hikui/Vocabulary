@@ -25,6 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class Plan;
 @class IIViewDeckController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -32,7 +33,11 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (unsafe_unretained, nonatomic) BOOL finishTodaysLearningPlan;
 @property (strong, nonatomic) NSDate *planExpireTime;
+@property (strong, nonatomic) Plan *todaysPlan;
 @property (strong, nonatomic) IIViewDeckController *viewDeckController;
 @property (strong, nonatomic) IBOutlet UIView *welcomeView;
+
+//今日学习计划刷新。现在设成每次启动刷新。
+- (void)refreshTodaysPlan;
 
 @end

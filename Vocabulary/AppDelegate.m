@@ -33,6 +33,7 @@
 #import "IIViewDeckController.h"
 #import "PlanningVIewController.h"
 #import "VNavigationController.h"
+#import "Plan.h"
 
 
 @implementation AppDelegate
@@ -70,9 +71,9 @@
         needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
     });
     if (!needMigration) {
+        [self refreshTodaysPlan];
         self.window.rootViewController = viewDeckController;
     }else{
-        
         [[NSBundle mainBundle]loadNibNamed:@"WelcomeView" owner:self options:nil];
         self.welcomeView.frame = CGRectMake(0, 20, 320, self.window.frame.size.height - 20);
         [self.window addSubview:self.welcomeView];
@@ -165,7 +166,86 @@ void uncaughtExceptionHandler(NSException *exception) {
 #pragma mark - database notification
 - (void)databaseMigrationFinished:(NSNotification *)notification
 {
+    [self refreshTodaysPlan];
     [self.welcomeView removeFromSuperview];
     self.window.rootViewController = self.viewDeckController;
+}
+
+#pragma mark - custom methods
+- (void)refreshTodaysPlan
+{
+    self.todaysPlan = [[Plan alloc]init];
+    
+    //艾宾浩斯曲线日期递增映射
+    NSDictionary *effectiveCount_deltaDay_map =
+    @{
+    [NSNumber numberWithInt:1]:[NSNumber numberWithInt:0],
+    [NSNumber numberWithInt:2]:[NSNumber numberWithInt:1],
+    [NSNumber numberWithInt:3]:[NSNumber numberWithInt:2],
+    [NSNumber numberWithInt:4]:[NSNumber numberWithInt:3],
+    [NSNumber numberWithInt:5]:[NSNumber numberWithInt:8],
+    };
+    
+    BOOL isPlanExpire = NO;
+    NSDate *planExpireTime = [self.planExpireTime copy];
+    //获取当前日期，忽略具体时间
+    unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:flags fromDate:planExpireTime];
+    planExpireTime = [calendar dateFromComponents:components];
+    if ([planExpireTime compare:[NSDate date]] == NSOrderedAscending || [planExpireTime compare:[NSDate date]] == NSOrderedSame) {
+        //expire于现在之前，为过期
+        isPlanExpire = YES;
+        self.finishTodaysLearningPlan = NO;
+    }
+    
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"addTime" ascending:YES];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount==0)"];
+    [request setEntity:entity];
+    [request setPredicate:predicate];
+    [request setSortDescriptors:@[sort]];
+    [request setFetchLimit:1];
+    //筛选学习计划
+    if (!_finishTodaysLearningPlan) {
+        //pick a word list
+        NSArray *result = [ctx executeFetchRequest:request error:nil];
+        if (result.count > 0) {
+            WordList *learningPlan = [result objectAtIndex:0];
+            self.todaysPlan.learningPlan = learningPlan;
+        }
+    }
+    //筛选复习计划
+    predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0 AND effectiveCount <= 5)"];
+    [request setPredicate:predicate];
+    [request setFetchLimit:0];
+    
+    NSArray *result = [ctx executeFetchRequest:request error:nil];
+    
+    NSMutableArray *reviewPlan = [[NSMutableArray alloc]init];
+    
+    for (WordList *wl in result) {
+        //上次复习日期+(effectiveCount对应的艾宾浩斯递增天数)=预计复习日期
+        NSDate *lastReviewTime = wl.lastReviewTime;
+        NSNumber *effectiveCount = wl.effectiveCount;
+        int deltaDay = [[effectiveCount_deltaDay_map objectForKey:effectiveCount]intValue];
+        NSTimeInterval deltaTimeInterval = deltaDay*24*60*60;
+        //计算得到的下次应该复习的时间
+        NSDate *expectedNextReviewDate = [lastReviewTime dateByAddingTimeInterval:deltaTimeInterval];
+        //获取当前日期，忽略具体时间
+        unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [calendar components:flags fromDate:expectedNextReviewDate];
+        expectedNextReviewDate = [calendar dateFromComponents:components];
+        NSDate* currDate = [NSDate date];
+        //比较两个时间
+        if ([expectedNextReviewDate compare:currDate] == NSOrderedAscending || [expectedNextReviewDate compare:currDate] == NSOrderedSame) {
+            //预计复习日期≤现在日期 需要复习
+            [reviewPlan addObject:wl];
+        }
+    }
+    self.todaysPlan.reviewPlan = reviewPlan;
 }
 @end

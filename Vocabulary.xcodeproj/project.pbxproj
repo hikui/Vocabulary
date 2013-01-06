@@ -178,6 +178,10 @@
 		EC9D1F45169817CD00A8C5B9 /* web-forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F41169817CD00A8C5B9 /* web-forward@2x.png */; };
 		EC9D1F491698288500A8C5B9 /* UIToolbar+VToolBar.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F471698288500A8C5B9 /* UIToolbar+VToolBar.h */; };
 		EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */; };
+		EC9D1F51169908CB00A8C5B9 /* toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F4F169908CB00A8C5B9 /* toolbar.png */; };
+		EC9D1F52169908CB00A8C5B9 /* toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */; };
+		EC9D1F561699148700A8C5B9 /* Plan.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F541699148700A8C5B9 /* Plan.h */; };
+		EC9D1F571699148700A8C5B9 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F551699148700A8C5B9 /* Plan.m */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -413,6 +417,10 @@
 		EC9D1F41169817CD00A8C5B9 /* web-forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "web-forward@2x.png"; path = "artwork/web-forward@2x.png"; sourceTree = "<group>"; };
 		EC9D1F471698288500A8C5B9 /* UIToolbar+VToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = "UIToolbar+VToolBar.h"; sourceTree = "<group>"; };
 		EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+VToolBar.m"; sourceTree = "<group>"; };
+		EC9D1F4F169908CB00A8C5B9 /* toolbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbar.png; path = artwork/toolbar.png; sourceTree = "<group>"; };
+		EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar@2x.png"; path = "artwork/toolbar@2x.png"; sourceTree = "<group>"; };
+		EC9D1F541699148700A8C5B9 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = Plan.h; path = Vocabulary/Plan.h; sourceTree = "<group>"; };
+		EC9D1F551699148700A8C5B9 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plan.m; path = Vocabulary/Plan.m; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -541,6 +549,8 @@
 				EC1EC31F16818949003B1C69 /* Word.m */,
 				EC723CB3165D17AF001F5B1B /* WordList.h */,
 				EC723CB4165D17AF001F5B1B /* WordList.m */,
+				EC9D1F541699148700A8C5B9 /* Plan.h */,
+				EC9D1F551699148700A8C5B9 /* Plan.m */,
 			);
 			name = models;
 			path = ..;
@@ -671,6 +681,8 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC9D1F4F169908CB00A8C5B9 /* toolbar.png */,
+				EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */,
 				EC9D1F3E169817CD00A8C5B9 /* web-back.png */,
 				EC9D1F3F169817CD00A8C5B9 /* web-back@2x.png */,
 				EC9D1F40169817CD00A8C5B9 /* web-forward.png */,
@@ -1031,6 +1043,8 @@
 				EC9D1F43169817CD00A8C5B9 /* web-back@2x.png in Resources */,
 				EC9D1F44169817CD00A8C5B9 /* web-forward.png in Resources */,
 				EC9D1F45169817CD00A8C5B9 /* web-forward@2x.png in Resources */,
+				EC9D1F51169908CB00A8C5B9 /* toolbar.png in Resources */,
+				EC9D1F52169908CB00A8C5B9 /* toolbar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1151,8 @@
 				EC2290131696B81B00D7E0D8 /* VNavigationController.m in Sources */,
 				EC9D1F491698288500A8C5B9 /* UIToolbar+VToolBar.h in Sources */,
 				EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */,
+				EC9D1F561699148700A8C5B9 /* Plan.h in Sources */,
+				EC9D1F571699148700A8C5B9 /* Plan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,8 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:1000];
-    toolbar.tintColor = RGBA(48, 16, 17, 1);
     self.fileList = [[NSMutableArray alloc]init];
     self.selectedIndexPath = [[NSMutableSet alloc]init];
     [self scanFiles];
