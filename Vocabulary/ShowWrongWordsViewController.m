@@ -24,6 +24,7 @@
 //
 
 #import "ShowWrongWordsViewController.h"
+#import "VNavigationController.h"
 
 @interface ShowWrongWordsViewController ()
 
@@ -36,8 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *backToWordListButton = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStyleBordered target:self action:@selector(backToWordList)];
-    self.navigationItem.leftBarButtonItem = backToWordListButton;
+    self.navigationItem.leftBarButtonItem = [VNavigationController generateBackItemWithTarget:self action:@selector(backToWordList)];
     self.title = @"错误单词";
 }
 

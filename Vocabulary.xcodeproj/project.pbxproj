@@ -184,6 +184,8 @@
 		EC9D1F571699148700A8C5B9 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F551699148700A8C5B9 /* Plan.m */; };
 		EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8E1699509600A8C5B9 /* checkmark.png */; };
 		EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */; };
+		EC9D1F9C169970D500A8C5B9 /* VGradientView.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9A169970D400A8C5B9 /* VGradientView.h */; };
+		EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9B169970D500A8C5B9 /* VGradientView.m */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -425,6 +427,8 @@
 		EC9D1F551699148700A8C5B9 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plan.m; path = Vocabulary/Plan.m; sourceTree = "<group>"; };
 		EC9D1F8E1699509600A8C5B9 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = artwork/checkmark.png; sourceTree = "<group>"; };
 		EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "artwork/checkmark@2x.png"; sourceTree = "<group>"; };
+		EC9D1F9A169970D400A8C5B9 /* VGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = VGradientView.h; sourceTree = "<group>"; };
+		EC9D1F9B169970D500A8C5B9 /* VGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGradientView.m; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -928,6 +932,8 @@
 				EC4FCFF016367D0B00EF429B /* ExamView.xib */,
 				EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */,
 				EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */,
+				EC9D1F9A169970D400A8C5B9 /* VGradientView.h */,
+				EC9D1F9B169970D500A8C5B9 /* VGradientView.m */,
 			);
 			name = Examing;
 			sourceTree = "<group>";
@@ -1161,6 +1167,8 @@
 				EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */,
 				EC9D1F561699148700A8C5B9 /* Plan.h in Sources */,
 				EC9D1F571699148700A8C5B9 /* Plan.m in Sources */,
+				EC9D1F9C169970D500A8C5B9 /* VGradientView.h in Sources */,
+				EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

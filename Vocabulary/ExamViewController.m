@@ -103,12 +103,12 @@
     _cursor1 = 0;
     _shouldUpdateWordFamiliarity = NO;
     
-    self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
-    self.roundNotificatonLabel.clipsToBounds = YES;
+//    self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
+//    self.roundNotificatonLabel.clipsToBounds = YES;
 
-    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonLabel.bounds.size.height/2);
-    self.roundNotificatonLabel.center = center;
-    [self.view addSubview:self.roundNotificatonLabel];
+    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
+    self.roundNotificatonView.center = center;
+    [self.view addSubview:self.roundNotificatonView];
     
     if (self.wordList != nil) {
         NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
@@ -117,7 +117,6 @@
         }
         self.wordsArray = words;
     }
-    
     
     
 //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
@@ -219,6 +218,12 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self.roundNotificatonView setNeedsDisplay];
 }
 
 - (void)calculateFamiliarityForEveryWords
@@ -354,13 +359,13 @@
         //已经循环一遍了
         NSLog(@"已经循环一遍了");
         //显示提示
-        [self.view bringSubviewToFront:self.roundNotificatonLabel];
+        [self.view bringSubviewToFront:self.roundNotificatonView];
         [UIView animateWithDuration:0.5 animations:^{
-            self.roundNotificatonLabel.transform = CGAffineTransformMakeTranslation(0, 0-self.roundNotificatonLabel.frame.origin.y+3);
+            self.roundNotificatonView.transform = CGAffineTransformMakeTranslation(0, 0-self.roundNotificatonView.frame.origin.y);
         } completion:^(BOOL finished){
             if (finished) {
                 [UIView animateWithDuration:0.5 delay:3 options:UIViewAnimationOptionCurveLinear animations:^{
-                    self.roundNotificatonLabel.transform = CGAffineTransformMakeTranslation(0,0);
+                    self.roundNotificatonView.transform = CGAffineTransformMakeTranslation(0,0);
                 } completion:nil];
             }
         }];
