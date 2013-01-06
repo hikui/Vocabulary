@@ -233,23 +233,29 @@
     if (numberOfSections == 2) {
         if (indexPath.section == 0) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@ 完成:%d",self.todaysPlan.learningPlan.effectiveCount,self.todaysPlan.learningPlan.finished];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
             cell.detailTextLabel.text = detailTxt;
         }else{
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@,完成:%d",[[wl valueForKey:@"effectiveCount"] description],wl.finished];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
+            if (wl.finished) {
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }
             cell.detailTextLabel.text = detailTxt;
         }
     }else if (numberOfSections == 1) {
         if (self.todaysPlan != nil) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@ 完成:%d",self.todaysPlan.learningPlan.effectiveCount,self.todaysPlan.learningPlan.finished];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
             cell.detailTextLabel.text = detailTxt;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@,完成:%d",[[wl valueForKey:@"effectiveCount"] description],wl.finished];
+            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
+            if (wl.finished) {
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }
             cell.detailTextLabel.text = detailTxt;
         }
     }

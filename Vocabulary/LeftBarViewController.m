@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    self.rows = @[@"今日学习安排",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
+    self.rows = @[@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
 }
 
 - (void)didReceiveMemoryWarning

@@ -182,6 +182,8 @@
 		EC9D1F52169908CB00A8C5B9 /* toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */; };
 		EC9D1F561699148700A8C5B9 /* Plan.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F541699148700A8C5B9 /* Plan.h */; };
 		EC9D1F571699148700A8C5B9 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F551699148700A8C5B9 /* Plan.m */; };
+		EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8E1699509600A8C5B9 /* checkmark.png */; };
+		EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -421,6 +423,8 @@
 		EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbar@2x.png"; path = "artwork/toolbar@2x.png"; sourceTree = "<group>"; };
 		EC9D1F541699148700A8C5B9 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = Plan.h; path = Vocabulary/Plan.h; sourceTree = "<group>"; };
 		EC9D1F551699148700A8C5B9 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plan.m; path = Vocabulary/Plan.m; sourceTree = "<group>"; };
+		EC9D1F8E1699509600A8C5B9 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = artwork/checkmark.png; sourceTree = "<group>"; };
+		EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "artwork/checkmark@2x.png"; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -681,6 +685,8 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC9D1F8E1699509600A8C5B9 /* checkmark.png */,
+				EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */,
 				EC9D1F4F169908CB00A8C5B9 /* toolbar.png */,
 				EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */,
 				EC9D1F3E169817CD00A8C5B9 /* web-back.png */,
@@ -1045,6 +1051,8 @@
 				EC9D1F45169817CD00A8C5B9 /* web-forward@2x.png in Resources */,
 				EC9D1F51169908CB00A8C5B9 /* toolbar.png in Resources */,
 				EC9D1F52169908CB00A8C5B9 /* toolbar@2x.png in Resources */,
+				EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */,
+				EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

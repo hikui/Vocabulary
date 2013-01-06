@@ -80,14 +80,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-//    NSLog(@"view will disappear");
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    [self.downloadOp cancel];
-//    [self.voiceOp cancel];
-//    self.downloadOp = nil;
-//    self.voiceOp = nil;
-//    [self.player stop];
-    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];    
     [[CibaEngine sharedInstance]cancelOperationOfWord:self.word];
     
 }
@@ -111,7 +104,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -186,10 +178,6 @@
 
 - (IBAction)fullInfomation:(id)sender
 {
-////    UIButton *btn = (UIButton *)sender;
-//    CibaWebView *webView = [[CibaWebView alloc]initWithView:self.view word:self.word.key];
-////    webView.animationBeginPoint = btn.center;
-//    [webView showCibaWebViewAnimated:YES];
     VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
     NSURL *url = [NSURL URLWithString:CIBA_URL(self.word.key)];
     wvc.requestURL = url;
