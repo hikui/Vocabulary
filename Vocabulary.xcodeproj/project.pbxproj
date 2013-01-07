@@ -208,9 +208,6 @@
 		A46A7E591630296800DF4696 /* Vocabulary-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vocabulary-Prefix.pch"; sourceTree = "<group>"; };
 		A46A7E5A1630296800DF4696 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A46A7E5B1630296800DF4696 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A46A7E5D1630296800DF4696 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		A46A7E5F1630296800DF4696 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		A46A7E611630296800DF4696 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A46A7E6E16302A2C00DF4696 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A46A7EEB16304F9800DF4696 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -531,9 +528,6 @@
 				A46A7E541630296800DF4696 /* InfoPlist.strings */,
 				A46A7E571630296800DF4696 /* main.m */,
 				A46A7E591630296800DF4696 /* Vocabulary-Prefix.pch */,
-				A46A7E5D1630296800DF4696 /* Default.png */,
-				A46A7E5F1630296800DF4696 /* Default@2x.png */,
-				A46A7E611630296800DF4696 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
