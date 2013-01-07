@@ -46,6 +46,8 @@
 
 #define ShowAds NO
 
+#define GlobalBackgroundColor RGBA(227,227,227,1)
+
 // bock define
 typedef void (^HKVProgressCallback)(float progress);
 typedef void (^HKVVoidBlock)(void);

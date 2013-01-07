@@ -33,6 +33,8 @@
 
 @interface ShowWordListViewController ()
 
+- (void)refreshHintView;
+
 @end
 
 @implementation ShowWordListViewController
@@ -72,12 +74,22 @@
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-    int num = [sectionInfo numberOfObjects];
-    if (num == 0) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"你还没有Word list哦" message:@"请先“增加word list”" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-        [alert show];
-    }
+    self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
+    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.hintView.font = [UIFont boldSystemFontOfSize:20];
+    self.hintView.backgroundColor = GlobalBackgroundColor;
+    self.hintView.shadowColor = [UIColor whiteColor];
+    self.hintView.shadowOffset = CGSizeMake(0, 1);
+    self.hintView.textColor = RGBA(140, 140, 140, 1);
+    self.hintView.numberOfLines = 0;
+    self.hintView.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.hintView];
+//    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
+//    int num = [sectionInfo numberOfObjects];
+//    if (num == 0) {
+//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"你还没有Word list哦" message:@"请先“增加word list”" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
+//        [alert show];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,6 +101,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     self.bannerFrame = CGRectMake(0, self.view.frame.size.height-50, 320, 50);
+    [self refreshHintView];
+    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -302,6 +316,22 @@
         UIButton *realButton = (UIButton *)sender;
         [realButton setTitle:@"编辑" forState:UIControlStateNormal];
         [self.tableView setEditing:NO animated:YES];
+    }
+}
+
+- (void)refreshHintView
+{
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+    request.entity = entity;
+    NSUInteger wordListCount = [ctx countForFetchRequest:request error:nil];
+    
+    self.view.hidden = NO;
+    if (wordListCount == 0) {
+        self.hintView.text = @"还没有词汇列表哦~\n点击左上角按钮选择添加词汇列表即可添加!";
+    }else{
+        self.hintView.hidden = YES;
     }
 }
 

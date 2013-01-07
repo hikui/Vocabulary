@@ -74,8 +74,10 @@
     self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
     self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.hintView.font = [UIFont boldSystemFontOfSize:20];
-    self.hintView.shadowColor = RGBA(233, 233, 233, 1);
-    self.hintView.textColor = RGBA(100, 100, 100, 1);
+    self.hintView.backgroundColor = GlobalBackgroundColor;
+    self.hintView.shadowColor = [UIColor whiteColor];
+    self.hintView.shadowOffset = CGSizeMake(0, 1);
+    self.hintView.textColor = RGBA(140, 140, 140, 1);
     self.hintView.numberOfLines = 0;
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
