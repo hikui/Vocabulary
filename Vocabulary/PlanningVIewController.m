@@ -234,6 +234,9 @@
         if (indexPath.section == 0) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
+            if (self.todaysPlan.learningPlan.finished) {
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }
             cell.detailTextLabel.text = detailTxt;
         }else{
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
@@ -245,9 +248,12 @@
             cell.detailTextLabel.text = detailTxt;
         }
     }else if (numberOfSections == 1) {
-        if (self.todaysPlan != nil) {
+        if (self.todaysPlan.learningPlan != nil) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
+            if (self.todaysPlan.learningPlan.finished) {
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }
             cell.detailTextLabel.text = detailTxt;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
@@ -302,7 +308,7 @@
             subVC.wordList = wl;
         }
     }else if (numOfSections == 1) {
-        if (self.todaysPlan != nil) {
+        if (self.todaysPlan.learningPlan != nil) {
             subVC.wordList = self.todaysPlan.learningPlan;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
             WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
