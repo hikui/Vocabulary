@@ -33,6 +33,8 @@
 @property (nonatomic, strong) NSDictionary *effectiveCount_deltaDay_map;
 @property (nonatomic, unsafe_unretained) BOOL finishTodaysLearningPlan;
 
+- (void)refreshHintView;
+
 @end
 
 @implementation PlanningVIewController
@@ -67,6 +69,17 @@
     
     self.todaysPlan = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlan;
     self.title = @"记词助手";
+    
+    //用于提示已经完成所有计划
+    self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
+    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.hintView.font = [UIFont boldSystemFontOfSize:20];
+    self.hintView.shadowColor = RGBA(233, 233, 233, 1);
+    self.hintView.textColor = RGBA(100, 100, 100, 1);
+    self.hintView.numberOfLines = 0;
+    self.hintView.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:self.hintView];
+    
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -149,6 +162,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
+    [self refreshHintView];
     [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
@@ -323,6 +337,23 @@
     [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
 }
 
+- (void)refreshHintView
+{
+    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+    request.entity = entity;
+    NSUInteger wordListCount = [ctx countForFetchRequest:request error:nil];
+    
+    self.view.hidden = NO;
+    if (wordListCount == 0) {
+        self.hintView.text = @"还没有词汇列表哦~\n点击左上角按钮选择添加词汇列表即可添加!";
+    }else if (self.todaysPlan.learningPlan == nil && self.todaysPlan.reviewPlan.count == 0) {
+        self.hintView.text = @"恭喜你已经完成今日计划了!";
+    }else{
+        self.hintView.hidden = YES;
+    }
+}
 
 #pragma mark - GADBannerViewDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)view

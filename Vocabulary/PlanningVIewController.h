@@ -33,5 +33,6 @@
 //@property (nonatomic, strong) WordList *todaysPlan;
 @property (nonatomic, strong) Plan *todaysPlan;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UILabel *hintView;
 
 @end

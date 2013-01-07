@@ -69,8 +69,6 @@
 		A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */; };
 		A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */; };
 		A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D671644E5E2005EB1E0 /* WordListCreator.m */; };
-		A4754D7A164666E5005EB1E0 /* vocabulary-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A4754D79164666E4005EB1E0 /* vocabulary-logo.png */; };
-		A4754D7D164666EA005EB1E0 /* vocabulary-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4754D7C164666EA005EB1E0 /* vocabulary-logo@2x.png */; };
 		A4754D8D16466EA6005EB1E0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8C16466EA6005EB1E0 /* libGoogleAdMobAds.a */; };
 		A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8E16466ECB005EB1E0 /* StoreKit.framework */; };
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
@@ -293,8 +291,6 @@
 		A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
 		A4754D661644E5E2005EB1E0 /* WordListCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCreator.h; sourceTree = "<group>"; };
 		A4754D671644E5E2005EB1E0 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
-		A4754D79164666E4005EB1E0 /* vocabulary-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vocabulary-logo.png"; sourceTree = "<group>"; };
-		A4754D7C164666EA005EB1E0 /* vocabulary-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vocabulary-logo@2x.png"; sourceTree = "<group>"; };
 		A4754D8316466EA6005EB1E0 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdMobExtras.h; path = Vocabulary/lib/AdMob/GADAdMobExtras.h; sourceTree = "<group>"; };
 		A4754D8416466EA6005EB1E0 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdNetworkExtras.h; path = Vocabulary/lib/AdMob/GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		A4754D8516466EA6005EB1E0 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdSize.h; path = Vocabulary/lib/AdMob/GADAdSize.h; sourceTree = "<group>"; };
@@ -724,8 +720,6 @@
 				A410467E167C3E2200988DAC /* Default-568h@2x.png */,
 				A4F906601670EBDE00FA7FEA /* Default@2x.png */,
 				A4F9065D1670EBCC00FA7FEA /* Default.png */,
-				A4754D7C164666EA005EB1E0 /* vocabulary-logo@2x.png */,
-				A4754D79164666E4005EB1E0 /* vocabulary-logo.png */,
 				A46A8028163D336600DF4696 /* v@2x.png */,
 				A46A8025163D335E00DF4696 /* v.png */,
 				A46A800D163BDBAA00DF4696 /* greenButton.png */,
@@ -1018,8 +1012,6 @@
 				A46A8029163D336700DF4696 /* v@2x.png in Resources */,
 				A46A802E163D35E500DF4696 /* VWebViewController.xib in Resources */,
 				A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */,
-				A4754D7A164666E5005EB1E0 /* vocabulary-logo.png in Resources */,
-				A4754D7D164666EA005EB1E0 /* vocabulary-logo@2x.png in Resources */,
 				A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */,
 				EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */,
 				A4F9065E1670EBCC00FA7FEA /* Default.png in Resources */,
