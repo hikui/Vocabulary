@@ -56,8 +56,6 @@
 		A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800E163BDBAA00DF4696 /* greenButton@2x.png */; };
 		A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */; };
 		A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */; };
-		A46A8026163D335F00DF4696 /* v.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8025163D335E00DF4696 /* v.png */; };
-		A46A8029163D336700DF4696 /* v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8028163D336600DF4696 /* v@2x.png */; };
 		A46A802D163D35E500DF4696 /* VWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A802B163D35DE00DF4696 /* VWebViewController.m */; };
 		A46A802E163D35E500DF4696 /* VWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A802C163D35E100DF4696 /* VWebViewController.xib */; };
 		A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D2F1642A354005EB1E0 /* MessageUI.framework */; };
@@ -184,6 +182,8 @@
 		EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */; };
 		EC9D1F9C169970D500A8C5B9 /* VGradientView.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9A169970D400A8C5B9 /* VGradientView.h */; };
 		EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9B169970D500A8C5B9 /* VGradientView.m */; };
+		EC9D1FA9169AA2EB00A8C5B9 /* newicon.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FA8169AA2EB00A8C5B9 /* newicon.png */; };
+		EC9D1FAB169AA2F000A8C5B9 /* newicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FAA169AA2F000A8C5B9 /* newicon@2x.png */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -425,6 +425,8 @@
 		EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "artwork/checkmark@2x.png"; sourceTree = "<group>"; };
 		EC9D1F9A169970D400A8C5B9 /* VGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = VGradientView.h; sourceTree = "<group>"; };
 		EC9D1F9B169970D500A8C5B9 /* VGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGradientView.m; sourceTree = "<group>"; };
+		EC9D1FA8169AA2EB00A8C5B9 /* newicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newicon.png; sourceTree = "<group>"; };
+		EC9D1FAA169AA2F000A8C5B9 /* newicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newicon@2x.png"; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -685,6 +687,8 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC9D1FAA169AA2F000A8C5B9 /* newicon@2x.png */,
+				EC9D1FA8169AA2EB00A8C5B9 /* newicon.png */,
 				EC9D1F8E1699509600A8C5B9 /* checkmark.png */,
 				EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */,
 				EC9D1F4F169908CB00A8C5B9 /* toolbar.png */,
@@ -1008,8 +1012,6 @@
 				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
 				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
-				A46A8026163D335F00DF4696 /* v.png in Resources */,
-				A46A8029163D336700DF4696 /* v@2x.png in Resources */,
 				A46A802E163D35E500DF4696 /* VWebViewController.xib in Resources */,
 				A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */,
 				A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */,
@@ -1051,6 +1053,8 @@
 				EC9D1F52169908CB00A8C5B9 /* toolbar@2x.png in Resources */,
 				EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */,
 				EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */,
+				EC9D1FA9169AA2EB00A8C5B9 /* newicon.png in Resources */,
+				EC9D1FAB169AA2F000A8C5B9 /* newicon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

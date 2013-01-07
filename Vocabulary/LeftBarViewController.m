@@ -73,7 +73,7 @@
         UIImage *cellBGHighlighted = [[UIImage imageNamed:@"CellBGHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
         cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
         cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
     }
     cell.textLabel.text = self.rows[indexPath.row];
     return cell;
