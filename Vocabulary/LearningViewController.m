@@ -199,6 +199,7 @@
 #pragma mark - actions
 - (void)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

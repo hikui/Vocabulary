@@ -36,6 +36,16 @@
     self.rows = @[@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
     self.searchResultTableView.hidden = YES;
     self.searcher = [[WordSearcher alloc]init];
+    self.searchBar.backgroundColor = [UIColor clearColor];
+    self.searchResultTableView.backgroundView = nil;
+    self.searchResultTableView.backgroundColor = RGBA(227, 227, 227, 1);
+    self.searchResultTableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellSeparator.png"]];
+    for (UIView *subview in [self.searchBar subviews]) {
+        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
+        {
+            [subview removeFromSuperview];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,6 +107,9 @@
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResultCellIdentifier];
+//            UIImage *cellBG = [[UIImage imageNamed:@"SearchResultCellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+//            cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
+            cell.textLabel.backgroundColor = [UIColor clearColor];
         }
         cell.textLabel.text = ((Word *)self.searchResult[indexPath.row]).key;
         return cell;
@@ -106,6 +119,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.tableView) {
+        return 44;
+    }else if(tableView == self.searchResultTableView){
+        return 60;
+    }
     return 44;
 }
 
@@ -183,8 +201,10 @@
             }
         }
     }else if(tableView == self.searchResultTableView){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         LearningViewController *lvc = [[LearningViewController alloc]initWithWord:self.searchResult[indexPath.row]];
-        [self presentModalViewController:lvc animated:YES];
+        VNavigationController *nlvc = [[VNavigationController alloc]initWithRootViewController:lvc];
+        [self presentModalViewController:nlvc animated:YES];
     }
     
 }
@@ -207,7 +227,6 @@
 {
     IIViewDeckController *viewDeck = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
     viewDeck.leftSize = 0;
-    self.searchResultTableView.alpha = 0;
     [UIView animateWithDuration:[viewDeck closeSlideAnimationDuration] animations:^{
         searchBar.frame = CGRectMake(searchBar.frame.origin.x, searchBar.frame.origin.y, self.view.frame.size.width, searchBar.frame.size.height);
         [searchBar setShowsCancelButton:YES animated:YES];
@@ -231,6 +250,8 @@
         self.searchResultTableView.alpha = 0;
         self.searchResultTableView.hidden = YES;
     }];
+    self.searchResult = nil;
+    [self.searchResultTableView reloadData];
     [searchBar resignFirstResponder];
 }
 
@@ -250,5 +271,18 @@
     }];
 }
 
+#pragma mark - scroll view delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if (scrollView == self.searchResultTableView) {
+        [self.searchBar resignFirstResponder];
+        for(id subview in [self.searchBar subviews])
+        {
+            if ([subview isKindOfClass:[UIButton class]]) {
+                [subview setEnabled:YES];
+            }
+        }
+    }
+}
 
 @end
