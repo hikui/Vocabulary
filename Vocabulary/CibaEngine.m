@@ -114,14 +114,17 @@
             NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
             [self.livingOperations removeObject:completedGetPronOp];
             NSData *data = [completedGetPronOp responseData];
-            word.pronunciation.pronData = data;
-            word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+            NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+            PronunciationData *pron = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
+            pron.pronData = data;
+            word.pronunciation = pron;
+            word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
             [[CoreDataHelper sharedInstance]saveContext];
             completion();
             
         } onError:^(NSError *error) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordPronError userInfo:error.userInfo];
-            word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+            word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
             [[CoreDataHelper sharedInstance]saveContext];
             errorBlock(myError);
             [self.livingOperations removeObject:getPronOp];
