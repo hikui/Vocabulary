@@ -59,7 +59,7 @@
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
     viewDeckController.leftSize = 140;
-    
+    viewDeckController.delegate = self;
     self.viewDeckController = viewDeckController;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -74,6 +74,7 @@
     });
     if (!needMigration) {
         [self refreshTodaysPlan];
+        
         self.window.rootViewController = viewDeckController;
     }else{
         [[NSBundle mainBundle]loadNibNamed:@"WelcomeView" owner:self options:nil];
@@ -248,4 +249,26 @@ void uncaughtExceptionHandler(NSException *exception) {
     }
     self.todaysPlan.reviewPlan = reviewPlan;
 }
+
+#pragma mark - view deck delegate
+//- (void)viewDeckController:(IIViewDeckController*)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
+//{
+//    UIView *leftView = viewDeckController.leftController.view;
+//    if (animated) {
+//        [UIView animateWithDuration:1 animations:^{
+//            leftView.frame = CGRectMake(leftView.frame.origin.x, leftView.frame.origin.y, viewDeckController.leftViewSize, leftView.frame.size.height);
+//        }];
+//    }
+//}
+//- (void)viewDeckController:(IIViewDeckController*)viewDeckController didChangeOffset:(CGFloat)offset orientation:(IIViewDeckOffsetOrientation)orientation panning:(BOOL)panning
+//{
+//    NSLog(@"view deck did change offset with panning:%d, offset:%f",panning,offset);
+//    if (!panning && offset != 0.0f) {
+//        UIView *leftView = viewDeckController.leftController.view;
+////        [UIView animateWithDuration:1 animations:^{
+////            NSLog(@"leftViewSize:%f,leftSize:%f",viewDeckController.leftViewSize,viewDeckController.leftSize);
+////            leftView.frame = CGRectMake(leftView.frame.origin.x, leftView.frame.origin.y, offset, leftView.frame.size.height);
+////        }];
+//    }
+//}
 @end

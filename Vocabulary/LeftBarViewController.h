@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WordSearcher.h"
 
-@interface LeftBarViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface LeftBarViewController : UIViewController<UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, weak) IBOutlet UITableView *searchResultTableView;
+@property (nonatomic, strong) NSArray *searchResult;
+@property (nonatomic, strong) WordSearcher *searcher;
 
 @end

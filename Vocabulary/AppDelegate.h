@@ -24,11 +24,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IIViewDeckController.h"
 
 @class Plan;
-@class IIViewDeckController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,IIViewDeckControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (unsafe_unretained, nonatomic) BOOL finishTodaysLearningPlan;

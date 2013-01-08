@@ -25,7 +25,7 @@
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="wordLists" inverseEntity="Word" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PronunciationData" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="PronunciationData" positionX="-875" positionY="351" width="128" height="60"/>
         <element name="Word" positionX="-686" positionY="315" width="128" height="210"/>
         <element name="WordList" positionX="-434" positionY="369" width="128" height="135"/>
     </elements>
