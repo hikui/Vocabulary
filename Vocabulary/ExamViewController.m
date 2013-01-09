@@ -135,7 +135,7 @@
             
             CibaEngine *engine = [CibaEngine sharedInstance];
             __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
-                [self.networkOperationQueue removeObject:infoDownloadOp];
+                [self.networkOperationQueue removeObject:infoDownloadOp];                
                 [CibaXMLParser fillWord:w withResultDict:parsedDict];
                 [[CoreDataHelper sharedInstance]saveContext];
                 
@@ -147,7 +147,10 @@
                     __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
-                        w.pronunciation.pronData = data;
+                        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+                        PronunciationData *pronData = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
+                        pronData.pronData = data;
+                        w.pronunciation = pronData;
                         w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
                         [[CoreDataHelper sharedInstance]saveContext];
                         if (self.wordsWithNoInfoSet.count == 0) {
@@ -168,6 +171,15 @@
                         }
                     }];
                     [self.networkOperationQueue addObject:voiceOp];
+                }else {
+                    [self.wordsWithNoInfoSet removeObject:w];
+                    w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                    [[CoreDataHelper sharedInstance]saveContext];
+                    if (self.wordsWithNoInfoSet.count == 0) {
+                        //all ok
+                        [self createExamContentsArray];
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    }
                 }
             } onError:^(NSError *error) {
                 [self.wordsWithNoInfoSet removeObject:w];

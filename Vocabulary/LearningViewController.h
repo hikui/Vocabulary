@@ -41,6 +41,9 @@
 - (id)initWithWord:(Word *)word;
 - (void)refreshView;
 
+- (void)playSound;
+- (void)refreshWordData;
+
 - (IBAction)btnReadOnPressed:(id)sender;
 // use iciba web page
 - (IBAction)fullInfomation:(id)sender;

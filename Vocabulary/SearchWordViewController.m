@@ -94,6 +94,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.searchBar resignFirstResponder];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - table view delegate and data source

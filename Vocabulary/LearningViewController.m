@@ -69,6 +69,9 @@
     UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = backBtn;
     
+    UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
+    self.navigationItem.rightBarButtonItem = refreshBtn;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -88,6 +91,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     self.acceptationTextView.text = @"";
+    self.player = nil;
     for (UIView *view in self.view.subviews) {
         if ([view isKindOfClass:[CibaWebView class]]) {
             [view removeFromSuperview];
@@ -138,42 +142,16 @@
         [jointStr htmlUnescape];
         
         self.acceptationTextView.text = jointStr;
-        BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
         self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronunciation.pronData error:nil];
         [self.player prepareToPlay];
-        if (shouldPerformSound) {
-            [self.player play];
-        }
     }else{
-        Reachability *reachability = [Reachability reachabilityForInternetConnection];
-        if ([reachability currentReachabilityStatus] == NotReachable) {
-            self.acceptationTextView.text = @"无网络连接，首次访问需要通过网络。";
-            return;
-        }
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        CibaEngine *engine = [CibaEngine sharedInstance];
-        [engine fillWord:self.word onCompletion:^{
-            [hud hide:YES];
-            [self refreshView];
-        } onError:^(NSError *error) {
-            if ([error.domain isEqualToString:CibaEngineDormain] && error.code == FillWordPronError) {
-                hud.detailsLabelText = @"语音加载失败";
-                [hud hide:YES afterDelay:1.5];
-                [self refreshView];
-            }else{
-                hud.detailsLabelText = @"词义加载失败";
-                [hud hide:YES afterDelay:1.5];
-            }
-        }];
+        [self refreshWordData];
 
     }
 }
 - (IBAction)btnReadOnPressed:(id)sender
 {
-    if (self.player != nil) {
-        [self.player play];
-    }
+    [self playSound];
 }
 
 - (IBAction)fullInfomation:(id)sender
@@ -194,6 +172,41 @@
 {
     self.shouldHideInfo = YES;
     self.acceptationTextView.hidden = YES;
+}
+
+- (void)playSound
+{
+    if (self.player != nil) {
+        [self.player play];
+    }
+}
+- (void)refreshWordData
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    if ([reachability currentReachabilityStatus] == NotReachable) {
+        self.acceptationTextView.text = @"无网络连接，首次访问需要通过网络。";
+        return;
+    }
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    CibaEngine *engine = [CibaEngine sharedInstance];
+    [engine fillWord:self.word onCompletion:^{
+        [hud hide:YES];
+        [self refreshView];
+        BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
+        if (shouldPerformSound) {
+            [self playSound];
+        }
+    } onError:^(NSError *error) {
+        if ([error.domain isEqualToString:CibaEngineDormain] && error.code == FillWordPronError) {
+            hud.detailsLabelText = @"语音加载失败";
+            [hud hide:YES afterDelay:1.5];
+            [self refreshView];
+        }else{
+            hud.detailsLabelText = @"词义加载失败";
+            [hud hide:YES afterDelay:1.5];
+        }
+    }];
 }
 
 #pragma mark - actions

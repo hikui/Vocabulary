@@ -82,6 +82,7 @@
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -175,6 +176,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (BOOL)shouldAutorotate
 {
     return YES;
@@ -252,6 +258,8 @@
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
             if (self.todaysPlan.learningPlan.finished) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }else{
+                cell.accessoryView = nil;
             }
             cell.detailTextLabel.text = detailTxt;
         }else{
@@ -260,6 +268,8 @@
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
             if (wl.finished) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }else{
+                cell.accessoryView = nil;
             }
             cell.detailTextLabel.text = detailTxt;
         }
@@ -269,6 +279,8 @@
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
             if (self.todaysPlan.learningPlan.finished) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }else{
+                cell.accessoryView = nil;
             }
             cell.detailTextLabel.text = detailTxt;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
@@ -277,6 +289,8 @@
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
             if (wl.finished) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+            }else{
+                cell.accessoryView = nil;
             }
             cell.detailTextLabel.text = detailTxt;
         }
@@ -357,6 +371,13 @@
     }
 }
 
+#pragma mark - app become active notification
+- (void)appBecomeActive:(NSNotification *)notification
+{
+    NSLog(@"reload data");
+    [self.tableView reloadData];
+}
+
 #pragma mark - GADBannerViewDelegate
 - (void)adViewDidReceiveAd:(GADBannerView *)view
 {
@@ -376,6 +397,8 @@ didFailToReceiveAdWithError:(GADRequestError *)error
 //        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
 }
+
+
 
 
 

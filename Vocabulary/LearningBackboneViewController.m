@@ -29,6 +29,12 @@
 #import "VNavigationController.h"
 
 @interface LearningBackboneViewController ()
+{
+    bool forward;
+    BOOL firstAppear;
+}
+
+@property (nonatomic, weak) LearningViewController *currentShownViewController;
 
 - (void)shuffleWords;
 
@@ -38,14 +44,6 @@
 
 @implementation LearningBackboneViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (id)initWithWords:(NSMutableArray *)words
 {
@@ -53,6 +51,8 @@
     if (self) {
         _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
         _words = [words mutableCopy];
+        forward = true;
+        firstAppear = YES;
     }
     return self;
 }
@@ -79,9 +79,12 @@
     UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = backBtn;
     
-    UIBarButtonItem *searchButton = [VNavigationController generateSearchItemWithTarget:self action:@selector(searchButtonOnPress:)];
+//    UIBarButtonItem *searchButton = [VNavigationController generateSearchItemWithTarget:self action:@selector(searchButtonOnPress:)];
+//    
+//    self.navigationItem.rightBarButtonItem = searchButton;
     
-    self.navigationItem.rightBarButtonItem = searchButton;
+    UIBarButtonItem *refreshButtonItem = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshButtonOnPress:)];
+    self.navigationItem.rightBarButtonItem = refreshButtonItem;
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
@@ -92,6 +95,7 @@
     }
     if (self.learningViewControllerArray.count > 0) {
         [self.pageViewController setViewControllers:@[[self.learningViewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        self.currentShownViewController = [self.learningViewControllerArray objectAtIndex:0];
     }
 }
 
@@ -99,6 +103,14 @@
 {
     [super viewDidAppear:animated];
     [MobClick beginLogPageView:@"Learning"];
+    //必须手动为第一页播放声音。其余页在翻页结束的时候触发播放声音。
+    if (firstAppear) /*避免在左边栏search word时发声*/{
+        BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
+        if (shouldPerformSound) {
+            [self.currentShownViewController playSound];
+        }
+    }
+    firstAppear = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -128,8 +140,6 @@
 {
     return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
-
-static bool forward = true;
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController{
@@ -167,8 +177,14 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
             int index = [self.words indexOfObject:wd];
             if (forward) {
                 self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index+2,self.words.count];
+                self.currentShownViewController = self.learningViewControllerArray[(index+1)%2];
             }else{
                 self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index,self.words.count];
+                self.currentShownViewController = self.learningViewControllerArray[(index-1)%2];
+            }
+            BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
+            if (shouldPerformSound) {
+                [self.currentShownViewController playSound];
             }
         }
     }
@@ -208,6 +224,11 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
     nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:nsvc animated:YES];
+}
+
+- (void)refreshButtonOnPress:(id)sender
+{
+    [self.currentShownViewController refreshWordData];
 }
 
 - (void)back:(id)sender

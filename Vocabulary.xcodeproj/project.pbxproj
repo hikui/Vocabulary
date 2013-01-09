@@ -189,6 +189,8 @@
 		EC9D1FB7169AB2D900A8C5B9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FB6169AB2D900A8C5B9 /* Default-568h@2x.png */; };
 		EC9D2057169C029500A8C5B9 /* WordSearcher.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D2055169C029300A8C5B9 /* WordSearcher.h */; };
 		EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D2056169C029400A8C5B9 /* WordSearcher.m */; };
+		EC9D2060169D018700A8C5B9 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205E169D018700A8C5B9 /* refresh.png */; };
+		EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205F169D018700A8C5B9 /* refresh@2x.png */; };
 		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
@@ -435,6 +437,8 @@
 		EC9D1FB6169AB2D900A8C5B9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EC9D2055169C029300A8C5B9 /* WordSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = WordSearcher.h; sourceTree = "<group>"; };
 		EC9D2056169C029400A8C5B9 /* WordSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSearcher.m; sourceTree = "<group>"; };
+		EC9D205E169D018700A8C5B9 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = artwork/refresh.png; sourceTree = "<group>"; };
+		EC9D205F169D018700A8C5B9 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "artwork/refresh@2x.png"; sourceTree = "<group>"; };
 		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -695,6 +699,8 @@
 		A46A7FC91635909100DF4696 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EC9D205E169D018700A8C5B9 /* refresh.png */,
+				EC9D205F169D018700A8C5B9 /* refresh@2x.png */,
 				A48DCD9F169C57350069FEF7 /* CellSeparator.png */,
 				A48DCD96169C46400069FEF7 /* blackToolbarBG.png */,
 				A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */,
@@ -1069,6 +1075,8 @@
 				A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */,
 				A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */,
 				A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */,
+				EC9D2060169D018700A8C5B9 /* refresh.png in Resources */,
+				EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

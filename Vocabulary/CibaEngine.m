@@ -51,7 +51,12 @@
     [op onCompletion:^(MKNetworkOperation *completedOperation) {
         NSString *xmlString = [completedOperation responseString];
         NSDictionary *resultDict = [CibaXMLParser parseWithXMLString:xmlString];
-        completionBlock(resultDict);
+        if (resultDict == nil) {
+            errorBlock(nil);
+        }else{
+           completionBlock(resultDict); 
+        }
+        
     } onError:^(NSError *error) {
         errorBlock(error);
     }];

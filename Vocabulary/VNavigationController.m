@@ -14,25 +14,39 @@
 
 + (UIBarButtonItem *)generateBackItemWithTarget:(id)target action:(SEL)action
 {
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 42, 29)];
-    [btn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
-    return item;
+    return [VNavigationController generateItemWithType:VNavItemTypeBack target:target action:action];
 }
 
 + (UIBarButtonItem *)generateSearchItemWithTarget:(id)target action:(SEL)action
 {
-    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 42, 29)];
-    [btn setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-    UIImage *buttonImage = [UIImage imageNamed:@"search.png"];
-    [btn setImage:buttonImage forState:UIControlStateNormal];
-    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
-    return item;
+    return [VNavigationController generateItemWithType:VNavItemTypeSearch target:target action:action];
 }
+
++ (UIBarButtonItem *)generateItemWithType:(VNavItemType)type
+                                   target:(id)target
+                                   action:(SEL)action
+{
+    NSArray *buttonImageNames = @[@"search.png",@"refresh.png"];
+    
+    if (type == VNavItemTypeBack) {
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 42, 29)];
+        [btn setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+        [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
+        return item;
+    }else{
+        UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 42, 29)];
+        [btn setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
+        UIImage *buttonImage = [UIImage imageNamed:buttonImageNames[type]];
+        [btn setImage:buttonImage forState:UIControlStateNormal];
+        [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
+        return item;
+    }
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

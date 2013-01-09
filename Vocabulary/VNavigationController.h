@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum VNavItemType : NSInteger {
+    VNavItemTypeBack = -1,
+    VNavItemTypeSearch = 0,
+    VNavItemTypeRefresh = 1
+}VNavItemType;
+
 @interface VNavigationController : UINavigationController
 
 + (UIBarButtonItem *)generateBackItemWithTarget:(id)target action:(SEL)action;
 + (UIBarButtonItem *)generateSearchItemWithTarget:(id)target action:(SEL)action;
++ (UIBarButtonItem *)generateItemWithType:(VNavItemType)type
+                                   target:(id)target
+                                   action:(SEL)action;
 
 @end
 
