@@ -62,7 +62,6 @@
     self.textView.layer.borderWidth = 2.0f;
     self.textView.layer.cornerRadius = 4.0f;
     
-    UIToolbar *toolbar = (UIToolbar *)[self.view viewWithTag:1000];
 }
 
 - (void)viewDidUnload
@@ -165,7 +164,8 @@
             }
             return;
         }else{
-            [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+//            [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
             [self dismissModalViewControllerAnimated:YES];
         }
     }];

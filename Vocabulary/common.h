@@ -36,6 +36,7 @@
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
 #define kAutoIndex @"autoIndex"
+#define kShouldRefreshTodaysPlanNotificationKey @"shouldRefreshTodaysPlanNotificationKey"
 
 #define WordListCreatorDormain @"wordListCreatorDormain"
 #define WordListCreatorEmptyWordSetError -1

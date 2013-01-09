@@ -52,6 +52,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+    
     //广告
     self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self.view bringSubviewToFront:self.banner];
@@ -82,7 +85,7 @@
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(appBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldRefreshPlan:) name:kShouldRefreshTodaysPlanNotificationKey object:nil];
     
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navBg.png"] forBarMetrics:UIBarMetricsDefault];
     
@@ -371,10 +374,10 @@
     }
 }
 
-#pragma mark - app become active notification
-- (void)appBecomeActive:(NSNotification *)notification
+- (void)shouldRefreshPlan:(NSNotification *)notification
 {
     NSLog(@"reload data");
+    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
     [self.tableView reloadData];
 }
 

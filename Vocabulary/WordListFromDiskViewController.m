@@ -213,6 +213,8 @@
                 totalCount--;
                 if (totalCount <= 0) {
                     [hud hide:YES];
+//                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
                     [self dismissViewControllerAnimated:YES completion:nil];
                 }
             }];

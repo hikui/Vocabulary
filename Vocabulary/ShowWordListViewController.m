@@ -102,7 +102,8 @@
 {
     self.bannerFrame = CGRectMake(0, self.view.frame.size.height-50, 320, 50);
     [self refreshHintView];
-    [self.tableView reloadData];
+//    self.fetchedResultsController = nil;
+//    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 

@@ -73,7 +73,7 @@
         needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
     });
     if (!needMigration) {
-        [self refreshTodaysPlan];
+//        [self refreshTodaysPlan];
         
         self.window.rootViewController = viewDeckController;
     }else{
@@ -108,8 +108,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    NSLog(@"refresh plan");
-    [self refreshTodaysPlan];
+//    [self refreshTodaysPlan];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -171,7 +171,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 #pragma mark - database notification
 - (void)databaseMigrationFinished:(NSNotification *)notification
 {
-    [self refreshTodaysPlan];
+//    [self refreshTodaysPlan];
     [self.welcomeView removeFromSuperview];
     self.window.rootViewController = self.viewDeckController;
 }
