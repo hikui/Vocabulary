@@ -320,8 +320,11 @@
     //create examContents and detect if the word has acceptation.
     for (Word *word in self.wordsArray) {
         //NSLog(@"creating exam contents...");
-        ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
-        [self.examContentsQueue addObject:contentE2C];
+        if (word.acceptation != nil) {
+            ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
+            [self.examContentsQueue addObject:contentE2C];
+        }
+        
         //NSLog(@"%@",contentE2C);
         if ( word.pronunciation.pronData != nil) {
             ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
@@ -341,15 +344,17 @@
     //shuffle array
     [self shuffleMutableArray:self.examContentsQueue];
     
-    ExamContent *content = [self.examContentsQueue objectAtIndex:_cursor1];;
-    
-    ExamView *ev = [self pickAnExamView];
-    ev.content = content;
-    self.currentExamContent = content;
-    [self.view addSubview:ev];
-    [self examViewExchangeDidFinish:ev];
-    self.rightButton.enabled = YES;
-    self.wrongButton.enabled = YES;
+    if (self.examContentsQueue.count != 0) {
+        ExamContent *content = [self.examContentsQueue objectAtIndex:_cursor1];;
+        
+        ExamView *ev = [self pickAnExamView];
+        ev.content = content;
+        self.currentExamContent = content;
+        [self.view addSubview:ev];
+        [self examViewExchangeDidFinish:ev];
+        self.rightButton.enabled = YES;
+        self.wrongButton.enabled = YES;
+    }
 }
 
 - (void)shuffleMutableArray:(NSMutableArray *)array
