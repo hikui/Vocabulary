@@ -57,8 +57,13 @@
     [self.keyLabel sizeToFit];
     self.acceptationView.hidden = YES;
     
-    NSMutableString *acceptation = [[NSMutableString alloc]initWithString:content.word.acceptation];
-    [acceptation htmlUnescape];
+    NSMutableString *acceptation = nil;
+    
+    if (content.word.acceptation != nil) {
+        acceptation = [[NSMutableString alloc]initWithString:content.word.acceptation];
+        [acceptation htmlUnescape];
+    }
+    
     self.acceptationView.text = acceptation;
     self.showAcceptationButton.hidden = NO;
     NSData *pronData = content.word.pronunciation.pronData;
