@@ -91,16 +91,21 @@
         });
     }
     
-    [self persistentStoreCoordinator];
+    id psc = [self persistentStoreCoordinator];
     
-    if (currentQueue == mainQueue) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
-    }else{
+    if (psc == nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFailedNotification object:self];
         });
+    }else {
+        if (currentQueue == mainQueue) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
+            });
+        }
     }
-    
 }
 
 // Returns the managed object context for the application.
@@ -186,8 +191,18 @@
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+        MKNetworkEngine *engine = [[MKNetworkEngine alloc]initWithHostName:@"herkuang.info:12345"];
+        NSString *errorMsg = [NSString stringWithFormat:@"--------\n%@",[error userInfo]];
+        NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:errorMsg,@"content", nil];
+        MKNetworkOperation *op = [engine operationWithPath:@"/log" params:params httpMethod:@"POST"];
+        [op onCompletion:^(MKNetworkOperation *completedOperation) {
+            NSLog(@"report success");
+        } onError:^(NSError *error) {
+            NSLog(@"report failed");
+        }];
+        [engine enqueueOperation:op];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        return nil;
     }
     return _persistentStoreCoordinator;
 }

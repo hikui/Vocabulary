@@ -84,11 +84,13 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:YES];
         hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFailed:) name:kMigrationFailedNotification object:nil];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [[CoreDataHelper sharedInstance]migrateDatabase];
-//        });
+        });
         
     }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -174,6 +176,14 @@ void uncaughtExceptionHandler(NSException *exception) {
 //    [self refreshTodaysPlan];
     [self.welcomeView removeFromSuperview];
     self.window.rootViewController = self.viewDeckController;
+}
+
+- (void)databaseMigrationFailed:(NSNotification *)notification
+{
+    [MBProgressHUD hideHUDForView:self.welcomeView animated:NO];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:NO];
+    hud.mode = MBProgressHUDModeText;
+    hud.detailsLabelText = @"数据库升级失败！\n请您回退到以前版本或通过iTunes删除已有数据库。";
 }
 
 #pragma mark - custom methods

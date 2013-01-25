@@ -28,6 +28,7 @@
 
 #define kStartMigrationNotification @"startMigration"
 #define kMigrationFinishedNotification @"migrationFinished"
+#define kMigrationFailedNotification @"migRationFailed"
 
 @interface CoreDataHelper : NSObject
 
