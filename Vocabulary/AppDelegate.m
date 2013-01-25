@@ -84,9 +84,9 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:YES];
         hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [[CoreDataHelper sharedInstance]migrateDatabase];
-        });
+//        });
         
     }
     [self.window makeKeyAndVisible];
