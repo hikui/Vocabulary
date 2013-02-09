@@ -92,6 +92,7 @@
     }
     
     id psc = [self persistentStoreCoordinator];
+    [self saveContext];
     
     if (psc == nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -192,7 +193,8 @@
          
          */
         MKNetworkEngine *engine = [[MKNetworkEngine alloc]initWithHostName:@"herkuang.info:12345"];
-        NSString *errorMsg = [NSString stringWithFormat:@"--------\n%@",[error userInfo]];
+        NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+        NSString *errorMsg = [NSString stringWithFormat:@"--------\nChannelId:%@\nBuild:%@\n%@",kChannelId,build,[error userInfo]];
         NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:errorMsg,@"content", nil];
         MKNetworkOperation *op = [engine operationWithPath:@"/log" params:params httpMethod:@"POST"];
         [op onCompletion:^(MKNetworkOperation *completedOperation) {

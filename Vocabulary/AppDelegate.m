@@ -42,7 +42,7 @@
 {
     [[UIApplication sharedApplication]setStatusBarHidden:NO];
     //友盟统计
-    [MobClick startWithAppkey:@"50b828715270152727000018" reportPolicy:REALTIME channelId:@"91Store"];
+    [MobClick startWithAppkey:@"50b828715270152727000018" reportPolicy:REALTIME channelId:kChannelId];
     [MobClick updateOnlineConfig];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
     
@@ -126,8 +126,21 @@
     [helper saveContext];
 }
 
-void uncaughtExceptionHandler(NSException *exception) {
-    NSLog(@"crush");
+void uncaughtExceptionHandler(NSException *exception)
+{
+    MKNetworkEngine *engine = [[MKNetworkEngine alloc]initWithHostName:@"herkuang.info:12345"];
+    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
+    NSString *errorMsg = [NSString stringWithFormat:@"--------\nChannelId:%@\nBuild:%@\n%@",kChannelId,build,[exception userInfo]];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:errorMsg,@"content", nil];
+    MKNetworkOperation *op = [engine operationWithPath:@"/log" params:params httpMethod:@"POST"];
+    [op onCompletion:^(MKNetworkOperation *completedOperation) {
+        NSLog(@"report success");
+        abort();
+    } onError:^(NSError *error) {
+        NSLog(@"report failed");
+        abort();
+    }];
+    [engine enqueueOperation:op];
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
