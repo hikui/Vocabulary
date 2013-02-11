@@ -73,6 +73,7 @@
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
+		A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A497343416C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel */; };
 		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8911695A840008F013C /* LeftBarViewController.m */; };
@@ -313,6 +314,8 @@
 		A48DCD96169C46400069FEF7 /* blackToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackToolbarBG.png; path = artwork/blackToolbarBG.png; sourceTree = "<group>"; };
 		A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackToolbarBG@2x.png"; path = "artwork/blackToolbarBG@2x.png"; sourceTree = "<group>"; };
 		A48DCD9F169C57350069FEF7 /* CellSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellSeparator.png; path = artwork/CellSeparator.png; sourceTree = "<group>"; };
+		A497343116C9455000337AB4 /* Model3.1WithCascadeBug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model3.1WithCascadeBug.xcdatamodel; sourceTree = "<group>"; };
+		A497343416C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV3_1ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV3_1ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
 		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -817,6 +820,7 @@
 		A4852ECD1680BB9B00A4602C /* migration */ = {
 			isa = PBXGroup;
 			children = (
+				A497343416C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel */,
 				EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */,
 				A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */,
 				A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */,
@@ -1189,6 +1193,7 @@
 				EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */,
 				EC9D2057169C029500A8C5B9 /* WordSearcher.h in Sources */,
 				EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */,
+				A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,6 +1336,7 @@
 		A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A497343116C9455000337AB4 /* Model3.1WithCascadeBug.xcdatamodel */,
 				A4852EC91680BA7600A4602C /* Model4.xcdatamodel */,
 				EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */,
 				EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */,
