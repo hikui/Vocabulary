@@ -26,6 +26,7 @@
 #import "WordListFromDiskViewController.h"
 #import "WordListCreator.h"
 #import "AppDelegate.h"
+#import "GuideViewController.h"
 
 @interface WordListFromDiskViewController ()
 
@@ -43,6 +44,18 @@
     self.fileList = [[NSMutableArray alloc]init];
     self.selectedIndexPath = [[NSMutableSet alloc]init];
     [self scanFiles];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    GuideViewController *gvc = [GuideViewController guideViewControllerForClass:[self class]];
+    if (gvc != nil) {
+        [self addChildViewController:gvc];
+        [self.view addSubview:gvc.view];
+        gvc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [gvc updateContentSize];
+        [gvc didMoveToParentViewController:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning
