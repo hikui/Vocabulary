@@ -26,7 +26,7 @@
 #import "WordListFromDiskViewController.h"
 #import "WordListCreator.h"
 #import "AppDelegate.h"
-#import "GuideViewController.h"
+#import "GuideView.h"
 
 @interface WordListFromDiskViewController ()
 
@@ -48,13 +48,23 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    GuideViewController *gvc = [GuideViewController guideViewControllerForClass:[self class]];
-    if (gvc != nil) {
-        [self addChildViewController:gvc];
-        [self.view addSubview:gvc.view];
-        gvc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        [gvc updateContentSize];
-        [gvc didMoveToParentViewController:self];
+//    GuideViewController *gvc = [GuideViewController guideViewControllerForClass:[self class]];
+//    if (gvc != nil) {
+//        [self addChildViewController:gvc];
+//        [self.view addSubview:gvc.view];
+//        gvc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+//        [gvc updateContentSize];
+//        [gvc didMoveToParentViewController:self];
+//    }
+    GuideView *gv = [GuideView guideViewForClass:[self class]];
+    if (gv != nil) {
+        NSInteger guideVersion = gv.guide.guideVersion;
+        NSInteger currGuideVersion = [[NSUserDefaults standardUserDefaults]integerForKey:gv.guide.guideName];
+        if (guideVersion > currGuideVersion) {
+            gv.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            [gv guideWillAppear];
+            [self.view addSubview:gv];
+        }
     }
 }
 
@@ -245,6 +255,20 @@
 {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"确定删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
     [alert show];
+}
+
+- (IBAction)helpButtonPressed:(id)sender
+{
+    GuideView *gv = [GuideView guideViewForClass:[self class]];
+    if (gv != nil) {
+        gv.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        gv.alpha = 0;
+        [gv guideWillAppear];
+        [self.view addSubview:gv];
+        [UIView animateWithDuration:0.5 animations:^{
+            gv.alpha = 1;
+        }];
+    }
 }
 
 

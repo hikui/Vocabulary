@@ -36,6 +36,7 @@
 - (IBAction)finishButtonOnPress:(id)sender;
 - (IBAction)refreshButtonOnPress:(id)sender;
 - (IBAction)clearAllFilesButtonPressed:(id)sender;
+- (IBAction)helpButtonPressed:(id)sender;
 - (void)clearAllFiles;
 
 @end

@@ -51,6 +51,11 @@
 
 #define kChannelId @"91Store"
 
+#define IS_WIDESCREEN ( fabs((double)[[UIScreen mainScreen ] bounds ].size.height -(double)568)< DBL_EPSILON )
+#define IS_IPHONE ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPhone"])
+#define IS_IPOD   ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPod touch"])
+#define IS_IPHONE_5 ( IS_IPHONE && IS_WIDESCREEN )
+
 // bock define
 typedef void (^HKVProgressCallback)(float progress);
 typedef void (^HKVVoidBlock)(void);

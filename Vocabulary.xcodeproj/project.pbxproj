@@ -196,17 +196,25 @@
 		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
 		ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */; };
-		ECB725A616D0BB1800BAB36D /* GuideViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725A316D0BB1800BAB36D /* GuideViewController.h */; };
-		ECB725A716D0BB1800BAB36D /* GuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725A416D0BB1800BAB36D /* GuideViewController.m */; };
-		ECB725A816D0BB1800BAB36D /* GuideViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB725A516D0BB1800BAB36D /* GuideViewController.xib */; };
+		ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB725A516D0BB1800BAB36D /* GuideView.xib */; };
 		ECB725AB16D0BBA400BAB36D /* Guide.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725A916D0BBA400BAB36D /* Guide.h */; };
 		ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AA16D0BBA400BAB36D /* Guide.m */; };
 		ECB725AF16D0C4EA00BAB36D /* WordListFromDiskGuide.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AD16D0C4EA00BAB36D /* WordListFromDiskGuide.h */; };
 		ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */; };
-		ECB725B716D0D41600BAB36D /* import_wordlist_itunes1.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725B316D0D41600BAB36D /* import_wordlist_itunes1.png */; };
-		ECB725B816D0D41600BAB36D /* import_wordlist_itunes2.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725B416D0D41600BAB36D /* import_wordlist_itunes2.png */; };
-		ECB725B916D0D41600BAB36D /* import_wordlist_itunes3.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725B516D0D41600BAB36D /* import_wordlist_itunes3.png */; };
-		ECB725BA16D0D41600BAB36D /* import_wordlist_itunes4.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725B616D0D41600BAB36D /* import_wordlist_itunes4.png */; };
+		ECB725BD16D20B5F00BAB36D /* GuideView.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725BB16D20B5F00BAB36D /* GuideView.h */; };
+		ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725BC16D20B5F00BAB36D /* GuideView.m */; };
+		ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725BF16D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png */; };
+		ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C016D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png */; };
+		ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C116D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png */; };
+		ECB725C616D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C216D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png */; };
+		ECB725CB16D21C8F00BAB36D /* import_wordlist_itunes1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C716D21C8E00BAB36D /* import_wordlist_itunes1@2x.png */; };
+		ECB725CC16D21C8F00BAB36D /* import_wordlist_itunes2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C816D21C8F00BAB36D /* import_wordlist_itunes2@2x.png */; };
+		ECB725CD16D21C8F00BAB36D /* import_wordlist_itunes3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C916D21C8F00BAB36D /* import_wordlist_itunes3@2x.png */; };
+		ECB725CE16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725CA16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png */; };
+		ECB725D316D21D5300BAB36D /* import_wordlist_itunes1.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725CF16D21D5300BAB36D /* import_wordlist_itunes1.png */; };
+		ECB725D416D21D5300BAB36D /* import_wordlist_itunes2.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725D016D21D5300BAB36D /* import_wordlist_itunes2.png */; };
+		ECB725D516D21D5300BAB36D /* import_wordlist_itunes3.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725D116D21D5300BAB36D /* import_wordlist_itunes3.png */; };
+		ECB725D616D21D5300BAB36D /* import_wordlist_itunes4.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725D216D21D5300BAB36D /* import_wordlist_itunes4.png */; };
 		ECF8B85D1688424400A608D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF8B85C1688424400A608D7 /* AudioToolbox.framework */; };
 		ECF8B85F168842A500A608D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF8B85E168842A500A608D7 /* CFNetwork.framework */; };
 		ECF8B8611688432B00A608D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECF8B8601688432B00A608D7 /* SystemConfiguration.framework */; };
@@ -459,17 +467,25 @@
 		ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
 		ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
 		ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateWordListViewController.xib; sourceTree = "<group>"; };
-		ECB725A316D0BB1800BAB36D /* GuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = GuideViewController.h; sourceTree = "<group>"; };
-		ECB725A416D0BB1800BAB36D /* GuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideViewController.m; sourceTree = "<group>"; };
-		ECB725A516D0BB1800BAB36D /* GuideViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideViewController.xib; sourceTree = "<group>"; };
+		ECB725A516D0BB1800BAB36D /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
 		ECB725A916D0BBA400BAB36D /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = Guide.h; sourceTree = "<group>"; };
 		ECB725AA16D0BBA400BAB36D /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		ECB725AD16D0C4EA00BAB36D /* WordListFromDiskGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = WordListFromDiskGuide.h; sourceTree = "<group>"; };
 		ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListFromDiskGuide.m; sourceTree = "<group>"; };
-		ECB725B316D0D41600BAB36D /* import_wordlist_itunes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes1.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes1.png; sourceTree = "<group>"; };
-		ECB725B416D0D41600BAB36D /* import_wordlist_itunes2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes2.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes2.png; sourceTree = "<group>"; };
-		ECB725B516D0D41600BAB36D /* import_wordlist_itunes3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes3.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes3.png; sourceTree = "<group>"; };
-		ECB725B616D0D41600BAB36D /* import_wordlist_itunes4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes4.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes4.png; sourceTree = "<group>"; };
+		ECB725BB16D20B5F00BAB36D /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = GuideView.h; sourceTree = "<group>"; };
+		ECB725BC16D20B5F00BAB36D /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
+		ECB725BF16D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes1-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes1-568h@2x.png"; sourceTree = "<group>"; };
+		ECB725C016D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes2-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes2-568h@2x.png"; sourceTree = "<group>"; };
+		ECB725C116D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes3-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes3-568h@2x.png"; sourceTree = "<group>"; };
+		ECB725C216D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes4-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes4-568h@2x.png"; sourceTree = "<group>"; };
+		ECB725C716D21C8E00BAB36D /* import_wordlist_itunes1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes1@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes1@2x.png"; sourceTree = "<group>"; };
+		ECB725C816D21C8F00BAB36D /* import_wordlist_itunes2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes2@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes2@2x.png"; sourceTree = "<group>"; };
+		ECB725C916D21C8F00BAB36D /* import_wordlist_itunes3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes3@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes3@2x.png"; sourceTree = "<group>"; };
+		ECB725CA16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes4@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes4@2x.png"; sourceTree = "<group>"; };
+		ECB725CF16D21D5300BAB36D /* import_wordlist_itunes1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes1.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes1.png; sourceTree = "<group>"; };
+		ECB725D016D21D5300BAB36D /* import_wordlist_itunes2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes2.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes2.png; sourceTree = "<group>"; };
+		ECB725D116D21D5300BAB36D /* import_wordlist_itunes3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes3.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes3.png; sourceTree = "<group>"; };
+		ECB725D216D21D5300BAB36D /* import_wordlist_itunes4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = import_wordlist_itunes4.png; path = artwork/guides/word_list_from_disk_guide/import_wordlist_itunes4.png; sourceTree = "<group>"; };
 		ECF8B85C1688424400A608D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		ECF8B85E168842A500A608D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		ECF8B8601688432B00A608D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -984,13 +1000,13 @@
 		ECB725A216D0BAE800BAB36D /* guide */ = {
 			isa = PBXGroup;
 			children = (
-				ECB725A316D0BB1800BAB36D /* GuideViewController.h */,
-				ECB725A416D0BB1800BAB36D /* GuideViewController.m */,
-				ECB725A516D0BB1800BAB36D /* GuideViewController.xib */,
 				ECB725A916D0BBA400BAB36D /* Guide.h */,
 				ECB725AA16D0BBA400BAB36D /* Guide.m */,
 				ECB725AD16D0C4EA00BAB36D /* WordListFromDiskGuide.h */,
 				ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */,
+				ECB725BB16D20B5F00BAB36D /* GuideView.h */,
+				ECB725BC16D20B5F00BAB36D /* GuideView.m */,
+				ECB725A516D0BB1800BAB36D /* GuideView.xib */,
 			);
 			name = guide;
 			sourceTree = "<group>";
@@ -1006,10 +1022,18 @@
 		ECB725B216D0C88A00BAB36D /* word_list_from_disk_guide */ = {
 			isa = PBXGroup;
 			children = (
-				ECB725B316D0D41600BAB36D /* import_wordlist_itunes1.png */,
-				ECB725B416D0D41600BAB36D /* import_wordlist_itunes2.png */,
-				ECB725B516D0D41600BAB36D /* import_wordlist_itunes3.png */,
-				ECB725B616D0D41600BAB36D /* import_wordlist_itunes4.png */,
+				ECB725CF16D21D5300BAB36D /* import_wordlist_itunes1.png */,
+				ECB725D016D21D5300BAB36D /* import_wordlist_itunes2.png */,
+				ECB725D116D21D5300BAB36D /* import_wordlist_itunes3.png */,
+				ECB725D216D21D5300BAB36D /* import_wordlist_itunes4.png */,
+				ECB725C716D21C8E00BAB36D /* import_wordlist_itunes1@2x.png */,
+				ECB725C816D21C8F00BAB36D /* import_wordlist_itunes2@2x.png */,
+				ECB725C916D21C8F00BAB36D /* import_wordlist_itunes3@2x.png */,
+				ECB725CA16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png */,
+				ECB725BF16D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png */,
+				ECB725C016D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png */,
+				ECB725C116D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png */,
+				ECB725C216D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png */,
 			);
 			name = word_list_from_disk_guide;
 			sourceTree = "<group>";
@@ -1138,11 +1162,19 @@
 				A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */,
 				EC9D2060169D018700A8C5B9 /* refresh.png in Resources */,
 				EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */,
-				ECB725A816D0BB1800BAB36D /* GuideViewController.xib in Resources */,
-				ECB725B716D0D41600BAB36D /* import_wordlist_itunes1.png in Resources */,
-				ECB725B816D0D41600BAB36D /* import_wordlist_itunes2.png in Resources */,
-				ECB725B916D0D41600BAB36D /* import_wordlist_itunes3.png in Resources */,
-				ECB725BA16D0D41600BAB36D /* import_wordlist_itunes4.png in Resources */,
+				ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */,
+				ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */,
+				ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */,
+				ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */,
+				ECB725C616D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png in Resources */,
+				ECB725CB16D21C8F00BAB36D /* import_wordlist_itunes1@2x.png in Resources */,
+				ECB725CC16D21C8F00BAB36D /* import_wordlist_itunes2@2x.png in Resources */,
+				ECB725CD16D21C8F00BAB36D /* import_wordlist_itunes3@2x.png in Resources */,
+				ECB725CE16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png in Resources */,
+				ECB725D316D21D5300BAB36D /* import_wordlist_itunes1.png in Resources */,
+				ECB725D416D21D5300BAB36D /* import_wordlist_itunes2.png in Resources */,
+				ECB725D516D21D5300BAB36D /* import_wordlist_itunes3.png in Resources */,
+				ECB725D616D21D5300BAB36D /* import_wordlist_itunes4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,12 +1288,12 @@
 				EC9D2057169C029500A8C5B9 /* WordSearcher.h in Sources */,
 				EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */,
 				A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
-				ECB725A616D0BB1800BAB36D /* GuideViewController.h in Sources */,
-				ECB725A716D0BB1800BAB36D /* GuideViewController.m in Sources */,
 				ECB725AB16D0BBA400BAB36D /* Guide.h in Sources */,
 				ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */,
 				ECB725AF16D0C4EA00BAB36D /* WordListFromDiskGuide.h in Sources */,
 				ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */,
+				ECB725BD16D20B5F00BAB36D /* GuideView.h in Sources */,
+				ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

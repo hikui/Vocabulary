@@ -19,7 +19,11 @@
     if (index < 0 || index > self.guidePictureNameArray.count) {
         return nil;
     }
-    return [UIImage imageNamed:self.guidePictureNameArray[index]];
+    NSString *pictureName = self.guidePictureNameArray[index];
+    if (IS_IPHONE_5) {
+        pictureName = [NSString stringWithFormat:@"%@-568h",pictureName];
+    }
+    return [UIImage imageNamed:pictureName];
 }
 
 @end

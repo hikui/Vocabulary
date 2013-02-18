@@ -19,7 +19,7 @@
                                   @"import_wordlist_itunes3",@"import_wordlist_itunes4"
                                   , nil];
         _guideName = @"WordListFromDiskGuide";
-        _guideVersion = 1;
+        _guideVersion = 2;
     }
     return self;
 }
