@@ -49,7 +49,7 @@
 
 #define GlobalBackgroundColor RGBA(227,227,227,1)
 
-#define kChannelId @"AppStore"
+#define kChannelId @"91Store"
 
 #define IS_WIDESCREEN ( fabs((double)[[UIScreen mainScreen ] bounds ].size.height -(double)568)< DBL_EPSILON )
 #define IS_IPHONE ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPhone"])
