@@ -134,8 +134,6 @@
     if (coordinator != nil) {
         NSManagedObjectContext *ctx = [[NSManagedObjectContext alloc]init];
         [ctx setPersistentStoreCoordinator:coordinator];
-//        //各个context之间同步
-//        [[NSNotificationCenter defaultCenter]addObserver:ctx selector:@selector(mergeChangesFromContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:nil];
         [ctx setMergePolicy:NSMergeByPropertyStoreTrumpMergePolicy];
         return ctx;
     }
@@ -221,8 +219,10 @@
 {
     NSLog(@"- (void)receiveContextSaveNotification:(NSNotification *)notification;");
     if (_managedObjectContext != nil && notification.object != self.managedObjectContext) {
-        [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-        NSLog(@"do merge");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+            NSLog(@"do merge");
+        });
     }
 }
 

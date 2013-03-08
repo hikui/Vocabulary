@@ -126,6 +126,14 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"评估完成" target:self action:@selector(backButtonPressed)];
     self.navigationItem.leftBarButtonItem = backButton;
     
+    //create 2 exam views;
+    ExamView *ev1 = [ExamView newInstance];
+    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
+    ExamView *ev2 = [ExamView newInstance];
+    ev2.frame = ev1.frame;
+    [self.examViewReuseQueue addObject:ev1];
+    [self.examViewReuseQueue addObject:ev2];
+    
     
     //扫描是否有未加载的word
     for (Word *w in self.wordsArray) {
@@ -160,6 +168,7 @@
                         }
                         
                     } onError:^(NSError *error) {
+                        // get sound faild
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
                         w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
@@ -172,6 +181,7 @@
                     }];
                     [self.networkOperationQueue addObject:voiceOp];
                 }else {
+                    // this word has no sound
                     [self.wordsWithNoInfoSet removeObject:w];
                     w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
                     [[CoreDataHelper sharedInstance]saveContext];
@@ -182,6 +192,7 @@
                     }
                 }
             } onError:^(NSError *error) {
+                // failed to get the word's meaning
                 [self.wordsWithNoInfoSet removeObject:w];
                 [self.networkOperationQueue removeObject:infoDownloadOp];
                 if (self.wordsWithNoInfoSet.count == 0) {
@@ -332,14 +343,6 @@
             //NSLog(@"%@",contentS2E);
         }
     }
-    
-    //create 2 exam views;
-    ExamView *ev1 = [ExamView newInstance];
-    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
-    ExamView *ev2 = [ExamView newInstance];
-    ev2.frame = ev1.frame;
-    [self.examViewReuseQueue addObject:ev1];
-    [self.examViewReuseQueue addObject:ev2];
     
     //shuffle array
     [self shuffleMutableArray:self.examContentsQueue];
