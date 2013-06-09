@@ -84,73 +84,46 @@
 		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
 		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
 		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
-		EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */; };
+		EC07DB5E17642E6500415183 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EC07DB5C17642E6500415183 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
-		EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */ = {isa = PBXBuildFile; fileRef = EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */; };
 		EC11520D163A8FFB0039A5FA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EC11520B163A8FFB0039A5FA /* MBProgressHUD.m */; };
-		EC1EC228167EF233003B1C69 /* CibaWebView.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC226167EF232003B1C69 /* CibaWebView.h */; };
 		EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC227167EF232003B1C69 /* CibaWebView.m */; };
 		EC1EC268167F2091003B1C69 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1EC266167F2091003B1C69 /* closeButton.png */; };
 		EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1EC267167F2091003B1C69 /* closeButton@2x.png */; };
-		EC1EC3201681894A003B1C69 /* Word.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC31E16818949003B1C69 /* Word.h */; };
 		EC1EC3211681894A003B1C69 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC31F16818949003B1C69 /* Word.m */; };
-		EC1EC3241681894A003B1C69 /* PronunciationData.h in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC3221681894A003B1C69 /* PronunciationData.h */; };
 		EC1EC3251681894A003B1C69 /* PronunciationData.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC3231681894A003B1C69 /* PronunciationData.m */; };
 		EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */; };
 		EC2290091696B46700D7E0D8 /* splitline.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290071696B46700D7E0D8 /* splitline.png */; };
 		EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290081696B46700D7E0D8 /* splitline@2x.png */; };
 		EC22900E1696B62D00D7E0D8 /* navBg.png in Resources */ = {isa = PBXBuildFile; fileRef = EC22900C1696B62A00D7E0D8 /* navBg.png */; };
 		EC22900F1696B62D00D7E0D8 /* navBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC22900D1696B62B00D7E0D8 /* navBg@2x.png */; };
-		EC2290121696B81B00D7E0D8 /* VNavigationController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC2290101696B81900D7E0D8 /* VNavigationController.h */; };
 		EC2290131696B81B00D7E0D8 /* VNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2290111696B81A00D7E0D8 /* VNavigationController.m */; };
 		EC2290161696BFA100D7E0D8 /* barButtonBG.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290141696BF9C00D7E0D8 /* barButtonBG.png */; };
 		EC2290171696BFA100D7E0D8 /* barButtonBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290151696BF9E00D7E0D8 /* barButtonBG@2x.png */; };
-		EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39422E1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h */; };
 		EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39422F1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m */; };
-		EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942301630E54D00E6AE18 /* CXMLNode_CreationExtensions.h */; };
 		EC39424D1630E54D00E6AE18 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942311630E54D00E6AE18 /* CXMLNode_CreationExtensions.m */; };
-		EC39424E1630E54D00E6AE18 /* CXHTMLDocument.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942321630E54D00E6AE18 /* CXHTMLDocument.h */; };
 		EC39424F1630E54D00E6AE18 /* CXHTMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942331630E54D00E6AE18 /* CXHTMLDocument.m */; };
-		EC3942501630E54D00E6AE18 /* CXMLDocument_PrivateExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942341630E54D00E6AE18 /* CXMLDocument_PrivateExtensions.h */; };
 		EC3942511630E54D00E6AE18 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942351630E54D00E6AE18 /* CXMLDocument_PrivateExtensions.m */; };
-		EC3942521630E54D00E6AE18 /* CXMLDocument.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942361630E54D00E6AE18 /* CXMLDocument.h */; };
 		EC3942531630E54D00E6AE18 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942371630E54D00E6AE18 /* CXMLDocument.m */; };
-		EC3942541630E54D00E6AE18 /* CXMLElement_CreationExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942381630E54D00E6AE18 /* CXMLElement_CreationExtensions.h */; };
 		EC3942551630E54D00E6AE18 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942391630E54D00E6AE18 /* CXMLElement_CreationExtensions.m */; };
-		EC3942561630E54D00E6AE18 /* CXMLElement_ElementTreeExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39423A1630E54D00E6AE18 /* CXMLElement_ElementTreeExtensions.h */; };
 		EC3942571630E54D00E6AE18 /* CXMLElement_ElementTreeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39423B1630E54D00E6AE18 /* CXMLElement_ElementTreeExtensions.m */; };
-		EC3942581630E54D00E6AE18 /* CXMLElement.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39423C1630E54D00E6AE18 /* CXMLElement.h */; };
 		EC3942591630E54D00E6AE18 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39423D1630E54D00E6AE18 /* CXMLElement.m */; };
-		EC39425A1630E54D00E6AE18 /* CXMLNamespaceNode.h in Sources */ = {isa = PBXBuildFile; fileRef = EC39423E1630E54D00E6AE18 /* CXMLNamespaceNode.h */; };
 		EC39425B1630E54D00E6AE18 /* CXMLNamespaceNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC39423F1630E54D00E6AE18 /* CXMLNamespaceNode.m */; };
-		EC39425C1630E54D00E6AE18 /* CXMLNode_PrivateExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942401630E54D00E6AE18 /* CXMLNode_PrivateExtensions.h */; };
 		EC39425D1630E54D00E6AE18 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942411630E54D00E6AE18 /* CXMLNode_PrivateExtensions.m */; };
-		EC39425E1630E54D00E6AE18 /* CXMLNode_XPathExtensions.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942421630E54D00E6AE18 /* CXMLNode_XPathExtensions.h */; };
 		EC39425F1630E54D00E6AE18 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942431630E54D00E6AE18 /* CXMLNode_XPathExtensions.m */; };
-		EC3942601630E54D00E6AE18 /* CXMLNode.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942441630E54D00E6AE18 /* CXMLNode.h */; };
 		EC3942611630E54D00E6AE18 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942451630E54D00E6AE18 /* CXMLNode.m */; };
-		EC3942621630E54D00E6AE18 /* CTidy.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942471630E54D00E6AE18 /* CTidy.h */; };
 		EC3942631630E54D00E6AE18 /* CTidy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942481630E54D00E6AE18 /* CTidy.m */; };
-		EC3942641630E54D00E6AE18 /* TouchXML.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942491630E54D00E6AE18 /* TouchXML.h */; };
-		EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */ = {isa = PBXBuildFile; fileRef = EC3942671630E95C00E6AE18 /* CibaXMLParser.h */; };
 		EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3942681630E95C00E6AE18 /* CibaXMLParser.m */; };
 		EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */; };
-		EC4BCEA516687A80004887B4 /* MobClick.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4BCEA316687A80004887B4 /* MobClick.h */; };
 		EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA716687AD3004887B4 /* libz.dylib */; };
-		EC4FCFE1163646C500EF429B /* ExamViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDE163646C500EF429B /* ExamViewController.h */; };
 		EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDF163646C500EF429B /* ExamViewController.m */; };
 		EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFE0163646C500EF429B /* ExamViewController.xib */; };
-		EC4FCFE716365B0A00EF429B /* ExamContent.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFE516365B0A00EF429B /* ExamContent.h */; };
 		EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFE616365B0A00EF429B /* ExamContent.m */; };
-		EC4FCFEE16367CEE00EF429B /* ExamView.h in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFEC16367CEE00EF429B /* ExamView.h */; };
 		EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFED16367CEE00EF429B /* ExamView.m */; };
 		EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFF016367D0B00EF429B /* ExamView.xib */; };
-		EC723CB5165D17AF001F5B1B /* WordList.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723CB3165D17AF001F5B1B /* WordList.h */; };
 		EC723CB6165D17AF001F5B1B /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CB4165D17AF001F5B1B /* WordList.m */; };
-		EC723CBE165DB698001F5B1B /* SearchWordViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723CBB165DB698001F5B1B /* SearchWordViewController.h */; };
 		EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CBC165DB698001F5B1B /* SearchWordViewController.m */; };
 		EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */; };
-		EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */ = {isa = PBXBuildFile; fileRef = EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */; };
 		EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */; };
 		EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */; };
 		EC9D1E961697CD5300A8C5B9 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8C1697CD5300A8C5B9 /* back.png */; };
@@ -172,15 +145,12 @@
 		EC9D1F43169817CD00A8C5B9 /* web-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F3F169817CD00A8C5B9 /* web-back@2x.png */; };
 		EC9D1F44169817CD00A8C5B9 /* web-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F40169817CD00A8C5B9 /* web-forward.png */; };
 		EC9D1F45169817CD00A8C5B9 /* web-forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F41169817CD00A8C5B9 /* web-forward@2x.png */; };
-		EC9D1F491698288500A8C5B9 /* UIToolbar+VToolBar.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F471698288500A8C5B9 /* UIToolbar+VToolBar.h */; };
 		EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */; };
 		EC9D1F51169908CB00A8C5B9 /* toolbar.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F4F169908CB00A8C5B9 /* toolbar.png */; };
 		EC9D1F52169908CB00A8C5B9 /* toolbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F50169908CB00A8C5B9 /* toolbar@2x.png */; };
-		EC9D1F561699148700A8C5B9 /* Plan.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F541699148700A8C5B9 /* Plan.h */; };
 		EC9D1F571699148700A8C5B9 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F551699148700A8C5B9 /* Plan.m */; };
 		EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8E1699509600A8C5B9 /* checkmark.png */; };
 		EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */; };
-		EC9D1F9C169970D500A8C5B9 /* VGradientView.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9A169970D400A8C5B9 /* VGradientView.h */; };
 		EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9B169970D500A8C5B9 /* VGradientView.m */; };
 		EC9D1FA9169AA2EB00A8C5B9 /* newicon.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FA8169AA2EB00A8C5B9 /* newicon.png */; };
 		EC9D1FAB169AA2F000A8C5B9 /* newicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FAA169AA2F000A8C5B9 /* newicon@2x.png */; };
@@ -188,7 +158,6 @@
 		EC9D1FB0169AB21300A8C5B9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FAD169AB21200A8C5B9 /* Default.png */; };
 		EC9D1FB1169AB21300A8C5B9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FAE169AB21200A8C5B9 /* Default@2x.png */; };
 		EC9D1FB7169AB2D900A8C5B9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1FB6169AB2D900A8C5B9 /* Default-568h@2x.png */; };
-		EC9D2057169C029500A8C5B9 /* WordSearcher.h in Sources */ = {isa = PBXBuildFile; fileRef = EC9D2055169C029300A8C5B9 /* WordSearcher.h */; };
 		EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D2056169C029400A8C5B9 /* WordSearcher.m */; };
 		EC9D2060169D018700A8C5B9 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205E169D018700A8C5B9 /* refresh.png */; };
 		EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205F169D018700A8C5B9 /* refresh@2x.png */; };
@@ -197,11 +166,8 @@
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
 		ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */; };
 		ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB725A516D0BB1800BAB36D /* GuideView.xib */; };
-		ECB725AB16D0BBA400BAB36D /* Guide.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725A916D0BBA400BAB36D /* Guide.h */; };
 		ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AA16D0BBA400BAB36D /* Guide.m */; };
-		ECB725AF16D0C4EA00BAB36D /* WordListFromDiskGuide.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AD16D0C4EA00BAB36D /* WordListFromDiskGuide.h */; };
 		ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */; };
-		ECB725BD16D20B5F00BAB36D /* GuideView.h in Sources */ = {isa = PBXBuildFile; fileRef = ECB725BB16D20B5F00BAB36D /* GuideView.h */; };
 		ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725BC16D20B5F00BAB36D /* GuideView.m */; };
 		ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725BF16D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png */; };
 		ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C016D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png */; };
@@ -351,6 +317,8 @@
 		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
 		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EC07DB5B17642E6500415183 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = JSONKit.h; sourceTree = "<group>"; };
+		EC07DB5C17642E6500415183 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		EC11520A163A8FFB0039A5FA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = MBProgressHUD.h; path = Vocabulary/lib/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -616,6 +584,7 @@
 		A46A7EBF16304F6500DF4696 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				EC07DB5A17642E6500415183 /* JSONKit */,
 				A4E8C8891695A77F008F013C /* ViewDeck */,
 				EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */,
 				A4754D8216466E8B005EB1E0 /* AdMob */,
@@ -887,6 +856,16 @@
 				A4E8C88D1695A790008F013C /* IIViewDeckController.m */,
 			);
 			name = ViewDeck;
+			sourceTree = "<group>";
+		};
+		EC07DB5A17642E6500415183 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				EC07DB5B17642E6500415183 /* JSONKit.h */,
+				EC07DB5C17642E6500415183 /* JSONKit.m */,
+			);
+			name = JSONKit;
+			path = Vocabulary/lib/JSONKit;
 			sourceTree = "<group>";
 		};
 		EC39422D1630E54D00E6AE18 /* Creation */ = {
@@ -1189,34 +1168,19 @@
 				A4E8C8961695AEE0008F013C /* IIViewDeckController.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
-				EC39424A1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.h in Sources */,
 				EC39424B1630E54D00E6AE18 /* CXMLDocument_CreationExtensions.m in Sources */,
-				EC39424C1630E54D00E6AE18 /* CXMLNode_CreationExtensions.h in Sources */,
 				EC39424D1630E54D00E6AE18 /* CXMLNode_CreationExtensions.m in Sources */,
-				EC39424E1630E54D00E6AE18 /* CXHTMLDocument.h in Sources */,
 				EC39424F1630E54D00E6AE18 /* CXHTMLDocument.m in Sources */,
-				EC3942501630E54D00E6AE18 /* CXMLDocument_PrivateExtensions.h in Sources */,
 				EC3942511630E54D00E6AE18 /* CXMLDocument_PrivateExtensions.m in Sources */,
-				EC3942521630E54D00E6AE18 /* CXMLDocument.h in Sources */,
 				EC3942531630E54D00E6AE18 /* CXMLDocument.m in Sources */,
-				EC3942541630E54D00E6AE18 /* CXMLElement_CreationExtensions.h in Sources */,
 				EC3942551630E54D00E6AE18 /* CXMLElement_CreationExtensions.m in Sources */,
-				EC3942561630E54D00E6AE18 /* CXMLElement_ElementTreeExtensions.h in Sources */,
 				EC3942571630E54D00E6AE18 /* CXMLElement_ElementTreeExtensions.m in Sources */,
-				EC3942581630E54D00E6AE18 /* CXMLElement.h in Sources */,
 				EC3942591630E54D00E6AE18 /* CXMLElement.m in Sources */,
-				EC39425A1630E54D00E6AE18 /* CXMLNamespaceNode.h in Sources */,
 				EC39425B1630E54D00E6AE18 /* CXMLNamespaceNode.m in Sources */,
-				EC39425C1630E54D00E6AE18 /* CXMLNode_PrivateExtensions.h in Sources */,
 				EC39425D1630E54D00E6AE18 /* CXMLNode_PrivateExtensions.m in Sources */,
-				EC39425E1630E54D00E6AE18 /* CXMLNode_XPathExtensions.h in Sources */,
 				EC39425F1630E54D00E6AE18 /* CXMLNode_XPathExtensions.m in Sources */,
-				EC3942601630E54D00E6AE18 /* CXMLNode.h in Sources */,
 				EC3942611630E54D00E6AE18 /* CXMLNode.m in Sources */,
-				EC3942621630E54D00E6AE18 /* CTidy.h in Sources */,
 				EC3942631630E54D00E6AE18 /* CTidy.m in Sources */,
-				EC3942641630E54D00E6AE18 /* TouchXML.h in Sources */,
-				EC3942691630E95C00E6AE18 /* CibaXMLParser.h in Sources */,
 				EC39426A1630E95C00E6AE18 /* CibaXMLParser.m in Sources */,
 				ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */,
 				ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */,
@@ -1235,16 +1199,11 @@
 				A46A7FC61635646D00DF4696 /* MKNetworkEngine.m in Sources */,
 				A46A7FC71635646D00DF4696 /* MKNetworkOperation.m in Sources */,
 				A46A7FC81635646D00DF4696 /* Reachability.m in Sources */,
-				EC4FCFE1163646C500EF429B /* ExamViewController.h in Sources */,
 				EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */,
-				EC4FCFE716365B0A00EF429B /* ExamContent.h in Sources */,
 				EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */,
-				EC4FCFEE16367CEE00EF429B /* ExamView.h in Sources */,
 				EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */,
 				A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */,
-				EC1151FA163A876F0039A5FA /* ShowWrongWordsViewController.h in Sources */,
 				EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */,
-				EC11520C163A8FFB0039A5FA /* MBProgressHUD.h in Sources */,
 				EC11520D163A8FFB0039A5FA /* MBProgressHUD.m in Sources */,
 				A46A802D163D35E500DF4696 /* VWebViewController.m in Sources */,
 				A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */,
@@ -1257,19 +1216,12 @@
 				A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */,
 				A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */,
 				A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */,
-				EC723CB5165D17AF001F5B1B /* WordList.h in Sources */,
 				EC723CB6165D17AF001F5B1B /* WordList.m in Sources */,
-				EC723CBE165DB698001F5B1B /* SearchWordViewController.h in Sources */,
 				EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */,
-				EC723D27165E1F7F001F5B1B /* ConfusingWordsIndexer.h in Sources */,
 				EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */,
 				A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */,
-				EC4BCEA516687A80004887B4 /* MobClick.h in Sources */,
-				EC1EC228167EF233003B1C69 /* CibaWebView.h in Sources */,
 				EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */,
-				EC1EC3201681894A003B1C69 /* Word.h in Sources */,
 				EC1EC3211681894A003B1C69 /* Word.m in Sources */,
-				EC1EC3241681894A003B1C69 /* PronunciationData.h in Sources */,
 				EC1EC3251681894A003B1C69 /* PronunciationData.m in Sources */,
 				EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */,
 				A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */,
@@ -1277,23 +1229,16 @@
 				A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */,
 				A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */,
 				A4E8C8951695ADA1008F013C /* IIWrapController.m in Sources */,
-				EC2290121696B81B00D7E0D8 /* VNavigationController.h in Sources */,
 				EC2290131696B81B00D7E0D8 /* VNavigationController.m in Sources */,
-				EC9D1F491698288500A8C5B9 /* UIToolbar+VToolBar.h in Sources */,
 				EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */,
-				EC9D1F561699148700A8C5B9 /* Plan.h in Sources */,
 				EC9D1F571699148700A8C5B9 /* Plan.m in Sources */,
-				EC9D1F9C169970D500A8C5B9 /* VGradientView.h in Sources */,
 				EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */,
-				EC9D2057169C029500A8C5B9 /* WordSearcher.h in Sources */,
 				EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */,
 				A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
-				ECB725AB16D0BBA400BAB36D /* Guide.h in Sources */,
 				ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */,
-				ECB725AF16D0C4EA00BAB36D /* WordListFromDiskGuide.h in Sources */,
 				ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */,
-				ECB725BD16D20B5F00BAB36D /* GuideView.h in Sources */,
 				ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */,
+				EC07DB5E17642E6500415183 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1383,6 +1328,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1405,6 +1351,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

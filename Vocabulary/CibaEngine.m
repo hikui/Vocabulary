@@ -25,8 +25,9 @@
 
 #import "CibaEngine.h"
 #import "CibaXMLParser.h"
-#define CIBA_URL(__W__)[NSString stringWithFormat:@"api/dictionary.php?w=%@", __W__]
-#define HostName @"dict-co.iciba.com"
+#import "JSONKit.h"
+#define CIBA_URL(__W__)[NSString stringWithFormat:@"search/%@", __W__]
+#define HostName @"hikuivocabulary.sinaapp.com"
 
 @implementation CibaEngine
 
@@ -49,8 +50,8 @@
     //[[MKNetworkOperation alloc]initWithURLString:CIBA_URL(word) params:nil httpMethod:@"GET"];
     //NSLog(@"%@",op.url);
     [op onCompletion:^(MKNetworkOperation *completedOperation) {
-        NSString *xmlString = [completedOperation responseString];
-        NSDictionary *resultDict = [CibaXMLParser parseWithXMLString:xmlString];
+        NSString *jsonString = [completedOperation responseString];
+        NSDictionary *resultDict = [jsonString objectFromJSONString];
         if (resultDict == nil) {
             errorBlock(nil);
         }else{
@@ -93,23 +94,25 @@
     [operation onCompletion:^(MKNetworkOperation *completedOperation) {
         NSAssert([completedOperation isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
         [self.livingOperations removeObject:completedOperation];
-        NSString *xmlString = [completedOperation responseString];
-        NSDictionary *resultDict = [CibaXMLParser parseWithXMLString:xmlString];
+        NSString *jsonString = [completedOperation responseString];
+        NSDictionary *resultDict = [jsonString objectFromJSONString];
         if (resultDict == nil) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
             errorBlock(myError);
             return;
         }
-        word.acceptation = [resultDict objectForKey:@"acceptation"];
-        word.psEN = [resultDict objectForKey:@"psEN"];
-        word.psUS = [resultDict objectForKey:@"psUS"];
-        word.sentences = [resultDict objectForKey:@"sentence"];
+        if (resultDict[@"error"]!=nil) {
+            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
+            errorBlock(myError);
+            return;
+        }
+        [CibaEngine fillWord:word withResultDict:resultDict];
 
         [[CoreDataHelper sharedInstance]saveContext];
         //load voice
-        NSString *pronURL = [resultDict objectForKey:@"pronounceUS"];
+        NSString *pronURL = [resultDict objectForKey:@"pron_us"];
         if (pronURL == nil) {
-            pronURL = [resultDict objectForKey:@"pronounceEN"];
+            pronURL = [resultDict objectForKey:@"pron_uk"];
         }
         
         //第二次网络访问，取得读音
@@ -163,6 +166,28 @@
         [self.livingOperations removeObject:op];
     }
 
+}
+
++ (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict
+{
+    Word *targetWord = word;
+    if (resultDict == nil) {
+        // error on parsing
+        return;
+    }
+    
+    NSArray *meanings = resultDict[@"meanings"];
+    NSMutableString *jointAcceptation = [[NSMutableString alloc]init];
+    for (int i=0; i<meanings.count; i++) {
+        NSDictionary *aMeaning = meanings[i];
+        NSString *tmpPos = aMeaning[@"pos"];
+        NSString *tmpAcceptation = aMeaning[@"acceptation"];
+        [jointAcceptation appendFormat:@"%@ %@",tmpPos,tmpAcceptation];
+    }
+    targetWord.acceptation = jointAcceptation;
+    targetWord.psEN = [resultDict objectForKey:@"ps_uk"];
+    targetWord.psUS = [resultDict objectForKey:@"ps_us"];
+    targetWord.sentences = [resultDict objectForKey:@"sentence"]!=nil?[resultDict objectForKey:@"sentence"]:@"";
 }
 
 @end

@@ -24,7 +24,6 @@
 //
 
 #import "TestViewController.h"
-#import "CibaXMLParser.h"
 
 @interface TestViewController ()
 

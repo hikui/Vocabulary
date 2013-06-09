@@ -31,7 +31,7 @@
 @property (nonatomic,weak) IBOutlet UITextField *titleField;
 
 - (void)keyboardWillAppear:(NSNotification *)notification;
-- (void)keyboardwillChangeFrame:(NSNotification *)notification;
+//- (void)keyboardwillChangeFrame:(NSNotification *)notification;
 - (void)keyboardWillHide:(NSNotification *)notification;
 
 - (IBAction)btnOkPressed:(id)sender;

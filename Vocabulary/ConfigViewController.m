@@ -36,7 +36,7 @@
 - (void)soundEnablerDidChange:(id)sender;
 - (void)autoIndexEnablerDidChange:(id)sender;
 - (void)setTimeButtonOnTouch:(UIButton *)sender;
-- (void)datePickerValueDidChange:(UIDatePicker *)sender;
+//- (void)datePickerValueDidChange:(UIDatePicker *)sender;
 - (NSString *)getTimeStringFromDate:(NSDate *)date;
 - (void)setNotificationWithDate:(NSDate *)date;
 

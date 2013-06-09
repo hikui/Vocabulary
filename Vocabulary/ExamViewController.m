@@ -27,7 +27,7 @@
 #import "ShowWrongWordsViewController.h"
 #import "ExamView.h"
 #import "CibaEngine.h"
-#import "CibaXMLParser.h"
+//#import "CibaXMLParser.h"
 #import "IIViewDeckController.h"
 #import "AppDelegate.h"
 #import "VNavigationController.h"
@@ -144,12 +144,12 @@
             CibaEngine *engine = [CibaEngine sharedInstance];
             __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
                 [self.networkOperationQueue removeObject:infoDownloadOp];                
-                [CibaXMLParser fillWord:w withResultDict:parsedDict];
+                [CibaEngine fillWord:w withResultDict:parsedDict];
                 [[CoreDataHelper sharedInstance]saveContext];
                 
-                NSString *pronURL = [parsedDict objectForKey:@"pronounceUS"];
+                NSString *pronURL = [parsedDict objectForKey:@"pron_us"];
                 if (pronURL == nil) {
-                    pronURL = [parsedDict objectForKey:@"pronounceEN"];
+                    pronURL = [parsedDict objectForKey:@"pron_uk"];
                 }
                 if (pronURL) {
                     __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
