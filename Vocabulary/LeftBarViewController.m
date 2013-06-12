@@ -155,7 +155,9 @@
                                                            cancelButtonTitle:@"取消"
                                                       destructiveButtonTitle:nil
                                                            otherButtonTitles:@"批量输入",@"从iTunes上传", nil];
-            [actionSheet showInView:self.view];
+//            [actionSheet showInView:self.view];
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            [actionSheet showFromRect:CGRectMake(0, 0, 300, cell.bounds.size.height) inView:cell animated:YES];
         }else if (indexPath.row == 2) {
             if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordListViewController class]]) {
                 [viewDeckController closeLeftView];
@@ -226,7 +228,7 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     IIViewDeckController *viewDeck = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
-    viewDeck.leftSize = 0;
+    viewDeck.leftSize = self.view.bounds.size.width;
     [UIView animateWithDuration:[viewDeck closeSlideAnimationDuration] animations:^{
         searchBar.frame = CGRectMake(searchBar.frame.origin.x, searchBar.frame.origin.y, self.view.frame.size.width, searchBar.frame.size.height);
         [searchBar setShowsCancelButton:YES animated:YES];
@@ -242,7 +244,11 @@
 {
     searchBar.text = @"";
     IIViewDeckController *viewDeck = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
-    viewDeck.leftSize = 140;
+    if (IS_IPAD) {
+        viewDeck.leftSize = 300;
+    }else{
+        viewDeck.leftSize = 140;
+    }
     [searchBar setShowsCancelButton:NO animated:NO];
     [UIView animateWithDuration:[viewDeck closeSlideAnimationDuration] animations:^{
         searchBar.frame = CGRectMake(searchBar.frame.origin.x, searchBar.frame.origin.y, viewDeck.leftViewSize, searchBar.frame.size.height);

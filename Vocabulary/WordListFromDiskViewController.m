@@ -61,9 +61,10 @@
         NSInteger guideVersion = gv.guide.guideVersion;
         NSInteger currGuideVersion = [[NSUserDefaults standardUserDefaults]integerForKey:gv.guide.guideName];
         if (guideVersion > currGuideVersion) {
-            gv.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-            [gv guideWillAppear];
+            gv.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+            gv.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             [self.view addSubview:gv];
+            [gv guideWillAppear];
         }
     }
 }
@@ -261,10 +262,12 @@
 {
     GuideView *gv = [GuideView guideViewForClass:[self class]];
     if (gv != nil) {
-        gv.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        gv.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
         gv.alpha = 0;
-        [gv guideWillAppear];
+        gv.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         [self.view addSubview:gv];
+        
+        [gv guideWillAppear];
         [UIView animateWithDuration:0.5 animations:^{
             gv.alpha = 1;
         }];

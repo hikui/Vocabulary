@@ -128,8 +128,10 @@
     
     //create 2 exam views;
     ExamView *ev1 = [ExamView newInstance];
+    ev1.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
     ExamView *ev2 = [ExamView newInstance];
+    ev2.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     ev2.frame = ev1.frame;
     [self.examViewReuseQueue addObject:ev1];
     [self.examViewReuseQueue addObject:ev2];

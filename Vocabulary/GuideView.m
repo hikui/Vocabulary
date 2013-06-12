@@ -39,6 +39,16 @@
 
 - (void)updateContentSize
 {
+    for (int i=0; i<_guide.guidePictureNameArray.count; i++) {
+        UIImage *guidePic = [_guide guidePictureAtIndex:i];
+        CGRect imageFrame = self.scrollView.frame;
+        imageFrame = CGRectOffset(imageFrame, i * self.scrollView.frame.size.width, 0);
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:imageFrame];
+        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        imageView.image = guidePic;
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.scrollView addSubview:imageView];
+    }
     self.scrollView.contentSize = CGSizeMake(self.guide.guidePictureNameArray.count * self.scrollView.frame.size.width, self.scrollView.frame.size.height);
 }
 
@@ -69,16 +79,6 @@
 - (void)setGuide:(Guide *)guide
 {
     _guide = guide;
-    
-    for (int i=0; i<_guide.guidePictureNameArray.count; i++) {
-        UIImage *guidePic = [_guide guidePictureAtIndex:i];
-        CGRect imageFrame = self.scrollView.frame;
-        imageFrame = CGRectOffset(imageFrame, i * self.scrollView.frame.size.width, 0);
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:imageFrame];
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        imageView.image = guidePic;
-        [self.scrollView addSubview:imageView];
-    }
     self.pageControl.numberOfPages = _guide.guidePictureNameArray.count;
 }
 
