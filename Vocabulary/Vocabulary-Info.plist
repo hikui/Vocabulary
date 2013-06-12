@@ -16,6 +16,8 @@
 			<array>
 				<string>newicon.png</string>
 				<string>newicon@2x.png</string>
+				<string>newicon_144.png</string>
+				<string>newicon_77.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

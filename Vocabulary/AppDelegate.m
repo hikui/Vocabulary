@@ -25,7 +25,6 @@
 
 #import "AppDelegate.h"
 #import "CoreDataHelper.h"
-#import "TestViewController.h"
 #import "HomeViewController.h"
 #import "UINavigationController+Rotation_IOS6.h"
 #import "LeftBarViewController.h"
@@ -34,6 +33,7 @@
 #import "PlanningVIewController.h"
 #import "VNavigationController.h"
 #import "Plan.h"
+#import "common.h"
 
 
 @implementation AppDelegate
@@ -58,7 +58,12 @@
     
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
-    viewDeckController.leftSize = 140;
+    viewDeckController.sizeMode = IIViewDeckViewSizeMode;
+    if (IS_IPAD) {
+        viewDeckController.leftSize = 300;
+    }else{
+        viewDeckController.leftSize = 140;
+    }
     viewDeckController.delegate = self;
     self.viewDeckController = viewDeckController;
     

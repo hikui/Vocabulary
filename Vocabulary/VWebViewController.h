@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) NSURL *requestURL;
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
-@property (nonatomic, weak) IBOutlet UIView *toolBarView;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolBar;
 
 - (IBAction)closeButtonOnPress:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;

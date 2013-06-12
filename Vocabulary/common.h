@@ -55,6 +55,7 @@
 #define IS_IPHONE ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPhone"])
 #define IS_IPOD   ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPod touch"])
 #define IS_IPHONE_5 ( IS_IPHONE && IS_WIDESCREEN )
+#define IS_IPAD [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad
 
 // bock define
 typedef void (^HKVProgressCallback)(float progress);

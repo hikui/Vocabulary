@@ -45,7 +45,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.toolBarView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"nav.png"]];
+
+    [self.toolBar setBackgroundImage:[[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     
 }
 
@@ -64,17 +65,17 @@
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (IBAction)closeButtonOnPress:(id)sender

@@ -35,6 +35,7 @@
 @interface CreateWordListViewController ()
 
 @property (nonatomic, unsafe_unretained) BOOL firstEdit;
+@property (nonatomic, unsafe_unretained) CGFloat originalTextViewHeight;
 
 @end
 
@@ -64,6 +65,12 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.originalTextViewHeight = self.textView.frame.size.height;
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -78,17 +85,17 @@
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return toInterfaceOrientation == UIInterfaceOrientationPortrait;
+    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 #pragma mark UITextViewDelegate
@@ -106,17 +113,26 @@
 - (void)keyboardWillAppear:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
-    double showAnimationDuration = [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey]doubleValue];
     CGRect targetKeyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
+    targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
     CGFloat offsetY = targetKeyboardFrame.size.height;
-    [UIView animateWithDuration:showAnimationDuration animations:^{
-        self.textView.frame = CGRectMake(20, 116, 280,344-offsetY);
-    }];
+    
+    CGRect frame = self.textView.frame;
+    frame.size.height -= offsetY;
+    self.textView.frame = frame;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    self.textView.frame = CGRectMake(20, 116, 280,344);
+    NSDictionary *userInfo = [notification userInfo];
+    CGRect targetKeyboardFrame = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey]CGRectValue];
+    UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
+    targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
+    CGFloat offsetY = targetKeyboardFrame.size.height;
+    CGRect frame = self.textView.frame;
+    frame.size.height += offsetY;
+    self.textView.frame = frame;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
