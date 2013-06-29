@@ -125,7 +125,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *word = [[self.contentsArray objectAtIndex:indexPath.row] objectForKey:@"key"];
-    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
     [request setEntity:entity];
@@ -166,7 +166,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS %@)",text];
         [self.fetchRequest setPredicate:predicate];
         NSError *error = nil;
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
         NSArray * result = [ctx executeFetchRequest:self.fetchRequest error:&error];
         if (error) {
             NSLog(@"%@",error);
@@ -186,7 +186,7 @@
     NSLog(@"%@",searchText);
     
     if (self.fetchRequest == nil) {
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
         self.fetchRequest = [[NSFetchRequest alloc]init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
         NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];

@@ -78,6 +78,7 @@
 		A498F01A177EA3B500FC8AA5 /* iPadLaunchImage-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = A498F015177EA3B500FC8AA5 /* iPadLaunchImage-Portrait.png */; };
 		A498F01F177EA81E00FC8AA5 /* iPhoneLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A498F01D177EA81D00FC8AA5 /* iPhoneLaunchImage.png */; };
 		A498F020177EA81E00FC8AA5 /* iPhoneLaunchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A498F01E177EA81E00FC8AA5 /* iPhoneLaunchImage@2x.png */; };
+		A498F023177F076500FC8AA5 /* CoreDataHelperV2.m in Sources */ = {isa = PBXBuildFile; fileRef = A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */; };
 		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8911695A840008F013C /* LeftBarViewController.m */; };
@@ -275,6 +276,8 @@
 		A498F015177EA3B500FC8AA5 /* iPadLaunchImage-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPadLaunchImage-Portrait.png"; path = "artwork/iPadLaunchImage-Portrait.png"; sourceTree = "<group>"; };
 		A498F01D177EA81D00FC8AA5 /* iPhoneLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhoneLaunchImage.png; path = artwork/iPhoneLaunchImage.png; sourceTree = "<group>"; };
 		A498F01E177EA81E00FC8AA5 /* iPhoneLaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhoneLaunchImage@2x.png"; path = "artwork/iPhoneLaunchImage@2x.png"; sourceTree = "<group>"; };
+		A498F021177F076500FC8AA5 /* CoreDataHelperV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelperV2.h; sourceTree = "<group>"; };
+		A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelperV2.m; sourceTree = "<group>"; };
 		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
 		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -547,6 +550,8 @@
 				EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */,
 				EC9D2055169C029300A8C5B9 /* WordSearcher.h */,
 				EC9D2056169C029400A8C5B9 /* WordSearcher.m */,
+				A498F021177F076500FC8AA5 /* CoreDataHelperV2.h */,
+				A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1073,6 +1078,7 @@
 				ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */,
 				ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */,
 				ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */,
+				A498F023177F076500FC8AA5 /* CoreDataHelperV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,24 +25,25 @@
     dispatch_queue_t currentQ = dispatch_get_current_queue();
     
     [self.queryOperationQueue cancelAllOperations];
+
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        if (self.fetchRequest == nil) {
-            NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
-            self.fetchRequest = [[NSFetchRequest alloc]init];
-            NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-            NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
-            [self.fetchRequest setEntity:entity];
-            [self.fetchRequest setSortDescriptors:@[sort]];
-        }
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS %@)",word];
-        [self.fetchRequest setPredicate:predicate];
-        NSError *error = nil;
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
-        NSArray * result = [ctx executeFetchRequest:self.fetchRequest error:&error];
-        dispatch_async(currentQ, ^{
-            completion(result);
-        });
-        
+        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]workerManagedObjectContext];
+        [ctx performBlockAndWait:^{
+            if (self.fetchRequest == nil) {
+                self.fetchRequest = [[NSFetchRequest alloc]init];
+                NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+                NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
+                [self.fetchRequest setEntity:entity];
+                [self.fetchRequest setSortDescriptors:@[sort]];
+            }
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS %@)",word];
+            [self.fetchRequest setPredicate:predicate];
+            NSError *error = nil;
+            NSArray * result = [ctx executeFetchRequest:self.fetchRequest error:&error];
+            dispatch_async(currentQ, ^{
+                completion(result);
+            });
+        }];
     }];
     [self.queryOperationQueue addOperation:operation];
 }

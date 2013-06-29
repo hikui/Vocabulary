@@ -25,7 +25,6 @@
 
 #import "ShowWordListViewController.h"
 #import "ShowWordsViewController.h"
-#import "CoreDataHelper.h"
 #import "AppDelegate.h"
 #import "IIViewDeckController.h"
 #import "VNavigationController.h"
@@ -53,8 +52,8 @@
     [super viewDidLoad];
     
     self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-    self.managedObjectContext = helper.managedObjectContext;
+    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+    self.managedObjectContext = helper.mainContext;
     self.title = @"已有的列表";
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.tableView.separatorColor = RGBA(210, 210, 210, 1);
@@ -323,7 +322,7 @@
 
 - (void)refreshHintView
 {
-    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
     request.entity = entity;

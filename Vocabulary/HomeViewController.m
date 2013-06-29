@@ -80,7 +80,7 @@
     __block BOOL needMigration = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
+        needMigration = [[CoreDataHelperV2 sharedInstance]isMigrationNeeded];
     });
     if (!needMigration) {
         self.countLabel.text = [NSString stringWithFormat:@"%d",[self countOfLearnedWordlist]];
@@ -94,7 +94,7 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [[CoreDataHelper sharedInstance]migrateDatabase];
+            [[CoreDataHelperV2 sharedInstance]migrateDatabase];
         });
 
     }
@@ -143,7 +143,7 @@
         [self.navigationController pushViewController:pvc animated:YES];
     }else if(btn.tag == 4){
         
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
@@ -161,7 +161,7 @@
 
 - (NSUInteger)countOfLearnedWordlist
 {
-    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount>0)"];

@@ -147,7 +147,7 @@
             __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
                 [self.networkOperationQueue removeObject:infoDownloadOp];                
                 [CibaEngine fillWord:w withResultDict:parsedDict];
-                [[CoreDataHelper sharedInstance]saveContext];
+                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
                 
                 NSString *pronURL = [parsedDict objectForKey:@"pron_us"];
                 if (pronURL == nil) {
@@ -157,12 +157,12 @@
                     __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
-                        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
                         PronunciationData *pronData = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
                         pronData.pronData = data;
                         w.pronunciation = pronData;
                         w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-                        [[CoreDataHelper sharedInstance]saveContext];
+                        [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
                         if (self.wordsWithNoInfoSet.count == 0) {
                             //all ok
                             [self createExamContentsArray];
@@ -174,7 +174,7 @@
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
                         w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-                        [[CoreDataHelper sharedInstance]saveContext];
+                        [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
                         if (self.wordsWithNoInfoSet.count == 0) {
                             //all ok
                             [self createExamContentsArray];
@@ -186,7 +186,7 @@
                     // this word has no sound
                     [self.wordsWithNoInfoSet removeObject:w];
                     w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-                    [[CoreDataHelper sharedInstance]saveContext];
+                    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
                     if (self.wordsWithNoInfoSet.count == 0) {
                         //all ok
                         [self createExamContentsArray];
@@ -291,7 +291,7 @@
         c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
         c1.word.lastVIewDate = [NSDate date];
     }
-    [[CoreDataHelper sharedInstance]saveContext];
+    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
 }
 
 #pragma mark - ibactions

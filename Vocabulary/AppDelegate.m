@@ -24,7 +24,6 @@
 //
 
 #import "AppDelegate.h"
-#import "CoreDataHelper.h"
 #import "HomeViewController.h"
 #import "UINavigationController+Rotation_IOS6.h"
 #import "LeftBarViewController.h"
@@ -75,7 +74,7 @@
     __block BOOL needMigration = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        needMigration = [[CoreDataHelper sharedInstance]isMigrationNeeded];
+        needMigration = [[CoreDataHelperV2 sharedInstance]isMigrationNeeded];
     });
     if (!needMigration) {
 //        [self refreshTodaysPlan];
@@ -91,7 +90,7 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFailed:) name:kMigrationFailedNotification object:nil];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [[CoreDataHelper sharedInstance]migrateDatabase];
+            [[CoreDataHelperV2 sharedInstance]migrateDatabase];
         });
         
     }
@@ -108,8 +107,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-    [helper saveContext];
+    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+    [helper.mainContext save:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -127,8 +126,8 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-    [helper saveContext];
+    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+    [helper.mainContext save:nil];
 }
 
 void uncaughtExceptionHandler(NSException *exception)
@@ -228,7 +227,7 @@ void uncaughtExceptionHandler(NSException *exception)
         self.finishTodaysLearningPlan = NO;
     }
     
-    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"addTime" ascending:YES];

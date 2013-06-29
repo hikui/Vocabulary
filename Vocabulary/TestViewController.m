@@ -46,7 +46,7 @@
     
     NSDate *date = [NSDate date];
     
-    NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
     NSFetchRequest *request = [[NSFetchRequest alloc]init];

@@ -24,7 +24,6 @@
 //
 
 #import "CreateWordListViewController.h"
-#import "CoreDataHelper.h"
 #import "Word.h"
 #import "WordList.h"
 #import <QuartzCore/QuartzCore.h>

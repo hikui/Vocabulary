@@ -173,7 +173,7 @@
                 [viewDeckController closeLeftView];
             }else{
                 
-                NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance] managedObjectContext];
+                NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
                 NSFetchRequest *request = [[NSFetchRequest alloc]init];
                 NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
