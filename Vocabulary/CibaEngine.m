@@ -24,7 +24,6 @@
 //
 
 #import "CibaEngine.h"
-#import "CibaXMLParser.h"
 #import "JSONKit.h"
 #define CIBA_URL(__W__)[NSString stringWithFormat:@"search/%@", __W__]
 #define HostName @"hikuivocabulary.sinaapp.com"
