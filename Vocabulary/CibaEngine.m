@@ -48,7 +48,7 @@
     MKNetworkOperation *op = [self operationWithPath:CIBA_URL(word)];
     //[[MKNetworkOperation alloc]initWithURLString:CIBA_URL(word) params:nil httpMethod:@"GET"];
     //NSLog(@"%@",op.url);
-    [op onCompletion:^(MKNetworkOperation *completedOperation) {
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         NSString *jsonString = [completedOperation responseString];
         NSDictionary *resultDict = [jsonString objectFromJSONString];
         if (resultDict == nil) {
@@ -57,7 +57,7 @@
            completionBlock(resultDict); 
         }
         
-    } onError:^(NSError *error) {
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         errorBlock(error);
     }];
     [self enqueueOperation:op];
@@ -69,10 +69,10 @@
                                 onError:(MKNKErrorBlock) errorBlock
 {
     MKNetworkOperation *op = [[MKNetworkOperation alloc]initWithURLString:url params:nil httpMethod:@"GET"];
-    [op onCompletion:^(MKNetworkOperation *completedOperation) {
+    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         NSData *data = [completedOperation responseData];
         completionBlock(data);
-    } onError:^(NSError *error) {
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         errorBlock(error);
     }];
     [self enqueueOperation:op];
@@ -90,7 +90,7 @@
     NSString *urlString = [NSString stringWithFormat:@"http://%@/%@",HostName,CIBA_URL(word.key)];
     CibaNetworkOperation *operation = [[CibaNetworkOperation alloc]initWithURLString:urlString params:nil httpMethod:@"GET"];
     operation.word = word;
-    [operation onCompletion:^(MKNetworkOperation *completedOperation) {
+    [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         NSAssert([completedOperation isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
         [self.livingOperations removeObject:completedOperation];
         NSString *jsonString = [completedOperation responseString];
@@ -117,7 +117,7 @@
         //第二次网络访问，取得读音
         CibaNetworkOperation *getPronOp = [[CibaNetworkOperation alloc]initWithURLString:pronURL params:nil httpMethod:@"GET"];
         getPronOp.word = word;
-        [getPronOp onCompletion:^(MKNetworkOperation *completedGetPronOp) {
+        [getPronOp addCompletionHandler:^(MKNetworkOperation *completedGetPronOp) {
             NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
             [self.livingOperations removeObject:completedGetPronOp];
             NSData *data = [completedGetPronOp responseData];
@@ -129,20 +129,20 @@
             [[CoreDataHelper sharedInstance]saveContext];
             completion();
             
-        } onError:^(NSError *error) {
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordPronError userInfo:error.userInfo];
             word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
             [[CoreDataHelper sharedInstance]saveContext];
             errorBlock(myError);
-            [self.livingOperations removeObject:getPronOp];
+            [self.livingOperations removeObject:completedOperation];
         }];
         [self enqueueOperation:getPronOp];
         [self.livingOperations addObject:getPronOp];
         
-    } onError:^(NSError *error) {
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:error.userInfo];
         errorBlock(myError);
-        [self.livingOperations removeObject:operation];
+        [self.livingOperations removeObject:completedOperation];
     }];
     [self enqueueOperation:operation];
     [self.livingOperations addObject:operation];
