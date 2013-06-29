@@ -195,9 +195,9 @@
         NSString *errorMsg = [NSString stringWithFormat:@"--------\nChannelId:%@\nBuild:%@\n%@",kChannelId,build,[error userInfo]];
         NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:errorMsg,@"content", nil];
         MKNetworkOperation *op = [engine operationWithPath:@"/log" params:params httpMethod:@"POST"];
-        [op onCompletion:^(MKNetworkOperation *completedOperation) {
+        [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
             NSLog(@"report success");
-        } onError:^(NSError *error) {
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
             NSLog(@"report failed");
         }];
         [engine enqueueOperation:op];
