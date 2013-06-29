@@ -217,7 +217,6 @@ void uncaughtExceptionHandler(NSException *exception)
     [NSNumber numberWithInt:5]:[NSNumber numberWithInt:8],
     };
     
-    BOOL isPlanExpire = NO;
     NSDate *planExpireTime = [self.planExpireTime copy];
     //获取当前日期，忽略具体时间
     unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
@@ -226,7 +225,6 @@ void uncaughtExceptionHandler(NSException *exception)
     planExpireTime = [calendar dateFromComponents:components];
     if ([planExpireTime compare:[NSDate date]] == NSOrderedAscending || [planExpireTime compare:[NSDate date]] == NSOrderedSame) {
         //expire于现在之前，为过期
-        isPlanExpire = YES;
         self.finishTodaysLearningPlan = NO;
     }
     

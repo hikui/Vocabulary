@@ -14,15 +14,19 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>newicon.png</string>
-				<string>newicon@2x.png</string>
-				<string>newicon_144.png</string>
-				<string>newicon_77.png</string>
+				<string>Icon.png</string>
+				<string>Icon@2x.png</string>
+				<string>Icon-72.png</string>
+				<string>Icon-144.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
 		</dict>
 	</dict>
+	<key>UILaunchImageFile~ipad</key>
+	<string>iPadLaunchImage.png</string>
+    <key>UILaunchImageFile~iphone</key>
+	<string>iPhoneLaunchImage.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>info.herkuang.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
