@@ -135,6 +135,8 @@
     ev2.frame = ev1.frame;
     [self.examViewReuseQueue addObject:ev1];
     [self.examViewReuseQueue addObject:ev2];
+    [self.view addSubview:ev1];
+    [self.view addSubview:ev2];
     
     
     //扫描是否有未加载的word
