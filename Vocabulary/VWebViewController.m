@@ -48,6 +48,8 @@
 
     [self.toolBar setBackgroundImage:[[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     
+    self.webView.scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
