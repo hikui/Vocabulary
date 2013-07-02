@@ -11,7 +11,15 @@
 * 使用了金山词霸公开的API
 * 加了友盟的统计，加了有米的广告
 
-打开Xcode即可编译。
+#编译
+本工程使用cocoapods进行三方库管理。编译前请确保[安装了cocoapods](http://cocoapods.org)(可能需要翻墙)。
+
+打开命令行执行：
+
+	$ cd Vocabulary
+	$ pod install
+
+完成后，打开`Vocabulary.xcworkspace`即可编译。
 
 #说明
 功能如下:
