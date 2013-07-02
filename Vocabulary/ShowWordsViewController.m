@@ -100,7 +100,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[CoreDataHelper sharedInstance]saveContext];
+    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];;
 }
 
 - (void)didReceiveMemoryWarning
@@ -245,7 +245,7 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:@"确定"]) {
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
         Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
         w.key = [[alertView textFieldAtIndex:0]text];
         [w addWordListsObject:self.wordList];

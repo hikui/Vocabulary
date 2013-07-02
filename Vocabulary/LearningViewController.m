@@ -24,7 +24,6 @@
 //
 
 #import "LearningViewController.h"
-#import "CoreDataHelper.h"
 #import "MBProgressHUD.h"
 #import "CibaEngine.h"
 #import "CibaWebView.h"

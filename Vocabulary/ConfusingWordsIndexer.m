@@ -49,20 +49,19 @@
         return;
     }
     
-    dispatch_queue_t indexQueue = dispatch_queue_create("info.herkuang.vocabulary.indexNewWordsQueue", NULL);
-    dispatch_async(indexQueue, ^{
-        
-        NSDate *date = [NSDate date];
-        NSError *error = nil;
-        
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]newManagedObjectContext];
+    __block NSDate *date = [NSDate date];
+    __block NSError *error = nil;
+    
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]workerManagedObjectContext];
+    
+    [ctx performBlock:^{
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         [request setEntity:entity];
         [request setReturnsObjectsAsFaults:YES];
         [request setSortDescriptors:@[sortDescriptor]];
-                
+        
         NSArray *allWords = [ctx executeFetchRequest:request error:&error];
         if (error != nil) {
             if (completion != NULL) {
@@ -74,7 +73,7 @@
             dispatch_release(originDispatchQueue);
             return;
         }
-                
+        
         NSTimeInterval timeCost = -[date timeIntervalSinceNow];
         NSLog(@"查询用时 :%f",timeCost);
         
@@ -83,7 +82,7 @@
         
         int totalNum = newWordsIDArray.count;
         int finishedNum = 0;
-                
+        
         //与已有的words做比较
         for (NSManagedObjectID *aNewWordId in newWordsIDArray) {
             Word *aNewWord = (Word *)[ctx objectRegisteredForID:aNewWordId];
@@ -118,7 +117,7 @@
         dispatch_release(originDispatchQueue);
         timeCost = -[date timeIntervalSinceNow];
         NSLog(@"索引用时 :%f",timeCost);
-    });
+    }];
 }
 
 + (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray completion:(HKVErrorBlock)completion
@@ -133,16 +132,12 @@
     NSDate *date = [NSDate date];
     
     
-    //concurrency
-    
-    dispatch_queue_t indexQueue = dispatch_queue_create("info.herkuang.vocabulary.reindexAllQueue", NULL);
-    
-    dispatch_async(indexQueue, ^{
         //创建新的context，适应并发
 
-        NSError *error = nil;
+    __block NSError *error = nil;
         
-        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]newManagedObjectContext];
+    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]workerManagedObjectContext];
+    [ctx performBlock:^{
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
@@ -161,7 +156,7 @@
         for (Word *w in allWords) {
             [w removeSimilarWords:w.similarWords];
         }
-
+        
         
         int totalNum = allWords.count;
         int finishedNum = 0;
@@ -200,10 +195,7 @@
         dispatch_release(originDispatchQueue);
         timeCost = -[date timeIntervalSinceNow];
         NSLog(@"整体易混淆单词索引用时:%f",timeCost);
-    
-    });
-    
-    
+    }];
 }
 
 + (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString

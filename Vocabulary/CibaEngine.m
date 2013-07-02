@@ -107,7 +107,10 @@
         }
         [CibaEngine fillWord:word withResultDict:resultDict];
 
-        [[CoreDataHelper sharedInstance]saveContext];
+        NSError *err = nil;
+        BOOL hasChanges = NO;
+        hasChanges = word.managedObjectContext.hasChanges;
+        [word.managedObjectContext save:&err];
         //load voice
         NSString *pronURL = [resultDict objectForKey:@"pron_us"];
         if (pronURL == nil) {
@@ -121,18 +124,18 @@
             NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
             [self.livingOperations removeObject:completedGetPronOp];
             NSData *data = [completedGetPronOp responseData];
-            NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
+            NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
             PronunciationData *pron = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
             pron.pronData = data;
             word.pronunciation = pron;
             word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
-            [[CoreDataHelper sharedInstance]saveContext];
+            [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
             completion();
             
         } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordPronError userInfo:error.userInfo];
             word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
-            [[CoreDataHelper sharedInstance]saveContext];
+            [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
             errorBlock(myError);
             [self.livingOperations removeObject:completedOperation];
         }];

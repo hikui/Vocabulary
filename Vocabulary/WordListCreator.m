@@ -56,10 +56,11 @@
     dispatch_retain(originalQueue);
     
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-        NSManagedObjectContext *moc = [helper newManagedObjectContext];
-        
+
+    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+    NSManagedObjectContext *moc = [helper workerManagedObjectContext];
+    
+    [moc performBlock:^{
         //search if a word list with same title already exist
         NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"WordList"];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@",title];
@@ -136,11 +137,11 @@
                         });
                     }];
                     
-//                    [ConfusingWordsIndexer indexNewWordsAsyncById:ids completion:^(NSError *error) {
-//                        dispatch_async(originalQueue, ^{
-//                            completion(error);
-//                        });
-//                    }];
+                    //                    [ConfusingWordsIndexer indexNewWordsAsyncById:ids completion:^(NSError *error) {
+                    //                        dispatch_async(originalQueue, ^{
+                    //                            completion(error);
+                    //                        });
+                    //                    }];
                     return;
                     //                    [ConfusingWordsIndexer indexNewWordsSyncById:ids managedObjectContext:moc error:&indexError];
                 }else {
@@ -171,7 +172,10 @@
             }
             return;
         }
-    });
+    }];
+    
+        
+
 }
 
 + (void)createWordListAsyncWithTitle:(NSString *)title
@@ -201,13 +205,13 @@
     dispatch_retain(originalQueue);
     
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        CoreDataHelper *helper = [CoreDataHelper sharedInstance];
-        NSManagedObjectContext *moc = [helper newManagedObjectContext];
-        
-        //search if a word list with same title already exist
 
-        
+    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+    NSManagedObjectContext *moc = [helper workerManagedObjectContext];
+    
+    //search if a word list with same title already exist
+
+    [moc performBlock:^{
         NSFetchRequest *wordRequest = [[NSFetchRequest alloc]init];
         NSEntityDescription *wordEntity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:moc];
         [wordRequest setEntity:wordEntity];
@@ -241,7 +245,7 @@
             }
         }
         
-
+        
         NSError *saveErr = nil;
         [moc save:&saveErr];
         
@@ -267,7 +271,7 @@
                 }];
                 
                 return;
-
+                
             }else {
                 if (completion != NULL) {
                     dispatch_async(originalQueue, ^{
@@ -286,8 +290,8 @@
             }
             return;
         }
+    }];
         
-    });
 }
 
 @end

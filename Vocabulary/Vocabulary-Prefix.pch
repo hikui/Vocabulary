@@ -13,7 +13,7 @@
     #import <Foundation/Foundation.h>
     #import "MKNetworkKit.h"
     #import "Reachability.h"
-    #import "CoreDataHelper.h"
+    #import "CoreDataHelperV2.h"
     #import "MBProgressHUD.h"
     #import "Word.h"
     #import "WordList.h"
