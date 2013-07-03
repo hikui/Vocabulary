@@ -57,10 +57,17 @@
     [notificationCenter addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
 //    [notificationCenter addObserver:self selector:@selector(keyboardwillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    self.textView.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.textView.layer.borderWidth = 2.0f;
-    self.textView.layer.cornerRadius = 4.0f;
+    UILabel *titleHint = [[UILabel alloc]init];
+    titleHint.text = @"起个名字吧: ";
+    titleHint.textColor = RGBA(99, 99, 99, 1);
+    titleHint.font = [UIFont systemFontOfSize:14];
+    titleHint.backgroundColor = [UIColor clearColor];
+    titleHint.textAlignment = NSTextAlignmentCenter;
+    [titleHint sizeToFit];
+    titleHint.frame = CGRectMake(0, 0, titleHint.frame.size.width+16, titleHint.frame.size.height);
+    self.titleField.leftView = titleHint;
+    self.titleField.leftViewMode = UITextFieldViewModeAlways;
+    [self.titleField becomeFirstResponder];
     
 }
 
