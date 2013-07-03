@@ -118,7 +118,7 @@
     CGFloat offsetY = targetKeyboardFrame.size.height;
     
     CGRect frame = self.textView.frame;
-    frame.size.height -= offsetY;
+    frame.size.height = self.originalTextViewHeight - offsetY;
     self.textView.frame = frame;
 }
 
@@ -128,9 +128,9 @@
     CGRect targetKeyboardFrame = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey]CGRectValue];
     UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
     targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
-    CGFloat offsetY = targetKeyboardFrame.size.height;
+//    CGFloat offsetY = targetKeyboardFrame.size.height;
     CGRect frame = self.textView.frame;
-    frame.size.height += offsetY;
+    frame.size.height = self.originalTextViewHeight;
     self.textView.frame = frame;
 }
 
