@@ -24,7 +24,7 @@
 //
 
 #import "AppDelegate.h"
-#import "HomeViewController.h"
+//#import "HomeViewController.h"
 #import "UINavigationController+Rotation_IOS6.h"
 #import "LeftBarViewController.h"
 #import "SearchWordViewController.h"

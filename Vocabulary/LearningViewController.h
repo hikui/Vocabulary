@@ -28,12 +28,15 @@
 #import "MKNetworkKit.h"
 #import "Word.h"
 #import "AdBaseViewController.h"
+
+@class BButton;
 @interface LearningViewController : AdBaseViewController
 
 @property (nonatomic,strong) Word *word;
-@property (nonatomic,strong) IBOutlet UILabel *lblKey;
+@property (nonatomic,weak) IBOutlet UILabel *lblKey;
 @property (nonatomic,strong) AVAudioPlayer *player;
-@property (nonatomic,strong) IBOutlet UITextView *acceptationTextView;
+@property (nonatomic,weak) IBOutlet UITextView *acceptationTextView;
+@property (nonatomic,weak) IBOutlet BButton *detailButton;
 @property (nonatomic,strong) MKNetworkOperation *downloadOp;
 @property (nonatomic,strong) MKNetworkOperation *voiceOp;
 @property (nonatomic,unsafe_unretained) BOOL shouldHideInfo;

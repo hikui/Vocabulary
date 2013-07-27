@@ -70,7 +70,6 @@
     
     UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
     self.navigationItem.rightBarButtonItem = refreshBtn;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -125,7 +124,12 @@
 - (void)refreshView
 {
     self.lblKey.text = self.word.key;
-    [self.lblKey sizeToFit];
+    
+    CGSize labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByWordWrapping];
+    CGRect labelFrame = self.lblKey.frame;
+    labelFrame.size = labelSize;
+    self.lblKey.frame = labelFrame;
+    
     if (self.word.hasGotDataFromAPI) {
         NSMutableString *confusingWordsStr = [[NSMutableString alloc]init];
         for (Word *aConfusingWord in self.word.similarWords) {
@@ -133,14 +137,18 @@
         }
         NSMutableString *jointStr = nil;
         if (self.word.similarWords.count == 0) {
-            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@] 美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
+            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
         }else{
-            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@] 美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
+            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
         }
         
         [jointStr htmlUnescape];
         
         self.acceptationTextView.text = jointStr;
+        CGRect textViewFrame = self.acceptationTextView.frame;
+        textViewFrame.origin.y = labelFrame.origin.y+labelFrame.size.height+10.0f;
+        self.acceptationTextView.frame = textViewFrame;
+        
         self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronunciation.pronData error:nil];
         [self.player prepareToPlay];
     }else{

@@ -25,8 +25,6 @@
 		A46A7F441632DA5900DF4696 /* ShowWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F421632DA5800DF4696 /* ShowWordListViewController.xib */; };
 		A46A7F481632DE4100DF4696 /* ShowWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */; };
 		A46A7F491632DE4100DF4696 /* ShowWordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */; };
-		A46A7F4D1632E5F300DF4696 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F4B1632E5F300DF4696 /* HomeViewController.m */; };
-		A46A7F4E1632E5F300DF4696 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */; };
 		A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */; };
 		A46A7F531632ED4E00DF4696 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */; };
 		A46A7F5C1633A35900DF4696 /* LearningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F5A1633A35900DF4696 /* LearningViewController.m */; };
@@ -142,8 +140,6 @@
 		EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D2056169C029400A8C5B9 /* WordSearcher.m */; };
 		EC9D2060169D018700A8C5B9 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205E169D018700A8C5B9 /* refresh.png */; };
 		EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205F169D018700A8C5B9 /* refresh@2x.png */; };
-		ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6EC9116311D9800A34438 /* TestViewController.m */; };
-		ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6EC9216311D9800A34438 /* TestViewController.xib */; };
 		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
 		ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */; };
 		ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB725A516D0BB1800BAB36D /* GuideView.xib */; };
@@ -195,9 +191,6 @@
 		A46A7F451632DE4000DF4696 /* ShowWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWordsViewController.h; sourceTree = "<group>"; };
 		A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWordsViewController.m; sourceTree = "<group>"; };
 		A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowWordsViewController.xib; sourceTree = "<group>"; };
-		A46A7F4A1632E5F300DF4696 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		A46A7F4B1632E5F300DF4696 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		A46A7F4F1632ED4D00DF4696 /* LearningBackboneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningBackboneViewController.h; sourceTree = "<group>"; };
 		A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningBackboneViewController.m; sourceTree = "<group>"; };
 		A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningBackboneViewController.xib; sourceTree = "<group>"; };
@@ -363,9 +356,6 @@
 		EC9D2056169C029400A8C5B9 /* WordSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSearcher.m; sourceTree = "<group>"; };
 		EC9D205E169D018700A8C5B9 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = artwork/refresh.png; sourceTree = "<group>"; };
 		EC9D205F169D018700A8C5B9 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "artwork/refresh@2x.png"; sourceTree = "<group>"; };
-		ECB6EC9016311D9800A34438 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		ECB6EC9116311D9800A34438 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		ECB6EC9216311D9800A34438 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
 		ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
 		ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateWordListViewController.xib; sourceTree = "<group>"; };
@@ -734,9 +724,6 @@
 				A46A7FF016396FE600DF4696 /* Planning */,
 				EC4FCFEB16367C9E00EF429B /* Examing */,
 				EC4FCFEA16367C8700EF429B /* Learning */,
-				ECB6EC9016311D9800A34438 /* TestViewController.h */,
-				ECB6EC9116311D9800A34438 /* TestViewController.m */,
-				ECB6EC9216311D9800A34438 /* TestViewController.xib */,
 				ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */,
 				ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */,
 				ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */,
@@ -746,9 +733,6 @@
 				A46A7F451632DE4000DF4696 /* ShowWordsViewController.h */,
 				A46A7F461632DE4100DF4696 /* ShowWordsViewController.m */,
 				A46A7F471632DE4100DF4696 /* ShowWordsViewController.xib */,
-				A46A7F4A1632E5F300DF4696 /* HomeViewController.h */,
-				A46A7F4B1632E5F300DF4696 /* HomeViewController.m */,
-				A46A7F4C1632E5F300DF4696 /* HomeViewController.xib */,
 				A46A802A163D35DC00DF4696 /* VWebViewController.h */,
 				A46A802B163D35DE00DF4696 /* VWebViewController.m */,
 				A46A802C163D35E100DF4696 /* VWebViewController.xib */,
@@ -899,11 +883,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */,
-				ECB6EC9416311D9800A34438 /* TestViewController.xib in Resources */,
 				ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */,
 				A46A7F441632DA5900DF4696 /* ShowWordListViewController.xib in Resources */,
 				A46A7F491632DE4100DF4696 /* ShowWordsViewController.xib in Resources */,
-				A46A7F4E1632E5F300DF4696 /* HomeViewController.xib in Resources */,
 				A46A7F531632ED4E00DF4696 /* LearningBackboneViewController.xib in Resources */,
 				A46A7F5D1633A35900DF4696 /* LearningViewController.xib in Resources */,
 				A46A7FCD1635909D00DF4696 /* audio.png in Resources */,
@@ -1032,12 +1014,10 @@
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
-				ECB6EC9316311D9800A34438 /* TestViewController.m in Sources */,
 				ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */,
 				A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */,
 				A46A7F431632DA5900DF4696 /* ShowWordListViewController.m in Sources */,
 				A46A7F481632DE4100DF4696 /* ShowWordsViewController.m in Sources */,
-				A46A7F4D1632E5F300DF4696 /* HomeViewController.m in Sources */,
 				A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */,
 				A46A7F5C1633A35900DF4696 /* LearningViewController.m in Sources */,
 				A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */,
