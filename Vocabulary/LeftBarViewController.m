@@ -37,7 +37,7 @@
     self.searchResultTableView.hidden = YES;
     self.searcher = [[WordSearcher alloc]init];
     self.searchBar.backgroundColor = [UIColor clearColor];
-    self.searchResultTableView.backgroundView = nil;
+//    self.searchResultTableView.backgroundView = nil;
     self.searchResultTableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.searchResultTableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellSeparator.png"]];
     for (UIView *subview in [self.searchBar subviews]) {
@@ -93,23 +93,27 @@
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            cell.textLabel.textColor = [UIColor whiteColor];
             UIImage *cellBG = [[UIImage imageNamed:@"CellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
             UIImage *cellBGHighlighted = [[UIImage imageNamed:@"CellBGHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+            cell.contentView.backgroundColor = [UIColor clearColor];
             cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
             cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+            UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, cell.frame.size.width-20,cell.frame.size.height)];
+            contentLabel.tag = 1000;
+            contentLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+            contentLabel.backgroundColor = [UIColor clearColor];
+            contentLabel.font = [UIFont boldSystemFontOfSize:15];
+            contentLabel.textColor = [UIColor whiteColor];
+            [cell.contentView addSubview:contentLabel];
         }
-        cell.textLabel.text = self.rows[indexPath.row];
+        UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:1000];
+        contentLabel.text = self.rows[indexPath.row];
         return cell;
     }else if(tableView == self.searchResultTableView) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResultCellIdentifier];
-//            UIImage *cellBG = [[UIImage imageNamed:@"SearchResultCellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//            cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
-            cell.textLabel.backgroundColor = [UIColor clearColor];
         }
         cell.textLabel.text = ((Word *)self.searchResult[indexPath.row]).key;
         return cell;

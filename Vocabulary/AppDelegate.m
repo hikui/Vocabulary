@@ -24,7 +24,6 @@
 //
 
 #import "AppDelegate.h"
-//#import "HomeViewController.h"
 #import "UINavigationController+Rotation_IOS6.h"
 #import "LeftBarViewController.h"
 #import "SearchWordViewController.h"
@@ -89,10 +88,7 @@
         hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFailed:) name:kMigrationFailedNotification object:nil];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [[CoreDataHelperV2 sharedInstance]migrateDatabase];
-        });
-        
+        [[CoreDataHelperV2 sharedInstance]migrateDatabase];
     }
     
     [self.window makeKeyAndVisible];

@@ -92,7 +92,7 @@
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<bool key="IBUIEditable">NO</bool>
-								<string key="IBUIText">example</string>
+								<string key="IBUIText"/>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -147,7 +147,7 @@
 							</object>
 							<object class="IBUIButton" id="134959957">
 								<reference key="NSNextResponder" ref="387786398"/>
-								<int key="NSvFlags">265</int>
+								<int key="NSvFlags">269</int>
 								<string key="NSFrame">{{19, 353}, {281, 43}}</string>
 								<reference key="NSSuperview" ref="387786398"/>
 								<reference key="NSWindow"/>

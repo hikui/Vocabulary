@@ -43,34 +43,25 @@
 
 - (void)migrateDatabase
 {
-    
-    dispatch_queue_t currentQueue = dispatch_get_current_queue();
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    dispatch_queue_t currentQueue = dispatch_get_current_queue();
+    NSAssert(mainQueue==currentQueue, @"migrationDatabase需要运行在main thread");
+    [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
     
-    if (currentQueue == mainQueue) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
-    }else{
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter]postNotificationName:kStartMigrationNotification object:self];
-        });
-    }
+    __block NSError *err = nil;
     
-    id psc = [self persistentStoreCoordinator];
-    [[self mainContext]save:nil];
-    
-    if (psc == nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFailedNotification object:self];
-        });
-    }else {
-        if (currentQueue == mainQueue) {
-            [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
-        }else{
-            dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_queue_t migrationQueue = dispatch_queue_create("MigrationQUeue", NULL);
+    dispatch_async(migrationQueue, ^{
+        id psc = [self persistentStoreCoordinator];
+        dispatch_async(mainQueue, ^{
+            [[self mainContext]save:&err];
+            if (psc == nil || err != nil) {
+                [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFailedNotification object:self];
+            }else {
                 [[NSNotificationCenter defaultCenter]postNotificationName:kMigrationFinishedNotification object:self];
-            });
-        }
-    }
+            }
+        });
+    });
 }
 
 
