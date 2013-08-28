@@ -26,9 +26,7 @@
 #import "ShowWordListViewController.h"
 #import "ShowWordsViewController.h"
 #import "AppDelegate.h"
-#import "IIViewDeckController.h"
 #import "VNavigationController.h"
-#import "Word.h"
 
 @interface ShowWordListViewController ()
 

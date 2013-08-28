@@ -24,14 +24,10 @@
 //
 
 #import "AppDelegate.h"
-#import "UINavigationController+Rotation_IOS6.h"
 #import "LeftBarViewController.h"
-#import "SearchWordViewController.h"
-#import "IIViewDeckController.h"
 #import "PlanningVIewController.h"
 #import "VNavigationController.h"
-#import "Plan.h"
-#import "common.h"
+
 
 
 @implementation AppDelegate

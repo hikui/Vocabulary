@@ -7,8 +7,6 @@
 //
 
 #import "VNavigationController.h"
-#import "AppDelegate.h"
-#import "IIViewDeckController.h"
 
 @implementation VNavigationController
 

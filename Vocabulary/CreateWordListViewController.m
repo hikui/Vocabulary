@@ -24,11 +24,7 @@
 //
 
 #import "CreateWordListViewController.h"
-#import "Word.h"
-#import "WordList.h"
-#import <QuartzCore/QuartzCore.h>
 #import "WordListCreator.h"
-#import "UIToolbar+VToolBar.h"
 #import "AppDelegate.h"
 
 @interface CreateWordListViewController ()

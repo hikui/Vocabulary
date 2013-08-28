@@ -28,7 +28,6 @@
 #import "ActionSheetPicker.h"
 #import "ConfusingWordsIndexer.h"
 #import "AppDelegate.h"
-#import "IIViewDeckController.h"
 
 @interface ConfigViewController ()
 
@@ -105,8 +104,6 @@
     }else{
         return 2;
     }
-    
-    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -10,7 +10,6 @@
 #import "IIViewDeckController.h"
 #import "PlanningVIewController.h"
 #import "WordListFromDiskViewController.h"
-#import "ShowWordListViewController.h"
 #import "ShowWordsViewController.h"
 #import "ConfigViewController.h"
 #import "CreateWordListViewController.h"

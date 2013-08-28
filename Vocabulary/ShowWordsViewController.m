@@ -24,14 +24,12 @@
 //
 
 #import "ShowWordsViewController.h"
-#import "Word.h"
 #import "LearningBackboneViewController.h"
 #import "LearningViewController.h"
 #import "ExamViewController.h"
 #import "ConfusingWordsIndexer.h"
 #import "WordListFromDiskViewController.h"
 #import "AppDelegate.h"
-#import "IIViewDeckController.h"
 #import "VNavigationController.h"
 
 @interface ShowWordsViewController ()

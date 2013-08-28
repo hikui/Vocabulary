@@ -26,7 +26,6 @@
 #import "PlanningVIewController.h"
 #import "ShowWordsViewController.h"
 #import "AppDelegate.h"
-#import "IIViewDeckController.h"
 
 @interface PlanningVIewController ()
 
