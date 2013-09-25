@@ -179,9 +179,13 @@
             hud.detailsLabelText = @"正在索引";
             hud.mode = MBProgressHUDModeAnnularDeterminate;
             [ConfusingWordsIndexer reIndexForAllWithProgressCallback:^(float progress) {
-                hud.progress = progress;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    hud.progress = progress;
+                });
             } completion:^{
-                [hud hide:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [hud hide:YES];
+                });
             }];
         }
     }else if (indexPath.section == 1) {
@@ -190,7 +194,7 @@
             NSURL *url = [NSURL URLWithString:[MobClick getConfigParams:@"helpUrl"]];
             hvc.requestURL = url;
             hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentModalViewController:hvc animated:YES];
+            [self presentViewController:hvc animated:YES completion:nil];
         }else if (indexPath.row == 1){
             if ([MFMailComposeViewController canSendMail]) {
                 MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
@@ -199,7 +203,7 @@
                 [controller setToRecipients:@[@"hikuimiao@gmail.com"]];
                 //[controller setMessageBody:@"Hello there." isHTML:NO];
                 if (controller) {
-                    [self presentModalViewController:controller animated:YES];
+                    [self presentViewController:controller animated:YES completion:nil];
                 }
             } else {
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"你的设备不支持发送邮件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];

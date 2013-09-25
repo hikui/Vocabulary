@@ -195,13 +195,14 @@
             [WordListCreator addWords:wordSet toWordListId:self.wordList.objectID progressBlock:^(float progress) {
                 hud.detailsLabelText = @"正在索引易混淆单词";
             } completion:^(NSError *error) {
-                if (error != nil) {
-                    NSLog(@"%@",[error localizedDescription]);
-                }
-                [hud hide:YES];
-                [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
-                [self dismissViewControllerAnimated:YES completion:nil];
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error != nil) {
+                        NSLog(@"%@",[error localizedDescription]);
+                    }
+                    [hud hide:YES];
+                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                });
             }];
         }
     }else{
@@ -226,21 +227,23 @@
             
             
             [WordListCreator createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:^(float progress) {
-                //            [hud setMode:MBProgressHUDModeAnnularDeterminate];
-                //            hud.progress = progress;
-                hud.detailsLabelText = @"正在索引易混淆单词";
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    hud.detailsLabelText = @"正在索引易混淆单词";
+                });
             } completion:^(NSError *error) {
-                if (error != nil) {
-                    NSLog(@"%@",[error localizedDescription]);
-                }
-                totalCount--;
-                if (totalCount <= 0) {
-                    [hud hide:YES];
-//                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
-                    [self dismissViewControllerAnimated:YES completion:nil];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (error != nil) {
+                        NSLog(@"%@",[error localizedDescription]);
+                    }
+                    totalCount--;
+                    if (totalCount <= 0) {
+                        [hud hide:YES];
+                        //                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+                        [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }
+                });
+                
             }];
         }
     }

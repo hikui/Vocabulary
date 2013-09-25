@@ -161,31 +161,34 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [WordListCreator createWordListAsyncWithTitle:self.titleField.text wordSet:wordSet completion:^(NSError *error) {
-        if (error != NULL) {
-            NSLog(@"%@",error);
-            if (error.code == WordListCreatorEmptyWordSetError) {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                               message:@"还没有单词哦"
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"知道了"
-                                                     otherButtonTitles:nil];
-                [alert show];
-            }else if (error.code == WordListCreatorNoTitleError){
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                               message:@"还没有起名字哦"
-                                                              delegate:nil
-                                                     cancelButtonTitle:@"知道了"
-                                                     otherButtonTitles:nil];
-                [alert show];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error != NULL) {
+                NSLog(@"%@",error);
+                if (error.code == WordListCreatorEmptyWordSetError) {
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                                   message:@"还没有单词哦"
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"知道了"
+                                                         otherButtonTitles:nil];
+                    [alert show];
+                }else if (error.code == WordListCreatorNoTitleError){
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                                   message:@"还没有起名字哦"
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"知道了"
+                                                         otherButtonTitles:nil];
+                    [alert show];
+                }else{
+                    abort();
+                }
+                return;
             }else{
-                abort();
+                //            [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
+                [self dismissViewControllerAnimated:YES completion:NULL];
             }
-            return;
-        }else{
-//            [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
-            [self dismissModalViewControllerAnimated:YES];
-        }
+        });
+        
     }];
     
     
@@ -194,7 +197,7 @@
 }
 - (IBAction)btnCancelPressed:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

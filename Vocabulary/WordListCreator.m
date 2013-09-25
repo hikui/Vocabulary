@@ -52,8 +52,8 @@
         return;
     }
     
-    dispatch_queue_t originalQueue = dispatch_get_current_queue();
-    dispatch_retain(originalQueue);
+//    dispatch_queue_t originalQueue = dispatch_get_current_queue();
+//    dispatch_retain(originalQueue);
     
     
 
@@ -128,27 +128,19 @@
                     }
                     
                     [ConfusingWordsIndexer indexNewWordsAsyncById:ids progressBlock:^(float progress) {
-                        dispatch_async(originalQueue, ^{
-                            if (progressBlock != NULL) progressBlock(progress);
-                        });
+                        
+                        if (progressBlock != NULL) progressBlock(progress);
+
                     } completion:^(NSError *error) {
-                        dispatch_async(originalQueue, ^{
-                            if (completion != NULL) completion(error);
-                        });
+                        
+                        if (completion != NULL) completion(error);
+
                     }];
                     
-                    //                    [ConfusingWordsIndexer indexNewWordsAsyncById:ids completion:^(NSError *error) {
-                    //                        dispatch_async(originalQueue, ^{
-                    //                            completion(error);
-                    //                        });
-                    //                    }];
                     return;
-                    //                    [ConfusingWordsIndexer indexNewWordsSyncById:ids managedObjectContext:moc error:&indexError];
                 }else {
                     if (completion != NULL) {
-                        dispatch_async(originalQueue, ^{
-                            completion(nil);
-                        });
+                        completion(nil);
                     }
                     return;
                 }
@@ -156,9 +148,7 @@
             }else{
                 NSLog(@"create words save error:%@",saveErr);
                 if (completion != NULL) {
-                    dispatch_async(originalQueue, ^{
-                        completion(saveErr);
-                    });
+                    completion(saveErr);
                 }
                 return;
             }
@@ -166,9 +156,7 @@
             NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
             [moc deleteObject:newList];
             if (completion != NULL) {
-                dispatch_async(originalQueue, ^{
-                    completion(error);
-                });
+                completion(error);
             }
             return;
         }
@@ -199,11 +187,7 @@
         }
         return;
     }
-    
-    
-    dispatch_queue_t originalQueue = dispatch_get_current_queue();
-    dispatch_retain(originalQueue);
-    
+
     
 
     CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
@@ -261,22 +245,22 @@
                 }
                 
                 [ConfusingWordsIndexer indexNewWordsAsyncById:ids progressBlock:^(float progress) {
-                    dispatch_async(originalQueue, ^{
-                        if (progressBlock != NULL) progressBlock(progress);
-                    });
+
+                    if (progressBlock != NULL) progressBlock(progress);
+
                 } completion:^(NSError *error) {
-                    dispatch_async(originalQueue, ^{
-                        if (completion != NULL) completion(error);
-                    });
+
+                    if (completion != NULL) completion(error);
+
                 }];
                 
                 return;
                 
             }else {
                 if (completion != NULL) {
-                    dispatch_async(originalQueue, ^{
-                        completion(nil);
-                    });
+
+                    completion(nil);
+
                 }
                 return;
             }
@@ -284,9 +268,9 @@
         }else{
             NSLog(@"create words save error:%@",saveErr);
             if (completion != NULL) {
-                dispatch_async(originalQueue, ^{
-                    completion(saveErr);
-                });
+
+                completion(saveErr);
+
             }
             return;
         }
