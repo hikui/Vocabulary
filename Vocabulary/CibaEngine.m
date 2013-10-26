@@ -128,7 +128,7 @@
             PronunciationData *pron = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
             pron.pronData = data;
             word.pronunciation = pron;
-            word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
+            word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
             [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
             completion();
             
