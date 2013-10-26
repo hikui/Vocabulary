@@ -838,6 +838,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "缪和光";
+				TargetAttributes = {
+					A46A7E461630296800DF4696 = {
+						DevelopmentTeam = 33998V4ZF9;
+					};
+				};
 			};
 			buildConfigurationList = A46A7E411630296800DF4696 /* Build configuration list for PBXProject "Vocabulary" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1106,10 +1111,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 353F430A212D421EA42694A9 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -1122,9 +1128,9 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos6.1;
+				PROVISIONING_PROFILE = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1134,10 +1140,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 353F430A212D421EA42694A9 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
@@ -1150,9 +1157,9 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos6.1;
+				PROVISIONING_PROFILE = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
