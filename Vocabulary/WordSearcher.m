@@ -22,15 +22,16 @@
 
 - (void)searchWord:(NSString *)word completion:(void(^)(NSArray *words)) completion
 {
-    dispatch_queue_t currentQ = dispatch_get_current_queue();
+//    dispatch_queue_t currentQ = dispatch_get_current_queue();
     
     [self.queryOperationQueue cancelAllOperations];
 
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]workerManagedObjectContext];
-        [ctx performBlockAndWait:^{
+        [ctx performBlock:^{
             if (self.fetchRequest == nil) {
                 self.fetchRequest = [[NSFetchRequest alloc]init];
+                self.fetchRequest.returnsObjectsAsFaults = NO;
                 NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
                 NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
                 [self.fetchRequest setEntity:entity];
@@ -39,11 +40,20 @@
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS %@)",word];
             [self.fetchRequest setPredicate:predicate];
             NSError *error = nil;
-            NSArray * result = [ctx executeFetchRequest:self.fetchRequest error:&error];
-            dispatch_async(currentQ, ^{
+            NSArray *resultFaults = [ctx executeFetchRequest:self.fetchRequest error:&error];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSMutableArray *result = [[NSMutableArray alloc]initWithCapacity:resultFaults.count];
+                for (NSManagedObject *anObj in resultFaults) {
+                    NSManagedObjectContext *mainContext = [[CoreDataHelperV2 sharedInstance]mainContext];
+                    Word *w = (Word *)[mainContext objectWithID:anObj.objectID];
+                    [result addObject:w];
+                }
                 completion(result);
             });
         }];
+        
+        
     }];
     [self.queryOperationQueue addOperation:operation];
 }
