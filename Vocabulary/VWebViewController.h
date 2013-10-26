@@ -26,7 +26,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VWebViewController : UIViewController <UIWebViewDelegate>
+@interface VWebViewController : VBaseViewController <UIWebViewDelegate>
 
 @property (nonatomic, strong) NSURL *requestURL;
 @property (nonatomic, weak) IBOutlet UIWebView *webView;

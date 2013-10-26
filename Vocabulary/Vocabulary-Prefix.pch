@@ -20,4 +20,5 @@
     #import "PronunciationData.h"
     #import "MobClick.h"
     #import "common.h"
+    #import "VBaseViewController.h"
 #endif
