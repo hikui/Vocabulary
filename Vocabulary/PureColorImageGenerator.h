@@ -13,4 +13,5 @@
 + (UIImage *)generateOnePixelImageWithColor:(UIColor *)color;
 + (UIImage *)generateBackButtonImageWithTint:(UIColor *)tintColor;
 + (UIImage *)generateRefreshImageWithTint:(UIColor *)tintColor;
++ (UIImage *)generateMenuImageWithTint:(UIColor *)tintColor;
 @end

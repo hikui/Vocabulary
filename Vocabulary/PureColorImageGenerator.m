@@ -67,4 +67,27 @@ static int factor = 2;
     return image;
 }
 
++ (UIImage *)generateMenuImageWithTint:(UIColor *)tintColor
+{
+    CGRect rect = CGRectMake(0, 0, 24*factor, 24*factor);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, tintColor.CGColor);
+    CGContextSetLineWidth(context, 3.0f*factor);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    
+    CGContextMoveToPoint(context, 3*factor, 6*factor);
+    CGContextAddLineToPoint(context, 21*factor, 6*factor);
+    CGContextMoveToPoint(context, 3*factor, 12*factor);
+    CGContextAddLineToPoint(context, 21*factor, 12*factor);
+    CGContextMoveToPoint(context, 3*factor, 18*factor);
+    CGContextAddLineToPoint(context, 21*factor, 18*factor);
+    
+    CGContextStrokePath(context);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end
