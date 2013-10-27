@@ -75,7 +75,13 @@
 		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
 		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
-		A4CD22C3181BED5400FE29F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C2181BED5400FE29F7 /* Images.xcassets */; };
+		A4CD22C6181CA51300FE29F7 /* SimpleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */; };
+		A4CD22C8181CB19000FE29F7 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C7181CB19000FE29F7 /* icon-120.png */; };
+		A4CD22CE181CB1A700FE29F7 /* iPhoneLaunchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C9181CB1A700FE29F7 /* iPhoneLaunchImage.png */; };
+		A4CD22CF181CB1A700FE29F7 /* iPhoneLaunchImage~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CA181CB1A700FE29F7 /* iPhoneLaunchImage~iphone.png */; };
+		A4CD22D0181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CB181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png */; };
+		A4CD22D1181CB1A700FE29F7 /* iPhoneiOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CC181CB1A700FE29F7 /* iPhoneiOS7.png */; };
+		A4CD22D2181CB1A700FE29F7 /* iPhoneiOS7R4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CD181CB1A700FE29F7 /* iPhoneiOS7R4.png */; };
 		A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8911695A840008F013C /* LeftBarViewController.m */; };
 		A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89C1695B556008F013C /* ButtonMenu.png */; };
 		A4E8C89F1695B556008F013C /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */; };
@@ -265,7 +271,14 @@
 		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		A4B3D79116420BD100F9772F /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		A4CD22C0181BD56F00FE29F7 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
-		A4CD22C2181BED5400FE29F7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A4CD22C4181CA51300FE29F7 /* SimpleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleProgressBar.h; sourceTree = "<group>"; };
+		A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleProgressBar.m; sourceTree = "<group>"; };
+		A4CD22C7181CB19000FE29F7 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-120.png"; path = "artwork/icon-120.png"; sourceTree = "<group>"; };
+		A4CD22C9181CB1A700FE29F7 /* iPhoneLaunchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhoneLaunchImage.png; path = artwork/launchImage/iPhoneLaunchImage.png; sourceTree = "<group>"; };
+		A4CD22CA181CB1A700FE29F7 /* iPhoneLaunchImage~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhoneLaunchImage~iphone.png"; path = "artwork/launchImage/iPhoneLaunchImage~iphone.png"; sourceTree = "<group>"; };
+		A4CD22CB181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhoneLaunchImage-568h@2x.png"; path = "artwork/launchImage/iPhoneLaunchImage-568h@2x.png"; sourceTree = "<group>"; };
+		A4CD22CC181CB1A700FE29F7 /* iPhoneiOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhoneiOS7.png; path = artwork/launchImage/iPhoneiOS7.png; sourceTree = "<group>"; };
+		A4CD22CD181CB1A700FE29F7 /* iPhoneiOS7R4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhoneiOS7R4.png; path = artwork/launchImage/iPhoneiOS7R4.png; sourceTree = "<group>"; };
 		A4E8C8901695A840008F013C /* LeftBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftBarViewController.h; sourceTree = "<group>"; };
 		A4E8C8911695A840008F013C /* LeftBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftBarViewController.m; sourceTree = "<group>"; };
 		A4E8C89C1695B556008F013C /* ButtonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonMenu.png; path = artwork/ButtonMenu.png; sourceTree = "<group>"; };
@@ -451,7 +464,6 @@
 				A46A7E5A1630296800DF4696 /* AppDelegate.h */,
 				A46A7E5B1630296800DF4696 /* AppDelegate.m */,
 				EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */,
-				A4CD22C2181BED5400FE29F7 /* Images.xcassets */,
 				A46A7E521630296800DF4696 /* Supporting Files */,
 			);
 			path = Vocabulary;
@@ -662,6 +674,7 @@
 				A498F007177EA23800FC8AA5 /* Icon-72.png */,
 				A498F008177EA23800FC8AA5 /* Icon-144.png */,
 				A498F009177EA23800FC8AA5 /* Icon.png */,
+				A4CD22C7181CB19000FE29F7 /* icon-120.png */,
 				A498F00A177EA23800FC8AA5 /* Icon@2x.png */,
 			);
 			name = icons;
@@ -670,6 +683,11 @@
 		A498F010177EA39300FC8AA5 /* launch_images */ = {
 			isa = PBXGroup;
 			children = (
+				A4CD22C9181CB1A700FE29F7 /* iPhoneLaunchImage.png */,
+				A4CD22CA181CB1A700FE29F7 /* iPhoneLaunchImage~iphone.png */,
+				A4CD22CB181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png */,
+				A4CD22CC181CB1A700FE29F7 /* iPhoneiOS7.png */,
+				A4CD22CD181CB1A700FE29F7 /* iPhoneiOS7R4.png */,
 			);
 			name = launch_images;
 			sourceTree = "<group>";
@@ -763,6 +781,8 @@
 				EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */,
 				EC9D1F9A169970D400A8C5B9 /* VGradientView.h */,
 				EC9D1F9B169970D500A8C5B9 /* VGradientView.m */,
+				A4CD22C4181CA51300FE29F7 /* SimpleProgressBar.h */,
+				A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */,
 			);
 			name = Examing;
 			sourceTree = "<group>";
@@ -870,7 +890,6 @@
 				A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */,
 				ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */,
 				A46A7F441632DA5900DF4696 /* ShowWordListViewController.xib in Resources */,
-				A4CD22C3181BED5400FE29F7 /* Images.xcassets in Resources */,
 				A46A7F491632DE4100DF4696 /* ShowWordsViewController.xib in Resources */,
 				A46A7F531632ED4E00DF4696 /* LearningBackboneViewController.xib in Resources */,
 				A46A7F5D1633A35900DF4696 /* LearningViewController.xib in Resources */,
@@ -886,6 +905,7 @@
 				A46A800B163BCCE700DF4696 /* orangeButtonHighlight.png in Resources */,
 				A46A800C163BCCE700DF4696 /* orangeButtonHighlight@2x.png in Resources */,
 				A46A8011163BDBAB00DF4696 /* greenButton.png in Resources */,
+				A4CD22C8181CB19000FE29F7 /* icon-120.png in Resources */,
 				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
 				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
@@ -895,6 +915,7 @@
 				EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */,
 				EC1EC268167F2091003B1C69 /* closeButton.png in Resources */,
 				EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */,
+				A4CD22CF181CB1A700FE29F7 /* iPhoneLaunchImage~iphone.png in Resources */,
 				A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */,
 				A4E8C89F1695B556008F013C /* ButtonMenu@2x.png in Resources */,
 				EC2290091696B46700D7E0D8 /* splitline.png in Resources */,
@@ -907,6 +928,7 @@
 				EC9D1E981697CD5300A8C5B9 /* barbutton.png in Resources */,
 				EC9D1E991697CD5300A8C5B9 /* barbutton@2x.png in Resources */,
 				EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */,
+				A4CD22D2181CB1A700FE29F7 /* iPhoneiOS7R4.png in Resources */,
 				EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */,
 				EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */,
 				EC9D1E9E1697CD5300A8C5B9 /* tableheader.png in Resources */,
@@ -917,8 +939,10 @@
 				EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */,
 				EC9D1EA91698002E00A8C5B9 /* CellBGHighlighted@2x.png in Resources */,
 				EC9D1F42169817CD00A8C5B9 /* web-back.png in Resources */,
+				A4CD22D1181CB1A700FE29F7 /* iPhoneiOS7.png in Resources */,
 				EC9D1F43169817CD00A8C5B9 /* web-back@2x.png in Resources */,
 				EC9D1F44169817CD00A8C5B9 /* web-forward.png in Resources */,
+				A4CD22CE181CB1A700FE29F7 /* iPhoneLaunchImage.png in Resources */,
 				EC9D1F45169817CD00A8C5B9 /* web-forward@2x.png in Resources */,
 				EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */,
 				EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */,
@@ -943,6 +967,7 @@
 				ECB725D616D21D5300BAB36D /* import_wordlist_itunes4.png in Resources */,
 				A498F00B177EA23800FC8AA5 /* Icon-72.png in Resources */,
 				A498F00C177EA23800FC8AA5 /* Icon-144.png in Resources */,
+				A4CD22D0181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png in Resources */,
 				A498F00D177EA23800FC8AA5 /* Icon.png in Resources */,
 				A498F00E177EA23800FC8AA5 /* Icon@2x.png in Resources */,
 			);
@@ -1032,6 +1057,7 @@
 				EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */,
 				EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */,
 				A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
+				A4CD22C6181CA51300FE29F7 /* SimpleProgressBar.m in Sources */,
 				ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */,
 				ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */,
 				ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */,
@@ -1112,8 +1138,6 @@
 			baseConfigurationReference = 353F430A212D421EA42694A9 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1141,8 +1165,6 @@
 			baseConfigurationReference = 353F430A212D421EA42694A9 /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
