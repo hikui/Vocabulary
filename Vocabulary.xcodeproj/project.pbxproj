@@ -82,6 +82,8 @@
 		A4CD22D0181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CB181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png */; };
 		A4CD22D1181CB1A700FE29F7 /* iPhoneiOS7.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CC181CB1A700FE29F7 /* iPhoneiOS7.png */; };
 		A4CD22D2181CB1A700FE29F7 /* iPhoneiOS7R4.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22CD181CB1A700FE29F7 /* iPhoneiOS7R4.png */; };
+		A4CD22D5181CBA2300FE29F7 /* icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22D3181CBA2300FE29F7 /* icon-76.png */; };
+		A4CD22D6181CBA2300FE29F7 /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22D4181CBA2300FE29F7 /* icon-152.png */; };
 		A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8911695A840008F013C /* LeftBarViewController.m */; };
 		A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89C1695B556008F013C /* ButtonMenu.png */; };
 		A4E8C89F1695B556008F013C /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */; };
@@ -279,6 +281,8 @@
 		A4CD22CB181CB1A700FE29F7 /* iPhoneLaunchImage-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPhoneLaunchImage-568h@2x.png"; path = "artwork/launchImage/iPhoneLaunchImage-568h@2x.png"; sourceTree = "<group>"; };
 		A4CD22CC181CB1A700FE29F7 /* iPhoneiOS7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhoneiOS7.png; path = artwork/launchImage/iPhoneiOS7.png; sourceTree = "<group>"; };
 		A4CD22CD181CB1A700FE29F7 /* iPhoneiOS7R4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iPhoneiOS7R4.png; path = artwork/launchImage/iPhoneiOS7R4.png; sourceTree = "<group>"; };
+		A4CD22D3181CBA2300FE29F7 /* icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-76.png"; path = "artwork/icon-76.png"; sourceTree = "<group>"; };
+		A4CD22D4181CBA2300FE29F7 /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-152.png"; path = "artwork/icon-152.png"; sourceTree = "<group>"; };
 		A4E8C8901695A840008F013C /* LeftBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftBarViewController.h; sourceTree = "<group>"; };
 		A4E8C8911695A840008F013C /* LeftBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftBarViewController.m; sourceTree = "<group>"; };
 		A4E8C89C1695B556008F013C /* ButtonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonMenu.png; path = artwork/ButtonMenu.png; sourceTree = "<group>"; };
@@ -671,6 +675,8 @@
 		A498F00F177EA38300FC8AA5 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				A4CD22D3181CBA2300FE29F7 /* icon-76.png */,
+				A4CD22D4181CBA2300FE29F7 /* icon-152.png */,
 				A498F007177EA23800FC8AA5 /* Icon-72.png */,
 				A498F008177EA23800FC8AA5 /* Icon-144.png */,
 				A498F009177EA23800FC8AA5 /* Icon.png */,
@@ -928,6 +934,7 @@
 				EC9D1E981697CD5300A8C5B9 /* barbutton.png in Resources */,
 				EC9D1E991697CD5300A8C5B9 /* barbutton@2x.png in Resources */,
 				EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */,
+				A4CD22D5181CBA2300FE29F7 /* icon-76.png in Resources */,
 				A4CD22D2181CB1A700FE29F7 /* iPhoneiOS7R4.png in Resources */,
 				EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */,
 				EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */,
@@ -955,6 +962,7 @@
 				ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */,
 				ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */,
 				ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */,
+				A4CD22D6181CBA2300FE29F7 /* icon-152.png in Resources */,
 				ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */,
 				ECB725C616D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png in Resources */,
 				ECB725CB16D21C8F00BAB36D /* import_wordlist_itunes1@2x.png in Resources */,
@@ -1144,7 +1152,7 @@
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
@@ -1155,7 +1163,7 @@
 				PROVISIONING_PROFILE = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1171,7 +1179,7 @@
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
@@ -1182,7 +1190,7 @@
 				PROVISIONING_PROFILE = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65B26865-3C2E-4CA2-9AEB-5DEFF48BD9EC";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
