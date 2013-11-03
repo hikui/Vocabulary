@@ -31,6 +31,7 @@
 #import "IIViewDeckController.h"
 #import "AppDelegate.h"
 #import "VNavigationController.h"
+#import "SimpleProgressBar.h"
 
 @interface ExamViewController ()
 
@@ -41,6 +42,8 @@
 
 @property (nonatomic, strong) NSMutableSet *wordsWithNoInfoSet;
 @property (nonatomic, strong) NSMutableArray *networkOperationQueue;
+
+@property (nonatomic, strong) SimpleProgressBar *progressBar;
 
 - (ExamView *)pickAnExamView;
 - (void)createExamContentsArray;
@@ -129,7 +132,7 @@
     //create 2 exam views;
     ExamView *ev1 = [ExamView newInstance];
     ev1.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
+    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-48);
     ExamView *ev2 = [ExamView newInstance];
     ev2.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     ev2.frame = ev1.frame;
@@ -137,6 +140,12 @@
     [self.examViewReuseQueue addObject:ev2];
     [self.view addSubview:ev1];
     [self.view addSubview:ev2];
+    
+    
+    // 增加progress
+    self.progressBar = [[SimpleProgressBar alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-48, self.view.bounds.size.width, 4) barColor:RGBA(22, 140, 228, 0.9)];
+    self.progressBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:self.progressBar];
     
     
     //扫描是否有未加载的word
@@ -376,8 +385,11 @@
 - (void)prepareNextExamView
 {
     ExamView *ev = [self pickAnExamView];
-    ev.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44);
-    _cursor1 = ++_cursor1 % self.examContentsQueue.count;
+    ev.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-48);
+    _cursor1 = ++_cursor1;
+    self.progressBar.progress = (float)_cursor1 / self.examContentsQueue.count;
+    _cursor1 = _cursor1 % self.examContentsQueue.count;
+    
     ExamContent * content = [self.examContentsQueue objectAtIndex:_cursor1];
     if (_cursor1 == 0) {
         //已经循环一遍了

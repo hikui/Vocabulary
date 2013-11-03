@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateWordListViewController : UIViewController<UITextViewDelegate,UIScrollViewDelegate>
+@interface CreateWordListViewController : VBaseViewController<UITextViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,weak) IBOutlet UITextView *textView;
 @property (nonatomic,weak) IBOutlet UITextField *titleField;

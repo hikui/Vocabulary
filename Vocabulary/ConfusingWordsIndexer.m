@@ -40,8 +40,8 @@
     
     
     
-    dispatch_queue_t originDispatchQueue = dispatch_get_current_queue();
-    dispatch_retain(originDispatchQueue);
+//    dispatch_queue_t originDispatchQueue = dispatch_get_current_queue();
+//    dispatch_retain(originDispatchQueue);
     if (newWordsIDArray.count == 0) {
         if (completion != NULL) {
             completion(nil);
@@ -65,12 +65,12 @@
         NSArray *allWords = [ctx executeFetchRequest:request error:&error];
         if (error != nil) {
             if (completion != NULL) {
-                dispatch_async(originDispatchQueue, ^{
+//                dispatch_async(originDispatchQueue, ^{
                     completion(error);
-                });
+//                });
             }
             
-            dispatch_release(originDispatchQueue);
+//            dispatch_release(originDispatchQueue);
             return;
         }
         
@@ -103,18 +103,18 @@
             }
             finishedNum ++;
             float progress = ((float)finishedNum)/totalNum;
-            dispatch_async(originDispatchQueue, ^{
+//            dispatch_async(originDispatchQueue, ^{
                 if (progressBlock != NULL) progressBlock(progress);
-            });
+//            });
         }
         
         [ctx save:&error];
         if (completion != NULL) {
-            dispatch_async(originDispatchQueue, ^{
+//            dispatch_async(originDispatchQueue, ^{
                 completion(error);
-            });
+//            });
         }
-        dispatch_release(originDispatchQueue);
+//        dispatch_release(originDispatchQueue);
         timeCost = -[date timeIntervalSinceNow];
         NSLog(@"索引用时 :%f",timeCost);
     }];
@@ -127,8 +127,8 @@
 
 + (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)callback completion:(HKVVoidBlock)completion
 {
-    dispatch_queue_t originDispatchQueue = dispatch_get_current_queue();
-    dispatch_retain(originDispatchQueue);
+//    dispatch_queue_t originDispatchQueue = dispatch_get_current_queue();
+//    dispatch_retain(originDispatchQueue);
     NSDate *date = [NSDate date];
     
     
@@ -184,15 +184,16 @@
             
             finishedNum ++;
             float progress = ((float)finishedNum)/totalNum;
-            dispatch_async(originDispatchQueue, ^{
+//            dispatch_async(originDispatchQueue, ^{
                 callback(progress);
-            });
+//            });
         }
         [ctx save:nil];
         if (completion != NULL) {
-            dispatch_async(originDispatchQueue, completion);
+            completion();
+//            dispatch_async(originDispatchQueue, completion);
         }
-        dispatch_release(originDispatchQueue);
+//        dispatch_release(originDispatchQueue);
         timeCost = -[date timeIntervalSinceNow];
         NSLog(@"整体易混淆单词索引用时:%f",timeCost);
     }];

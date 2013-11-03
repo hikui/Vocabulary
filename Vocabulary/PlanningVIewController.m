@@ -26,6 +26,7 @@
 #import "PlanningVIewController.h"
 #import "ShowWordsViewController.h"
 #import "AppDelegate.h"
+#import "PureColorImageGenerator.h"
 
 @interface PlanningVIewController ()
 
@@ -61,10 +62,11 @@
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     menuButton.frame = CGRectMake(0, 0, 40, 29);
     
-    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     
-    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-    [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
+//    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
+    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem = menuBarButton;

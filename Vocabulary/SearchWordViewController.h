@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchWordViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface SearchWordViewController : VBaseViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 
 @property (nonatomic, copy) NSArray *contentsArray;

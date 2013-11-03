@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WordListFromDiskViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface WordListFromDiskViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *fileList;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

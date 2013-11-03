@@ -27,6 +27,7 @@
 #import "LeftBarViewController.h"
 #import "PlanningVIewController.h"
 #import "VNavigationController.h"
+#import "PureColorImageGenerator.h"
 
 
 
@@ -35,6 +36,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UIApplication sharedApplication]setStatusBarHidden:NO];
+    
+    // setup appearance
+    UIImage *navBackgroundImage = [PureColorImageGenerator generateOnePixelImageWithColor:[UIColor whiteColor]];
+    [[UIToolbar appearance] setBackgroundImage:navBackgroundImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    
+    
     //友盟统计
     [MobClick startWithAppkey:@"50b828715270152727000018" reportPolicy:REALTIME channelId:kChannelId];
     [MobClick updateOnlineConfig];

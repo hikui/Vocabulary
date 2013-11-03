@@ -27,7 +27,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WordList.h"
 
-@interface ExamViewController : UIViewController <UIAlertViewDelegate>
+@interface ExamViewController : VBaseViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) WordList *wordList;
 @property (nonatomic, strong) NSArray *wordsArray;

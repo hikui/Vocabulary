@@ -27,7 +27,7 @@
 #import "GADBannerView.h"
 //#import "YouMiView.h"
 
-@interface AdBaseViewController : UIViewController <GADBannerViewDelegate>
+@interface AdBaseViewController : VBaseViewController <GADBannerViewDelegate>
 
 @property (nonatomic, strong) GADBannerView *banner;
 //@property (nonatomic, strong) YouMiView *banner;

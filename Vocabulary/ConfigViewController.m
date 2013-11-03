@@ -28,6 +28,7 @@
 #import "ActionSheetPicker.h"
 #import "ConfusingWordsIndexer.h"
 #import "AppDelegate.h"
+#import "PureColorImageGenerator.h"
 
 @interface ConfigViewController ()
 
@@ -60,10 +61,12 @@
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     menuButton.frame = CGRectMake(0, 0, 40, 29);
     
-    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-    
-    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-    [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
+//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+//    
+//    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
+//    [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
+    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem = menuBarButton;
@@ -179,9 +182,13 @@
             hud.detailsLabelText = @"正在索引";
             hud.mode = MBProgressHUDModeAnnularDeterminate;
             [ConfusingWordsIndexer reIndexForAllWithProgressCallback:^(float progress) {
-                hud.progress = progress;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    hud.progress = progress;
+                });
             } completion:^{
-                [hud hide:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [hud hide:YES];
+                });
             }];
         }
     }else if (indexPath.section == 1) {
@@ -190,7 +197,7 @@
             NSURL *url = [NSURL URLWithString:[MobClick getConfigParams:@"helpUrl"]];
             hvc.requestURL = url;
             hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-            [self presentModalViewController:hvc animated:YES];
+            [self presentViewController:hvc animated:YES completion:nil];
         }else if (indexPath.row == 1){
             if ([MFMailComposeViewController canSendMail]) {
                 MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
@@ -199,7 +206,7 @@
                 [controller setToRecipients:@[@"hikuimiao@gmail.com"]];
                 //[controller setMessageBody:@"Hello there." isHTML:NO];
                 if (controller) {
-                    [self presentModalViewController:controller animated:YES];
+                    [self presentViewController:controller animated:YES completion:nil];
                 }
             } else {
                 UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"你的设备不支持发送邮件" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
