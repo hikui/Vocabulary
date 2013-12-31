@@ -125,7 +125,7 @@
 {
     self.lblKey.text = self.word.key;
     
-    CGSize labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByClipping];
     CGRect labelFrame = self.lblKey.frame;
     labelFrame.size = labelSize;
     self.lblKey.frame = labelFrame;
