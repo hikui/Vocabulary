@@ -24,7 +24,7 @@
 //
 
 #import "PlanningVIewController.h"
-#import "ShowWordsViewController.h"
+#import "WordListViewController.h"
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
 
@@ -330,7 +330,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
     
     NSInteger numOfSections = [tableView numberOfSections];
     

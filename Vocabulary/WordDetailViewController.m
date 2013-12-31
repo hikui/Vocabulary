@@ -23,7 +23,7 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "LearningViewController.h"
+#import "WordDetailViewController.h"
 #import "MBProgressHUD.h"
 #import "CibaEngine.h"
 #import "CibaWebView.h"
@@ -33,11 +33,11 @@
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
-@interface LearningViewController ()
+@interface WordDetailViewController ()
 
 @end
 
-@implementation LearningViewController
+@implementation WordDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -111,7 +111,7 @@
 
 - (id)initWithWord:(Word *)word
 {
-    self = [super initWithNibName:@"LearningViewController" bundle:nil];
+    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
     if (self) {
         _word = word;
         _shouldHideInfo = NO;

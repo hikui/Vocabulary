@@ -23,9 +23,9 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "ShowWordsViewController.h"
+#import "WordListViewController.h"
 #import "LearningBackboneViewController.h"
-#import "LearningViewController.h"
+#import "WordDetailViewController.h"
 #import "ExamViewController.h"
 #import "ConfusingWordsIndexer.h"
 #import "WordListFromDiskViewController.h"
@@ -33,11 +33,11 @@
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
 
-@interface ShowWordsViewController ()
+@interface WordListViewController ()
 
 @end
 
-@implementation ShowWordsViewController
+@implementation WordListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -84,16 +84,16 @@
         for (Word *w in self.wordList.words) {
             [words addObject:w];
         }
-        self.wordsSet = words;
+        self.wordArray = words;
     }else{
         self.addWordButton.enabled = NO;
     }
-    [_wordsSet sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    [_wordArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         Word *wobj1 = (Word *)obj1;
         Word *wobj2 = (Word *)obj2;
         return [wobj1.key compare:wobj2.key];
     }];
-    if (self.wordsSet.count == 0) {
+    if (self.wordArray.count == 0) {
         self.beginStudyButton.enabled = NO;
         self.beginTestButton.enabled = NO;
     }
@@ -133,7 +133,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.wordsSet.count;
+    return self.wordArray.count;
 }
 
 // Customize the appearance of table view cells.
@@ -145,7 +145,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    Word *w = [self.wordsSet objectAtIndex:indexPath.row];
+    Word *w = [self.wordArray objectAtIndex:indexPath.row];
     cell.textLabel.text = w.key;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
     //已学习过的但未完成艾宾浩斯学习的单词列表中熟悉度<=5的单词，或者已完成艾宾浩斯学习的单词列表中，熟悉度<10的单词，标记红色。
@@ -160,8 +160,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Word *w = [self.wordsSet objectAtIndex:indexPath.row];
-    LearningViewController *lvc = [[LearningViewController alloc]initWithWord:w];
+    Word *w = [self.wordArray objectAtIndex:indexPath.row];
+    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -177,12 +177,12 @@
     [_tableView beginUpdates];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSUInteger row = indexPath.row;
-        Word *wordShouldBeDeleted = [self.wordsSet objectAtIndex:row];
+        Word *wordShouldBeDeleted = [self.wordArray objectAtIndex:row];
 //        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
 //            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
 //        }
         
-        [self.wordsSet removeObjectAtIndex:row];
+        [self.wordArray removeObjectAtIndex:row];
         
 //        [self.wordsSet removeLastObject];
         if (self.wordList != nil) {
@@ -204,7 +204,7 @@
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
-    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithWords:self.wordsSet];
+    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithWords:self.wordArray];
     [self.navigationController pushViewController:lvc animated:YES];
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
@@ -213,7 +213,7 @@
     if (self.wordList != nil) {
         evc = [[ExamViewController alloc]initWithWordList:self.wordList];
     }else{
-        evc = [[ExamViewController alloc]initWithWordArray:self.wordsSet];
+        evc = [[ExamViewController alloc]initWithWordArray:self.wordArray];
     }
     
     [self.navigationController pushViewController:evc animated:YES];
@@ -252,9 +252,9 @@
         w.key = [[alertView textFieldAtIndex:0]text];
         [w addWordListsObject:self.wordList];
         [ctx save:nil];
-        [self.wordsSet addObject:w];
+        [self.wordArray addObject:w];
         [_tableView beginUpdates];
-        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordsSet.count-1 inSection:0];
+        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
         [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
         [_tableView endUpdates];
         

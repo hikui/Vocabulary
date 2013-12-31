@@ -23,19 +23,19 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "ShowWordListViewController.h"
-#import "ShowWordsViewController.h"
+#import "ExistingWordListsViewController.h"
+#import "WordListViewController.h"
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
 
-@interface ShowWordListViewController ()
+@interface ExistingWordListsViewController ()
 
 - (void)refreshHintView;
 
 @end
 
-@implementation ShowWordListViewController
+@implementation ExistingWordListsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -178,7 +178,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    ShowWordsViewController *subVC = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
     subVC.wordList = (WordList *)object;
     [self.navigationController pushViewController:subVC animated:YES];
 }

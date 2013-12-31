@@ -24,7 +24,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ShowWordListViewController.h"
+#import "ExistingWordListsViewController.h"
 #import "AdBaseViewController.h"
 #import "Plan.h"
 @interface PlanningVIewController : AdBaseViewController <UITableViewDataSource,UITableViewDelegate>

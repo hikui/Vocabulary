@@ -30,7 +30,7 @@
 #import "AdBaseViewController.h"
 
 @class BButton;
-@interface LearningViewController : AdBaseViewController
+@interface WordDetailViewController : AdBaseViewController
 
 @property (nonatomic,strong) Word *word;
 @property (nonatomic,weak) IBOutlet UILabel *lblKey;
