@@ -11,7 +11,7 @@
 #import "PlanningVIewController.h"
 #import "WordListFromDiskViewController.h"
 #import "WordListViewController.h"
-#import "ConfigViewController.h"
+#import "PreferenceViewController.h"
 #import "CreateWordListViewController.h"
 #import "VNavigationController.h"
 #import "WordDetailViewController.h"
@@ -195,10 +195,10 @@
                 }];
             }
         }else if (indexPath.row == 4) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
+            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PreferenceViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStyleGrouped];
+                PreferenceViewController *cvc = [[PreferenceViewController alloc]initWithStyle:UITableViewStyleGrouped];
                 VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
                 [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                     controller.centerController = ncvc;

@@ -25,7 +25,7 @@
 		A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F381632C44800DF4696 /* CoreDataHelper.m */; };
 		A46A7F431632DA5900DF4696 /* ExistingWordListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F411632DA5800DF4696 /* ExistingWordListsViewController.m */; };
 		A46A7F441632DA5900DF4696 /* ExistingWordListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F421632DA5800DF4696 /* ExistingWordListsViewController.xib */; };
-		A46A7F481632DE4100DF4696 /* WorldListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F461632DE4100DF4696 /* WorldListViewController.m */; };
+		A46A7F481632DE4100DF4696 /* WordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F461632DE4100DF4696 /* WordListViewController.m */; };
 		A46A7F491632DE4100DF4696 /* WordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F471632DE4100DF4696 /* WordListViewController.xib */; };
 		A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */; };
 		A46A7F531632ED4E00DF4696 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */; };
@@ -73,7 +73,7 @@
 		A498F00E177EA23800FC8AA5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A498F00A177EA23800FC8AA5 /* Icon@2x.png */; };
 		A498F023177F076500FC8AA5 /* CoreDataHelperV2.m in Sources */ = {isa = PBXBuildFile; fileRef = A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */; };
 		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
-		A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* ConfigViewController.m */; };
+		A4B3D79216420BD100F9772F /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* PreferenceViewController.m */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
 		A4CD22C6181CA51300FE29F7 /* SimpleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */; };
 		A4CD22C8181CB19000FE29F7 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C7181CB19000FE29F7 /* icon-120.png */; };
@@ -193,7 +193,7 @@
 		A46A7F411632DA5800DF4696 /* ExistingWordListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingWordListsViewController.m; sourceTree = "<group>"; };
 		A46A7F421632DA5800DF4696 /* ExistingWordListsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingWordListsViewController.xib; sourceTree = "<group>"; };
 		A46A7F451632DE4000DF4696 /* WordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListViewController.h; sourceTree = "<group>"; };
-		A46A7F461632DE4100DF4696 /* WorldListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldListViewController.m; sourceTree = "<group>"; };
+		A46A7F461632DE4100DF4696 /* WordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListViewController.m; sourceTree = "<group>"; };
 		A46A7F471632DE4100DF4696 /* WordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListViewController.xib; sourceTree = "<group>"; };
 		A46A7F4F1632ED4D00DF4696 /* LearningBackboneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningBackboneViewController.h; sourceTree = "<group>"; };
 		A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningBackboneViewController.m; sourceTree = "<group>"; };
@@ -270,8 +270,8 @@
 		A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelperV2.m; sourceTree = "<group>"; };
 		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
 		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
-		A4B3D79016420BD100F9772F /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
-		A4B3D79116420BD100F9772F /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		A4B3D79016420BD100F9772F /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
+		A4B3D79116420BD100F9772F /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
 		A4CD22C0181BD56F00FE29F7 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
 		A4CD22C4181CA51300FE29F7 /* SimpleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleProgressBar.h; sourceTree = "<group>"; };
 		A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleProgressBar.m; sourceTree = "<group>"; };
@@ -733,13 +733,13 @@
 				A46A7F411632DA5800DF4696 /* ExistingWordListsViewController.m */,
 				A46A7F421632DA5800DF4696 /* ExistingWordListsViewController.xib */,
 				A46A7F451632DE4000DF4696 /* WordListViewController.h */,
-				A46A7F461632DE4100DF4696 /* WorldListViewController.m */,
+				A46A7F461632DE4100DF4696 /* WordListViewController.m */,
 				A46A7F471632DE4100DF4696 /* WordListViewController.xib */,
 				A46A802A163D35DC00DF4696 /* VWebViewController.h */,
 				A46A802B163D35DE00DF4696 /* VWebViewController.m */,
 				A46A802C163D35E100DF4696 /* VWebViewController.xib */,
-				A4B3D79016420BD100F9772F /* ConfigViewController.h */,
-				A4B3D79116420BD100F9772F /* ConfigViewController.m */,
+				A4B3D79016420BD100F9772F /* PreferenceViewController.h */,
+				A4B3D79116420BD100F9772F /* PreferenceViewController.m */,
 				A4754D5F1644D7FA005EB1E0 /* WordListFromDiskViewController.h */,
 				A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */,
 				A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */,
@@ -1026,7 +1026,7 @@
 				A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */,
 				A46A7F431632DA5900DF4696 /* ExistingWordListsViewController.m in Sources */,
 				A4392E74181BB8FF000386BF /* VBaseViewController.m in Sources */,
-				A46A7F481632DE4100DF4696 /* WorldListViewController.m in Sources */,
+				A46A7F481632DE4100DF4696 /* WordListViewController.m in Sources */,
 				A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */,
 				A46A7F5C1633A35900DF4696 /* WordDetailViewController.m in Sources */,
 				A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */,
@@ -1037,7 +1037,7 @@
 				EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */,
 				A46A802D163D35E500DF4696 /* VWebViewController.m in Sources */,
 				A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */,
-				A4B3D79216420BD100F9772F /* ConfigViewController.m in Sources */,
+				A4B3D79216420BD100F9772F /* PreferenceViewController.m in Sources */,
 				A4754D3E1642A7E4005EB1E0 /* AbstractActionSheetPicker.m in Sources */,
 				A4754D3F1642A7E4005EB1E0 /* ActionSheetDatePicker.m in Sources */,
 				A4754D401642A7E4005EB1E0 /* ActionSheetDistancePicker.m in Sources */,
