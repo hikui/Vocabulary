@@ -69,6 +69,7 @@
     CGRect pageViewControllerFrame = self.view.bounds;
     pageViewControllerFrame.size.height = pageViewControllerFrame.size.height-51;
     [[self.pageViewController view] setFrame:pageViewControllerFrame];
+    self.pageViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
