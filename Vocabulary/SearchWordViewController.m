@@ -24,7 +24,7 @@
 //
 
 #import "SearchWordViewController.h"
-#import "LearningViewController.h"
+#import "WordDetailViewController.h"
 #import "VNavigationController.h"
 
 @interface SearchWordViewController ()
@@ -137,7 +137,7 @@
         return;
     }
     Word *w = [resultArr objectAtIndex:0];
-    LearningViewController *lvc = [[LearningViewController alloc]initWithWord:w];
+    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -514,7 +514,7 @@
         if (self.wrongWordsSet.count == 0) {
 
             for (UIViewController *vc in self.navigationController.viewControllers) {
-                if ([vc isKindOfClass:[ShowWordsViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
+                if ([vc isKindOfClass:[WordListViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
                     [self.navigationController popToViewController:vc animated:YES];
                     break;
                 }
@@ -525,7 +525,7 @@
                 [wrongWordsArray addObject:w];
             }
             ShowWrongWordsViewController *svc = [[ShowWrongWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-            svc.wordsSet = wrongWordsArray;
+            svc.wordArray = wrongWordsArray;
             [self.navigationController pushViewController:svc animated:YES];
         }
     }else{

@@ -23,14 +23,14 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "ConfigViewController.h"
+#import "PreferenceViewController.h"
 #import "VWebViewController.h"
 #import "ActionSheetPicker.h"
 #import "ConfusingWordsIndexer.h"
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
 
-@interface ConfigViewController ()
+@interface PreferenceViewController ()
 
 - (void)notificationEnablerDidChange:(id)sender;
 - (void)soundEnablerDidChange:(id)sender;
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation ConfigViewController
+@implementation PreferenceViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

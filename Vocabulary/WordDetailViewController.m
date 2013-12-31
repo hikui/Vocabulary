@@ -23,7 +23,7 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "LearningViewController.h"
+#import "WordDetailViewController.h"
 #import "MBProgressHUD.h"
 #import "CibaEngine.h"
 #import "CibaWebView.h"
@@ -33,11 +33,11 @@
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
-@interface LearningViewController ()
+@interface WordDetailViewController ()
 
 @end
 
-@implementation LearningViewController
+@implementation WordDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -111,7 +111,7 @@
 
 - (id)initWithWord:(Word *)word
 {
-    self = [super initWithNibName:@"LearningViewController" bundle:nil];
+    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
     if (self) {
         _word = word;
         _shouldHideInfo = NO;
@@ -125,7 +125,23 @@
 {
     self.lblKey.text = self.word.key;
     
-    CGSize labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByClipping];
+    CGSize labelSize = CGSizeZero;
+    if (IS_IOS_7) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName:self.lblKey.font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+        
+        labelSize = [self.word.key boundingRectWithSize:CGSizeMake(207, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        /*
+         This method returns fractional sizes (in the size component of the returned CGRect); to use a returned size to size views, you must use raise its value to the nearest higher integer using the ceil function.
+         */
+        labelSize.height = ceil(labelSize.height);
+        labelSize.width = ceil(labelSize.width);
+        
+    }else{
+        labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByWordWrapping];
+    }
+    
     CGRect labelFrame = self.lblKey.frame;
     labelFrame.size = labelSize;
     self.lblKey.frame = labelFrame;

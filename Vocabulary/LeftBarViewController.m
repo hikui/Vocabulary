@@ -10,11 +10,11 @@
 #import "IIViewDeckController.h"
 #import "PlanningVIewController.h"
 #import "WordListFromDiskViewController.h"
-#import "ShowWordsViewController.h"
-#import "ConfigViewController.h"
+#import "WordListViewController.h"
+#import "PreferenceViewController.h"
 #import "CreateWordListViewController.h"
 #import "VNavigationController.h"
-#import "LearningViewController.h"
+#import "WordDetailViewController.h"
 
 #import "AppDelegate.h"
 
@@ -162,17 +162,17 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [actionSheet showFromRect:CGRectMake(0, 0, 300, cell.bounds.size.height) inView:cell animated:YES];
         }else if (indexPath.row == 2) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordListViewController class]]) {
+            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ExistingWordListsViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                ShowWordListViewController *swlvc = [[ShowWordListViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
+                ExistingWordListsViewController *swlvc = [[ExistingWordListsViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
                 VNavigationController *nswlvc = [[VNavigationController alloc]initWithRootViewController:swlvc];
                 [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                     controller.centerController = nswlvc;
                 }];
             }
         }else if (indexPath.row == 3) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ShowWordsViewController class]]) {
+            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[WordListViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
                 
@@ -185,8 +185,8 @@
                 NSArray *result = [ctx executeFetchRequest:request error:nil];
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
-                ShowWordsViewController *svc = [[ShowWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
-                svc.wordsSet = mResult;
+                WordListViewController *svc = [[WordListViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+                svc.wordArray = mResult;
                 svc.topLevel = YES;
                 svc.title = @"低熟悉度词汇";
                 VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
@@ -195,10 +195,10 @@
                 }];
             }
         }else if (indexPath.row == 4) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ConfigViewController class]]) {
+            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PreferenceViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                ConfigViewController *cvc = [[ConfigViewController alloc]initWithStyle:UITableViewStyleGrouped];
+                PreferenceViewController *cvc = [[PreferenceViewController alloc]initWithStyle:UITableViewStyleGrouped];
                 VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
                 [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                     controller.centerController = ncvc;
@@ -207,7 +207,7 @@
         }
     }else if(tableView == self.searchResultTableView){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        LearningViewController *lvc = [[LearningViewController alloc]initWithWord:self.searchResult[indexPath.row]];
+        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:self.searchResult[indexPath.row]];
         VNavigationController *nlvc = [[VNavigationController alloc]initWithRootViewController:lvc];
         [self presentModalViewController:nlvc animated:YES];
     }

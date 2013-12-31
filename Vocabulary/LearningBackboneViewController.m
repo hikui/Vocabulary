@@ -24,7 +24,7 @@
 //
 
 #import "LearningBackboneViewController.h"
-#import "LearningViewController.h"
+#import "WordDetailViewController.h"
 #import "SearchWordViewController.h"
 #import "VNavigationController.h"
 
@@ -34,7 +34,7 @@
     BOOL firstAppear;
 }
 
-@property (nonatomic, weak) LearningViewController *currentShownViewController;
+@property (nonatomic, weak) WordDetailViewController *currentShownViewController;
 
 - (void)shuffleWords;
 
@@ -89,7 +89,7 @@
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
-        LearningViewController *lvc = [[LearningViewController alloc]initWithWord:[self.words objectAtIndex:i]];
+        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:[self.words objectAtIndex:i]];
         if (lvc) {
             [self.learningViewControllerArray addObject:lvc];
         }
@@ -145,26 +145,26 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
        viewControllerAfterViewController:(UIViewController *)viewController{
     forward = true;
-    LearningViewController *lvc = (LearningViewController *)viewController;
+    WordDetailViewController *lvc = (WordDetailViewController *)viewController;
     Word *wd = lvc.word;
     int index = [self.words indexOfObject:wd];
     if (index == self.words.count-1) {
         return nil;
     }
-    LearningViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index+1)%2];
+    WordDetailViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index+1)%2];
     nlvc.word = [self.words objectAtIndex:index+1];
     return nlvc;
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
 viewControllerBeforeViewController:(UIViewController *)viewController{
     forward = false;
-    LearningViewController *lvc = (LearningViewController *)viewController;
+    WordDetailViewController *lvc = (WordDetailViewController *)viewController;
     Word *wd = lvc.word;
     int index = [self.words indexOfObject:wd];
     if (index == 0) {
         return nil;
     }
-    LearningViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index-1)%2];
+    WordDetailViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index-1)%2];
     nlvc.word = [self.words objectAtIndex:index-1];
     return nlvc;
 }
@@ -172,8 +172,8 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     if (finished && completed) {
-        LearningViewController *lvc = (LearningViewController *)[previousViewControllers objectAtIndex:0];
-        if ([lvc isKindOfClass:[LearningViewController class]]) {
+        WordDetailViewController *lvc = (WordDetailViewController *)[previousViewControllers objectAtIndex:0];
+        if ([lvc isKindOfClass:[WordDetailViewController class]]) {
             Word *wd = lvc.word;
             int index = [self.words indexOfObject:wd];
             if (forward) {
@@ -207,13 +207,13 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     UIBarButtonItem *btn = (UIBarButtonItem *)sender;
     if ([btn.title isEqualToString:@"隐藏词义"]) {
         btn.title = @"显示词义";
-        for (LearningViewController *lvc in self.learningViewControllerArray) {
+        for (WordDetailViewController *lvc in self.learningViewControllerArray) {
             [lvc hideInfo];
         }
 
     }else{
         btn.title = @"隐藏词义";
-        for (LearningViewController *lvc in self.learningViewControllerArray) {
+        for (WordDetailViewController *lvc in self.learningViewControllerArray) {
             [lvc showInfo];
         }
     }

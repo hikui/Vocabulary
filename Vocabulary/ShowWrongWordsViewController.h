@@ -23,8 +23,8 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "ShowWordsViewController.h"
+#import "WordListViewController.h"
 
-@interface ShowWrongWordsViewController : ShowWordsViewController
+@interface ShowWrongWordsViewController : WordListViewController
 
 @end

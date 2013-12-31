@@ -25,11 +25,11 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
-@interface ShowWordsViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
+@interface WordListViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addWordButton;
-@property (strong, nonatomic) NSMutableArray *wordsSet;
+@property (strong, nonatomic) NSMutableArray *wordArray;
 @property (strong, nonatomic) WordList *wordList;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *beginStudyButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *beginTestButton;
