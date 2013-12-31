@@ -125,7 +125,23 @@
 {
     self.lblKey.text = self.word.key;
     
-    CGSize labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByClipping];
+    CGSize labelSize = CGSizeZero;
+    if (IS_IOS_7) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName:self.lblKey.font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+        
+        labelSize = [self.word.key boundingRectWithSize:CGSizeMake(207, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        /*
+         This method returns fractional sizes (in the size component of the returned CGRect); to use a returned size to size views, you must use raise its value to the nearest higher integer using the ceil function.
+         */
+        labelSize.height = ceil(labelSize.height);
+        labelSize.width = ceil(labelSize.width);
+        
+    }else{
+        labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByWordWrapping];
+    }
+    
     CGRect labelFrame = self.lblKey.frame;
     labelFrame.size = labelSize;
     self.lblKey.frame = labelFrame;
