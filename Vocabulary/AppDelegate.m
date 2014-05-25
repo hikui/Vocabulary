@@ -129,28 +129,6 @@
     [helper.mainContext save:nil];
 }
 
-void uncaughtExceptionHandler(NSException *exception)
-{
-    MKNetworkEngine *engine = [[MKNetworkEngine alloc]initWithHostName:@"herkuang.info:12345"];
-    NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
-    NSString *errorMsg = [NSString stringWithFormat:@"--------\nChannelId:%@\nBuild:%@\n%@",kChannelId,build,[exception userInfo]];
-    NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:errorMsg,@"content", nil];
-    MKNetworkOperation *op = [engine operationWithPath:@"/log" params:params httpMethod:@"POST"];
-    [op onCompletion:^(MKNetworkOperation *completedOperation) {
-        NSLog(@"report success");
-        abort();
-    } onError:^(NSError *error) {
-        NSLog(@"report failed");
-        abort();
-    }];
-    [engine enqueueOperation:op];
-}
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application
-{
-    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-}
-
 - (void)setFinishTodaysLearningPlan:(BOOL)finishTodaysPlan
 {
     _finishTodaysLearningPlan = finishTodaysPlan;
@@ -170,6 +148,11 @@ void uncaughtExceptionHandler(NSException *exception)
     NSLog(@"online config has fininshed and params = %@", notification.userInfo);
     NSString *newHelpDocVersion = [MobClick getConfigParams:@"helpDocVersion"];
     NSString *currentHelpVersion = [[NSUserDefaults standardUserDefaults]stringForKey:@"kCurrHelpDocVersion"];
+    if (currentHelpVersion == nil) {
+        [[NSUserDefaults standardUserDefaults]setObject:newHelpDocVersion forKey:@"kCurrHelpDocVersion"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return;
+    }
     
     if (newHelpDocVersion.length > 0) {
         
@@ -189,7 +172,6 @@ void uncaughtExceptionHandler(NSException *exception)
 #pragma mark - database notification
 - (void)databaseMigrationFinished:(NSNotification *)notification
 {
-//    [self refreshTodaysPlan];
     [self.welcomeView removeFromSuperview];
     self.window.rootViewController = self.viewDeckController;
 }

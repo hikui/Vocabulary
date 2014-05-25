@@ -117,17 +117,6 @@
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,nil];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
-        MKNetworkEngine *engine = [[MKNetworkEngine alloc]initWithHostName:@"herkuang.info:12345"];
-        NSString * build = [[NSBundle mainBundle] objectForInfoDictionaryKey: (NSString *)kCFBundleVersionKey];
-        NSString *errorMsg = [NSString stringWithFormat:@"--------\nChannelId:%@\nBuild:%@\n%@",kChannelId,build,[error userInfo]];
-        NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:errorMsg,@"content", nil];
-        MKNetworkOperation *op = [engine operationWithPath:@"/log" params:params httpMethod:@"POST"];
-        [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-            NSLog(@"report success");
-        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-            NSLog(@"report failed");
-        }];
-        [engine enqueueOperation:op];
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         return nil;
     }
