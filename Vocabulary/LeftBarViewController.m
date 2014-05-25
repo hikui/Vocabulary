@@ -185,7 +185,7 @@
                 NSArray *result = [ctx executeFetchRequest:request error:nil];
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
-                WordListViewController *svc = [[WordListViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+                WordListViewController *svc = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
                 svc.wordArray = mResult;
                 svc.topLevel = YES;
                 svc.title = @"低熟悉度词汇";
