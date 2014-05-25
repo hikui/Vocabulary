@@ -330,7 +330,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
     
     NSInteger numOfSections = [tableView numberOfSections];
     

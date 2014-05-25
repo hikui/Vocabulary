@@ -178,7 +178,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
     subVC.wordList = (WordList *)object;
     [self.navigationController pushViewController:subVC animated:YES];
 }
