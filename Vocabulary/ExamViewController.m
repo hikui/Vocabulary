@@ -524,7 +524,7 @@
             for (Word *w in self.wrongWordsSet) {
                 [wrongWordsArray addObject:w];
             }
-            ShowWrongWordsViewController *svc = [[ShowWrongWordsViewController alloc]initWithNibName:@"ShowWordsViewController" bundle:nil];
+            ShowWrongWordsViewController *svc = [[ShowWrongWordsViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
             svc.wordArray = wrongWordsArray;
             [self.navigationController pushViewController:svc animated:YES];
         }
