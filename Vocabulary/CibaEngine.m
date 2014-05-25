@@ -24,7 +24,7 @@
 //
 
 #import "CibaEngine.h"
-#import "JSONKit.h"
+//#import "JSONKit.h"
 #define CIBA_URL(__W__)[NSString stringWithFormat:@"search/%@", __W__]
 #define HostName @"hikuivocabulary.sinaapp.com"
 
@@ -49,8 +49,8 @@
     //[[MKNetworkOperation alloc]initWithURLString:CIBA_URL(word) params:nil httpMethod:@"GET"];
     //NSLog(@"%@",op.url);
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        NSString *jsonString = [completedOperation responseString];
-        NSDictionary *resultDict = [jsonString objectFromJSONString];
+        NSData *jsonData = [completedOperation responseData];
+        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         if (resultDict == nil) {
             errorBlock(nil);
         }else{
@@ -93,8 +93,8 @@
     [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         NSAssert([completedOperation isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
         [self.livingOperations removeObject:completedOperation];
-        NSString *jsonString = [completedOperation responseString];
-        NSDictionary *resultDict = [jsonString objectFromJSONString];
+        NSData *jsonData = [completedOperation responseData];
+        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         if (resultDict == nil) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
             errorBlock(myError);
