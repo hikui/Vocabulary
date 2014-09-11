@@ -56,8 +56,8 @@
     [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
     
     //广告
-    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    [self.view bringSubviewToFront:self.banner];
+//    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+//    [self.view bringSubviewToFront:self.banner];
     
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     menuButton.frame = CGRectMake(0, 0, 40, 29);
@@ -168,7 +168,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
+//    self.bannerFrame = CGRectMake(0, self.view.bounds.size.height-50, 320, 50);
     [self refreshHintView];
     [self.tableView reloadData];
     [super viewWillAppear:animated];
@@ -382,25 +382,25 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - GADBannerViewDelegate
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    [super adViewDidReceiveAd:view];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
-    }];
-}
-
-- (void)adView:(GADBannerView *)view
-didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    [super adView:view didFailToReceiveAdWithError:error];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tableView.frame = self.view.bounds;
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-    }];
-}
+//#pragma mark - GADBannerViewDelegate
+//- (void)adViewDidReceiveAd:(GADBannerView *)view
+//{
+//    [super adViewDidReceiveAd:view];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
+////        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
+//    }];
+//}
+//
+//- (void)adView:(GADBannerView *)view
+//didFailToReceiveAdWithError:(GADRequestError *)error
+//{
+//    [super adView:view didFailToReceiveAdWithError:error];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.tableView.frame = self.view.bounds;
+////        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+//    }];
+//}
 
 
 

@@ -25,9 +25,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ExistingWordListsViewController.h"
-#import "AdBaseViewController.h"
 #import "Plan.h"
-@interface PlanningVIewController : AdBaseViewController <UITableViewDataSource,UITableViewDelegate>
+@interface PlanningVIewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
 //@property (nonatomic, strong) NSMutableArray *wordListsArray;
 //@property (nonatomic, strong) WordList *todaysPlan;

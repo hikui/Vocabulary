@@ -165,7 +165,7 @@
             if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ExistingWordListsViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                ExistingWordListsViewController *swlvc = [[ExistingWordListsViewController alloc]initWithNibName:@"ShowWordListViewController" bundle:nil];
+                ExistingWordListsViewController *swlvc = [[ExistingWordListsViewController alloc]initWithNibName:@"ExistingWordListsViewController" bundle:nil];
                 VNavigationController *nswlvc = [[VNavigationController alloc]initWithRootViewController:swlvc];
                 [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                     controller.centerController = nswlvc;

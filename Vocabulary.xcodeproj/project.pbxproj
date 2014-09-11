@@ -58,10 +58,8 @@
 		A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */; };
 		A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */; };
 		A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D671644E5E2005EB1E0 /* WordListCreator.m */; };
-		A4754D8D16466EA6005EB1E0 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8C16466EA6005EB1E0 /* libGoogleAdMobAds.a */; };
 		A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8E16466ECB005EB1E0 /* StoreKit.framework */; };
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
-		A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D981646792C005EB1E0 /* AdBaseViewController.m */; };
 		A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */; };
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
@@ -167,6 +165,7 @@
 /* Begin PBXFileReference section */
 		13F6169C5B3C436E888FC365 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		353F430A212D421EA42694A9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7F8ACC7719C134630006DAB7 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV2ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV2ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV1ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV1ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A408DB471692C3DB00B45B2C /* NSMutableString+HTMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+HTMLEscape.h"; sourceTree = "<group>"; };
@@ -241,20 +240,8 @@
 		A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
 		A4754D661644E5E2005EB1E0 /* WordListCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCreator.h; sourceTree = "<group>"; };
 		A4754D671644E5E2005EB1E0 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
-		A4754D8316466EA6005EB1E0 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdMobExtras.h; path = Vocabulary/lib/AdMob/GADAdMobExtras.h; sourceTree = "<group>"; };
-		A4754D8416466EA6005EB1E0 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdNetworkExtras.h; path = Vocabulary/lib/AdMob/GADAdNetworkExtras.h; sourceTree = "<group>"; };
-		A4754D8516466EA6005EB1E0 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADAdSize.h; path = Vocabulary/lib/AdMob/GADAdSize.h; sourceTree = "<group>"; };
-		A4754D8616466EA6005EB1E0 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerView.h; path = Vocabulary/lib/AdMob/GADBannerView.h; sourceTree = "<group>"; };
-		A4754D8716466EA6005EB1E0 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerViewDelegate.h; path = Vocabulary/lib/AdMob/GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		A4754D8816466EA6005EB1E0 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInterstitial.h; path = Vocabulary/lib/AdMob/GADInterstitial.h; sourceTree = "<group>"; };
-		A4754D8916466EA6005EB1E0 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInterstitialDelegate.h; path = Vocabulary/lib/AdMob/GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		A4754D8A16466EA6005EB1E0 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADRequest.h; path = Vocabulary/lib/AdMob/GADRequest.h; sourceTree = "<group>"; };
-		A4754D8B16466EA6005EB1E0 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADRequestError.h; path = Vocabulary/lib/AdMob/GADRequestError.h; sourceTree = "<group>"; };
-		A4754D8C16466EA6005EB1E0 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAdMobAds.a; path = Vocabulary/lib/AdMob/libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		A4754D8E16466ECB005EB1E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A4754D9216466EE6005EB1E0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		A4754D971646792C005EB1E0 /* AdBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdBaseViewController.h; sourceTree = "<group>"; };
-		A4754D981646792C005EB1E0 /* AdBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBaseViewController.m; sourceTree = "<group>"; };
 		A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningVIewController.xib; sourceTree = "<group>"; };
 		A4852EC91680BA7600A4602C /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model4.xcdatamodel; sourceTree = "<group>"; };
 		A48DCD96169C46400069FEF7 /* blackToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackToolbarBG.png; path = artwork/blackToolbarBG.png; sourceTree = "<group>"; };
@@ -408,7 +395,6 @@
 				A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */,
 				A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */,
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
-				A4754D8D16466EA6005EB1E0 /* libGoogleAdMobAds.a in Frameworks */,
 				EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */,
 				19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */,
 			);
@@ -514,7 +500,6 @@
 			isa = PBXGroup;
 			children = (
 				EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */,
-				A4754D8216466E8B005EB1E0 /* AdMob */,
 				A4754D311642A7E4005EB1E0 /* ActionSheetPicker */,
 				A46A7EEB16304F9800DF4696 /* libxml2.dylib */,
 				EC4BCEA716687AD3004887B4 /* libz.dylib */,
@@ -644,23 +629,6 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
-		A4754D8216466E8B005EB1E0 /* AdMob */ = {
-			isa = PBXGroup;
-			children = (
-				A4754D8316466EA6005EB1E0 /* GADAdMobExtras.h */,
-				A4754D8416466EA6005EB1E0 /* GADAdNetworkExtras.h */,
-				A4754D8516466EA6005EB1E0 /* GADAdSize.h */,
-				A4754D8616466EA6005EB1E0 /* GADBannerView.h */,
-				A4754D8716466EA6005EB1E0 /* GADBannerViewDelegate.h */,
-				A4754D8816466EA6005EB1E0 /* GADInterstitial.h */,
-				A4754D8916466EA6005EB1E0 /* GADInterstitialDelegate.h */,
-				A4754D8A16466EA6005EB1E0 /* GADRequest.h */,
-				A4754D8B16466EA6005EB1E0 /* GADRequestError.h */,
-				A4754D8C16466EA6005EB1E0 /* libGoogleAdMobAds.a */,
-			);
-			name = AdMob;
-			sourceTree = "<group>";
-		};
 		A4852ECD1680BB9B00A4602C /* migration */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,6 +680,7 @@
 		EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
+				7F8ACC7719C134630006DAB7 /* MobClickSocialAnalytics.h */,
 				EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */,
 				EC4BCEA316687A80004887B4 /* MobClick.h */,
 			);
@@ -743,8 +712,6 @@
 				A4754D5F1644D7FA005EB1E0 /* WordListFromDiskViewController.h */,
 				A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */,
 				A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */,
-				A4754D971646792C005EB1E0 /* AdBaseViewController.h */,
-				A4754D981646792C005EB1E0 /* AdBaseViewController.m */,
 				A4E8C8901695A840008F013C /* LeftBarViewController.h */,
 				A4E8C8911695A840008F013C /* LeftBarViewController.m */,
 				EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */,
@@ -1045,7 +1012,6 @@
 				A4754D421642A7E4005EB1E0 /* DistancePickerView.m in Sources */,
 				A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */,
 				A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */,
-				A4754D991646792D005EB1E0 /* AdBaseViewController.m in Sources */,
 				EC723CB6165D17AF001F5B1B /* WordList.m in Sources */,
 				EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */,
 				EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */,
@@ -1145,10 +1111,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 353F430A212D421EA42694A9 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1175,10 +1138,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 353F430A212D421EA42694A9 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

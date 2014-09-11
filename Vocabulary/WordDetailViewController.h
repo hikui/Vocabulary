@@ -27,10 +27,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MKNetworkKit.h"
 #import "Word.h"
-#import "AdBaseViewController.h"
 
 @class BButton;
-@interface WordDetailViewController : AdBaseViewController
+@interface WordDetailViewController : VBaseViewController
 
 @property (nonatomic,strong) Word *word;
 @property (nonatomic,weak) IBOutlet UILabel *lblKey;
