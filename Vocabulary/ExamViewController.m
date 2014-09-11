@@ -32,6 +32,7 @@
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "SimpleProgressBar.h"
+#import "PlanMaker.h"
 
 @interface ExamViewController ()
 
@@ -444,9 +445,11 @@
                     int effictiveCount = [self.wordList.effectiveCount intValue];
                     NSAssert(effictiveCount != 0, @"effectiveCount > 0 while lastReviewTime is nil");
                     if (effictiveCount == 0) {
-                        ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
-                        NSDate *planExpireDate = [[NSDate date]dateByAddingTimeInterval:24*60*60];//往后推一天
-                        ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime = planExpireDate;
+//                        ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
+//                        NSDate *planExpireDate = [[NSDate date]dateByAddingTimeInterval:24*60*60];//往后推一天
+//                        ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime = planExpireDate;
+                        //如果effectiveCount == 0，则是新学的单词列表
+                        [[PlanMaker sharedInstance]finishTodaysLearningPlan];
                     }
                     effictiveCount++;
                     self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
@@ -455,9 +458,10 @@
             }else{
                 int effictiveCount = [self.wordList.effectiveCount intValue];
                 if (effictiveCount == 0) {
-                    ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
-                    NSDate *planExpireDate = [[NSDate date]dateByAddingTimeInterval:24*60*60];//往后推一天
-                    ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime = planExpireDate;
+//                    ((AppDelegate *)[UIApplication sharedApplication].delegate).finishTodaysLearningPlan = YES;
+//                    NSDate *planExpireDate = [[NSDate date]dateByAddingTimeInterval:24*60*60];//往后推一天
+//                    ((AppDelegate *)[UIApplication sharedApplication].delegate).planExpireTime = planExpireDate;
+                    [[PlanMaker sharedInstance]finishTodaysLearningPlan];
                 }
                 effictiveCount++;
                 self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];

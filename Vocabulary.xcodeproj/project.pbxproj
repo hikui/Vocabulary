@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6169C5B3C436E888FC365 /* libPods.a */; };
+		7F8ACC7A19C139600006DAB7 /* PlanMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8ACC7919C139600006DAB7 /* PlanMaker.m */; };
+		7F8ACC7E19C14CF50006DAB7 /* NSDate+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8ACC7D19C14CF50006DAB7 /* NSDate+VAdditions.m */; };
 		A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */; };
 		A408DA8C168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */; };
 		A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */; };
@@ -34,7 +36,7 @@
 		A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F981633C8AF00DF4696 /* CibaEngine.m */; };
 		A46A7F9F1633D4C600DF4696 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */; };
 		A46A7FCD1635909D00DF4696 /* audio.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCA1635909D00DF4696 /* audio.png */; };
-		A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FF31639702A00DF4696 /* PlanningVIewController.m */; };
+		A46A7FF51639702A00DF4696 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FF31639702A00DF4696 /* PlanningViewController.m */; };
 		A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFD163BC7CA00DF4696 /* whiteButton.png */; };
 		A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */; };
 		A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFF163BC7CA00DF4696 /* whiteButtonHighlight.png */; };
@@ -60,7 +62,7 @@
 		A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D671644E5E2005EB1E0 /* WordListCreator.m */; };
 		A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8E16466ECB005EB1E0 /* StoreKit.framework */; };
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
-		A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */; };
+		A4754D9B164689DA005EB1E0 /* PlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningViewController.xib */; };
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
@@ -166,6 +168,10 @@
 		13F6169C5B3C436E888FC365 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		353F430A212D421EA42694A9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		7F8ACC7719C134630006DAB7 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		7F8ACC7819C139600006DAB7 /* PlanMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMaker.h; sourceTree = "<group>"; };
+		7F8ACC7919C139600006DAB7 /* PlanMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMaker.m; sourceTree = "<group>"; };
+		7F8ACC7C19C14CF50006DAB7 /* NSDate+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+VAdditions.h"; sourceTree = "<group>"; };
+		7F8ACC7D19C14CF50006DAB7 /* NSDate+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+VAdditions.m"; sourceTree = "<group>"; };
 		A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV2ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV2ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV1ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV1ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		A408DB471692C3DB00B45B2C /* NSMutableString+HTMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+HTMLEscape.h"; sourceTree = "<group>"; };
@@ -204,8 +210,8 @@
 		A46A7F981633C8AF00DF4696 /* CibaEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaEngine.m; sourceTree = "<group>"; };
 		A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A46A7FCA1635909D00DF4696 /* audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = audio.png; path = artwork/audio.png; sourceTree = "<group>"; };
-		A46A7FF21639702A00DF4696 /* PlanningVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningVIewController.h; sourceTree = "<group>"; };
-		A46A7FF31639702A00DF4696 /* PlanningVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningVIewController.m; sourceTree = "<group>"; };
+		A46A7FF21639702A00DF4696 /* PlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningViewController.h; sourceTree = "<group>"; };
+		A46A7FF31639702A00DF4696 /* PlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningViewController.m; sourceTree = "<group>"; };
 		A46A7FFB163BC1E800DF4696 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		A46A7FFD163BC7CA00DF4696 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButton.png; path = artwork/whiteButton.png; sourceTree = "<group>"; };
 		A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "whiteButton@2x.png"; path = "artwork/whiteButton@2x.png"; sourceTree = "<group>"; };
@@ -242,7 +248,7 @@
 		A4754D671644E5E2005EB1E0 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
 		A4754D8E16466ECB005EB1E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A4754D9216466EE6005EB1E0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningVIewController.xib; sourceTree = "<group>"; };
+		A4754D9A164689DA005EB1E0 /* PlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningViewController.xib; sourceTree = "<group>"; };
 		A4852EC91680BA7600A4602C /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model4.xcdatamodel; sourceTree = "<group>"; };
 		A48DCD96169C46400069FEF7 /* blackToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackToolbarBG.png; path = artwork/blackToolbarBG.png; sourceTree = "<group>"; };
 		A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackToolbarBG@2x.png"; path = "artwork/blackToolbarBG@2x.png"; sourceTree = "<group>"; };
@@ -532,6 +538,10 @@
 				A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */,
 				A43BC233181B6A5800A3E1EA /* PureColorImageGenerator.h */,
 				A43BC234181B6A5800A3E1EA /* PureColorImageGenerator.m */,
+				7F8ACC7819C139600006DAB7 /* PlanMaker.h */,
+				7F8ACC7919C139600006DAB7 /* PlanMaker.m */,
+				7F8ACC7C19C14CF50006DAB7 /* NSDate+VAdditions.h */,
+				7F8ACC7D19C14CF50006DAB7 /* NSDate+VAdditions.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -595,9 +605,9 @@
 		A46A7FF016396FE600DF4696 /* Planning */ = {
 			isa = PBXGroup;
 			children = (
-				A46A7FF21639702A00DF4696 /* PlanningVIewController.h */,
-				A46A7FF31639702A00DF4696 /* PlanningVIewController.m */,
-				A4754D9A164689DA005EB1E0 /* PlanningVIewController.xib */,
+				A46A7FF21639702A00DF4696 /* PlanningViewController.h */,
+				A46A7FF31639702A00DF4696 /* PlanningViewController.m */,
+				A4754D9A164689DA005EB1E0 /* PlanningViewController.xib */,
 			);
 			name = Planning;
 			sourceTree = "<group>";
@@ -884,7 +894,7 @@
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
 				A46A802E163D35E500DF4696 /* VWebViewController.xib in Resources */,
 				A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */,
-				A4754D9B164689DA005EB1E0 /* PlanningVIewController.xib in Resources */,
+				A4754D9B164689DA005EB1E0 /* PlanningViewController.xib in Resources */,
 				EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */,
 				EC1EC268167F2091003B1C69 /* closeButton.png in Resources */,
 				EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */,
@@ -1000,12 +1010,14 @@
 				EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */,
 				EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */,
 				EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */,
-				A46A7FF51639702A00DF4696 /* PlanningVIewController.m in Sources */,
+				A46A7FF51639702A00DF4696 /* PlanningViewController.m in Sources */,
 				EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */,
 				A46A802D163D35E500DF4696 /* VWebViewController.m in Sources */,
 				A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */,
 				A4B3D79216420BD100F9772F /* PreferenceViewController.m in Sources */,
 				A4754D3E1642A7E4005EB1E0 /* AbstractActionSheetPicker.m in Sources */,
+				7F8ACC7A19C139600006DAB7 /* PlanMaker.m in Sources */,
+				7F8ACC7E19C14CF50006DAB7 /* NSDate+VAdditions.m in Sources */,
 				A4754D3F1642A7E4005EB1E0 /* ActionSheetDatePicker.m in Sources */,
 				A4754D401642A7E4005EB1E0 /* ActionSheetDistancePicker.m in Sources */,
 				A4754D411642A7E4005EB1E0 /* ActionSheetStringPicker.m in Sources */,

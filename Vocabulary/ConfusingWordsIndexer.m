@@ -166,17 +166,15 @@
             
             Word *w1 = [allWords objectAtIndex:i];
             
-            for (int j = 0; j < allWords.count; j++) {
+            for (int j = i; j < allWords.count; j++) {
                 Word *w2 = [allWords objectAtIndex:j];
                 if (i != j) {
                     @autoreleasepool {
-                        if ([w1.similarWords containsObject:w2]) {
-                            continue;
-                        }
                         float distance = [self compareString:w1.key withString:w2.key];
                         NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
                         if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
                             [w1 addSimilarWordsObject:w2];
+                            [w2 addSimilarWordsObject:w1];
                         }
                     }
                 }

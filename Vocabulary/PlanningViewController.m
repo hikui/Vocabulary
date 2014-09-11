@@ -23,12 +23,13 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "PlanningVIewController.h"
+#import "PlanningViewController.h"
 #import "WordListViewController.h"
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
+#import "PlanMaker.h"
 
-@interface PlanningVIewController ()
+@interface PlanningViewController ()
 
 @property (nonatomic, strong) NSDictionary *effectiveCount_deltaDay_map;
 @property (nonatomic, unsafe_unretained) BOOL finishTodaysLearningPlan;
@@ -37,7 +38,7 @@
 
 @end
 
-@implementation PlanningVIewController
+@implementation PlanningViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,7 +54,7 @@
 {
     [super viewDidLoad];
     
-    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+//    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
     
     //广告
 //    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
@@ -71,7 +72,7 @@
     UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem = menuBarButton;
     
-    self.todaysPlan = ((AppDelegate *)[UIApplication sharedApplication].delegate).todaysPlan;
+    self.todaysPlan = [[PlanMaker sharedInstance]todaysPlan];
     self.title = @"记词助手";
     
     //用于提示已经完成所有计划
@@ -377,8 +378,7 @@
 
 - (void)shouldRefreshPlan:(NSNotification *)notification
 {
-    NSLog(@"reload data");
-    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
+    self.todaysPlan = [[PlanMaker sharedInstance]todaysPlan];
     [self.tableView reloadData];
 }
 

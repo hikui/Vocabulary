@@ -13,7 +13,7 @@
 // It's not for persistent storage. Everytime the app restarts, the AppDelegate will refresh it's plan object.
 @interface Plan : NSObject
 
-@property (nonatomic, copy) NSArray *reviewPlan;
+@property (nonatomic, copy) NSMutableArray *reviewPlan;
 @property (nonatomic, strong) WordList *learningPlan;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "LeftBarViewController.h"
 #import "IIViewDeckController.h"
-#import "PlanningVIewController.h"
+#import "PlanningViewController.h"
 #import "WordListFromDiskViewController.h"
 #import "WordListViewController.h"
 #import "PreferenceViewController.h"
@@ -141,10 +141,10 @@
         
         IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
         if (indexPath.row == 0) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PlanningVIewController class]]) {
+            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PlanningViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                PlanningVIewController *pvc = [[PlanningVIewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
+                PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
                 VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];
                 [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
                     controller.centerController = npvc;
