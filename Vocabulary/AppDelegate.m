@@ -54,7 +54,7 @@
     
     LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithNibName:@"LeftBarViewController" bundle:nil];
         
-    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningVIewController" bundle:nil];
+    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
     VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];
     
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
