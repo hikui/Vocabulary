@@ -61,8 +61,8 @@
         UIView *content = [self.view viewWithTag:1];
         CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
         content.frame = targetFrame;
-        self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-        [self.view bringSubviewToFront:self.banner];
+//        self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+//        [self.view bringSubviewToFront:self.banner];
     }
     
     UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
@@ -74,7 +74,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.bannerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+//    self.bannerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
     [super viewWillAppear:animated];
     [self refreshView];
 }

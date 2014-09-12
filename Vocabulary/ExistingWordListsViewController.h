@@ -25,9 +25,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "AdBaseViewController.h"
 
-@interface ExistingWordListsViewController : AdBaseViewController<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ExistingWordListsViewController : VBaseViewController<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     @protected
     NSFetchedResultsController *_fetchedResultsController;

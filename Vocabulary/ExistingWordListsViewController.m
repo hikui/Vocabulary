@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     
-    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+//    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
     self.managedObjectContext = helper.mainContext;
     self.title = @"已有的列表";
@@ -96,7 +96,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.bannerFrame = CGRectMake(0, self.view.frame.size.height-50, 320, 50);
+//    self.bannerFrame = CGRectMake(0, self.view.frame.size.height-50, 320, 50);
     [self refreshHintView];
 //    self.fetchedResultsController = nil;
 //    [self.tableView reloadData];
@@ -333,25 +333,25 @@
     }
 }
 
-#pragma mark - GADBannerViewDelegate
-- (void)adViewDidReceiveAd:(GADBannerView *)view
-{
-    [super adViewDidReceiveAd:view];
-    [UIView animateWithDuration:0.5 animations:^{
-         self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
-    }];
-}
-
-- (void)adView:(GADBannerView *)view
-didFailToReceiveAdWithError:(GADRequestError *)error
-{
-    [super adView:view didFailToReceiveAdWithError:error];
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tableView.frame = self.view.bounds;
-//        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-    }];
-}
+//#pragma mark - GADBannerViewDelegate
+//- (void)adViewDidReceiveAd:(GADBannerView *)view
+//{
+//    [super adViewDidReceiveAd:view];
+//    [UIView animateWithDuration:0.5 animations:^{
+//         self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
+////        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
+//    }];
+//}
+//
+//- (void)adView:(GADBannerView *)view
+//didFailToReceiveAdWithError:(GADRequestError *)error
+//{
+//    [super adView:view didFailToReceiveAdWithError:error];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.tableView.frame = self.view.bounds;
+////        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
+//    }];
+//}
 
 //#pragma - mark youmi delegate
 //- (void)didReceiveAd:(YouMiView *)adView

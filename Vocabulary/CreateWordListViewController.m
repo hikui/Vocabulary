@@ -162,6 +162,7 @@
     
     [WordListCreator createWordListAsyncWithTitle:self.titleField.text wordSet:wordSet completion:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (error != NULL) {
                 NSLog(@"%@",error);
                 if (error.code == WordListCreatorEmptyWordSetError) {
@@ -179,7 +180,7 @@
                                                          otherButtonTitles:nil];
                     [alert show];
                 }else{
-                    abort();
+//                    abort();
                 }
                 return;
             }else{
