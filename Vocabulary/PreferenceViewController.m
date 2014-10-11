@@ -196,7 +196,6 @@
             VWebViewController *hvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
             NSURL *url = [NSURL URLWithString:[MobClick getConfigParams:@"helpUrl"]];
             hvc.requestURL = url;
-            hvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:hvc animated:YES completion:nil];
         }else if (indexPath.row == 1){
             if ([MFMailComposeViewController canSendMail]) {

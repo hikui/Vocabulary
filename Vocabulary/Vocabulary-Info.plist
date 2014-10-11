@@ -9,29 +9,9 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
-	<dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>icon-120</string>
-				<string>Icon</string>
-			</array>
-		</dict>
-	</dict>
+	<dict/>
 	<key>CFBundleIcons~ipad</key>
-	<dict>
-		<key>CFBundlePrimaryIcon</key>
-		<dict>
-			<key>CFBundleIconFiles</key>
-			<array>
-				<string>icon-152</string>
-				<string>icon-76</string>
-				<string>Icon-144</string>
-				<string>Icon</string>
-			</array>
-		</dict>
-	</dict>
+	<dict/>
 	<key>CFBundleIdentifier</key>
 	<string>info.herkuang.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -50,8 +30,6 @@
 	<true/>
 	<key>UIFileSharingEnabled</key>
 	<true/>
-	<key>UILaunchImageFile</key>
-	<string>iPhoneLaunchImage</string>
 	<key>UILaunchImageFile~iphone</key>
 	<string>iPhoneLaunchImage.png</string>
 	<key>UIPrerenderedIcon</key>
