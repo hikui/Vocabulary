@@ -8,14 +8,72 @@
 
 /* Begin PBXBuildFile section */
 		19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6169C5B3C436E888FC365 /* libPods.a */; };
-		7F8ACC7A19C139600006DAB7 /* PlanMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8ACC7919C139600006DAB7 /* PlanMaker.m */; };
-		7F8ACC7E19C14CF50006DAB7 /* NSDate+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F8ACC7D19C14CF50006DAB7 /* NSDate+VAdditions.m */; };
+		7F43F70619F7A9A900672440 /* CibaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68019F7A9A900672440 /* CibaWebView.m */; };
+		7F43F70719F7A9A900672440 /* ExamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68219F7A9A900672440 /* ExamView.m */; };
+		7F43F70819F7A9A900672440 /* ExamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68319F7A9A900672440 /* ExamView.xib */; };
+		7F43F70919F7A9A900672440 /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68619F7A9A900672440 /* GuideView.m */; };
+		7F43F70A19F7A9A900672440 /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68719F7A9A900672440 /* GuideView.xib */; };
+		7F43F70B19F7A9A900672440 /* WordListFromDiskGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68919F7A9A900672440 /* WordListFromDiskGuide.m */; };
+		7F43F70C19F7A9A900672440 /* SimpleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68B19F7A9A900672440 /* SimpleProgressBar.m */; };
+		7F43F70D19F7A9A900672440 /* VGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68D19F7A9A900672440 /* VGradientView.m */; };
+		7F43F70E19F7A9A900672440 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68E19F7A9A900672440 /* WelcomeView.xib */; };
+		7F43F70F19F7A9A900672440 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69019F7A9A900672440 /* Model.xcdatamodeld */; };
+		7F43F71019F7A9A900672440 /* PronunciationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69719F7A9A900672440 /* PronunciationData.m */; };
+		7F43F71119F7A9A900672440 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69919F7A9A900672440 /* Word.m */; };
+		7F43F71219F7A9A900672440 /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69B19F7A9A900672440 /* WordList.m */; };
+		7F43F71319F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69D19F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel */; };
+		7F43F71419F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69E19F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel */; };
+		7F43F71519F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69F19F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel */; };
+		7F43F71619F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A019F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel */; };
+		7F43F71719F7A9A900672440 /* CibaEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A319F7A9A900672440 /* CibaEngine.m */; };
+		7F43F71819F7A9A900672440 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A519F7A9A900672440 /* CibaNetworkOperation.m */; };
+		7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A919F7A9A900672440 /* NSDate+VAdditions.m */; };
+		7F43F71A19F7A9A900672440 /* NSMutableString+HTMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6AB19F7A9A900672440 /* NSMutableString+HTMLEscape.m */; };
+		7F43F71B19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6AD19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m */; };
+		7F43F71C19F7A9A900672440 /* UIToolbar+VToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6AF19F7A9A900672440 /* UIToolbar+VToolBar.m */; };
+		7F43F71D19F7A9A900672440 /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B119F7A9A900672440 /* ConfusingWordsIndexer.m */; };
+		7F43F71E19F7A9A900672440 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B319F7A9A900672440 /* CoreDataHelper.m */; };
+		7F43F71F19F7A9A900672440 /* CoreDataHelperV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B519F7A9A900672440 /* CoreDataHelperV2.m */; };
+		7F43F72019F7A9A900672440 /* PlanMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B719F7A9A900672440 /* PlanMaker.m */; };
+		7F43F72119F7A9A900672440 /* PureColorImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */; };
+		7F43F72219F7A9A900672440 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6BB19F7A9A900672440 /* WordListCreator.m */; };
+		7F43F72319F7A9A900672440 /* WordSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6BD19F7A9A900672440 /* WordSearcher.m */; };
+		7F43F72419F7A9A900672440 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6C419F7A9A900672440 /* AbstractActionSheetPicker.m */; };
+		7F43F72519F7A9A900672440 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6C619F7A9A900672440 /* ActionSheetDatePicker.m */; };
+		7F43F72619F7A9A900672440 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6C819F7A9A900672440 /* ActionSheetDistancePicker.m */; };
+		7F43F72719F7A9A900672440 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6CA19F7A9A900672440 /* ActionSheetStringPicker.m */; };
+		7F43F72819F7A9A900672440 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6CC19F7A9A900672440 /* DistancePickerView.m */; };
+		7F43F72919F7A9A900672440 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */; };
+		7F43F72B19F7A9A900672440 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */; };
+		7F43F72C19F7A9A900672440 /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6D819F7A9A900672440 /* ExamViewController.m */; };
+		7F43F72D19F7A9A900672440 /* ExistingWordListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */; };
+		7F43F72E19F7A9A900672440 /* LearningBackboneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */; };
+		7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */; };
+		7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E019F7A9A900672440 /* PlanningViewController.m */; };
+		7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E219F7A9A900672440 /* PreferenceViewController.m */; };
+		7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E419F7A9A900672440 /* SearchWordViewController.m */; };
+		7F43F73319F7A9A900672440 /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */; };
+		7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E819F7A9A900672440 /* VBaseViewController.m */; };
+		7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EA19F7A9A900672440 /* VNavigationController.m */; };
+		7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EC19F7A9A900672440 /* VWebViewController.m */; };
+		7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */; };
+		7F43F73819F7A9A900672440 /* WordListFromDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6F019F7A9A900672440 /* WordListFromDiskViewController.m */; };
+		7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6F219F7A9A900672440 /* WordListViewController.m */; };
+		7F43F73A19F7A9A900672440 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */; };
+		7F43F73B19F7A9A900672440 /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F519F7A9A900672440 /* ExamViewController.xib */; };
+		7F43F73C19F7A9A900672440 /* ExistingWordListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */; };
+		7F43F73D19F7A9A900672440 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */; };
+		7F43F73E19F7A9A900672440 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */; };
+		7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F919F7A9A900672440 /* PlanningViewController.xib */; };
+		7F43F74019F7A9A900672440 /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */; };
+		7F43F74119F7A9A900672440 /* VWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FB19F7A9A900672440 /* VWebViewController.xib */; };
+		7F43F74219F7A9A900672440 /* WordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */; };
+		7F43F74319F7A9A900672440 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */; };
+		7F43F74419F7A9A900672440 /* WordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FE19F7A9A900672440 /* WordListViewController.xib */; };
+		7F43F74519F7A9A900672440 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70119F7A9A900672440 /* ExamContent.m */; };
+		7F43F74619F7A9A900672440 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70319F7A9A900672440 /* Guide.m */; };
+		7F43F74719F7A9A900672440 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70519F7A9A900672440 /* Plan.m */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
-		A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */; };
-		A408DA8C168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */; };
-		A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */; };
-		A4392E74181BB8FF000386BF /* VBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4392E73181BB8FF000386BF /* VBaseViewController.m */; };
-		A43BC235181B6A5800A3E1EA /* PureColorImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = A43BC234181B6A5800A3E1EA /* PureColorImageGenerator.m */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
 		A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4F1630296800DF4696 /* CoreGraphics.framework */; };
@@ -23,21 +81,9 @@
 		A46A7E581630296800DF4696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E571630296800DF4696 /* main.m */; };
 		A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E5B1630296800DF4696 /* AppDelegate.m */; };
 		A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E6E16302A2C00DF4696 /* CoreData.framework */; };
-		A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */; };
 		A46A7EEC16304F9800DF4696 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7EEB16304F9800DF4696 /* libxml2.dylib */; };
-		A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F381632C44800DF4696 /* CoreDataHelper.m */; };
-		A46A7F431632DA5900DF4696 /* ExistingWordListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F411632DA5800DF4696 /* ExistingWordListsViewController.m */; };
-		A46A7F441632DA5900DF4696 /* ExistingWordListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F421632DA5800DF4696 /* ExistingWordListsViewController.xib */; };
-		A46A7F481632DE4100DF4696 /* WordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F461632DE4100DF4696 /* WordListViewController.m */; };
-		A46A7F491632DE4100DF4696 /* WordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F471632DE4100DF4696 /* WordListViewController.xib */; };
-		A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */; };
-		A46A7F531632ED4E00DF4696 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */; };
-		A46A7F5C1633A35900DF4696 /* WordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F5A1633A35900DF4696 /* WordDetailViewController.m */; };
-		A46A7F5D1633A35900DF4696 /* WordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A7F5B1633A35900DF4696 /* WordDetailViewController.xib */; };
-		A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7F981633C8AF00DF4696 /* CibaEngine.m */; };
 		A46A7F9F1633D4C600DF4696 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */; };
 		A46A7FCD1635909D00DF4696 /* audio.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FCA1635909D00DF4696 /* audio.png */; };
-		A46A7FF51639702A00DF4696 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A7FF31639702A00DF4696 /* PlanningViewController.m */; };
 		A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFD163BC7CA00DF4696 /* whiteButton.png */; };
 		A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */; };
 		A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A7FFF163BC7CA00DF4696 /* whiteButtonHighlight.png */; };
@@ -50,59 +96,24 @@
 		A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800E163BDBAA00DF4696 /* greenButton@2x.png */; };
 		A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */; };
 		A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */; };
-		A46A802D163D35E500DF4696 /* VWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A46A802B163D35DE00DF4696 /* VWebViewController.m */; };
-		A46A802E163D35E500DF4696 /* VWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A46A802C163D35E100DF4696 /* VWebViewController.xib */; };
 		A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D2F1642A354005EB1E0 /* MessageUI.framework */; };
-		A4754D3E1642A7E4005EB1E0 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D351642A7E4005EB1E0 /* AbstractActionSheetPicker.m */; };
-		A4754D3F1642A7E4005EB1E0 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D371642A7E4005EB1E0 /* ActionSheetDatePicker.m */; };
-		A4754D401642A7E4005EB1E0 /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D391642A7E4005EB1E0 /* ActionSheetDistancePicker.m */; };
-		A4754D411642A7E4005EB1E0 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D3B1642A7E4005EB1E0 /* ActionSheetStringPicker.m */; };
-		A4754D421642A7E4005EB1E0 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D3D1642A7E4005EB1E0 /* DistancePickerView.m */; };
-		A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */; };
-		A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */; };
-		A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A4754D671644E5E2005EB1E0 /* WordListCreator.m */; };
 		A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8E16466ECB005EB1E0 /* StoreKit.framework */; };
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
-		A4754D9B164689DA005EB1E0 /* PlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4754D9A164689DA005EB1E0 /* PlanningViewController.xib */; };
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
-		A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A497343416C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel */; };
-		A498F023177F076500FC8AA5 /* CoreDataHelperV2.m in Sources */ = {isa = PBXBuildFile; fileRef = A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */; };
-		A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */; };
-		A4B3D79216420BD100F9772F /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B3D79116420BD100F9772F /* PreferenceViewController.m */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
-		A4CD22C6181CA51300FE29F7 /* SimpleProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */; };
-		A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C8911695A840008F013C /* LeftBarViewController.m */; };
 		A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89C1695B556008F013C /* ButtonMenu.png */; };
 		A4E8C89F1695B556008F013C /* ButtonMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */; };
-		A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */; };
 		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
 		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
-		EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */; };
-		EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC227167EF232003B1C69 /* CibaWebView.m */; };
 		EC1EC268167F2091003B1C69 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1EC266167F2091003B1C69 /* closeButton.png */; };
 		EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC1EC267167F2091003B1C69 /* closeButton@2x.png */; };
-		EC1EC3211681894A003B1C69 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC31F16818949003B1C69 /* Word.m */; };
-		EC1EC3251681894A003B1C69 /* PronunciationData.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC3231681894A003B1C69 /* PronunciationData.m */; };
-		EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */; };
 		EC2290091696B46700D7E0D8 /* splitline.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290071696B46700D7E0D8 /* splitline.png */; };
 		EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290081696B46700D7E0D8 /* splitline@2x.png */; };
-		EC2290131696B81B00D7E0D8 /* VNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2290111696B81A00D7E0D8 /* VNavigationController.m */; };
 		EC2290161696BFA100D7E0D8 /* barButtonBG.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290141696BF9C00D7E0D8 /* barButtonBG.png */; };
 		EC2290171696BFA100D7E0D8 /* barButtonBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290151696BF9E00D7E0D8 /* barButtonBG@2x.png */; };
-		EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */; };
 		EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA716687AD3004887B4 /* libz.dylib */; };
-		EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFDF163646C500EF429B /* ExamViewController.m */; };
-		EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFE0163646C500EF429B /* ExamViewController.xib */; };
-		EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFE616365B0A00EF429B /* ExamContent.m */; };
-		EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC4FCFED16367CEE00EF429B /* ExamView.m */; };
-		EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FCFF016367D0B00EF429B /* ExamView.xib */; };
-		EC723CB6165D17AF001F5B1B /* WordList.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CB4165D17AF001F5B1B /* WordList.m */; };
-		EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723CBC165DB698001F5B1B /* SearchWordViewController.m */; };
-		EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */; };
-		EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */; };
-		EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */; };
 		EC9D1E961697CD5300A8C5B9 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8C1697CD5300A8C5B9 /* back.png */; };
 		EC9D1E971697CD5300A8C5B9 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8D1697CD5300A8C5B9 /* back@2x.png */; };
 		EC9D1E981697CD5300A8C5B9 /* barbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E8E1697CD5300A8C5B9 /* barbutton.png */; };
@@ -112,7 +123,6 @@
 		EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E921697CD5300A8C5B9 /* nav.png */; };
 		EC9D1E9E1697CD5300A8C5B9 /* tableheader.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E941697CD5300A8C5B9 /* tableheader.png */; };
 		EC9D1E9F1697CD5300A8C5B9 /* tableheader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1E951697CD5300A8C5B9 /* tableheader@2x.png */; };
-		EC9D1EA11697D47400A8C5B9 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */; };
 		EC9D1EA41697E42800A8C5B9 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA21697E42800A8C5B9 /* search.png */; };
 		EC9D1EA51697E42800A8C5B9 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA31697E42800A8C5B9 /* search@2x.png */; };
 		EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1EA61698002D00A8C5B9 /* CellBGHighlighted.png */; };
@@ -121,20 +131,10 @@
 		EC9D1F43169817CD00A8C5B9 /* web-back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F3F169817CD00A8C5B9 /* web-back@2x.png */; };
 		EC9D1F44169817CD00A8C5B9 /* web-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F40169817CD00A8C5B9 /* web-forward.png */; };
 		EC9D1F45169817CD00A8C5B9 /* web-forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F41169817CD00A8C5B9 /* web-forward@2x.png */; };
-		EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */; };
-		EC9D1F571699148700A8C5B9 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F551699148700A8C5B9 /* Plan.m */; };
 		EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8E1699509600A8C5B9 /* checkmark.png */; };
 		EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */; };
-		EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D1F9B169970D500A8C5B9 /* VGradientView.m */; };
-		EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = EC9D2056169C029400A8C5B9 /* WordSearcher.m */; };
 		EC9D2060169D018700A8C5B9 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205E169D018700A8C5B9 /* refresh.png */; };
 		EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9D205F169D018700A8C5B9 /* refresh@2x.png */; };
-		ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */; };
-		ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */; };
-		ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB725A516D0BB1800BAB36D /* GuideView.xib */; };
-		ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AA16D0BBA400BAB36D /* Guide.m */; };
-		ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */; };
-		ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB725BC16D20B5F00BAB36D /* GuideView.m */; };
 		ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725BF16D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png */; };
 		ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C016D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png */; };
 		ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ECB725C116D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png */; };
@@ -156,20 +156,126 @@
 /* Begin PBXFileReference section */
 		13F6169C5B3C436E888FC365 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		353F430A212D421EA42694A9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		7F43F67F19F7A9A900672440 /* CibaWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaWebView.h; sourceTree = "<group>"; };
+		7F43F68019F7A9A900672440 /* CibaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaWebView.m; sourceTree = "<group>"; };
+		7F43F68119F7A9A900672440 /* ExamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamView.h; sourceTree = "<group>"; };
+		7F43F68219F7A9A900672440 /* ExamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamView.m; sourceTree = "<group>"; };
+		7F43F68319F7A9A900672440 /* ExamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamView.xib; sourceTree = "<group>"; };
+		7F43F68519F7A9A900672440 /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideView.h; sourceTree = "<group>"; };
+		7F43F68619F7A9A900672440 /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
+		7F43F68719F7A9A900672440 /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
+		7F43F68819F7A9A900672440 /* WordListFromDiskGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListFromDiskGuide.h; sourceTree = "<group>"; };
+		7F43F68919F7A9A900672440 /* WordListFromDiskGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListFromDiskGuide.m; sourceTree = "<group>"; };
+		7F43F68A19F7A9A900672440 /* SimpleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleProgressBar.h; sourceTree = "<group>"; };
+		7F43F68B19F7A9A900672440 /* SimpleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleProgressBar.m; sourceTree = "<group>"; };
+		7F43F68C19F7A9A900672440 /* VGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VGradientView.h; sourceTree = "<group>"; };
+		7F43F68D19F7A9A900672440 /* VGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGradientView.m; sourceTree = "<group>"; };
+		7F43F68E19F7A9A900672440 /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
+		7F43F69119F7A9A900672440 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		7F43F69219F7A9A900672440 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		7F43F69319F7A9A900672440 /* Model3.1WithCascadeBug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model3.1WithCascadeBug.xcdatamodel; sourceTree = "<group>"; };
+		7F43F69419F7A9A900672440 /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model4.xcdatamodel; sourceTree = "<group>"; };
+		7F43F69519F7A9A900672440 /* ModelIndexedKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelIndexedKey.xcdatamodel; sourceTree = "<group>"; };
+		7F43F69619F7A9A900672440 /* PronunciationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PronunciationData.h; sourceTree = "<group>"; };
+		7F43F69719F7A9A900672440 /* PronunciationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PronunciationData.m; sourceTree = "<group>"; };
+		7F43F69819F7A9A900672440 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		7F43F69919F7A9A900672440 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		7F43F69A19F7A9A900672440 /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordList.h; sourceTree = "<group>"; };
+		7F43F69B19F7A9A900672440 /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordList.m; sourceTree = "<group>"; };
+		7F43F69D19F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MigrationV1ToV4.xcmappingmodel; sourceTree = "<group>"; };
+		7F43F69E19F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MigrationV2ToV4.xcmappingmodel; sourceTree = "<group>"; };
+		7F43F69F19F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MigrationV3ToV4.xcmappingmodel; sourceTree = "<group>"; };
+		7F43F6A019F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MigrationV3_1ToV4.xcmappingmodel; sourceTree = "<group>"; };
+		7F43F6A219F7A9A900672440 /* CibaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaEngine.h; sourceTree = "<group>"; };
+		7F43F6A319F7A9A900672440 /* CibaEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaEngine.m; sourceTree = "<group>"; };
+		7F43F6A419F7A9A900672440 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
+		7F43F6A519F7A9A900672440 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
+		7F43F6A819F7A9A900672440 /* NSDate+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+VAdditions.h"; sourceTree = "<group>"; };
+		7F43F6A919F7A9A900672440 /* NSDate+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+VAdditions.m"; sourceTree = "<group>"; };
+		7F43F6AA19F7A9A900672440 /* NSMutableString+HTMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+HTMLEscape.h"; sourceTree = "<group>"; };
+		7F43F6AB19F7A9A900672440 /* NSMutableString+HTMLEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+HTMLEscape.m"; sourceTree = "<group>"; };
+		7F43F6AC19F7A9A900672440 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
+		7F43F6AD19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
+		7F43F6AE19F7A9A900672440 /* UIToolbar+VToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+VToolBar.h"; sourceTree = "<group>"; };
+		7F43F6AF19F7A9A900672440 /* UIToolbar+VToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+VToolBar.m"; sourceTree = "<group>"; };
+		7F43F6B019F7A9A900672440 /* ConfusingWordsIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfusingWordsIndexer.h; sourceTree = "<group>"; };
+		7F43F6B119F7A9A900672440 /* ConfusingWordsIndexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfusingWordsIndexer.m; sourceTree = "<group>"; };
+		7F43F6B219F7A9A900672440 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		7F43F6B319F7A9A900672440 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		7F43F6B419F7A9A900672440 /* CoreDataHelperV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelperV2.h; sourceTree = "<group>"; };
+		7F43F6B519F7A9A900672440 /* CoreDataHelperV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelperV2.m; sourceTree = "<group>"; };
+		7F43F6B619F7A9A900672440 /* PlanMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMaker.h; sourceTree = "<group>"; };
+		7F43F6B719F7A9A900672440 /* PlanMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMaker.m; sourceTree = "<group>"; };
+		7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureColorImageGenerator.h; sourceTree = "<group>"; };
+		7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureColorImageGenerator.m; sourceTree = "<group>"; };
+		7F43F6BA19F7A9A900672440 /* WordListCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCreator.h; sourceTree = "<group>"; };
+		7F43F6BB19F7A9A900672440 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
+		7F43F6BC19F7A9A900672440 /* WordSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSearcher.h; sourceTree = "<group>"; };
+		7F43F6BD19F7A9A900672440 /* WordSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSearcher.m; sourceTree = "<group>"; };
+		7F43F6BE19F7A9A900672440 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		7F43F6C119F7A9A900672440 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
+		7F43F6C319F7A9A900672440 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		7F43F6C419F7A9A900672440 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		7F43F6C519F7A9A900672440 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		7F43F6C619F7A9A900672440 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		7F43F6C719F7A9A900672440 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		7F43F6C819F7A9A900672440 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		7F43F6C919F7A9A900672440 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		7F43F6CA19F7A9A900672440 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		7F43F6CB19F7A9A900672440 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
+		7F43F6CC19F7A9A900672440 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
+		7F43F6CF19F7A9A900672440 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
+		7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
+		7F43F6D719F7A9A900672440 /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamViewController.h; sourceTree = "<group>"; };
+		7F43F6D819F7A9A900672440 /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
+		7F43F6D919F7A9A900672440 /* ExistingWordListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingWordListsViewController.h; sourceTree = "<group>"; };
+		7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingWordListsViewController.m; sourceTree = "<group>"; };
+		7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningBackboneViewController.h; sourceTree = "<group>"; };
+		7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningBackboneViewController.m; sourceTree = "<group>"; };
+		7F43F6DD19F7A9A900672440 /* LeftBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftBarViewController.h; sourceTree = "<group>"; };
+		7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftBarViewController.m; sourceTree = "<group>"; };
+		7F43F6DF19F7A9A900672440 /* PlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningViewController.h; sourceTree = "<group>"; };
+		7F43F6E019F7A9A900672440 /* PlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningViewController.m; sourceTree = "<group>"; };
+		7F43F6E119F7A9A900672440 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
+		7F43F6E219F7A9A900672440 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
+		7F43F6E319F7A9A900672440 /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
+		7F43F6E419F7A9A900672440 /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
+		7F43F6E519F7A9A900672440 /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
+		7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
+		7F43F6E719F7A9A900672440 /* VBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBaseViewController.h; sourceTree = "<group>"; };
+		7F43F6E819F7A9A900672440 /* VBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseViewController.m; sourceTree = "<group>"; };
+		7F43F6E919F7A9A900672440 /* VNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationController.h; sourceTree = "<group>"; };
+		7F43F6EA19F7A9A900672440 /* VNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationController.m; sourceTree = "<group>"; };
+		7F43F6EB19F7A9A900672440 /* VWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWebViewController.h; sourceTree = "<group>"; };
+		7F43F6EC19F7A9A900672440 /* VWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWebViewController.m; sourceTree = "<group>"; };
+		7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDetailViewController.h; sourceTree = "<group>"; };
+		7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewController.m; sourceTree = "<group>"; };
+		7F43F6EF19F7A9A900672440 /* WordListFromDiskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListFromDiskViewController.h; sourceTree = "<group>"; };
+		7F43F6F019F7A9A900672440 /* WordListFromDiskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListFromDiskViewController.m; sourceTree = "<group>"; };
+		7F43F6F119F7A9A900672440 /* WordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListViewController.h; sourceTree = "<group>"; };
+		7F43F6F219F7A9A900672440 /* WordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListViewController.m; sourceTree = "<group>"; };
+		7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateWordListViewController.xib; sourceTree = "<group>"; };
+		7F43F6F519F7A9A900672440 /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
+		7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingWordListsViewController.xib; sourceTree = "<group>"; };
+		7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningBackboneViewController.xib; sourceTree = "<group>"; };
+		7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
+		7F43F6F919F7A9A900672440 /* PlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningViewController.xib; sourceTree = "<group>"; };
+		7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordViewController.xib; sourceTree = "<group>"; };
+		7F43F6FB19F7A9A900672440 /* VWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VWebViewController.xib; sourceTree = "<group>"; };
+		7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordDetailViewController.xib; sourceTree = "<group>"; };
+		7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
+		7F43F6FE19F7A9A900672440 /* WordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListViewController.xib; sourceTree = "<group>"; };
+		7F43F70019F7A9A900672440 /* ExamContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamContent.h; sourceTree = "<group>"; };
+		7F43F70119F7A9A900672440 /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
+		7F43F70219F7A9A900672440 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
+		7F43F70319F7A9A900672440 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
+		7F43F70419F7A9A900672440 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
+		7F43F70519F7A9A900672440 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		7F43F74819F7AADC00672440 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		7F8ACC7719C134630006DAB7 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
-		7F8ACC7819C139600006DAB7 /* PlanMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanMaker.h; sourceTree = "<group>"; };
-		7F8ACC7919C139600006DAB7 /* PlanMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMaker.m; sourceTree = "<group>"; };
-		7F8ACC7C19C14CF50006DAB7 /* NSDate+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+VAdditions.h"; sourceTree = "<group>"; };
-		7F8ACC7D19C14CF50006DAB7 /* NSDate+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+VAdditions.m"; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV2ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV2ToV4.xcmappingmodel; sourceTree = "<group>"; };
-		A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV1ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV1ToV4.xcmappingmodel; sourceTree = "<group>"; };
-		A408DB471692C3DB00B45B2C /* NSMutableString+HTMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+HTMLEscape.h"; sourceTree = "<group>"; };
-		A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+HTMLEscape.m"; sourceTree = "<group>"; };
-		A4392E72181BB8FF000386BF /* VBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBaseViewController.h; sourceTree = "<group>"; };
-		A4392E73181BB8FF000386BF /* VBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseViewController.m; sourceTree = "<group>"; };
-		A43BC233181B6A5800A3E1EA /* PureColorImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureColorImageGenerator.h; sourceTree = "<group>"; };
-		A43BC234181B6A5800A3E1EA /* PureColorImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureColorImageGenerator.m; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46A7E4B1630296800DF4696 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A46A7E4D1630296800DF4696 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,29 +286,9 @@
 		A46A7E5A1630296800DF4696 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A46A7E5B1630296800DF4696 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A46A7E6E16302A2C00DF4696 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A46A7EEB16304F9800DF4696 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		A46A7F371632C44800DF4696 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
-		A46A7F381632C44800DF4696 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
-		A46A7F401632DA5800DF4696 /* ExistingWordListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExistingWordListsViewController.h; sourceTree = "<group>"; };
-		A46A7F411632DA5800DF4696 /* ExistingWordListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingWordListsViewController.m; sourceTree = "<group>"; };
-		A46A7F421632DA5800DF4696 /* ExistingWordListsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingWordListsViewController.xib; sourceTree = "<group>"; };
-		A46A7F451632DE4000DF4696 /* WordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListViewController.h; sourceTree = "<group>"; };
-		A46A7F461632DE4100DF4696 /* WordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListViewController.m; sourceTree = "<group>"; };
-		A46A7F471632DE4100DF4696 /* WordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListViewController.xib; sourceTree = "<group>"; };
-		A46A7F4F1632ED4D00DF4696 /* LearningBackboneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningBackboneViewController.h; sourceTree = "<group>"; };
-		A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningBackboneViewController.m; sourceTree = "<group>"; };
-		A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningBackboneViewController.xib; sourceTree = "<group>"; };
-		A46A7F591633A35900DF4696 /* WordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = WordDetailViewController.h; sourceTree = "<group>"; };
-		A46A7F5A1633A35900DF4696 /* WordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewController.m; sourceTree = "<group>"; };
-		A46A7F5B1633A35900DF4696 /* WordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordDetailViewController.xib; sourceTree = "<group>"; };
-		A46A7F971633C8AF00DF4696 /* CibaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaEngine.h; sourceTree = "<group>"; };
-		A46A7F981633C8AF00DF4696 /* CibaEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaEngine.m; sourceTree = "<group>"; };
 		A46A7F9E1633D4C600DF4696 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A46A7FCA1635909D00DF4696 /* audio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = audio.png; path = artwork/audio.png; sourceTree = "<group>"; };
-		A46A7FF21639702A00DF4696 /* PlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningViewController.h; sourceTree = "<group>"; };
-		A46A7FF31639702A00DF4696 /* PlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningViewController.m; sourceTree = "<group>"; };
-		A46A7FFB163BC1E800DF4696 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		A46A7FFD163BC7CA00DF4696 /* whiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButton.png; path = artwork/whiteButton.png; sourceTree = "<group>"; };
 		A46A7FFE163BC7CA00DF4696 /* whiteButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "whiteButton@2x.png"; path = "artwork/whiteButton@2x.png"; sourceTree = "<group>"; };
 		A46A7FFF163BC7CA00DF4696 /* whiteButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = whiteButtonHighlight.png; path = artwork/whiteButtonHighlight.png; sourceTree = "<group>"; };
@@ -215,9 +301,6 @@
 		A46A800E163BDBAA00DF4696 /* greenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButton@2x.png"; path = "artwork/greenButton@2x.png"; sourceTree = "<group>"; };
 		A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonHighlight.png; path = artwork/greenButtonHighlight.png; sourceTree = "<group>"; };
 		A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonHighlight@2x.png"; path = "artwork/greenButtonHighlight@2x.png"; sourceTree = "<group>"; };
-		A46A802A163D35DC00DF4696 /* VWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = VWebViewController.h; sourceTree = "<group>"; };
-		A46A802B163D35DE00DF4696 /* VWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWebViewController.m; sourceTree = "<group>"; };
-		A46A802C163D35E100DF4696 /* VWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VWebViewController.xib; sourceTree = "<group>"; };
 		A4754D2F1642A354005EB1E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A4754D321642A7E4005EB1E0 /* ActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetPicker.h; sourceTree = "<group>"; };
 		A4754D341642A7E4005EB1E0 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractActionSheetPicker.h; sourceTree = "<group>"; };
@@ -231,75 +314,25 @@
 		A4754D3C1642A7E4005EB1E0 /* DistancePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistancePickerView.h; sourceTree = "<group>"; };
 		A4754D3D1642A7E4005EB1E0 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
 		A4754D541644BE33005EB1E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		A4754D5F1644D7FA005EB1E0 /* WordListFromDiskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListFromDiskViewController.h; sourceTree = "<group>"; };
-		A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListFromDiskViewController.m; sourceTree = "<group>"; };
-		A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
-		A4754D661644E5E2005EB1E0 /* WordListCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCreator.h; sourceTree = "<group>"; };
-		A4754D671644E5E2005EB1E0 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
 		A4754D8E16466ECB005EB1E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A4754D9216466EE6005EB1E0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		A4754D9A164689DA005EB1E0 /* PlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningViewController.xib; sourceTree = "<group>"; };
-		A4852EC91680BA7600A4602C /* Model4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model4.xcdatamodel; sourceTree = "<group>"; };
 		A48DCD96169C46400069FEF7 /* blackToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackToolbarBG.png; path = artwork/blackToolbarBG.png; sourceTree = "<group>"; };
 		A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackToolbarBG@2x.png"; path = "artwork/blackToolbarBG@2x.png"; sourceTree = "<group>"; };
 		A48DCD9F169C57350069FEF7 /* CellSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellSeparator.png; path = artwork/CellSeparator.png; sourceTree = "<group>"; };
-		A497343116C9455000337AB4 /* Model3.1WithCascadeBug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model3.1WithCascadeBug.xcdatamodel; sourceTree = "<group>"; };
-		A497343416C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV3_1ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV3_1ToV4.xcmappingmodel; sourceTree = "<group>"; };
-		A498F021177F076500FC8AA5 /* CoreDataHelperV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelperV2.h; sourceTree = "<group>"; };
-		A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelperV2.m; sourceTree = "<group>"; };
-		A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
-		A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
-		A4B3D79016420BD100F9772F /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
-		A4B3D79116420BD100F9772F /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
 		A4CD22C0181BD56F00FE29F7 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
-		A4CD22C4181CA51300FE29F7 /* SimpleProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleProgressBar.h; sourceTree = "<group>"; };
-		A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleProgressBar.m; sourceTree = "<group>"; };
-		A4E8C8901695A840008F013C /* LeftBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftBarViewController.h; sourceTree = "<group>"; };
-		A4E8C8911695A840008F013C /* LeftBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftBarViewController.m; sourceTree = "<group>"; };
 		A4E8C89C1695B556008F013C /* ButtonMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ButtonMenu.png; path = artwork/ButtonMenu.png; sourceTree = "<group>"; };
 		A4E8C89D1695B556008F013C /* ButtonMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ButtonMenu@2x.png"; path = "artwork/ButtonMenu@2x.png"; sourceTree = "<group>"; };
-		A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Rotation_IOS6.h"; sourceTree = "<group>"; };
-		A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Rotation_IOS6.m"; sourceTree = "<group>"; };
 		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
-		EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
-		EC1EC226167EF232003B1C69 /* CibaWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = CibaWebView.h; sourceTree = "<group>"; };
-		EC1EC227167EF232003B1C69 /* CibaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaWebView.m; sourceTree = "<group>"; };
 		EC1EC266167F2091003B1C69 /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = closeButton.png; path = artwork/closeButton.png; sourceTree = "<group>"; };
 		EC1EC267167F2091003B1C69 /* closeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "closeButton@2x.png"; path = "artwork/closeButton@2x.png"; sourceTree = "<group>"; };
-		EC1EC31E16818949003B1C69 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = Word.h; path = Vocabulary/Word.h; sourceTree = "<group>"; };
-		EC1EC31F16818949003B1C69 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Word.m; path = Vocabulary/Word.m; sourceTree = "<group>"; };
-		EC1EC3221681894A003B1C69 /* PronunciationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = PronunciationData.h; path = Vocabulary/PronunciationData.h; sourceTree = "<group>"; };
-		EC1EC3231681894A003B1C69 /* PronunciationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PronunciationData.m; path = Vocabulary/PronunciationData.m; sourceTree = "<group>"; };
-		EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; name = MigrationV3ToV4.xcmappingmodel; path = Vocabulary/migration/MigrationV3ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		EC2290071696B46700D7E0D8 /* splitline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splitline.png; path = artwork/splitline.png; sourceTree = "<group>"; };
 		EC2290081696B46700D7E0D8 /* splitline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splitline@2x.png"; path = "artwork/splitline@2x.png"; sourceTree = "<group>"; };
-		EC2290101696B81900D7E0D8 /* VNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = VNavigationController.h; sourceTree = "<group>"; };
-		EC2290111696B81A00D7E0D8 /* VNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationController.m; sourceTree = "<group>"; };
 		EC2290141696BF9C00D7E0D8 /* barButtonBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barButtonBG.png; path = artwork/barButtonBG.png; sourceTree = "<group>"; };
 		EC2290151696BF9E00D7E0D8 /* barButtonBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "barButtonBG@2x.png"; path = "artwork/barButtonBG@2x.png"; sourceTree = "<group>"; };
 		EC4BCEA216687A80004887B4 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		EC4BCEA316687A80004887B4 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = MobClick.h; sourceTree = "<group>"; };
 		EC4BCEA716687AD3004887B4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		EC4FCFDE163646C500EF429B /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamViewController.h; sourceTree = "<group>"; };
-		EC4FCFDF163646C500EF429B /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
-		EC4FCFE0163646C500EF429B /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
-		EC4FCFE516365B0A00EF429B /* ExamContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamContent.h; sourceTree = "<group>"; };
-		EC4FCFE616365B0A00EF429B /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
-		EC4FCFEC16367CEE00EF429B /* ExamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ExamView.h; sourceTree = "<group>"; };
-		EC4FCFED16367CEE00EF429B /* ExamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamView.m; sourceTree = "<group>"; };
-		EC4FCFF016367D0B00EF429B /* ExamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamView.xib; sourceTree = "<group>"; };
-		EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
-		EC723CB3165D17AF001F5B1B /* WordList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = WordList.h; path = Vocabulary/WordList.h; sourceTree = "<group>"; };
-		EC723CB4165D17AF001F5B1B /* WordList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WordList.m; path = Vocabulary/WordList.m; sourceTree = "<group>"; };
-		EC723CBB165DB698001F5B1B /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
-		EC723CBC165DB698001F5B1B /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
-		EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordViewController.xib; sourceTree = "<group>"; };
-		EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ModelIndexedKey.xcdatamodel; sourceTree = "<group>"; };
-		EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = ConfusingWordsIndexer.h; sourceTree = "<group>"; };
-		EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfusingWordsIndexer.m; sourceTree = "<group>"; };
-		EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		EC9D1E8C1697CD5300A8C5B9 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = artwork/back.png; sourceTree = "<group>"; };
 		EC9D1E8D1697CD5300A8C5B9 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "artwork/back@2x.png"; sourceTree = "<group>"; };
 		EC9D1E8E1697CD5300A8C5B9 /* barbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = barbutton.png; path = artwork/barbutton.png; sourceTree = "<group>"; };
@@ -309,7 +342,6 @@
 		EC9D1E921697CD5300A8C5B9 /* nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nav.png; path = artwork/nav.png; sourceTree = "<group>"; };
 		EC9D1E941697CD5300A8C5B9 /* tableheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tableheader.png; path = artwork/tableheader.png; sourceTree = "<group>"; };
 		EC9D1E951697CD5300A8C5B9 /* tableheader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tableheader@2x.png"; path = "artwork/tableheader@2x.png"; sourceTree = "<group>"; };
-		EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
 		EC9D1EA21697E42800A8C5B9 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = artwork/search.png; sourceTree = "<group>"; };
 		EC9D1EA31697E42800A8C5B9 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "search@2x.png"; path = "artwork/search@2x.png"; sourceTree = "<group>"; };
 		EC9D1EA61698002D00A8C5B9 /* CellBGHighlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellBGHighlighted.png; path = artwork/CellBGHighlighted.png; sourceTree = "<group>"; };
@@ -318,28 +350,10 @@
 		EC9D1F3F169817CD00A8C5B9 /* web-back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "web-back@2x.png"; path = "artwork/web-back@2x.png"; sourceTree = "<group>"; };
 		EC9D1F40169817CD00A8C5B9 /* web-forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "web-forward.png"; path = "artwork/web-forward.png"; sourceTree = "<group>"; };
 		EC9D1F41169817CD00A8C5B9 /* web-forward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "web-forward@2x.png"; path = "artwork/web-forward@2x.png"; sourceTree = "<group>"; };
-		EC9D1F471698288500A8C5B9 /* UIToolbar+VToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = "UIToolbar+VToolBar.h"; sourceTree = "<group>"; };
-		EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+VToolBar.m"; sourceTree = "<group>"; };
-		EC9D1F541699148700A8C5B9 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; name = Plan.h; path = Vocabulary/Plan.h; sourceTree = "<group>"; };
-		EC9D1F551699148700A8C5B9 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Plan.m; path = Vocabulary/Plan.m; sourceTree = "<group>"; };
 		EC9D1F8E1699509600A8C5B9 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = artwork/checkmark.png; sourceTree = "<group>"; };
 		EC9D1F8F1699509600A8C5B9 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "artwork/checkmark@2x.png"; sourceTree = "<group>"; };
-		EC9D1F9A169970D400A8C5B9 /* VGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = VGradientView.h; sourceTree = "<group>"; };
-		EC9D1F9B169970D500A8C5B9 /* VGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VGradientView.m; sourceTree = "<group>"; };
-		EC9D2055169C029300A8C5B9 /* WordSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = WordSearcher.h; sourceTree = "<group>"; };
-		EC9D2056169C029400A8C5B9 /* WordSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSearcher.m; sourceTree = "<group>"; };
 		EC9D205E169D018700A8C5B9 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = artwork/refresh.png; sourceTree = "<group>"; };
 		EC9D205F169D018700A8C5B9 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "artwork/refresh@2x.png"; sourceTree = "<group>"; };
-		ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
-		ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
-		ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateWordListViewController.xib; sourceTree = "<group>"; };
-		ECB725A516D0BB1800BAB36D /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
-		ECB725A916D0BBA400BAB36D /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = Guide.h; sourceTree = "<group>"; };
-		ECB725AA16D0BBA400BAB36D /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
-		ECB725AD16D0C4EA00BAB36D /* WordListFromDiskGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = WordListFromDiskGuide.h; sourceTree = "<group>"; };
-		ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListFromDiskGuide.m; sourceTree = "<group>"; };
-		ECB725BB16D20B5F00BAB36D /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.objj.h; path = GuideView.h; sourceTree = "<group>"; };
-		ECB725BC16D20B5F00BAB36D /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
 		ECB725BF16D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes1-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes1-568h@2x.png"; sourceTree = "<group>"; };
 		ECB725C016D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes2-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes2-568h@2x.png"; sourceTree = "<group>"; };
 		ECB725C116D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "import_wordlist_itunes3-568h@2x.png"; path = "artwork/guides/word_list_from_disk_guide/import_wordlist_itunes3-568h@2x.png"; sourceTree = "<group>"; };
@@ -369,6 +383,7 @@
 				ECF8B85D1688424400A608D7 /* AudioToolbox.framework in Frameworks */,
 				A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */,
 				A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */,
+				7F43F72919F7A9A900672440 /* libMobClickLibrary.a in Frameworks */,
 				A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */,
 				EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */,
 				A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */,
@@ -379,7 +394,6 @@
 				A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */,
 				A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */,
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
-				EC4BCEA416687A80004887B4 /* libMobClickLibrary.a in Frameworks */,
 				19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +401,225 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F43F67E19F7A9A900672440 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F67F19F7A9A900672440 /* CibaWebView.h */,
+				7F43F68019F7A9A900672440 /* CibaWebView.m */,
+				7F43F68119F7A9A900672440 /* ExamView.h */,
+				7F43F68219F7A9A900672440 /* ExamView.m */,
+				7F43F68319F7A9A900672440 /* ExamView.xib */,
+				7F43F68419F7A9A900672440 /* GuideView */,
+				7F43F68A19F7A9A900672440 /* SimpleProgressBar.h */,
+				7F43F68B19F7A9A900672440 /* SimpleProgressBar.m */,
+				7F43F68C19F7A9A900672440 /* VGradientView.h */,
+				7F43F68D19F7A9A900672440 /* VGradientView.m */,
+				7F43F68E19F7A9A900672440 /* WelcomeView.xib */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		7F43F68419F7A9A900672440 /* GuideView */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F68519F7A9A900672440 /* GuideView.h */,
+				7F43F68619F7A9A900672440 /* GuideView.m */,
+				7F43F68719F7A9A900672440 /* GuideView.xib */,
+				7F43F68819F7A9A900672440 /* WordListFromDiskGuide.h */,
+				7F43F68919F7A9A900672440 /* WordListFromDiskGuide.m */,
+			);
+			path = GuideView;
+			sourceTree = "<group>";
+		};
+		7F43F68F19F7A9A900672440 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F69019F7A9A900672440 /* Model.xcdatamodeld */,
+				7F43F69619F7A9A900672440 /* PronunciationData.h */,
+				7F43F69719F7A9A900672440 /* PronunciationData.m */,
+				7F43F69819F7A9A900672440 /* Word.h */,
+				7F43F69919F7A9A900672440 /* Word.m */,
+				7F43F69A19F7A9A900672440 /* WordList.h */,
+				7F43F69B19F7A9A900672440 /* WordList.m */,
+				7F43F69C19F7A9A900672440 /* migration */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7F43F69C19F7A9A900672440 /* migration */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F69D19F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel */,
+				7F43F69E19F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel */,
+				7F43F69F19F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel */,
+				7F43F6A019F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel */,
+			);
+			path = migration;
+			sourceTree = "<group>";
+		};
+		7F43F6A119F7A9A900672440 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6A219F7A9A900672440 /* CibaEngine.h */,
+				7F43F6A319F7A9A900672440 /* CibaEngine.m */,
+				7F43F6A419F7A9A900672440 /* CibaNetworkOperation.h */,
+				7F43F6A519F7A9A900672440 /* CibaNetworkOperation.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7F43F6A619F7A9A900672440 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6A719F7A9A900672440 /* Categories */,
+				7F43F6B019F7A9A900672440 /* ConfusingWordsIndexer.h */,
+				7F43F6B119F7A9A900672440 /* ConfusingWordsIndexer.m */,
+				7F43F6B219F7A9A900672440 /* CoreDataHelper.h */,
+				7F43F6B319F7A9A900672440 /* CoreDataHelper.m */,
+				7F43F6B419F7A9A900672440 /* CoreDataHelperV2.h */,
+				7F43F6B519F7A9A900672440 /* CoreDataHelperV2.m */,
+				7F43F6B619F7A9A900672440 /* PlanMaker.h */,
+				7F43F6B719F7A9A900672440 /* PlanMaker.m */,
+				7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */,
+				7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */,
+				7F43F6BA19F7A9A900672440 /* WordListCreator.h */,
+				7F43F6BB19F7A9A900672440 /* WordListCreator.m */,
+				7F43F6BC19F7A9A900672440 /* WordSearcher.h */,
+				7F43F6BD19F7A9A900672440 /* WordSearcher.m */,
+				7F43F6BE19F7A9A900672440 /* common.h */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7F43F6A719F7A9A900672440 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6A819F7A9A900672440 /* NSDate+VAdditions.h */,
+				7F43F6A919F7A9A900672440 /* NSDate+VAdditions.m */,
+				7F43F6AA19F7A9A900672440 /* NSMutableString+HTMLEscape.h */,
+				7F43F6AB19F7A9A900672440 /* NSMutableString+HTMLEscape.m */,
+				7F43F6AC19F7A9A900672440 /* UINavigationController+Rotation_IOS6.h */,
+				7F43F6AD19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m */,
+				7F43F6AE19F7A9A900672440 /* UIToolbar+VToolBar.h */,
+				7F43F6AF19F7A9A900672440 /* UIToolbar+VToolBar.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		7F43F6BF19F7A9A900672440 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6C019F7A9A900672440 /* ActionSheetPicker */,
+				7F43F6CD19F7A9A900672440 /* Analytics_iOS_SDK */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		7F43F6C019F7A9A900672440 /* ActionSheetPicker */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6C119F7A9A900672440 /* ActionSheetPicker.h */,
+				7F43F6C219F7A9A900672440 /* Pickers */,
+			);
+			path = ActionSheetPicker;
+			sourceTree = "<group>";
+		};
+		7F43F6C219F7A9A900672440 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6C319F7A9A900672440 /* AbstractActionSheetPicker.h */,
+				7F43F6C419F7A9A900672440 /* AbstractActionSheetPicker.m */,
+				7F43F6C519F7A9A900672440 /* ActionSheetDatePicker.h */,
+				7F43F6C619F7A9A900672440 /* ActionSheetDatePicker.m */,
+				7F43F6C719F7A9A900672440 /* ActionSheetDistancePicker.h */,
+				7F43F6C819F7A9A900672440 /* ActionSheetDistancePicker.m */,
+				7F43F6C919F7A9A900672440 /* ActionSheetStringPicker.h */,
+				7F43F6CA19F7A9A900672440 /* ActionSheetStringPicker.m */,
+				7F43F6CB19F7A9A900672440 /* DistancePickerView.h */,
+				7F43F6CC19F7A9A900672440 /* DistancePickerView.m */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
+		7F43F6CD19F7A9A900672440 /* Analytics_iOS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F74819F7AADC00672440 /* MobClick.h */,
+				7F43F6CF19F7A9A900672440 /* MobClickSocialAnalytics.h */,
+				7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */,
+			);
+			path = Analytics_iOS_SDK;
+			sourceTree = "<group>";
+		};
+		7F43F6D419F7A9A900672440 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */,
+				7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */,
+				7F43F6D719F7A9A900672440 /* ExamViewController.h */,
+				7F43F6D819F7A9A900672440 /* ExamViewController.m */,
+				7F43F6D919F7A9A900672440 /* ExistingWordListsViewController.h */,
+				7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */,
+				7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */,
+				7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */,
+				7F43F6DD19F7A9A900672440 /* LeftBarViewController.h */,
+				7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */,
+				7F43F6DF19F7A9A900672440 /* PlanningViewController.h */,
+				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
+				7F43F6E119F7A9A900672440 /* PreferenceViewController.h */,
+				7F43F6E219F7A9A900672440 /* PreferenceViewController.m */,
+				7F43F6E319F7A9A900672440 /* SearchWordViewController.h */,
+				7F43F6E419F7A9A900672440 /* SearchWordViewController.m */,
+				7F43F6E519F7A9A900672440 /* ShowWrongWordsViewController.h */,
+				7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */,
+				7F43F6E719F7A9A900672440 /* VBaseViewController.h */,
+				7F43F6E819F7A9A900672440 /* VBaseViewController.m */,
+				7F43F6E919F7A9A900672440 /* VNavigationController.h */,
+				7F43F6EA19F7A9A900672440 /* VNavigationController.m */,
+				7F43F6EB19F7A9A900672440 /* VWebViewController.h */,
+				7F43F6EC19F7A9A900672440 /* VWebViewController.m */,
+				7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */,
+				7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */,
+				7F43F6EF19F7A9A900672440 /* WordListFromDiskViewController.h */,
+				7F43F6F019F7A9A900672440 /* WordListFromDiskViewController.m */,
+				7F43F6F119F7A9A900672440 /* WordListViewController.h */,
+				7F43F6F219F7A9A900672440 /* WordListViewController.m */,
+				7F43F6F319F7A9A900672440 /* xibs */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7F43F6F319F7A9A900672440 /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */,
+				7F43F6F519F7A9A900672440 /* ExamViewController.xib */,
+				7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */,
+				7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */,
+				7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */,
+				7F43F6F919F7A9A900672440 /* PlanningViewController.xib */,
+				7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */,
+				7F43F6FB19F7A9A900672440 /* VWebViewController.xib */,
+				7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */,
+				7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */,
+				7F43F6FE19F7A9A900672440 /* WordListViewController.xib */,
+			);
+			path = xibs;
+			sourceTree = "<group>";
+		};
+		7F43F6FF19F7A9A900672440 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F70019F7A9A900672440 /* ExamContent.h */,
+				7F43F70119F7A9A900672440 /* ExamContent.m */,
+				7F43F70219F7A9A900672440 /* Guide.h */,
+				7F43F70319F7A9A900672440 /* Guide.m */,
+				7F43F70419F7A9A900672440 /* Plan.h */,
+				7F43F70519F7A9A900672440 /* Plan.m */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		A46A7E3C1630296800DF4696 = {
 			isa = PBXGroup;
 			children = (
@@ -431,13 +664,15 @@
 		A46A7E511630296800DF4696 /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
-				A4A6B31F16623A91002D4E46 /* Network */,
-				EC4FCFE916367C5500EF429B /* ViewControllers */,
-				A46A7F351632C42900DF4696 /* utils */,
-				A46A7E7D16302C5500DF4696 /* models */,
+				7F43F67E19F7A9A900672440 /* CustomViews */,
+				7F43F68F19F7A9A900672440 /* Models */,
+				7F43F6A119F7A9A900672440 /* Network */,
+				7F43F6A619F7A9A900672440 /* Utilities */,
+				7F43F6BF19F7A9A900672440 /* Vendors */,
+				7F43F6D419F7A9A900672440 /* ViewControllers */,
+				7F43F6FF19F7A9A900672440 /* ViewModels */,
 				A46A7E5A1630296800DF4696 /* AppDelegate.h */,
 				A46A7E5B1630296800DF4696 /* AppDelegate.m */,
-				EC9D1E891697BAB200A8C5B9 /* WelcomeView.xib */,
 				7FC476C619E8CC1600980F20 /* Images.xcassets */,
 				A46A7E521630296800DF4696 /* Supporting Files */,
 			);
@@ -463,24 +698,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		A46A7E7D16302C5500DF4696 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				A4852ECD1680BB9B00A4602C /* migration */,
-				A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */,
-				EC1EC3221681894A003B1C69 /* PronunciationData.h */,
-				EC1EC3231681894A003B1C69 /* PronunciationData.m */,
-				EC1EC31E16818949003B1C69 /* Word.h */,
-				EC1EC31F16818949003B1C69 /* Word.m */,
-				EC723CB3165D17AF001F5B1B /* WordList.h */,
-				EC723CB4165D17AF001F5B1B /* WordList.m */,
-				EC9D1F541699148700A8C5B9 /* Plan.h */,
-				EC9D1F551699148700A8C5B9 /* Plan.m */,
-			);
-			name = models;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		A46A7EBF16304F6500DF4696 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,38 +708,6 @@
 				A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */,
 			);
 			name = lib;
-			sourceTree = "<group>";
-		};
-		A46A7F351632C42900DF4696 /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				EC2290101696B81900D7E0D8 /* VNavigationController.h */,
-				EC2290111696B81A00D7E0D8 /* VNavigationController.m */,
-				A46A7F371632C44800DF4696 /* CoreDataHelper.h */,
-				A46A7F381632C44800DF4696 /* CoreDataHelper.m */,
-				A46A7FFB163BC1E800DF4696 /* common.h */,
-				A4EAF151163FF967008D9050 /* UINavigationController+Rotation_IOS6.h */,
-				A4EAF152163FF967008D9050 /* UINavigationController+Rotation_IOS6.m */,
-				A4754D661644E5E2005EB1E0 /* WordListCreator.h */,
-				A4754D671644E5E2005EB1E0 /* WordListCreator.m */,
-				EC723D25165E1F7F001F5B1B /* ConfusingWordsIndexer.h */,
-				EC723D26165E1F7F001F5B1B /* ConfusingWordsIndexer.m */,
-				A408DB471692C3DB00B45B2C /* NSMutableString+HTMLEscape.h */,
-				A408DB481692C3DB00B45B2C /* NSMutableString+HTMLEscape.m */,
-				EC9D1F471698288500A8C5B9 /* UIToolbar+VToolBar.h */,
-				EC9D1F481698288500A8C5B9 /* UIToolbar+VToolBar.m */,
-				EC9D2055169C029300A8C5B9 /* WordSearcher.h */,
-				EC9D2056169C029400A8C5B9 /* WordSearcher.m */,
-				A498F021177F076500FC8AA5 /* CoreDataHelperV2.h */,
-				A498F022177F076500FC8AA5 /* CoreDataHelperV2.m */,
-				A43BC233181B6A5800A3E1EA /* PureColorImageGenerator.h */,
-				A43BC234181B6A5800A3E1EA /* PureColorImageGenerator.m */,
-				7F8ACC7819C139600006DAB7 /* PlanMaker.h */,
-				7F8ACC7919C139600006DAB7 /* PlanMaker.m */,
-				7F8ACC7C19C14CF50006DAB7 /* NSDate+VAdditions.h */,
-				7F8ACC7D19C14CF50006DAB7 /* NSDate+VAdditions.m */,
-			);
-			name = utils;
 			sourceTree = "<group>";
 		};
 		A46A7FC91635909100DF4696 /* Images */ = {
@@ -579,16 +764,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		A46A7FF016396FE600DF4696 /* Planning */ = {
-			isa = PBXGroup;
-			children = (
-				A46A7FF21639702A00DF4696 /* PlanningViewController.h */,
-				A46A7FF31639702A00DF4696 /* PlanningViewController.m */,
-				A4754D9A164689DA005EB1E0 /* PlanningViewController.xib */,
-			);
-			name = Planning;
-			sourceTree = "<group>";
-		};
 		A4754D311642A7E4005EB1E0 /* ActionSheetPicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,28 +791,6 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
-		A4852ECD1680BB9B00A4602C /* migration */ = {
-			isa = PBXGroup;
-			children = (
-				A497343416C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel */,
-				EC1EC32616818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel */,
-				A408DA89168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel */,
-				A408DA8B168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel */,
-			);
-			name = migration;
-			sourceTree = "<group>";
-		};
-		A4A6B31F16623A91002D4E46 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				A46A7F971633C8AF00DF4696 /* CibaEngine.h */,
-				A46A7F981633C8AF00DF4696 /* CibaEngine.m */,
-				A4A6B321166241E9002D4E46 /* CibaNetworkOperation.h */,
-				A4A6B322166241E9002D4E46 /* CibaNetworkOperation.m */,
-			);
-			name = Network;
-			sourceTree = "<group>";
-		};
 		EC4BCEA116687A80004887B4 /* Analytics_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,92 +800,6 @@
 			);
 			name = Analytics_iOS_SDK;
 			path = Vocabulary/Analytics_iOS_SDK;
-			sourceTree = "<group>";
-		};
-		EC4FCFE916367C5500EF429B /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				ECB725A216D0BAE800BAB36D /* guide */,
-				A46A7FF016396FE600DF4696 /* Planning */,
-				EC4FCFEB16367C9E00EF429B /* Examing */,
-				EC4FCFEA16367C8700EF429B /* Learning */,
-				ECB6EC9F1631252B00A34438 /* CreateWordListViewController.h */,
-				ECB6ECA01631252B00A34438 /* CreateWordListViewController.m */,
-				ECB6ECA11631252B00A34438 /* CreateWordListViewController.xib */,
-				A46A7F401632DA5800DF4696 /* ExistingWordListsViewController.h */,
-				A46A7F411632DA5800DF4696 /* ExistingWordListsViewController.m */,
-				A46A7F421632DA5800DF4696 /* ExistingWordListsViewController.xib */,
-				A46A7F451632DE4000DF4696 /* WordListViewController.h */,
-				A46A7F461632DE4100DF4696 /* WordListViewController.m */,
-				A46A7F471632DE4100DF4696 /* WordListViewController.xib */,
-				A46A802A163D35DC00DF4696 /* VWebViewController.h */,
-				A46A802B163D35DE00DF4696 /* VWebViewController.m */,
-				A46A802C163D35E100DF4696 /* VWebViewController.xib */,
-				A4B3D79016420BD100F9772F /* PreferenceViewController.h */,
-				A4B3D79116420BD100F9772F /* PreferenceViewController.m */,
-				A4754D5F1644D7FA005EB1E0 /* WordListFromDiskViewController.h */,
-				A4754D601644D7FA005EB1E0 /* WordListFromDiskViewController.m */,
-				A4754D641644DAAA005EB1E0 /* WordListFromDiskViewController.xib */,
-				A4E8C8901695A840008F013C /* LeftBarViewController.h */,
-				A4E8C8911695A840008F013C /* LeftBarViewController.m */,
-				EC9D1EA01697D47400A8C5B9 /* LeftBarViewController.xib */,
-				A4392E72181BB8FF000386BF /* VBaseViewController.h */,
-				A4392E73181BB8FF000386BF /* VBaseViewController.m */,
-			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		EC4FCFEA16367C8700EF429B /* Learning */ = {
-			isa = PBXGroup;
-			children = (
-				A46A7F4F1632ED4D00DF4696 /* LearningBackboneViewController.h */,
-				A46A7F501632ED4D00DF4696 /* LearningBackboneViewController.m */,
-				A46A7F511632ED4E00DF4696 /* LearningBackboneViewController.xib */,
-				A46A7F591633A35900DF4696 /* WordDetailViewController.h */,
-				A46A7F5A1633A35900DF4696 /* WordDetailViewController.m */,
-				A46A7F5B1633A35900DF4696 /* WordDetailViewController.xib */,
-				EC723CBB165DB698001F5B1B /* SearchWordViewController.h */,
-				EC723CBC165DB698001F5B1B /* SearchWordViewController.m */,
-				EC723CBD165DB698001F5B1B /* SearchWordViewController.xib */,
-				EC1EC226167EF232003B1C69 /* CibaWebView.h */,
-				EC1EC227167EF232003B1C69 /* CibaWebView.m */,
-			);
-			name = Learning;
-			sourceTree = "<group>";
-		};
-		EC4FCFEB16367C9E00EF429B /* Examing */ = {
-			isa = PBXGroup;
-			children = (
-				EC4FCFDE163646C500EF429B /* ExamViewController.h */,
-				EC4FCFDF163646C500EF429B /* ExamViewController.m */,
-				EC4FCFE0163646C500EF429B /* ExamViewController.xib */,
-				EC4FCFE516365B0A00EF429B /* ExamContent.h */,
-				EC4FCFE616365B0A00EF429B /* ExamContent.m */,
-				EC4FCFEC16367CEE00EF429B /* ExamView.h */,
-				EC4FCFED16367CEE00EF429B /* ExamView.m */,
-				EC4FCFF016367D0B00EF429B /* ExamView.xib */,
-				EC1151F8163A876F0039A5FA /* ShowWrongWordsViewController.h */,
-				EC1151F9163A876F0039A5FA /* ShowWrongWordsViewController.m */,
-				EC9D1F9A169970D400A8C5B9 /* VGradientView.h */,
-				EC9D1F9B169970D500A8C5B9 /* VGradientView.m */,
-				A4CD22C4181CA51300FE29F7 /* SimpleProgressBar.h */,
-				A4CD22C5181CA51300FE29F7 /* SimpleProgressBar.m */,
-			);
-			name = Examing;
-			sourceTree = "<group>";
-		};
-		ECB725A216D0BAE800BAB36D /* guide */ = {
-			isa = PBXGroup;
-			children = (
-				ECB725A916D0BBA400BAB36D /* Guide.h */,
-				ECB725AA16D0BBA400BAB36D /* Guide.m */,
-				ECB725AD16D0C4EA00BAB36D /* WordListFromDiskGuide.h */,
-				ECB725AE16D0C4EA00BAB36D /* WordListFromDiskGuide.m */,
-				ECB725BB16D20B5F00BAB36D /* GuideView.h */,
-				ECB725BC16D20B5F00BAB36D /* GuideView.m */,
-				ECB725A516D0BB1800BAB36D /* GuideView.xib */,
-			);
-			name = guide;
 			sourceTree = "<group>";
 		};
 		ECB725B116D0C88100BAB36D /* guides */ = {
@@ -822,30 +889,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */,
-				ECB6ECA31631252B00A34438 /* CreateWordListViewController.xib in Resources */,
-				A46A7F441632DA5900DF4696 /* ExistingWordListsViewController.xib in Resources */,
-				A46A7F491632DE4100DF4696 /* WordListViewController.xib in Resources */,
-				A46A7F531632ED4E00DF4696 /* LearningBackboneViewController.xib in Resources */,
-				A46A7F5D1633A35900DF4696 /* WordDetailViewController.xib in Resources */,
 				A46A7FCD1635909D00DF4696 /* audio.png in Resources */,
-				EC4FCFE3163646C500EF429B /* ExamViewController.xib in Resources */,
-				EC4FCFF116367D0C00EF429B /* ExamView.xib in Resources */,
 				A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */,
 				A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */,
 				A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */,
 				A46A8004163BC7CA00DF4696 /* whiteButtonHighlight@2x.png in Resources */,
 				A46A8009163BCCE700DF4696 /* orangeButton.png in Resources */,
 				A46A800A163BCCE700DF4696 /* orangeButton@2x.png in Resources */,
+				7F43F74419F7A9A900672440 /* WordListViewController.xib in Resources */,
 				A46A800B163BCCE700DF4696 /* orangeButtonHighlight.png in Resources */,
 				A46A800C163BCCE700DF4696 /* orangeButtonHighlight@2x.png in Resources */,
+				7F43F70E19F7A9A900672440 /* WelcomeView.xib in Resources */,
 				A46A8011163BDBAB00DF4696 /* greenButton.png in Resources */,
 				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
 				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
+				7F43F74019F7A9A900672440 /* SearchWordViewController.xib in Resources */,
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
-				A46A802E163D35E500DF4696 /* VWebViewController.xib in Resources */,
-				A4754D651644DAAA005EB1E0 /* WordListFromDiskViewController.xib in Resources */,
-				A4754D9B164689DA005EB1E0 /* PlanningViewController.xib in Resources */,
-				EC723CC0165DB698001F5B1B /* SearchWordViewController.xib in Resources */,
 				EC1EC268167F2091003B1C69 /* closeButton.png in Resources */,
 				EC1EC269167F2091003B1C69 /* closeButton@2x.png in Resources */,
 				A4E8C89E1695B556008F013C /* ButtonMenu.png in Resources */,
@@ -854,21 +913,26 @@
 				EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */,
 				EC2290161696BFA100D7E0D8 /* barButtonBG.png in Resources */,
 				EC2290171696BFA100D7E0D8 /* barButtonBG@2x.png in Resources */,
-				EC9D1E8A1697BAB200A8C5B9 /* WelcomeView.xib in Resources */,
 				EC9D1E961697CD5300A8C5B9 /* back.png in Resources */,
+				7F43F70A19F7A9A900672440 /* GuideView.xib in Resources */,
 				EC9D1E971697CD5300A8C5B9 /* back@2x.png in Resources */,
 				EC9D1E981697CD5300A8C5B9 /* barbutton.png in Resources */,
+				7F43F74319F7A9A900672440 /* WordListFromDiskViewController.xib in Resources */,
+				7F43F73C19F7A9A900672440 /* ExistingWordListsViewController.xib in Resources */,
 				EC9D1E991697CD5300A8C5B9 /* barbutton@2x.png in Resources */,
 				EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */,
 				EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */,
+				7F43F74119F7A9A900672440 /* VWebViewController.xib in Resources */,
 				EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */,
 				EC9D1E9E1697CD5300A8C5B9 /* tableheader.png in Resources */,
+				7F43F74219F7A9A900672440 /* WordDetailViewController.xib in Resources */,
+				7F43F73E19F7A9A900672440 /* LeftBarViewController.xib in Resources */,
 				EC9D1E9F1697CD5300A8C5B9 /* tableheader@2x.png in Resources */,
-				EC9D1EA11697D47400A8C5B9 /* LeftBarViewController.xib in Resources */,
 				EC9D1EA41697E42800A8C5B9 /* search.png in Resources */,
 				EC9D1EA51697E42800A8C5B9 /* search@2x.png in Resources */,
 				EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */,
 				EC9D1EA91698002E00A8C5B9 /* CellBGHighlighted@2x.png in Resources */,
+				7F43F70819F7A9A900672440 /* ExamView.xib in Resources */,
 				EC9D1F42169817CD00A8C5B9 /* web-back.png in Resources */,
 				EC9D1F43169817CD00A8C5B9 /* web-back@2x.png in Resources */,
 				EC9D1F44169817CD00A8C5B9 /* web-forward.png in Resources */,
@@ -881,13 +945,16 @@
 				A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */,
 				EC9D2060169D018700A8C5B9 /* refresh.png in Resources */,
 				EC9D2061169D018700A8C5B9 /* refresh@2x.png in Resources */,
-				ECB725A816D0BB1800BAB36D /* GuideView.xib in Resources */,
+				7F43F73B19F7A9A900672440 /* ExamViewController.xib in Resources */,
+				7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */,
 				7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */,
 				ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */,
 				ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */,
 				ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */,
 				ECB725C616D21AFF00BAB36D /* import_wordlist_itunes4-568h@2x.png in Resources */,
 				ECB725CB16D21C8F00BAB36D /* import_wordlist_itunes1@2x.png in Resources */,
+				7F43F73A19F7A9A900672440 /* CreateWordListViewController.xib in Resources */,
+				7F43F73D19F7A9A900672440 /* LearningBackboneViewController.xib in Resources */,
 				ECB725CC16D21C8F00BAB36D /* import_wordlist_itunes2@2x.png in Resources */,
 				ECB725CD16D21C8F00BAB36D /* import_wordlist_itunes3@2x.png in Resources */,
 				ECB725CE16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png in Resources */,
@@ -936,58 +1003,58 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F43F70619F7A9A900672440 /* CibaWebView.m in Sources */,
+				7F43F72419F7A9A900672440 /* AbstractActionSheetPicker.m in Sources */,
+				7F43F72E19F7A9A900672440 /* LearningBackboneViewController.m in Sources */,
+				7F43F71219F7A9A900672440 /* WordList.m in Sources */,
+				7F43F73319F7A9A900672440 /* ShowWrongWordsViewController.m in Sources */,
+				7F43F72019F7A9A900672440 /* PlanMaker.m in Sources */,
+				7F43F74619F7A9A900672440 /* Guide.m in Sources */,
+				7F43F74519F7A9A900672440 /* ExamContent.m in Sources */,
+				7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */,
+				7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */,
+				7F43F71619F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
+				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
+				7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */,
+				7F43F70719F7A9A900672440 /* ExamView.m in Sources */,
+				7F43F74719F7A9A900672440 /* Plan.m in Sources */,
 				A46A7E581630296800DF4696 /* main.m in Sources */,
+				7F43F70F19F7A9A900672440 /* Model.xcdatamodeld in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
-				A46A7E7216302A5A00DF4696 /* Model.xcdatamodeld in Sources */,
-				ECB6ECA21631252B00A34438 /* CreateWordListViewController.m in Sources */,
-				A46A7F391632C44800DF4696 /* CoreDataHelper.m in Sources */,
-				A46A7F431632DA5900DF4696 /* ExistingWordListsViewController.m in Sources */,
-				A4392E74181BB8FF000386BF /* VBaseViewController.m in Sources */,
-				A46A7F481632DE4100DF4696 /* WordListViewController.m in Sources */,
-				A46A7F521632ED4E00DF4696 /* LearningBackboneViewController.m in Sources */,
-				A46A7F5C1633A35900DF4696 /* WordDetailViewController.m in Sources */,
-				A46A7F991633C8AF00DF4696 /* CibaEngine.m in Sources */,
-				EC4FCFE2163646C500EF429B /* ExamViewController.m in Sources */,
-				EC4FCFE816365B0A00EF429B /* ExamContent.m in Sources */,
-				EC4FCFEF16367CEE00EF429B /* ExamView.m in Sources */,
-				A46A7FF51639702A00DF4696 /* PlanningViewController.m in Sources */,
-				EC1151FB163A876F0039A5FA /* ShowWrongWordsViewController.m in Sources */,
-				A46A802D163D35E500DF4696 /* VWebViewController.m in Sources */,
-				A4EAF153163FF967008D9050 /* UINavigationController+Rotation_IOS6.m in Sources */,
-				A4B3D79216420BD100F9772F /* PreferenceViewController.m in Sources */,
-				A4754D3E1642A7E4005EB1E0 /* AbstractActionSheetPicker.m in Sources */,
-				7F8ACC7A19C139600006DAB7 /* PlanMaker.m in Sources */,
-				7F8ACC7E19C14CF50006DAB7 /* NSDate+VAdditions.m in Sources */,
-				A4754D3F1642A7E4005EB1E0 /* ActionSheetDatePicker.m in Sources */,
-				A4754D401642A7E4005EB1E0 /* ActionSheetDistancePicker.m in Sources */,
-				A4754D411642A7E4005EB1E0 /* ActionSheetStringPicker.m in Sources */,
-				A4754D421642A7E4005EB1E0 /* DistancePickerView.m in Sources */,
-				A4754D621644D7FB005EB1E0 /* WordListFromDiskViewController.m in Sources */,
-				A4754D681644E5E2005EB1E0 /* WordListCreator.m in Sources */,
-				EC723CB6165D17AF001F5B1B /* WordList.m in Sources */,
-				EC723CBF165DB698001F5B1B /* SearchWordViewController.m in Sources */,
-				EC723D28165E1F7F001F5B1B /* ConfusingWordsIndexer.m in Sources */,
-				A4A6B323166241E9002D4E46 /* CibaNetworkOperation.m in Sources */,
-				EC1EC229167EF233003B1C69 /* CibaWebView.m in Sources */,
-				EC1EC3211681894A003B1C69 /* Word.m in Sources */,
-				EC1EC3251681894A003B1C69 /* PronunciationData.m in Sources */,
-				EC1EC32716818CE7003B1C69 /* MigrationV3ToV4.xcmappingmodel in Sources */,
-				A43BC235181B6A5800A3E1EA /* PureColorImageGenerator.m in Sources */,
-				A408DA8A168E930400B45B2C /* MigrationV2ToV4.xcmappingmodel in Sources */,
-				A408DA8C168E93F400B45B2C /* MigrationV1ToV4.xcmappingmodel in Sources */,
-				A408DB491692C3DB00B45B2C /* NSMutableString+HTMLEscape.m in Sources */,
-				A4E8C8921695A840008F013C /* LeftBarViewController.m in Sources */,
-				EC2290131696B81B00D7E0D8 /* VNavigationController.m in Sources */,
-				EC9D1F4A1698288500A8C5B9 /* UIToolbar+VToolBar.m in Sources */,
-				EC9D1F571699148700A8C5B9 /* Plan.m in Sources */,
-				EC9D1F9D169970D500A8C5B9 /* VGradientView.m in Sources */,
-				EC9D2058169C029500A8C5B9 /* WordSearcher.m in Sources */,
-				A497343516C9465400337AB4 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
-				A4CD22C6181CA51300FE29F7 /* SimpleProgressBar.m in Sources */,
-				ECB725AC16D0BBA400BAB36D /* Guide.m in Sources */,
-				ECB725B016D0C4EA00BAB36D /* WordListFromDiskGuide.m in Sources */,
-				ECB725BE16D20B5F00BAB36D /* GuideView.m in Sources */,
-				A498F023177F076500FC8AA5 /* CoreDataHelperV2.m in Sources */,
+				7F43F71819F7A9A900672440 /* CibaNetworkOperation.m in Sources */,
+				7F43F71319F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel in Sources */,
+				7F43F72D19F7A9A900672440 /* ExistingWordListsViewController.m in Sources */,
+				7F43F72C19F7A9A900672440 /* ExamViewController.m in Sources */,
+				7F43F71C19F7A9A900672440 /* UIToolbar+VToolBar.m in Sources */,
+				7F43F70D19F7A9A900672440 /* VGradientView.m in Sources */,
+				7F43F71719F7A9A900672440 /* CibaEngine.m in Sources */,
+				7F43F70B19F7A9A900672440 /* WordListFromDiskGuide.m in Sources */,
+				7F43F72219F7A9A900672440 /* WordListCreator.m in Sources */,
+				7F43F71419F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel in Sources */,
+				7F43F71D19F7A9A900672440 /* ConfusingWordsIndexer.m in Sources */,
+				7F43F71519F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel in Sources */,
+				7F43F72619F7A9A900672440 /* ActionSheetDistancePicker.m in Sources */,
+				7F43F71B19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m in Sources */,
+				7F43F71F19F7A9A900672440 /* CoreDataHelperV2.m in Sources */,
+				7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */,
+				7F43F72B19F7A9A900672440 /* CreateWordListViewController.m in Sources */,
+				7F43F70C19F7A9A900672440 /* SimpleProgressBar.m in Sources */,
+				7F43F72119F7A9A900672440 /* PureColorImageGenerator.m in Sources */,
+				7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */,
+				7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */,
+				7F43F73819F7A9A900672440 /* WordListFromDiskViewController.m in Sources */,
+				7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */,
+				7F43F71119F7A9A900672440 /* Word.m in Sources */,
+				7F43F72819F7A9A900672440 /* DistancePickerView.m in Sources */,
+				7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */,
+				7F43F71E19F7A9A900672440 /* CoreDataHelper.m in Sources */,
+				7F43F72719F7A9A900672440 /* ActionSheetStringPicker.m in Sources */,
+				7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */,
+				7F43F70919F7A9A900672440 /* GuideView.m in Sources */,
+				7F43F71019F7A9A900672440 /* PronunciationData.m in Sources */,
+				7F43F72519F7A9A900672440 /* ActionSheetDatePicker.m in Sources */,
+				7F43F72319F7A9A900672440 /* WordSearcher.m in Sources */,
+				7F43F71A19F7A9A900672440 /* NSMutableString+HTMLEscape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,13 +1137,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vocabulary/Vendors/**",
+				);
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
-					"\"$(SRCROOT)/Vocabulary/Analytics_iOS_SDK\"",
+					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1099,13 +1168,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vocabulary/Vendors/**",
+				);
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Vocabulary/lib/AdMob\"",
-					"\"$(SRCROOT)/Vocabulary/Analytics_iOS_SDK\"",
+					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1141,16 +1212,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A46A7E7016302A5A00DF4696 /* Model.xcdatamodeld */ = {
+		7F43F69019F7A9A900672440 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A497343116C9455000337AB4 /* Model3.1WithCascadeBug.xcdatamodel */,
-				A4852EC91680BA7600A4602C /* Model4.xcdatamodel */,
-				EC723CA9165D171F001F5B1B /* Model 2.xcdatamodel */,
-				EC723D06165DF669001F5B1B /* ModelIndexedKey.xcdatamodel */,
-				A46A7E7116302A5A00DF4696 /* Model.xcdatamodel */,
+				7F43F69119F7A9A900672440 /* Model 2.xcdatamodel */,
+				7F43F69219F7A9A900672440 /* Model.xcdatamodel */,
+				7F43F69319F7A9A900672440 /* Model3.1WithCascadeBug.xcdatamodel */,
+				7F43F69419F7A9A900672440 /* Model4.xcdatamodel */,
+				7F43F69519F7A9A900672440 /* ModelIndexedKey.xcdatamodel */,
 			);
-			currentVersion = A4852EC91680BA7600A4602C /* Model4.xcdatamodel */;
+			currentVersion = 7F43F69419F7A9A900672440 /* Model4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
