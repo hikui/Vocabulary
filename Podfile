@@ -1,4 +1,6 @@
+source 'https://github.com/CocoaPods/Specs.git'
 pod 'ViewDeck', '~>2.2.11'
 pod 'MKNetworkKit', '~>0.87'
 pod 'MBProgressHUD'
 pod 'BButton'
+pod 'MagicalRecord', '~> 2.2'

@@ -13,8 +13,8 @@
     #import <Foundation/Foundation.h>
     #import "MobClick.h"
     #import "MKNetworkKit.h"
+    #import "CoreData+MagicalRecord.h"
     #import "Reachability.h"
-    #import "CoreDataHelperV2.h"
     #import "MBProgressHUD.h"
     #import "Word.h"
     #import "WordList.h"

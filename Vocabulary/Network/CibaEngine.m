@@ -52,13 +52,19 @@
         NSData *jsonData = [completedOperation responseData];
         NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         if (resultDict == nil) {
-            errorBlock(nil);
+            if (errorBlock) {
+                errorBlock(nil);
+            }
         }else{
-           completionBlock(resultDict); 
+            if (completionBlock) {
+                completionBlock(resultDict);
+            }
         }
         
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        errorBlock(error);
+        if (errorBlock) {
+            errorBlock(error);
+        }
     }];
     [self enqueueOperation:op];
     return op;
@@ -71,9 +77,13 @@
     MKNetworkOperation *op = [[MKNetworkOperation alloc]initWithURLString:url params:nil httpMethod:@"GET"];
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         NSData *data = [completedOperation responseData];
-        completionBlock(data);
+        if (completionBlock) {
+            completionBlock(data);
+        }
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        errorBlock(error);
+        if (errorBlock) {
+            errorBlock(error);
+        }
     }];
     [self enqueueOperation:op];
     return op;
@@ -97,12 +107,18 @@
         NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         if (resultDict == nil) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
-            errorBlock(myError);
+            if (errorBlock) {
+                errorBlock(myError);
+            }
+            
             return;
         }
         if (resultDict[@"error"]!=nil) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
-            errorBlock(myError);
+            if (errorBlock) {
+                errorBlock(myError);
+            }
+            
             return;
         }
         [CibaEngine fillWord:word withResultDict:resultDict];
@@ -124,19 +140,22 @@
             NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
             [self.livingOperations removeObject:completedGetPronOp];
             NSData *data = [completedGetPronOp responseData];
-            NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-            PronunciationData *pron = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
-            pron.pronData = data;
-            word.pronunciation = pron;
-            word.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-            [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-            completion();
-            
+            [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                Word *localWord = [word MR_inContext:localContext];
+                PronunciationData *pron = [PronunciationData MR_createInContext:localContext];
+                pron.pronData = data;
+                localWord.pronunciation = pron;
+                localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+            }];
+            if (completion) {
+                completion();
+            }
         } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordPronError userInfo:error.userInfo];
             word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
-            [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-            errorBlock(myError);
+            if (errorBlock) {
+                errorBlock(myError);
+            }
             [self.livingOperations removeObject:completedOperation];
         }];
         [self enqueueOperation:getPronOp];
@@ -144,7 +163,9 @@
         
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:error.userInfo];
-        errorBlock(myError);
+        if (errorBlock) {
+            errorBlock(myError);
+        }
         [self.livingOperations removeObject:completedOperation];
     }];
     [self enqueueOperation:operation];
@@ -153,43 +174,45 @@
 }
 
 //删除一个单词的请求
-- (void) cancelOperationOfWord:(Word *)word
-{
-    NSMutableSet *operationsToBeRemoved = [[NSMutableSet alloc]init];
-    for (CibaNetworkOperation *op in self.livingOperations) {
-        if ([op isKindOfClass:[CibaNetworkOperation class]]) {
-            if (op.word == word) {
-                [op cancel];
-                [operationsToBeRemoved addObject:op];
-            }
-        }
-    }
-    for (CibaNetworkOperation *op in operationsToBeRemoved) {
-        [self.livingOperations removeObject:op];
-    }
-
-}
+//- (void) cancelOperationOfWord:(Word *)word
+//{
+//    NSMutableSet *operationsToBeRemoved = [[NSMutableSet alloc]init];
+//    for (CibaNetworkOperation *op in self.livingOperations) {
+//        if ([op isKindOfClass:[CibaNetworkOperation class]]) {
+//            if (op.word == word) {
+//                [op cancel];
+//                [operationsToBeRemoved addObject:op];
+//            }
+//        }
+//    }
+//    for (CibaNetworkOperation *op in operationsToBeRemoved) {
+//        [self.livingOperations removeObject:op];
+//    }
+//
+//}
 
 + (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict
 {
-    Word *targetWord = word;
-    if (resultDict == nil) {
-        // error on parsing
-        return;
-    }
-    
-    NSArray *meanings = resultDict[@"meanings"];
-    NSMutableString *jointAcceptation = [[NSMutableString alloc]init];
-    for (int i=0; i<meanings.count; i++) {
-        NSDictionary *aMeaning = meanings[i];
-        NSString *tmpPos = aMeaning[@"pos"];
-        NSString *tmpAcceptation = aMeaning[@"acceptation"];
-        [jointAcceptation appendFormat:@"%@ %@",tmpPos,tmpAcceptation];
-    }
-    targetWord.acceptation = jointAcceptation;
-    targetWord.psEN = [resultDict objectForKey:@"ps_uk"];
-    targetWord.psUS = [resultDict objectForKey:@"ps_us"];
-    targetWord.sentences = [resultDict objectForKey:@"sentence"]!=nil?[resultDict objectForKey:@"sentence"]:@"";
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        Word *targetWord = [word MR_inContext:localContext];
+        if (resultDict == nil) {
+            // error on parsing
+            return;
+        }
+        
+        NSArray *meanings = resultDict[@"meanings"];
+        NSMutableString *jointAcceptation = [[NSMutableString alloc]init];
+        for (int i=0; i<meanings.count; i++) {
+            NSDictionary *aMeaning = meanings[i];
+            NSString *tmpPos = aMeaning[@"pos"];
+            NSString *tmpAcceptation = aMeaning[@"acceptation"];
+            [jointAcceptation appendFormat:@"%@ %@",tmpPos,tmpAcceptation];
+        }
+        targetWord.acceptation = jointAcceptation;
+        targetWord.psEN = [resultDict objectForKey:@"ps_uk"];
+        targetWord.psUS = [resultDict objectForKey:@"ps_us"];
+        targetWord.sentences = [resultDict objectForKey:@"sentence"]!=nil?[resultDict objectForKey:@"sentence"]:@"";
+    }];
 }
 
 @end

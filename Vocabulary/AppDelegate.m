@@ -47,10 +47,8 @@
     [MobClick updateOnlineConfig];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
     
-//    //载入必要的预存设置
-//    _finishTodaysLearningPlan = [[NSUserDefaults standardUserDefaults]boolForKey:kFinishTodaysPlan];
-//    _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
-
+    //CoreData stack
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"db.sqlite"];
     
     LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithNibName:@"LeftBarViewController" bundle:nil];
         
@@ -70,29 +68,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    self.todaysPlan = [[Plan alloc]init];
-    
-    //如果不需要数据库升级，直接进主页。如果需要数据库升级，近welcome view
-    __block BOOL needMigration = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        needMigration = [[CoreDataHelperV2 sharedInstance]isMigrationNeeded];
-    });
-    if (!needMigration) {
-//        [self refreshTodaysPlan];
-        
-        self.window.rootViewController = viewDeckController;
-    }else{
-        [[NSBundle mainBundle]loadNibNamed:@"WelcomeView" owner:self options:nil];
-        self.welcomeView.frame = CGRectMake(0, 20, 320, self.window.frame.size.height - 20);
-        [self.window addSubview:self.welcomeView];
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:YES];
-        hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFailed:) name:kMigrationFailedNotification object:nil];
-        [[CoreDataHelperV2 sharedInstance]migrateDatabase];
-    }
+    self.window.rootViewController = viewDeckController;
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -106,8 +82,8 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    [helper.mainContext save:nil];
+//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+//    [helper.mainContext save:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -125,24 +101,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    [helper.mainContext save:nil];
+//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+//    [helper.mainContext save:nil];
+    [MagicalRecord cleanUp];
 }
-//
-//- (void)setFinishTodaysLearningPlan:(BOOL)finishTodaysPlan
-//{
-//    _finishTodaysLearningPlan = finishTodaysPlan;
-//    [[NSUserDefaults standardUserDefaults]setBool:finishTodaysPlan forKey:kFinishTodaysPlan];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//- (void)setPlanExpireTime:(NSDate *)planExpireTime
-//{
-//    _planExpireTime = planExpireTime;
-//    [[NSUserDefaults standardUserDefaults]setObject:planExpireTime forKey:kPlanExpireTime];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-
 
 - (void)onlineConfigCallBack:(NSNotification *)notification {
     NSLog(@"online config has fininshed and params = %@", notification.userInfo);

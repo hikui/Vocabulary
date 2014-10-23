@@ -51,8 +51,8 @@
     [super viewDidLoad];
     
 //    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    self.managedObjectContext = helper.mainContext;
+//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+//    self.managedObjectContext = helper.mainContext;
     self.title = @"已有的列表";
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.tableView.separatorColor = RGBA(210, 210, 210, 1);
@@ -196,32 +196,30 @@
         return _fetchedResultsController;
     }
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
+    NSFetchRequest *fetchRequest = [WordList MR_requestAllSortedBy:@"title" ascending:NO];
     
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:20];
     
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
-    NSArray *sortDescriptors = @[sortDescriptor];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
+//    // Edit the entity name as appropriate.
+//    NSEntityDescription *entity = [WordList MR_entityDescription];
+//    [fetchRequest setEntity:entity];
+//    
+//    // Set the batch size to a suitable number.
+//    [fetchRequest setFetchBatchSize:20];
+//    
+//    // Edit the sort key as appropriate.
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+//    NSArray *sortDescriptors = @[sortDescriptor];
+//    
+//    [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:@"ShowWordList"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[NSManagedObjectContext MR_defaultContext] sectionNameKeyPath:nil cacheName:@"ShowWordList"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;
 	if (![self.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
 	}
     
     return _fetchedResultsController;
@@ -242,6 +240,8 @@
             
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        default:
             break;
     }
 }
@@ -319,11 +319,11 @@
 
 - (void)refreshHintView
 {
-    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
-    request.entity = entity;
-    NSUInteger wordListCount = [ctx countForFetchRequest:request error:nil];
+//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
+//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
+//    request.entity = entity;
+    NSUInteger wordListCount = [WordList MR_countOfEntities];
     
     self.view.hidden = NO;
     if (wordListCount == 0) {

@@ -35,6 +35,8 @@
 
 @interface WordDetailViewController ()
 
+@property (nonatomic, weak) CibaNetworkOperation *networkOperation;
+
 @end
 
 @implementation WordDetailViewController
@@ -82,7 +84,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];    
-    [[CibaEngine sharedInstance]cancelOperationOfWord:self.word];
+//    [[CibaEngine sharedInstance]cancelOperationOfWord:self.word];
+    [self.networkOperation cancel];
     
 }
 
@@ -213,7 +216,7 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     CibaEngine *engine = [CibaEngine sharedInstance];
-    [engine fillWord:self.word onCompletion:^{
+    self.networkOperation = [engine fillWord:self.word onCompletion:^{
         [hud hide:YES];
         [self refreshView];
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
