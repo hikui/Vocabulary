@@ -192,7 +192,7 @@
             
             
             
-            [WordListCreator addWords:wordSet toWordListId:self.wordList.objectID progressBlock:^(float progress) {
+            [WordListCreator addWords:wordSet toWordList:self.wordList progressBlock:^(float progress) {
                 hud.detailsLabelText = @"正在索引易混淆单词";
             } completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{

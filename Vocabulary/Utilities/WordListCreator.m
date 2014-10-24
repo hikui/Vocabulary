@@ -25,8 +25,49 @@
 
 #import "WordListCreator.h"
 #import "ConfusingWordsIndexer.h"
+#import "NSString+VAdditions.h"
 
 @implementation WordListCreator
+
++ (NSString *)wordListNameWithTitle:(NSString *)title{
+    // Check if the word list name is already used.
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@",title];
+    // There is a bug in MR_countOfEntitiesWithPredicate: where it uses default context instead of context for current thread. Here I deliberately use MR_contextForCurrentThread without changing its source code.
+    NSUInteger *count = [WordList MR_countOfEntitiesWithPredicate:predicate inContext:[NSManagedObjectContext MR_contextForCurrentThread]];
+    if (count > 0) {
+        /* 
+         This name is already used;
+         Check if there is a number suffix.
+         Possible format would be:
+            * abcde
+            * abcde_
+            * abcd_e
+            * abcd_e_123    <- valid
+            * abcd_123      <- valid
+            * _123
+            * _
+        */
+        NSArray *titleComponents = [title componentsSeparatedByString:@"_"];
+        NSString *num = titleComponents.lastObject;
+        NSString *firstComponet = titleComponents.firstObject;
+        if (titleComponents.count > 1 && [num hkv_isPureInt] && firstComponet.length > 0) {
+            // It has a number suffix.
+            // e.g. abcd_1
+            int iNum = [num intValue];
+            iNum++;
+            NSRange range = [title rangeOfString:@"_" options:NSBackwardsSearch];
+            NSString *rawTitle = [title substringToIndex:range.location];
+            // New titile would be abcd_2
+            NSString *newTitle = [NSString stringWithFormat:@"%@_%d",rawTitle, iNum];
+            return [self wordListNameWithTitle:newTitle];
+        }else{
+            NSString *newTitle = [NSString stringWithFormat:@"%@_%d",title, 1];
+            return [self wordListNameWithTitle:newTitle];
+        }
+    }
+    
+    return title;
+}
 
 + (void)createWordListAsyncWithTitle:(NSString *)title
                              wordSet:(NSSet *)wordSet
@@ -34,7 +75,7 @@
                           completion:(HKVErrorBlock)completion
 {
     //初步过滤，可能会有空字符串问题
-    if (wordSet == nil || wordSet.count == 0) {
+    if (wordSet.count == 0) {
         //没有单词
         NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
         if (completion != NULL) {
@@ -52,118 +93,49 @@
         return;
     }
     
-//    dispatch_queue_t originalQueue = dispatch_get_current_queue();
-//    dispatch_retain(originalQueue);
+    NSString *wordListName = [self wordListNameWithTitle:title];
     
-    
-
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    NSManagedObjectContext *moc = [helper workerManagedObjectContext];
-    
-    [moc performBlock:^{
-        //search if a word list with same title already exist
-        NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"WordList"];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@",title];
-        [request setPredicate:predicate];
-        NSArray *result = [moc executeFetchRequest:request error:nil];
-        
-        NSString *titleInBlock = [title copy];
-        
-        if (result.count>0) {
-            //名字重复，后面加个(1)
-            titleInBlock = [titleInBlock stringByAppendingString:@"(1)"];
-        }
-        
-        WordList *newList = [NSEntityDescription insertNewObjectForEntityForName:@"WordList" inManagedObjectContext:moc];
-        newList.title = titleInBlock;
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        WordList *newList = [WordList MR_createInContext:localContext];
+        newList.title = wordListName;
         newList.addTime = [NSDate date];
         
-        NSFetchRequest *wordRequest = [[NSFetchRequest alloc]init];
-        NSEntityDescription *wordEntity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:moc];
-        [wordRequest setEntity:wordEntity];
-        [wordRequest setIncludesPropertyValues:NO];
         NSMutableArray *newWordsToBeIndexed = [[NSMutableArray alloc]initWithCapacity:wordSet.count];
         
-        for (NSString *aWord in wordSet) {
-            if (aWord.length == 0) {
-                //出现空字符串
+        // If a word is already in the database, add the existing one to the word list
+        for (NSString *aWordStr in wordSet) {
+            NSString *lowercaseWordStr = [aWordStr lowercaseString];
+            lowercaseWordStr = [lowercaseWordStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if (lowercaseWordStr.length == 0) {
                 continue;
             }
-            NSString *lowercaseWord = [aWord lowercaseString];
-            lowercaseWord = [lowercaseWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            if (lowercaseWord.length == 0) {
-                continue;
-            }
-            //检查是否已经存在这个单词
-            NSPredicate *wordPredicate = [NSPredicate predicateWithFormat:@"(key == %@)",lowercaseWord];
-            [wordRequest setPredicate:wordPredicate];
-            NSArray *resultWords = [moc executeFetchRequest:wordRequest error:nil];
-            if (resultWords.count > 0) {
-                //存在，直接添加
-                Word *w = [resultWords objectAtIndex:0];
-                [newList addWordsObject:w];
+            Word *existingWord = [Word MR_findFirstByAttribute:@"key" withValue:lowercaseWordStr inContext:localContext];
+            if (existingWord) {
+                [newList addWordsObject:existingWord];
             }else{
-                //不存在，新建
-                Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
-                newWord.key = lowercaseWord;
+                Word *newWord = [Word MR_createInContext:localContext];
+                newWord.key = lowercaseWordStr;
                 [newList addWordsObject:newWord];
                 [newWordsToBeIndexed addObject:newWord];
             }
         }
-        //再次检查是否为空，排除空字符串干扰
-        if (newList.words.count>0) {
-            NSError *saveErr = nil;
-            [moc save:&saveErr];
-            
-            if (saveErr == nil) {
-                //索引易混淆词
-                //                NSError *indexError = nil;
-                if (newWordsToBeIndexed.count > 0) {
-                    
-                    //!!! objectId在save前后值会变换
-                    NSMutableArray *ids = [[NSMutableArray alloc]initWithCapacity:newWordsToBeIndexed.count];
-                    for (int i = 0; i< newWordsToBeIndexed.count; i++) {
-                        Word *w = newWordsToBeIndexed[i];
-                        [ids addObject:w.objectID];
-                    }
-                    
-                    [ConfusingWordsIndexer indexNewWordsAsyncById:ids progressBlock:^(float progress) {
-                        
-                        if (progressBlock != NULL) progressBlock(progress);
-
-                    } completion:^(NSError *error) {
-                        
-                        if (completion != NULL) completion(error);
-
-                    }];
-                    
-                    return;
-                }else {
-                    if (completion != NULL) {
-                        completion(nil);
-                    }
-                    return;
-                }
-                
-            }else{
-                NSLog(@"create words save error:%@",saveErr);
-                if (completion != NULL) {
-                    completion(saveErr);
-                }
-                return;
-            }
-        }else{
+        
+        if (newList.words.count == 0) {
+            [newList MR_deleteInContext:localContext];
             NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
-            [moc deleteObject:newList];
-            if (completion != NULL) {
+            if (completion) {
                 completion(error);
             }
             return;
         }
-    }];
-    
         
-
+        [ConfusingWordsIndexer asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        
+    } completion:^(BOOL success, NSError *error) {
+        if (completion) {
+            completion(error);
+        }
+    }];
 }
 
 + (void)createWordListAsyncWithTitle:(NSString *)title
@@ -174,7 +146,7 @@
 }
 
 + (void)addWords:(NSSet *)wordSet
-      toWordListId:(NSManagedObjectID *)wordlistId
+      toWordList:(WordList *)wordlist
    progressBlock:(HKVProgressCallback)progressBlock
       completion:(HKVErrorBlock)completion
 {
@@ -187,95 +159,38 @@
         }
         return;
     }
-
     
-
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    NSManagedObjectContext *moc = [helper workerManagedObjectContext];
-    
-    //search if a word list with same title already exist
-
-    [moc performBlock:^{
-        NSFetchRequest *wordRequest = [[NSFetchRequest alloc]init];
-        NSEntityDescription *wordEntity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:moc];
-        [wordRequest setEntity:wordEntity];
-        [wordRequest setIncludesPropertyValues:NO];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        
+        WordList *localWordList = [wordlist MR_inContext:localContext];
+        
         NSMutableArray *newWordsToBeIndexed = [[NSMutableArray alloc]initWithCapacity:wordSet.count];
-        WordList *wordlist = (WordList *)[moc objectWithID:wordlistId];
-        for (NSString *aWord in wordSet) {
-            if (aWord.length == 0) {
-                //出现空字符串
+        
+        // If a word is already in the database, add the existing one to the word list
+        for (NSString *aWordStr in wordSet) {
+            NSString *lowercaseWordStr = [aWordStr lowercaseString];
+            lowercaseWordStr = [lowercaseWordStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if (lowercaseWordStr.length == 0) {
                 continue;
             }
-            NSString *lowercaseWord = [aWord lowercaseString];
-            lowercaseWord = [lowercaseWord stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            if (lowercaseWord.length == 0) {
-                continue;
-            }
-            //检查是否已经存在这个单词
-            NSPredicate *wordPredicate = [NSPredicate predicateWithFormat:@"(key == %@)",lowercaseWord];
-            [wordRequest setPredicate:wordPredicate];
-            NSArray *resultWords = [moc executeFetchRequest:wordRequest error:nil];
-            if (resultWords.count > 0) {
-                //存在，直接添加
-                Word *w = [resultWords objectAtIndex:0];
-                [wordlist addWordsObject:w];
+            Word *existingWord = [Word MR_findFirstByAttribute:@"key" withValue:lowercaseWordStr inContext:localContext];
+            if (existingWord) {
+                [localWordList addWordsObject:existingWord];
             }else{
-                //不存在，新建
-                Word *newWord = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:moc];
-                newWord.key = lowercaseWord;
-                [wordlist addWordsObject:newWord];
+                Word *newWord = [Word MR_createInContext:localContext];
+                newWord.key = lowercaseWordStr;
+                [localWordList addWordsObject:newWord];
                 [newWordsToBeIndexed addObject:newWord];
             }
         }
         
+        [ConfusingWordsIndexer asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
         
-        NSError *saveErr = nil;
-        [moc save:&saveErr];
-        
-        if (saveErr == nil) {
-            //索引易混淆词
-            if (newWordsToBeIndexed.count > 0) {
-                
-                //!!! objectId在save前后值会变换
-                NSMutableArray *ids = [[NSMutableArray alloc]initWithCapacity:newWordsToBeIndexed.count];
-                for (int i = 0; i< newWordsToBeIndexed.count; i++) {
-                    Word *w = newWordsToBeIndexed[i];
-                    [ids addObject:w.objectID];
-                }
-                
-                [ConfusingWordsIndexer indexNewWordsAsyncById:ids progressBlock:^(float progress) {
-
-                    if (progressBlock != NULL) progressBlock(progress);
-
-                } completion:^(NSError *error) {
-
-                    if (completion != NULL) completion(error);
-
-                }];
-                
-                return;
-                
-            }else {
-                if (completion != NULL) {
-
-                    completion(nil);
-
-                }
-                return;
-            }
-            
-        }else{
-            NSLog(@"create words save error:%@",saveErr);
-            if (completion != NULL) {
-
-                completion(saveErr);
-
-            }
-            return;
+    } completion:^(BOOL success, NSError *error) {
+        if (completion) {
+            completion(error);
         }
     }];
-        
 }
 
 @end

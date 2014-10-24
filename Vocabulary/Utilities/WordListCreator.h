@@ -41,7 +41,7 @@
                           completion:(HKVErrorBlock)completion;
 
 + (void)addWords:(NSSet *)wordSet
-      toWordListId:(NSManagedObjectID *)wordlistId
+      toWordList:(WordList *)wordlist
    progressBlock:(HKVProgressCallback)progressBlock
       completion:(HKVErrorBlock)completion;
 @end

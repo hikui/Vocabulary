@@ -71,6 +71,7 @@
 		7F43F74519F7A9A900672440 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70119F7A9A900672440 /* ExamContent.m */; };
 		7F43F74619F7A9A900672440 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70319F7A9A900672440 /* Guide.m */; };
 		7F43F74719F7A9A900672440 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70519F7A9A900672440 /* Plan.m */; };
+		7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
@@ -268,6 +269,8 @@
 		7F43F70419F7A9A900672440 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		7F43F70519F7A9A900672440 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		7F43F74819F7AADC00672440 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		7F6BE4DF19F9E6C5006606E6 /* NSString+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VAdditions.h"; sourceTree = "<group>"; };
+		7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VAdditions.m"; sourceTree = "<group>"; };
 		7F8ACC7719C134630006DAB7 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -493,6 +496,8 @@
 				7F43F6AD19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m */,
 				7F43F6AE19F7A9A900672440 /* UIToolbar+VToolBar.h */,
 				7F43F6AF19F7A9A900672440 /* UIToolbar+VToolBar.m */,
+				7F6BE4DF19F9E6C5006606E6 /* NSString+VAdditions.h */,
+				7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1051,6 +1056,7 @@
 				7F43F70919F7A9A900672440 /* GuideView.m in Sources */,
 				7F43F71019F7A9A900672440 /* PronunciationData.m in Sources */,
 				7F43F72519F7A9A900672440 /* ActionSheetDatePicker.m in Sources */,
+				7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */,
 				7F43F72319F7A9A900672440 /* WordSearcher.m in Sources */,
 				7F43F71A19F7A9A900672440 /* NSMutableString+HTMLEscape.m in Sources */,
 			);
