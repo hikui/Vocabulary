@@ -175,14 +175,9 @@
             if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[WordListViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                
-                NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
-                NSFetchRequest *request = [[NSFetchRequest alloc]init];
-                NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
-                [request setEntity:entity];
-                [request setPredicate:predicate];
-                NSArray *result = [ctx executeFetchRequest:request error:nil];
+                NSArray *result = [Word MR_findAllWithPredicate:predicate];
+                
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
                 WordListViewController *svc = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];

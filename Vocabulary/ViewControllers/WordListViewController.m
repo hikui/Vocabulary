@@ -102,7 +102,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];;
+//    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];;
 }
 
 - (void)didReceiveMemoryWarning
@@ -247,11 +247,13 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:@"确定"]) {
-        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
-        w.key = [[alertView textFieldAtIndex:0]text];
-        [w addWordListsObject:self.wordList];
-        [ctx save:nil];
+//        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+//        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
+        Word *w = [Word MR_createEntity];
+        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            w.key = [[alertView textFieldAtIndex:0]text];
+            [w addWordListsObject:self.wordList];
+        }];
         [self.wordArray addObject:w];
         [_tableView beginUpdates];
         NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
@@ -259,8 +261,7 @@
         [_tableView endUpdates];
         
         //后台做索引
-        
-        [ConfusingWordsIndexer indexNewWordsAsyncById:@[w.objectID] completion:NULL];
+        [ConfusingWordsIndexer asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
         
     }
 }

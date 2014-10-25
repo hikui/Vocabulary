@@ -28,8 +28,6 @@
 
 @interface CibaEngine : MKNetworkEngine
 
-@property (nonatomic, strong) NSMutableSet *livingOperations;
-
 + (id)sharedInstance;
 
 - (MKNetworkOperation *) infomationForWord:(NSString *)word

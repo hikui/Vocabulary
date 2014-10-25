@@ -360,11 +360,8 @@
 
 - (void)refreshHintView
 {
-    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
-    request.entity = entity;
-    NSUInteger wordListCount = [ctx countForFetchRequest:request error:nil];
+    NSUInteger wordListCount = [WordList MR_countOfEntities];
+    
     
     self.view.hidden = NO;
     if (wordListCount == 0) {
