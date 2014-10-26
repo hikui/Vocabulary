@@ -104,125 +104,131 @@
     
     self.title = @"评估";
     //adjust views
-//    _cursor1 = 0;
-//    _shouldUpdateWordFamiliarity = NO;
-//    
-////    self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
-////    self.roundNotificatonLabel.clipsToBounds = YES;
-//
-//    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
-//    self.roundNotificatonView.center = center;
-//    [self.view addSubview:self.roundNotificatonView];
-//    
-//    if (self.wordList != nil) {
-//        NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
-//        for (Word *w in self.wordList.words) {
-//            [words addObject:w];
-//        }
-//        self.wordsArray = words;
-//    }
-//    
-//    
-////    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
-////                                                                  style:UIBarButtonItemStyleBordered target:self
-////                                                                 action:@selector(backButtonPressed)];
-//    
-//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"评估完成" target:self action:@selector(backButtonPressed)];
-//    self.navigationItem.leftBarButtonItem = backButton;
-//    
-//    //create 2 exam views;
-//    ExamView *ev1 = [ExamView newInstance];
-//    ev1.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-//    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-48);
-//    ExamView *ev2 = [ExamView newInstance];
-//    ev2.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-//    ev2.frame = ev1.frame;
-//    [self.examViewReuseQueue addObject:ev1];
-//    [self.examViewReuseQueue addObject:ev2];
-//    [self.view addSubview:ev1];
-//    [self.view addSubview:ev2];
-//    
-//    
-//    // 增加progress
-//    self.progressBar = [[SimpleProgressBar alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-48, self.view.bounds.size.width, 4) barColor:RGBA(22, 140, 228, 0.9)];
-//    self.progressBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    [self.view addSubview:self.progressBar];
-//    
-//    
-//    //扫描是否有未加载的word
-//    for (Word *w in self.wordsArray) {
-//        if ([w.hasGotDataFromAPI boolValue] == NO) {
-//            
-//            [self.wordsWithNoInfoSet addObject:w];
-//            
-//            CibaEngine *engine = [CibaEngine sharedInstance];
-//            __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
-//                [self.networkOperationQueue removeObject:infoDownloadOp];                
-//                [CibaEngine fillWord:w withResultDict:parsedDict];
+    _cursor1 = 0;
+    _shouldUpdateWordFamiliarity = NO;
+    
+//    self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
+//    self.roundNotificatonLabel.clipsToBounds = YES;
+
+    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
+    self.roundNotificatonView.center = center;
+    [self.view addSubview:self.roundNotificatonView];
+    
+    if (self.wordList != nil) {
+        NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
+        for (Word *w in self.wordList.words) {
+            [words addObject:w];
+        }
+        self.wordsArray = words;
+    }
+    
+    
+//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
+//                                                                  style:UIBarButtonItemStyleBordered target:self
+//                                                                 action:@selector(backButtonPressed)];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"评估完成" target:self action:@selector(backButtonPressed)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    //create 2 exam views;
+    ExamView *ev1 = [ExamView newInstance];
+    ev1.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-48);
+    ExamView *ev2 = [ExamView newInstance];
+    ev2.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    ev2.frame = ev1.frame;
+    [self.examViewReuseQueue addObject:ev1];
+    [self.examViewReuseQueue addObject:ev2];
+    [self.view addSubview:ev1];
+    [self.view addSubview:ev2];
+    
+    
+    // 增加progress
+    self.progressBar = [[SimpleProgressBar alloc]initWithFrame:CGRectMake(0, self.view.bounds.size.height-48, self.view.bounds.size.width, 4) barColor:RGBA(22, 140, 228, 0.9)];
+    self.progressBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:self.progressBar];
+    
+    
+    //扫描是否有未加载的word
+    for (Word *w in self.wordsArray) {
+        if ([w.hasGotDataFromAPI boolValue] == NO) {
+            
+            [self.wordsWithNoInfoSet addObject:w];
+            
+            CibaEngine *engine = [CibaEngine sharedInstance];
+            __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
+                [self.networkOperationQueue removeObject:infoDownloadOp];                
+                [CibaEngine fillWord:w withResultDict:parsedDict];
 //                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-//                
-//                NSString *pronURL = [parsedDict objectForKey:@"pron_us"];
-//                if (pronURL == nil) {
-//                    pronURL = [parsedDict objectForKey:@"pron_uk"];
-//                }
-//                if (pronURL) {
-//                    __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
-//                        [self.wordsWithNoInfoSet removeObject:w];
-//                        [self.networkOperationQueue removeObject:voiceOp];
-//                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-//                        PronunciationData *pronData = [NSEntityDescription insertNewObjectForEntityForName:@"PronunciationData" inManagedObjectContext:ctx];
-//                        pronData.pronData = data;
-//                        w.pronunciation = pronData;
-//                        w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                        [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-//                        if (self.wordsWithNoInfoSet.count == 0) {
-//                            //all ok
-//                            [self createExamContentsArray];
-//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                        }
-//                        
-//                    } onError:^(NSError *error) {
-//                        // get sound faild
-//                        [self.wordsWithNoInfoSet removeObject:w];
-//                        [self.networkOperationQueue removeObject:voiceOp];
-//                        w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                        [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-//                        if (self.wordsWithNoInfoSet.count == 0) {
-//                            //all ok
-//                            [self createExamContentsArray];
-//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                        }
-//                    }];
-//                    [self.networkOperationQueue addObject:voiceOp];
-//                }else {
-//                    // this word has no sound
-//                    [self.wordsWithNoInfoSet removeObject:w];
-//                    w.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
-//                    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-//                    if (self.wordsWithNoInfoSet.count == 0) {
-//                        //all ok
-//                        [self createExamContentsArray];
-//                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                    }
-//                }
-//            } onError:^(NSError *error) {
-//                // failed to get the word's meaning
-//                [self.wordsWithNoInfoSet removeObject:w];
-//                [self.networkOperationQueue removeObject:infoDownloadOp];
-//                if (self.wordsWithNoInfoSet.count == 0) {
-//                    [self createExamContentsArray];
-//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                }
-//            }];
-//            [self.networkOperationQueue addObject:infoDownloadOp];
-//        }
-//    }
-//    if (self.wordsWithNoInfoSet.count == 0) {
-//        [self createExamContentsArray];
-//    }else{
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        hud.detailsLabelText = @"正在取词";
-//    }
+                
+                NSString *pronURL = [parsedDict objectForKey:@"pron_us"];
+                if (pronURL == nil) {
+                    pronURL = [parsedDict objectForKey:@"pron_uk"];
+                }
+                if (pronURL) {
+                    __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
+                        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                            [self.wordsWithNoInfoSet removeObject:w];
+                            [self.networkOperationQueue removeObject:voiceOp];
+                            //                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+                            PronunciationData *pronData = [PronunciationData MR_createInContext:localContext];
+                            pronData.pronData = data;
+                            Word *localWord = [w MR_inContext:localContext];
+                            localWord.pronunciation = pronData;
+                            localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                        }];
+                        if (self.wordsWithNoInfoSet.count == 0) {
+                            //all ok
+                            [self createExamContentsArray];
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        }
+                        
+                    } onError:^(NSError *error) {
+                        // get sound faild
+                        [self.wordsWithNoInfoSet removeObject:w];
+                        [self.networkOperationQueue removeObject:voiceOp];
+                        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                            Word *localWord = [w MR_inContext:localContext];
+                            localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                        }];
+                        if (self.wordsWithNoInfoSet.count == 0) {
+                            //all ok
+                            [self createExamContentsArray];
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                        }
+                    }];
+                    [self.networkOperationQueue addObject:voiceOp];
+                }else {
+                    // this word has no sound
+                    [self.wordsWithNoInfoSet removeObject:w];
+                    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                        Word *localWord = [w MR_inContext:localContext];
+                        localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                    }];
+                    if (self.wordsWithNoInfoSet.count == 0) {
+                        //all ok
+                        [self createExamContentsArray];
+                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    }
+                }
+            } onError:^(NSError *error) {
+                // failed to get the word's meaning
+                [self.wordsWithNoInfoSet removeObject:w];
+                [self.networkOperationQueue removeObject:infoDownloadOp];
+                if (self.wordsWithNoInfoSet.count == 0) {
+                    [self createExamContentsArray];
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                }
+            }];
+            [self.networkOperationQueue addObject:infoDownloadOp];
+        }
+    }
+    if (self.wordsWithNoInfoSet.count == 0) {
+        [self createExamContentsArray];
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.detailsLabelText = @"正在取词";
+    }
     //TODO: fix this
 }
 
@@ -266,44 +272,49 @@
 
 - (void)calculateFamiliarityForEveryWords
 {
-    [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        ExamContent *c1 = (ExamContent *)obj1;
-        ExamContent *c2 = (ExamContent *)obj2;
-        NSString *str1 = c1.word.key;
-        NSString *str2 = c2.word.key;
-        return [str1 compare:str2];
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            ExamContent *c1 = (ExamContent *)obj1;
+            ExamContent *c2 = (ExamContent *)obj2;
+            NSString *str1 = c1.word.key;
+            NSString *str2 = c2.word.key;
+            return [str1 compare:str2];
+        }];
+        int i = 0;
+        while (i<self.examContentsQueue.count) {
+            ExamContent *c1 = [self.examContentsQueue objectAtIndex:i];
+            ExamContent *c2 = nil;
+            if (i+1 < self.examContentsQueue.count) {
+                c2 = [self.examContentsQueue objectAtIndex:i+1];
+            }
+            int rightCount = c1.rightTimes;
+            int wrongCount = c1.wrongTimes;
+            if (c1.word == c2.word) {
+                rightCount += c2.rightTimes;
+                wrongCount += c2.wrongTimes;
+                i += 2;
+            }else{
+                i += 1;
+            }
+            
+            float familiarity = 0;
+            if (rightCount != 0 || wrongCount != 0) {
+                familiarity = ((float)(rightCount))/(rightCount+wrongCount);
+            }
+            if (c1.word.lastVIewDate != nil) {
+                //与以前的值做平均
+                float oldFamiliarity = [c1.word.familiarity floatValue]/10;
+                familiarity = (oldFamiliarity + familiarity)/2;
+            }
+            
+            int familiarityInt = (int)(roundf(familiarity*10));
+            Word *c1WordInLocalContext = [c1.word MR_inContext:localContext];
+            
+            c1WordInLocalContext.familiarity = [NSNumber numberWithInt:familiarityInt];
+            c1WordInLocalContext.lastVIewDate = [NSDate date];
+        }
     }];
-    int i = 0;
-    while (i<self.examContentsQueue.count) {
-        ExamContent *c1 = [self.examContentsQueue objectAtIndex:i];
-        ExamContent *c2 = nil;
-        if (i+1 < self.examContentsQueue.count) {
-            c2 = [self.examContentsQueue objectAtIndex:i+1];
-        }
-        int rightCount = c1.rightTimes;
-        int wrongCount = c1.wrongTimes;
-        if (c1.word == c2.word) {
-            rightCount += c2.rightTimes;
-            wrongCount += c2.wrongTimes;
-            i += 2;
-        }else{
-            i += 1;
-        }
-        
-        float familiarity = 0;
-        if (rightCount != 0 || wrongCount != 0) {
-            familiarity = ((float)(rightCount))/(rightCount+wrongCount);
-        }
-        if (c1.word.lastVIewDate != nil) {
-            //与以前的值做平均
-            float oldFamiliarity = [c1.word.familiarity floatValue]/10;
-            familiarity = (oldFamiliarity + familiarity)/2;
-        }
-        
-        int familiarityInt = (int)(roundf(familiarity*10));
-        c1.word.familiarity = [NSNumber numberWithInt:familiarityInt];
-        c1.word.lastVIewDate = [NSDate date];
-    }
+    
 //    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
     //TODO: fix this
 }
