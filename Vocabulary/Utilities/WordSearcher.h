@@ -11,7 +11,6 @@
 @interface WordSearcher : NSObject
 
 @property (nonatomic, strong) NSOperationQueue *queryOperationQueue;
-@property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
 - (void)searchWord:(NSString *)word completion:(void(^)(NSArray *words)) completion;
 

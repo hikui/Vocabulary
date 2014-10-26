@@ -36,7 +36,6 @@
     __strong static CibaEngine *_sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[CibaEngine alloc] initWithHostName:HostName]; // or some other init method
-        _sharedObject.livingOperations = [[NSMutableSet alloc]init];
     });
     return _sharedObject;
 }
@@ -102,7 +101,6 @@
     operation.word = word;
     [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
         NSAssert([completedOperation isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
-        [self.livingOperations removeObject:completedOperation];
         NSData *jsonData = [completedOperation responseData];
         NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         if (resultDict == nil) {
@@ -123,10 +121,10 @@
         }
         [CibaEngine fillWord:word withResultDict:resultDict];
 
-        NSError *err = nil;
-        BOOL hasChanges = NO;
-        hasChanges = word.managedObjectContext.hasChanges;
-        [word.managedObjectContext save:&err];
+//        NSError *err = nil;
+//        BOOL hasChanges = NO;
+//        hasChanges = word.managedObjectContext.hasChanges;
+//        [word.managedObjectContext save:&err];
         //load voice
         NSString *pronURL = [resultDict objectForKey:@"pron_us"];
         if (pronURL == nil) {
@@ -138,7 +136,6 @@
         getPronOp.word = word;
         [getPronOp addCompletionHandler:^(MKNetworkOperation *completedGetPronOp) {
             NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
-            [self.livingOperations removeObject:completedGetPronOp];
             NSData *data = [completedGetPronOp responseData];
             [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
                 Word *localWord = [word MR_inContext:localContext];
@@ -156,20 +153,16 @@
             if (errorBlock) {
                 errorBlock(myError);
             }
-            [self.livingOperations removeObject:completedOperation];
         }];
         [self enqueueOperation:getPronOp];
-        [self.livingOperations addObject:getPronOp];
         
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
         NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:error.userInfo];
         if (errorBlock) {
             errorBlock(myError);
         }
-        [self.livingOperations removeObject:completedOperation];
     }];
     [self enqueueOperation:operation];
-    [self.livingOperations addObject:operation];
     return operation;
 }
 

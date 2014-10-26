@@ -84,6 +84,7 @@
 {
 //    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
 //    [helper.mainContext save:nil];
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -103,6 +104,7 @@
     // Saves changes in the application's managed object context before the application terminates.
 //    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
 //    [helper.mainContext save:nil];
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
     [MagicalRecord cleanUp];
 }
 
