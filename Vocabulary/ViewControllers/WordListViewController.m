@@ -289,7 +289,8 @@
         }
         WordListFromDiskViewController *wfdvc = [[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
         wfdvc.wordList = self.wordList;
-        [self presentModalViewController:wfdvc animated:YES];
+//        [self presentModalViewController:wfdvc animated:YES];
+        [self presentViewController:wfdvc animated:YES completion:nil];
     }
 }
 

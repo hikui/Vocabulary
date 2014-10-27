@@ -389,9 +389,9 @@
 
 - (void)shuffleMutableArray:(NSMutableArray *)array
 {
-    int i = [array count];
+    NSUInteger i = [array count];
     while(--i > 0) {
-        int j = arc4random() % (i+1);
+        NSUInteger j = arc4random() % (i+1);
         [array exchangeObjectAtIndex:i withObjectAtIndex:j];
     }
 }
@@ -489,7 +489,7 @@
     ev.content = content;
     self.currentExamContent = content;
     NSLog(@"%d",[content weight]);
-    int i = [self.examViewReuseQueue indexOfObject:ev];
+    NSUInteger i = [self.examViewReuseQueue indexOfObject:ev];
     ExamView *oldView = (self.examViewReuseQueue)[++i%2];
     [oldView stopSound];
     [self.view insertSubview:ev belowSubview:oldView];

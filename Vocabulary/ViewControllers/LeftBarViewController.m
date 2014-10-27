@@ -204,7 +204,8 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:self.searchResult[indexPath.row]];
         VNavigationController *nlvc = [[VNavigationController alloc]initWithRootViewController:lvc];
-        [self presentModalViewController:nlvc animated:YES];
+//        [self presentModalViewController:nlvc animated:YES];
+        [self presentViewController:nlvc animated:YES completion:nil];
     }
     
 }
@@ -215,10 +216,12 @@
     NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"批量输入"]) {
         CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
-        [self presentModalViewController:vc animated:YES];
+//        [self presentModalViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }else if ([title isEqualToString:@"从iTunes上传"]){
         WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
-        [self presentModalViewController:fdvc animated:YES];
+//        [self presentModalViewController:fdvc animated:YES];
+        [self presentViewController:fdvc animated:YES completion:nil];
     }
 }
 

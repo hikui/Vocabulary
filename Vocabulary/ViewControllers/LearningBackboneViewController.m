@@ -75,7 +75,7 @@
     [self.pageViewController didMoveToParentViewController:self];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
-    self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",1,self.words.count];
+    self.pageIndicator.text = [NSString stringWithFormat:@"%d/%lu",1,(unsigned long)self.words.count];
     
     UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = backBtn;
@@ -147,7 +147,7 @@
     forward = true;
     WordDetailViewController *lvc = (WordDetailViewController *)viewController;
     Word *wd = lvc.word;
-    int index = [self.words indexOfObject:wd];
+    NSUInteger index = [self.words indexOfObject:wd];
     if (index == self.words.count-1) {
         return nil;
     }
@@ -160,7 +160,7 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     forward = false;
     WordDetailViewController *lvc = (WordDetailViewController *)viewController;
     Word *wd = lvc.word;
-    int index = [self.words indexOfObject:wd];
+    NSUInteger index = [self.words indexOfObject:wd];
     if (index == 0) {
         return nil;
     }
@@ -175,12 +175,12 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
         WordDetailViewController *lvc = (WordDetailViewController *)previousViewControllers[0];
         if ([lvc isKindOfClass:[WordDetailViewController class]]) {
             Word *wd = lvc.word;
-            int index = [self.words indexOfObject:wd];
+            NSUInteger index = [self.words indexOfObject:wd];
             if (forward) {
-                self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index+2,self.words.count];
+                self.pageIndicator.text = [NSString stringWithFormat:@"%lu/%lu",index+2,(unsigned long)self.words.count];
                 self.currentShownViewController = self.learningViewControllerArray[(index+1)%2];
             }else{
-                self.pageIndicator.text = [NSString stringWithFormat:@"%d/%d",index,self.words.count];
+                self.pageIndicator.text = [NSString stringWithFormat:@"%lu/%lu",index,(unsigned long)self.words.count];
                 self.currentShownViewController = self.learningViewControllerArray[(index-1)%2];
             }
             BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
@@ -193,7 +193,7 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 
 - (void)shuffleWords
 {
-    int i = [self.words count];
+    NSUInteger i = [self.words count];
     while(--i > 0) {
         int j = arc4random() % (i+1);
         [self.words exchangeObjectAtIndex:i withObjectAtIndex:j];
@@ -224,7 +224,8 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     SearchWordViewController *svc = [[SearchWordViewController alloc]initWithModalViewControllerMode:YES];
     VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
     nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:nsvc animated:YES];
+//    [self presentModalViewController:nsvc animated:YES];
+    [self presentViewController:nsvc animated:YES completion:nil];
 }
 
 - (void)refreshButtonOnPress:(id)sender

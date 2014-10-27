@@ -166,7 +166,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    __block int totalCount = self.selectedIndexPath.count;
+    __block NSUInteger totalCount = self.selectedIndexPath.count;
     
     if (totalCount == 0) {
         [hud hide:YES];
@@ -177,7 +177,7 @@
         NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
         NSString*path =paths[0];
         for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
-            int row = selectedIndexPath.row;
+            NSUInteger row = selectedIndexPath.row;
             NSString *fileName = (self.fileList)[row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;
@@ -210,7 +210,7 @@
         NSString*path =paths[0];
         
         for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
-            int row = selectedIndexPath.row;
+            NSUInteger row = selectedIndexPath.row;
             NSString *fileName = (self.fileList)[row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;

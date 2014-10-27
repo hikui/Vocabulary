@@ -185,7 +185,8 @@
     VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
     NSURL *url = [NSURL URLWithString:CIBA_URL(self.word.key)];
     wvc.requestURL = url;
-    [self presentModalViewController:wvc animated:YES];
+//    [self presentModalViewController:wvc animated:YES];
+    [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (void)showInfo
@@ -238,7 +239,7 @@
 #pragma mark - actions
 - (void)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
