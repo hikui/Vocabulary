@@ -175,7 +175,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"%@",searchText);
+    DDLogDebug(@"%@",searchText);
     
 //    if (self.fetchRequest == nil) {
 //        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];

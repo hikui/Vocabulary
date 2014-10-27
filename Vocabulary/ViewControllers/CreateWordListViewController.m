@@ -164,7 +164,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (error != NULL) {
-                NSLog(@"%@",error);
+                DDLogError(@"%@",error);
                 if (error.code == WordListCreatorEmptyWordSetError) {
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
                                                                    message:@"还没有单词哦"

@@ -164,7 +164,7 @@
                         float distance = [self compareString:key1 withString:key2];
                         NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
                         if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
-                            NSLog(@"key1: %@, key2: %@",key1,key2);
+                            DDLogDebug(@"key1: %@, key2: %@",key1,key2);
                             [anNewWord addSimilarWordsObject:anExistingWord];
                         }
                     }

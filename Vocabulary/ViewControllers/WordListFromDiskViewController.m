@@ -141,7 +141,7 @@
         if ([fileName hasSuffix:@".txt"]) {
             [self.fileList addObject:fileName];
         }
-        NSLog(@"%@",fileName);
+        DDLogDebug(@"%@",fileName);
     }
 }
 
@@ -197,7 +197,7 @@
             } completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
-                        NSLog(@"%@",[error localizedDescription]);
+                        DDLogError(@"%@",[error localizedDescription]);
                     }
                     [hud hide:YES];
 //                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
@@ -233,7 +233,7 @@
             } completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
-                        NSLog(@"%@",[error localizedDescription]);
+                        DDLogError(@"%@",[error localizedDescription]);
                     }
                     totalCount--;
                     if (totalCount <= 0) {

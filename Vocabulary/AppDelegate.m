@@ -50,6 +50,10 @@
     //CoreData stack
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"db.sqlite"];
     
+    //Lumberjack
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDLog addLogger:[[DDFileLogger alloc]init]];
+    
     LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithNibName:@"LeftBarViewController" bundle:nil];
         
     PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
@@ -109,7 +113,7 @@
 }
 
 - (void)onlineConfigCallBack:(NSNotification *)notification {
-    NSLog(@"online config has fininshed and params = %@", notification.userInfo);
+    DDLogDebug(@"online config has fininshed and params = %@", notification.userInfo);
     NSString *newHelpDocVersion = [MobClick getConfigParams:@"helpDocVersion"];
     NSString *currentHelpVersion = [[NSUserDefaults standardUserDefaults]stringForKey:@"kCurrHelpDocVersion"];
     if (currentHelpVersion == nil) {

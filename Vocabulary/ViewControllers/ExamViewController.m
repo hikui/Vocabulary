@@ -407,7 +407,7 @@
     ExamContent * content = (self.examContentsQueue)[_cursor1];
     if (_cursor1 == 0) {
         //已经循环一遍了
-        NSLog(@"已经循环一遍了");
+        DDLogDebug(@"已经循环一遍了");
         //显示提示
         [self.view bringSubviewToFront:self.roundNotificatonView];
         [UIView animateWithDuration:0.5 animations:^{
@@ -488,7 +488,7 @@
     }
     ev.content = content;
     self.currentExamContent = content;
-    NSLog(@"%d",[content weight]);
+    DDLogDebug(@"%d",[content weight]);
     NSUInteger i = [self.examViewReuseQueue indexOfObject:ev];
     ExamView *oldView = (self.examViewReuseQueue)[++i%2];
     [oldView stopSound];
