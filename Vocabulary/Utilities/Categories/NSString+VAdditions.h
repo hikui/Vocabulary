@@ -10,6 +10,6 @@
 
 @interface NSString (VAdditions)
 
-- (BOOL)hkv_isPureInt;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL hkv_isPureInt;
 
 @end

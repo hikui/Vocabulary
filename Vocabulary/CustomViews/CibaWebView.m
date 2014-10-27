@@ -23,7 +23,7 @@
 
 @implementation CibaWebView
 
-- (id)initWithView:(UIView *)superView word:(NSString *)word;
+- (instancetype)initWithView:(UIView *)superView word:(NSString *)word;
 {
     self = [super init];
     if (self) {

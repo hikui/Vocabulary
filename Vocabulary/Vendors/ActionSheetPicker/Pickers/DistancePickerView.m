@@ -15,7 +15,7 @@
 @implementation DistancePickerView
 
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     
     self = [super initWithFrame:frame];
     if (self) {
@@ -25,7 +25,7 @@
 }
 
 - (void) addLabel:(NSString *)labeltext forComponent:(NSUInteger)component forLongestString:(NSString *)longestString {
-    [labels setObject:labeltext forKey:[NSNumber numberWithInt:component]];
+    labels[[NSNumber numberWithInt:component]] = labeltext;
     
     NSString *keyName = [NSString stringWithFormat:@"%@_%@", @"longestString", [NSNumber numberWithInt:component]]; 
     
@@ -33,7 +33,7 @@
         longestString = labeltext;
     }
     
-    [labels setObject:longestString forKey:keyName];
+    labels[keyName] = longestString;
 }
 
 - (void) updateLabel:(NSString *)labeltext forComponent:(NSUInteger)component {
@@ -44,7 +44,7 @@
     if (![theLabel.text isEqualToString:labeltext]) {
         
         NSString *keyName = [NSString stringWithFormat:@"%@_%@", @"longestString", [NSNumber numberWithInt:component]]; 
-        NSString *longestString = [labels objectForKey:keyName];
+        NSString *longestString = labels[keyName];
         
         // Update label array with our new string value
         [self addLabel:labeltext forComponent:component forLongestString:longestString];        
@@ -90,12 +90,12 @@
         
         // get the text for the label. 
         // move on to the next if there is no label for this wheel.
-        NSString *text = [labels objectForKey:[NSNumber numberWithInt:component]];
+        NSString *text = labels[@(component)];
         if (text) {
             
             // set up the frame for the label using our longestString length
-            NSString *keyName = [NSString stringWithFormat:@"%@_%@", @"longestString", [NSNumber numberWithInt:component]];
-            NSString *longestString = [labels objectForKey:keyName];
+            NSString *keyName = [NSString stringWithFormat:@"%@_%@", @"longestString", @(component)];
+            NSString *longestString = labels[keyName];
             CGRect frame;
             frame.size = [longestString sizeWithFont:labelfont];
             
@@ -136,7 +136,7 @@
                         [self insertSubview:label atIndex:[self.subviews count]-3];
                     // otherwise add label as the 5th, 10th, 15th etc view from the top
                     else
-                        [self insertSubview:label aboveSubview:[self.subviews objectAtIndex:5*(component+1)]];
+                        [self insertSubview:label aboveSubview:(self.subviews)[5*(component+1)]];
                 } else
                     // there is no selection indicator, so just add it to the top
                     [self addSubview:label];

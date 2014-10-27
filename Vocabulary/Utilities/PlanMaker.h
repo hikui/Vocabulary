@@ -18,7 +18,7 @@
  
  @return Plan
  */
-- (Plan *)todaysPlan;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) Plan *todaysPlan;
 
 /**
  当完成今日的学习计划时，调用此函数

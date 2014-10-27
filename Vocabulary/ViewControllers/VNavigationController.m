@@ -54,7 +54,7 @@
 }
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -68,7 +68,7 @@
     return self;
 }
 
-- (id)initWithRootViewController:(UIViewController *)rootViewController
+- (instancetype)initWithRootViewController:(UIViewController *)rootViewController
 {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
@@ -86,7 +86,7 @@
 
 @implementation UIBarButtonItem(VNavigationController)
 
-- (id)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
+- (instancetype)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
 {
 //    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -100,7 +100,7 @@
     return self;
 }
 
-- (id)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action
+- (instancetype)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action
 {
 //    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

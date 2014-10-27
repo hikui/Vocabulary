@@ -46,7 +46,7 @@
 
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
 
-- (ExamView *)pickAnExamView;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) ExamView *pickAnExamView;
 - (void)createExamContentsArray;
 - (void)shuffleMutableArray:(NSMutableArray *)array;
 - (void)prepareNextExamView;
@@ -58,7 +58,7 @@
 
 @implementation ExamViewController
 
-- (id)initWithWordList:(WordList *)wordList
+- (instancetype)initWithWordList:(WordList *)wordList
 {
     self = [super initWithNibName:@"ExamViewController" bundle:nil];
     if (self) {
@@ -71,7 +71,7 @@
     }
     return self;
 }
-- (id)initWithWordArray:(NSMutableArray *)wordArray
+- (instancetype)initWithWordArray:(NSMutableArray *)wordArray
 {
     self = [super initWithNibName:@"ExamViewController" bundle:nil];
     if (self) {
@@ -85,7 +85,7 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -161,9 +161,9 @@
                 [CibaEngine fillWord:w withResultDict:parsedDict];
 //                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
                 
-                NSString *pronURL = [parsedDict objectForKey:@"pron_us"];
+                NSString *pronURL = parsedDict[@"pron_us"];
                 if (pronURL == nil) {
-                    pronURL = [parsedDict objectForKey:@"pron_uk"];
+                    pronURL = parsedDict[@"pron_uk"];
                 }
                 if (pronURL) {
                     __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
@@ -175,7 +175,7 @@
                             pronData.pronData = data;
                             Word *localWord = [w MR_inContext:localContext];
                             localWord.pronunciation = pronData;
-                            localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                            localWord.hasGotDataFromAPI = @YES;
                         }];
                         if (self.wordsWithNoInfoSet.count == 0) {
                             //all ok
@@ -189,7 +189,7 @@
                         [self.networkOperationQueue removeObject:voiceOp];
                         [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
                             Word *localWord = [w MR_inContext:localContext];
-                            localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                            localWord.hasGotDataFromAPI = @YES;
                         }];
                         if (self.wordsWithNoInfoSet.count == 0) {
                             //all ok
@@ -203,7 +203,7 @@
                     [self.wordsWithNoInfoSet removeObject:w];
                     [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
                         Word *localWord = [w MR_inContext:localContext];
-                        localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                        localWord.hasGotDataFromAPI = @YES;
                     }];
                     if (self.wordsWithNoInfoSet.count == 0) {
                         //all ok
@@ -282,10 +282,10 @@
         }];
         int i = 0;
         while (i<self.examContentsQueue.count) {
-            ExamContent *c1 = [self.examContentsQueue objectAtIndex:i];
+            ExamContent *c1 = (self.examContentsQueue)[i];
             ExamContent *c2 = nil;
             if (i+1 < self.examContentsQueue.count) {
-                c2 = [self.examContentsQueue objectAtIndex:i+1];
+                c2 = (self.examContentsQueue)[i+1];
             }
             int rightCount = c1.rightTimes;
             int wrongCount = c1.wrongTimes;
@@ -310,7 +310,7 @@
             int familiarityInt = (int)(roundf(familiarity*10));
             Word *c1WordInLocalContext = [c1.word MR_inContext:localContext];
             
-            c1WordInLocalContext.familiarity = [NSNumber numberWithInt:familiarityInt];
+            c1WordInLocalContext.familiarity = @(familiarityInt);
             c1WordInLocalContext.lastVIewDate = [NSDate date];
         }
     }];
@@ -346,7 +346,7 @@
 - (ExamView *)pickAnExamView
 {
     static int i = 0;
-    ExamView *view = [self.examViewReuseQueue objectAtIndex:i%2];
+    ExamView *view = (self.examViewReuseQueue)[i%2];
     i++;
     return view;
 }
@@ -375,7 +375,7 @@
     [self shuffleMutableArray:self.examContentsQueue];
     
     if (self.examContentsQueue.count != 0) {
-        ExamContent *content = [self.examContentsQueue objectAtIndex:_cursor1];;
+        ExamContent *content = (self.examContentsQueue)[_cursor1];;
         
         ExamView *ev = [self pickAnExamView];
         ev.content = content;
@@ -404,7 +404,7 @@
     self.progressBar.progress = (float)_cursor1 / self.examContentsQueue.count;
     _cursor1 = _cursor1 % self.examContentsQueue.count;
     
-    ExamContent * content = [self.examContentsQueue objectAtIndex:_cursor1];
+    ExamContent * content = (self.examContentsQueue)[_cursor1];
     if (_cursor1 == 0) {
         //已经循环一遍了
         NSLog(@"已经循环一遍了");
@@ -465,7 +465,7 @@
                         [[PlanMaker sharedInstance]finishTodaysLearningPlan];
                     }
                     effictiveCount++;
-                    self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
+                    self.wordList.effectiveCount = @(effictiveCount);
                     self.wordList.lastReviewTime = [NSDate date]; //设为现在
                 }
             }else{
@@ -477,7 +477,7 @@
                     [[PlanMaker sharedInstance]finishTodaysLearningPlan];
                 }
                 effictiveCount++;
-                self.wordList.effectiveCount = [NSNumber numberWithInt:effictiveCount];
+                self.wordList.effectiveCount = @(effictiveCount);
                 self.wordList.lastReviewTime = [NSDate date]; //设为现在
             }
             
@@ -490,7 +490,7 @@
     self.currentExamContent = content;
     NSLog(@"%d",[content weight]);
     int i = [self.examViewReuseQueue indexOfObject:ev];
-    ExamView *oldView = [self.examViewReuseQueue objectAtIndex:++i%2];
+    ExamView *oldView = (self.examViewReuseQueue)[++i%2];
     [oldView stopSound];
     [self.view insertSubview:ev belowSubview:oldView];
     [UIView animateWithDuration:0.5 animations:^{

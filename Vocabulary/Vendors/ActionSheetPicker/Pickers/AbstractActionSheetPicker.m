@@ -45,9 +45,9 @@
 - (void)presentActionSheet:(UIActionSheet *)actionSheet;
 - (void)presentPopover:(UIPopoverController *)popover;
 - (void)dismissPicker;
-- (BOOL)isViewPortrait;
+@property (NS_NONATOMIC_IOSONLY, getter=isViewPortrait, readonly) BOOL viewPortrait;
 - (BOOL)isValidOrigin:(id)origin;
-- (id)storedOrigin;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) id storedOrigin;
 - (UIBarButtonItem *)createToolbarLabelWithTitle:(NSString *)aTitle;
 - (UIToolbar *)createPickerToolbarWithTitle:(NSString *)aTitle;
 - (UIBarButtonItem *)createButtonWithType:(UIBarButtonSystemItem)type target:(id)target action:(SEL)buttonAction;
@@ -73,7 +73,7 @@
 
 #pragma mark - Abstract Implementation
 
-- (id)initWithTarget:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin  {
+- (instancetype)initWithTarget:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin  {
     self = [super init];
     if (self) {
         self.target = target;
@@ -168,8 +168,8 @@
     if (!title)
         title = @"";
     if (!value)
-        value = [NSNumber numberWithInt:0];
-    NSDictionary *buttonDetails = [[NSDictionary alloc] initWithObjectsAndKeys:title, @"buttonTitle", value, @"buttonValue", nil];
+        value = @0;
+    NSDictionary *buttonDetails = @{@"buttonTitle": title, @"buttonValue": value};
     [self.customButtons addObject:buttonDetails];
 }
 
@@ -178,9 +178,9 @@
     NSInteger index = button.tag;
     NSAssert((index >= 0 && index < self.customButtons.count), @"Bad custom button tag: %d, custom button count: %d", index, self.customButtons.count);
     NSAssert([self.pickerView respondsToSelector:@selector(selectRow:inComponent:animated:)], @"customButtonPressed not overridden, cannot interact with subclassed pickerView");
-    NSDictionary *buttonDetails = [self.customButtons objectAtIndex:index];
+    NSDictionary *buttonDetails = (self.customButtons)[index];
     NSAssert(buttonDetails != NULL, @"Custom button dictionary is invalid");
-    NSInteger buttonValue = [[buttonDetails objectForKey:@"buttonValue"] intValue];
+    NSInteger buttonValue = [buttonDetails[@"buttonValue"] intValue];
     UIPickerView *picker = (UIPickerView *)self.pickerView;
     NSAssert(picker != NULL, @"PickerView is invalid");
     [picker selectRow:buttonValue inComponent:0 animated:YES];
@@ -197,7 +197,7 @@
     NSMutableArray *barItems = [[NSMutableArray alloc] init];
     NSInteger index = 0;
     for (NSDictionary *buttonDetails in self.customButtons) {
-        NSString *buttonTitle = [buttonDetails objectForKey:@"buttonTitle"];
+        NSString *buttonTitle = buttonDetails[@"buttonTitle"];
       //NSInteger buttonValue = [[buttonDetails objectForKey:@"buttonValue"] intValue];
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:buttonTitle style:UIBarButtonItemStyleBordered target:self action:@selector(customButtonPressed:)];
         button.tag = index;

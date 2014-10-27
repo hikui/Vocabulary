@@ -40,7 +40,7 @@
 
 @implementation PlanningViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -268,7 +268,7 @@
             }
             cell.detailTextLabel.text = detailTxt;
         }else{
-            WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
+            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
             if (wl.finished) {
@@ -289,7 +289,7 @@
             }
             cell.detailTextLabel.text = detailTxt;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
-            WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
+            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
             if (wl.finished) {
@@ -339,14 +339,14 @@
         if (indexPath.section == 0) {
             subVC.wordList = self.todaysPlan.learningPlan;
         }else{
-            WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
+            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
             subVC.wordList = wl;
         }
     }else if (numOfSections == 1) {
         if (self.todaysPlan.learningPlan != nil) {
             subVC.wordList = self.todaysPlan.learningPlan;
         }else if (self.todaysPlan.reviewPlan.count != 0) {
-            WordList *wl = [self.todaysPlan.reviewPlan objectAtIndex:indexPath.row];
+            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
             subVC.wordList = wl;
         }
     }

@@ -10,8 +10,8 @@
 
 @interface NSMutableString (HTMLEscape)
 
-- (NSMutableString *)htmlUnescape;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSMutableString *htmlUnescape;
 
-- (NSMutableString *)htmlEscape;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSMutableString *htmlEscape;
 
 @end

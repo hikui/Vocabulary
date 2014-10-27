@@ -39,6 +39,6 @@
 
 - (IBAction)back:(id)sender;
 
-- (id)initWithModalViewControllerMode:(BOOL)modalViewControllerMode;
+- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode;
 
 @end

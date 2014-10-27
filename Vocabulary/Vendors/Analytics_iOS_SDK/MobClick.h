@@ -14,14 +14,14 @@
 #define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ReportPolicy) {
     REALTIME = 0,       //实时发送
     BATCH = 1,          //启动发送
     SENDDAILY = 4,      //每日发送
     SENDWIFIONLY = 5,   //仅在WIFI下启动时发送
     SEND_INTERVAL = 6,   //按最小间隔发送
     SEND_ON_EXIT = 7        //退出或进入后台时发送
-} ReportPolicy;
+} ;
 
 @class CLLocation;
 

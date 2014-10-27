@@ -37,7 +37,7 @@
 @property (nonatomic, assign) CGRect presentFromRect;
 
     // For subclasses.
-- (id)initWithTarget:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin;
+- (instancetype)initWithTarget:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin;
 
     // Present the ActionSheetPicker
 - (void)showActionSheetPicker;
@@ -49,7 +49,7 @@
 - (void)notifyTarget:(id)target didCancelWithAction:(SEL)cancelAction origin:(id)origin;
 
     // For subclasses.  This returns a configured picker view.  Subclasses should autorelease.
-- (UIPickerView *)configuredPickerView;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UIPickerView *configuredPickerView;
 
     // Adds custom buttons to the left of the UIToolbar that select specified values
 - (void)addCustomButtonWithTitle:(NSString *)title value:(id)value;

@@ -40,7 +40,7 @@
 @property (nonatomic,strong) MKNetworkOperation *voiceOp;
 @property (nonatomic,unsafe_unretained) BOOL shouldHideInfo;
 
-- (id)initWithWord:(Word *)word;
+- (instancetype)initWithWord:(Word *)word;
 - (void)refreshView;
 
 - (void)playSound;

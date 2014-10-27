@@ -26,7 +26,7 @@ typedef enum VNavItemType : NSInteger {
 
 @interface UIBarButtonItem(VNavigationController)
 
-- (id)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
-- (id)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action;
+- (instancetype)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
+- (instancetype)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action;
 
 @end

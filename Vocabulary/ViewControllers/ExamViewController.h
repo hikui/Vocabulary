@@ -43,8 +43,8 @@
 //@property (nonatomic, strong) AVAudioPlayer *soundPlayer;
 @property (nonatomic, strong) NSMutableSet *wrongWordsSet;
 
-- (id)initWithWordList:(WordList *)wordList;
-- (id)initWithWordArray:(NSMutableArray *)wordArray;
+- (instancetype)initWithWordList:(WordList *)wordList;
+- (instancetype)initWithWordArray:(NSMutableArray *)wordArray;
 
 - (IBAction)rightButtonOnPress:(id)sender;
 - (IBAction)wrongButtonOnPress:(id)sender;

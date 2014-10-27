@@ -126,9 +126,9 @@
 //        hasChanges = word.managedObjectContext.hasChanges;
 //        [word.managedObjectContext save:&err];
         //load voice
-        NSString *pronURL = [resultDict objectForKey:@"pron_us"];
+        NSString *pronURL = resultDict[@"pron_us"];
         if (pronURL == nil) {
-            pronURL = [resultDict objectForKey:@"pron_uk"];
+            pronURL = resultDict[@"pron_uk"];
         }
         
         //第二次网络访问，取得读音
@@ -142,14 +142,14 @@
                 PronunciationData *pron = [PronunciationData MR_createInContext:localContext];
                 pron.pronData = data;
                 localWord.pronunciation = pron;
-                localWord.hasGotDataFromAPI = [NSNumber numberWithBool:YES];
+                localWord.hasGotDataFromAPI = @YES;
             }];
             if (completion) {
                 completion();
             }
         } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordPronError userInfo:error.userInfo];
-            word.hasGotDataFromAPI = [NSNumber numberWithBool:NO];
+            word.hasGotDataFromAPI = @NO;
             if (errorBlock) {
                 errorBlock(myError);
             }
@@ -202,9 +202,9 @@
             [jointAcceptation appendFormat:@"%@ %@",tmpPos,tmpAcceptation];
         }
         targetWord.acceptation = jointAcceptation;
-        targetWord.psEN = [resultDict objectForKey:@"ps_uk"];
-        targetWord.psUS = [resultDict objectForKey:@"ps_us"];
-        targetWord.sentences = [resultDict objectForKey:@"sentence"]!=nil?[resultDict objectForKey:@"sentence"]:@"";
+        targetWord.psEN = resultDict[@"ps_uk"];
+        targetWord.psUS = resultDict[@"ps_us"];
+        targetWord.sentences = resultDict[@"sentence"]!=nil?resultDict[@"sentence"]:@"";
     }];
 }
 

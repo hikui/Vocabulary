@@ -32,6 +32,6 @@
 @property (nonatomic,strong) UIPageViewController *pageViewController;
 @property (nonatomic,strong) IBOutlet UILabel *pageIndicator;
 
-- (id)initWithWords:(NSMutableArray *)words;
+- (instancetype)initWithWords:(NSMutableArray *)words;
 - (IBAction)btnShowInfoOnPressed:(id)sender;
 @end

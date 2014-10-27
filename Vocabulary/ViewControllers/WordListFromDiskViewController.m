@@ -100,7 +100,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [self.fileList objectAtIndex:indexPath.row];
+    cell.textLabel.text = (self.fileList)[indexPath.row];
     if ([self.selectedIndexPath containsObject:indexPath]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }else{
@@ -134,7 +134,7 @@
     [self.fileList removeAllObjects];
     [self.selectedIndexPath removeAllObjects];
     NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString*path =[paths objectAtIndex:0];
+    NSString*path =paths[0];
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
     
     for (NSString *fileName in directoryContent) {
@@ -149,7 +149,7 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString*path =[paths objectAtIndex:0];
+    NSString*path =paths[0];
     NSArray *directoryContent = [fileManager contentsOfDirectoryAtPath:path error:NULL];
     
     for (NSString *fileName in directoryContent) {
@@ -175,10 +175,10 @@
     }
     if (self.wordList != nil) {
         NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        NSString*path =[paths objectAtIndex:0];
+        NSString*path =paths[0];
         for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
             int row = selectedIndexPath.row;
-            NSString *fileName = [self.fileList objectAtIndex:row];
+            NSString *fileName = (self.fileList)[row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;
             NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
@@ -207,11 +207,11 @@
         }
     }else{
         NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        NSString*path =[paths objectAtIndex:0];
+        NSString*path =paths[0];
         
         for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
             int row = selectedIndexPath.row;
-            NSString *fileName = [self.fileList objectAtIndex:row];
+            NSString *fileName = (self.fileList)[row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;
             NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];

@@ -10,7 +10,7 @@
 
 @implementation WordSearcher
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init]) {
         _queryOperationQueue = [[NSOperationQueue alloc]init];

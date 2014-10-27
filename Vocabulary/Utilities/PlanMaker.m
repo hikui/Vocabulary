@@ -69,7 +69,7 @@
         //上次复习日期+(effectiveCount对应的艾宾浩斯递增天数)=预计复习日期
         NSDate *lastReviewTime = wl.lastReviewTime;
         NSNumber *effectiveCount = wl.effectiveCount;
-        int deltaDay = [[effectiveCount_deltaDay_map objectForKey:effectiveCount]intValue];
+        int deltaDay = [effectiveCount_deltaDay_map[effectiveCount]intValue];
         NSTimeInterval deltaTimeInterval = deltaDay*24*60*60;
         //计算得到的下次应该复习的时间
         NSDate *expectedNextReviewDate = [lastReviewTime dateByAddingTimeInterval:deltaTimeInterval];

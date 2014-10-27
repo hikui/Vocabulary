@@ -41,7 +41,7 @@
 
 @implementation WordDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -112,7 +112,7 @@
 }
 
 
-- (id)initWithWord:(Word *)word
+- (instancetype)initWithWord:(Word *)word
 {
     self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
     if (self) {

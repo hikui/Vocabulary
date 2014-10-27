@@ -36,7 +36,7 @@
 
 @implementation CreateWordListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -115,7 +115,7 @@
 - (void)keyboardWillAppear:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
-    CGRect targetKeyboardFrame = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue];
+    CGRect targetKeyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
     UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
     targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
     CGFloat offsetY = targetKeyboardFrame.size.height;
@@ -128,7 +128,7 @@
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     NSDictionary *userInfo = [notification userInfo];
-    CGRect targetKeyboardFrame = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey]CGRectValue];
+    CGRect targetKeyboardFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey]CGRectValue];
     UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
     targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
 //    CGFloat offsetY = targetKeyboardFrame.size.height;

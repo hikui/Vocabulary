@@ -38,7 +38,7 @@
 
 @implementation SearchWordViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -47,7 +47,7 @@
     return self;
 }
 
-- (id)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
+- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
 {
     self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
     if (self) {
@@ -116,14 +116,14 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    NSDictionary *contentDict = [self.contentsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [contentDict objectForKey:@"key"];
+    NSDictionary *contentDict = (self.contentsArray)[indexPath.row];
+    cell.textLabel.text = contentDict[@"key"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *word = [[self.contentsArray objectAtIndex:indexPath.row] objectForKey:@"key"];
+    NSString *word = (self.contentsArray)[indexPath.row][@"key"];
 //    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
 //    NSFetchRequest *request = [[NSFetchRequest alloc]init];
 //    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
@@ -222,9 +222,9 @@
     UIViewAnimationCurve animationCurve;
     CGRect keyboardEndFrame;
     
-    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [userInfo[UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:animationDuration];

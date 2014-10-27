@@ -45,7 +45,7 @@
 @implementation LearningBackboneViewController
 
 
-- (id)initWithWords:(NSMutableArray *)words
+- (instancetype)initWithWords:(NSMutableArray *)words
 {
     self = [super initWithNibName:@"LearningBackboneViewController" bundle:nil];
     if (self) {
@@ -89,14 +89,14 @@
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
-        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:[self.words objectAtIndex:i]];
+        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:(self.words)[i]];
         if (lvc) {
             [self.learningViewControllerArray addObject:lvc];
         }
     }
     if (self.learningViewControllerArray.count > 0) {
-        [self.pageViewController setViewControllers:@[[self.learningViewControllerArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-        self.currentShownViewController = [self.learningViewControllerArray objectAtIndex:0];
+        [self.pageViewController setViewControllers:@[(self.learningViewControllerArray)[0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        self.currentShownViewController = (self.learningViewControllerArray)[0];
     }
 }
 
@@ -151,8 +151,8 @@
     if (index == self.words.count-1) {
         return nil;
     }
-    WordDetailViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index+1)%2];
-    nlvc.word = [self.words objectAtIndex:index+1];
+    WordDetailViewController *nlvc = (self.learningViewControllerArray)[(index+1)%2];
+    nlvc.word = (self.words)[index+1];
     return nlvc;
 }
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController
@@ -164,15 +164,15 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     if (index == 0) {
         return nil;
     }
-    WordDetailViewController *nlvc = [self.learningViewControllerArray objectAtIndex:(index-1)%2];
-    nlvc.word = [self.words objectAtIndex:index-1];
+    WordDetailViewController *nlvc = (self.learningViewControllerArray)[(index-1)%2];
+    nlvc.word = (self.words)[index-1];
     return nlvc;
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     if (finished && completed) {
-        WordDetailViewController *lvc = (WordDetailViewController *)[previousViewControllers objectAtIndex:0];
+        WordDetailViewController *lvc = (WordDetailViewController *)previousViewControllers[0];
         if ([lvc isKindOfClass:[WordDetailViewController class]]) {
             Word *wd = lvc.word;
             int index = [self.words indexOfObject:wd];
