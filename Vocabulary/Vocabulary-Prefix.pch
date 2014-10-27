@@ -8,14 +8,21 @@
 #warning "This project uses features only available in iOS SDK 4.0 and later."
 #endif
 
+#import <CocoaLumberjack/CocoaLumberjack.h>
+#ifdef DEBUG
+static int ddLogLevel = LOG_LEVEL_DEBUG;
+#else
+static int ddLogLevel = LOG_LEVEL_OFF;
+#endif
+
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "MobClick.h"
     #import "MKNetworkKit.h"
-    #import "CoreData+MagicalRecord.h"
     #import "Reachability.h"
     #import "MBProgressHUD.h"
+    #import "CoreData+MagicalRecord.h"
     #import "Word.h"
     #import "WordList.h"
     #import "PronunciationData.h"
@@ -23,9 +30,3 @@
     #import "VBaseViewController.h"
 #endif
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
-#ifdef DEBUG
-    static const int ddLogLevel = LOG_LEVEL_DEBUG;
-#else
-    static const int ddLogLevel = LOG_LEVEL_OFF;
-#endif
