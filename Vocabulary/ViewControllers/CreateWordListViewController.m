@@ -26,6 +26,7 @@
 #import "CreateWordListViewController.h"
 #import "WordListCreator.h"
 #import "AppDelegate.h"
+#import "SZTextView.h"
 
 @interface CreateWordListViewController ()
 
@@ -65,19 +66,13 @@
     self.titleField.leftViewMode = UITextFieldViewModeAlways;
     [self.titleField becomeFirstResponder];
     
+    self.textView.placeholder = @"请用空格或换行隔开";
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.originalTextViewHeight = self.textView.frame.size.height;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -100,15 +95,6 @@
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
-#pragma mark UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    if (_firstEdit) {
-        textView.text = @"";
-    }
-    _firstEdit = NO;
-    return YES;
-}
 
 #pragma mark Receive Notification
 
@@ -155,8 +141,13 @@
 - (IBAction)btnOkPressed:(id)sender
 {
     NSString *text = self.textView.text;
-    NSArray *words = [text componentsSeparatedByString:@"\n"];
-    NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
+//    NSArray *words = [text componentsSeparatedByCharactersInSet];
+    NSMutableSet *wordSet = [[NSMutableSet alloc]init];
+    NSScanner *scanner = [NSScanner scannerWithString:text];
+    NSString *token;
+    while ([scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] intoString:&token]) {
+        [wordSet addObject:token];
+    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
