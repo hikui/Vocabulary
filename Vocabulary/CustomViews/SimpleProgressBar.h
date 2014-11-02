@@ -13,6 +13,6 @@
 @property (nonatomic, assign) float progress;
 @property (nonatomic, strong) UIColor *barColor;
 
-- (id)initWithFrame:(CGRect)frame barColor:(UIColor *)color;
+- (instancetype)initWithFrame:(CGRect)frame barColor:(UIColor *)color;
 
 @end

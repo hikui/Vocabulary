@@ -27,7 +27,7 @@
 
 @implementation ExamContent
 
-- (id)initWithWord:(Word *)word examType:(ExamType)examType
+- (instancetype)initWithWord:(Word *)word examType:(ExamType)examType
 {
     self = [super init];
     if (self) {

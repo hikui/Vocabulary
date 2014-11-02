@@ -29,7 +29,7 @@
 
 @interface SearchWordViewController ()
 
-@property (nonatomic, strong) NSFetchRequest *fetchRequest;
+//@property (nonatomic, strong) NSFetchRequest *fetchRequest;
 
 - (void) addQueryOperation:(NSOperation *)operation;
 - (NSOperation *) makeQueryOperationWithText:(NSString *)text;
@@ -38,7 +38,7 @@
 
 @implementation SearchWordViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -47,7 +47,7 @@
     return self;
 }
 
-- (id)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
+- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
 {
     self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
     if (self) {
@@ -116,27 +116,27 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    NSDictionary *contentDict = [self.contentsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [contentDict objectForKey:@"key"];
+    NSDictionary *contentDict = (self.contentsArray)[indexPath.row];
+    cell.textLabel.text = contentDict[@"key"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *word = [[self.contentsArray objectAtIndex:indexPath.row] objectForKey:@"key"];
-    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-    [request setEntity:entity];
-    [request setFetchLimit:1];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key = %@)",word];
-    [request setPredicate:predicate];
-    NSArray *resultArr = [ctx executeFetchRequest:request error:nil];
-    
-    if (resultArr.count == 0) {
-        return;
-    }
-    Word *w = [resultArr objectAtIndex:0];
+    NSString *word = (self.contentsArray)[indexPath.row][@"key"];
+//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+//    [request setEntity:entity];
+//    [request setFetchLimit:1];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key = %@)",word];
+//    [request setPredicate:predicate];
+//    NSArray *resultArr = [ctx executeFetchRequest:request error:nil];
+//    
+//    if (resultArr.count == 0) {
+//        return;
+//    }
+    Word *w = [Word MR_findFirstByAttribute:@"key" withValue:word];
     WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -156,21 +156,14 @@
         return nil;
     }
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        
         UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)self.navigationItem.rightBarButtonItem.customView;
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [indicator startAnimating];
         });
+        NSManagedObjectContext *context = [NSManagedObjectContext MR_context];
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS %@)",text];
-        [self.fetchRequest setPredicate:predicate];
-        NSError *error = nil;
-        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-        NSArray * result = [ctx executeFetchRequest:self.fetchRequest error:&error];
-        if (error) {
-            NSLog(@"%@",error);
-            return;
-        }
+        NSFetchRequest *request = [Word MR_requestAllSortedBy:@"key" ascending:YES withPredicate:predicate inContext:context];
+        NSArray *result = [NSManagedObject MR_executeFetchRequest:request inContext:context];
         dispatch_async(dispatch_get_main_queue(), ^{
             self.contentsArray = result;
             [self.tableView reloadData];
@@ -182,18 +175,18 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"%@",searchText);
+    DDLogDebug(@"%@",searchText);
     
-    if (self.fetchRequest == nil) {
-        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-        self.fetchRequest = [[NSFetchRequest alloc]init];
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
-        [self.fetchRequest setEntity:entity];
-        [self.fetchRequest setSortDescriptors:@[sort]];
-        [self.fetchRequest setResultType:NSDictionaryResultType];
-        [self.fetchRequest setPropertiesToFetch:@[@"key"]];
-    }
+//    if (self.fetchRequest == nil) {
+//        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+//        self.fetchRequest = [[NSFetchRequest alloc]init];
+//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
+//        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
+//        [self.fetchRequest setEntity:entity];
+//        [self.fetchRequest setSortDescriptors:@[sort]];
+//        [self.fetchRequest setResultType:NSDictionaryResultType];
+//        [self.fetchRequest setPropertiesToFetch:@[@"key"]];
+//    }
     NSOperation *op = [self makeQueryOperationWithText:searchText];
     
     //制造延时，并发查找
@@ -219,7 +212,7 @@
 #pragma mark - ibactions
 - (void)back:(id)sender
 {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - keyboard things
@@ -229,9 +222,9 @@
     UIViewAnimationCurve animationCurve;
     CGRect keyboardEndFrame;
     
-    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
-    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
-    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    [userInfo[UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [userInfo[UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [userInfo[UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:animationDuration];

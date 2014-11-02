@@ -27,13 +27,14 @@
 
 @interface ConfusingWordsIndexer : NSObject
 
-/**
- 对新插入的words进行索引。调用此方法前，先插入到数据库中（执行context save）
- @param newWordsIDArray 传managedObjectID数组
- */
-+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray completion:(HKVErrorBlock)completion;
-
-+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
+///**
+// 对新插入的words进行索引。调用此方法前，先插入到数据库中（执行context save）
+// @param newWordsIDArray 传managedObjectID数组
+// */
+//+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray completion:(HKVErrorBlock)completion;
+//
+//+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
++ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
 
 + (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)callback completion:(HKVVoidBlock)completion;
 

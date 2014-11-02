@@ -31,7 +31,7 @@
 
 @implementation VWebViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -80,7 +80,7 @@
 
 - (IBAction)closeButtonOnPress:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)backButtonPressed:(id)sender
 {
@@ -106,7 +106,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"error:%@",error);
+    DDLogDebug(@"error:%@",error);
     [MBProgressHUD hideAllHUDsForView:self.webView animated:YES];
 }
 

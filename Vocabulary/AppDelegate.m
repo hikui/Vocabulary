@@ -47,10 +47,12 @@
     [MobClick updateOnlineConfig];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
     
-//    //载入必要的预存设置
-//    _finishTodaysLearningPlan = [[NSUserDefaults standardUserDefaults]boolForKey:kFinishTodaysPlan];
-//    _planExpireTime = [[NSUserDefaults standardUserDefaults]objectForKey:kPlanExpireTime];
-
+    //CoreData stack
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"db.sqlite"];
+    
+    //Lumberjack
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [DDLog addLogger:[[DDFileLogger alloc]init]];
     
     LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithNibName:@"LeftBarViewController" bundle:nil];
         
@@ -70,29 +72,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    self.todaysPlan = [[Plan alloc]init];
-    
-    //如果不需要数据库升级，直接进主页。如果需要数据库升级，近welcome view
-    __block BOOL needMigration = NO;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        needMigration = [[CoreDataHelperV2 sharedInstance]isMigrationNeeded];
-    });
-    if (!needMigration) {
-//        [self refreshTodaysPlan];
-        
-        self.window.rootViewController = viewDeckController;
-    }else{
-        [[NSBundle mainBundle]loadNibNamed:@"WelcomeView" owner:self options:nil];
-        self.welcomeView.frame = CGRectMake(0, 20, 320, self.window.frame.size.height - 20);
-        [self.window addSubview:self.welcomeView];
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:YES];
-        hud.detailsLabelText = @"正在升级数据库\n这将花费大约一分钟的时间";
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFinished:) name:kMigrationFinishedNotification object:nil];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(databaseMigrationFailed:) name:kMigrationFailedNotification object:nil];
-        [[CoreDataHelperV2 sharedInstance]migrateDatabase];
-    }
+    self.window.rootViewController = viewDeckController;
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -106,14 +86,14 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    [helper.mainContext save:nil];
+//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+//    [helper.mainContext save:nil];
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-//    [self refreshTodaysPlan];
     [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
 }
 
@@ -125,27 +105,14 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
-    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-    [helper.mainContext save:nil];
+//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
+//    [helper.mainContext save:nil];
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
+    [MagicalRecord cleanUp];
 }
-//
-//- (void)setFinishTodaysLearningPlan:(BOOL)finishTodaysPlan
-//{
-//    _finishTodaysLearningPlan = finishTodaysPlan;
-//    [[NSUserDefaults standardUserDefaults]setBool:finishTodaysPlan forKey:kFinishTodaysPlan];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-//
-//- (void)setPlanExpireTime:(NSDate *)planExpireTime
-//{
-//    _planExpireTime = planExpireTime;
-//    [[NSUserDefaults standardUserDefaults]setObject:planExpireTime forKey:kPlanExpireTime];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//}
-
 
 - (void)onlineConfigCallBack:(NSNotification *)notification {
-    NSLog(@"online config has fininshed and params = %@", notification.userInfo);
+    DDLogDebug(@"online config has fininshed and params = %@", notification.userInfo);
     NSString *newHelpDocVersion = [MobClick getConfigParams:@"helpDocVersion"];
     NSString *currentHelpVersion = [[NSUserDefaults standardUserDefaults]stringForKey:@"kCurrHelpDocVersion"];
     if (currentHelpVersion == nil) {
@@ -184,99 +151,4 @@
     hud.detailsLabelText = @"数据库升级失败！\n请您回退到以前版本或通过iTunes删除已有数据库。";
 }
 
-#pragma mark - custom methods
-//- (void)refreshTodaysPlan
-//{
-//    //艾宾浩斯曲线日期递增映射
-//    NSDictionary *effectiveCount_deltaDay_map =
-//    @{
-//    [NSNumber numberWithInt:1]:[NSNumber numberWithInt:0],
-//    [NSNumber numberWithInt:2]:[NSNumber numberWithInt:1],
-//    [NSNumber numberWithInt:3]:[NSNumber numberWithInt:2],
-//    [NSNumber numberWithInt:4]:[NSNumber numberWithInt:3],
-//    [NSNumber numberWithInt:5]:[NSNumber numberWithInt:8],
-//    };
-//    
-//    NSDate *planExpireTime = [self.planExpireTime copy];
-//    //获取当前日期，忽略具体时间
-//    unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-//    NSCalendar* calendar = [NSCalendar currentCalendar];
-//    NSDateComponents* components = [calendar components:flags fromDate:planExpireTime];
-//    planExpireTime = [calendar dateFromComponents:components];
-//    if ([planExpireTime compare:[NSDate date]] == NSOrderedAscending || [planExpireTime compare:[NSDate date]] == NSOrderedSame) {
-//        //expire于现在之前，为过期
-//        self.finishTodaysLearningPlan = NO;
-//    }
-//    
-//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
-//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
-//    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"addTime" ascending:YES];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount==0)"];
-//    [request setEntity:entity];
-//    [request setPredicate:predicate];
-//    [request setSortDescriptors:@[sort]];
-//    [request setFetchLimit:1];
-//    //筛选学习计划
-//    if (!_finishTodaysLearningPlan) {
-//        //pick a word list
-//        NSArray *result = [ctx executeFetchRequest:request error:nil];
-//        if (result.count > 0) {
-//            WordList *learningPlan = [result objectAtIndex:0];
-//            self.todaysPlan.learningPlan = learningPlan;
-//        }
-//    }
-//    //筛选复习计划
-//    predicate = [NSPredicate predicateWithFormat:@"(effectiveCount > 0 AND effectiveCount <= 5)"];
-//    [request setPredicate:predicate];
-//    [request setFetchLimit:0];
-//    
-//    NSArray *result = [ctx executeFetchRequest:request error:nil];
-//    
-//    NSMutableArray *reviewPlan = [[NSMutableArray alloc]init];
-//    
-//    for (WordList *wl in result) {
-//        //上次复习日期+(effectiveCount对应的艾宾浩斯递增天数)=预计复习日期
-//        NSDate *lastReviewTime = wl.lastReviewTime;
-//        NSNumber *effectiveCount = wl.effectiveCount;
-//        int deltaDay = [[effectiveCount_deltaDay_map objectForKey:effectiveCount]intValue];
-//        NSTimeInterval deltaTimeInterval = deltaDay*24*60*60;
-//        //计算得到的下次应该复习的时间
-//        NSDate *expectedNextReviewDate = [lastReviewTime dateByAddingTimeInterval:deltaTimeInterval];
-//        //获取当前日期，忽略具体时间
-//        unsigned int flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-//        NSCalendar* calendar = [NSCalendar currentCalendar];
-//        NSDateComponents* components = [calendar components:flags fromDate:expectedNextReviewDate];
-//        expectedNextReviewDate = [calendar dateFromComponents:components];
-//        NSDate* currDate = [NSDate date];
-//        //比较两个时间
-//        if ([expectedNextReviewDate compare:currDate] == NSOrderedAscending || [expectedNextReviewDate compare:currDate] == NSOrderedSame) {
-//            //预计复习日期≤现在日期 需要复习
-//            [reviewPlan addObject:wl];
-//        }
-//    }
-//    self.todaysPlan.reviewPlan = reviewPlan;
-//}
-
-#pragma mark - view deck delegate
-//- (void)viewDeckController:(IIViewDeckController*)viewDeckController willOpenViewSide:(IIViewDeckSide)viewDeckSide animated:(BOOL)animated
-//{
-//    UIView *leftView = viewDeckController.leftController.view;
-//    if (animated) {
-//        [UIView animateWithDuration:1 animations:^{
-//            leftView.frame = CGRectMake(leftView.frame.origin.x, leftView.frame.origin.y, viewDeckController.leftViewSize, leftView.frame.size.height);
-//        }];
-//    }
-//}
-//- (void)viewDeckController:(IIViewDeckController*)viewDeckController didChangeOffset:(CGFloat)offset orientation:(IIViewDeckOffsetOrientation)orientation panning:(BOOL)panning
-//{
-//    NSLog(@"view deck did change offset with panning:%d, offset:%f",panning,offset);
-//    if (!panning && offset != 0.0f) {
-//        UIView *leftView = viewDeckController.leftController.view;
-////        [UIView animateWithDuration:1 animations:^{
-////            NSLog(@"leftViewSize:%f,leftSize:%f",viewDeckController.leftViewSize,viewDeckController.leftSize);
-////            leftView.frame = CGRectMake(leftView.frame.origin.x, leftView.frame.origin.y, offset, leftView.frame.size.height);
-////        }];
-//    }
-//}
 @end

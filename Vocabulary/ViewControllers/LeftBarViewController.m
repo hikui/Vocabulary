@@ -15,6 +15,7 @@
 #import "CreateWordListViewController.h"
 #import "VNavigationController.h"
 #import "WordDetailViewController.h"
+#import "PureColorImageGenerator.h"
 
 #import "AppDelegate.h"
 
@@ -92,10 +93,8 @@
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIImage *cellBG = [[UIImage imageNamed:@"CellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-            UIImage *cellBGHighlighted = [[UIImage imageNamed:@"CellBGHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+            UIImage *cellBGHighlighted = [PureColorImageGenerator generateOnePixelImageWithColor:RGBA(30, 33, 36, 1)];
             cell.contentView.backgroundColor = [UIColor clearColor];
-            cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
             cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
             UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, cell.frame.size.width-20,cell.frame.size.height)];
             contentLabel.tag = 1000;
@@ -118,6 +117,10 @@
         return cell;
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,14 +178,9 @@
             if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[WordListViewController class]]) {
                 [viewDeckController closeLeftView];
             }else{
-                
-                NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
-                NSFetchRequest *request = [[NSFetchRequest alloc]init];
-                NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
-                [request setEntity:entity];
-                [request setPredicate:predicate];
-                NSArray *result = [ctx executeFetchRequest:request error:nil];
+                NSArray *result = [Word MR_findAllWithPredicate:predicate];
+                
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
                 WordListViewController *svc = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
@@ -209,7 +207,8 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:self.searchResult[indexPath.row]];
         VNavigationController *nlvc = [[VNavigationController alloc]initWithRootViewController:lvc];
-        [self presentModalViewController:nlvc animated:YES];
+//        [self presentModalViewController:nlvc animated:YES];
+        [self presentViewController:nlvc animated:YES completion:nil];
     }
     
 }
@@ -220,10 +219,12 @@
     NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"批量输入"]) {
         CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
-        [self presentModalViewController:vc animated:YES];
+//        [self presentModalViewController:vc animated:YES];
+        [self presentViewController:vc animated:YES completion:nil];
     }else if ([title isEqualToString:@"从iTunes上传"]){
         WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
-        [self presentModalViewController:fdvc animated:YES];
+//        [self presentModalViewController:fdvc animated:YES];
+        [self presentViewController:fdvc animated:YES completion:nil];
     }
 }
 

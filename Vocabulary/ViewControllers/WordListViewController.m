@@ -39,7 +39,7 @@
 
 @implementation WordListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -102,7 +102,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];;
+//    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];;
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,7 +145,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    Word *w = [self.wordArray objectAtIndex:indexPath.row];
+    Word *w = (self.wordArray)[indexPath.row];
     cell.textLabel.text = w.key;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
     //已学习过的但未完成艾宾浩斯学习的单词列表中熟悉度<=5的单词，或者已完成艾宾浩斯学习的单词列表中，熟悉度<10的单词，标记红色。
@@ -160,7 +160,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Word *w = [self.wordArray objectAtIndex:indexPath.row];
+    Word *w = (self.wordArray)[indexPath.row];
     WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -177,7 +177,7 @@
     [_tableView beginUpdates];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSUInteger row = indexPath.row;
-        Word *wordShouldBeDeleted = [self.wordArray objectAtIndex:row];
+        Word *wordShouldBeDeleted = (self.wordArray)[row];
 //        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
 //            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
 //        }
@@ -247,11 +247,13 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:@"确定"]) {
-        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
-        w.key = [[alertView textFieldAtIndex:0]text];
-        [w addWordListsObject:self.wordList];
-        [ctx save:nil];
+//        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+//        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
+        Word *w = [Word MR_createEntity];
+        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            w.key = [[alertView textFieldAtIndex:0]text];
+            [w addWordListsObject:self.wordList];
+        }];
         [self.wordArray addObject:w];
         [_tableView beginUpdates];
         NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
@@ -259,8 +261,7 @@
         [_tableView endUpdates];
         
         //后台做索引
-        
-        [ConfusingWordsIndexer indexNewWordsAsyncById:@[w.objectID] completion:NULL];
+        [ConfusingWordsIndexer asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
         
     }
 }
@@ -288,7 +289,8 @@
         }
         WordListFromDiskViewController *wfdvc = [[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
         wfdvc.wordList = self.wordList;
-        [self presentModalViewController:wfdvc animated:YES];
+//        [self presentModalViewController:wfdvc animated:YES];
+        [self presentViewController:wfdvc animated:YES completion:nil];
     }
 }
 

@@ -28,8 +28,6 @@
 #import "Plan.h"
 @interface PlanningViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate>
 
-//@property (nonatomic, strong) NSMutableArray *wordListsArray;
-//@property (nonatomic, strong) WordList *todaysPlan;
 @property (nonatomic, strong) Plan *todaysPlan;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UILabel *hintView;

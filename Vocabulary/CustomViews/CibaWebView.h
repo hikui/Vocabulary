@@ -16,7 +16,7 @@
 @property (nonatomic, unsafe_unretained) CGPoint animationBeginPoint;
 @property (nonatomic, unsafe_unretained) CGPoint animationEndPoint;
 
-- (id)initWithView:(UIView *)superView word:(NSString *)word;
+- (instancetype)initWithView:(UIView *)superView word:(NSString *)word;
 
 - (void)showCibaWebViewAnimated:(BOOL)animated;
 - (void)hideCibaWebViewAnimated:(BOOL)animated;

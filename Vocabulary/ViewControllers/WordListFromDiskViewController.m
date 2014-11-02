@@ -100,7 +100,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = [self.fileList objectAtIndex:indexPath.row];
+    cell.textLabel.text = (self.fileList)[indexPath.row];
     if ([self.selectedIndexPath containsObject:indexPath]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }else{
@@ -134,14 +134,14 @@
     [self.fileList removeAllObjects];
     [self.selectedIndexPath removeAllObjects];
     NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString*path =[paths objectAtIndex:0];
+    NSString*path =paths[0];
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
     
     for (NSString *fileName in directoryContent) {
         if ([fileName hasSuffix:@".txt"]) {
             [self.fileList addObject:fileName];
         }
-        NSLog(@"%@",fileName);
+        DDLogDebug(@"%@",fileName);
     }
 }
 
@@ -149,7 +149,7 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString*path =[paths objectAtIndex:0];
+    NSString*path =paths[0];
     NSArray *directoryContent = [fileManager contentsOfDirectoryAtPath:path error:NULL];
     
     for (NSString *fileName in directoryContent) {
@@ -166,7 +166,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    __block int totalCount = self.selectedIndexPath.count;
+    __block NSUInteger totalCount = self.selectedIndexPath.count;
     
     if (totalCount == 0) {
         [hud hide:YES];
@@ -175,10 +175,10 @@
     }
     if (self.wordList != nil) {
         NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        NSString*path =[paths objectAtIndex:0];
+        NSString*path =paths[0];
         for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
-            int row = selectedIndexPath.row;
-            NSString *fileName = [self.fileList objectAtIndex:row];
+            NSUInteger row = selectedIndexPath.row;
+            NSString *fileName = (self.fileList)[row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;
             NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
@@ -192,12 +192,12 @@
             
             
             
-            [WordListCreator addWords:wordSet toWordListId:self.wordList.objectID progressBlock:^(float progress) {
+            [WordListCreator addWords:wordSet toWordList:self.wordList progressBlock:^(float progress) {
                 hud.detailsLabelText = @"正在索引易混淆单词";
             } completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
-                        NSLog(@"%@",[error localizedDescription]);
+                        DDLogError(@"%@",[error localizedDescription]);
                     }
                     [hud hide:YES];
 //                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
@@ -207,11 +207,11 @@
         }
     }else{
         NSArray*paths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-        NSString*path =[paths objectAtIndex:0];
+        NSString*path =paths[0];
         
         for (NSIndexPath *selectedIndexPath in self.selectedIndexPath) {
-            int row = selectedIndexPath.row;
-            NSString *fileName = [self.fileList objectAtIndex:row];
+            NSUInteger row = selectedIndexPath.row;
+            NSString *fileName = (self.fileList)[row];
             NSString *filePath = [path stringByAppendingFormat:@"/%@",fileName];
             NSError *readFileError = NULL;
             NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&readFileError];
@@ -233,7 +233,7 @@
             } completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
-                        NSLog(@"%@",[error localizedDescription]);
+                        DDLogError(@"%@",[error localizedDescription]);
                     }
                     totalCount--;
                     if (totalCount <= 0) {

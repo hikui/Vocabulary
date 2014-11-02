@@ -26,10 +26,10 @@
 #import <Foundation/Foundation.h>
 #import "Word.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, ExamType) {
     ExamTypeE2C, //英译中
     ExamTypeS2E, //听译
-} ExamType;
+} ;
 
 
 @interface ExamContent : NSObject
@@ -41,7 +41,7 @@ typedef enum {
 @property (nonatomic, unsafe_unretained) int wrongTimes;
 @property (nonatomic, strong) NSDate *lastReviewDate;
 
-- (id)initWithWord:(Word *)word examType:(ExamType)examType;
-- (int)weight;   //计算权值
+- (instancetype)initWithWord:(Word *)word examType:(ExamType)examType;
+@property (NS_NONATOMIC_IOSONLY, readonly) int weight;   //计算权值
 
 @end

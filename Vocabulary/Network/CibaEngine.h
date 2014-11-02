@@ -28,8 +28,6 @@
 
 @interface CibaEngine : MKNetworkEngine
 
-@property (nonatomic, strong) NSMutableSet *livingOperations;
-
 + (id)sharedInstance;
 
 - (MKNetworkOperation *) infomationForWord:(NSString *)word
@@ -47,7 +45,7 @@
                      onCompletion:(HKVVoidBlock)completion
                           onError:(HKVErrorBlock)error;
 //删除一个单词的请求
-- (void) cancelOperationOfWord:(Word *)word;
+//- (void) cancelOperationOfWord:(Word *)word;
 
 + (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict;
 

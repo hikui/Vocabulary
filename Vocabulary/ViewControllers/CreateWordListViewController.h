@@ -25,9 +25,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SZTextView;
 @interface CreateWordListViewController : VBaseViewController<UITextViewDelegate,UIScrollViewDelegate>
 
-@property (nonatomic,weak) IBOutlet UITextView *textView;
+@property (nonatomic,weak) IBOutlet SZTextView *textView;
 @property (nonatomic,weak) IBOutlet UITextField *titleField;
 
 - (void)keyboardWillAppear:(NSNotification *)notification;

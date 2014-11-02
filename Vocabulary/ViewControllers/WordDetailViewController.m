@@ -35,11 +35,13 @@
 
 @interface WordDetailViewController ()
 
+@property (nonatomic, weak) CibaNetworkOperation *networkOperation;
+
 @end
 
 @implementation WordDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -82,7 +84,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];    
-    [[CibaEngine sharedInstance]cancelOperationOfWord:self.word];
+//    [[CibaEngine sharedInstance]cancelOperationOfWord:self.word];
+    [self.networkOperation cancel];
     
 }
 
@@ -109,7 +112,7 @@
 }
 
 
-- (id)initWithWord:(Word *)word
+- (instancetype)initWithWord:(Word *)word
 {
     self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
     if (self) {
@@ -165,7 +168,9 @@
         textViewFrame.origin.y = labelFrame.origin.y+labelFrame.size.height+10.0f;
         self.acceptationTextView.frame = textViewFrame;
         
-        self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronunciation.pronData error:nil];
+        NSData *soundData = self.word.pronunciation.pronData;
+        NSError *err = nil;
+        self.player = [[AVAudioPlayer alloc]initWithData:soundData error:&err];
         [self.player prepareToPlay];
     }else{
         [self refreshWordData];
@@ -182,7 +187,8 @@
     VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
     NSURL *url = [NSURL URLWithString:CIBA_URL(self.word.key)];
     wvc.requestURL = url;
-    [self presentModalViewController:wvc animated:YES];
+//    [self presentModalViewController:wvc animated:YES];
+    [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (void)showInfo
@@ -213,7 +219,7 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     CibaEngine *engine = [CibaEngine sharedInstance];
-    [engine fillWord:self.word onCompletion:^{
+    self.networkOperation = [engine fillWord:self.word onCompletion:^{
         [hud hide:YES];
         [self refreshView];
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
@@ -235,7 +241,7 @@
 #pragma mark - actions
 - (void)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

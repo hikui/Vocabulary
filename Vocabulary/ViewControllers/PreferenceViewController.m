@@ -25,7 +25,7 @@
 
 #import "PreferenceViewController.h"
 #import "VWebViewController.h"
-#import "ActionSheetPicker.h"
+#import "ActionSheetDatePicker.h"
 #import "ConfusingWordsIndexer.h"
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
@@ -44,7 +44,7 @@
 
 @implementation PreferenceViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -328,16 +328,16 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
+            DDLogDebug(@"Mail cancelled");
             break;
         case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
+            DDLogDebug(@"Mail saved");
             break;
         case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
+            DDLogDebug(@"Mail sent");
             break;
         case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            DDLogDebug(@"Mail sent failure: %@", [error localizedDescription]);
             break;
         default:
             break;

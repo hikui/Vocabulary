@@ -15,6 +15,6 @@
  
  @return 时间是0：00的日期
  */
-- (NSDate *)hkv_dateWithoutTime;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *hkv_dateWithoutTime;
 
 @end

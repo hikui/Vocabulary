@@ -11,7 +11,7 @@
 
 @implementation VGradientView
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -28,14 +28,10 @@
     
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.bounds;
-    gradient.colors = [NSArray arrayWithObjects:
-                       (id)redTop.CGColor,
-                       (id)redBot.CGColor,
-                       nil];
-    gradient.locations = [NSArray arrayWithObjects:
-                          [NSNumber numberWithFloat:0.0f],
-                          [NSNumber numberWithFloat:0.7],
-                          nil];
+    gradient.colors = @[(id)redTop.CGColor,
+                       (id)redBot.CGColor];
+    gradient.locations = @[@0.0f,
+                          @0.7f];
     
     [self.layer insertSublayer:gradient atIndex:0];
     
