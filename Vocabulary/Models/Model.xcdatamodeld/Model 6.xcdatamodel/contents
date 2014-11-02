@@ -7,6 +7,7 @@
     </entity>
     <entity name="NoteAttatchment" representedClassName="NoteAttatchment" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="mimeType" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="note" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="attatchments" inverseEntity="Note" syncable="YES"/>
     </entity>
     <entity name="Plan" representedClassName="Plan" syncable="YES">
@@ -42,11 +43,11 @@
         <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="wordLists" inverseEntity="Word" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Note" positionX="-533" positionY="227" width="128" height="88"/>
+        <element name="NoteAttatchment" positionX="-315" positionY="234" width="128" height="90"/>
         <element name="Plan" positionX="-531" positionY="648" width="128" height="103"/>
         <element name="PronunciationData" positionX="-875" positionY="351" width="128" height="73"/>
         <element name="Word" positionX="-686" positionY="315" width="128" height="223"/>
         <element name="WordList" positionX="-434" positionY="369" width="128" height="135"/>
-        <element name="Note" positionX="-533" positionY="227" width="128" height="88"/>
-        <element name="NoteAttatchment" positionX="-315" positionY="234" width="128" height="73"/>
     </elements>
 </model>

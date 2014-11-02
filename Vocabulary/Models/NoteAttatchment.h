@@ -14,6 +14,7 @@
 @interface NoteAttatchment : NSManagedObject
 
 @property (nonatomic, retain) NSData * data;
+@property (nonatomic, retain) NSString * mimeType;
 @property (nonatomic, retain) Note *note;
 
 @end

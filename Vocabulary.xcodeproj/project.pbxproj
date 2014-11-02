@@ -91,10 +91,10 @@
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
 		A489D70B1A066B720087C0AF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A489D7041A066B720087C0AF /* Model.xcdatamodeld */; };
 		A489D70F1A066CFB0087C0AF /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = A489D70E1A066CFB0087C0AF /* Note.m */; };
-		A489D7121A066CFB0087C0AF /* NoteAttatchment.m in Sources */ = {isa = PBXBuildFile; fileRef = A489D7111A066CFB0087C0AF /* NoteAttatchment.m */; };
 		A489D7151A066DAF0087C0AF /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = A489D7141A066DAF0087C0AF /* Word.m */; };
 		A489D7181A066DEA0087C0AF /* PronunciationData.m in Sources */ = {isa = PBXBuildFile; fileRef = A489D7171A066DEA0087C0AF /* PronunciationData.m */; };
 		A489D71B1A0670290087C0AF /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A489D71A1A0670290087C0AF /* NoteViewController.m */; };
+		A489D71E1A0674340087C0AF /* NoteAttatchment.m in Sources */ = {isa = PBXBuildFile; fileRef = A489D71D1A0674340087C0AF /* NoteAttatchment.m */; };
 		A48BE2B91A0604D600FCEE1D /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BE2B81A0604D600FCEE1D /* Plan.m */; };
 		A48BE2BC1A0631DC00FCEE1D /* UIColor+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BE2BB1A0631DC00FCEE1D /* UIColor+VAdditions.m */; };
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
@@ -287,14 +287,14 @@
 		A489D70C1A066B820087C0AF /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
 		A489D70D1A066CFB0087C0AF /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
 		A489D70E1A066CFB0087C0AF /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		A489D7101A066CFB0087C0AF /* NoteAttatchment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteAttatchment.h; sourceTree = "<group>"; };
-		A489D7111A066CFB0087C0AF /* NoteAttatchment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteAttatchment.m; sourceTree = "<group>"; };
 		A489D7131A066DAF0087C0AF /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		A489D7141A066DAF0087C0AF /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
 		A489D7161A066DEA0087C0AF /* PronunciationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PronunciationData.h; sourceTree = "<group>"; };
 		A489D7171A066DEA0087C0AF /* PronunciationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PronunciationData.m; sourceTree = "<group>"; };
 		A489D7191A0670290087C0AF /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
 		A489D71A1A0670290087C0AF /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
+		A489D71C1A0674340087C0AF /* NoteAttatchment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteAttatchment.h; sourceTree = "<group>"; };
+		A489D71D1A0674340087C0AF /* NoteAttatchment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteAttatchment.m; sourceTree = "<group>"; };
 		A48BE2B71A0604D600FCEE1D /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		A48BE2B81A0604D600FCEE1D /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		A48BE2BA1A0631DC00FCEE1D /* UIColor+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+VAdditions.h"; sourceTree = "<group>"; };
@@ -417,14 +417,14 @@
 			isa = PBXGroup;
 			children = (
 				A489D7041A066B720087C0AF /* Model.xcdatamodeld */,
-				A489D7161A066DEA0087C0AF /* PronunciationData.h */,
-				A489D7171A066DEA0087C0AF /* PronunciationData.m */,
 				A489D7131A066DAF0087C0AF /* Word.h */,
 				A489D7141A066DAF0087C0AF /* Word.m */,
-				A489D7101A066CFB0087C0AF /* NoteAttatchment.h */,
-				A489D7111A066CFB0087C0AF /* NoteAttatchment.m */,
+				A489D7161A066DEA0087C0AF /* PronunciationData.h */,
+				A489D7171A066DEA0087C0AF /* PronunciationData.m */,
 				A489D70D1A066CFB0087C0AF /* Note.h */,
 				A489D70E1A066CFB0087C0AF /* Note.m */,
+				A489D71C1A0674340087C0AF /* NoteAttatchment.h */,
+				A489D71D1A0674340087C0AF /* NoteAttatchment.m */,
 				A48BE2B71A0604D600FCEE1D /* Plan.h */,
 				A48BE2B81A0604D600FCEE1D /* Plan.m */,
 				7F43F69A19F7A9A900672440 /* WordList.h */,
@@ -960,7 +960,6 @@
 				7F43F70D19F7A9A900672440 /* VGradientView.m in Sources */,
 				7F43F71719F7A9A900672440 /* CibaEngine.m in Sources */,
 				7F43F70B19F7A9A900672440 /* WordListFromDiskGuide.m in Sources */,
-				A489D7121A066CFB0087C0AF /* NoteAttatchment.m in Sources */,
 				7F43F72219F7A9A900672440 /* WordListCreator.m in Sources */,
 				7F43F71419F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel in Sources */,
 				7F43F71D19F7A9A900672440 /* ConfusingWordsIndexer.m in Sources */,
@@ -975,6 +974,7 @@
 				7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */,
 				7F43F73819F7A9A900672440 /* WordListFromDiskViewController.m in Sources */,
 				7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */,
+				A489D71E1A0674340087C0AF /* NoteAttatchment.m in Sources */,
 				A489D70F1A066CFB0087C0AF /* Note.m in Sources */,
 				7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */,
 				7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */,

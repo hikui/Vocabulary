@@ -13,6 +13,7 @@
 @implementation NoteAttatchment
 
 @dynamic data;
+@dynamic mimeType;
 @dynamic note;
 
 @end
