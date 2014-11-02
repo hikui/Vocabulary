@@ -31,7 +31,7 @@
 //constants
 #define kPerformSoundAutomatically @"performSound"
 //#define kFinishTodaysPlan @"finishTodaysPlan"
-#define kLastLearningTime @"lastLearningTime"
+//#define kLastLearningTime @"lastLearningTime"
 #define kTodaysPlanWordListIdURIRepresentation @"todaysPlanWordListIdURIRepresentation"
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
