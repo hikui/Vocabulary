@@ -202,7 +202,7 @@
         if (self.todaysPlan.learningPlan != nil) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
-            if (self.todaysPlan.learningPlan.finished) {
+            if (self.todaysPlan.learningFinished) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
             }else{
                 cell.accessoryView = nil;

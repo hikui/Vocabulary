@@ -49,7 +49,7 @@
     }
     NSDate *today = [[NSDate date]hkv_dateWithoutTime];
     NSDate *planCreateDate = [plan.createDate hkv_dateWithoutTime];
-    if ([planCreateDate compare:today] == NSOrderedAscending) {
+    if (planCreateDate == nil || [planCreateDate compare:today] == NSOrderedAscending) {
         shouldMakeAPlan = YES;
     }
     if (!shouldMakeAPlan) {
@@ -66,6 +66,7 @@
 
 - (Plan *)makeAPlan {
     Plan *plan = [Plan MR_createEntity];
+    plan.createDate = [[NSDate date]hkv_dateWithoutTime];
     
     //艾宾浩斯曲线日期递增映射
     NSDictionary *effectiveCount_deltaDay_map =
