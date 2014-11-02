@@ -177,10 +177,10 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
             Word *wd = lvc.word;
             NSUInteger index = [self.words indexOfObject:wd];
             if (forward) {
-                self.pageIndicator.text = [NSString stringWithFormat:@"%lu/%lu",index+2,(unsigned long)self.words.count];
+                self.pageIndicator.text = [NSString stringWithFormat:@"%lu/%lu",(unsigned long)index+2,(unsigned long)self.words.count];
                 self.currentShownViewController = self.learningViewControllerArray[(index+1)%2];
             }else{
-                self.pageIndicator.text = [NSString stringWithFormat:@"%lu/%lu",index,(unsigned long)self.words.count];
+                self.pageIndicator.text = [NSString stringWithFormat:@"%lu/%lu",(unsigned long)index,(unsigned long)self.words.count];
                 self.currentShownViewController = self.learningViewControllerArray[(index-1)%2];
             }
             BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
