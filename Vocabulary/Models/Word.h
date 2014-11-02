@@ -2,14 +2,14 @@
 //  Word.h
 //  Vocabulary
 //
-//  Created by 缪 和光 on 12-12-19.
-//  Copyright (c) 2012年 缪和光. All rights reserved.
+//  Created by 缪和光 on 2/11/2014.
+//  Copyright (c) 2014 缪和光. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Word, WordList, PronunciationData;
+@class Note, PronunciationData, Word, WordList;
 
 @interface Word : NSManagedObject
 
@@ -24,6 +24,7 @@
 @property (nonatomic, retain) PronunciationData *pronunciation;
 @property (nonatomic, retain) NSSet *similarWords;
 @property (nonatomic, retain) NSSet *wordLists;
+@property (nonatomic, retain) Note *note;
 @end
 
 @interface Word (CoreDataGeneratedAccessors)

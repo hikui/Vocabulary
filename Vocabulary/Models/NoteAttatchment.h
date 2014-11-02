@@ -1,5 +1,5 @@
 //
-//  PronunciationData.h
+//  NoteAttatchment.h
 //  Vocabulary
 //
 //  Created by 缪和光 on 2/11/2014.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Word;
+@class Note;
 
-@interface PronunciationData : NSManagedObject
+@interface NoteAttatchment : NSManagedObject
 
-@property (nonatomic, retain) NSData * pronData;
-@property (nonatomic, retain) Word *word;
+@property (nonatomic, retain) NSData * data;
+@property (nonatomic, retain) Note *note;
 
 @end
