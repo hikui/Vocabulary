@@ -15,6 +15,7 @@
 #import "CreateWordListViewController.h"
 #import "VNavigationController.h"
 #import "WordDetailViewController.h"
+#import "PureColorImageGenerator.h"
 
 #import "AppDelegate.h"
 
@@ -92,10 +93,8 @@
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIImage *cellBG = [[UIImage imageNamed:@"CellBG.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-            UIImage *cellBGHighlighted = [[UIImage imageNamed:@"CellBGHighlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+            UIImage *cellBGHighlighted = [PureColorImageGenerator generateOnePixelImageWithColor:RGBA(30, 33, 36, 1)];
             cell.contentView.backgroundColor = [UIColor clearColor];
-            cell.backgroundView = [[UIImageView alloc]initWithImage:cellBG];
             cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
             UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, cell.frame.size.width-20,cell.frame.size.height)];
             contentLabel.tag = 1000;
@@ -118,6 +117,10 @@
         return cell;
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
