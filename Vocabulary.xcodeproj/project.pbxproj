@@ -70,7 +70,6 @@
 		7F43F74419F7A9A900672440 /* WordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FE19F7A9A900672440 /* WordListViewController.xib */; };
 		7F43F74519F7A9A900672440 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70119F7A9A900672440 /* ExamContent.m */; };
 		7F43F74619F7A9A900672440 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70319F7A9A900672440 /* Guide.m */; };
-		7F43F74719F7A9A900672440 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70519F7A9A900672440 /* Plan.m */; };
 		7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
@@ -98,6 +97,7 @@
 		A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D2F1642A354005EB1E0 /* MessageUI.framework */; };
 		A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8E16466ECB005EB1E0 /* StoreKit.framework */; };
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
+		A48BE2B91A0604D600FCEE1D /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = A48BE2B81A0604D600FCEE1D /* Plan.m */; };
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
@@ -266,8 +266,6 @@
 		7F43F70119F7A9A900672440 /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
 		7F43F70219F7A9A900672440 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
 		7F43F70319F7A9A900672440 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
-		7F43F70419F7A9A900672440 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
-		7F43F70519F7A9A900672440 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		7F43F74819F7AADC00672440 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		7F6BE4DF19F9E6C5006606E6 /* NSString+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VAdditions.h"; sourceTree = "<group>"; };
 		7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VAdditions.m"; sourceTree = "<group>"; };
@@ -313,6 +311,9 @@
 		A4754D541644BE33005EB1E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A4754D8E16466ECB005EB1E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A4754D9216466EE6005EB1E0 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		A48BE2AD1A06017700FCEE1D /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
+		A48BE2B71A0604D600FCEE1D /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
+		A48BE2B81A0604D600FCEE1D /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		A48DCD96169C46400069FEF7 /* blackToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackToolbarBG.png; path = artwork/blackToolbarBG.png; sourceTree = "<group>"; };
 		A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackToolbarBG@2x.png"; path = "artwork/blackToolbarBG@2x.png"; sourceTree = "<group>"; };
 		A48DCD9F169C57350069FEF7 /* CellSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellSeparator.png; path = artwork/CellSeparator.png; sourceTree = "<group>"; };
@@ -433,6 +434,8 @@
 			isa = PBXGroup;
 			children = (
 				7F43F69019F7A9A900672440 /* Model.xcdatamodeld */,
+				A48BE2B71A0604D600FCEE1D /* Plan.h */,
+				A48BE2B81A0604D600FCEE1D /* Plan.m */,
 				7F43F69619F7A9A900672440 /* PronunciationData.h */,
 				7F43F69719F7A9A900672440 /* PronunciationData.m */,
 				7F43F69819F7A9A900672440 /* Word.h */,
@@ -610,8 +613,6 @@
 				7F43F70119F7A9A900672440 /* ExamContent.m */,
 				7F43F70219F7A9A900672440 /* Guide.h */,
 				7F43F70319F7A9A900672440 /* Guide.m */,
-				7F43F70419F7A9A900672440 /* Plan.h */,
-				7F43F70519F7A9A900672440 /* Plan.m */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1022,7 +1023,6 @@
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
 				7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */,
 				7F43F70719F7A9A900672440 /* ExamView.m in Sources */,
-				7F43F74719F7A9A900672440 /* Plan.m in Sources */,
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				7F43F70F19F7A9A900672440 /* Model.xcdatamodeld in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
@@ -1055,6 +1055,7 @@
 				7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */,
 				7F43F70919F7A9A900672440 /* GuideView.m in Sources */,
 				7F43F71019F7A9A900672440 /* PronunciationData.m in Sources */,
+				A48BE2B91A0604D600FCEE1D /* Plan.m in Sources */,
 				7F43F72519F7A9A900672440 /* ActionSheetDatePicker.m in Sources */,
 				7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */,
 				7F43F72319F7A9A900672440 /* WordSearcher.m in Sources */,
@@ -1137,8 +1138,39 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vocabulary/Vendors/**",
+				);
+				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
+				);
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "203fc44d-c2f0-4870-8b80-42c1e2b22bc1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "203fc44d-c2f0-4870-8b80-42c1e2b22bc1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A46A7E6D1630296800DF4696 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1155,37 +1187,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		A46A7E6D1630296800DF4696 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Vocabulary/Vendors/**",
-				);
-				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
-				);
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "119c38be-bf09-4049-981a-ac2eed29e022";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "119c38be-bf09-4049-981a-ac2eed29e022";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -1219,13 +1220,14 @@
 		7F43F69019F7A9A900672440 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A48BE2AD1A06017700FCEE1D /* Model 5.xcdatamodel */,
 				7F43F69119F7A9A900672440 /* Model 2.xcdatamodel */,
 				7F43F69219F7A9A900672440 /* Model.xcdatamodel */,
 				7F43F69319F7A9A900672440 /* Model3.1WithCascadeBug.xcdatamodel */,
 				7F43F69419F7A9A900672440 /* Model4.xcdatamodel */,
 				7F43F69519F7A9A900672440 /* ModelIndexedKey.xcdatamodel */,
 			);
-			currentVersion = 7F43F69419F7A9A900672440 /* Model4.xcdatamodel */;
+			currentVersion = A48BE2AD1A06017700FCEE1D /* Model 5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

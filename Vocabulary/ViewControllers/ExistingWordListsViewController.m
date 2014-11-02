@@ -195,25 +195,6 @@
         return _fetchedResultsController;
     }
     
-    NSFetchRequest *fetchRequest = [WordList MR_requestAllSortedBy:@"title" ascending:NO];
-    
-    
-//    // Edit the entity name as appropriate.
-//    NSEntityDescription *entity = [WordList MR_entityDescription];
-//    [fetchRequest setEntity:entity];
-//    
-//    // Set the batch size to a suitable number.
-//    [fetchRequest setFetchBatchSize:20];
-//    
-//    // Edit the sort key as appropriate.
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
-//    NSArray *sortDescriptors = @[sortDescriptor];
-//    
-//    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-//    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[NSManagedObjectContext MR_defaultContext] sectionNameKeyPath:nil cacheName:@"ShowWordList"];
     NSFetchedResultsController *aFetchedResultsController = [WordList MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
     self.fetchedResultsController = aFetchedResultsController;
     

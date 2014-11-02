@@ -168,7 +168,9 @@
         textViewFrame.origin.y = labelFrame.origin.y+labelFrame.size.height+10.0f;
         self.acceptationTextView.frame = textViewFrame;
         
-        self.player = [[AVAudioPlayer alloc]initWithData:self.word.pronunciation.pronData error:nil];
+        NSData *soundData = self.word.pronunciation.pronData;
+        NSError *err = nil;
+        self.player = [[AVAudioPlayer alloc]initWithData:soundData error:&err];
         [self.player prepareToPlay];
     }else{
         [self refreshWordData];

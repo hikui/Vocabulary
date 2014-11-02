@@ -10,8 +10,6 @@
 
 @implementation PureColorImageGenerator
 
-static int factor = 2;
-
 + (UIImage *)generateOnePixelImageWithColor:(UIColor *)color
 {
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
@@ -29,16 +27,17 @@ static int factor = 2;
 
 + (UIImage *)generateBackButtonImageWithTint:(UIColor *)tintColor
 {
-    CGRect rect = CGRectMake(0, 0, 24*factor, 24*factor);
-    UIGraphicsBeginImageContext(rect.size);
+    CGRect rect = CGRectMake(0, 0, 24, 24);
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineCap(context, kCGLineCapRound);
     CGContextSetStrokeColorWithColor(context, tintColor.CGColor);
-    CGContextSetLineWidth(context, 4.0f*factor);
-    CGContextMoveToPoint(context, 16*factor, 2*factor);
-    CGContextAddLineToPoint(context, 6*factor, 12*factor);
-    CGContextAddLineToPoint(context, 16*factor, 22*factor);
+    CGContextSetLineWidth(context, 4.0f);
+    CGContextMoveToPoint(context, 16, 2);
+    CGContextAddLineToPoint(context, 6, 12);
+    CGContextAddLineToPoint(context, 16, 22);
     CGContextStrokePath(context);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -49,17 +48,17 @@ static int factor = 2;
 
 + (UIImage *)generateRefreshImageWithTint:(UIColor *)tintColor
 {
-    CGRect rect = CGRectMake(0, 0, 24*factor, 24*factor);
-    UIGraphicsBeginImageContext(rect.size);
+    CGRect rect = CGRectMake(0, 0, 24, 24);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, tintColor.CGColor);
-    CGContextSetLineWidth(context, 4.0f*factor);
+    CGContextSetLineWidth(context, 4.0f);
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextAddArc(context, 12*factor, 12*factor, 8*factor, -M_PI_2, M_PI, 0);
-    CGContextMoveToPoint(context, 20*factor, 2*factor);
-    CGContextAddLineToPoint(context, 12*factor, 2*factor);
-    CGContextAddLineToPoint(context, 12*factor, 8*factor);
+    CGContextAddArc(context, 12, 12, 8, -M_PI_2, M_PI, 0);
+    CGContextMoveToPoint(context, 20, 2);
+    CGContextAddLineToPoint(context, 12, 2);
+    CGContextAddLineToPoint(context, 12, 8);
     CGContextStrokePath(context);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -69,20 +68,20 @@ static int factor = 2;
 
 + (UIImage *)generateMenuImageWithTint:(UIColor *)tintColor
 {
-    CGRect rect = CGRectMake(0, 0, 24*factor, 24*factor);
-    UIGraphicsBeginImageContext(rect.size);
+    CGRect rect = CGRectMake(0, 0, 24, 24);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, tintColor.CGColor);
-    CGContextSetLineWidth(context, 3.0f*factor);
+    CGContextSetLineWidth(context, 3.0f);
     CGContextSetLineJoin(context, kCGLineJoinRound);
     CGContextSetLineCap(context, kCGLineCapRound);
     
-    CGContextMoveToPoint(context, 3*factor, 6*factor);
-    CGContextAddLineToPoint(context, 21*factor, 6*factor);
-    CGContextMoveToPoint(context, 3*factor, 12*factor);
-    CGContextAddLineToPoint(context, 21*factor, 12*factor);
-    CGContextMoveToPoint(context, 3*factor, 18*factor);
-    CGContextAddLineToPoint(context, 21*factor, 18*factor);
+    CGContextMoveToPoint(context, 3, 6);
+    CGContextAddLineToPoint(context, 21, 6);
+    CGContextMoveToPoint(context, 3, 12 );
+    CGContextAddLineToPoint(context, 21 , 12 );
+    CGContextMoveToPoint(context, 3 , 18 );
+    CGContextAddLineToPoint(context, 21 , 18 );
     
     CGContextStrokePath(context);
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
