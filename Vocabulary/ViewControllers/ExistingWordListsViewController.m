@@ -154,15 +154,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
         
-        NSError *error = nil;
-        if (![context save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            DDLogError(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
+        WordList *wordListToBeDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            WordList *localWordList = [wordListToBeDelete MR_inContext:localContext];
+            [localWordList MR_deleteInContext:localContext];
+        }];
+        
     }
 }
 
@@ -257,16 +255,6 @@
     [self.tableView endUpdates];
 }
 
-/*
- // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
- 
- - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
- {
- // In the simplest, most efficient, case, reload the table view.
- [self.tableView reloadData];
- }
- */
-
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
@@ -299,10 +287,6 @@
 
 - (void)refreshHintView
 {
-//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance] mainContext];
-//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"WordList" inManagedObjectContext:ctx];
-//    request.entity = entity;
     NSUInteger wordListCount = [WordList MR_countOfEntities];
     
     self.view.hidden = NO;
@@ -313,46 +297,5 @@
     }
 }
 
-//#pragma mark - GADBannerViewDelegate
-//- (void)adViewDidReceiveAd:(GADBannerView *)view
-//{
-//    [super adViewDidReceiveAd:view];
-//    [UIView animateWithDuration:0.5 animations:^{
-//         self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
-//    }];
-//}
-//
-//- (void)adView:(GADBannerView *)view
-//didFailToReceiveAdWithError:(GADRequestError *)error
-//{
-//    [super adView:view didFailToReceiveAdWithError:error];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.tableView.frame = self.view.bounds;
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-//    }];
-//}
-
-//#pragma - mark youmi delegate
-//- (void)didReceiveAd:(YouMiView *)adView
-//{
-//    [super didReceiveAd:adView];
-//    self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-////    [UIView animateWithDuration:0.5 animations:^{
-////        
-////        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
-////    }];
-//}
-////
-//- (void)didFailToReceiveAd:(YouMiView *)adView  error:(NSError *)error
-//{
-//    [super didFailToReceiveAd:adView error:error];
-//    self.tableView.frame = self.view.bounds;
-////    [UIView animateWithDuration:0.5 animations:^{
-////        self.tableView.frame = self.view.bounds;
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-////    }];
-//}
 
 @end

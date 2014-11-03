@@ -64,20 +64,23 @@
     titleHint.frame = CGRectMake(0, 0, titleHint.frame.size.width+16, titleHint.frame.size.height);
     self.titleField.leftView = titleHint;
     self.titleField.leftViewMode = UITextFieldViewModeAlways;
-    [self.titleField becomeFirstResponder];
     
     self.textView.placeholder = @"请用空格或换行隔开";
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
     self.originalTextViewHeight = self.textView.frame.size.height;
+    [self.titleField becomeFirstResponder];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.titleField resignFirstResponder];
 }
 
 - (BOOL)shouldAutorotate
@@ -105,22 +108,16 @@
     UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
     targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
     CGFloat offsetY = targetKeyboardFrame.size.height;
-    
-    CGRect frame = self.textView.frame;
-    frame.size.height = self.originalTextViewHeight - offsetY;
-    self.textView.frame = frame;
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, offsetY, 0.0);
+    self.textView.contentInset = contentInsets;
+    self.textView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    NSDictionary *userInfo = [notification userInfo];
-    CGRect targetKeyboardFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey]CGRectValue];
-    UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
-    targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
-//    CGFloat offsetY = targetKeyboardFrame.size.height;
-    CGRect frame = self.textView.frame;
-    frame.size.height = self.originalTextViewHeight;
-    self.textView.frame = frame;
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.textView.contentInset = contentInsets;
+    self.textView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -128,20 +125,10 @@
     [scrollView resignFirstResponder];
 }
 
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    static CGFloat lastOffset = 0.0f;
-//    if (lastOffset > scrollView.contentOffset.y && ![scrollView isDecelerating]) {
-//        [scrollView resignFirstResponder];
-//    }
-//    lastOffset = scrollView.contentOffset.y;
-//}
-
 #pragma mark - ibactions
 - (IBAction)btnOkPressed:(id)sender
 {
     NSString *text = self.textView.text;
-//    NSArray *words = [text componentsSeparatedByCharactersInSet];
     NSMutableSet *wordSet = [[NSMutableSet alloc]init];
     NSScanner *scanner = [NSScanner scannerWithString:text];
     NSString *token;
