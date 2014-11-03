@@ -69,11 +69,8 @@
     }
     viewDeckController.delegate = self;
     self.viewDeckController = viewDeckController;
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     self.window.rootViewController = viewDeckController;
-    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -86,14 +83,11 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-//    [helper.mainContext save:nil];
     [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
 }
 
@@ -104,9 +98,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
-//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-//    [helper.mainContext save:nil];
     [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
     [MagicalRecord cleanUp];
 }
@@ -134,21 +125,6 @@
         
         
     }
-}
-
-#pragma mark - database notification
-- (void)databaseMigrationFinished:(NSNotification *)notification
-{
-    [self.welcomeView removeFromSuperview];
-    self.window.rootViewController = self.viewDeckController;
-}
-
-- (void)databaseMigrationFailed:(NSNotification *)notification
-{
-    [MBProgressHUD hideHUDForView:self.welcomeView animated:NO];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.welcomeView animated:NO];
-    hud.mode = MBProgressHUDModeText;
-    hud.detailsLabelText = @"数据库升级失败！\n请您回退到以前版本或通过iTunes删除已有数据库。";
 }
 
 @end
