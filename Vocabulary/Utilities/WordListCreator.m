@@ -193,4 +193,15 @@
     }];
 }
 
++ (NSSet *)wordSetFromContent:(NSString *)content {
+    NSString *text = content;
+    NSMutableSet *wordSet = [[NSMutableSet alloc]init];
+    NSScanner *scanner = [NSScanner scannerWithString:text];
+    NSString *token;
+    while ([scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] intoString:&token]) {
+        [wordSet addObject:token];
+    }
+    return wordSet;
+}
+
 @end

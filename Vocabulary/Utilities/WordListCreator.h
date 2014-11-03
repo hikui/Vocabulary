@@ -40,6 +40,15 @@
                              wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion;
 
+/**
+ 从一段文字中析出所有单词（根据空格、换行等white space chars）
+ 
+ @param content 文字
+ 
+ @return word set
+ */
++ (NSSet *)wordSetFromContent:(NSString *)content;
+
 + (void)addWords:(NSSet *)wordSet
       toWordList:(WordList *)wordlist
    progressBlock:(HKVProgressCallback)progressBlock
