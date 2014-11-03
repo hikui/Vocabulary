@@ -81,6 +81,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.titleField resignFirstResponder];
+    [self.textView resignFirstResponder];
 }
 
 - (BOOL)shouldAutorotate
@@ -128,13 +129,7 @@
 #pragma mark - ibactions
 - (IBAction)btnOkPressed:(id)sender
 {
-    NSString *text = self.textView.text;
-    NSMutableSet *wordSet = [[NSMutableSet alloc]init];
-    NSScanner *scanner = [NSScanner scannerWithString:text];
-    NSString *token;
-    while ([scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] intoString:&token]) {
-        [wordSet addObject:token];
-    }
+    NSSet *wordSet = [WordListCreator wordSetFromContent:self.textView.text];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     

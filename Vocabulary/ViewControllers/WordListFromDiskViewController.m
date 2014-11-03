@@ -186,12 +186,7 @@
                 //faild
                 continue;
             }
-            
-            NSArray *words = [content componentsSeparatedByString:@"\n"];
-            NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
-            
-            
-            
+            NSSet *wordSet = [WordListCreator wordSetFromContent:content];
             [WordListCreator addWords:wordSet toWordList:self.wordList progressBlock:^(float progress) {
                 hud.detailsLabelText = @"正在索引易混淆单词";
             } completion:^(NSError *error) {
@@ -220,11 +215,8 @@
                 continue;
             }
             
-            NSArray *words = [content componentsSeparatedByString:@"\n"];
-            NSSet *wordSet = [NSSet setWithArray:words]; //remove duplicates
-            
+            NSSet *wordSet = [WordListCreator wordSetFromContent:content];
             NSString *wordListName = [fileName stringByDeletingPathExtension];
-            
             
             [WordListCreator createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:^(float progress) {
                 dispatch_async(dispatch_get_main_queue(), ^{
