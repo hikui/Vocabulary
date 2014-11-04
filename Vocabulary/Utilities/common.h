@@ -56,8 +56,8 @@
 #define IS_IPOD   ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPod touch"])
 #define IS_IPHONE_5 ( IS_IPHONE && IS_WIDESCREEN )
 #define IS_IPAD [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad
-#define IS_IOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
-#define IOS6_7_DELTA(V,X,Y,W,H) if (IS_IOS_7) {CGRect f = V.frame;f.origin.x += X;f.origin.y += Y;f.size.width += W;f.size.height += H;V.frame=f;}
+#define GRATER_THAN_IOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
+#define IOS6_7_DELTA(V,X,Y,W,H) if (GRATER_THAN_IOS_7) {CGRect f = V.frame;f.origin.x += X;f.origin.y += Y;f.size.width += W;f.size.height += H;V.frame=f;}
 
 // block define
 typedef void (^HKVProgressCallback)(float progress);
