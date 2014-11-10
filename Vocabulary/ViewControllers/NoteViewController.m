@@ -56,6 +56,7 @@
     self.textView = [[UITextView alloc]initWithFrame:self.view.bounds];
     self.textView.backgroundColor = GlobalBackgroundColor;
     self.textView.font = [UIFont systemFontOfSize:14];
+    self.textView.dataDetectorTypes = UIDataDetectorTypeAll;
     self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     if (self.note.textNote.length > 0) {
         self.textView.text = self.note.textNote;
