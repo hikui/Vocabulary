@@ -41,6 +41,7 @@
     UIImage *navBackgroundImage = [PureColorImageGenerator generateOnePixelImageWithColor:[UIColor whiteColor]];
     [[UIToolbar appearance] setBackgroundImage:navBackgroundImage forToolbarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     
+    [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelVerbose];
     
     //友盟统计
     [MobClick startWithAppkey:@"50b828715270152727000018" reportPolicy:REALTIME channelId:kChannelId];
@@ -98,7 +99,8 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
+    // Ensure data is saved before terminate.
+    [MagicalRecord saveWithBlockAndWait:nil];
     [MagicalRecord cleanUp];
 }
 

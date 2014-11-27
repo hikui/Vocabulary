@@ -25,11 +25,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WordListCreator : NSObject
-
-//+ (void)createWordListWithTitle:(NSString *)title
-//                        wordSet:(NSSet *)wordSet
-//                          error:(NSError **)error;
+@interface WordListManager : NSObject
 
 + (void)createWordListAsyncWithTitle:(NSString *)title
                              wordSet:(NSSet *)wordSet
@@ -39,6 +35,8 @@
 + (void)createWordListAsyncWithTitle:(NSString *)title
                              wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion;
+
++ (void)deleteWordList:(WordList *)wordList;
 
 /**
  从一段文字中析出所有单词（根据空格、换行等white space chars）

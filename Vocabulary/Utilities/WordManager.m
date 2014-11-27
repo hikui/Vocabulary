@@ -23,107 +23,33 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "ConfusingWordsIndexer.h"
+#import "WordManager.h"
 
-@implementation ConfusingWordsIndexer
+@interface WordManager ()
 
+@property (nonatomic, strong) NSOperationQueue *queryOperationQueue;
 
-//+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion
-//{
-//    BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
-//    if (!needIndex) {
-//        if (completion != NULL) {
-//            completion(nil);
-//        }
-//        return;
-//    }
-//    
-//    
-//    
-////    dispatch_queue_t originDispatchQueue = dispatch_get_current_queue();
-////    dispatch_retain(originDispatchQueue);
-//    if (newWordsIDArray.count == 0) {
-//        if (completion != NULL) {
-//            completion(nil);
-//        }
-//        return;
-//    }
-//    
-//    __block NSDate *date = [NSDate date];
-//    __block NSError *error = nil;
-//    
-//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]workerManagedObjectContext];
-//    
-//    [ctx performBlock:^{
-//        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-//        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"key" ascending:YES];
-//        NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//        [request setEntity:entity];
-//        [request setReturnsObjectsAsFaults:YES];
-//        [request setSortDescriptors:@[sortDescriptor]];
-//        
-//        NSArray *allWords = [ctx executeFetchRequest:request error:&error];
-//        if (error != nil) {
-//            if (completion != NULL) {
-////                dispatch_async(originDispatchQueue, ^{
-//                    completion(error);
-////                });
-//            }
-//            
-////            dispatch_release(originDispatchQueue);
-//            return;
-//        }
-//        
-//        NSTimeInterval timeCost = -[date timeIntervalSinceNow];
-//        NSLog(@"查询用时 :%f",timeCost);
-//        
-//        date = [NSDate date];
-//        
-//        
-//        int totalNum = newWordsIDArray.count;
-//        int finishedNum = 0;
-//        
-//        //与已有的words做比较
-//        for (NSManagedObjectID *aNewWordId in newWordsIDArray) {
-//            Word *aNewWord = (Word *)[ctx objectRegisteredForID:aNewWordId];
-//            NSString *key1 = aNewWord.key;
-//            for (int i = 0; i< allWords.count; i++) {
-//                Word *wordToCompare = [allWords objectAtIndex:i];
-//                NSString *key2 = wordToCompare.key;
-//                if (![key1 isEqualToString:key2]) {
-//                    @autoreleasepool {
-//                        float distance = [self compareString:key1 withString:key2];
-//                        NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-//                        if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
-//                            NSLog(@"key1: %@, key2: %@",key1,key2);
-//                            [aNewWord addSimilarWordsObject:wordToCompare];
-//                        }
-//                    }
-//                }
-//            }
-//            finishedNum ++;
-//            float progress = ((float)finishedNum)/totalNum;
-////            dispatch_async(originDispatchQueue, ^{
-//                if (progressBlock != NULL) progressBlock(progress);
-////            });
-//        }
-//        
-//        [ctx save:&error];
-//        if (completion != NULL) {
-////            dispatch_async(originDispatchQueue, ^{
-//                completion(error);
-////            });
-//        }
-////        dispatch_release(originDispatchQueue);
-//        timeCost = -[date timeIntervalSinceNow];
-//        NSLog(@"索引用时 :%f",timeCost);
-//    }];
-//}
-//
-//+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray completion:(HKVErrorBlock)completion
-//{
-//    [ConfusingWordsIndexer indexNewWordsAsyncById:newWordsIDArray progressBlock:NULL completion:completion];
-//}
+@end
+
+@implementation WordManager
+
++ (WordManager *)sharedInstance {
+    static WordManager *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[WordManager alloc]init];
+    });
+    return _sharedInstance;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _queryOperationQueue = [[NSOperationQueue alloc]init];
+        _queryOperationQueue.maxConcurrentOperationCount = 1;
+    }
+    return self;
+}
 
 + (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion {
     BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
@@ -184,7 +110,7 @@
     }];
 }
 
-+ (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)callback completion:(HKVVoidBlock)completion
++ (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)progressBlock completion:(HKVVoidBlock)completion
 {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         NSArray *allWords = [Word MR_findAllInContext:localContext];
@@ -213,8 +139,8 @@
             finishedNum ++;
             float progress = ((float)finishedNum)/totalNum;
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (callback) {
-                    callback(progress);
+                if (progressBlock) {
+                    progressBlock(progress);
                 }
             });
         }
@@ -225,6 +151,30 @@
     }];
     
         
+}
+
++ (void)searchWord:(NSString *)key completion:(void(^)(NSArray *words))completion
+{
+    [[self sharedInstance]searchWord:key completion:completion];
+}
+
+- (void)searchWord:(NSString *)key completion:(void(^)(NSArray *words))completion
+{
+    //    dispatch_queue_t currentQ = dispatch_get_current_queue();
+    
+    [self.queryOperationQueue cancelAllOperations];
+
+    NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS[cd] %@)",key];
+        NSArray *results = [Word MR_findAllSortedBy:@"key" ascending:YES withPredicate:predicate];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(results);
+            }
+        });
+    }];
+    [self.queryOperationQueue addOperation:operation];
 }
 
 + (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString

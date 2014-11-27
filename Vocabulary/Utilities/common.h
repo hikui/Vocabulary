@@ -36,12 +36,17 @@
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
 #define kAutoIndex @"autoIndex"
+
+// 当PlanningViewController收到shouldRefreshTodaysPlanNotificationKey后，刷新plan
 #define kShouldRefreshTodaysPlanNotificationKey @"shouldRefreshTodaysPlanNotificationKey"
 
-#define WordListCreatorDormain @"wordListCreatorDormain"
+// 当PlanMaker收到kWordListChangedNotificationKey后，强制新建一个plan
+#define kWordListChangedNotificationKey @"kWordListChangedNotificationKey"
+
+#define WordListManagerDomain @"WordListManagerDomain"
 #define WordListCreatorEmptyWordSetError -1
 #define WordListCreatorNoTitleError -2
-#define CibaEngineDormain @"info.herkuang.vocabulary.CibaEngine"
+#define CibaEngineDomain @"info.herkuang.vocabulary.CibaEngine"
 #define FillWordError -3
 #define FillWordPronError -4
 
@@ -56,8 +61,8 @@
 #define IS_IPOD   ([[[UIDevice currentDevice ] model ] isEqualToString:@"iPod touch"])
 #define IS_IPHONE_5 ( IS_IPHONE && IS_WIDESCREEN )
 #define IS_IPAD [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad
-#define IS_IOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
-#define IOS6_7_DELTA(V,X,Y,W,H) if (IS_IOS_7) {CGRect f = V.frame;f.origin.x += X;f.origin.y += Y;f.size.width += W;f.size.height += H;V.frame=f;}
+#define GRATER_THAN_IOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
+#define IOS6_7_DELTA(V,X,Y,W,H) if (GRATER_THAN_IOS_7) {CGRect f = V.frame;f.origin.x += X;f.origin.y += Y;f.size.width += W;f.size.height += H;V.frame=f;}
 
 // block define
 typedef void (^HKVProgressCallback)(float progress);

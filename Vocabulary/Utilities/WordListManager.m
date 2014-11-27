@@ -23,11 +23,11 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "WordListCreator.h"
-#import "ConfusingWordsIndexer.h"
+#import "WordListManager.h"
+#import "WordManager.h"
 #import "NSString+VAdditions.h"
 
-@implementation WordListCreator
+@implementation WordListManager
 
 + (NSString *)wordListNameWithTitle:(NSString *)title{
     // Check if the word list name is already used.
@@ -77,7 +77,7 @@
     //初步过滤，可能会有空字符串问题
     if (wordSet.count == 0) {
         //没有单词
-        NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
+        NSError *error = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
         if (completion != NULL) {
             completion(error);
         }
@@ -86,7 +86,7 @@
     
     if (title == nil || title.length == 0) {
         // no title
-        NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorNoTitleError userInfo:nil];
+        NSError *error = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorNoTitleError userInfo:nil];
         if (completion != NULL) {
             completion(error);
         }
@@ -122,19 +122,17 @@
         
         if (newList.words.count == 0) {
             [newList MR_deleteInContext:localContext];
-            NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
+            NSError *error = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
             if (completion) {
                 completion(error);
             }
             return;
         }
         
-        [ConfusingWordsIndexer asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
-        if (completion) {
-            completion(error);
-        }
+        [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil];
     }];
 }
 
@@ -142,7 +140,15 @@
                              wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion
 {
-    [WordListCreator createWordListAsyncWithTitle:title wordSet:wordSet progressBlock:NULL completion:completion];
+    [WordListManager createWordListAsyncWithTitle:title wordSet:wordSet progressBlock:NULL completion:completion];
+}
+
++ (void)deleteWordList:(WordList *)wordList {
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+        WordList *localWordList = [wordList MR_inContext:localContext];
+        [localWordList MR_deleteInContext:localContext];
+    }];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:self];
 }
 
 + (void)addWords:(NSSet *)wordSet
@@ -153,7 +159,7 @@
     //初步过滤，可能会有空字符串问题
     if (wordSet == nil || wordSet.count == 0) {
         //没有单词
-        NSError *error = [[NSError alloc]initWithDomain:WordListCreatorDormain code:WordListCreatorEmptyWordSetError userInfo:nil];
+        NSError *error = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
         if (completion != NULL) {
             completion(error);
         }
@@ -184,7 +190,7 @@
             }
         }
         
-        [ConfusingWordsIndexer asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
         if (completion) {

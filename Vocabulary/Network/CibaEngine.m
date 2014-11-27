@@ -104,7 +104,7 @@
         NSData *jsonData = [completedOperation responseData];
         NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
         if (resultDict == nil) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
+            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:nil];
             if (errorBlock) {
                 errorBlock(myError);
             }
@@ -112,7 +112,7 @@
             return;
         }
         if (resultDict[@"error"]!=nil) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:nil];
+            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:nil];
             if (errorBlock) {
                 errorBlock(myError);
             }
@@ -148,7 +148,7 @@
                 completion();
             }
         } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordPronError userInfo:error.userInfo];
+            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordPronError userInfo:error.userInfo];
             word.hasGotDataFromAPI = @NO;
             if (errorBlock) {
                 errorBlock(myError);
@@ -157,7 +157,7 @@
         [self enqueueOperation:getPronOp];
         
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDormain code:FillWordError userInfo:error.userInfo];
+        NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:error.userInfo];
         if (errorBlock) {
             errorBlock(myError);
         }

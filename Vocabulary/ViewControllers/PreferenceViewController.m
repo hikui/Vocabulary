@@ -26,7 +26,7 @@
 #import "PreferenceViewController.h"
 #import "VWebViewController.h"
 #import "ActionSheetDatePicker.h"
-#import "ConfusingWordsIndexer.h"
+#import "WordManager.h"
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
 
@@ -181,7 +181,7 @@
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             hud.detailsLabelText = @"正在索引";
             hud.mode = MBProgressHUDModeAnnularDeterminate;
-            [ConfusingWordsIndexer reIndexForAllWithProgressCallback:^(float progress) {
+            [WordManager reIndexForAllWithProgressCallback:^(float progress) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     hud.progress = progress;
                 });

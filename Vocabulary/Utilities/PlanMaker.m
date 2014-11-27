@@ -12,6 +12,8 @@
 
 @interface PlanMaker ()
 
+@property (nonatomic) BOOL forceRefresh;
+
 @end
 
 @implementation PlanMaker
@@ -29,16 +31,17 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onReceiveWordListChangeNotification:) name:kWordListChangedNotificationKey object:nil];
     }
     return self;
 }
 
-- (void)_refreshPlan {
-    
-    
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (Plan *)todaysPlan {
+    NSAssert([NSThread currentThread] == [NSThread mainThread], @"Fetch plan in bg thread is not available");
     __block Plan *plan = [Plan MR_findFirst];
     BOOL shouldMakeAPlan = NO;
     if (plan == nil) {
@@ -52,7 +55,8 @@
     if (planCreateDate == nil || [planCreateDate compare:today] == NSOrderedAscending) {
         shouldMakeAPlan = YES;
     }
-    if (!shouldMakeAPlan) {
+    
+    if (!shouldMakeAPlan && !_forceRefresh) {
         return plan;
     }
     
@@ -60,6 +64,7 @@
     [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         [plan MR_deleteEntity];
         plan = [self makeAPlan];
+        _forceRefresh = NO;
     }];
     return plan;
 }
@@ -117,22 +122,11 @@
     }];
 }
 
-/**
- 判断是否需要学新的词汇表
- 
- 如果今天已经学了，就不再学
- 
- @return BOOL
- */
-//- (BOOL)_shouldAddLearningPlan {
-//    NSDate *lastLearningDate = [[NSUserDefaults standardUserDefaults]objectForKey:kLastLearningTime];
-//    lastLearningDate = [lastLearningDate hkv_dateWithoutTime];
-//    NSDate *today = [[NSDate date]hkv_dateWithoutTime];
-//    if (!lastLearningDate || [lastLearningDate compare:today] == NSOrderedAscending) {
-//        //上次学习时间早于今天，需要学习新的词汇表
-//        return YES;
-//    }
-//    return NO;
-//}
+- (void)onReceiveWordListChangeNotification:(NSNotification *)notification {
+    Plan *plan = [Plan MR_findFirst];
+    [plan MR_deleteEntity];
+    _forceRefresh = YES;
+    [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:self];
+}
 
 @end

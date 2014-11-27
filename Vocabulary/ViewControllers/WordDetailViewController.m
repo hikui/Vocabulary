@@ -30,6 +30,7 @@
 #import "NSMutableString+HTMLEscape.h"
 #import "VNavigationController.h"
 #import "VWebViewController.h"
+#import "NoteViewController.h"
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
@@ -71,7 +72,8 @@
     self.navigationItem.leftBarButtonItem = backBtn;
     
     UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
-    self.navigationItem.rightBarButtonItem = refreshBtn;
+    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"笔记" target:self action:@selector(noteButtonOnClick)];
+    self.navigationItem.rightBarButtonItems = @[noteBtn,refreshBtn];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -129,7 +131,7 @@
     self.lblKey.text = self.word.key;
     
     CGSize labelSize = CGSizeZero;
-    if (IS_IOS_7) {
+    if (GRATER_THAN_IOS_7) {
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
         paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
         NSDictionary *attributes = @{NSFontAttributeName:self.lblKey.font, NSParagraphStyleAttributeName:paragraphStyle.copy};
@@ -227,7 +229,7 @@
             [self playSound];
         }
     } onError:^(NSError *error) {
-        if ([error.domain isEqualToString:CibaEngineDormain] && error.code == FillWordPronError) {
+        if ([error.domain isEqualToString:CibaEngineDomain] && error.code == FillWordPronError) {
             hud.detailsLabelText = @"语音加载失败";
             [hud hide:YES afterDelay:1.5];
             [self refreshView];
@@ -242,6 +244,11 @@
 - (void)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)noteButtonOnClick {
+    NoteViewController *nvc = [[NoteViewController alloc]initWithWord:self.word];
+    [self.navigationController pushViewController:nvc animated:YES];
 }
 
 @end
