@@ -163,9 +163,9 @@
     //    dispatch_queue_t currentQ = dispatch_get_current_queue();
     
     [self.queryOperationQueue cancelAllOperations];
-    
+
     NSOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS %@)",key];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key CONTAINS[cd] %@)",key];
         NSArray *results = [Word MR_findAllSortedBy:@"key" ascending:YES withPredicate:predicate];
         
         dispatch_async(dispatch_get_main_queue(), ^{

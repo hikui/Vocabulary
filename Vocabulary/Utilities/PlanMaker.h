@@ -16,6 +16,8 @@
 /**
  取得今日需要完成的计划（包括学习计划、复习计划）
  
+ 返回的plan对象将出现在defaultContext中
+ 
  @return Plan
  */
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) Plan *todaysPlan;

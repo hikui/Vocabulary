@@ -41,6 +41,7 @@
 }
 
 - (Plan *)todaysPlan {
+    NSAssert([NSThread currentThread] == [NSThread mainThread], @"Fetch plan in bg thread is not available");
     __block Plan *plan = [Plan MR_findFirst];
     BOOL shouldMakeAPlan = NO;
     if (plan == nil) {
