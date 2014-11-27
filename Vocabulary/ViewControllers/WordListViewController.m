@@ -27,7 +27,7 @@
 #import "LearningBackboneViewController.h"
 #import "WordDetailViewController.h"
 #import "ExamViewController.h"
-#import "ConfusingWordsIndexer.h"
+#import "WordManager.h"
 #import "WordListFromDiskViewController.h"
 #import "AppDelegate.h"
 #import "VNavigationController.h"
@@ -261,7 +261,7 @@
         [_tableView endUpdates];
         
         //后台做索引
-        [ConfusingWordsIndexer asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
+        [WordManager asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
         
     }
 }

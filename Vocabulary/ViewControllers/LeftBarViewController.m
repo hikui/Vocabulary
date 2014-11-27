@@ -35,7 +35,6 @@
     self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     self.rows = @[@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
     self.searchResultTableView.hidden = YES;
-    self.searcher = [[WordSearcher alloc]init];
     self.searchBar.backgroundColor = [UIColor clearColor];
 //    self.searchResultTableView.backgroundView = nil;
     self.searchResultTableView.backgroundColor = RGBA(227, 227, 227, 1);
@@ -274,8 +273,7 @@
         [self.searchResultTableView reloadData];
         return;
     }
-    
-    [self.searcher searchWord:searchText completion:^(NSArray *words) {
+    [WordManager searchWord:searchText completion:^(NSArray *words) {
         self.searchResult = words;
         [self.searchResultTableView reloadData];
     }];

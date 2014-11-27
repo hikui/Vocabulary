@@ -25,17 +25,33 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ConfusingWordsIndexer : NSObject
+@interface WordManager : NSObject
 
-///**
-// 对新插入的words进行索引。调用此方法前，先插入到数据库中（执行context save）
-// @param newWordsIDArray 传managedObjectID数组
-// */
-//+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray completion:(HKVErrorBlock)completion;
-//
-//+ (void)indexNewWordsAsyncById:(NSArray *)newWordsIDArray progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
++ (WordManager *)sharedInstance;
+
+/**
+ 根据关键词搜索
+ 
+ @param key       关键词
+ @param completion 完成回调
+ */
++ (void)searchWord:(NSString *)key completion:(void(^)(NSArray *words)) completion;
+
+/**
+ 对给定的words进行易混淆词汇索引
+ 
+ @param newWords      单词集
+ @param progressBlock 进度回调
+ @param completion    完成回调
+ */
 + (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
 
-+ (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)callback completion:(HKVVoidBlock)completion;
+/**
+ 对数据库里所有的单词重新进行易混淆词汇索引
+ 
+ @param progressBlock   进度回调
+ @param completion 完成回调
+ */
++ (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)progressBlock completion:(HKVVoidBlock)completion;
 
 @end

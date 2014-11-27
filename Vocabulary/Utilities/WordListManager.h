@@ -27,10 +27,6 @@
 
 @interface WordListManager : NSObject
 
-//+ (void)createWordListWithTitle:(NSString *)title
-//                        wordSet:(NSSet *)wordSet
-//                          error:(NSError **)error;
-
 + (void)createWordListAsyncWithTitle:(NSString *)title
                              wordSet:(NSSet *)wordSet
                        progressBlock:(HKVProgressCallback)progressBlock

@@ -24,7 +24,7 @@
 //
 
 #import "WordListManager.h"
-#import "ConfusingWordsIndexer.h"
+#import "WordManager.h"
 #import "NSString+VAdditions.h"
 
 @implementation WordListManager
@@ -129,7 +129,7 @@
             return;
         }
         
-        [ConfusingWordsIndexer asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil];
@@ -190,7 +190,7 @@
             }
         }
         
-        [ConfusingWordsIndexer asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
         if (completion) {
