@@ -24,7 +24,7 @@
 //
 
 #import "CreateWordListViewController.h"
-#import "WordListCreator.h"
+#import "WordListManager.h"
 #import "AppDelegate.h"
 #import "SZTextView.h"
 
@@ -129,11 +129,11 @@
 #pragma mark - ibactions
 - (IBAction)btnOkPressed:(id)sender
 {
-    NSSet *wordSet = [WordListCreator wordSetFromContent:self.textView.text];
+    NSSet *wordSet = [WordListManager wordSetFromContent:self.textView.text];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [WordListCreator createWordListAsyncWithTitle:self.titleField.text wordSet:wordSet completion:^(NSError *error) {
+    [WordListManager createWordListAsyncWithTitle:self.titleField.text wordSet:wordSet completion:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (error != NULL) {
@@ -157,8 +157,6 @@
                 }
                 return;
             }else{
-                //            [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
-                [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
                 [self dismissViewControllerAnimated:YES completion:NULL];
             }
         });

@@ -31,7 +31,7 @@
 		7F43F71D19F7A9A900672440 /* ConfusingWordsIndexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B119F7A9A900672440 /* ConfusingWordsIndexer.m */; };
 		7F43F72019F7A9A900672440 /* PlanMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B719F7A9A900672440 /* PlanMaker.m */; };
 		7F43F72119F7A9A900672440 /* PureColorImageGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */; };
-		7F43F72219F7A9A900672440 /* WordListCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6BB19F7A9A900672440 /* WordListCreator.m */; };
+		7F43F72219F7A9A900672440 /* WordListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6BB19F7A9A900672440 /* WordListManager.m */; };
 		7F43F72319F7A9A900672440 /* WordSearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6BD19F7A9A900672440 /* WordSearcher.m */; };
 		7F43F72919F7A9A900672440 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */; };
 		7F43F72B19F7A9A900672440 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */; };
@@ -193,8 +193,8 @@
 		7F43F6B719F7A9A900672440 /* PlanMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanMaker.m; sourceTree = "<group>"; };
 		7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureColorImageGenerator.h; sourceTree = "<group>"; };
 		7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureColorImageGenerator.m; sourceTree = "<group>"; };
-		7F43F6BA19F7A9A900672440 /* WordListCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCreator.h; sourceTree = "<group>"; };
-		7F43F6BB19F7A9A900672440 /* WordListCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCreator.m; sourceTree = "<group>"; };
+		7F43F6BA19F7A9A900672440 /* WordListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListManager.h; sourceTree = "<group>"; };
+		7F43F6BB19F7A9A900672440 /* WordListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListManager.m; sourceTree = "<group>"; };
 		7F43F6BC19F7A9A900672440 /* WordSearcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSearcher.h; sourceTree = "<group>"; };
 		7F43F6BD19F7A9A900672440 /* WordSearcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSearcher.m; sourceTree = "<group>"; };
 		7F43F6BE19F7A9A900672440 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
@@ -466,8 +466,8 @@
 				7F43F6B719F7A9A900672440 /* PlanMaker.m */,
 				7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */,
 				7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */,
-				7F43F6BA19F7A9A900672440 /* WordListCreator.h */,
-				7F43F6BB19F7A9A900672440 /* WordListCreator.m */,
+				7F43F6BA19F7A9A900672440 /* WordListManager.h */,
+				7F43F6BB19F7A9A900672440 /* WordListManager.m */,
 				7F43F6BC19F7A9A900672440 /* WordSearcher.h */,
 				7F43F6BD19F7A9A900672440 /* WordSearcher.m */,
 				7F43F6BE19F7A9A900672440 /* common.h */,
@@ -960,7 +960,7 @@
 				7F43F70D19F7A9A900672440 /* VGradientView.m in Sources */,
 				7F43F71719F7A9A900672440 /* CibaEngine.m in Sources */,
 				7F43F70B19F7A9A900672440 /* WordListFromDiskGuide.m in Sources */,
-				7F43F72219F7A9A900672440 /* WordListCreator.m in Sources */,
+				7F43F72219F7A9A900672440 /* WordListManager.m in Sources */,
 				7F43F71419F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel in Sources */,
 				7F43F71D19F7A9A900672440 /* ConfusingWordsIndexer.m in Sources */,
 				7F43F71519F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel in Sources */,

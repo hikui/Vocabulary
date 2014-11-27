@@ -229,7 +229,7 @@
             [self playSound];
         }
     } onError:^(NSError *error) {
-        if ([error.domain isEqualToString:CibaEngineDormain] && error.code == FillWordPronError) {
+        if ([error.domain isEqualToString:CibaEngineDomain] && error.code == FillWordPronError) {
             hud.detailsLabelText = @"语音加载失败";
             [hud hide:YES afterDelay:1.5];
             [self refreshView];

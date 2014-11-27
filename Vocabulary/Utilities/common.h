@@ -36,12 +36,17 @@
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
 #define kAutoIndex @"autoIndex"
+
+// 当PlanningViewController收到shouldRefreshTodaysPlanNotificationKey后，刷新plan
 #define kShouldRefreshTodaysPlanNotificationKey @"shouldRefreshTodaysPlanNotificationKey"
 
-#define WordListCreatorDormain @"wordListCreatorDormain"
+// 当PlanMaker收到kWordListChangedNotificationKey后，强制新建一个plan
+#define kWordListChangedNotificationKey @"kWordListChangedNotificationKey"
+
+#define WordListManagerDomain @"WordListManagerDomain"
 #define WordListCreatorEmptyWordSetError -1
 #define WordListCreatorNoTitleError -2
-#define CibaEngineDormain @"info.herkuang.vocabulary.CibaEngine"
+#define CibaEngineDomain @"info.herkuang.vocabulary.CibaEngine"
 #define FillWordError -3
 #define FillWordPronError -4
 

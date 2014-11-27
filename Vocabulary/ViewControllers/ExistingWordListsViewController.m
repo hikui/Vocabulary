@@ -28,6 +28,7 @@
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
+#import "WordListManager.h"
 
 @interface ExistingWordListsViewController ()
 
@@ -156,11 +157,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         WordList *wordListToBeDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-            WordList *localWordList = [wordListToBeDelete MR_inContext:localContext];
-            [localWordList MR_deleteInContext:localContext];
-        }];
-        
+        [WordListManager deleteWordList:wordListToBeDelete];
     }
 }
 

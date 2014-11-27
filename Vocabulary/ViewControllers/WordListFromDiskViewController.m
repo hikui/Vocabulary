@@ -24,7 +24,7 @@
 //
 
 #import "WordListFromDiskViewController.h"
-#import "WordListCreator.h"
+#import "WordListManager.h"
 #import "AppDelegate.h"
 #import "GuideView.h"
 
@@ -186,8 +186,8 @@
                 //faild
                 continue;
             }
-            NSSet *wordSet = [WordListCreator wordSetFromContent:content];
-            [WordListCreator addWords:wordSet toWordList:self.wordList progressBlock:^(float progress) {
+            NSSet *wordSet = [WordListManager wordSetFromContent:content];
+            [WordListManager addWords:wordSet toWordList:self.wordList progressBlock:^(float progress) {
                 hud.detailsLabelText = @"正在索引易混淆单词";
             } completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,10 +215,10 @@
                 continue;
             }
             
-            NSSet *wordSet = [WordListCreator wordSetFromContent:content];
+            NSSet *wordSet = [WordListManager wordSetFromContent:content];
             NSString *wordListName = [fileName stringByDeletingPathExtension];
             
-            [WordListCreator createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:^(float progress) {
+            [WordListManager createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:^(float progress) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     hud.detailsLabelText = @"正在索引易混淆单词";
                 });
@@ -230,8 +230,6 @@
                     totalCount--;
                     if (totalCount <= 0) {
                         [hud hide:YES];
-                        //                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
-                        [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:nil];
                         [self dismissViewControllerAnimated:YES completion:nil];
                     }
                 });
