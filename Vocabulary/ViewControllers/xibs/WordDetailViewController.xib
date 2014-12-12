@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <deployment version="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WordDetailViewController">
@@ -15,30 +15,27 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view tag="1" contentMode="scaleToFill" id="11" userLabel="content">
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11" userLabel="content">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4" userLabel="key">
-                            <rect key="frame" x="26" y="19" width="63" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4" userLabel="key">
+                            <rect key="frame" x="19" y="15" width="61" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="225" id="1hV-pR-sow"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="7">
-                            <rect key="frame" x="19" y="51" width="280" height="294"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        </textView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9">
-                            <rect key="frame" x="241" y="9" width="48" height="48"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                            <rect key="frame" x="252" y="5" width="48" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="aYE-rC-9kc"/>
+                                <constraint firstAttribute="width" constant="48" id="fYe-t7-k1F"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal" image="audio.png">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,9 +48,11 @@
                                 <action selector="btnReadOnPressed:" destination="-1" eventType="touchUpInside" id="10"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="13" customClass="BButton">
-                            <rect key="frame" x="19" y="353" width="281" height="43"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13" customClass="BButton">
+                            <rect key="frame" x="19" y="354" width="282" height="43"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="MmQ-K2-nKi"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <state key="normal" title="详细解释...">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,17 +62,46 @@
                                 <action selector="fullInfomation:" destination="-1" eventType="touchUpInside" id="14"/>
                             </connections>
                         </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7">
+                            <rect key="frame" x="11" y="52" width="298" height="294"/>
+                            <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <attributedString key="attributedText"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="4" firstAttribute="top" secondItem="11" secondAttribute="top" constant="15" id="2Dm-zD-D8A"/>
+                        <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" constant="19" id="9VU-HE-R0Z"/>
+                        <constraint firstItem="13" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" id="CFF-vi-pf3"/>
+                        <constraint firstItem="7" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8" id="GWp-w3-eTI"/>
+                        <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="11" id="IaK-ev-0G3"/>
+                        <constraint firstItem="7" firstAttribute="leading" secondItem="11" secondAttribute="leading" constant="11" id="QE1-ba-E6y"/>
+                        <constraint firstItem="4" firstAttribute="centerY" secondItem="9" secondAttribute="centerY" id="Yqc-do-jMQ"/>
+                        <constraint firstAttribute="bottom" secondItem="13" secondAttribute="bottom" constant="19" id="ake-IB-3Ud"/>
+                        <constraint firstItem="4" firstAttribute="leading" secondItem="11" secondAttribute="leading" constant="19" id="b2w-VB-HWe"/>
+                        <constraint firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="20" id="c1X-yi-YLQ"/>
+                        <constraint firstItem="13" firstAttribute="leading" secondItem="11" secondAttribute="leading" constant="19" id="jOF-GU-DKy"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="11" secondAttribute="bottom" id="4ev-Ox-A31"/>
+                <constraint firstItem="11" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Ihh-Jy-hkO"/>
+                <constraint firstAttribute="trailing" secondItem="11" secondAttribute="trailing" id="ePA-06-uzZ"/>
+                <constraint firstItem="11" firstAttribute="top" secondItem="1" secondAttribute="top" id="qat-He-ja9"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
         <image name="audio.png" width="48" height="48"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

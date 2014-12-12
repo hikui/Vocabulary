@@ -31,6 +31,7 @@
 #import "VNavigationController.h"
 #import "VWebViewController.h"
 #import "NoteViewController.h"
+#import "Note.h"
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
@@ -58,14 +59,6 @@
         self.acceptationTextView.hidden = YES;
     }else{
         self.acceptationTextView.hidden = NO;
-    }
-    //广告
-    if (ShowAds) {
-        UIView *content = [self.view viewWithTag:1];
-        CGRect targetFrame = CGRectMake(0, 50, self.view.bounds.size.width, self.view.bounds.size.height-50);
-        content.frame = targetFrame;
-//        self.banner.autoresizingMask = UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-//        [self.view bringSubviewToFront:self.banner];
     }
     
     UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
@@ -130,27 +123,6 @@
 {
     self.lblKey.text = self.word.key;
     
-    CGSize labelSize = CGSizeZero;
-    if (GRATER_THAN_IOS_7) {
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-        NSDictionary *attributes = @{NSFontAttributeName:self.lblKey.font, NSParagraphStyleAttributeName:paragraphStyle.copy};
-        
-        labelSize = [self.word.key boundingRectWithSize:CGSizeMake(207, 999) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        /*
-         This method returns fractional sizes (in the size component of the returned CGRect); to use a returned size to size views, you must use raise its value to the nearest higher integer using the ceil function.
-         */
-        labelSize.height = ceil(labelSize.height);
-        labelSize.width = ceil(labelSize.width);
-        
-    }else{
-        labelSize = [self.word.key sizeWithFont:self.lblKey.font constrainedToSize:CGSizeMake(207, 999) lineBreakMode:NSLineBreakByWordWrapping];
-    }
-    
-    CGRect labelFrame = self.lblKey.frame;
-    labelFrame.size = labelSize;
-    self.lblKey.frame = labelFrame;
-    
     if (self.word.hasGotDataFromAPI) {
         NSMutableString *confusingWordsStr = [[NSMutableString alloc]init];
         for (Word *aConfusingWord in self.word.similarWords) {
@@ -165,10 +137,18 @@
         
         [jointStr htmlUnescape];
         
-        self.acceptationTextView.text = jointStr;
-        CGRect textViewFrame = self.acceptationTextView.frame;
-        textViewFrame.origin.y = labelFrame.origin.y+labelFrame.size.height+10.0f;
-        self.acceptationTextView.frame = textViewFrame;
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:jointStr attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+        if (self.word.note.textNote.length != 0) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle]mutableCopy];
+            paragraphStyle.lineSpacing = 10;
+            NSAttributedString *noteTitle = [[NSAttributedString alloc]initWithString:@"\n我的笔记\n" attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16], NSParagraphStyleAttributeName:paragraphStyle}];
+            [attr appendAttributedString:noteTitle];
+            NSAttributedString *attributedNotes = [[NSAttributedString alloc]initWithString:self.word.note.textNote attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}];
+            [attr appendAttributedString:attributedNotes];
+        }
+        
+        
+        self.acceptationTextView.attributedText = attr;
         
         NSData *soundData = self.word.pronunciation.pronData;
         NSError *err = nil;
