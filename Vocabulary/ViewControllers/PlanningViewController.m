@@ -297,6 +297,7 @@
 {
     self.todaysPlan = [[PlanMaker sharedInstance]todaysPlan];
     [self.tableView reloadData];
+    [self refreshHintView];
 }
 
 //#pragma mark - GADBannerViewDelegate

@@ -43,10 +43,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = GlobalBackgroundColor;
-    UIBarButtonItem *attatchButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"附件" target:self action:@selector(attatchButtonOnClick)];
+//    UIBarButtonItem *attatchButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"附件" target:self action:@selector(attatchButtonOnClick)];
     UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(backButtonOnClick)];
     self.navigationItem.leftBarButtonItem = backButton;
-    self.navigationItem.rightBarButtonItem = attatchButton;
+//    self.navigationItem.rightBarButtonItem = attatchButton;
     
     UILabel *wordLabel = [[UILabel alloc]init];
     wordLabel.font = [UIFont boldSystemFontOfSize:26];
@@ -72,6 +72,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardIsHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self saveNote];
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     static CGFloat labelMargin = 10;
@@ -93,7 +98,6 @@
 
 #pragma mark - actions
 - (void)backButtonOnClick {
-    [self saveNote];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
