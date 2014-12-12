@@ -65,7 +65,7 @@
     self.navigationItem.leftBarButtonItem = backBtn;
     
     UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
-    UIBarButtonItem *noteBtn = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"笔记" target:self action:@selector(noteButtonOnClick)];
+    UIBarButtonItem *noteBtn = [VNavigationController generateNoteItemWithTarget:self action:@selector(noteButtonOnClick)];
     self.navigationItem.rightBarButtonItems = @[noteBtn,refreshBtn];
 }
 

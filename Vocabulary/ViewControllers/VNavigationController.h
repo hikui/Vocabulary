@@ -18,6 +18,7 @@ typedef enum VNavItemType : NSInteger {
 
 + (UIBarButtonItem *)generateBackItemWithTarget:(id)target action:(SEL)action;
 + (UIBarButtonItem *)generateSearchItemWithTarget:(id)target action:(SEL)action;
++ (UIBarButtonItem *)generateNoteItemWithTarget:(id)target action:(SEL)action;
 + (UIBarButtonItem *)generateItemWithType:(VNavItemType)type
                                    target:(id)target
                                    action:(SEL)action;

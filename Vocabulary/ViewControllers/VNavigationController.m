@@ -21,6 +21,11 @@
     return [VNavigationController generateItemWithType:VNavItemTypeSearch target:target action:action];
 }
 
++ (UIBarButtonItem *)generateNoteItemWithTarget:(id)target action:(SEL)action
+{
+    return [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"笔记" target:target action:action];
+}
+
 + (UIBarButtonItem *)generateItemWithType:(VNavItemType)type
                                    target:(id)target
                                    action:(SEL)action
