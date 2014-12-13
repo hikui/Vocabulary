@@ -27,4 +27,10 @@
  */
 - (void)finishTodaysLearningPlan;
 
+/**
+ 从todays plan中删除一个WordList
+ @param wordList 要删除的WordList
+ */
+- (void)removeWordListFromTodaysPlan:(WordList *)wordList;
+
 @end
