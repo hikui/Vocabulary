@@ -21,6 +21,13 @@
     return [VNavigationController generateItemWithType:VNavItemTypeSearch target:target action:action];
 }
 
++ (UIBarButtonItem *)generateNoteItemWithTarget:(id)target action:(SEL)action
+{
+//    return [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"笔记" target:target action:action];
+    UIImage *noteIcon = [UIImage imageNamed:@"NoteIcon"];
+    return [[UIBarButtonItem alloc]initVNavBarButtonItemWithImage:noteIcon target:target action:action];
+}
+
 + (UIBarButtonItem *)generateItemWithType:(VNavItemType)type
                                    target:(id)target
                                    action:(SEL)action
@@ -30,7 +37,8 @@
     if (type == VNavItemTypeBack) {
         static UIImage *backImage = nil;
         if (backImage == nil) {
-            backImage = [PureColorImageGenerator generateBackButtonImageWithTint:RGBA(255, 255, 255, 0.9)];
+//            backImage = [PureColorImageGenerator generateBackButtonImageWithTint:RGBA(255, 255, 255, 0.9)];
+            backImage = [UIImage imageNamed:@"BackIcon"];
         }
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 43, 30)];
         [btn setImage:backImage forState:UIControlStateNormal];
@@ -41,7 +49,8 @@
     }else{
         static UIImage *refreshImage = nil;
         if (refreshImage == nil) {
-            refreshImage = [PureColorImageGenerator generateRefreshImageWithTint:RGBA(255, 255, 255, 0.9)];
+//            refreshImage = [PureColorImageGenerator generateRefreshImageWithTint:RGBA(255, 255, 255, 0.9)];
+            refreshImage = [UIImage imageNamed:@"RefreshIcon"];
         }
         UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 43, 30)];
         UIImage *buttonImage = refreshImage;

@@ -27,6 +27,7 @@
 #import "WordDetailViewController.h"
 #import "SearchWordViewController.h"
 #import "VNavigationController.h"
+#import "NoteViewController.h"
 
 @interface LearningBackboneViewController ()
 {
@@ -79,13 +80,11 @@
     
     UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
     self.navigationItem.leftBarButtonItem = backBtn;
-    
-//    UIBarButtonItem *searchButton = [VNavigationController generateSearchItemWithTarget:self action:@selector(searchButtonOnPress:)];
-//    
-//    self.navigationItem.rightBarButtonItem = searchButton;
+
+    UIBarButtonItem *noteBtn = [VNavigationController generateNoteItemWithTarget:self action:@selector(noteButtonOnClick)];
     
     UIBarButtonItem *refreshButtonItem = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshButtonOnPress:)];
-    self.navigationItem.rightBarButtonItem = refreshButtonItem;
+    self.navigationItem.rightBarButtonItems = @[noteBtn, refreshButtonItem];
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
@@ -231,6 +230,11 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 - (void)refreshButtonOnPress:(id)sender
 {
     [self.currentShownViewController refreshWordData];
+}
+
+- (void)noteButtonOnClick {
+    NoteViewController *nvc = [[NoteViewController alloc]initWithWord:self.currentShownViewController.word];
+    [self.navigationController pushViewController:nvc animated:YES];
 }
 
 - (void)back:(id)sender
