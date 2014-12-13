@@ -112,15 +112,15 @@
     return plan;
 }
 
-- (void)finishTodaysLearningPlan {
-    Plan *plan = [Plan MR_findFirst];
-    if (!plan) {
-        return;
-    }
-    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-        plan.learningFinished = @(YES);
-    }];
-}
+//- (void)finishTodaysLearningPlan {
+//    Plan *plan = [Plan MR_findFirst];
+//    if (!plan) {
+//        return;
+//    }
+//    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//        plan.learningFinished = @(YES);
+//    }];
+//}
 
 - (void)onReceiveWordListChangeNotification:(NSNotification *)notification {
     if ([notification.userInfo[@"Action"]isEqualToString:@"Add"]) {

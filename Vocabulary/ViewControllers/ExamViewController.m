@@ -430,7 +430,7 @@
         
         //更新本WordList的信息
         if (self.wordList != nil) {
-            self.wordList.finished = YES;
+//            self.wordList.finished = YES;
             NSDate *lastReviewTime = self.wordList.lastReviewTime;
             if (lastReviewTime != nil) {
                 NSDateComponents *components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:lastReviewTime];
@@ -450,19 +450,19 @@
                     //如果距离上次复习时间大于一天，视为有效次数
                     int effictiveCount = [self.wordList.effectiveCount intValue];
                     NSAssert(effictiveCount != 0, @"effectiveCount > 0 while lastReviewTime is nil");
-                    if (effictiveCount == 0) {
-                        //如果effectiveCount == 0，则是新学的单词列表
-                        [[PlanMaker sharedInstance]finishTodaysLearningPlan];
-                    }
+//                    if (effictiveCount == 0) {
+//                        //如果effectiveCount == 0，则是新学的单词列表
+//                        [[PlanMaker sharedInstance]finishTodaysLearningPlan];
+//                    }
                     effictiveCount++;
                     self.wordList.effectiveCount = @(effictiveCount);
                     self.wordList.lastReviewTime = [NSDate date]; //设为现在
                 }
             }else{
                 int effictiveCount = [self.wordList.effectiveCount intValue];
-                if (effictiveCount == 0) {
-                    [[PlanMaker sharedInstance]finishTodaysLearningPlan];
-                }
+//                if (effictiveCount == 0) {
+//                    [[PlanMaker sharedInstance]finishTodaysLearningPlan];
+//                }
                 effictiveCount++;
                 self.wordList.effectiveCount = @(effictiveCount);
                 self.wordList.lastReviewTime = [NSDate date]; //设为现在

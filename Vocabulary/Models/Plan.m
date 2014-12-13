@@ -13,7 +13,7 @@
 @implementation Plan
 
 @dynamic createDate;
-@dynamic learningFinished;
+//@dynamic learningFinished;
 @dynamic learningPlan;
 @dynamic reviewPlan;
 

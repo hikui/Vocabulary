@@ -28,6 +28,7 @@
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
 #import "PlanMaker.h"
+#import "NSDate+VAdditions.h"
 
 @interface PlanningViewController ()
 
@@ -175,13 +176,13 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSDate *todaysDateWithoutTime = [[NSDate date]hkv_dateWithoutTime];
     NSInteger numberOfSections = [self.tableView numberOfSections];
     if (numberOfSections == 2) {
         if (indexPath.section == 0) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
-            if ([self.todaysPlan.learningFinished boolValue]) {
+            if ([self.todaysPlan.learningPlan.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
             }else{
                 cell.accessoryView = nil;
@@ -191,7 +192,7 @@
             WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
-            if (wl.finished) {
+            if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
             }else{
                 cell.accessoryView = nil;
@@ -202,7 +203,7 @@
         if (self.todaysPlan.learningPlan != nil) {
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
-            if (self.todaysPlan.learningFinished) {
+            if ([self.todaysPlan.learningPlan.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
             }else{
                 cell.accessoryView = nil;
@@ -212,7 +213,7 @@
             WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
-            if (wl.finished) {
+            if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
                 cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
             }else{
                 cell.accessoryView = nil;

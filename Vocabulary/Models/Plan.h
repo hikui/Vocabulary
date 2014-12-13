@@ -14,7 +14,7 @@
 @interface Plan : NSManagedObject
 
 @property (nonatomic, retain) NSDate * createDate;
-@property (nonatomic, retain) NSNumber * learningFinished;
+//@property (nonatomic, retain) NSNumber * learningFinished;
 @property (nonatomic, retain) WordList *learningPlan;
 @property (nonatomic, retain) NSOrderedSet *reviewPlan;
 @end
