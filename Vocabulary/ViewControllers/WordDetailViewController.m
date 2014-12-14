@@ -124,31 +124,8 @@
     self.lblKey.text = self.word.key;
     
     if (self.word.hasGotDataFromAPI) {
-        NSMutableString *confusingWordsStr = [[NSMutableString alloc]init];
-        for (Word *aConfusingWord in self.word.similarWords) {
-            [confusingWordsStr appendFormat:@"%@ ",aConfusingWord.key];
-        }
-        NSMutableString *jointStr = nil;
-        if (self.word.similarWords.count == 0) {
-            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
-        }else{
-            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
-        }
         
-        [jointStr htmlUnescape];
-        
-        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:jointStr attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}];
-        if (self.word.note.textNote.length != 0) {
-            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle]mutableCopy];
-            paragraphStyle.lineSpacing = 10;
-            NSAttributedString *noteTitle = [[NSAttributedString alloc]initWithString:@"\n我的笔记\n" attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16], NSParagraphStyleAttributeName:paragraphStyle}];
-            [attr appendAttributedString:noteTitle];
-            NSAttributedString *attributedNotes = [[NSAttributedString alloc]initWithString:self.word.note.textNote attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}];
-            [attr appendAttributedString:attributedNotes];
-        }
-        
-        
-        self.acceptationTextView.attributedText = attr;
+        self.acceptationTextView.attributedText = self.word.attributedWordDetail;
         
         NSData *soundData = self.word.pronunciation.pronData;
         NSError *err = nil;

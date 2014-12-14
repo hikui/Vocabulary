@@ -25,6 +25,14 @@
 @property (nonatomic, retain) NSSet *similarWords;
 @property (nonatomic, retain) NSSet *wordLists;
 @property (nonatomic, retain) Note *note;
+
+// transient property
+
+/**
+ 用于浏览单词和评估界面中text view的内容
+ */
+@property (nonatomic, readonly) NSAttributedString *attributedWordDetail;
+
 @end
 
 @interface Word (CoreDataGeneratedAccessors)

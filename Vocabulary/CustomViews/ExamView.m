@@ -57,19 +57,10 @@
     [self.keyLabel sizeToFit];
     self.acceptationView.hidden = YES;
     
-    NSMutableString *acceptation = nil;
-    
-    if (content.word.acceptation != nil) {
-        acceptation = [[NSMutableString alloc]initWithString:content.word.acceptation];
-        [acceptation htmlUnescape];
-    }
-    
-    self.acceptationView.text = acceptation;
+    self.acceptationView.attributedText = content.word.attributedWordDetail;
     self.showAcceptationButton.hidden = NO;
     NSData *pronData = content.word.pronunciation.pronData;
-//    if (pronData == nil) {
-//        pronData = content.word.pronunciation.pronUK;
-//    }
+
     if (pronData != nil) {
         self.soundPlayer = [[AVAudioPlayer alloc]initWithData:pronData error:nil];
     }else{
