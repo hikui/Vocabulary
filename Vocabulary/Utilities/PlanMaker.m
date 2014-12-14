@@ -47,9 +47,9 @@
     if (plan == nil) {
         shouldMakeAPlan = YES;
     }
-    if (plan.learningPlan == nil) {
-        shouldMakeAPlan = YES;
-    }
+//    if (plan.learningPlan == nil) {
+//        shouldMakeAPlan = YES;
+//    }
     NSDate *today = [[NSDate date]hkv_dateWithoutTime];
     NSDate *planCreateDate = [plan.createDate hkv_dateWithoutTime];
     if (planCreateDate == nil || [planCreateDate compare:today] == NSOrderedAscending) {
@@ -112,21 +112,36 @@
     return plan;
 }
 
-- (void)finishTodaysLearningPlan {
-    Plan *plan = [Plan MR_findFirst];
-    if (!plan) {
-        return;
-    }
-    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-        plan.learningFinished = @(YES);
-    }];
-}
+//- (void)finishTodaysLearningPlan {
+//    Plan *plan = [Plan MR_findFirst];
+//    if (!plan) {
+//        return;
+//    }
+//    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//        plan.learningFinished = @(YES);
+//    }];
+//}
 
 - (void)onReceiveWordListChangeNotification:(NSNotification *)notification {
-    Plan *plan = [Plan MR_findFirst];
-    [plan MR_deleteEntity];
-    _forceRefresh = YES;
+    if ([notification.userInfo[@"Action"]isEqualToString:@"Add"]) {
+        Plan *plan = [Plan MR_findFirst];
+        if (plan == nil || plan.learningPlan != nil) {
+            return;
+        }
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(effectiveCount==0)"];
+        plan.learningPlan = [WordList MR_findFirstWithPredicate:predicate sortedBy:@"addTime" ascending:YES];
+        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
+    }
     [[NSNotificationCenter defaultCenter]postNotificationName:kShouldRefreshTodaysPlanNotificationKey object:self];
+}
+
+- (void)removeWordListFromTodaysPlan:(WordList *)wordList {
+    Plan *plan = [Plan MR_findFirst];
+    [plan removeReviewPlanObject:wordList];
+    if (plan.learningPlan == wordList) {
+        plan.learningPlan = nil;
+    }
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:nil];
 }
 
 @end

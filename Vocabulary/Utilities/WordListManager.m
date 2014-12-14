@@ -26,6 +26,7 @@
 #import "WordListManager.h"
 #import "WordManager.h"
 #import "NSString+VAdditions.h"
+#import "PlanMaker.h"
 
 @implementation WordListManager
 
@@ -132,7 +133,7 @@
         [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
     }];
 }
 
@@ -144,11 +145,12 @@
 }
 
 + (void)deleteWordList:(WordList *)wordList {
+    [[PlanMaker sharedInstance]removeWordListFromTodaysPlan:wordList]; //先从plan中移除，否则会崩溃
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         WordList *localWordList = [wordList MR_inContext:localContext];
         [localWordList MR_deleteInContext:localContext];
     }];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:self];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:self userInfo:@{@"Action":@"Delete"}];
 }
 
 + (void)addWords:(NSSet *)wordSet

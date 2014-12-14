@@ -25,6 +25,12 @@
 /**
  当完成今日的学习计划时，调用此函数
  */
-- (void)finishTodaysLearningPlan;
+//- (void)finishTodaysLearningPlan;
+
+/**
+ 从todays plan中删除一个WordList
+ @param wordList 要删除的WordList
+ */
+- (void)removeWordListFromTodaysPlan:(WordList *)wordList;
 
 @end
