@@ -28,6 +28,7 @@
 #import "SearchWordViewController.h"
 #import "VNavigationController.h"
 #import "NoteViewController.h"
+#import "EditWordDetailViewController.h"
 
 @interface LearningBackboneViewController ()
 {
@@ -78,13 +79,7 @@
     self.pageViewController.delegate = self;
     self.pageIndicator.text = [NSString stringWithFormat:@"%d/%lu",1,(unsigned long)self.words.count];
     
-    UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
-    self.navigationItem.leftBarButtonItem = backBtn;
-
-    UIBarButtonItem *noteBtn = [VNavigationController generateNoteItemWithTarget:self action:@selector(noteButtonOnClick)];
-    
-    UIBarButtonItem *refreshButtonItem = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshButtonOnPress:)];
-    self.navigationItem.rightBarButtonItems = @[noteBtn, refreshButtonItem];
+    [self showCustomBackButton];
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
@@ -97,6 +92,22 @@
         [self.pageViewController setViewControllers:@[(self.learningViewControllerArray)[0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
         self.currentShownViewController = (self.learningViewControllerArray)[0];
     }
+}
+
+- (void)loadRightBarButtonItems {
+    UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
+    UIBarButtonItem *noteBtn = [VNavigationController generateNoteItemWithTarget:self action:@selector(noteButtonOnClick)];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(btnManuallyInfoOnClick:)];
+    if ([self.currentShownViewController.word.manuallyInput boolValue]) {
+        self.navigationItem.rightBarButtonItems = @[noteBtn,editBtn];
+    }else{
+        self.navigationItem.rightBarButtonItems = @[noteBtn,refreshBtn];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadRightBarButtonItems];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -186,6 +197,7 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
             if (shouldPerformSound) {
                 [self.currentShownViewController playSound];
             }
+            [self loadRightBarButtonItems];
         }
     }
 }
@@ -237,9 +249,11 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     [self.navigationController pushViewController:nvc animated:YES];
 }
 
-- (void)back:(id)sender
+- (void)btnManuallyInfoOnClick:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    EditWordDetailViewController *editVC = [[EditWordDetailViewController alloc]initWithNibName:nil bundle:nil];
+    editVC.word = self.currentShownViewController.word;
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 @end

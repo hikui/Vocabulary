@@ -72,13 +72,6 @@
         NSUInteger totalNum = newWords.count;
         NSUInteger finishedNum = 0;
         for (Word *anNewWord in newWords) {
-            // There is a bug in MagicalRecord when a NSManagedObject has a temporary id.
-            // Fix here.
-            NSError *error = nil;
-            BOOL success = [[anNewWord managedObjectContext] obtainPermanentIDsForObjects:@[anNewWord] error:&error];
-            if (!success) {
-                [MagicalRecord handleErrors:error];
-            }
             Word *anLocalNewWord = [anNewWord MR_inContext:localContext];
             NSString *key1 = anLocalNewWord.key;
             

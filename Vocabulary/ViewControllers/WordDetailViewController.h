@@ -36,6 +36,7 @@
 @property (nonatomic,strong) AVAudioPlayer *player;
 @property (nonatomic,weak) IBOutlet UITextView *acceptationTextView;
 @property (nonatomic,weak) IBOutlet BButton *detailButton;
+@property (nonatomic,weak) IBOutlet UIButton *manuallyInputButton;
 @property (nonatomic,strong) MKNetworkOperation *downloadOp;
 @property (nonatomic,strong) MKNetworkOperation *voiceOp;
 @property (nonatomic,unsafe_unretained) BOOL shouldHideInfo;

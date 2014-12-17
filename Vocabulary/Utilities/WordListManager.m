@@ -206,7 +206,7 @@
     NSMutableSet *wordSet = [[NSMutableSet alloc]init];
     NSScanner *scanner = [NSScanner scannerWithString:text];
     NSString *token;
-    while ([scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceAndNewlineCharacterSet] intoString:&token]) {
+    while ([scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&token]) {
         [wordSet addObject:token];
     }
     return wordSet;

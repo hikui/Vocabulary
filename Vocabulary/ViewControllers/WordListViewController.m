@@ -72,8 +72,7 @@
         UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
         self.navigationItem.leftBarButtonItem = menuBarButton;
     }else {
-        UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
-        self.navigationItem.leftBarButtonItem = backButton;
+        [self showCustomBackButton];
     }
 }
 
@@ -269,10 +268,6 @@
 #pragma mark - actions
 - (void)revealLeftSidebar:(id)sender {
     [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-}
-
-- (void)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - actionsheet delegate

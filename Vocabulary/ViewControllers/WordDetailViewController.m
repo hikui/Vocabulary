@@ -32,6 +32,8 @@
 #import "VWebViewController.h"
 #import "NoteViewController.h"
 #import "Note.h"
+#import "EditWordDetailViewController.h"
+#import "NSString+VAdditions.h"
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
@@ -61,17 +63,23 @@
         self.acceptationTextView.hidden = NO;
     }
     
-    UIBarButtonItem *backBtn = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
-    self.navigationItem.leftBarButtonItem = backBtn;
-    
+    [self showCustomBackButton];
+}
+
+- (void)loadRightBarButtonItems {
     UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
     UIBarButtonItem *noteBtn = [VNavigationController generateNoteItemWithTarget:self action:@selector(noteButtonOnClick)];
-    self.navigationItem.rightBarButtonItems = @[noteBtn,refreshBtn];
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(btnManuallyInfoOnClick:)];
+    if ([self.word.manuallyInput boolValue]) {
+        self.navigationItem.rightBarButtonItems = @[noteBtn,editBtn];
+    }else{
+        self.navigationItem.rightBarButtonItems = @[noteBtn,refreshBtn];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    self.bannerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+    [self loadRightBarButtonItems];
     [super viewWillAppear:animated];
     [self refreshView];
 }
@@ -123,54 +131,17 @@
 {
     self.lblKey.text = self.word.key;
     
-    if (self.word.hasGotDataFromAPI) {
-        NSMutableString *confusingWordsStr = [[NSMutableString alloc]init];
-        for (Word *aConfusingWord in self.word.similarWords) {
-            [confusingWordsStr appendFormat:@"%@ ",aConfusingWord.key];
-        }
-        NSMutableString *jointStr = nil;
-        if (self.word.similarWords.count == 0) {
-            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n%@%@",self.word.psEN,self.word.psUS,self.word.acceptation,self.word.sentences];
-        }else{
-            jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n\n易混淆单词: %@\n\n%@%@",self.word.psEN,self.word.psUS,confusingWordsStr,self.word.acceptation,self.word.sentences];
-        }
-        
-        [jointStr htmlUnescape];
-        
-        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:jointStr attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}];
-        if (self.word.note.textNote.length != 0) {
-            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle]mutableCopy];
-            paragraphStyle.lineSpacing = 10;
-            NSAttributedString *noteTitle = [[NSAttributedString alloc]initWithString:@"\n我的笔记\n" attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16], NSParagraphStyleAttributeName:paragraphStyle}];
-            [attr appendAttributedString:noteTitle];
-            NSAttributedString *attributedNotes = [[NSAttributedString alloc]initWithString:self.word.note.textNote attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]}];
-            [attr appendAttributedString:attributedNotes];
-        }
-        
-        
-        self.acceptationTextView.attributedText = attr;
-        
+    if ([self.word.hasGotDataFromAPI boolValue] || [self.word.manuallyInput boolValue]) {
+        self.acceptationTextView.attributedText = self.word.attributedWordDetail;
+        self.manuallyInputButton.hidden = YES;
         NSData *soundData = self.word.pronunciation.pronData;
         NSError *err = nil;
         self.player = [[AVAudioPlayer alloc]initWithData:soundData error:&err];
         [self.player prepareToPlay];
     }else{
+        self.manuallyInputButton.hidden = NO;
         [self refreshWordData];
-
     }
-}
-- (IBAction)btnReadOnPressed:(id)sender
-{
-    [self playSound];
-}
-
-- (IBAction)fullInfomation:(id)sender
-{
-    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
-    NSURL *url = [NSURL URLWithString:CIBA_URL(self.word.key)];
-    wvc.requestURL = url;
-//    [self presentModalViewController:wvc animated:YES];
-    [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (void)showInfo
@@ -191,6 +162,8 @@
         [self.player play];
     }
 }
+
+#pragma mark - actions
 - (void)refreshWordData
 {
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
@@ -216,11 +189,13 @@
         }else{
             hud.detailsLabelText = @"词义加载失败";
             [hud hide:YES afterDelay:1.5];
+            self.manuallyInputButton.hidden = NO;
+            [self loadRightBarButtonItems];
         }
     }];
 }
 
-#pragma mark - actions
+// @Override
 - (void)back:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -229,6 +204,27 @@
 - (void)noteButtonOnClick {
     NoteViewController *nvc = [[NoteViewController alloc]initWithWord:self.word];
     [self.navigationController pushViewController:nvc animated:YES];
+}
+
+- (IBAction)btnReadOnPressed:(id)sender
+{
+    [self playSound];
+}
+
+- (IBAction)fullInfomation:(id)sender
+{
+    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
+    NSURL *url = [NSURL URLWithString:CIBA_URL([self.word.key hkv_stringByURLEncoding])];
+    wvc.requestURL = url;
+    //    [self presentModalViewController:wvc animated:YES];
+    [self presentViewController:wvc animated:YES completion:nil];
+}
+
+- (IBAction)btnManuallyInfoOnClick:(id)sender
+{
+    EditWordDetailViewController *editVC = [[EditWordDetailViewController alloc]initWithNibName:nil bundle:nil];
+    editVC.word = self.word;
+    [self.navigationController pushViewController:editVC animated:YES];
 }
 
 @end

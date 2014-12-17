@@ -28,8 +28,6 @@
 
 @interface ShowWrongWordsViewController ()
 
-- (void)backToWordList;
-
 @end
 
 @implementation ShowWrongWordsViewController
@@ -37,7 +35,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem = [VNavigationController generateBackItemWithTarget:self action:@selector(backToWordList)];
     self.title = @"错误单词";
 }
 
@@ -46,8 +43,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)backToWordList
-{
+// @Override
+- (void)back {
     for (UIViewController *vc in self.navigationController.viewControllers) {
         if ([vc isKindOfClass:[WordListViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
             [self.navigationController popToViewController:vc animated:YES];

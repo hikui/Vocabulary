@@ -13,18 +13,78 @@
 
 @interface Word : NSManagedObject
 
+/**
+ 词解
+ */
 @property (nonatomic, retain) NSString * acceptation;
+
+/**
+ 熟悉度
+ */
 @property (nonatomic, retain) NSNumber * familiarity;
+
+/**
+ 是否手动输入（如果手动输入，不需要从网上请求词解）
+ */
+@property (nonatomic, retain) NSNumber * manuallyInput;
+
+/**
+ 是否已从网上取得词解
+ */
 @property (nonatomic, retain) NSNumber * hasGotDataFromAPI;
+
+/**
+ 单词本身
+ */
 @property (nonatomic, retain) NSString * key;
+
+/**
+ 最后复习时间
+ */
 @property (nonatomic, retain) NSDate * lastVIewDate;
+
+/**
+ 英式音标
+ */
 @property (nonatomic, retain) NSString * psEN;
+
+/**
+ 美式音标
+ */
 @property (nonatomic, retain) NSString * psUS;
+
+/**
+ 例句
+ */
 @property (nonatomic, retain) NSString * sentences;
+
+/**
+ 发音
+ */
 @property (nonatomic, retain) PronunciationData *pronunciation;
+
+/**
+ 易混淆词汇
+ */
 @property (nonatomic, retain) NSSet *similarWords;
+
+/**
+ 存在于wordList
+ */
 @property (nonatomic, retain) NSSet *wordLists;
+
+/**
+ 笔记
+ */
 @property (nonatomic, retain) Note *note;
+
+// transient property
+
+/**
+ 用于浏览单词和评估界面中text view的内容
+ */
+@property (nonatomic, readonly) NSAttributedString *attributedWordDetail;
+
 @end
 
 @interface Word (CoreDataGeneratedAccessors)

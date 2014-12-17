@@ -50,10 +50,6 @@
 {
     [super viewDidLoad];
     _firstEdit = YES;
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(keyboardWillAppear:) name:UIKeyboardWillShowNotification object:nil];
-//    [notificationCenter addObserver:self selector:@selector(keyboardwillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     UILabel *titleHint = [[UILabel alloc]init];
     titleHint.text = @"起个名字吧: ";
     titleHint.textColor = RGBA(99, 99, 99, 1);
@@ -65,7 +61,8 @@
     self.titleField.leftView = titleHint;
     self.titleField.leftViewMode = UITextFieldViewModeAlways;
     
-    self.textView.placeholder = @"请用空格或换行隔开";
+    self.textView.placeholder = @"每行一个单词";
+    self.respondScrollView = self.textView;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -101,25 +98,6 @@
 
 
 #pragma mark Receive Notification
-
-- (void)keyboardWillAppear:(NSNotification *)notification
-{
-    NSDictionary *userInfo = [notification userInfo];
-    CGRect targetKeyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
-    UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
-    targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
-    CGFloat offsetY = targetKeyboardFrame.size.height;
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, offsetY, 0.0);
-    self.textView.contentInset = contentInsets;
-    self.textView.scrollIndicatorInsets = contentInsets;
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.textView.contentInset = contentInsets;
-    self.textView.scrollIndicatorInsets = contentInsets;
-}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {

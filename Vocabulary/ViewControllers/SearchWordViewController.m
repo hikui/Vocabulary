@@ -61,8 +61,7 @@
     [super viewDidLoad];
 
     if (self.modalViewControllerMode) {
-        UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back:)];
-        self.navigationItem.leftBarButtonItem = backButton;
+        [self showCustomBackButton];
     }
     
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -210,6 +209,8 @@
 }
 
 #pragma mark - ibactions
+
+// @Override
 - (void)back:(id)sender
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];

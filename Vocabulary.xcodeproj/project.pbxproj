@@ -88,6 +88,9 @@
 		7F68EEE11A26C73E00FB898F /* MagicalRecord+iCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EEC21A26C73E00FB898F /* MagicalRecord+iCloud.m */; };
 		7F68EEE21A26C73E00FB898F /* MagicalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EEC41A26C73E00FB898F /* MagicalRecord.m */; };
 		7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */; };
+		7F7CFCDE1A41679C008251DB /* EditWordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCDC1A41679C008251DB /* EditWordDetailViewController.m */; };
+		7F7CFCDF1A41679C008251DB /* EditWordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7CFCDD1A41679C008251DB /* EditWordDetailViewController.xib */; };
+		7F7CFCE51A417F0B008251DB /* VKeyboardAwarenessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
@@ -309,6 +312,12 @@
 		7F68EEC81A26C73E00FB898F /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		7F6BE4DF19F9E6C5006606E6 /* NSString+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VAdditions.h"; sourceTree = "<group>"; };
 		7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VAdditions.m"; sourceTree = "<group>"; };
+		7F7CFCD71A416087008251DB /* Model 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 8.xcdatamodel"; sourceTree = "<group>"; };
+		7F7CFCDB1A41679C008251DB /* EditWordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWordDetailViewController.h; sourceTree = "<group>"; };
+		7F7CFCDC1A41679C008251DB /* EditWordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWordDetailViewController.m; sourceTree = "<group>"; };
+		7F7CFCDD1A41679C008251DB /* EditWordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditWordDetailViewController.xib; path = ../EditWordDetailViewController.xib; sourceTree = "<group>"; };
+		7F7CFCE31A417F0B008251DB /* VKeyboardAwarenessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKeyboardAwarenessViewController.h; sourceTree = "<group>"; };
+		7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKeyboardAwarenessViewController.m; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A42073621A3C82E800D6101B /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -558,6 +567,7 @@
 		7F43F6D419F7A9A900672440 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F7CFCE61A41800A008251DB /* BaseClasses */,
 				7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */,
 				7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */,
 				7F43F6D719F7A9A900672440 /* ExamViewController.h */,
@@ -576,12 +586,6 @@
 				7F43F6E419F7A9A900672440 /* SearchWordViewController.m */,
 				7F43F6E519F7A9A900672440 /* ShowWrongWordsViewController.h */,
 				7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */,
-				7F43F6E719F7A9A900672440 /* VBaseViewController.h */,
-				7F43F6E819F7A9A900672440 /* VBaseViewController.m */,
-				7F43F6E919F7A9A900672440 /* VNavigationController.h */,
-				7F43F6EA19F7A9A900672440 /* VNavigationController.m */,
-				7F43F6EB19F7A9A900672440 /* VWebViewController.h */,
-				7F43F6EC19F7A9A900672440 /* VWebViewController.m */,
 				7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */,
 				7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */,
 				7F43F6EF19F7A9A900672440 /* WordListFromDiskViewController.h */,
@@ -590,6 +594,8 @@
 				7F43F6F219F7A9A900672440 /* WordListViewController.m */,
 				A489D7191A0670290087C0AF /* NoteViewController.h */,
 				A489D71A1A0670290087C0AF /* NoteViewController.m */,
+				7F7CFCDB1A41679C008251DB /* EditWordDetailViewController.h */,
+				7F7CFCDC1A41679C008251DB /* EditWordDetailViewController.m */,
 				7F43F6F319F7A9A900672440 /* xibs */,
 			);
 			path = ViewControllers;
@@ -598,6 +604,7 @@
 		7F43F6F319F7A9A900672440 /* xibs */ = {
 			isa = PBXGroup;
 			children = (
+				7F7CFCDD1A41679C008251DB /* EditWordDetailViewController.xib */,
 				7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */,
 				7F43F6F519F7A9A900672440 /* ExamViewController.xib */,
 				7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */,
@@ -725,6 +732,21 @@
 				7F68EEC71A26C73E00FB898F /* MagicalRecordShorthand.h */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		7F7CFCE61A41800A008251DB /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				7F43F6E719F7A9A900672440 /* VBaseViewController.h */,
+				7F43F6E819F7A9A900672440 /* VBaseViewController.m */,
+				7F43F6E919F7A9A900672440 /* VNavigationController.h */,
+				7F43F6EA19F7A9A900672440 /* VNavigationController.m */,
+				7F43F6EB19F7A9A900672440 /* VWebViewController.h */,
+				7F43F6EC19F7A9A900672440 /* VWebViewController.m */,
+				7F7CFCE31A417F0B008251DB /* VKeyboardAwarenessViewController.h */,
+				7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */,
+			);
+			name = BaseClasses;
 			sourceTree = "<group>";
 		};
 		A46A7E3C1630296800DF4696 = {
@@ -949,6 +971,7 @@
 				A46A7E561630296800DF4696 /* InfoPlist.strings in Resources */,
 				A46A7FCD1635909D00DF4696 /* audio.png in Resources */,
 				A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */,
+				7F7CFCDF1A41679C008251DB /* EditWordDetailViewController.xib in Resources */,
 				A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */,
 				A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */,
 				A46A8004163BC7CA00DF4696 /* whiteButtonHighlight@2x.png in Resources */,
@@ -1092,7 +1115,9 @@
 				7F43F71519F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel in Sources */,
 				7F68EED01A26C73E00FB898F /* NSManagedObject+MagicalAggregation.m in Sources */,
 				7F68EEE01A26C73E00FB898F /* MagicalRecord+ShorthandSupport.m in Sources */,
+				7F7CFCDE1A41679C008251DB /* EditWordDetailViewController.m in Sources */,
 				7F68EEDE1A26C73E00FB898F /* MagicalRecord+Options.m in Sources */,
+				7F7CFCE51A417F0B008251DB /* VKeyboardAwarenessViewController.m in Sources */,
 				7F43F71B19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m in Sources */,
 				7F68EECE1A26C73E00FB898F /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */,
@@ -1278,6 +1303,7 @@
 		A489D7041A066B720087C0AF /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				7F7CFCD71A416087008251DB /* Model 8.xcdatamodel */,
 				A489D70C1A066B820087C0AF /* Model 6.xcdatamodel */,
 				A42073621A3C82E800D6101B /* Model 7.xcdatamodel */,
 				A489D7051A066B720087C0AF /* Model 2.xcdatamodel */,
@@ -1287,7 +1313,7 @@
 				A489D7091A066B720087C0AF /* Model4.xcdatamodel */,
 				A489D70A1A066B720087C0AF /* ModelIndexedKey.xcdatamodel */,
 			);
-			currentVersion = A42073621A3C82E800D6101B /* Model 7.xcdatamodel */;
+			currentVersion = 7F7CFCD71A416087008251DB /* Model 8.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
