@@ -122,11 +122,6 @@
         self.wordsArray = words;
     }
     
-    
-//    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"评估完成"
-//                                                                  style:UIBarButtonItemStyleBordered target:self
-//                                                                 action:@selector(backButtonPressed)];
-    
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"评估完成" target:self action:@selector(backButtonPressed)];
     self.navigationItem.leftBarButtonItem = backButton;
     
@@ -151,7 +146,7 @@
     
     //扫描是否有未加载的word
     for (Word *w in self.wordsArray) {
-        if ([w.hasGotDataFromAPI boolValue] == NO) {
+        if ([w.hasGotDataFromAPI boolValue] == NO && [w.manuallyInput boolValue] == NO) {
             
             [self.wordsWithNoInfoSet addObject:w];
             

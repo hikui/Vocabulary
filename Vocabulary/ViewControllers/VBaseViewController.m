@@ -7,6 +7,7 @@
 //
 
 #import "VBaseViewController.h"
+#import "VNavigationController.h"
 
 @interface VBaseViewController ()
 
@@ -37,6 +38,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showCustomBackButton {
+    UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

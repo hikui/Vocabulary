@@ -24,16 +24,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VKeyboardAwarenessViewController.h"
 
 @class SZTextView;
-@interface CreateWordListViewController : VBaseViewController<UITextViewDelegate,UIScrollViewDelegate>
+@interface CreateWordListViewController : VKeyboardAwarenessViewController<UITextViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic,weak) IBOutlet SZTextView *textView;
 @property (nonatomic,weak) IBOutlet UITextField *titleField;
-
-- (void)keyboardWillAppear:(NSNotification *)notification;
-//- (void)keyboardwillChangeFrame:(NSNotification *)notification;
-- (void)keyboardWillHide:(NSNotification *)notification;
+//
+//- (void)keyboardWillAppear:(NSNotification *)notification;
+//- (void)keyboardWillHide:(NSNotification *)notification;
 
 - (IBAction)btnOkPressed:(id)sender;
 - (IBAction)btnCancelPressed:(id)sender;

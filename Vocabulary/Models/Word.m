@@ -28,9 +28,10 @@
 @dynamic similarWords;
 @dynamic wordLists;
 @dynamic note;
+@dynamic manuallyInput;
 
 - (NSAttributedString *)attributedWordDetail {
-    if (!self.hasGotDataFromAPI) {
+    if (![self.hasGotDataFromAPI boolValue] && ![self.manuallyInput boolValue]) {
         return nil;
     }
     
@@ -38,12 +39,27 @@
     for (Word *aConfusingWord in self.similarWords) {
         [confusingWordsStr appendFormat:@"%@ ",aConfusingWord.key];
     }
-    NSMutableString *jointStr = nil;
-    if (self.similarWords.count == 0) {
-        jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n%@%@",self.psEN,self.psUS,self.acceptation,self.sentences];
-    }else{
-        jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n\n易混淆单词: %@\n\n%@%@",self.psEN,self.psUS,confusingWordsStr,self.acceptation,self.sentences];
+    NSMutableString *jointStr = [[NSMutableString alloc]init];
+    if (self.psEN.length != 0) {
+        [jointStr appendFormat:@"英[%@]\n",self.psEN];
     }
+    if (self.psUS.length != 0) {
+        [jointStr appendFormat:@"美[%@]\n",self.psUS];
+    }
+    if (self.similarWords.count != 0) {
+        [jointStr appendFormat:@"\n易混淆单词: %@\n\n",confusingWordsStr];
+    }
+    if (self.acceptation.length != 0) {
+        [jointStr appendFormat:@"%@\n",self.acceptation];
+    }
+    if (self.sentences.length != 0) {
+        [jointStr appendFormat:@"%@\n",self.sentences];
+    }
+//    if (self.similarWords.count == 0) {
+//        jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n%@%@",self.psEN,self.psUS,self.acceptation,self.sentences];
+//    }else{
+//        jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n\n易混淆单词: %@\n\n%@%@",self.psEN,self.psUS,confusingWordsStr,self.acceptation,self.sentences];
+//    }
     
     [jointStr htmlUnescape];
     

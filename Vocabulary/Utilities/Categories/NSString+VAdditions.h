@@ -12,4 +12,7 @@
 
 @property (NS_NONATOMIC_IOSONLY, readonly) BOOL hkv_isPureInt;
 
+- (NSString *)hkv_stringByURLEncoding;
+- (NSString *)hkv_stringByURLDecoding;
+
 @end

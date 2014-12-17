@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -10,6 +10,7 @@
                 <outlet property="acceptationTextView" destination="7" id="8"/>
                 <outlet property="detailButton" destination="13" id="15"/>
                 <outlet property="lblKey" destination="4" id="5"/>
+                <outlet property="manuallyInputButton" destination="WQh-Hb-gk5" id="1qJ-Y4-6n9"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -68,10 +69,20 @@
                             <attributedString key="attributedText"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQh-Hb-gk5">
+                            <rect key="frame" x="115" y="184" width="90" height="30"/>
+                            <state key="normal" title="手动输入词义">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnManuallyInfoOnClick:" destination="-1" eventType="touchUpInside" id="fu7-Ev-8Ko"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="4" firstAttribute="top" secondItem="11" secondAttribute="top" constant="15" id="2Dm-zD-D8A"/>
+                        <constraint firstAttribute="centerX" secondItem="WQh-Hb-gk5" secondAttribute="centerX" id="5Ga-Ff-aCc"/>
                         <constraint firstAttribute="trailing" secondItem="13" secondAttribute="trailing" constant="19" id="9VU-HE-R0Z"/>
                         <constraint firstItem="13" firstAttribute="top" secondItem="7" secondAttribute="bottom" constant="8" id="CFF-vi-pf3"/>
                         <constraint firstItem="7" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="8" id="GWp-w3-eTI"/>
@@ -82,6 +93,7 @@
                         <constraint firstItem="4" firstAttribute="leading" secondItem="11" secondAttribute="leading" constant="19" id="b2w-VB-HWe"/>
                         <constraint firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="20" id="c1X-yi-YLQ"/>
                         <constraint firstItem="13" firstAttribute="leading" secondItem="11" secondAttribute="leading" constant="19" id="jOF-GU-DKy"/>
+                        <constraint firstItem="13" firstAttribute="top" secondItem="WQh-Hb-gk5" secondAttribute="bottom" constant="140" id="w2v-mK-b8B"/>
                     </constraints>
                 </view>
             </subviews>

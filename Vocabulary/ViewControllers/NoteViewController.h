@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 缪和光. All rights reserved.
 //
 
-#import "VBaseViewController.h"
+#import "VKeyboardAwarenessViewController.h"
 
-@interface NoteViewController : VBaseViewController
+@interface NoteViewController : VKeyboardAwarenessViewController
 
 - (instancetype)initWithWord:(Word *)word;
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="ModelVersion8" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="textNote" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attatchments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="NoteAttatchment" inverseName="note" inverseEntity="NoteAttatchment" syncable="YES"/>
+        <relationship name="word" maxCount="1" deletionRule="Nullify" destinationEntity="Word" inverseName="note" inverseEntity="Word" syncable="YES"/>
+    </entity>
+    <entity name="NoteAttatchment" representedClassName="NoteAttatchment" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="mimeType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="note" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="attatchments" inverseEntity="Note" syncable="YES"/>
+    </entity>
+    <entity name="Plan" representedClassName="Plan" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="learningPlan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WordList" syncable="YES"/>
+        <relationship name="reviewPlan" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="WordList" syncable="YES"/>
+    </entity>
+    <entity name="PronunciationData" representedClassName="PronunciationData" syncable="YES">
+        <attribute name="pronData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="word" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Word" inverseName="pronunciation" inverseEntity="Word" syncable="YES"/>
+    </entity>
+    <entity name="Word" representedClassName="Word" syncable="YES">
+        <attribute name="acceptation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="familiarity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hasGotDataFromAPI" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="lastVIewDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="manuallyInput" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="psEN" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="psUS" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sentences" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="note" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Note" inverseName="word" inverseEntity="Note" syncable="YES"/>
+        <relationship name="pronunciation" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="PronunciationData" inverseName="word" inverseEntity="PronunciationData" syncable="YES"/>
+        <relationship name="similarWords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="similarWords" inverseEntity="Word" syncable="YES"/>
+        <relationship name="wordLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WordList" inverseName="words" inverseEntity="WordList" syncable="YES"/>
+    </entity>
+    <entity name="WordList" representedClassName="WordList" syncable="YES">
+        <attribute name="addTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="effectiveCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastReviewTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="synchronizeTag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Word" inverseName="wordLists" inverseEntity="Word" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Note" positionX="-533" positionY="227" width="128" height="88"/>
+        <element name="NoteAttatchment" positionX="-315" positionY="234" width="128" height="90"/>
+        <element name="Plan" positionX="-531" positionY="648" width="128" height="90"/>
+        <element name="PronunciationData" positionX="-875" positionY="351" width="128" height="73"/>
+        <element name="Word" positionX="-686" positionY="315" width="128" height="240"/>
+        <element name="WordList" positionX="-434" positionY="369" width="128" height="135"/>
+    </elements>
+</model>

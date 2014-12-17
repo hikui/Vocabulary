@@ -17,8 +17,6 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UILabel *wordLabel;
 
-@property (nonatomic) UIEdgeInsets defaultInsets;
-
 @end
 
 @implementation NoteViewController
@@ -46,8 +44,8 @@
     self.title = @"笔记";
     
     self.view.backgroundColor = GlobalBackgroundColor;
-    UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(backButtonOnClick)];
-    self.navigationItem.leftBarButtonItem = backButton;
+    
+    [self showCustomBackButton];
     
     UILabel *wordLabel = [[UILabel alloc]init];
     wordLabel.font = [UIFont boldSystemFontOfSize:26];
@@ -68,9 +66,7 @@
     [self.textView addSubview:wordLabel];
     self.textView.delegate = self;
     [self.view addSubview:self.textView];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardIsShown:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardIsHidden:) name:UIKeyboardWillHideNotification object:nil];
+    self.respondScrollView = self.textView;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -93,7 +89,7 @@
     labelFrame.origin.y = -wordLabelHeight - labelMargin;
     self.wordLabel.frame = labelFrame;
     self.textView.contentInset = UIEdgeInsetsMake(-labelFrame.origin.y + labelMargin, 0, 0, 0);
-    self.defaultInsets = self.textView.contentInset;
+    self.defaultTextViewInset = self.textView.contentInset;
     self.textView.contentOffset = CGPointMake(0, labelFrame.origin.y - labelMargin);
 }
 
@@ -103,9 +99,6 @@
 }
 
 #pragma mark - actions
-- (void)backButtonOnClick {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 - (void)attatchButtonOnClick {
     
@@ -122,24 +115,4 @@
 {
     [scrollView resignFirstResponder];
 }
-
-#pragma mark - keyboard
-- (void)keyboardIsShown:(NSNotification *)notification {
-    NSDictionary *userInfo = [notification userInfo];
-    CGRect targetKeyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
-    UIWindow *window = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
-    targetKeyboardFrame = [self.view convertRect:targetKeyboardFrame fromView:window];
-    CGFloat offsetY = targetKeyboardFrame.size.height;
-    UIEdgeInsets contentInsets = self.defaultInsets;
-    contentInsets.bottom = offsetY;
-    self.textView.contentInset = contentInsets;
-    self.textView.scrollIndicatorInsets = contentInsets;
-}
-
-- (void)keyboardIsHidden:(NSNotification *)notification {
-    UIEdgeInsets contentInsets = self.defaultInsets;
-    self.textView.contentInset = contentInsets;
-    self.textView.scrollIndicatorInsets = contentInsets;
-}
-
 @end
