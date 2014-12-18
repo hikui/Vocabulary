@@ -404,7 +404,7 @@
 
 - (void)shuffleMutableArray:(NSMutableArray *)array
 {
-    NSUInteger i = [array count];
+    NSInteger i = [array count];
     while(--i > 0) {
         NSUInteger j = arc4random() % (i+1);
         [array exchangeObjectAtIndex:i withObjectAtIndex:j];
