@@ -86,77 +86,65 @@
     return op;
 }
 
-/**
- 一次性填充整个word
- */
-- (CibaNetworkOperation*)fillWord:(Word*)word
-                     onCompletion:(HKVVoidBlock)completion
-                          onError:(HKVErrorBlock)errorBlock
+- (PMKPromise *)requestContentOfWord:(NSString*)word
+                      outerOperation:(CibaNetworkOperation **)operation
 {
-    NSString* urlString = [NSString stringWithFormat:@"http://%@/%@", HostName, CIBA_URL(word.key)];
-    CibaNetworkOperation* operation = [[CibaNetworkOperation alloc] initWithURLString:urlString params:nil httpMethod:@"GET"];
-    operation.word = word;
-    [operation addCompletionHandler:^(MKNetworkOperation* completedOperation) {
-        NSAssert([completedOperation isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
-        NSData *jsonData = [completedOperation responseData];
-        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
-        if (resultDict == nil) {
+    NSString* urlString = [NSString stringWithFormat:@"http://%@/%@", HostName, CIBA_URL(word)];
+    CibaNetworkOperation* op = [[CibaNetworkOperation alloc] initWithURLString:urlString params:nil httpMethod:@"GET"];
+    PMKPromise *modifiedPromise = op.promise.then(^(NSData *responseData, CibaNetworkOperation *operation){
+        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:NULL];
+        return PMKManifold(resultDict, operation);
+    });
+    if (operation != nil) {
+        *operation = op;
+    }
+    [self enqueueOperation:op];
+    return modifiedPromise;
+}
+
+- (PMKPromise *)requestPronWithURL:(NSString*)url
+                    outerOperation:(CibaNetworkOperation **)operation
+{
+    CibaNetworkOperation* op = [[CibaNetworkOperation alloc] initWithURLString:url params:nil httpMethod:@"GET"];
+    [self enqueueOperation:op];
+    return op.promise.catch(^(NSError *error){
+        //自己先包装一层
+        NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordPronError userInfo:error.userInfo];
+        return myError;
+    });
+}
+
+- (PMKPromise *)fillWord:(Word*)word
+          outerOperation:(CibaNetworkOperation **)operation
+{
+    PMKPromise *modifiedPromise = [self requestContentOfWord:word.key outerOperation:operation].then(^(NSDictionary *resultDict){
+        if (!resultDict || resultDict[@"error"]!=nil) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:nil];
-            if (errorBlock) {
-                errorBlock(myError);
-            }
-            
-            return;
-        }
-        if (resultDict[@"error"]!=nil) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:nil];
-            if (errorBlock) {
-                errorBlock(myError);
-            }
-            
-            return;
+            return (id)myError;
         }
         [CibaEngine fillWord:word withResultDict:resultDict];
-
-        //load voice
         NSString *pronURL = resultDict[@"pron_us"];
         if (pronURL == nil) {
             pronURL = resultDict[@"pron_uk"];
         }
-        
-        //第二次网络访问，取得读音
-        CibaNetworkOperation *getPronOp = [[CibaNetworkOperation alloc]initWithURLString:pronURL params:nil httpMethod:@"GET"];
-        getPronOp.word = word;
-        [getPronOp addCompletionHandler:^(MKNetworkOperation *completedGetPronOp) {
-            NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
-            NSData *data = [completedGetPronOp responseData];
-            [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-                Word *localWord = [word MR_inContext:localContext];
-                PronunciationData *pron = [PronunciationData MR_createInContext:localContext];
-                pron.pronData = data;
-                localWord.pronunciation = pron;
-                localWord.hasGotDataFromAPI = @YES;
-            }];
-            if (completion) {
-                completion();
-            }
-        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordPronError userInfo:error.userInfo];
-            word.hasGotDataFromAPI = @NO;
-            if (errorBlock) {
-                errorBlock(myError);
-            }
+        return (id)[self requestPronWithURL:pronURL outerOperation:nil];
+    }).then(^(NSData *soundData){
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            Word *localWord = [word MR_inContext:localContext];
+            PronunciationData *pron = [PronunciationData MR_createEntityInContext:localContext];
+            pron.pronData = soundData;
+            localWord.pronunciation = pron;
         }];
-        [self enqueueOperation:getPronOp];
-
-    } errorHandler:^(MKNetworkOperation* completedOperation, NSError* error) {
-        NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:error.userInfo];
-        if (errorBlock) {
-            errorBlock(myError);
+    }).catch(^(NSError *error){
+        if ([error.domain isEqualToString: CibaEngineDomain] && error.code != FillWordPronError) {
+            [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                Word *localWord = [word MR_inContext:localContext];
+                localWord.hasGotDataFromAPI = @(NO);
+            }];
         }
-    }];
-    [self enqueueOperation:operation];
-    return operation;
+        return error;
+    });
+    return modifiedPromise;
 }
 
 
@@ -181,6 +169,7 @@
         targetWord.psEN = resultDict[@"ps_uk"];
         targetWord.psUS = resultDict[@"ps_us"];
         targetWord.sentences = resultDict[@"sentence"]!=nil?resultDict[@"sentence"]:@"";
+        targetWord.hasGotDataFromAPI = @(YES);
     }];
 }
 

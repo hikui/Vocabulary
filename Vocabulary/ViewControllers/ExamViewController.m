@@ -41,8 +41,8 @@
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
 @property (nonatomic, unsafe_unretained) BOOL shouldUpdateWordFamiliarity;
 
-@property (nonatomic, strong) NSMutableSet *wordsWithNoInfoSet;
-@property (nonatomic, strong) NSMutableArray *networkOperationQueue;
+//@property (nonatomic, strong) NSMutableSet *wordsWithNoInfoSet;
+@property (nonatomic, strong) NSMutableSet *networkOperationSet;
 
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
 
@@ -66,8 +66,8 @@
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
         _wrongWordsSet = [[NSMutableSet alloc]init];
-        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
-        _networkOperationQueue = [[NSMutableArray alloc]init];
+//        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
+        _networkOperationSet = [[NSMutableSet alloc]init];
     }
     return self;
 }
@@ -79,8 +79,8 @@
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
         _wrongWordsSet = [[NSMutableSet alloc]init];
-        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
-        _networkOperationQueue = [[NSMutableArray alloc]init];
+//        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
+        _networkOperationSet = [[NSMutableSet alloc]init];
     }
     return self;
 }
@@ -92,8 +92,8 @@
         _examContentsQueue = [[NSMutableArray alloc]init];
         _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
         _wrongWordsSet = [[NSMutableSet alloc]init];
-        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
-        _networkOperationQueue = [[NSMutableArray alloc]init];
+//        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
+        _networkOperationSet = [[NSMutableSet alloc]init];
     }
     return self;
 }
@@ -145,86 +145,110 @@
     
     
     //扫描是否有未加载的word
-    for (Word *w in self.wordsArray) {
-        if ([w.hasGotDataFromAPI boolValue] == NO && [w.manuallyInput boolValue] == NO) {
-            
-            [self.wordsWithNoInfoSet addObject:w];
-            
-            CibaEngine *engine = [CibaEngine sharedInstance];
-            __block MKNetworkOperation *infoDownloadOp = [engine requestContentOfWord:w.key onCompletion:^(NSDictionary *parsedDict) {
-                [self.networkOperationQueue removeObject:infoDownloadOp];                
-                [CibaEngine fillWord:w withResultDict:parsedDict];
-//                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-                
-                NSString *pronURL = parsedDict[@"pron_us"];
-                if (pronURL == nil) {
-                    pronURL = parsedDict[@"pron_uk"];
-                }
-                if (pronURL) {
-                    __block MKNetworkOperation *voiceOp = [engine requestPronWithURL:pronURL onCompletion:^(NSData *data) {
-                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-                            [self.wordsWithNoInfoSet removeObject:w];
-                            [self.networkOperationQueue removeObject:voiceOp];
-                            //                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-                            PronunciationData *pronData = [PronunciationData MR_createEntityInContext:localContext];
-                            pronData.pronData = data;
-                            Word *localWord = [w MR_inContext:localContext];
-                            localWord.pronunciation = pronData;
-                            localWord.hasGotDataFromAPI = @YES;
-                        }];
-                        if (self.wordsWithNoInfoSet.count == 0) {
-                            //all ok
-                            [self createExamContentsArray];
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                        }
-                        
-                    } onError:^(NSError *error) {
-                        // get sound faild
-                        [self.wordsWithNoInfoSet removeObject:w];
-                        [self.networkOperationQueue removeObject:voiceOp];
-                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-                            Word *localWord = [w MR_inContext:localContext];
-                            localWord.hasGotDataFromAPI = @YES;
-                        }];
-                        if (self.wordsWithNoInfoSet.count == 0) {
-                            //all ok
-                            [self createExamContentsArray];
-                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                        }
-                    }];
-                    [self.networkOperationQueue addObject:voiceOp];
-                }else {
-                    // this word has no sound
-                    [self.wordsWithNoInfoSet removeObject:w];
-                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-                        Word *localWord = [w MR_inContext:localContext];
-                        localWord.hasGotDataFromAPI = @YES;
-                    }];
-                    if (self.wordsWithNoInfoSet.count == 0) {
-                        //all ok
-                        [self createExamContentsArray];
-                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    }
-                }
-            } onError:^(NSError *error) {
-                // failed to get the word's meaning
-                [self.wordsWithNoInfoSet removeObject:w];
-                [self.networkOperationQueue removeObject:infoDownloadOp];
-                if (self.wordsWithNoInfoSet.count == 0) {
-                    [self createExamContentsArray];
-                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                }
-            }];
-            [self.networkOperationQueue addObject:infoDownloadOp];
-        }
-    }
-    if (self.wordsWithNoInfoSet.count == 0) {
+//    for (Word *w in self.wordsArray) {
+//        if ([w.hasGotDataFromAPI boolValue] == NO && [w.manuallyInput boolValue] == NO) {
+//            
+//            [self.wordsWithNoInfoSet addObject:w];
+//            
+//            CibaEngine *engine = [CibaEngine sharedInstance];
+//            __block MKNetworkOperation *infoDownloadOp = [engine requestContentOfWord:w.key onCompletion:^(NSDictionary *parsedDict) {
+//                [self.networkOperationSet removeObject:infoDownloadOp];
+//                [CibaEngine fillWord:w withResultDict:parsedDict];
+////                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
+//                
+//                NSString *pronURL = parsedDict[@"pron_us"];
+//                if (pronURL == nil) {
+//                    pronURL = parsedDict[@"pron_uk"];
+//                }
+//                if (pronURL) {
+//                    __block MKNetworkOperation *voiceOp = [engine requestPronWithURL:pronURL onCompletion:^(NSData *data) {
+//                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//                            [self.wordsWithNoInfoSet removeObject:w];
+//                            [self.networkOperationSet removeObject:voiceOp];
+//                            //                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+//                            PronunciationData *pronData = [PronunciationData MR_createEntityInContext:localContext];
+//                            pronData.pronData = data;
+//                            Word *localWord = [w MR_inContext:localContext];
+//                            localWord.pronunciation = pronData;
+//                            localWord.hasGotDataFromAPI = @YES;
+//                        }];
+//                        if (self.wordsWithNoInfoSet.count == 0) {
+//                            //all ok
+//                            [self createExamContentsArray];
+//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                        }
+//                        
+//                    } onError:^(NSError *error) {
+//                        // get sound faild
+//                        [self.wordsWithNoInfoSet removeObject:w];
+//                        [self.networkOperationSet removeObject:voiceOp];
+//                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//                            Word *localWord = [w MR_inContext:localContext];
+//                            localWord.hasGotDataFromAPI = @YES;
+//                        }];
+//                        if (self.wordsWithNoInfoSet.count == 0) {
+//                            //all ok
+//                            [self createExamContentsArray];
+//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                        }
+//                    }];
+//                    [self.networkOperationSet addObject:voiceOp];
+//                }else {
+//                    // this word has no sound
+//                    [self.wordsWithNoInfoSet removeObject:w];
+//                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//                        Word *localWord = [w MR_inContext:localContext];
+//                        localWord.hasGotDataFromAPI = @YES;
+//                    }];
+//                    if (self.wordsWithNoInfoSet.count == 0) {
+//                        //all ok
+//                        [self createExamContentsArray];
+//                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                    }
+//                }
+//            } onError:^(NSError *error) {
+//                // failed to get the word's meaning
+//                [self.wordsWithNoInfoSet removeObject:w];
+//                [self.networkOperationSet removeObject:infoDownloadOp];
+//                if (self.wordsWithNoInfoSet.count == 0) {
+//                    [self createExamContentsArray];
+//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                }
+//            }];
+//            [self.networkOperationSet addObject:infoDownloadOp];
+//        }
+//    }
+    
+    [self grabWordContent];
+    
+    if (self.networkOperationSet.count == 0) {
         [self createExamContentsArray];
     }else{
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.detailsLabelText = @"正在取词";
     }
-    //TODO: fix this
+}
+
+- (void)grabWordContent {
+    CibaEngine *engine = [CibaEngine sharedInstance];
+    for (Word *aWord in self.wordsArray) {
+        if ([aWord.hasGotDataFromAPI boolValue] || [aWord.manuallyInput boolValue]) {
+            continue;
+        }
+        
+        CibaNetworkOperation *operation = nil;
+        [engine fillWord:aWord outerOperation:&operation].finally(^{
+            [self.networkOperationSet removeObject:operation];
+            if (self.networkOperationSet.count == 0) {
+                //all ok
+                [self createExamContentsArray];
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            }
+        });
+        if (operation) {
+            [self.networkOperationSet addObject:operation];
+        }
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -235,6 +259,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckFullViewPanning;
+    for (CibaNetworkOperation *operation in self.networkOperationSet) {
+        [operation cancel];
+    }
 }
 
 - (BOOL)shouldAutorotate

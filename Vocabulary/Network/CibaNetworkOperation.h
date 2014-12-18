@@ -24,9 +24,17 @@
 //
 
 #import "MKNetworkOperation.h"
+#import "PromiseKit.h"
 
+extern NSString * const CibaNetworkOperationErrorKey;
+
+/**
+ 加入PromiseKit
+ */
 @interface CibaNetworkOperation : MKNetworkOperation
 
 @property (nonatomic, strong) Word *word;
+
+- (PMKPromise *)promise;
 
 @end

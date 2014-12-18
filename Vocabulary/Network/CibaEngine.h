@@ -25,28 +25,41 @@
 
 #import "MKNetworkEngine.h"
 #import "CibaNetworkOperation.h"
+#import "PromiseKit.h"
 
 @interface CibaEngine : MKNetworkEngine
 
 + (id)sharedInstance;
 
-- (MKNetworkOperation *) requestContentOfWord:(NSString *)word
-                              onCompletion:(CompleteBlockWithStr) completionBlock
-                                   onError:(MKNKErrorBlock) errorBlock;
+- (MKNetworkOperation*)requestContentOfWord:(NSString*)word
+                               onCompletion:(CompleteBlockWithStr)completionBlock
+                                    onError:(MKNKErrorBlock)errorBlock;
 
-- (MKNetworkOperation *) requestPronWithURL:(NSString *)url
-                           onCompletion:(CompleteBlockWithData) completionBlock
-                                onError:(MKNKErrorBlock) errorBlock;
+- (MKNetworkOperation*)requestPronWithURL:(NSString*)url
+                             onCompletion:(CompleteBlockWithData)completionBlock
+                                  onError:(MKNKErrorBlock)errorBlock;
 
 /**
- 一次性填充整个word
+ Promise版的请求内容
+ 
+ 当请求被cancel时，会进入catch，传入的Error有{"Cause":"Cancel"}字样。
+ 
+ @param word      需要请求内容的单词
+ @param operation 请求operation的二级指针，用于外部操控operation（例如cancel等）
+ 
+ @return promise
  */
-- (CibaNetworkOperation *) fillWord:(Word *)word
-                     onCompletion:(HKVVoidBlock)completion
-                          onError:(HKVErrorBlock)error;
-//删除一个单词的请求
-//- (void) cancelOperationOfWord:(Word *)word;
+- (PMKPromise *)requestContentOfWord:(NSString*)word
+                      outerOperation:(CibaNetworkOperation **)operation;
 
-+ (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict;
+- (PMKPromise *)requestPronWithURL:(NSString*)url
+                    outerOperation:(CibaNetworkOperation **)operation;
+
+
+- (PMKPromise *)fillWord:(Word*)word
+          outerOperation:(CibaNetworkOperation **)operation;
+
+
++ (void)fillWord:(Word*)word withResultDict:(NSDictionary*)resultDict;
 
 @end
