@@ -151,7 +151,7 @@
             [self.wordsWithNoInfoSet addObject:w];
             
             CibaEngine *engine = [CibaEngine sharedInstance];
-            __block MKNetworkOperation *infoDownloadOp = [engine infomationForWord:w.key onCompletion:^(NSDictionary *parsedDict) {
+            __block MKNetworkOperation *infoDownloadOp = [engine requestContentOfWord:w.key onCompletion:^(NSDictionary *parsedDict) {
                 [self.networkOperationQueue removeObject:infoDownloadOp];                
                 [CibaEngine fillWord:w withResultDict:parsedDict];
 //                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
@@ -161,12 +161,12 @@
                     pronURL = parsedDict[@"pron_uk"];
                 }
                 if (pronURL) {
-                    __block MKNetworkOperation *voiceOp = [engine getPronWithURL:pronURL onCompletion:^(NSData *data) {
-                        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                    __block MKNetworkOperation *voiceOp = [engine requestPronWithURL:pronURL onCompletion:^(NSData *data) {
+                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
                             [self.wordsWithNoInfoSet removeObject:w];
                             [self.networkOperationQueue removeObject:voiceOp];
                             //                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-                            PronunciationData *pronData = [PronunciationData MR_createInContext:localContext];
+                            PronunciationData *pronData = [PronunciationData MR_createEntityInContext:localContext];
                             pronData.pronData = data;
                             Word *localWord = [w MR_inContext:localContext];
                             localWord.pronunciation = pronData;
@@ -182,7 +182,7 @@
                         // get sound faild
                         [self.wordsWithNoInfoSet removeObject:w];
                         [self.networkOperationQueue removeObject:voiceOp];
-                        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
                             Word *localWord = [w MR_inContext:localContext];
                             localWord.hasGotDataFromAPI = @YES;
                         }];
@@ -196,7 +196,7 @@
                 }else {
                     // this word has no sound
                     [self.wordsWithNoInfoSet removeObject:w];
-                    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
                         Word *localWord = [w MR_inContext:localContext];
                         localWord.hasGotDataFromAPI = @YES;
                     }];

@@ -30,11 +30,11 @@
 
 + (id)sharedInstance;
 
-- (MKNetworkOperation *) infomationForWord:(NSString *)word
+- (MKNetworkOperation *) requestContentOfWord:(NSString *)word
                               onCompletion:(CompleteBlockWithStr) completionBlock
                                    onError:(MKNKErrorBlock) errorBlock;
 
-- (MKNetworkOperation *) getPronWithURL:(NSString *)url
+- (MKNetworkOperation *) requestPronWithURL:(NSString *)url
                            onCompletion:(CompleteBlockWithData) completionBlock
                                 onError:(MKNKErrorBlock) errorBlock;
 

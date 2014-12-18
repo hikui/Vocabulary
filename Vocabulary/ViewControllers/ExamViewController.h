@@ -32,15 +32,11 @@
 @property (nonatomic, strong) WordList *wordList;
 @property (nonatomic, strong) NSArray *wordsArray;
 @property (nonatomic, unsafe_unretained) int cursor1;
-//@property (nonatomic, unsafe_unretained) int cursor2;
-//@property (nonatomic, strong) NSMutableArray *examContentsQueueE2C;
-//@property (nonatomic, strong) NSMutableArray *examContentsQueueS2E;
 @property (nonatomic, strong) NSMutableArray *examContentsQueue;
 @property (nonatomic, strong) NSMutableArray *examViewReuseQueue;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *wrongButton;
 @property (nonatomic, strong) IBOutlet UIView *roundNotificatonView;
-//@property (nonatomic, strong) AVAudioPlayer *soundPlayer;
 @property (nonatomic, strong) NSMutableSet *wrongWordsSet;
 
 - (instancetype)initWithWordList:(WordList *)wordList;
