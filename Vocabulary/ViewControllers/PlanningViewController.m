@@ -204,7 +204,7 @@
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
             if ([self.todaysPlan.learningPlan.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
             }else{
                 cell.accessoryView = nil;
             }
@@ -214,7 +214,7 @@
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
             if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
             }else{
                 cell.accessoryView = nil;
             }

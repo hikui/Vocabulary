@@ -206,18 +206,21 @@
 
 - (void)calculateFamiliarityForEveryWords
 {
+    [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        ExamContent *c1 = (ExamContent *)obj1;
+        ExamContent *c2 = (ExamContent *)obj2;
+        NSString *str1 = c1.word.key;
+        NSString *str2 = c2.word.key;
+        return [str1 compare:str2];
+    }];
+    
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-        [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            ExamContent *c1 = (ExamContent *)obj1;
-            ExamContent *c2 = (ExamContent *)obj2;
-            NSString *str1 = c1.word.key;
-            NSString *str2 = c2.word.key;
-            return [str1 compare:str2];
-        }];
+        
         int i = 0;
         while (i<self.examContentsQueue.count) {
             ExamContent *c1 = (self.examContentsQueue)[i];
             ExamContent *c2 = nil;
+            
             if (i+1 < self.examContentsQueue.count) {
                 c2 = (self.examContentsQueue)[i+1];
             }
@@ -374,7 +377,15 @@
         
         //更新本WordList的信息
         if (self.wordList != nil) {
-//            self.wordList.finished = YES;
+            void (^updateWordList)() = ^void() {
+                [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                    WordList *localWordList = [self.wordList MR_inContext:localContext];
+                    int effictiveCount = [self.wordList.effectiveCount intValue];
+                    effictiveCount++;
+                    localWordList.effectiveCount = @(effictiveCount);
+                    localWordList.lastReviewTime = [NSDate date]; //设为现在
+                }];
+            };
             NSDate *lastReviewTime = self.wordList.lastReviewTime;
             if (lastReviewTime != nil) {
                 NSDateComponents *components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:lastReviewTime];
@@ -392,24 +403,10 @@
                 
                 if (effect) {
                     //如果距离上次复习时间大于一天，视为有效次数
-                    int effictiveCount = [self.wordList.effectiveCount intValue];
-                    NSAssert(effictiveCount != 0, @"effectiveCount > 0 while lastReviewTime is nil");
-//                    if (effictiveCount == 0) {
-//                        //如果effectiveCount == 0，则是新学的单词列表
-//                        [[PlanMaker sharedInstance]finishTodaysLearningPlan];
-//                    }
-                    effictiveCount++;
-                    self.wordList.effectiveCount = @(effictiveCount);
-                    self.wordList.lastReviewTime = [NSDate date]; //设为现在
+                    updateWordList();
                 }
             }else{
-                int effictiveCount = [self.wordList.effectiveCount intValue];
-//                if (effictiveCount == 0) {
-//                    [[PlanMaker sharedInstance]finishTodaysLearningPlan];
-//                }
-                effictiveCount++;
-                self.wordList.effectiveCount = @(effictiveCount);
-                self.wordList.lastReviewTime = [NSDate date]; //设为现在
+                updateWordList();
             }
             
         }
