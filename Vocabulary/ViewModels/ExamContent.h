@@ -29,13 +29,13 @@
 typedef NS_ENUM(NSInteger, ExamType) {
     ExamTypeE2C, //英译中
     ExamTypeS2E, //听译
+    ExamTypeC2E  //中译英
 } ;
 
 
 @interface ExamContent : NSObject
 
 @property (nonatomic, unsafe_unretained) ExamType examType;
-@property (nonatomic, unsafe_unretained) BOOL neverShow;
 @property (nonatomic, strong) Word *word;
 @property (nonatomic, unsafe_unretained) int rightTimes;
 @property (nonatomic, unsafe_unretained) int wrongTimes;

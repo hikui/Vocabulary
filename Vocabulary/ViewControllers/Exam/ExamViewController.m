@@ -60,27 +60,19 @@
 
 - (instancetype)initWithWordList:(WordList *)wordList
 {
-    self = [super initWithNibName:@"ExamViewController" bundle:nil];
+    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
     if (self) {
         _wordList = wordList;
-        _examContentsQueue = [[NSMutableArray alloc]init];
-        _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
-        _wrongWordsSet = [[NSMutableSet alloc]init];
-//        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
-        _networkOperationSet = [[NSMutableSet alloc]init];
+        [self commonInit];
     }
     return self;
 }
 - (instancetype)initWithWordArray:(NSMutableArray *)wordArray
 {
-    self = [super initWithNibName:@"ExamViewController" bundle:nil];
+    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
     if (self) {
         _wordsArray = wordArray;
-        _examContentsQueue = [[NSMutableArray alloc]init];
-        _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
-        _wrongWordsSet = [[NSMutableSet alloc]init];
-//        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
-        _networkOperationSet = [[NSMutableSet alloc]init];
+        [self commonInit];
     }
     return self;
 }
@@ -89,13 +81,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _examContentsQueue = [[NSMutableArray alloc]init];
-        _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
-        _wrongWordsSet = [[NSMutableSet alloc]init];
-//        _wordsWithNoInfoSet = [[NSMutableSet alloc]init];
-        _networkOperationSet = [[NSMutableSet alloc]init];
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    _examContentsQueue = [[NSMutableArray alloc]init];
+    _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
+    _wrongWordsSet = [[NSMutableSet alloc]init];
+    _networkOperationSet = [[NSMutableSet alloc]init];
+    _examOption = ExamOptionC2E | ExamOptionE2C | ExamOptionListening;
 }
 
 - (void)viewDidLoad
@@ -106,9 +102,6 @@
     //adjust views
     _cursor1 = 0;
     _shouldUpdateWordFamiliarity = NO;
-    
-//    self.roundNotificatonLabel.layer.cornerRadius = 5.0f;
-//    self.roundNotificatonLabel.clipsToBounds = YES;
 
     CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
     self.roundNotificatonView.center = center;
@@ -299,16 +292,19 @@
     //create examContents and detect if the word has acceptation.
     for (Word *word in self.wordsArray) {
         //NSLog(@"creating exam contents...");
-        if (word.acceptation != nil) {
+        if ((self.examOption & ExamOptionE2C) == ExamOptionE2C && word.acceptation != nil) {
             ExamContent *contentE2C = [[ExamContent alloc]initWithWord:word examType:ExamTypeE2C];
             [self.examContentsQueue addObject:contentE2C];
         }
         
-        //NSLog(@"%@",contentE2C);
-        if ( word.pronunciation.pronData != nil) {
+        if ((self.examOption & ExamOptionListening) == ExamOptionListening && word.pronunciation.pronData != nil) {
             ExamContent *contentS2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeS2E];
             [self.examContentsQueue addObject:contentS2E];
-            //NSLog(@"%@",contentS2E);
+        }
+        
+        if ((self.examOption & ExamOptionC2E) == ExamOptionC2E && word.acceptation != nil) {
+            ExamContent *contentC2E = [[ExamContent alloc]initWithWord:word examType:ExamTypeC2E];
+            [self.examContentsQueue addObject:contentC2E];
         }
     }
     
@@ -446,15 +442,6 @@
     ExamContent *content = currExamView.content;
     content.lastReviewDate = [NSDate date];
     if (content.examType == ExamTypeS2E) {
-//        Word *word = content.word;
-//        NSData *pronData = word.pronounceUS;
-//        if (pronData == nil) {
-//            pronData = word.pronounceEN;
-//        }
-//        if (pronData != nil) {
-//            self.soundPlayer = [[AVAudioPlayer alloc]initWithData:pronData error:nil];
-//            [self.soundPlayer play];
-//        }
         [currExamView playSound];
     }
 }

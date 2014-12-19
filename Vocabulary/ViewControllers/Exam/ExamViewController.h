@@ -27,6 +27,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WordList.h"
 
+typedef NS_OPTIONS(NSInteger, ExamOption) {
+    ExamOptionNone = 0,
+    ExamOptionE2C = 1,
+    ExamOptionC2E = 1 << 1,
+    ExamOptionListening = 1 << 2
+};
+
 @interface ExamViewController : VBaseViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) WordList *wordList;
@@ -38,6 +45,8 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *wrongButton;
 @property (nonatomic, strong) IBOutlet UIView *roundNotificatonView;
 @property (nonatomic, strong) NSMutableSet *wrongWordsSet;
+
+@property (nonatomic, assign) ExamOption examOption; //默认全选
 
 - (instancetype)initWithWordList:(WordList *)wordList;
 - (instancetype)initWithWordArray:(NSMutableArray *)wordArray;
