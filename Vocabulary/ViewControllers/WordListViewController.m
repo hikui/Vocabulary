@@ -26,7 +26,8 @@
 #import "WordListViewController.h"
 #import "LearningBackboneViewController.h"
 #import "WordDetailViewController.h"
-#import "ExamViewController.h"
+//#import "ExamViewController.h"
+#import "ExamTypeChoiceViewController.h"
 #import "WordManager.h"
 #import "WordListFromDiskViewController.h"
 #import "AppDelegate.h"
@@ -208,11 +209,12 @@
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    ExamViewController *evc = nil;
+    ExamTypeChoiceViewController *evc = nil;
+    evc = [[ExamTypeChoiceViewController alloc]init];
     if (self.wordList != nil) {
-        evc = [[ExamViewController alloc]initWithWordList:self.wordList];
+        evc.wordList = self.wordList;
     }else{
-        evc = [[ExamViewController alloc]initWithWordArray:self.wordArray];
+        evc.wordArray = self.wordArray;
     }
     
     [self.navigationController pushViewController:evc animated:YES];

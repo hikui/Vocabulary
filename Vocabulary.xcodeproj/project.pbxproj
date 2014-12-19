@@ -34,14 +34,12 @@
 		7F43F72219F7A9A900672440 /* WordListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6BB19F7A9A900672440 /* WordListManager.m */; };
 		7F43F72919F7A9A900672440 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */; };
 		7F43F72B19F7A9A900672440 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */; };
-		7F43F72C19F7A9A900672440 /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6D819F7A9A900672440 /* ExamViewController.m */; };
 		7F43F72D19F7A9A900672440 /* ExistingWordListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */; };
 		7F43F72E19F7A9A900672440 /* LearningBackboneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */; };
 		7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */; };
 		7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E019F7A9A900672440 /* PlanningViewController.m */; };
 		7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E219F7A9A900672440 /* PreferenceViewController.m */; };
 		7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E419F7A9A900672440 /* SearchWordViewController.m */; };
-		7F43F73319F7A9A900672440 /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */; };
 		7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E819F7A9A900672440 /* VBaseViewController.m */; };
 		7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EA19F7A9A900672440 /* VNavigationController.m */; };
 		7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EC19F7A9A900672440 /* VWebViewController.m */; };
@@ -49,7 +47,6 @@
 		7F43F73819F7A9A900672440 /* WordListFromDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6F019F7A9A900672440 /* WordListFromDiskViewController.m */; };
 		7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6F219F7A9A900672440 /* WordListViewController.m */; };
 		7F43F73A19F7A9A900672440 /* CreateWordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */; };
-		7F43F73B19F7A9A900672440 /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F519F7A9A900672440 /* ExamViewController.xib */; };
 		7F43F73C19F7A9A900672440 /* ExistingWordListsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */; };
 		7F43F73D19F7A9A900672440 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */; };
 		7F43F73E19F7A9A900672440 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */; };
@@ -61,6 +58,7 @@
 		7F43F74419F7A9A900672440 /* WordListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FE19F7A9A900672440 /* WordListViewController.xib */; };
 		7F43F74519F7A9A900672440 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70119F7A9A900672440 /* ExamContent.m */; };
 		7F43F74619F7A9A900672440 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F70319F7A9A900672440 /* Guide.m */; };
+		7F67A7D11A44104B0037F7F2 /* ExamTypeChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F67A7D01A44104B0037F7F2 /* ExamTypeChoiceViewController.xib */; };
 		7F68EEC91A26C73E00FB898F /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */; };
 		7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE911A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m */; };
 		7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE931A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m */; };
@@ -91,6 +89,10 @@
 		7F7CFCDE1A41679C008251DB /* EditWordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCDC1A41679C008251DB /* EditWordDetailViewController.m */; };
 		7F7CFCDF1A41679C008251DB /* EditWordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7CFCDD1A41679C008251DB /* EditWordDetailViewController.xib */; };
 		7F7CFCE51A417F0B008251DB /* VKeyboardAwarenessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */; };
+		7F7CFCF31A43E1AB008251DB /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCEE1A43E1AB008251DB /* ExamViewController.m */; };
+		7F7CFCF41A43E1AB008251DB /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF01A43E1AB008251DB /* ShowWrongWordsViewController.m */; };
+		7F7CFCF51A43E1AB008251DB /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */; };
+		7F7CFCF91A43E1E9008251DB /* ExamTypeChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
@@ -210,8 +212,6 @@
 		7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
 		7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
-		7F43F6D719F7A9A900672440 /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamViewController.h; sourceTree = "<group>"; };
-		7F43F6D819F7A9A900672440 /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
 		7F43F6D919F7A9A900672440 /* ExistingWordListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExistingWordListsViewController.h; sourceTree = "<group>"; };
 		7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExistingWordListsViewController.m; sourceTree = "<group>"; };
 		7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningBackboneViewController.h; sourceTree = "<group>"; };
@@ -224,8 +224,6 @@
 		7F43F6E219F7A9A900672440 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
 		7F43F6E319F7A9A900672440 /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
 		7F43F6E419F7A9A900672440 /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
-		7F43F6E519F7A9A900672440 /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
-		7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
 		7F43F6E719F7A9A900672440 /* VBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBaseViewController.h; sourceTree = "<group>"; };
 		7F43F6E819F7A9A900672440 /* VBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseViewController.m; sourceTree = "<group>"; };
 		7F43F6E919F7A9A900672440 /* VNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationController.h; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 		7F43F6F119F7A9A900672440 /* WordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListViewController.h; sourceTree = "<group>"; };
 		7F43F6F219F7A9A900672440 /* WordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListViewController.m; sourceTree = "<group>"; };
 		7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateWordListViewController.xib; sourceTree = "<group>"; };
-		7F43F6F519F7A9A900672440 /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
 		7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingWordListsViewController.xib; sourceTree = "<group>"; };
 		7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningBackboneViewController.xib; sourceTree = "<group>"; };
 		7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
@@ -254,6 +251,7 @@
 		7F43F70219F7A9A900672440 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
 		7F43F70319F7A9A900672440 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		7F43F74819F7AADC00672440 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		7F67A7D01A44104B0037F7F2 /* ExamTypeChoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamTypeChoiceViewController.xib; sourceTree = "<group>"; };
 		7F68EE8E1A26C73E00FB898F /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		7F68EE901A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -318,6 +316,13 @@
 		7F7CFCDD1A41679C008251DB /* EditWordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditWordDetailViewController.xib; path = ../EditWordDetailViewController.xib; sourceTree = "<group>"; };
 		7F7CFCE31A417F0B008251DB /* VKeyboardAwarenessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKeyboardAwarenessViewController.h; sourceTree = "<group>"; };
 		7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKeyboardAwarenessViewController.m; sourceTree = "<group>"; };
+		7F7CFCED1A43E1AB008251DB /* ExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamViewController.h; sourceTree = "<group>"; };
+		7F7CFCEE1A43E1AB008251DB /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
+		7F7CFCEF1A43E1AB008251DB /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
+		7F7CFCF01A43E1AB008251DB /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
+		7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
+		7F7CFCF61A43E1E9008251DB /* ExamTypeChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamTypeChoiceViewController.h; sourceTree = "<group>"; };
+		7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamTypeChoiceViewController.m; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A42073621A3C82E800D6101B /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -567,11 +572,10 @@
 		7F43F6D419F7A9A900672440 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F7CFCEC1A43E1AB008251DB /* Exam */,
 				7F7CFCE61A41800A008251DB /* BaseClasses */,
 				7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */,
 				7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */,
-				7F43F6D719F7A9A900672440 /* ExamViewController.h */,
-				7F43F6D819F7A9A900672440 /* ExamViewController.m */,
 				7F43F6D919F7A9A900672440 /* ExistingWordListsViewController.h */,
 				7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */,
 				7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */,
@@ -584,8 +588,6 @@
 				7F43F6E219F7A9A900672440 /* PreferenceViewController.m */,
 				7F43F6E319F7A9A900672440 /* SearchWordViewController.h */,
 				7F43F6E419F7A9A900672440 /* SearchWordViewController.m */,
-				7F43F6E519F7A9A900672440 /* ShowWrongWordsViewController.h */,
-				7F43F6E619F7A9A900672440 /* ShowWrongWordsViewController.m */,
 				7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */,
 				7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */,
 				7F43F6EF19F7A9A900672440 /* WordListFromDiskViewController.h */,
@@ -606,7 +608,6 @@
 			children = (
 				7F7CFCDD1A41679C008251DB /* EditWordDetailViewController.xib */,
 				7F43F6F419F7A9A900672440 /* CreateWordListViewController.xib */,
-				7F43F6F519F7A9A900672440 /* ExamViewController.xib */,
 				7F43F6F619F7A9A900672440 /* ExistingWordListsViewController.xib */,
 				7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */,
 				7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */,
@@ -747,6 +748,29 @@
 				7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */,
 			);
 			name = BaseClasses;
+			sourceTree = "<group>";
+		};
+		7F7CFCEC1A43E1AB008251DB /* Exam */ = {
+			isa = PBXGroup;
+			children = (
+				7F7CFCED1A43E1AB008251DB /* ExamViewController.h */,
+				7F7CFCEE1A43E1AB008251DB /* ExamViewController.m */,
+				7F7CFCEF1A43E1AB008251DB /* ShowWrongWordsViewController.h */,
+				7F7CFCF01A43E1AB008251DB /* ShowWrongWordsViewController.m */,
+				7F7CFCF11A43E1AB008251DB /* xibs */,
+				7F7CFCF61A43E1E9008251DB /* ExamTypeChoiceViewController.h */,
+				7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */,
+			);
+			path = Exam;
+			sourceTree = "<group>";
+		};
+		7F7CFCF11A43E1AB008251DB /* xibs */ = {
+			isa = PBXGroup;
+			children = (
+				7F67A7D01A44104B0037F7F2 /* ExamTypeChoiceViewController.xib */,
+				7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */,
+			);
+			path = xibs;
 			sourceTree = "<group>";
 		};
 		A46A7E3C1630296800DF4696 = {
@@ -990,6 +1014,7 @@
 				EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */,
 				7F43F70A19F7A9A900672440 /* GuideView.xib in Resources */,
 				7F43F74319F7A9A900672440 /* WordListFromDiskViewController.xib in Resources */,
+				7F67A7D11A44104B0037F7F2 /* ExamTypeChoiceViewController.xib in Resources */,
 				7F43F73C19F7A9A900672440 /* ExistingWordListsViewController.xib in Resources */,
 				EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */,
 				EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */,
@@ -1008,9 +1033,9 @@
 				A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */,
 				A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */,
 				A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */,
-				7F43F73B19F7A9A900672440 /* ExamViewController.xib in Resources */,
 				7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */,
 				7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */,
+				7F7CFCF51A43E1AB008251DB /* ExamViewController.xib in Resources */,
 				ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */,
 				ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */,
 				ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */,
@@ -1069,7 +1094,6 @@
 				7F43F70619F7A9A900672440 /* CibaWebView.m in Sources */,
 				7F43F72E19F7A9A900672440 /* LearningBackboneViewController.m in Sources */,
 				7F43F71219F7A9A900672440 /* WordList.m in Sources */,
-				7F43F73319F7A9A900672440 /* ShowWrongWordsViewController.m in Sources */,
 				7F43F72019F7A9A900672440 /* PlanMaker.m in Sources */,
 				7F68EED71A26C73E00FB898F /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				7F68EECF1A26C73E00FB898F /* NSString+MagicalDataImport.m in Sources */,
@@ -1078,8 +1102,10 @@
 				7F43F74619F7A9A900672440 /* Guide.m in Sources */,
 				7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				7F43F74519F7A9A900672440 /* ExamContent.m in Sources */,
+				7F7CFCF41A43E1AB008251DB /* ShowWrongWordsViewController.m in Sources */,
 				7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */,
 				A489D71B1A0670290087C0AF /* NoteViewController.m in Sources */,
+				7F7CFCF31A43E1AB008251DB /* ExamViewController.m in Sources */,
 				7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */,
 				7F43F71619F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
@@ -1098,7 +1124,6 @@
 				7F68EEDD1A26C73E00FB898F /* MagicalRecord+ErrorHandling.m in Sources */,
 				7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				7F68EEE11A26C73E00FB898F /* MagicalRecord+iCloud.m in Sources */,
-				7F43F72C19F7A9A900672440 /* ExamViewController.m in Sources */,
 				7F68EEDB1A26C73E00FB898F /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				7F68EEDF1A26C73E00FB898F /* MagicalRecord+Setup.m in Sources */,
 				A489D7151A066DAF0087C0AF /* Word.m in Sources */,
@@ -1130,6 +1155,7 @@
 				7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */,
 				7F68EEDA1A26C73E00FB898F /* NSPersistentStore+MagicalRecord.m in Sources */,
 				7F68EEE21A26C73E00FB898F /* MagicalRecord.m in Sources */,
+				7F7CFCF91A43E1E9008251DB /* ExamTypeChoiceViewController.m in Sources */,
 				7F43F73819F7A9A900672440 /* WordListFromDiskViewController.m in Sources */,
 				7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */,
 				A489D71E1A0674340087C0AF /* NoteAttatchment.m in Sources */,

@@ -30,8 +30,7 @@
 
 //constants
 #define kPerformSoundAutomatically @"performSound"
-//#define kFinishTodaysPlan @"finishTodaysPlan"
-//#define kLastLearningTime @"lastLearningTime"
+
 #define kTodaysPlanWordListIdURIRepresentation @"todaysPlanWordListIdURIRepresentation"
 #define kDayNotificationTime @"dayNotificationTime"
 #define kNightNotificationTime @"nightNotificationTime"
@@ -49,8 +48,6 @@
 #define CibaEngineDomain @"info.herkuang.vocabulary.CibaEngine"
 #define FillWordError -3
 #define FillWordPronError -4
-
-#define ShowAds NO
 
 #define GlobalBackgroundColor RGBA(227,227,227,1)
 

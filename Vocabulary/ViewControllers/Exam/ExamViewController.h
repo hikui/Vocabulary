@@ -27,21 +27,26 @@
 #import <AVFoundation/AVFoundation.h>
 #import "WordList.h"
 
+typedef NS_OPTIONS(NSInteger, ExamOption) {
+    ExamOptionNone = 0,
+    ExamOptionE2C = 1,
+    ExamOptionC2E = 1 << 1,
+    ExamOptionListening = 1 << 2
+};
+
 @interface ExamViewController : VBaseViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) WordList *wordList;
 @property (nonatomic, strong) NSArray *wordsArray;
 @property (nonatomic, unsafe_unretained) int cursor1;
-//@property (nonatomic, unsafe_unretained) int cursor2;
-//@property (nonatomic, strong) NSMutableArray *examContentsQueueE2C;
-//@property (nonatomic, strong) NSMutableArray *examContentsQueueS2E;
 @property (nonatomic, strong) NSMutableArray *examContentsQueue;
 @property (nonatomic, strong) NSMutableArray *examViewReuseQueue;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *rightButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *wrongButton;
 @property (nonatomic, strong) IBOutlet UIView *roundNotificatonView;
-//@property (nonatomic, strong) AVAudioPlayer *soundPlayer;
 @property (nonatomic, strong) NSMutableSet *wrongWordsSet;
+
+@property (nonatomic, assign) ExamOption examOption; //默认全选
 
 - (instancetype)initWithWordList:(WordList *)wordList;
 - (instancetype)initWithWordArray:(NSMutableArray *)wordArray;
