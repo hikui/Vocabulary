@@ -143,81 +143,7 @@
     self.progressBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:self.progressBar];
     
-    
-    //扫描是否有未加载的word
-//    for (Word *w in self.wordsArray) {
-//        if ([w.hasGotDataFromAPI boolValue] == NO && [w.manuallyInput boolValue] == NO) {
-//            
-//            [self.wordsWithNoInfoSet addObject:w];
-//            
-//            CibaEngine *engine = [CibaEngine sharedInstance];
-//            __block MKNetworkOperation *infoDownloadOp = [engine requestContentOfWord:w.key onCompletion:^(NSDictionary *parsedDict) {
-//                [self.networkOperationSet removeObject:infoDownloadOp];
-//                [CibaEngine fillWord:w withResultDict:parsedDict];
-////                [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-//                
-//                NSString *pronURL = parsedDict[@"pron_us"];
-//                if (pronURL == nil) {
-//                    pronURL = parsedDict[@"pron_uk"];
-//                }
-//                if (pronURL) {
-//                    __block MKNetworkOperation *voiceOp = [engine requestPronWithURL:pronURL onCompletion:^(NSData *data) {
-//                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-//                            [self.wordsWithNoInfoSet removeObject:w];
-//                            [self.networkOperationSet removeObject:voiceOp];
-//                            //                        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-//                            PronunciationData *pronData = [PronunciationData MR_createEntityInContext:localContext];
-//                            pronData.pronData = data;
-//                            Word *localWord = [w MR_inContext:localContext];
-//                            localWord.pronunciation = pronData;
-//                            localWord.hasGotDataFromAPI = @YES;
-//                        }];
-//                        if (self.wordsWithNoInfoSet.count == 0) {
-//                            //all ok
-//                            [self createExamContentsArray];
-//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                        }
-//                        
-//                    } onError:^(NSError *error) {
-//                        // get sound faild
-//                        [self.wordsWithNoInfoSet removeObject:w];
-//                        [self.networkOperationSet removeObject:voiceOp];
-//                        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-//                            Word *localWord = [w MR_inContext:localContext];
-//                            localWord.hasGotDataFromAPI = @YES;
-//                        }];
-//                        if (self.wordsWithNoInfoSet.count == 0) {
-//                            //all ok
-//                            [self createExamContentsArray];
-//                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                        }
-//                    }];
-//                    [self.networkOperationSet addObject:voiceOp];
-//                }else {
-//                    // this word has no sound
-//                    [self.wordsWithNoInfoSet removeObject:w];
-//                    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-//                        Word *localWord = [w MR_inContext:localContext];
-//                        localWord.hasGotDataFromAPI = @YES;
-//                    }];
-//                    if (self.wordsWithNoInfoSet.count == 0) {
-//                        //all ok
-//                        [self createExamContentsArray];
-//                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                    }
-//                }
-//            } onError:^(NSError *error) {
-//                // failed to get the word's meaning
-//                [self.wordsWithNoInfoSet removeObject:w];
-//                [self.networkOperationSet removeObject:infoDownloadOp];
-//                if (self.wordsWithNoInfoSet.count == 0) {
-//                    [self createExamContentsArray];
-//                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//                }
-//            }];
-//            [self.networkOperationSet addObject:infoDownloadOp];
-//        }
-//    }
+
     
     [self grabWordContent];
     
@@ -287,7 +213,7 @@
 
 - (void)calculateFamiliarityForEveryWords
 {
-    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             ExamContent *c1 = (ExamContent *)obj1;
             ExamContent *c2 = (ExamContent *)obj2;

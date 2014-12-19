@@ -31,13 +31,13 @@
 
 + (id)sharedInstance;
 
-- (MKNetworkOperation*)requestContentOfWord:(NSString*)word
-                               onCompletion:(CompleteBlockWithStr)completionBlock
-                                    onError:(MKNKErrorBlock)errorBlock;
-
-- (MKNetworkOperation*)requestPronWithURL:(NSString*)url
-                             onCompletion:(CompleteBlockWithData)completionBlock
-                                  onError:(MKNKErrorBlock)errorBlock;
+//- (MKNetworkOperation*)requestContentOfWord:(NSString*)word
+//                               onCompletion:(CompleteBlockWithStr)completionBlock
+//                                    onError:(MKNKErrorBlock)errorBlock;
+//
+//- (MKNetworkOperation*)requestPronWithURL:(NSString*)url
+//                             onCompletion:(CompleteBlockWithData)completionBlock
+//                                  onError:(MKNKErrorBlock)errorBlock;
 
 /**
  Promise版的请求内容
