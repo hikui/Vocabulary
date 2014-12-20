@@ -5,14 +5,14 @@
 
 不得将本软件直接用于毕业设计、大作业！！！
 
-#技术要点
+# 技术要点
 * Xcode 6.0及以上
 * iOS 6.0及以上
 * 使用了Core Data
 * 使用了金山词霸公开的API
 * 加了友盟的统计
 
-#编译
+# 编译
 本工程使用cocoapods进行三方库管理。编译前请确保[安装了cocoapods](http://cocoapods.org)(可能需要翻墙)。
 
 打开命令行执行：
@@ -22,10 +22,10 @@
 
 完成后，打开`Vocabulary.xcworkspace`即可编译。
 
-####友情提示
+#### 友情提示
 如果在安装cocoapods时觉得比较慢，可以将gem的源改为淘宝镜像，[详见这里](https://ruby.taobao.org)。
 
-#说明
+# 说明
 功能如下:
 
 * 根据艾宾浩斯记忆法管理word list的学习进度。
