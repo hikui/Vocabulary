@@ -54,6 +54,6 @@ typedef NS_OPTIONS(NSInteger, ExamOption) {
 - (IBAction)rightButtonOnPress:(id)sender;
 - (IBAction)wrongButtonOnPress:(id)sender;
 
-- (void)calculateFamiliarityForEveryWords;
+- (void)calculateFamiliarityForContentQueue:(NSMutableArray *)contentQueue;
 
 @end

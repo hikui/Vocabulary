@@ -204,9 +204,9 @@
     [self.roundNotificatonView setNeedsDisplay];
 }
 
-- (void)calculateFamiliarityForEveryWords
+- (void)calculateFamiliarityForContentQueue:(NSMutableArray *)contentQueue
 {
-    [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    [contentQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         ExamContent *c1 = (ExamContent *)obj1;
         ExamContent *c2 = (ExamContent *)obj2;
         NSString *str1 = c1.word.key;
@@ -217,43 +217,45 @@
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         
         int i = 0;
-        while (i<self.examContentsQueue.count) {
-            ExamContent *c1 = (self.examContentsQueue)[i];
-            ExamContent *c2 = nil;
+        while (i<contentQueue.count) {
             
-            if (i+1 < self.examContentsQueue.count) {
-                c2 = (self.examContentsQueue)[i+1];
+            int rightCount = 0;
+            int wrongCount = 0;
+            
+            ExamContent *ci = contentQueue[i];
+            rightCount += ci.rightTimes;
+            wrongCount += ci.wrongTimes;
+            
+            int j = i + 1;
+            while (j < contentQueue.count) {
+                ExamContent *cj = contentQueue[j];
+                if (cj.word != ci.word) {
+                    break;
+                }
+                rightCount += cj.rightTimes;
+                wrongCount += cj.wrongTimes;
+                j++;
             }
-            int rightCount = c1.rightTimes;
-            int wrongCount = c1.wrongTimes;
-            if (c1.word == c2.word) {
-                rightCount += c2.rightTimes;
-                wrongCount += c2.wrongTimes;
-                i += 2;
-            }else{
-                i += 1;
-            }
+            
+            i = j;
             
             float familiarity = 0;
             if (rightCount != 0 || wrongCount != 0) {
                 familiarity = ((float)(rightCount))/(rightCount+wrongCount);
             }
-            if (c1.word.lastVIewDate != nil) {
+            if (ci.word.lastVIewDate != nil) {
                 //与以前的值做平均
-                float oldFamiliarity = [c1.word.familiarity floatValue]/10;
+                float oldFamiliarity = [ci.word.familiarity floatValue]/10;
                 familiarity = (oldFamiliarity + familiarity)/2;
             }
             
             int familiarityInt = (int)(roundf(familiarity*10));
-            Word *c1WordInLocalContext = [c1.word MR_inContext:localContext];
+            Word *c1WordInLocalContext = [ci.word MR_inContext:localContext];
             
             c1WordInLocalContext.familiarity = @(familiarityInt);
             c1WordInLocalContext.lastVIewDate = [NSDate date];
         }
     }];
-    
-//    [[[CoreDataHelperV2 sharedInstance]mainContext]save:nil];
-    //TODO: fix this
 }
 
 #pragma mark - ibactions
@@ -446,7 +448,7 @@
 - (void)backButtonPressed
 {
     if (_shouldUpdateWordFamiliarity) {
-        [self calculateFamiliarityForEveryWords];
+        [self calculateFamiliarityForContentQueue:self.examContentsQueue];
         if (self.wrongWordsSet.count == 0) {
 
             for (UIViewController *vc in self.navigationController.viewControllers) {

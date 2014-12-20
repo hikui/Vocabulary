@@ -29,12 +29,21 @@
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
 
-
+static BOOL isRunningTests(void)
+{
+    NSDictionary* environment = [[NSProcessInfo processInfo] environment];
+    NSString* injectBundle = environment[@"XCInjectBundle"];
+    return [[injectBundle pathExtension] isEqualToString:@"xctest"];
+}
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if (isRunningTests()) {
+        return YES;
+    }
+    
     [[UIApplication sharedApplication]setStatusBarHidden:NO];
     
     // setup appearance
