@@ -24,7 +24,47 @@
 //
 
 #import "CibaNetworkOperation.h"
+#import "PromiseKit.h"
+
+NSString * const CibaNetworkOperationErrorKey = @"CibaNetworkOperationErrorKey";
+
+@interface CibaNetworkOperation (){
+    PMKPromiseFulfiller fufiller;
+    PMKPromiseRejecter rejecter;
+}
+
+@property (nonatomic, weak) PMKPromise *currentPromise;
+
+@end
 
 @implementation CibaNetworkOperation
+
+- (PMKPromise *)promise {
+    PMKPromise *promise = [PMKPromise new:^(PMKPromiseFulfiller fulfill, PMKPromiseRejecter reject) {
+        self->rejecter = reject;
+        self->fufiller = fulfill;
+        [self addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+            NSData *responseData = [completedOperation responseData];
+            fulfill(PMKManifold(responseData, completedOperation));
+        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+            NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+            userInfo[CibaNetworkOperationErrorKey] = completedOperation;
+            NSError *newError = [NSError errorWithDomain:error.domain code:error.code userInfo:userInfo];
+            reject(newError);
+        }];
+    }];
+    self.currentPromise = promise;
+    return promise;
+}
+
+#warning 可能引起内存问题
+- (void)cancel {
+    if (self->rejecter) {
+        NSError *error = [NSError errorWithDomain:CibaEngineDomain code:1 userInfo:@{@"Cause":@"Cancel"}];
+        self->rejecter(error);
+        self->rejecter = nil;
+    }
+    [super cancel];
+}
 
 @end

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:Vocabulary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A4E6458D1A45830800FE5A4F"
+               BuildableName = "Vocabulary Tests.xctest"
+               BlueprintName = "Vocabulary Tests"
+               ReferencedContainer = "container:Vocabulary.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,6 +42,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A4E6458D1A45830800FE5A4F"
+               BuildableName = "Vocabulary Tests.xctest"
+               BlueprintName = "Vocabulary Tests"
+               ReferencedContainer = "container:Vocabulary.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

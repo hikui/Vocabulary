@@ -32,7 +32,6 @@
     self = [super init];
     if (self) {
         _word = word;
-        _neverShow = NO;
         _rightTimes = _wrongTimes = 0;
         _examType = examType;
     }

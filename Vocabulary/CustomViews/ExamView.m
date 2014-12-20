@@ -49,15 +49,18 @@
 - (void)setContent:(ExamContent *)content
 {
     _content = content;
+    
     if (content.examType == ExamTypeE2C) {
         self.keyLabel.text = content.word.key;
-    }else{
+        self.acceptationView.attributedText = content.word.attributedWordDetail;
+    }else if(content.examType == ExamTypeS2E){
         self.keyLabel.text = @"听读音";
+        self.acceptationView.attributedText = content.word.attributedWordDetail;
+    }else if(content.examType == ExamTypeC2E){
+        self.keyLabel.text = content.word.acceptation;
+        self.acceptationView.text = content.word.key;
     }
-    [self.keyLabel sizeToFit];
     self.acceptationView.hidden = YES;
-    
-    self.acceptationView.attributedText = content.word.attributedWordDetail;
     self.showAcceptationButton.hidden = NO;
     NSData *pronData = content.word.pronunciation.pronData;
 
@@ -84,8 +87,9 @@
     UIButton *btn = (UIButton *)sender;
     btn.hidden = YES;
     self.acceptationView.hidden = NO;
-    self.keyLabel.text = self.content.word.key;
-    [self.keyLabel sizeToFit];
+    if (self.content.examType == ExamTypeS2E) {
+        self.keyLabel.text = self.content.word.key;
+    }
     [self playSound];
 }
 

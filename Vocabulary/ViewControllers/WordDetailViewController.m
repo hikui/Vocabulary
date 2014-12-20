@@ -62,7 +62,6 @@
     }else{
         self.acceptationTextView.hidden = NO;
     }
-    
     [self showCustomBackButton];
 }
 
@@ -82,6 +81,9 @@
     [self loadRightBarButtonItems];
     [super viewWillAppear:animated];
     [self refreshView];
+    if (![self.word.hasGotDataFromAPI boolValue] && ![self.word.manuallyInput boolValue]) {
+        [self refreshWordData];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -131,17 +133,12 @@
 {
     self.lblKey.text = self.word.key;
     
-    if ([self.word.hasGotDataFromAPI boolValue] || [self.word.manuallyInput boolValue]) {
-        self.acceptationTextView.attributedText = self.word.attributedWordDetail;
-        self.manuallyInputButton.hidden = YES;
-        NSData *soundData = self.word.pronunciation.pronData;
-        NSError *err = nil;
-        self.player = [[AVAudioPlayer alloc]initWithData:soundData error:&err];
-        [self.player prepareToPlay];
-    }else{
-        self.manuallyInputButton.hidden = NO;
-        [self refreshWordData];
-    }
+    self.acceptationTextView.attributedText = self.word.attributedWordDetail;
+    self.manuallyInputButton.hidden = YES;
+    NSData *soundData = self.word.pronunciation.pronData;
+    NSError *err = nil;
+    self.player = [[AVAudioPlayer alloc]initWithData:soundData error:&err];
+    [self.player prepareToPlay];
 }
 
 - (void)showInfo
@@ -174,14 +171,17 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     CibaEngine *engine = [CibaEngine sharedInstance];
-    self.networkOperation = [engine fillWord:self.word onCompletion:^{
+    self.manuallyInputButton.hidden = YES; //刷新时，关闭此按钮
+    
+    CibaNetworkOperation *operation = nil;
+    [engine fillWord:self.word outerOperation:&operation].then(^(){
         [hud hide:YES];
         [self refreshView];
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
         if (shouldPerformSound) {
             [self playSound];
         }
-    } onError:^(NSError *error) {
+    }).catch(^(NSError *error){
         if ([error.domain isEqualToString:CibaEngineDomain] && error.code == FillWordPronError) {
             hud.detailsLabelText = @"语音加载失败";
             [hud hide:YES afterDelay:1.5];
@@ -192,7 +192,10 @@
             self.manuallyInputButton.hidden = NO;
             [self loadRightBarButtonItems];
         }
-    }];
+    });
+    
+    self.networkOperation = operation;
+
 }
 
 // @Override

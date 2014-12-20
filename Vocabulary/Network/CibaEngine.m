@@ -25,7 +25,7 @@
 
 #import "CibaEngine.h"
 //#import "JSONKit.h"
-#define CIBA_URL(__W__)[NSString stringWithFormat:@"search/%@", __W__]
+#define CIBA_URL(__W__) [NSString stringWithFormat:@"search/%@", __W__]
 #define HostName @"hikuivocabulary.sinaapp.com"
 
 @implementation CibaEngine
@@ -33,160 +33,124 @@
 + (id)sharedInstance
 {
     static dispatch_once_t pred = 0;
-    __strong static CibaEngine *_sharedObject = nil;
+    __strong static CibaEngine* _sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[CibaEngine alloc] initWithHostName:HostName]; // or some other init method
     });
     return _sharedObject;
 }
 
-- (MKNetworkOperation *) infomationForWord:(NSString *)word
-                              onCompletion:(CompleteBlockWithStr) completionBlock
-                                   onError:(MKNKErrorBlock) errorBlock
+//- (MKNetworkOperation*)requestContentOfWord:(NSString*)word
+//                        onCompletion:(CompleteBlockWithStr)completionBlock
+//                             onError:(MKNKErrorBlock)errorBlock
+//{
+//    MKNetworkOperation* op = [self operationWithPath:CIBA_URL(word)];
+//    [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
+//        NSData *jsonData = [completedOperation responseData];
+//        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
+//        if (resultDict == nil) {
+//            if (errorBlock) {
+//                errorBlock(nil);
+//            }
+//        }else{
+//            if (completionBlock) {
+//                completionBlock(resultDict);
+//            }
+//        }
+//
+//    } errorHandler:^(MKNetworkOperation* completedOperation, NSError* error) {
+//        if (errorBlock) {
+//            errorBlock(error);
+//        }
+//    }];
+//    [self enqueueOperation:op];
+//    return op;
+//}
+//
+//- (MKNetworkOperation*)requestPronWithURL:(NSString*)url
+//                         onCompletion:(CompleteBlockWithData)completionBlock
+//                              onError:(MKNKErrorBlock)errorBlock
+//{
+//    MKNetworkOperation* op = [[MKNetworkOperation alloc] initWithURLString:url params:nil httpMethod:@"GET"];
+//    [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
+//        NSData *data = [completedOperation responseData];
+//        if (completionBlock) {
+//            completionBlock(data);
+//        }
+//    } errorHandler:^(MKNetworkOperation* completedOperation, NSError* error) {
+//        if (errorBlock) {
+//            errorBlock(error);
+//        }
+//    }];
+//    [self enqueueOperation:op];
+//    return op;
+//}
+
+- (PMKPromise *)requestContentOfWord:(NSString*)word
+                      outerOperation:(CibaNetworkOperation **)operation
 {
-    MKNetworkOperation *op = [self operationWithPath:CIBA_URL(word)];
-    //[[MKNetworkOperation alloc]initWithURLString:CIBA_URL(word) params:nil httpMethod:@"GET"];
-    //NSLog(@"%@",op.url);
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        NSData *jsonData = [completedOperation responseData];
-        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
-        if (resultDict == nil) {
-            if (errorBlock) {
-                errorBlock(nil);
-            }
-        }else{
-            if (completionBlock) {
-                completionBlock(resultDict);
-            }
-        }
-        
-    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        if (errorBlock) {
-            errorBlock(error);
-        }
-    }];
+    NSString* urlString = [NSString stringWithFormat:@"http://%@/%@", HostName, CIBA_URL(word)];
+    CibaNetworkOperation* op = [[CibaNetworkOperation alloc] initWithURLString:urlString params:nil httpMethod:@"GET"];
+    PMKPromise *modifiedPromise = op.promise.then(^(NSData *responseData, CibaNetworkOperation *operation){
+        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:NULL];
+        return PMKManifold(resultDict, operation);
+    });
+    if (operation != nil) {
+        *operation = op;
+    }
     [self enqueueOperation:op];
-    return op;
+    return modifiedPromise;
 }
 
-- (MKNetworkOperation *) getPronWithURL:(NSString *)url
-                           onCompletion:(CompleteBlockWithData) completionBlock
-                                onError:(MKNKErrorBlock) errorBlock
+- (PMKPromise *)requestPronWithURL:(NSString*)url
+                    outerOperation:(CibaNetworkOperation **)operation
 {
-    MKNetworkOperation *op = [[MKNetworkOperation alloc]initWithURLString:url params:nil httpMethod:@"GET"];
-    [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        NSData *data = [completedOperation responseData];
-        if (completionBlock) {
-            completionBlock(data);
-        }
-    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        if (errorBlock) {
-            errorBlock(error);
-        }
-    }];
+    CibaNetworkOperation* op = [[CibaNetworkOperation alloc] initWithURLString:url params:nil httpMethod:@"GET"];
     [self enqueueOperation:op];
-    return op;
+    return op.promise.catch(^(NSError *error){
+        //自己先包装一层
+        NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordPronError userInfo:error.userInfo];
+        return myError;
+    });
 }
 
-
-/**
- 一次性填充整个word
- */
-- (CibaNetworkOperation *) fillWord:(Word *)word
-                     onCompletion:(HKVVoidBlock)completion
-                          onError:(HKVErrorBlock)errorBlock
+- (PMKPromise *)fillWord:(Word*)word
+          outerOperation:(CibaNetworkOperation **)operation
 {
-    NSString *urlString = [NSString stringWithFormat:@"http://%@/%@",HostName,CIBA_URL(word.key)];
-    CibaNetworkOperation *operation = [[CibaNetworkOperation alloc]initWithURLString:urlString params:nil httpMethod:@"GET"];
-    operation.word = word;
-    [operation addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        NSAssert([completedOperation isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
-        NSData *jsonData = [completedOperation responseData];
-        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
-        if (resultDict == nil) {
+    PMKPromise *modifiedPromise = [self requestContentOfWord:word.key outerOperation:operation].then(^(NSDictionary *resultDict){
+        if (!resultDict || resultDict[@"error"]!=nil) {
             NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:nil];
-            if (errorBlock) {
-                errorBlock(myError);
-            }
-            
-            return;
-        }
-        if (resultDict[@"error"]!=nil) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:nil];
-            if (errorBlock) {
-                errorBlock(myError);
-            }
-            
-            return;
+            return (id)myError;
         }
         [CibaEngine fillWord:word withResultDict:resultDict];
-
-//        NSError *err = nil;
-//        BOOL hasChanges = NO;
-//        hasChanges = word.managedObjectContext.hasChanges;
-//        [word.managedObjectContext save:&err];
-        //load voice
         NSString *pronURL = resultDict[@"pron_us"];
         if (pronURL == nil) {
             pronURL = resultDict[@"pron_uk"];
         }
-        
-        //第二次网络访问，取得读音
-        CibaNetworkOperation *getPronOp = [[CibaNetworkOperation alloc]initWithURLString:pronURL params:nil httpMethod:@"GET"];
-        getPronOp.word = word;
-        [getPronOp addCompletionHandler:^(MKNetworkOperation *completedGetPronOp) {
-            NSAssert([completedGetPronOp isKindOfClass:[CibaNetworkOperation class]], @"completionOperation is not kind of CibaOperation");
-            NSData *data = [completedGetPronOp responseData];
-            [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-                Word *localWord = [word MR_inContext:localContext];
-                PronunciationData *pron = [PronunciationData MR_createInContext:localContext];
-                pron.pronData = data;
-                localWord.pronunciation = pron;
-                localWord.hasGotDataFromAPI = @YES;
-            }];
-            if (completion) {
-                completion();
-            }
-        } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-            NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordPronError userInfo:error.userInfo];
-            word.hasGotDataFromAPI = @NO;
-            if (errorBlock) {
-                errorBlock(myError);
-            }
+        return (id)[self requestPronWithURL:pronURL outerOperation:nil];
+    }).then(^(NSData *soundData){
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            Word *localWord = [word MR_inContext:localContext];
+            PronunciationData *pron = [PronunciationData MR_createEntityInContext:localContext];
+            pron.pronData = soundData;
+            localWord.pronunciation = pron;
         }];
-        [self enqueueOperation:getPronOp];
-        
-    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        NSError *myError = [[NSError alloc]initWithDomain:CibaEngineDomain code:FillWordError userInfo:error.userInfo];
-        if (errorBlock) {
-            errorBlock(myError);
+    }).catch(^(NSError *error){
+        if ([error.domain isEqualToString: CibaEngineDomain] && error.code != FillWordPronError) {
+            [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+                Word *localWord = [word MR_inContext:localContext];
+                localWord.hasGotDataFromAPI = @(NO);
+            }];
         }
-    }];
-    [self enqueueOperation:operation];
-    return operation;
+        return error;
+    });
+    return modifiedPromise;
 }
 
-//删除一个单词的请求
-//- (void) cancelOperationOfWord:(Word *)word
-//{
-//    NSMutableSet *operationsToBeRemoved = [[NSMutableSet alloc]init];
-//    for (CibaNetworkOperation *op in self.livingOperations) {
-//        if ([op isKindOfClass:[CibaNetworkOperation class]]) {
-//            if (op.word == word) {
-//                [op cancel];
-//                [operationsToBeRemoved addObject:op];
-//            }
-//        }
-//    }
-//    for (CibaNetworkOperation *op in operationsToBeRemoved) {
-//        [self.livingOperations removeObject:op];
-//    }
-//
-//}
 
-+ (void)fillWord:(Word *)word withResultDict:(NSDictionary *)resultDict
++ (void)fillWord:(Word*)word withResultDict:(NSDictionary*)resultDict
 {
-    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext* localContext) {
         Word *targetWord = [word MR_inContext:localContext];
         if (resultDict == nil) {
             // error on parsing
@@ -205,6 +169,7 @@
         targetWord.psEN = resultDict[@"ps_uk"];
         targetWord.psUS = resultDict[@"ps_us"];
         targetWord.sentences = resultDict[@"sentence"]!=nil?resultDict[@"sentence"]:@"";
+        targetWord.hasGotDataFromAPI = @(YES);
     }];
 }
 

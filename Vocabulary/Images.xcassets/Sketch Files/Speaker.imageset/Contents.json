@@ -1,8 +1,13 @@
 {
   "images" : [
     {
+      "idiom" : "universal"
+    },
+    {
       "idiom" : "universal",
-      "filename" : "BackIcon.pdf"
+      "filename" : "Speaker.pdf",
+      "unassigned" : true,
+      "scale" : "1x"
     }
   ],
   "info" : {
