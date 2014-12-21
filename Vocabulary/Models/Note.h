@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VBaseModel.h"
 
 @class Word;
 
-@interface Note : NSManagedObject
+@interface Note : VBaseModel
 
 @property (nonatomic, retain) NSString * textNote;
 @property (nonatomic, retain) NSSet *attatchments;

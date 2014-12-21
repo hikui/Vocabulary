@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VBaseModel.h"
 
 @class Word;
 
-@interface PronunciationData : NSManagedObject
+@interface PronunciationData : VBaseModel
 
 @property (nonatomic, retain) NSData * pronData;
 @property (nonatomic, retain) Word *word;

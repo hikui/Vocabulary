@@ -25,10 +25,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VBaseModel.h"
 
 @class Word;
 
-@interface WordList : NSManagedObject
+@interface WordList : VBaseModel
 
 @property (nonatomic, retain) NSDate * addTime;
 @property (nonatomic, retain) NSNumber * effectiveCount;

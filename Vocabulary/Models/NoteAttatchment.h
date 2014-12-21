@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VBaseModel.h"
 
 @class Note;
 
-@interface NoteAttatchment : NSManagedObject
+@interface NoteAttatchment : VBaseModel
 
 @property (nonatomic, retain) NSData * data;
 @property (nonatomic, retain) NSString * mimeType;
