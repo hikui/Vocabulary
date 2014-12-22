@@ -59,6 +59,7 @@
 		7F67A7DB1A47B6A40037F7F2 /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D81A47B6A40037F7F2 /* WordManager.m */; };
 		7F67A7E11A47B6BD0037F7F2 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */; };
 		7F67A7E21A47B6BD0037F7F2 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E01A47B6BD0037F7F2 /* Guide.m */; };
+		7F67A7E51A47B7640037F7F2 /* VNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */; };
 		7F68EEC91A26C73E00FB898F /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */; };
 		7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE911A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m */; };
 		7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE931A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m */; };
@@ -266,6 +267,8 @@
 		7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
 		7F67A7DF1A47B6BD0037F7F2 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
 		7F67A7E01A47B6BD0037F7F2 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
+		7F67A7E31A47B7640037F7F2 /* VNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationManager.h; sourceTree = "<group>"; };
+		7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationManager.m; sourceTree = "<group>"; };
 		7F68EE8E1A26C73E00FB898F /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		7F68EE901A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -551,6 +554,8 @@
 				7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */,
 				7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */,
 				7F43F6BE19F7A9A900672440 /* common.h */,
+				7F67A7E31A47B7640037F7F2 /* VNavigationManager.h */,
+				7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1196,6 +1201,7 @@
 				7F7CFCF31A43E1AB008251DB /* ExamViewController.m in Sources */,
 				7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */,
 				7F43F71619F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
+				7F67A7E51A47B7640037F7F2 /* VNavigationManager.m in Sources */,
 				7F67A7DA1A47B6A40037F7F2 /* WordListManager.m in Sources */,
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
 				7F68EED31A26C73E00FB898F /* NSManagedObject+MagicalRecord.m in Sources */,
