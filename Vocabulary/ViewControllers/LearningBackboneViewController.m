@@ -46,17 +46,31 @@
 
 @implementation LearningBackboneViewController
 
+//
+//- (instancetype)initWithWords:(NSMutableArray *)words
+//{
+//    self = [super initWithNibName:@"LearningBackboneViewController" bundle:nil];
+//    if (self) {
+//        _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
+//        _words = [words mutableCopy];
+//        forward = true;
+//        firstAppear = YES;
+//    }
+//    return self;
+//}
 
-- (instancetype)initWithWords:(NSMutableArray *)words
-{
-    self = [super initWithNibName:@"LearningBackboneViewController" bundle:nil];
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
-        _words = [words mutableCopy];
-        forward = true;
-        firstAppear = YES;
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
+    forward = true;
+    firstAppear = YES;
 }
 
 - (void)viewDidLoad
@@ -83,7 +97,9 @@
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
-        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:(self.words)[i]];
+        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
+        lvc.word = self.words[i];
+//        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:(self.words)[i]];
         if (lvc) {
             [self.learningViewControllerArray addObject:lvc];
         }
@@ -232,7 +248,8 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 
 - (void)searchButtonOnPress:(id)sender
 {
-    SearchWordViewController *svc = [[SearchWordViewController alloc]initWithModalViewControllerMode:YES];
+    SearchWordViewController *svc = [[SearchWordViewController alloc]initWithNibName:nil bundle:nil];
+    svc.modalViewControllerMode = YES;
     VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
     nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 //    [self presentModalViewController:nsvc animated:YES];
@@ -245,7 +262,8 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 }
 
 - (void)noteButtonOnClick {
-    NoteViewController *nvc = [[NoteViewController alloc]initWithWord:self.currentShownViewController.word];
+    NoteViewController *nvc = [[NoteViewController alloc]initWithNibName:nil bundle:nil];
+    nvc.word = self.currentShownViewController.word;
     [self.navigationController pushViewController:nvc animated:YES];
 }
 

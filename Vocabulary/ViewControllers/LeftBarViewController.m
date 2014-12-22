@@ -204,7 +204,8 @@
         }
     }else if(tableView == self.searchResultTableView){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:self.searchResult[indexPath.row]];
+        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
+        lvc.word = self.searchResult[indexPath.row];
         VNavigationController *nlvc = [[VNavigationController alloc]initWithRootViewController:lvc];
 //        [self presentModalViewController:nlvc animated:YES];
         [self presentViewController:nlvc animated:YES completion:nil];

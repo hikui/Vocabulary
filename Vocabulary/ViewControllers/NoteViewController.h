@@ -10,6 +10,8 @@
 
 @interface NoteViewController : VKeyboardAwarenessViewController
 
-- (instancetype)initWithWord:(Word *)word;
+@property (nonatomic, strong) Word *word;
+
+//- (instancetype)initWithWord:(Word *)word;
 
 @end

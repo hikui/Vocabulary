@@ -28,10 +28,10 @@
 @interface LearningBackboneViewController : VBaseViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray *learningViewControllerArray;
-@property (nonatomic,copy) NSMutableArray * words;
+@property (nonatomic,strong) NSMutableArray * words;
 @property (nonatomic,strong) UIPageViewController *pageViewController;
 @property (nonatomic,strong) IBOutlet UILabel *pageIndicator;
 
-- (instancetype)initWithWords:(NSMutableArray *)words;
+//- (instancetype)initWithWords:(NSMutableArray *)words;
 - (IBAction)btnShowInfoOnPressed:(id)sender;
 @end

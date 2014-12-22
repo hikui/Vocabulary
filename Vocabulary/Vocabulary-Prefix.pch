@@ -10,9 +10,9 @@
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #ifdef DEBUG
-static int ddLogLevel = LOG_LEVEL_DEBUG;
+static int ddLogLevel = DDLogLevelAll;
 #else
-static int ddLogLevel = LOG_LEVEL_OFF;
+static int ddLogLevel = DDLogLevelOff;
 #endif
 
 #ifdef __OBJC__

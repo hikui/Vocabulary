@@ -25,7 +25,7 @@
 
 #import "ExamViewController.h"
 #import "ShowWrongWordsViewController.h"
-#import "ExamView.h"
+#import "ExamContentView.h"
 #import "CibaEngine.h"
 //#import "CibaXMLParser.h"
 #import "IIViewDeckController.h"
@@ -46,36 +46,36 @@
 
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
 
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) ExamView *pickAnExamView;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) ExamContentView *pickAnExamView;
 - (void)createExamContentsArray;
 - (void)shuffleMutableArray:(NSMutableArray *)array;
 - (void)prepareNextExamView;
 
-- (void)examViewExchangeDidFinish:(ExamView *)currExamView;
+- (void)examViewExchangeDidFinish:(ExamContentView *)currExamView;
 - (void)backButtonPressed;
 
 @end
 
 @implementation ExamViewController
 
-- (instancetype)initWithWordList:(WordList *)wordList
-{
-    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
-    if (self) {
-        _wordList = wordList;
-        [self commonInit];
-    }
-    return self;
-}
-- (instancetype)initWithWordArray:(NSMutableArray *)wordArray
-{
-    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
-    if (self) {
-        _wordsArray = wordArray;
-        [self commonInit];
-    }
-    return self;
-}
+//- (instancetype)initWithWordList:(WordList *)wordList
+//{
+//    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
+//    if (self) {
+//        _wordList = wordList;
+//        [self commonInit];
+//    }
+//    return self;
+//}
+//- (instancetype)initWithWordArray:(NSMutableArray *)wordArray
+//{
+//    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
+//    if (self) {
+//        _wordsArray = wordArray;
+//        [self commonInit];
+//    }
+//    return self;
+//}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -119,10 +119,10 @@
     self.navigationItem.leftBarButtonItem = backButton;
     
     //create 2 exam views;
-    ExamView *ev1 = [ExamView newInstance];
+    ExamContentView *ev1 = [ExamContentView newInstance];
     ev1.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     ev1.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-48);
-    ExamView *ev2 = [ExamView newInstance];
+    ExamContentView *ev2 = [ExamContentView newInstance];
     ev2.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     ev2.frame = ev1.frame;
     [self.examViewReuseQueue addObject:ev1];
@@ -282,10 +282,10 @@
 }
 
 #pragma mark - private methods
-- (ExamView *)pickAnExamView
+- (ExamContentView *)pickAnExamView
 {
     static int i = 0;
-    ExamView *view = (self.examViewReuseQueue)[i%2];
+    ExamContentView *view = (self.examViewReuseQueue)[i%2];
     i++;
     return view;
 }
@@ -319,7 +319,7 @@
     if (self.examContentsQueue.count != 0) {
         ExamContent *content = (self.examContentsQueue)[_cursor1];;
         
-        ExamView *ev = [self pickAnExamView];
+        ExamContentView *ev = [self pickAnExamView];
         ev.content = content;
         self.currentExamContent = content;
         [self.view addSubview:ev];
@@ -340,7 +340,7 @@
 
 - (void)prepareNextExamView
 {
-    ExamView *ev = [self pickAnExamView];
+    ExamContentView *ev = [self pickAnExamView];
     ev.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-48);
     _cursor1 = ++_cursor1;
     self.progressBar.progress = (float)_cursor1 / self.examContentsQueue.count;
@@ -420,7 +420,7 @@
     self.currentExamContent = content;
     DDLogDebug(@"%d",[content weight]);
     NSUInteger i = [self.examViewReuseQueue indexOfObject:ev];
-    ExamView *oldView = (self.examViewReuseQueue)[++i%2];
+    ExamContentView *oldView = (self.examViewReuseQueue)[++i%2];
     [oldView stopSound];
     [self.view insertSubview:ev belowSubview:oldView];
     [UIView animateWithDuration:0.5 animations:^{
@@ -436,7 +436,7 @@
     
 }
 
-- (void)examViewExchangeDidFinish:(ExamView *)currExamView
+- (void)examViewExchangeDidFinish:(ExamContentView *)currExamView
 {
     ExamContent *content = currExamView.content;
     content.lastReviewDate = [NSDate date];

@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, VNavigationActionType) {
     VNavigationActionTypeResetRoot
 };
 
-@interface VNavigationActionCommand : NSObject
+@interface VNavigationActionCommand : NSObject<NSCopying>
 
 @property (nonatomic, assign) VNavigationActionType actionType;
 @property (nonatomic, copy) NSURL *targetURL;

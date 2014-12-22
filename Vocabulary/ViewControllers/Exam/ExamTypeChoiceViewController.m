@@ -50,19 +50,21 @@
         return;
     }
     
-    ExamViewController *examVC = nil;
+    ExamViewController *examVC = [[ExamViewController alloc]initWithNibName:NSStringFromClass([ExamViewController class]) bundle:nil];
     if (self.wordList) {
-        examVC = [[ExamViewController alloc]initWithWordList:self.wordList];
+        
+        examVC.wordList = self.wordList;
     }else if (self.wordArray) {
-        examVC = [[ExamViewController alloc]initWithWordArray:self.wordArray];
+        examVC.wordsArray = [self.wordArray mutableCopy];;
     }
     examVC.examOption = option;
-    if (examVC) {
-        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[[self navigationController] viewControllers]];
-        [viewControllers removeLastObject];
-        [viewControllers addObject:examVC];
-        [[self navigationController] setViewControllers:viewControllers animated:YES];
-    }
+//    if (examVC) {
+//        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[[self navigationController] viewControllers]];
+//        [viewControllers removeLastObject];
+//        [viewControllers addObject:examVC];
+//        [[self navigationController] setViewControllers:viewControllers animated:YES];
+//    }
+    [self.navigationController pushViewController:examVC animated:YES];
 }
 
 @end

@@ -47,14 +47,14 @@
     return self;
 }
 
-- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
-{
-    self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
-    if (self) {
-        _modalViewControllerMode = modalViewControllerMode;
-    }
-    return self;
-}
+//- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
+//{
+//    self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
+//    if (self) {
+//        _modalViewControllerMode = modalViewControllerMode;
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
@@ -136,7 +136,8 @@
 //        return;
 //    }
     Word *w = [Word MR_findFirstByAttribute:@"key" withValue:word];
-    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
+    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
+    lvc.word = w;
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

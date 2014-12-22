@@ -49,10 +49,21 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _shouldHideInfo = NO;
     }
     return self;
 }
+
+//- (instancetype)initWithWord:(Word *)word
+//{
+//    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
+//    if (self) {
+//        _word = word;
+//        _shouldHideInfo = NO;
+//    }
+//    return self;
+//}
+
 
 - (void)viewDidLoad
 {
@@ -115,19 +126,6 @@
 {
     [super didReceiveMemoryWarning];
 }
-
-
-- (instancetype)initWithWord:(Word *)word
-{
-    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
-    if (self) {
-        _word = word;
-        _shouldHideInfo = NO;
-    }
-    return self;
-}
-
-
 
 - (void)refreshView
 {
@@ -199,13 +197,14 @@
 }
 
 // @Override
-- (void)back:(id)sender {
+- (void)back {
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)noteButtonOnClick {
-    NoteViewController *nvc = [[NoteViewController alloc]initWithWord:self.word];
+    NoteViewController *nvc = [[NoteViewController alloc]initWithNibName:nil bundle:nil];
+    nvc.word = self.word;
     [self.navigationController pushViewController:nvc animated:YES];
 }
 

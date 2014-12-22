@@ -21,18 +21,18 @@
 
 @implementation NoteViewController
 
-- (instancetype)initWithWord:(Word *)word {
-    self = [super init];
-    if (self) {
-        if (word.note) {
-            _note = word.note;
-        }else{
-            _note = [Note MR_createEntity];
-            word.note = _note;
-        }
-    }
-    return self;
-}
+//- (instancetype)initWithWord:(Word *)word {
+//    self = [super init];
+//    if (self) {
+//        if (word.note) {
+//            _note = word.note;
+//        }else{
+//            _note = [Note MR_createEntity];
+//            word.note = _note;
+//        }
+//    }
+//    return self;
+//}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -40,6 +40,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (self.word.note) {
+        self.note = self.word.note;
+    }else{
+        self.note = [Note MR_createEntity];
+        self.word.note = self.note;
+    }
     
     self.title = @"笔记";
     

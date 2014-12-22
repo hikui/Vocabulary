@@ -9,7 +9,22 @@
 #import "VNavigationManager.h"
 #import "VWebViewController.h"
 
-@implementation VNavigationActionCommand @end
+NSString * const VNavigationConfigClassNameKey = @"VNavigationConfigClassNameKey";
+NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
+
+@implementation VNavigationActionCommand
+
+- (id)copyWithZone:(NSZone *)zone {
+    VNavigationActionCommand *copyCommand = [[VNavigationActionCommand allocWithZone:zone]init];
+    copyCommand.actionType = self.actionType;
+    copyCommand.targetURL = [self.targetURL copy];
+    copyCommand.animate = self.animate;
+    copyCommand.params = [self.params copy];
+    copyCommand.popTopBeforePush = self.popTopBeforePush;
+    return copyCommand;
+}
+
+@end
 
 @interface VNavigationManager ()
 

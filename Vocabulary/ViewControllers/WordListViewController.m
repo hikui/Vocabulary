@@ -161,7 +161,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Word *w = (self.wordArray)[indexPath.row];
-    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
+    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
+    lvc.word = w;
     [self.navigationController pushViewController:lvc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -204,7 +205,8 @@
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
-    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithWords:self.wordArray];
+    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithNibName:nil bundle:nil];
+    lvc.words = [self.wordArray mutableCopy];
     [self.navigationController pushViewController:lvc animated:YES];
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
@@ -214,7 +216,7 @@
     if (self.wordList != nil) {
         evc.wordList = self.wordList;
     }else{
-        evc.wordArray = self.wordArray;
+        evc.wordArray = [self.wordArray mutableCopy];
     }
     
     [self.navigationController pushViewController:evc animated:YES];

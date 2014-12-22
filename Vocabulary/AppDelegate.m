@@ -28,6 +28,8 @@
 #import "PlanningViewController.h"
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
+#import "VNavigationRouteConfig.h"
+#import "VNavigationManager.h"
 
 static BOOL isRunningTests(void)
 {

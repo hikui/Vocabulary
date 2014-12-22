@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6169C5B3C436E888FC365 /* libPods.a */; };
 		7F43F70619F7A9A900672440 /* CibaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68019F7A9A900672440 /* CibaWebView.m */; };
-		7F43F70719F7A9A900672440 /* ExamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68219F7A9A900672440 /* ExamView.m */; };
-		7F43F70819F7A9A900672440 /* ExamView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68319F7A9A900672440 /* ExamView.xib */; };
+		7F43F70719F7A9A900672440 /* ExamContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68219F7A9A900672440 /* ExamContentView.m */; };
+		7F43F70819F7A9A900672440 /* ExamContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68319F7A9A900672440 /* ExamContentView.xib */; };
 		7F43F70919F7A9A900672440 /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68619F7A9A900672440 /* GuideView.m */; };
 		7F43F70A19F7A9A900672440 /* GuideView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68719F7A9A900672440 /* GuideView.xib */; };
 		7F43F70B19F7A9A900672440 /* WordListFromDiskGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68919F7A9A900672440 /* WordListFromDiskGuide.m */; };
@@ -60,6 +60,11 @@
 		7F67A7E11A47B6BD0037F7F2 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */; };
 		7F67A7E21A47B6BD0037F7F2 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E01A47B6BD0037F7F2 /* Guide.m */; };
 		7F67A7E51A47B7640037F7F2 /* VNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */; };
+		7F67A7EA1A47EEF70037F7F2 /* DummyViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */; };
+		7F67A7ED1A47EF0B0037F7F2 /* DummyViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */; };
+		7F67A7F01A47EF1E0037F7F2 /* DummyViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */; };
+		7F67A7F31A47F3AA0037F7F2 /* TestBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */; };
+		7F67A7FB1A4800380037F7F2 /* VNavigationRouteConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7FA1A4800380037F7F2 /* VNavigationRouteConfig.m */; };
 		7F68EEC91A26C73E00FB898F /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */; };
 		7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE911A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m */; };
 		7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE931A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m */; };
@@ -183,9 +188,9 @@
 		527127F11B3F2310405C9F93 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7F43F67F19F7A9A900672440 /* CibaWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaWebView.h; sourceTree = "<group>"; };
 		7F43F68019F7A9A900672440 /* CibaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaWebView.m; sourceTree = "<group>"; };
-		7F43F68119F7A9A900672440 /* ExamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamView.h; sourceTree = "<group>"; };
-		7F43F68219F7A9A900672440 /* ExamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamView.m; sourceTree = "<group>"; };
-		7F43F68319F7A9A900672440 /* ExamView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamView.xib; sourceTree = "<group>"; };
+		7F43F68119F7A9A900672440 /* ExamContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamContentView.h; sourceTree = "<group>"; };
+		7F43F68219F7A9A900672440 /* ExamContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContentView.m; sourceTree = "<group>"; };
+		7F43F68319F7A9A900672440 /* ExamContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamContentView.xib; sourceTree = "<group>"; };
 		7F43F68519F7A9A900672440 /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideView.h; sourceTree = "<group>"; };
 		7F43F68619F7A9A900672440 /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
 		7F43F68719F7A9A900672440 /* GuideView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideView.xib; sourceTree = "<group>"; };
@@ -269,6 +274,16 @@
 		7F67A7E01A47B6BD0037F7F2 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		7F67A7E31A47B7640037F7F2 /* VNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationManager.h; sourceTree = "<group>"; };
 		7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationManager.m; sourceTree = "<group>"; };
+		7F67A7E81A47EEF70037F7F2 /* DummyViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController1.h; sourceTree = "<group>"; };
+		7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController1.m; sourceTree = "<group>"; };
+		7F67A7EB1A47EF0B0037F7F2 /* DummyViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController2.h; sourceTree = "<group>"; };
+		7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController2.m; sourceTree = "<group>"; };
+		7F67A7EE1A47EF1E0037F7F2 /* DummyViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController3.h; sourceTree = "<group>"; };
+		7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController3.m; sourceTree = "<group>"; };
+		7F67A7F11A47F3AA0037F7F2 /* TestBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseViewController.h; sourceTree = "<group>"; };
+		7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBaseViewController.m; sourceTree = "<group>"; };
+		7F67A7F91A4800380037F7F2 /* VNavigationRouteConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationRouteConfig.h; sourceTree = "<group>"; };
+		7F67A7FA1A4800380037F7F2 /* VNavigationRouteConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationRouteConfig.m; sourceTree = "<group>"; };
 		7F68EE8E1A26C73E00FB898F /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		7F68EE901A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -477,9 +492,9 @@
 			children = (
 				7F43F67F19F7A9A900672440 /* CibaWebView.h */,
 				7F43F68019F7A9A900672440 /* CibaWebView.m */,
-				7F43F68119F7A9A900672440 /* ExamView.h */,
-				7F43F68219F7A9A900672440 /* ExamView.m */,
-				7F43F68319F7A9A900672440 /* ExamView.xib */,
+				7F43F68119F7A9A900672440 /* ExamContentView.h */,
+				7F43F68219F7A9A900672440 /* ExamContentView.m */,
+				7F43F68319F7A9A900672440 /* ExamContentView.xib */,
 				7F43F68419F7A9A900672440 /* GuideView */,
 				7F43F68A19F7A9A900672440 /* SimpleProgressBar.h */,
 				7F43F68B19F7A9A900672440 /* SimpleProgressBar.m */,
@@ -556,6 +571,8 @@
 				7F43F6BE19F7A9A900672440 /* common.h */,
 				7F67A7E31A47B7640037F7F2 /* VNavigationManager.h */,
 				7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */,
+				7F67A7F91A4800380037F7F2 /* VNavigationRouteConfig.h */,
+				7F67A7FA1A4800380037F7F2 /* VNavigationRouteConfig.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -673,6 +690,21 @@
 				7F67A7E01A47B6BD0037F7F2 /* Guide.m */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7F67A7F41A47F3CF0037F7F2 /* TestViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7F67A7F11A47F3AA0037F7F2 /* TestBaseViewController.h */,
+				7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */,
+				7F67A7E81A47EEF70037F7F2 /* DummyViewController1.h */,
+				7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */,
+				7F67A7EB1A47EF0B0037F7F2 /* DummyViewController2.h */,
+				7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */,
+				7F67A7EE1A47EF1E0037F7F2 /* DummyViewController3.h */,
+				7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */,
+			);
+			name = TestViewControllers;
 			sourceTree = "<group>";
 		};
 		7F68EE8B1A26C73E00FB898F /* MagicalRecord */ = {
@@ -945,10 +977,11 @@
 		A4E6458F1A45830800FE5A4F /* Vocabulary Tests */ = {
 			isa = PBXGroup;
 			children = (
+				7F67A7F41A47F3CF0037F7F2 /* TestViewControllers */,
 				A4E645991A4583A000FE5A4F /* Exam_Tests.m */,
 				A4E645921A45830800FE5A4F /* Vocabulary_Tests.m */,
-				A4E645901A45830800FE5A4F /* Supporting Files */,
 				A4E6459E1A467F9C00FE5A4F /* Jsonify_Tests.m */,
+				A4E645901A45830800FE5A4F /* Supporting Files */,
 			);
 			path = "Vocabulary Tests";
 			sourceTree = "<group>";
@@ -1051,6 +1084,7 @@
 					};
 					A4E6458D1A45830800FE5A4F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 33998V4ZF9;
 						TestTargetID = A46A7E461630296800DF4696;
 					};
 				};
@@ -1113,7 +1147,7 @@
 				EC9D1E9F1697CD5300A8C5B9 /* tableheader@2x.png in Resources */,
 				EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */,
 				EC9D1EA91698002E00A8C5B9 /* CellBGHighlighted@2x.png in Resources */,
-				7F43F70819F7A9A900672440 /* ExamView.xib in Resources */,
+				7F43F70819F7A9A900672440 /* ExamContentView.xib in Resources */,
 				EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */,
 				EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */,
 				A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */,
@@ -1206,10 +1240,11 @@
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
 				7F68EED31A26C73E00FB898F /* NSManagedObject+MagicalRecord.m in Sources */,
 				7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */,
-				7F43F70719F7A9A900672440 /* ExamView.m in Sources */,
+				7F43F70719F7A9A900672440 /* ExamContentView.m in Sources */,
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A489D7181A066DEA0087C0AF /* PronunciationData.m in Sources */,
+				7F67A7FB1A4800380037F7F2 /* VNavigationRouteConfig.m in Sources */,
 				7F43F71819F7A9A900672440 /* CibaNetworkOperation.m in Sources */,
 				7F68EED41A26C73E00FB898F /* NSManagedObject+MagicalRequests.m in Sources */,
 				7F68EEDC1A26C73E00FB898F /* MagicalRecord+Actions.m in Sources */,
@@ -1273,8 +1308,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4E6459A1A4583A000FE5A4F /* Exam_Tests.m in Sources */,
+				7F67A7ED1A47EF0B0037F7F2 /* DummyViewController2.m in Sources */,
+				7F67A7F01A47EF1E0037F7F2 /* DummyViewController3.m in Sources */,
 				A4E6459F1A467F9C00FE5A4F /* Jsonify_Tests.m in Sources */,
+				7F67A7F31A47F3AA0037F7F2 /* TestBaseViewController.m in Sources */,
 				A4E645931A45830800FE5A4F /* Vocabulary_Tests.m in Sources */,
+				7F67A7EA1A47EEF70037F7F2 /* DummyViewController1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1428,6 +1467,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1447,6 +1488,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vocabulary.app/Vocabulary";
 			};
 			name = Debug;
@@ -1463,6 +1505,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1479,6 +1523,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vocabulary.app/Vocabulary";
 			};
 			name = Release;
