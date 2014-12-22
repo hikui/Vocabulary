@@ -58,13 +58,13 @@
         examVC.wordsArray = [self.wordArray mutableCopy];;
     }
     examVC.examOption = option;
-//    if (examVC) {
-//        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[[self navigationController] viewControllers]];
-//        [viewControllers removeLastObject];
-//        [viewControllers addObject:examVC];
-//        [[self navigationController] setViewControllers:viewControllers animated:YES];
-//    }
-    [self.navigationController pushViewController:examVC animated:YES];
+    if (examVC) {
+        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[[self navigationController] viewControllers]];
+        [viewControllers removeLastObject];
+        [viewControllers addObject:examVC];
+        [[self navigationController] setViewControllers:viewControllers animated:YES];
+    }
+
 }
 
 @end

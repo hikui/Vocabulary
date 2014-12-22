@@ -68,8 +68,17 @@ static BOOL isRunningTests(void)
     
     LeftBarViewController *leftBarVC = [[LeftBarViewController alloc]initWithNibName:@"LeftBarViewController" bundle:nil];
         
-    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
-    VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];
+//    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
+    VNavigationController *npvc = [[VNavigationController alloc]init];
+    
+    [VNavigationManager sharedInstance].navigationController = npvc;
+    [[VNavigationManager sharedInstance] configRoute:^NSDictionary *{
+        return [VNavigationRouteConfig sharedInstance].route;
+    }];
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.actionType = VNavigationActionTypeResetRoot;
+    command.targetURL = [VNavigationRouteConfig sharedInstance].planningVC;
+    [[VNavigationManager sharedInstance]executeCommand:command];
     
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;

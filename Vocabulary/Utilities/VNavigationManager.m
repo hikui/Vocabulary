@@ -80,13 +80,12 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     if (!self.isPerformingNavigationAction) {
         [self executeNextCommand];
     }
+    self.isPerformingNavigationAction = YES;
 }
 
 - (void)executeNextCommand {
+    self.isPerformingNavigationAction = YES;
     VNavigationActionCommand *nextCommand = [self.commandQueue firstObject];
-    if (!nextCommand) {
-        return;
-    }
     switch (nextCommand.actionType) {
         case VNavigationActionTypePush:
             [self _doPush:nextCommand];
@@ -234,8 +233,16 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (self.commandQueue.count > 0) {
+        [self.commandQueue removeObjectAtIndex:0];
+    }
+    
     self.isPerformingNavigationAction = NO;
-    [self executeNextCommand];
+    
+    if (self.commandQueue.count > 0) {
+        [self executeNextCommand];
+    }
+    
 }
 
 
