@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, VNavigationActionType) {
     VNavigationActionTypePush,
     VNavigationActionTypePop,
     VNavigationActionTypePresentModal,
+    VNavigationActionTypeDismissModal,
     VNavigationActionTypeResetRoot
 };
 
@@ -44,6 +45,12 @@ typedef NS_ENUM(NSInteger, VNavigationActionType) {
 
 @property (nonatomic, weak) UINavigationController *navigationController;
 
+/**
+ 当URL匹配失败时，交给这个block处理
+ command: 匹配失败的command
+ */
+@property (nonatomic, copy) UIViewController* (^onMatchFailureBlock)(VNavigationActionCommand *command);
+
 + (instancetype)sharedInstance;
 
 /**
@@ -55,4 +62,11 @@ typedef NS_ENUM(NSInteger, VNavigationActionType) {
 - (void)configRoute:(NSDictionary* (^)(void))routeConfigBlock;
 - (void)executeCommand:(VNavigationActionCommand *)command;
 
+/* 简便方法 */
+- (void)commonPopAnimated:(BOOL)animate;
+- (void)commonPopToURL:(NSURL *)url animate:(BOOL)animate;
+- (void)commonPushURL:(NSURL *)url params:(NSDictionary *)params animate:(BOOL)animate;
+- (void)commonResetRootURL:(NSURL *)url params:(NSDictionary *)params;
+- (void)commonPresentModalURL:(NSURL *)url params:(NSDictionary *)params animate:(BOOL)animate;
+- (void)commonDismissModalAnimated:(BOOL)animate;
 @end

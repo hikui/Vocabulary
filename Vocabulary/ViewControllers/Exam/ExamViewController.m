@@ -450,21 +450,13 @@
     if (_shouldUpdateWordFamiliarity) {
         [self calculateFamiliarityForContentQueue:self.examContentsQueue];
         if (self.wrongWordsSet.count == 0) {
-
-            for (UIViewController *vc in self.navigationController.viewControllers) {
-                if ([vc isKindOfClass:[WordListViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
-                    [self.navigationController popToViewController:vc animated:YES];
-                    break;
-                }
-            }
+            [[VNavigationManager sharedInstance]commonPopToURL:[VNavigationRouteConfig sharedInstance].wordListVC animate:YES];
         }else{
             NSMutableArray *wrongWordsArray = [[NSMutableArray alloc]init];
             for (Word *w in self.wrongWordsSet) {
                 [wrongWordsArray addObject:w];
             }
-            ShowWrongWordsViewController *svc = [[ShowWrongWordsViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
-            svc.wordArray = wrongWordsArray;
-            [self.navigationController pushViewController:svc animated:YES];
+            [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].showWrongWordsVC params:@{@"wordArray":wrongWordsArray} animate:YES];
         }
     }else{
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"您还没背完一遍呢"
@@ -481,7 +473,7 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:@"确认作废"]) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [[VNavigationManager sharedInstance]commonPopAnimated:YES];
     }
 }
 

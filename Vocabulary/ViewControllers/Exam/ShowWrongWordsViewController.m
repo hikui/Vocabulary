@@ -45,12 +45,7 @@
 
 // @Override
 - (void)back {
-    for (UIViewController *vc in self.navigationController.viewControllers) {
-        if ([vc isKindOfClass:[WordListViewController class]] && ![vc isKindOfClass:[ShowWrongWordsViewController class]]) {
-            [self.navigationController popToViewController:vc animated:YES];
-            break;
-        }
-    }
+    [[VNavigationManager sharedInstance]commonPopToURL:[VNavigationRouteConfig sharedInstance].wordListVC animate:YES];
 }
 
 @end

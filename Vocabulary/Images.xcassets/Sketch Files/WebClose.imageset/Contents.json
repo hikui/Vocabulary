@@ -1,13 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
-      "filename" : "WebClose.pdf",
-      "unassigned" : true,
-      "scale" : "1x"
+      "filename" : "WebClose.pdf"
     }
   ],
   "info" : {

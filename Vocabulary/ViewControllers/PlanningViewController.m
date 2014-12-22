@@ -277,14 +277,7 @@
             params = @{@"wordList":wl};
         }
     }
-    VNavigationActionCommand *pushCommand = [VNavigationActionCommand new];
-    pushCommand.targetURL = [VNavigationRouteConfig sharedInstance].wordListVC;
-    pushCommand.animate = YES;
-    pushCommand.params = params;
-    [[VNavigationManager sharedInstance]executeCommand:pushCommand];
-    [[VNavigationManager sharedInstance]executeCommand:pushCommand];
-    [[VNavigationManager sharedInstance]executeCommand:pushCommand];
-//    [self.navigationController pushViewController:subVC animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
 }
 
 #pragma mark - actions

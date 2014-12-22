@@ -7,7 +7,6 @@
 //
 
 #import "VNavigationManager.h"
-#import "VWebViewController.h"
 
 NSString * const VNavigationConfigClassNameKey = @"VNavigationConfigClassNameKey";
 NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
@@ -30,7 +29,6 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 @property (nonatomic, copy) NSDictionary *routes;
 @property (nonatomic, strong) NSMutableArray *commandQueue;
-@property (nonatomic, assign) BOOL isPerformingNavigationAction;
 
 @end
 
@@ -50,7 +48,7 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     self = [super init];
     if (self) {
         _commandQueue = [[NSMutableArray alloc]init];
-        _isPerformingNavigationAction = NO;
+//        _isPerformingNavigationAction = NO;
     }
     return self;
 }
@@ -73,18 +71,48 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     self.routes = routes;
     
 }
-- (void)executeCommand:(VNavigationActionCommand *)command {
-    [self.commandQueue addObject:command];
-    
-    // 只有当现在的navigation不处于push或者pop动画时才执行command
-    if (!self.isPerformingNavigationAction) {
-        [self executeNextCommand];
-    }
-    self.isPerformingNavigationAction = YES;
+
+- (void)commonPopAnimated:(BOOL)animate {
+    [self commonPopToURL:nil animate:animate];
+}
+- (void)commonPopToURL:(NSURL *)url animate:(BOOL)animate {
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.actionType = VNavigationActionTypePop;
+    command.animate = animate;
+    command.targetURL = url;
+    [self executeCommand:command];
+}
+- (void)commonPushURL:(NSURL *)url params:(NSDictionary *)params animate:(BOOL)animate {
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.actionType = VNavigationActionTypePush;
+    command.animate = animate;
+    command.targetURL = url;
+    command.params = params;
+    [self executeCommand:command];
+}
+- (void)commonResetRootURL:(NSURL *)url params:(NSDictionary *)params {
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.actionType = VNavigationActionTypeResetRoot;
+    command.targetURL = url;
+    command.params = params;
+    [self executeCommand:command];
+}
+- (void)commonPresentModalURL:(NSURL *)url params:(NSDictionary *)params animate:(BOOL)animate {
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.actionType = VNavigationActionTypePresentModal;
+    command.targetURL = url;
+    command.params = params;
+    command.animate = animate;
+    [self executeCommand:command];
+}
+- (void)commonDismissModalAnimated:(BOOL)animate {
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.actionType = VNavigationActionTypeDismissModal;
+    command.animate = animate;
+    [self executeCommand:command];
 }
 
-- (void)executeNextCommand {
-    self.isPerformingNavigationAction = YES;
+- (void)_executeNextCommand {
     VNavigationActionCommand *nextCommand = [self.commandQueue firstObject];
     switch (nextCommand.actionType) {
         case VNavigationActionTypePush:
@@ -99,13 +127,28 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
         case VNavigationActionTypeResetRoot:
             [self _doResetRoot:nextCommand];
             break;
+        case VNavigationActionTypeDismissModal:
+            [self _doDismissModal:nextCommand];
+            break;
         default:
             break;
     }
 }
 
+- (void)executeCommand:(VNavigationActionCommand *)command {
+    [self.commandQueue addObject:command];
+    
+    if (self.commandQueue.count == 1) {
+        [self _executeNextCommand];
+    }
+}
+
 - (void)_doPush:(VNavigationActionCommand *)command {
     UIViewController *controller = [self _assembleViewControllerWithCommand:command];
+    if (controller == nil) {
+        [self _dequeueAndJudgeNextStep];
+        return;
+    }
     if (command.popTopBeforePush) {
         NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
         if (viewControllers.count > 0) {
@@ -129,15 +172,25 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
             controllerClass = NSClassFromString(classString);
         }
         if (!controllerClass) {
-            // 默认值
-            controllerClass = [VWebViewController class];
+            // 未注册的URL，回调查询
+            if (self.onMatchFailureBlock) {
+                UIViewController *defaultController = self.onMatchFailureBlock(command);
+                if (defaultController) {
+                    controllerClass = [defaultController class]; // 这里需要找到class，因为controller stacks中不会存在这个实例，只会存在该实例所属的class的另外一个实例
+                }else{
+                    // 实在找不到，直接删除当前的command
+                    [self _dequeueAndJudgeNextStep];
+                    return;
+                }
+            }
         }
         NSArray *controllersInStack = self.navigationController.viewControllers;
         UIViewController *targetViewController = nil;
         for (NSUInteger i = controllersInStack.count - 1; i > 0; i--) {
             // 从栈顶往下搜索
             UIViewController *aViewController = controllersInStack[i];
-            if ([aViewController isKindOfClass:controllerClass]) {
+            // 注意这里要使用isMemberOfClass，避免子类view controller和父类view controller混淆
+            if ([aViewController isMemberOfClass:controllerClass]) {
                 targetViewController = aViewController;
                 break;
             }
@@ -152,49 +205,63 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
             [self _doPush:command];
         }
     } else {
-        [self.navigationController popViewControllerAnimated:command.animate];
+        if (self.navigationController.viewControllers.count == 1) {
+            // 最后一个view controller，pop操作会无效化，不会进delegate方法，这里直接删除queue中的东西
+            [self _dequeueAndJudgeNextStep];
+        }else{
+            [self.navigationController popViewControllerAnimated:command.animate];
+        }
+        
     }
     
 }
 
 - (void)_doPresentModal:(VNavigationActionCommand *)command {
     UIViewController *controller = [self _assembleViewControllerWithCommand:command];
-    [self.navigationController presentViewController:controller animated:command.animate completion:nil];
+    if (controller == nil) {
+        [self _dequeueAndJudgeNextStep];
+        return;
+    }
+    [self.navigationController presentViewController:controller animated:command.animate completion:^{
+        [self _dequeueAndJudgeNextStep];
+    }];
+}
+
+- (void)_doDismissModal:(VNavigationActionCommand *)command {
+    [self.navigationController dismissViewControllerAnimated:command.animate completion:^{
+        [self _dequeueAndJudgeNextStep];
+    }];
 }
 
 - (void)_doResetRoot:(VNavigationActionCommand *)command {
     UIViewController *controller = [self _assembleViewControllerWithCommand:command];
+    if (controller == nil) {
+        [self _dequeueAndJudgeNextStep];
+    }
     [self.navigationController setViewControllers:@[controller] animated:command.animate];
 }
 
 - (UIViewController *)_assembleViewControllerWithCommand:(VNavigationActionCommand *)command {
     NSURL *url = command.targetURL;
     NSDictionary *configForURL = self.routes[url];
-    BOOL match = NO;
-    UIViewController *controller = [self _viewControllerFromConfigValue:configForURL outMatch:&match];
-    if (!match) {
-        NSAssert([controller isKindOfClass:[VWebViewController class]], @"If no match view controller is found, should return a VWebViewController instance.");
-        ((VWebViewController *)controller).requestURL = url;
+    UIViewController *controller = [self _viewControllerFromConfigValue:configForURL];
+    if (!controller) {
+        if (self.onMatchFailureBlock) {
+            controller = self.onMatchFailureBlock(command);
+        }
     }else{
         [self _injectParams:command.params toViewController:controller];
     }
     return controller;
 }
 
-- (UIViewController *)_viewControllerFromConfigValue:(NSDictionary *)configValue outMatch:(BOOL *)match{
-    if (match) {
-        *match = YES;
-    }
+- (UIViewController *)_viewControllerFromConfigValue:(NSDictionary *)configValue{
     NSString *className = configValue[VNavigationConfigClassNameKey];
     NSString *xibName = configValue[VNavigationConfigXibNameKey];
     // 如果找不到对应的class，则直接生成WebViewController
     Class controllerClass = NSClassFromString(className);
     if (!controllerClass) {
-        if (match) {
-            *match = NO;
-        }
-        controllerClass = [VWebViewController class];
-        xibName = (NSString *)[NSNull null];
+        return nil;
     }
     
     UIViewController *controller = nil;
@@ -229,20 +296,20 @@ NSString * const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 #pragma mark - navigation controller delegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    self.isPerformingNavigationAction = YES;
+
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [self _dequeueAndJudgeNextStep];
+}
+
+- (void)_dequeueAndJudgeNextStep {
     if (self.commandQueue.count > 0) {
         [self.commandQueue removeObjectAtIndex:0];
     }
-    
-    self.isPerformingNavigationAction = NO;
-    
     if (self.commandQueue.count > 0) {
-        [self executeNextCommand];
+        [self _executeNextCommand];
     }
-    
 }
 
 

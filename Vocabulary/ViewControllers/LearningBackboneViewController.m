@@ -252,7 +252,6 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     svc.modalViewControllerMode = YES;
     VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
     nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:nsvc animated:YES];
     [self presentViewController:nsvc animated:YES completion:nil];
 }
 
@@ -262,16 +261,12 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 }
 
 - (void)noteButtonOnClick {
-    NoteViewController *nvc = [[NoteViewController alloc]initWithNibName:nil bundle:nil];
-    nvc.word = self.currentShownViewController.word;
-    [self.navigationController pushViewController:nvc animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.currentShownViewController.word} animate:YES];
 }
 
 - (void)btnManuallyInfoOnClick:(id)sender
 {
-    EditWordDetailViewController *editVC = [[EditWordDetailViewController alloc]initWithNibName:nil bundle:nil];
-    editVC.word = self.currentShownViewController.word;
-    [self.navigationController pushViewController:editVC animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.currentShownViewController.word} animate:YES];
 }
 
 @end

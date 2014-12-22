@@ -1,13 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
-      "filename" : "Speaker.pdf",
-      "unassigned" : true,
-      "scale" : "1x"
+      "filename" : "Speaker.pdf"
     }
   ],
   "info" : {

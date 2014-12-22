@@ -50,20 +50,22 @@
         return;
     }
     
+    NSMutableDictionary *params = [@{} mutableCopy];
+    
     ExamViewController *examVC = [[ExamViewController alloc]initWithNibName:NSStringFromClass([ExamViewController class]) bundle:nil];
     if (self.wordList) {
-        
-        examVC.wordList = self.wordList;
+        [params setObject:self.wordList forKey:@"wordList"];
     }else if (self.wordArray) {
-        examVC.wordsArray = [self.wordArray mutableCopy];;
+        [params setObject:[self.wordArray mutableCopy] forKey:@"wordArray"];
     }
+    [params setObject:@(option) forKey:@"examOption"];
     examVC.examOption = option;
-    if (examVC) {
-        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[[self navigationController] viewControllers]];
-        [viewControllers removeLastObject];
-        [viewControllers addObject:examVC];
-        [[self navigationController] setViewControllers:viewControllers animated:YES];
-    }
+    VNavigationActionCommand *command = [VNavigationActionCommand new];
+    command.targetURL = [VNavigationRouteConfig sharedInstance].examVC;
+    command.popTopBeforePush = YES;
+    command.animate = YES;
+    command.params = params;
+    [[VNavigationManager sharedInstance]executeCommand:command];
 
 }
 

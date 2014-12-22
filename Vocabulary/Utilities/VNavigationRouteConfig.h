@@ -16,7 +16,7 @@
 @property (nonatomic, readonly) NSURL *learningBackboneVC;
 @property (nonatomic, readonly) NSURL *planningVC;
 @property (nonatomic, readonly) NSURL *createWordListVC;
-@property (nonatomic, readonly) NSURL *exisingWordsListsVC;
+@property (nonatomic, readonly) NSURL *existingWordsListsVC;
 @property (nonatomic, readonly) NSURL *PreferenceVC;
 @property (nonatomic, readonly) NSURL *searchWordVC;
 @property (nonatomic, readonly) NSURL *wordDetailVC;

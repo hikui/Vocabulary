@@ -30,6 +30,7 @@
 #import "PureColorImageGenerator.h"
 #import "VNavigationRouteConfig.h"
 #import "VNavigationManager.h"
+#import "VWebViewController.h"
 
 static BOOL isRunningTests(void)
 {
@@ -71,14 +72,22 @@ static BOOL isRunningTests(void)
 //    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
     VNavigationController *npvc = [[VNavigationController alloc]init];
     
+    
+    // config VNavigationManager
     [VNavigationManager sharedInstance].navigationController = npvc;
     [[VNavigationManager sharedInstance] configRoute:^NSDictionary *{
         return [VNavigationRouteConfig sharedInstance].route;
     }];
-    VNavigationActionCommand *command = [VNavigationActionCommand new];
-    command.actionType = VNavigationActionTypeResetRoot;
-    command.targetURL = [VNavigationRouteConfig sharedInstance].planningVC;
-    [[VNavigationManager sharedInstance]executeCommand:command];
+    
+    [VNavigationManager sharedInstance].onMatchFailureBlock = ^UIViewController *(VNavigationActionCommand *command){
+        VWebViewController *webViewController = [[VWebViewController alloc]initWithNibName:nil bundle:nil];
+        webViewController.requestURL = command.targetURL;
+        return webViewController;
+    };
+
+    [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].planningVC
+                                                    params:nil];
+    
     
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc]initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;

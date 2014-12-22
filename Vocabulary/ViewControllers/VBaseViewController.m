@@ -46,11 +46,7 @@
 }
 
 - (void)back {
-//    [self.navigationController popViewControllerAnimated:YES];
-    VNavigationActionCommand *backCommand = [VNavigationActionCommand new];
-    backCommand.actionType = VNavigationActionTypePop;
-    backCommand.animate = YES;
-    [[VNavigationManager sharedInstance]executeCommand:backCommand];
+    [[VNavigationManager sharedInstance]commonPopAnimated:YES];
 }
 
 @end

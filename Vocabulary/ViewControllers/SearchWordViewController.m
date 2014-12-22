@@ -123,22 +123,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *word = (self.contentsArray)[indexPath.row][@"key"];
-//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-//    [request setEntity:entity];
-//    [request setFetchLimit:1];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key = %@)",word];
-//    [request setPredicate:predicate];
-//    NSArray *resultArr = [ctx executeFetchRequest:request error:nil];
-//    
-//    if (resultArr.count == 0) {
-//        return;
-//    }
     Word *w = [Word MR_findFirstByAttribute:@"key" withValue:word];
-    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
-    lvc.word = w;
-    [self.navigationController pushViewController:lvc animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -214,7 +200,7 @@
 // @Override
 - (void)back:(id)sender
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [[VNavigationManager sharedInstance]commonDismissModalAnimated:YES];
 }
 
 #pragma mark - keyboard things

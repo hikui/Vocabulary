@@ -143,15 +143,10 @@
         
         IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
         if (indexPath.row == 0) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PlanningViewController class]]) {
-                [viewDeckController closeLeftView];
-            }else{
-                PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
-                VNavigationController *npvc = [[VNavigationController alloc]initWithRootViewController:pvc];
-                [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-                    controller.centerController = npvc;
-                }];
+            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PlanningViewController class]]) {
+                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].planningVC params:nil];
             }
+            [viewDeckController closeLeftView];
         }else if (indexPath.row == 1) {
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             [tableView selectRowAtIndexPath:self.selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -164,43 +159,27 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [actionSheet showFromRect:CGRectMake(0, 0, 300, cell.bounds.size.height) inView:cell animated:YES];
         }else if (indexPath.row == 2) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[ExistingWordListsViewController class]]) {
-                [viewDeckController closeLeftView];
-            }else{
-                ExistingWordListsViewController *swlvc = [[ExistingWordListsViewController alloc]initWithNibName:@"ExistingWordListsViewController" bundle:nil];
-                VNavigationController *nswlvc = [[VNavigationController alloc]initWithRootViewController:swlvc];
-                [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-                    controller.centerController = nswlvc;
-                }];
+            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[ExistingWordListsViewController class]]) {
+                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].existingWordsListsVC params:nil];
             }
+            [viewDeckController closeLeftView];
         }else if (indexPath.row == 3) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[WordListViewController class]]) {
-                [viewDeckController closeLeftView];
-            }else{
+            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[WordListViewController class]]) {
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
                 NSArray *result = [Word MR_findAllWithPredicate:predicate];
                 
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
-                WordListViewController *svc = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
-                svc.wordArray = mResult;
-                svc.topLevel = YES;
-                svc.title = @"低熟悉度词汇";
-                VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
-                [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-                    controller.centerController = nsvc;
-                }];
+                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].wordListVC params:@{@"title":@"低熟悉度词汇",@"topLevel":@(YES),@"wordArray":mResult}];
+                
             }
+            [viewDeckController closeLeftView];
         }else if (indexPath.row == 4) {
-            if ([[((VNavigationController *)viewDeckController.centerController).viewControllers lastObject] isKindOfClass:[PreferenceViewController class]]) {
-                [viewDeckController closeLeftView];
-            }else{
-                PreferenceViewController *cvc = [[PreferenceViewController alloc]initWithStyle:UITableViewStyleGrouped];
-                VNavigationController *ncvc = [[VNavigationController alloc]initWithRootViewController:cvc];
-                [viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-                    controller.centerController = ncvc;
-                }];
+            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PreferenceViewController class]]) {
+                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].PreferenceVC params:nil];
+                
             }
+            [viewDeckController closeLeftView];
         }
     }else if(tableView == self.searchResultTableView){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];

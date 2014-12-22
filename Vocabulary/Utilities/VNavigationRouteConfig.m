@@ -45,7 +45,7 @@ static const char *getPropertyType(objc_property_t property) {
 @property (nonatomic, strong, readwrite) NSURL *learningBackboneVC;
 @property (nonatomic, strong, readwrite) NSURL *planningVC;
 @property (nonatomic, strong, readwrite) NSURL *createWordListVC;
-@property (nonatomic, strong, readwrite) NSURL *exisingWordsListsVC;
+@property (nonatomic, strong, readwrite) NSURL *existingWordsListsVC;
 @property (nonatomic, strong, readwrite) NSURL *PreferenceVC;
 @property (nonatomic, strong, readwrite) NSURL *searchWordVC;
 @property (nonatomic, strong, readwrite) NSURL *wordDetailVC;
@@ -108,7 +108,7 @@ static const char *getPropertyType(objc_property_t property) {
              
              self.createWordListVC:@{VNavigationConfigClassNameKey:NSStringFromClass([CreateWordListViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
              
-             self.exisingWordsListsVC:@{VNavigationConfigClassNameKey:NSStringFromClass([ExistingWordListsViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.existingWordsListsVC:@{VNavigationConfigClassNameKey:NSStringFromClass([ExistingWordListsViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
              
              self.learningBackboneVC:@{VNavigationConfigClassNameKey:NSStringFromClass([LearningBackboneViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
              

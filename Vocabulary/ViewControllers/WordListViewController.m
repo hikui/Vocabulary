@@ -58,7 +58,7 @@
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
-    if (self.isTopLevel) {
+    if (self.topLevel) {
         UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
         menuButton.frame = CGRectMake(0, 0, 40, 29);
         
@@ -161,9 +161,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Word *w = (self.wordArray)[indexPath.row];
-    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
-    lvc.word = w;
-    [self.navigationController pushViewController:lvc animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -179,18 +178,12 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSUInteger row = indexPath.row;
         Word *wordShouldBeDeleted = (self.wordArray)[row];
-//        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
-//            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
-//        }
         
         [self.wordArray removeObjectAtIndex:row];
         
-//        [self.wordsSet removeLastObject];
         if (self.wordList != nil) {
             [self.wordList removeWordsObject:wordShouldBeDeleted];
         }
-//        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
-//        [ctx deleteObject:wordShouldBeDeleted];
         [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     [_tableView endUpdates];
@@ -205,21 +198,18 @@
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
-    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithNibName:nil bundle:nil];
-    lvc.words = [self.wordArray mutableCopy];
-    [self.navigationController pushViewController:lvc animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].learningBackboneVC params:@{@"words":[self.wordArray mutableCopy]} animate:YES];
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    ExamTypeChoiceViewController *evc = nil;
-    evc = [[ExamTypeChoiceViewController alloc]init];
+    NSDictionary *params = nil;
     if (self.wordList != nil) {
-        evc.wordList = self.wordList;
+        params = @{@"wordList":self.wordList};
     }else{
-        evc.wordArray = [self.wordArray mutableCopy];
+        params = @{@"wordArray":self.wordArray};
     }
     
-    [self.navigationController pushViewController:evc animated:YES];
+    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].examTypeChoiceVC params:params animate:YES];
 }
 
 - (void)editButtonItemPressed:(id)sender

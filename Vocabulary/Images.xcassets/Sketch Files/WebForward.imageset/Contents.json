@@ -1,13 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
-      "filename" : "WebForward.pdf",
-      "unassigned" : true,
-      "scale" : "1x"
+      "filename" : "WebForward.pdf"
     }
   ],
   "info" : {
