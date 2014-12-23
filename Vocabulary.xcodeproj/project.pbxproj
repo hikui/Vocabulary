@@ -99,6 +99,8 @@
 		7F7CFCF41A43E1AB008251DB /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF01A43E1AB008251DB /* ShowWrongWordsViewController.m */; };
 		7F7CFCF51A43E1AB008251DB /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */; };
 		7F7CFCF91A43E1E9008251DB /* ExamTypeChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */; };
+		7F97FB051A490D8C000F0797 /* VImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */; };
+		7F97FB061A490D8C000F0797 /* VImagePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
@@ -355,6 +357,9 @@
 		7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
 		7F7CFCF61A43E1E9008251DB /* ExamTypeChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamTypeChoiceViewController.h; sourceTree = "<group>"; };
 		7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamTypeChoiceViewController.m; sourceTree = "<group>"; };
+		7F97FB021A490D8C000F0797 /* VImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VImagePickerViewController.h; sourceTree = "<group>"; };
+		7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VImagePickerViewController.m; sourceTree = "<group>"; };
+		7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VImagePickerViewController.xib; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A42073621A3C82E800D6101B /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -646,6 +651,9 @@
 				7F7CFCDB1A41679C008251DB /* EditWordDetailViewController.h */,
 				7F7CFCDC1A41679C008251DB /* EditWordDetailViewController.m */,
 				7F43F6F319F7A9A900672440 /* xibs */,
+				7F97FB021A490D8C000F0797 /* VImagePickerViewController.h */,
+				7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */,
+				7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1169,6 +1177,7 @@
 				ECB725CE16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png in Resources */,
 				ECB725D316D21D5300BAB36D /* import_wordlist_itunes1.png in Resources */,
 				ECB725D416D21D5300BAB36D /* import_wordlist_itunes2.png in Resources */,
+				7F97FB061A490D8C000F0797 /* VImagePickerViewController.xib in Resources */,
 				ECB725D516D21D5300BAB36D /* import_wordlist_itunes3.png in Resources */,
 				ECB725D616D21D5300BAB36D /* import_wordlist_itunes4.png in Resources */,
 			);
@@ -1250,6 +1259,7 @@
 				7F68EEDC1A26C73E00FB898F /* MagicalRecord+Actions.m in Sources */,
 				A48BE2BC1A0631DC00FCEE1D /* UIColor+VAdditions.m in Sources */,
 				7F43F71319F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel in Sources */,
+				7F97FB051A490D8C000F0797 /* VImagePickerViewController.m in Sources */,
 				7F43F72D19F7A9A900672440 /* ExistingWordListsViewController.m in Sources */,
 				7F68EEDD1A26C73E00FB898F /* MagicalRecord+ErrorHandling.m in Sources */,
 				7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */,
