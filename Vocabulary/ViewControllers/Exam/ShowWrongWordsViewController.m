@@ -45,7 +45,7 @@
 
 // @Override
 - (void)back {
-    [[VNavigationManager sharedInstance]commonPopToURL:[VNavigationRouteConfig sharedInstance].wordListVC animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
 }
 
 @end

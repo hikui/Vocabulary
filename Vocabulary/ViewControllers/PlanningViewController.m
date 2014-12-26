@@ -277,7 +277,7 @@
             params = @{@"wordList":wl};
         }
     }
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
 }
 
 #pragma mark - actions

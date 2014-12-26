@@ -59,12 +59,12 @@
 		7F67A7DB1A47B6A40037F7F2 /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D81A47B6A40037F7F2 /* WordManager.m */; };
 		7F67A7E11A47B6BD0037F7F2 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */; };
 		7F67A7E21A47B6BD0037F7F2 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E01A47B6BD0037F7F2 /* Guide.m */; };
-		7F67A7E51A47B7640037F7F2 /* VNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */; };
+		7F67A7E51A47B7640037F7F2 /* HKVNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */; };
 		7F67A7EA1A47EEF70037F7F2 /* DummyViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */; };
 		7F67A7ED1A47EF0B0037F7F2 /* DummyViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */; };
 		7F67A7F01A47EF1E0037F7F2 /* DummyViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */; };
 		7F67A7F31A47F3AA0037F7F2 /* TestBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */; };
-		7F67A7FB1A4800380037F7F2 /* VNavigationRouteConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7FA1A4800380037F7F2 /* VNavigationRouteConfig.m */; };
+		7F67A7FB1A4800380037F7F2 /* HKVNavigationRouteConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7FA1A4800380037F7F2 /* HKVNavigationRouteConfig.m */; };
 		7F68EEC91A26C73E00FB898F /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */; };
 		7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE911A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m */; };
 		7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE931A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m */; };
@@ -274,8 +274,8 @@
 		7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
 		7F67A7DF1A47B6BD0037F7F2 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
 		7F67A7E01A47B6BD0037F7F2 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
-		7F67A7E31A47B7640037F7F2 /* VNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationManager.h; sourceTree = "<group>"; };
-		7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationManager.m; sourceTree = "<group>"; };
+		7F67A7E31A47B7640037F7F2 /* HKVNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVNavigationManager.h; sourceTree = "<group>"; };
+		7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVNavigationManager.m; sourceTree = "<group>"; };
 		7F67A7E81A47EEF70037F7F2 /* DummyViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController1.h; sourceTree = "<group>"; };
 		7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController1.m; sourceTree = "<group>"; };
 		7F67A7EB1A47EF0B0037F7F2 /* DummyViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController2.h; sourceTree = "<group>"; };
@@ -284,8 +284,8 @@
 		7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController3.m; sourceTree = "<group>"; };
 		7F67A7F11A47F3AA0037F7F2 /* TestBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseViewController.h; sourceTree = "<group>"; };
 		7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBaseViewController.m; sourceTree = "<group>"; };
-		7F67A7F91A4800380037F7F2 /* VNavigationRouteConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationRouteConfig.h; sourceTree = "<group>"; };
-		7F67A7FA1A4800380037F7F2 /* VNavigationRouteConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VNavigationRouteConfig.m; sourceTree = "<group>"; };
+		7F67A7F91A4800380037F7F2 /* HKVNavigationRouteConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVNavigationRouteConfig.h; sourceTree = "<group>"; };
+		7F67A7FA1A4800380037F7F2 /* HKVNavigationRouteConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVNavigationRouteConfig.m; sourceTree = "<group>"; };
 		7F68EE8E1A26C73E00FB898F /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
 		7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalImportFunctions.m; sourceTree = "<group>"; };
 		7F68EE901A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributeDescription+MagicalDataImport.h"; sourceTree = "<group>"; };
@@ -574,10 +574,10 @@
 				7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */,
 				7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */,
 				7F43F6BE19F7A9A900672440 /* common.h */,
-				7F67A7E31A47B7640037F7F2 /* VNavigationManager.h */,
-				7F67A7E41A47B7640037F7F2 /* VNavigationManager.m */,
-				7F67A7F91A4800380037F7F2 /* VNavigationRouteConfig.h */,
-				7F67A7FA1A4800380037F7F2 /* VNavigationRouteConfig.m */,
+				7F67A7E31A47B7640037F7F2 /* HKVNavigationManager.h */,
+				7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */,
+				7F67A7F91A4800380037F7F2 /* HKVNavigationRouteConfig.h */,
+				7F67A7FA1A4800380037F7F2 /* HKVNavigationRouteConfig.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1244,7 +1244,7 @@
 				7F7CFCF31A43E1AB008251DB /* ExamViewController.m in Sources */,
 				7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */,
 				7F43F71619F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel in Sources */,
-				7F67A7E51A47B7640037F7F2 /* VNavigationManager.m in Sources */,
+				7F67A7E51A47B7640037F7F2 /* HKVNavigationManager.m in Sources */,
 				7F67A7DA1A47B6A40037F7F2 /* WordListManager.m in Sources */,
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
 				7F68EED31A26C73E00FB898F /* NSManagedObject+MagicalRecord.m in Sources */,
@@ -1253,7 +1253,7 @@
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A489D7181A066DEA0087C0AF /* PronunciationData.m in Sources */,
-				7F67A7FB1A4800380037F7F2 /* VNavigationRouteConfig.m in Sources */,
+				7F67A7FB1A4800380037F7F2 /* HKVNavigationRouteConfig.m in Sources */,
 				7F43F71819F7A9A900672440 /* CibaNetworkOperation.m in Sources */,
 				7F68EED41A26C73E00FB898F /* NSManagedObject+MagicalRequests.m in Sources */,
 				7F68EEDC1A26C73E00FB898F /* MagicalRecord+Actions.m in Sources */,

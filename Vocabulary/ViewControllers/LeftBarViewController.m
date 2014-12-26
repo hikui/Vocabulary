@@ -143,8 +143,8 @@
         
         IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
         if (indexPath.row == 0) {
-            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PlanningViewController class]]) {
-                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].planningVC params:nil];
+            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PlanningViewController class]]) {
+                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC params:nil];
             }
             [viewDeckController closeLeftView];
         }else if (indexPath.row == 1) {
@@ -159,24 +159,24 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [actionSheet showFromRect:CGRectMake(0, 0, 300, cell.bounds.size.height) inView:cell animated:YES];
         }else if (indexPath.row == 2) {
-            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[ExistingWordListsViewController class]]) {
-                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].existingWordsListsVC params:nil];
+            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[ExistingWordListsViewController class]]) {
+                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC params:nil];
             }
             [viewDeckController closeLeftView];
         }else if (indexPath.row == 3) {
-            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[WordListViewController class]]) {
+            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[WordListViewController class]]) {
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
                 NSArray *result = [Word MR_findAllWithPredicate:predicate];
                 
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
-                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].wordListVC params:@{@"title":@"低熟悉度词汇",@"topLevel":@(YES),@"wordArray":mResult}];
+                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:@{@"title":@"低熟悉度词汇",@"topLevel":@(YES),@"wordArray":mResult}];
                 
             }
             [viewDeckController closeLeftView];
         }else if (indexPath.row == 4) {
-            if (![[[VNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PreferenceViewController class]]) {
-                [[VNavigationManager sharedInstance]commonResetRootURL:[VNavigationRouteConfig sharedInstance].PreferenceVC params:nil];
+            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PreferenceViewController class]]) {
+                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC params:nil];
                 
             }
             [viewDeckController closeLeftView];

@@ -46,7 +46,7 @@
 }
 
 - (void)back {
-    [[VNavigationManager sharedInstance]commonPopAnimated:YES];
+    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
 }
 
 @end

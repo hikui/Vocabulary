@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 缪和光. All rights reserved.
 //
 
-#import "VNavigationRouteConfig.h"
-#import "VNavigationManager.h"
+#import "HKVNavigationRouteConfig.h"
+#import "HKVNavigationManager.h"
 #import <objc/runtime.h>
 #import "ExamViewController.h"
 #import "ShowWrongWordsViewController.h"
@@ -37,7 +37,7 @@ static const char *getPropertyType(objc_property_t property) {
     return "@";
 }
 
-@interface VNavigationRouteConfig ()
+@interface HKVNavigationRouteConfig ()
 
 @property (nonatomic, strong, readwrite) NSURL *examVC;
 @property (nonatomic, strong, readwrite) NSURL *showWrongWordsVC;
@@ -56,13 +56,13 @@ static const char *getPropertyType(objc_property_t property) {
 
 @end
 
-@implementation VNavigationRouteConfig
+@implementation HKVNavigationRouteConfig
 
-+ (VNavigationRouteConfig *)sharedInstance {
-    static VNavigationRouteConfig *_sharedInstance;
++ (HKVNavigationRouteConfig *)sharedInstance {
+    static HKVNavigationRouteConfig *_sharedInstance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedInstance = [[VNavigationRouteConfig alloc]init];
+        _sharedInstance = [[HKVNavigationRouteConfig alloc]init];
     });
     return _sharedInstance;
 }
@@ -100,33 +100,33 @@ static const char *getPropertyType(objc_property_t property) {
 
 - (NSDictionary *)route {
     return @{
-             self.examVC:@{VNavigationConfigClassNameKey:NSStringFromClass([ExamViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.examVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([ExamViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.showWrongWordsVC:@{VNavigationConfigClassNameKey:NSStringFromClass([ShowWrongWordsViewController class]),VNavigationConfigXibNameKey:NSStringFromClass([WordListViewController class])},
+             self.showWrongWordsVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([ShowWrongWordsViewController class]),HKVNavigationConfigXibNameKey:NSStringFromClass([WordListViewController class])},
              
-             self.examTypeChoiceVC:@{VNavigationConfigClassNameKey:NSStringFromClass([ExamTypeChoiceViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.examTypeChoiceVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([ExamTypeChoiceViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.createWordListVC:@{VNavigationConfigClassNameKey:NSStringFromClass([CreateWordListViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.createWordListVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([CreateWordListViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.existingWordsListsVC:@{VNavigationConfigClassNameKey:NSStringFromClass([ExistingWordListsViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.existingWordsListsVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([ExistingWordListsViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.learningBackboneVC:@{VNavigationConfigClassNameKey:NSStringFromClass([LearningBackboneViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.learningBackboneVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([LearningBackboneViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.planningVC:@{VNavigationConfigClassNameKey:NSStringFromClass([PlanningViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.planningVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([PlanningViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.PreferenceVC:@{VNavigationConfigClassNameKey:NSStringFromClass([PreferenceViewController class])},
+             self.PreferenceVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([PreferenceViewController class])},
              
-             self.searchWordVC:@{VNavigationConfigClassNameKey:NSStringFromClass([SearchWordViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.searchWordVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([SearchWordViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.wordDetailVC:@{VNavigationConfigClassNameKey:NSStringFromClass([WordDetailViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.wordDetailVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([WordDetailViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.wordListFromDiskVC:@{VNavigationConfigClassNameKey:NSStringFromClass([WordListFromDiskViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.wordListFromDiskVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([WordListFromDiskViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.wordListVC:@{VNavigationConfigClassNameKey:NSStringFromClass([WordListViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.wordListVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([WordListViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
-             self.noteVC:@{VNavigationConfigClassNameKey:NSStringFromClass([NoteViewController class])},
+             self.noteVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([NoteViewController class])},
              
-             self.editWordDetailVC:@{VNavigationConfigClassNameKey:NSStringFromClass([EditWordDetailViewController class]),VNavigationConfigXibNameKey:[NSNull null]},
+             self.editWordDetailVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([EditWordDetailViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
              
              };

@@ -1,23 +1,23 @@
 //
-//  VNavigationManager.m
+//  HKVNavigationManager.m
 //  Vocabulary
 //
 //  Created by 缪和光 on 12/22/14.
 //  Copyright (c) 2014 缪和光. All rights reserved.
 //
 
-#import "VNavigationManager.h"
+#import "HKVNavigationManager.h"
 
-NSString* const VNavigationConfigClassNameKey =
-    @"VNavigationConfigClassNameKey";
-NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
+NSString* const HKVNavigationConfigClassNameKey =
+    @"HKVNavigationConfigClassNameKey";
+NSString* const HKVNavigationConfigXibNameKey = @"HKVNavigationConfigXibNameKey";
 
-@implementation VNavigationActionCommand
+@implementation HKVNavigationActionCommand
 
 - (id)copyWithZone:(NSZone*)zone
 {
-    VNavigationActionCommand* copyCommand =
-        [[VNavigationActionCommand allocWithZone:zone] init];
+    HKVNavigationActionCommand* copyCommand =
+        [[HKVNavigationActionCommand allocWithZone:zone] init];
     copyCommand.actionType = self.actionType;
     copyCommand.targetURL = [self.targetURL copy];
     copyCommand.animate = self.animate;
@@ -28,21 +28,21 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 @end
 
-@interface VNavigationManager ()
+@interface HKVNavigationManager ()
 
 @property (nonatomic, copy) NSDictionary* routes;
 @property (nonatomic, strong) NSMutableArray* commandQueue;
 
 @end
 
-@implementation VNavigationManager
+@implementation HKVNavigationManager
 
 + (instancetype)sharedInstance
 {
-    static VNavigationManager* sharedManager;
+    static HKVNavigationManager* sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,
-                  ^{ sharedManager = [[VNavigationManager alloc] init]; });
+                  ^{ sharedManager = [[HKVNavigationManager alloc] init]; });
     return sharedManager;
 }
 
@@ -72,13 +72,14 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
         // 确保类型正确
         return;
       }
-      [validRoutes setObject:obj forKey:obj];
+        NSURL *urlWithoutPrams = [[NSURL alloc]initWithScheme:key.scheme host:key.host path:key.path];
+      [validRoutes setObject:obj forKey:urlWithoutPrams];
     }];
 
     self.routes = routes;
 }
 
-- (void)executeCommand:(VNavigationActionCommand*)command
+- (void)executeCommand:(HKVNavigationActionCommand*)command
 {
     [self.commandQueue addObject:command];
 
@@ -94,8 +95,8 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 - (void)commonPopToURL:(NSURL*)url animate:(BOOL)animate
 {
-    VNavigationActionCommand* command = [VNavigationActionCommand new];
-    command.actionType = VNavigationActionTypePop;
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
+    command.actionType = HKVNavigationActionTypePop;
     command.animate = animate;
     command.targetURL = url;
     [self executeCommand:command];
@@ -105,8 +106,8 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
                params:(NSDictionary*)params
               animate:(BOOL)animate
 {
-    VNavigationActionCommand* command = [VNavigationActionCommand new];
-    command.actionType = VNavigationActionTypePush;
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
+    command.actionType = HKVNavigationActionTypePush;
     command.animate = animate;
     command.targetURL = url;
     command.params = params;
@@ -115,8 +116,8 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 - (void)commonResetRootURL:(NSURL*)url params:(NSDictionary*)params
 {
-    VNavigationActionCommand* command = [VNavigationActionCommand new];
-    command.actionType = VNavigationActionTypeResetRoot;
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
+    command.actionType = HKVNavigationActionTypeResetRoot;
     command.targetURL = url;
     command.params = params;
     [self executeCommand:command];
@@ -126,8 +127,8 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
                        params:(NSDictionary*)params
                       animate:(BOOL)animate
 {
-    VNavigationActionCommand* command = [VNavigationActionCommand new];
-    command.actionType = VNavigationActionTypePresentModal;
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
+    command.actionType = HKVNavigationActionTypePresentModal;
     command.targetURL = url;
     command.params = params;
     command.animate = animate;
@@ -136,29 +137,29 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 - (void)commonDismissModalAnimated:(BOOL)animate
 {
-    VNavigationActionCommand* command = [VNavigationActionCommand new];
-    command.actionType = VNavigationActionTypeDismissModal;
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
+    command.actionType = HKVNavigationActionTypeDismissModal;
     command.animate = animate;
     [self executeCommand:command];
 }
 
 - (void)_executeNextCommand
 {
-    VNavigationActionCommand* nextCommand = [self.commandQueue firstObject];
+    HKVNavigationActionCommand* nextCommand = [self.commandQueue firstObject];
     switch (nextCommand.actionType) {
-    case VNavigationActionTypePush:
+    case HKVNavigationActionTypePush:
         [self _doPush:nextCommand];
         break;
-    case VNavigationActionTypePop:
+    case HKVNavigationActionTypePop:
         [self _doPop:nextCommand];
         break;
-    case VNavigationActionTypePresentModal:
+    case HKVNavigationActionTypePresentModal:
         [self _doPresentModal:nextCommand];
         break;
-    case VNavigationActionTypeResetRoot:
+    case HKVNavigationActionTypeResetRoot:
         [self _doResetRoot:nextCommand];
         break;
-    case VNavigationActionTypeDismissModal:
+    case HKVNavigationActionTypeDismissModal:
         [self _doDismissModal:nextCommand];
         break;
     default:
@@ -166,7 +167,7 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     }
 }
 
-- (void)_doPush:(VNavigationActionCommand*)command
+- (void)_doPush:(HKVNavigationActionCommand*)command
 {
     UIViewController* controller =
         [self _assembleViewControllerWithCommand:command];
@@ -190,13 +191,13 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     }
 }
 
-- (void)_doPop:(VNavigationActionCommand*)command
+- (void)_doPop:(HKVNavigationActionCommand*)command
 {
     // 如果command有targetURL，则尝试执行popToViewController
     // 如果在当前栈里找不到targetURL所属的类型，则转发到_doPush，并将popTopBeforePush设为YES
     if (command.targetURL) {
         NSDictionary* configForURL = self.routes[command.targetURL];
-        NSString* classString = configForURL[VNavigationConfigClassNameKey];
+        NSString* classString = configForURL[HKVNavigationConfigClassNameKey];
         Class controllerClass = nil;
         if (classString) {
             controllerClass = NSClassFromString(classString);
@@ -236,7 +237,7 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
         else {
             // 在栈中找不到需要的view controller
             // 转发command到push
-            command.actionType = VNavigationActionTypePush;
+            command.actionType = HKVNavigationActionTypePush;
             command.popTopBeforePush = YES;
             [self _doPush:command];
         }
@@ -253,7 +254,7 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     }
 }
 
-- (void)_doPresentModal:(VNavigationActionCommand*)command
+- (void)_doPresentModal:(HKVNavigationActionCommand*)command
 {
     UIViewController* controller =
         [self _assembleViewControllerWithCommand:command];
@@ -267,14 +268,14 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
                    completion:^{ [self _dequeueAndJudgeNextStep]; }];
 }
 
-- (void)_doDismissModal:(VNavigationActionCommand*)command
+- (void)_doDismissModal:(HKVNavigationActionCommand*)command
 {
     [self.navigationController
         dismissViewControllerAnimated:command.animate
                            completion:^{ [self _dequeueAndJudgeNextStep]; }];
 }
 
-- (void)_doResetRoot:(VNavigationActionCommand*)command
+- (void)_doResetRoot:(HKVNavigationActionCommand*)command
 {
     UIViewController* controller =
         [self _assembleViewControllerWithCommand:command];
@@ -286,10 +287,11 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 }
 
 - (UIViewController*)_assembleViewControllerWithCommand:
-                         (VNavigationActionCommand*)command
+                         (HKVNavigationActionCommand*)command
 {
     NSURL* url = command.targetURL;
-    NSDictionary* configForURL = self.routes[url];
+    NSURL* urlWithoutParams = [[NSURL alloc] initWithScheme:url.scheme host:url.host path:url.path];
+    NSDictionary* configForURL = self.routes[urlWithoutParams];
     UIViewController* controller =
         [self _viewControllerFromConfigValue:configForURL];
     if (!controller) {
@@ -305,8 +307,8 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
 
 - (UIViewController*)_viewControllerFromConfigValue:(NSDictionary*)configValue
 {
-    NSString* className = configValue[VNavigationConfigClassNameKey];
-    NSString* xibName = configValue[VNavigationConfigXibNameKey];
+    NSString* className = configValue[HKVNavigationConfigClassNameKey];
+    NSString* xibName = configValue[HKVNavigationConfigXibNameKey];
     // 如果找不到对应的class，则直接生成WebViewController
     Class controllerClass = NSClassFromString(className);
     if (!controllerClass) {
@@ -352,6 +354,16 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
     [self.commandQueue removeAllObjects];
 }
 
+- (void)_dequeueAndJudgeNextStep
+{
+    if (self.commandQueue.count > 0) {
+        [self.commandQueue removeObjectAtIndex:0];
+    }
+    if (self.commandQueue.count > 0) {
+        [self _executeNextCommand];
+    }
+}
+
 #pragma mark - navigation controller delegate
 - (void)navigationController:(UINavigationController*)navigationController
       willShowViewController:(UIViewController*)viewController
@@ -364,16 +376,6 @@ NSString* const VNavigationConfigXibNameKey = @"VNavigationConfigXibNameKey";
                     animated:(BOOL)animated
 {
     [self _dequeueAndJudgeNextStep];
-}
-
-- (void)_dequeueAndJudgeNextStep
-{
-    if (self.commandQueue.count > 0) {
-        [self.commandQueue removeObjectAtIndex:0];
-    }
-    if (self.commandQueue.count > 0) {
-        [self _executeNextCommand];
-    }
 }
 
 @end

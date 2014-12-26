@@ -60,12 +60,12 @@
     }
     [params setObject:@(option) forKey:@"examOption"];
     examVC.examOption = option;
-    VNavigationActionCommand *command = [VNavigationActionCommand new];
-    command.targetURL = [VNavigationRouteConfig sharedInstance].examVC;
+    HKVNavigationActionCommand *command = [HKVNavigationActionCommand new];
+    command.targetURL = [HKVNavigationRouteConfig sharedInstance].examVC;
     command.popTopBeforePush = YES;
     command.animate = YES;
     command.params = params;
-    [[VNavigationManager sharedInstance]executeCommand:command];
+    [[HKVNavigationManager sharedInstance]executeCommand:command];
 
 }
 

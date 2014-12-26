@@ -124,7 +124,7 @@
 {
     NSString *word = (self.contentsArray)[indexPath.row][@"key"];
     Word *w = [Word MR_findFirstByAttribute:@"key" withValue:word];
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -200,7 +200,7 @@
 // @Override
 - (void)back:(id)sender
 {
-    [[VNavigationManager sharedInstance]commonDismissModalAnimated:YES];
+    [[HKVNavigationManager sharedInstance]commonDismissModalAnimated:YES];
 }
 
 #pragma mark - keyboard things

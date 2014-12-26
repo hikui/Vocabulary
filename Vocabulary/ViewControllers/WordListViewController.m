@@ -161,7 +161,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Word *w = (self.wordArray)[indexPath.row];
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -198,7 +198,7 @@
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].learningBackboneVC params:@{@"words":[self.wordArray mutableCopy]} animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].learningBackboneVC params:@{@"words":[self.wordArray mutableCopy]} animate:YES];
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
@@ -209,7 +209,7 @@
         params = @{@"wordArray":self.wordArray};
     }
     
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].examTypeChoiceVC params:params animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].examTypeChoiceVC params:params animate:YES];
 }
 
 - (void)editButtonItemPressed:(id)sender

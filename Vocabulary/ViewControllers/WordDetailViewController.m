@@ -198,11 +198,11 @@
 
 // @Override
 - (void)back {
-    [[VNavigationManager sharedInstance]commonPopAnimated:YES];
+    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
 }
 
 - (void)noteButtonOnClick {
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.word} animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.word} animate:YES];
 }
 
 - (IBAction)btnReadOnPressed:(id)sender
@@ -217,12 +217,12 @@
 //    wvc.requestURL = url;
 //    //    [self presentModalViewController:wvc animated:YES];
 //    [self presentViewController:wvc animated:YES completion:nil];
-    [[VNavigationManager sharedInstance]commonPresentModalURL:url params:nil animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPresentModalURL:url params:nil animate:YES];
 }
 
 - (IBAction)btnManuallyInfoOnClick:(id)sender
 {
-    [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.word} animate:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.word} animate:YES];
 }
 
 @end

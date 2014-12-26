@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VNavigationRouteConfig : NSObject
+@interface HKVNavigationRouteConfig : NSObject
 
 @property (nonatomic, readonly) NSURL *examVC;
 @property (nonatomic, readonly) NSURL *showWrongWordsVC;
@@ -27,6 +27,6 @@
 
 @property (nonatomic, readonly) NSDictionary *route;
 
-+ (VNavigationRouteConfig *)sharedInstance;
++ (HKVNavigationRouteConfig *)sharedInstance;
 
 @end

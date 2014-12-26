@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "VNavigationRouteConfig.h"
+#import "HKVNavigationRouteConfig.h"
 
 @interface Vocabulary_Tests : XCTestCase
 
@@ -27,7 +27,7 @@
 }
 
 - (void)testExample {
-    VNavigationRouteConfig *commonURL = [VNavigationRouteConfig sharedInstance];
+    HKVNavigationRouteConfig *commonURL = [HKVNavigationRouteConfig sharedInstance];
     XCTAssertEqualObjects(commonURL.noteVC.absoluteString, @"vocabulary://viewcontroller/noteVC");
 }
 

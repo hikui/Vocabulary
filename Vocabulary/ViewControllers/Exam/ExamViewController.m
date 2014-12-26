@@ -450,13 +450,13 @@
     if (_shouldUpdateWordFamiliarity) {
         [self calculateFamiliarityForContentQueue:self.examContentsQueue];
         if (self.wrongWordsSet.count == 0) {
-            [[VNavigationManager sharedInstance]commonPopToURL:[VNavigationRouteConfig sharedInstance].wordListVC animate:YES];
+            [[HKVNavigationManager sharedInstance]commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
         }else{
             NSMutableArray *wrongWordsArray = [[NSMutableArray alloc]init];
             for (Word *w in self.wrongWordsSet) {
                 [wrongWordsArray addObject:w];
             }
-            [[VNavigationManager sharedInstance]commonPushURL:[VNavigationRouteConfig sharedInstance].showWrongWordsVC params:@{@"wordArray":wrongWordsArray} animate:YES];
+            [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].showWrongWordsVC params:@{@"wordArray":wrongWordsArray} animate:YES];
         }
     }else{
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"您还没背完一遍呢"
@@ -473,7 +473,7 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:@"确认作废"]) {
-        [[VNavigationManager sharedInstance]commonPopAnimated:YES];
+        [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
     }
 }
 
