@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6169C5B3C436E888FC365 /* libPods.a */; };
+		7F18D0061A50EFB30005CD07 /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F18D0051A50EFB30005CD07 /* ExamViewController.xib */; };
+		7F18D0091A50F3080005CD07 /* InsertWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D0081A50F3080005CD07 /* InsertWordView.m */; };
+		7F18D00B1A50F3210005CD07 /* InsertWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F18D00A1A50F3210005CD07 /* InsertWordView.xib */; };
 		7F43F70619F7A9A900672440 /* CibaWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68019F7A9A900672440 /* CibaWebView.m */; };
 		7F43F70719F7A9A900672440 /* ExamContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F68219F7A9A900672440 /* ExamContentView.m */; };
 		7F43F70819F7A9A900672440 /* ExamContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F68319F7A9A900672440 /* ExamContentView.xib */; };
@@ -97,7 +100,6 @@
 		7F7CFCE51A417F0B008251DB /* VKeyboardAwarenessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCE41A417F0B008251DB /* VKeyboardAwarenessViewController.m */; };
 		7F7CFCF31A43E1AB008251DB /* ExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCEE1A43E1AB008251DB /* ExamViewController.m */; };
 		7F7CFCF41A43E1AB008251DB /* ShowWrongWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF01A43E1AB008251DB /* ShowWrongWordsViewController.m */; };
-		7F7CFCF51A43E1AB008251DB /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */; };
 		7F7CFCF91A43E1E9008251DB /* ExamTypeChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */; };
 		7F97FB051A490D8C000F0797 /* VImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */; };
 		7F97FB061A490D8C000F0797 /* VImagePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */; };
@@ -188,6 +190,10 @@
 /* Begin PBXFileReference section */
 		13F6169C5B3C436E888FC365 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		527127F11B3F2310405C9F93 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7F18D0051A50EFB30005CD07 /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
+		7F18D0071A50F3080005CD07 /* InsertWordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertWordView.h; sourceTree = "<group>"; };
+		7F18D0081A50F3080005CD07 /* InsertWordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertWordView.m; sourceTree = "<group>"; };
+		7F18D00A1A50F3210005CD07 /* InsertWordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsertWordView.xib; sourceTree = "<group>"; };
 		7F43F67F19F7A9A900672440 /* CibaWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaWebView.h; sourceTree = "<group>"; };
 		7F43F68019F7A9A900672440 /* CibaWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaWebView.m; sourceTree = "<group>"; };
 		7F43F68119F7A9A900672440 /* ExamContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamContentView.h; sourceTree = "<group>"; };
@@ -354,7 +360,6 @@
 		7F7CFCEE1A43E1AB008251DB /* ExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamViewController.m; sourceTree = "<group>"; };
 		7F7CFCEF1A43E1AB008251DB /* ShowWrongWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWrongWordsViewController.h; sourceTree = "<group>"; };
 		7F7CFCF01A43E1AB008251DB /* ShowWrongWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWrongWordsViewController.m; sourceTree = "<group>"; };
-		7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
 		7F7CFCF61A43E1E9008251DB /* ExamTypeChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamTypeChoiceViewController.h; sourceTree = "<group>"; };
 		7F7CFCF71A43E1E9008251DB /* ExamTypeChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamTypeChoiceViewController.m; sourceTree = "<group>"; };
 		7F97FB021A490D8C000F0797 /* VImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VImagePickerViewController.h; sourceTree = "<group>"; };
@@ -506,6 +511,9 @@
 				7F43F68C19F7A9A900672440 /* VGradientView.h */,
 				7F43F68D19F7A9A900672440 /* VGradientView.m */,
 				7F43F68E19F7A9A900672440 /* WelcomeView.xib */,
+				7F18D0071A50F3080005CD07 /* InsertWordView.h */,
+				7F18D0081A50F3080005CD07 /* InsertWordView.m */,
+				7F18D00A1A50F3210005CD07 /* InsertWordView.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -850,8 +858,8 @@
 		7F7CFCF11A43E1AB008251DB /* xibs */ = {
 			isa = PBXGroup;
 			children = (
+				7F18D0051A50EFB30005CD07 /* ExamViewController.xib */,
 				7F67A7D01A44104B0037F7F2 /* ExamTypeChoiceViewController.xib */,
-				7F7CFCF21A43E1AB008251DB /* ExamViewController.xib */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -1125,6 +1133,7 @@
 				A46A7FCD1635909D00DF4696 /* audio.png in Resources */,
 				A46A8001163BC7CA00DF4696 /* whiteButton.png in Resources */,
 				7F7CFCDF1A41679C008251DB /* EditWordDetailViewController.xib in Resources */,
+				7F18D0061A50EFB30005CD07 /* ExamViewController.xib in Resources */,
 				A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */,
 				A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */,
 				A46A8004163BC7CA00DF4696 /* whiteButtonHighlight@2x.png in Resources */,
@@ -1155,6 +1164,7 @@
 				EC9D1E9F1697CD5300A8C5B9 /* tableheader@2x.png in Resources */,
 				EC9D1EA81698002E00A8C5B9 /* CellBGHighlighted.png in Resources */,
 				EC9D1EA91698002E00A8C5B9 /* CellBGHighlighted@2x.png in Resources */,
+				7F18D00B1A50F3210005CD07 /* InsertWordView.xib in Resources */,
 				7F43F70819F7A9A900672440 /* ExamContentView.xib in Resources */,
 				EC9D1F901699509600A8C5B9 /* checkmark.png in Resources */,
 				EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */,
@@ -1164,7 +1174,6 @@
 				A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */,
 				7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */,
 				7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */,
-				7F7CFCF51A43E1AB008251DB /* ExamViewController.xib in Resources */,
 				ECB725C316D21AFF00BAB36D /* import_wordlist_itunes1-568h@2x.png in Resources */,
 				ECB725C416D21AFF00BAB36D /* import_wordlist_itunes2-568h@2x.png in Resources */,
 				ECB725C516D21AFF00BAB36D /* import_wordlist_itunes3-568h@2x.png in Resources */,
@@ -1275,6 +1284,7 @@
 				7F68EED11A26C73E00FB898F /* NSManagedObject+MagicalDataImport.m in Sources */,
 				7F43F70B19F7A9A900672440 /* WordListFromDiskGuide.m in Sources */,
 				7F43F71419F7A9A900672440 /* MigrationV2ToV4.xcmappingmodel in Sources */,
+				7F18D0091A50F3080005CD07 /* InsertWordView.m in Sources */,
 				7F43F71519F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel in Sources */,
 				7F68EED01A26C73E00FB898F /* NSManagedObject+MagicalAggregation.m in Sources */,
 				7F68EEE01A26C73E00FB898F /* MagicalRecord+ShorthandSupport.m in Sources */,

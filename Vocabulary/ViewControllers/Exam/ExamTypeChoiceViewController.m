@@ -11,28 +11,32 @@
 
 @interface ExamTypeChoiceViewController ()
 
-@property (nonatomic, weak) IBOutlet UIButton *btnCheckC2E;
-@property (nonatomic, weak) IBOutlet UIButton *btnCheckE2C;
-@property (nonatomic, weak) IBOutlet UIButton *btnCheckListening;
+@property (nonatomic, weak) IBOutlet UIButton* btnCheckC2E;
+@property (nonatomic, weak) IBOutlet UIButton* btnCheckE2C;
+@property (nonatomic, weak) IBOutlet UIButton* btnCheckListening;
 
 @end
 
 @implementation ExamTypeChoiceViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self showCustomBackButton];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)checkBoxOnTouch:(UIButton *)sender {
+- (IBAction)checkBoxOnTouch:(UIButton*)sender
+{
     sender.selected = !sender.selected;
 }
 
-- (IBAction)btnNextStepOnTouch:(id)sender {
+- (IBAction)btnNextStepOnTouch:(id)sender
+{
     ExamOption option = ExamOptionNone;
     if (self.btnCheckC2E.selected) {
         option |= ExamOptionC2E;
@@ -43,30 +47,28 @@
     if (self.btnCheckListening.selected) {
         option |= ExamOptionListening;
     }
-    
+
     if (option == ExamOptionNone) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"请至少选择一项" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:@"请至少选择一项" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
-    
-    NSMutableDictionary *params = [@{} mutableCopy];
-    
-    ExamViewController *examVC = [[ExamViewController alloc]initWithNibName:NSStringFromClass([ExamViewController class]) bundle:nil];
+
+    NSMutableDictionary* params = [@{} mutableCopy];
+
     if (self.wordList) {
         [params setObject:self.wordList forKey:@"wordList"];
-    }else if (self.wordArray) {
+    }
+    else if (self.wordArray) {
         [params setObject:[self.wordArray mutableCopy] forKey:@"wordArray"];
     }
     [params setObject:@(option) forKey:@"examOption"];
-    examVC.examOption = option;
-    HKVNavigationActionCommand *command = [HKVNavigationActionCommand new];
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
     command.targetURL = [HKVNavigationRouteConfig sharedInstance].examVC;
     command.popTopBeforePush = YES;
     command.animate = YES;
     command.params = params;
-    [[HKVNavigationManager sharedInstance]executeCommand:command];
-
+    [[HKVNavigationManager sharedInstance] executeCommand:command];
 }
 
 @end

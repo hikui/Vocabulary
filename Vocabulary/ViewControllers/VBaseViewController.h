@@ -21,4 +21,8 @@
  */
 - (void)back;
 
+- (void)showMaskLayer;
+
+- (void)hideMaskLayer;
+
 @end
