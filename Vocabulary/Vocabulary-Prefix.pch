@@ -28,5 +28,6 @@ static int ddLogLevel = DDLogLevelOff;
     #import "PronunciationData.h"
     #import "common.h"
     #import "VBaseViewController.h"
+    #import "HKVCategories.h"
 #endif
 

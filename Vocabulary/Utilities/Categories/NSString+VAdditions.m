@@ -41,4 +41,8 @@
     return decoded;
 }
 
+- (NSString *)hkv_trim {
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
 @end

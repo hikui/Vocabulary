@@ -89,6 +89,8 @@
 - (PMKPromise *)requestContentOfWord:(NSString*)word
                       outerOperation:(CibaNetworkOperation **)operation
 {
+    word = [word hkv_trim];
+    word = [word urlEncodedString];
     NSString* urlString = [NSString stringWithFormat:@"http://%@/%@", HostName, CIBA_URL(word)];
     CibaNetworkOperation* op = [[CibaNetworkOperation alloc] initWithURLString:urlString params:nil httpMethod:@"GET"];
     PMKPromise *modifiedPromise = op.promise.then(^(NSData *responseData, CibaNetworkOperation *operation){

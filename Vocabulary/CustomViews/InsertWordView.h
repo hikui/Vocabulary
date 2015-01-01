@@ -10,4 +10,11 @@
 
 @interface InsertWordView : UIView
 
+@property (nonatomic, strong) WordList *targetWordList;
+@property (nonatomic, copy) void (^resultBlock)();
+
++ (instancetype)newInstance;
+- (void)showWithResultBlock:(void (^)())resultBlock;;
+- (void)hide;
+
 @end

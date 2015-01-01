@@ -33,6 +33,7 @@
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
+#import "InsertWordView.h"
 
 @interface WordListViewController ()
 
@@ -80,11 +81,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if (self.wordList != nil) {
-        NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
-        for (Word *w in self.wordList.words) {
-            [words addObject:w];
-        }
-        self.wordArray = words;
+        [self updateWordArray];
     }else{
         self.addWordButton.enabled = NO;
     }
@@ -98,6 +95,14 @@
         self.beginTestButton.enabled = NO;
     }
     [self.tableView reloadData];
+}
+
+- (void)updateWordArray {
+    NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
+    for (Word *w in self.wordList.words) {
+        [words addObject:w];
+    }
+    self.wordArray = words;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -230,8 +235,15 @@
 
 - (IBAction)btnAddWordOnPress:(id)sender
 {
-    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
-    [actions showInView:self.view];
+//    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
+//    [actions showInView:self.view];
+    
+    InsertWordView *insertWordView = [InsertWordView newInstance];
+    insertWordView.targetWordList = self.wordList;
+    [insertWordView showWithResultBlock:^() {
+        [self updateWordArray];
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - alertview delegate

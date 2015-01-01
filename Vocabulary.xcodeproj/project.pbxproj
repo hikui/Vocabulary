@@ -104,6 +104,7 @@
 		7F97FB051A490D8C000F0797 /* VImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */; };
 		7F97FB061A490D8C000F0797 /* VImagePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
+		A40EAD551A550A4A00181ED6 /* UIView+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
 		A46A7E501630296800DF4696 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4F1630296800DF4696 /* CoreGraphics.framework */; };
@@ -366,6 +367,9 @@
 		7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VImagePickerViewController.m; sourceTree = "<group>"; };
 		7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VImagePickerViewController.xib; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A40EAD531A550A4A00181ED6 /* UIView+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+VAdditions.h"; sourceTree = "<group>"; };
+		A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+VAdditions.m"; sourceTree = "<group>"; };
+		A40EAD561A5537E400181ED6 /* HKVCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HKVCategories.h; sourceTree = "<group>"; };
 		A42073621A3C82E800D6101B /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
 		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46A7E4B1630296800DF4696 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -605,6 +609,9 @@
 				7F6BE4E019F9E6C5006606E6 /* NSString+VAdditions.m */,
 				A48BE2BA1A0631DC00FCEE1D /* UIColor+VAdditions.h */,
 				A48BE2BB1A0631DC00FCEE1D /* UIColor+VAdditions.m */,
+				A40EAD531A550A4A00181ED6 /* UIView+VAdditions.h */,
+				A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */,
+				A40EAD561A5537E400181ED6 /* HKVCategories.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1308,6 +1315,7 @@
 				7F43F73819F7A9A900672440 /* WordListFromDiskViewController.m in Sources */,
 				7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */,
 				A489D71E1A0674340087C0AF /* NoteAttatchment.m in Sources */,
+				A40EAD551A550A4A00181ED6 /* UIView+VAdditions.m in Sources */,
 				7F67A7E21A47B6BD0037F7F2 /* Guide.m in Sources */,
 				A489D70F1A066CFB0087C0AF /* Note.m in Sources */,
 				7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */,
