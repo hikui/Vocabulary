@@ -27,7 +27,7 @@
 #import "ExamContent.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface ExamView : UIView
+@interface ExamContentView : UIView
 
 @property (nonatomic, weak) IBOutlet UILabel *keyLabel;
 @property (nonatomic, weak) IBOutlet UITextView *acceptationView;

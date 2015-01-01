@@ -14,5 +14,6 @@
 
 - (NSString *)hkv_stringByURLEncoding;
 - (NSString *)hkv_stringByURLDecoding;
+- (NSString *)hkv_trim;
 
 @end

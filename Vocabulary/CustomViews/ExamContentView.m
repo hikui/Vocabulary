@@ -23,18 +23,18 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import "ExamView.h"
+#import "ExamContentView.h"
 #import "NSMutableString+HTMLEscape.h"
 
-@implementation ExamView
+@implementation ExamContentView
 
 
 + (id)newInstance
 {
-    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"ExamView"
+    NSArray* nibViews = [[NSBundle mainBundle] loadNibNamed:@"ExamContentView"
                                                       owner:self
                                                     options:nil];
-    ExamView *view = nibViews[0];
+    ExamContentView *view = nibViews[0];
     UIImage *buttonImage = [[UIImage imageNamed:@"greenButton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     UIImage *buttonImageHighlighted = [[UIImage imageNamed:@"greenButtonHighlight.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     for (UIButton *btn in view.subviews) {

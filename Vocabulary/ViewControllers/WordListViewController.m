@@ -33,6 +33,7 @@
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
+#import "InsertWordView.h"
 
 @interface WordListViewController ()
 
@@ -58,7 +59,7 @@
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
-    if (self.isTopLevel) {
+    if (self.topLevel) {
         UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
         menuButton.frame = CGRectMake(0, 0, 40, 29);
         
@@ -80,11 +81,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if (self.wordList != nil) {
-        NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
-        for (Word *w in self.wordList.words) {
-            [words addObject:w];
-        }
-        self.wordArray = words;
+        [self updateWordArray];
     }else{
         self.addWordButton.enabled = NO;
     }
@@ -98,6 +95,14 @@
         self.beginTestButton.enabled = NO;
     }
     [self.tableView reloadData];
+}
+
+- (void)updateWordArray {
+    NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
+    for (Word *w in self.wordList.words) {
+        [words addObject:w];
+    }
+    self.wordArray = words;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -161,8 +166,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Word *w = (self.wordArray)[indexPath.row];
-    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
-    [self.navigationController pushViewController:lvc animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -178,18 +183,12 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSUInteger row = indexPath.row;
         Word *wordShouldBeDeleted = (self.wordArray)[row];
-//        for (NSUInteger i=row; i<self.wordsSet.count-1; i++) {
-//            [self.wordsSet replaceObjectAtIndex:i withObject:[self.wordsSet objectAtIndex:i+1]];
-//        }
         
         [self.wordArray removeObjectAtIndex:row];
         
-//        [self.wordsSet removeLastObject];
         if (self.wordList != nil) {
             [self.wordList removeWordsObject:wordShouldBeDeleted];
         }
-//        NSManagedObjectContext *ctx = [[CoreDataHelper sharedInstance]managedObjectContext];
-//        [ctx deleteObject:wordShouldBeDeleted];
         [_tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     [_tableView endUpdates];
@@ -204,20 +203,18 @@
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
-    LearningBackboneViewController *lvc = [[LearningBackboneViewController alloc]initWithWords:self.wordArray];
-    [self.navigationController pushViewController:lvc animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].learningBackboneVC params:@{@"words":[self.wordArray mutableCopy]} animate:YES];
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
-    ExamTypeChoiceViewController *evc = nil;
-    evc = [[ExamTypeChoiceViewController alloc]init];
+    NSDictionary *params = nil;
     if (self.wordList != nil) {
-        evc.wordList = self.wordList;
+        params = @{@"wordList":self.wordList};
     }else{
-        evc.wordArray = self.wordArray;
+        params = @{@"wordArray":self.wordArray};
     }
     
-    [self.navigationController pushViewController:evc animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].examTypeChoiceVC params:params animate:YES];
 }
 
 - (void)editButtonItemPressed:(id)sender
@@ -238,8 +235,15 @@
 
 - (IBAction)btnAddWordOnPress:(id)sender
 {
-    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
-    [actions showInView:self.view];
+//    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
+//    [actions showInView:self.view];
+    
+    InsertWordView *insertWordView = [InsertWordView newInstance];
+    insertWordView.targetWordList = self.wordList;
+    [insertWordView showWithResultBlock:^() {
+        [self updateWordArray];
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - alertview delegate

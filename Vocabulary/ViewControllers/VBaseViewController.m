@@ -11,6 +11,8 @@
 
 @interface VBaseViewController ()
 
+@property (nonatomic, strong) CALayer *maskLayer;
+
 @end
 
 @implementation VBaseViewController
@@ -32,6 +34,9 @@
         self.extendedLayoutIncludesOpaqueBars = NO;
         self.modalPresentationCapturesStatusBarAppearance = NO;
     }
+    _maskLayer = [CALayer layer];
+    _maskLayer.frame = self.view.bounds;
+    _maskLayer.backgroundColor = RGBA(0, 0, 0, 0.5).CGColor;
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,8 +50,16 @@
     self.navigationItem.leftBarButtonItem = backButton;
 }
 
+- (void)showMaskLayer {
+    [self.view.layer addSublayer:_maskLayer];
+}
+
+- (void)hideMaskLayer {
+    [_maskLayer removeFromSuperlayer];
+}
+
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
 }
 
 @end

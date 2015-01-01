@@ -47,14 +47,14 @@
     return self;
 }
 
-- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
-{
-    self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
-    if (self) {
-        _modalViewControllerMode = modalViewControllerMode;
-    }
-    return self;
-}
+//- (instancetype)initWithModalViewControllerMode:(BOOL)modalViewControllerMode
+//{
+//    self = [super initWithNibName:@"SearchWordViewController" bundle:nil];
+//    if (self) {
+//        _modalViewControllerMode = modalViewControllerMode;
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
@@ -123,21 +123,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *word = (self.contentsArray)[indexPath.row][@"key"];
-//    NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:ctx];
-//    [request setEntity:entity];
-//    [request setFetchLimit:1];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(key = %@)",word];
-//    [request setPredicate:predicate];
-//    NSArray *resultArr = [ctx executeFetchRequest:request error:nil];
-//    
-//    if (resultArr.count == 0) {
-//        return;
-//    }
     Word *w = [Word MR_findFirstByAttribute:@"key" withValue:word];
-    WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:w];
-    [self.navigationController pushViewController:lvc animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -213,7 +200,7 @@
 // @Override
 - (void)back:(id)sender
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [[HKVNavigationManager sharedInstance]commonDismissModalAnimated:YES];
 }
 
 #pragma mark - keyboard things

@@ -11,28 +11,32 @@
 
 @interface ExamTypeChoiceViewController ()
 
-@property (nonatomic, weak) IBOutlet UIButton *btnCheckC2E;
-@property (nonatomic, weak) IBOutlet UIButton *btnCheckE2C;
-@property (nonatomic, weak) IBOutlet UIButton *btnCheckListening;
+@property (nonatomic, weak) IBOutlet UIButton* btnCheckC2E;
+@property (nonatomic, weak) IBOutlet UIButton* btnCheckE2C;
+@property (nonatomic, weak) IBOutlet UIButton* btnCheckListening;
 
 @end
 
 @implementation ExamTypeChoiceViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self showCustomBackButton];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)checkBoxOnTouch:(UIButton *)sender {
+- (IBAction)checkBoxOnTouch:(UIButton*)sender
+{
     sender.selected = !sender.selected;
 }
 
-- (IBAction)btnNextStepOnTouch:(id)sender {
+- (IBAction)btnNextStepOnTouch:(id)sender
+{
     ExamOption option = ExamOptionNone;
     if (self.btnCheckC2E.selected) {
         option |= ExamOptionC2E;
@@ -43,26 +47,28 @@
     if (self.btnCheckListening.selected) {
         option |= ExamOptionListening;
     }
-    
+
     if (option == ExamOptionNone) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"请至少选择一项" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil message:@"请至少选择一项" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
-    
-    ExamViewController *examVC = nil;
+
+    NSMutableDictionary* params = [@{} mutableCopy];
+
     if (self.wordList) {
-        examVC = [[ExamViewController alloc]initWithWordList:self.wordList];
-    }else if (self.wordArray) {
-        examVC = [[ExamViewController alloc]initWithWordArray:self.wordArray];
+        [params setObject:self.wordList forKey:@"wordList"];
     }
-    examVC.examOption = option;
-    if (examVC) {
-        NSMutableArray *viewControllers = [NSMutableArray arrayWithArray:[[self navigationController] viewControllers]];
-        [viewControllers removeLastObject];
-        [viewControllers addObject:examVC];
-        [[self navigationController] setViewControllers:viewControllers animated:YES];
+    else if (self.wordArray) {
+        [params setObject:[self.wordArray mutableCopy] forKey:@"wordArray"];
     }
+    [params setObject:@(option) forKey:@"examOption"];
+    HKVNavigationActionCommand* command = [HKVNavigationActionCommand new];
+    command.targetURL = [HKVNavigationRouteConfig sharedInstance].examVC;
+    command.popTopBeforePush = YES;
+    command.animate = YES;
+    command.params = params;
+    [[HKVNavigationManager sharedInstance] executeCommand:command];
 }
 
 @end

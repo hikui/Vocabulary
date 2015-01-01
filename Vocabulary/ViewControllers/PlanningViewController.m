@@ -183,7 +183,7 @@
             cell.textLabel.text = self.todaysPlan.learningPlan.title;
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
             if ([self.todaysPlan.learningPlan.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
             }else{
                 cell.accessoryView = nil;
             }
@@ -193,7 +193,7 @@
             cell.textLabel.text = [[wl valueForKey:@"title"] description];
             NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
             if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkmark.png"]];
+                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
             }else{
                 cell.accessoryView = nil;
             }
@@ -252,26 +252,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
+//    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
     
     NSInteger numOfSections = [tableView numberOfSections];
     
+    NSDictionary *params = nil;
+    
     if (numOfSections == 2) {
         if (indexPath.section == 0) {
-            subVC.wordList = self.todaysPlan.learningPlan;
+//            subVC.wordList = self.todaysPlan.learningPlan;
+            params = @{@"wordList":self.todaysPlan.learningPlan};
         }else{
             WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
-            subVC.wordList = wl;
+            params = @{@"wordList":wl};
+//            subVC.wordList = wl;
         }
     }else if (numOfSections == 1) {
         if (self.todaysPlan.learningPlan != nil) {
-            subVC.wordList = self.todaysPlan.learningPlan;
+//            subVC.wordList = self.todaysPlan.learningPlan;
+            params = @{@"wordList":self.todaysPlan.learningPlan};
         }else if (self.todaysPlan.reviewPlan.count != 0) {
             WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
-            subVC.wordList = wl;
+//            subVC.wordList = wl;
+            params = @{@"wordList":wl};
         }
     }
-    [self.navigationController pushViewController:subVC animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
 }
 
 #pragma mark - actions

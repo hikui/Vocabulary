@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "VBaseModel.h"
 
 @class WordList;
 
-@interface Plan : NSManagedObject
+@interface Plan : VBaseModel
 
 @property (nonatomic, retain) NSDate * createDate;
 //@property (nonatomic, retain) NSNumber * learningFinished;

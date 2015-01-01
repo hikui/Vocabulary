@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HKVNavigationManager.h"
+#import "HKVNavigationRouteConfig.h"
 @interface VBaseViewController : UIViewController
 
 /**
@@ -19,5 +20,9 @@
  自定义返回（用于Navigation）
  */
 - (void)back;
+
+- (void)showMaskLayer;
+
+- (void)hideMaskLayer;
 
 @end

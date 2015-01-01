@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "HKVNavigationRouteConfig.h"
 
 @interface Vocabulary_Tests : XCTestCase
 
@@ -26,8 +27,8 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    HKVNavigationRouteConfig *commonURL = [HKVNavigationRouteConfig sharedInstance];
+    XCTAssertEqualObjects(commonURL.noteVC.absoluteString, @"vocabulary://viewcontroller/noteVC");
 }
 
 - (void)testPerformanceExample {

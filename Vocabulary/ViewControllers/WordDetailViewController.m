@@ -49,10 +49,21 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _shouldHideInfo = NO;
     }
     return self;
 }
+
+//- (instancetype)initWithWord:(Word *)word
+//{
+//    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
+//    if (self) {
+//        _word = word;
+//        _shouldHideInfo = NO;
+//    }
+//    return self;
+//}
+
 
 - (void)viewDidLoad
 {
@@ -115,19 +126,6 @@
 {
     [super didReceiveMemoryWarning];
 }
-
-
-- (instancetype)initWithWord:(Word *)word
-{
-    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
-    if (self) {
-        _word = word;
-        _shouldHideInfo = NO;
-    }
-    return self;
-}
-
-
 
 - (void)refreshView
 {
@@ -199,14 +197,12 @@
 }
 
 // @Override
-- (void)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)back {
+    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
 }
 
 - (void)noteButtonOnClick {
-    NoteViewController *nvc = [[NoteViewController alloc]initWithWord:self.word];
-    [self.navigationController pushViewController:nvc animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.word} animate:YES];
 }
 
 - (IBAction)btnReadOnPressed:(id)sender
@@ -216,18 +212,17 @@
 
 - (IBAction)fullInfomation:(id)sender
 {
-    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
+//    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
     NSURL *url = [NSURL URLWithString:CIBA_URL([self.word.key hkv_stringByURLEncoding])];
-    wvc.requestURL = url;
-    //    [self presentModalViewController:wvc animated:YES];
-    [self presentViewController:wvc animated:YES completion:nil];
+//    wvc.requestURL = url;
+//    //    [self presentModalViewController:wvc animated:YES];
+//    [self presentViewController:wvc animated:YES completion:nil];
+    [[HKVNavigationManager sharedInstance]commonPresentModalURL:url params:nil animate:YES];
 }
 
 - (IBAction)btnManuallyInfoOnClick:(id)sender
 {
-    EditWordDetailViewController *editVC = [[EditWordDetailViewController alloc]initWithNibName:nil bundle:nil];
-    editVC.word = self.word;
-    [self.navigationController pushViewController:editVC animated:YES];
+    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.word} animate:YES];
 }
 
 @end

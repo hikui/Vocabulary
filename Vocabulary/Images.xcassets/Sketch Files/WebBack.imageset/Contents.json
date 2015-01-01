@@ -1,13 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
       "idiom" : "universal",
-      "filename" : "WebBack.pdf",
-      "unassigned" : true,
-      "scale" : "1x"
+      "filename" : "WebBack.pdf"
     }
   ],
   "info" : {
