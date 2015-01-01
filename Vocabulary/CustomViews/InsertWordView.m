@@ -86,6 +86,11 @@ NS_INLINE UIWindow * getMainWindow(){
 - (IBAction)buttonAddOnTouch:(UIButton *)sender {
     NSString *key = [self.wordField.text hkv_trim];
     if (key.length > 0 && self.targetWordList != nil) {
+        /*
+         `asyncIndexNewWords` runs in a new thread along with a new NSManagedObjectContext, which is a child of MR_defaultContext and has nothing to do with the context of `saveWithBlockAndWait` below. Thus the word created in the block cannot be detected in the default context and its other children before `save` is called.
+         So we need to record the object id of the new word, then look for the entity in the default context by this id. Then we can run asyncIndexNewWords safely.
+         Remember, when a new NSManagedObject is created, its objectID property is a temporary id, which is useless in the outside world. We should call `obtainPermanentIDsForObjects` first to turn it to a permanent id.
+         */
         __block NSError *e = nil;
         __block NSManagedObjectID *objId = nil;
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
@@ -112,6 +117,7 @@ NS_INLINE UIWindow * getMainWindow(){
             [MagicalRecord handleErrors:e];
             return;
         }
+        
         [WordManager asyncIndexNewWords:@[wordInMainThread] progressBlock:nil completion:nil];
         if (self.resultBlock) {
             self.resultBlock();
