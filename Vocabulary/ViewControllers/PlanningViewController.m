@@ -29,8 +29,41 @@
 #import "PureColorImageGenerator.h"
 #import "PlanMaker.h"
 #import "NSDate+VAdditions.h"
+#import "HKVBasicTableViewCell.h"
 
-@interface PlanningViewController ()
+@interface PlanningViewControllerCell : HKVBasicTableViewCell
+
+@end
+
+@implementation PlanningViewControllerCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    return [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+}
+
+- (void)bindData:(id)data {
+    [super bindData:data];
+    NSDate *todaysDateWithoutTime = [[NSDate date]hkv_dateWithoutTime];
+    WordList *wl = (WordList *)data;
+    self.textLabel.text = [wl.title description];
+    NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[wl.effectiveCount description]];
+    if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
+        self.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
+    }else{
+        self.accessoryView = nil;
+    }
+    self.detailTextLabel.text = detailTxt;
+}
+
++ (CGFloat)heightForData:(id)data {
+    return 44.0;
+}
+
+@end
+
+@interface PlanningViewController ()<HKVDefaultTableViewModelDelegate>
+
+@property (nonatomic, strong) HKVDefaultTableViewModel *tableModel;
 
 - (void)refreshHintView;
 
@@ -52,18 +85,9 @@
 {
     [super viewDidLoad];
     
-//    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
-    
-    //广告
-//    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    [self.view bringSubviewToFront:self.banner];
-    
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     menuButton.frame = CGRectMake(0, 0, 40, 29);
     
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-    
-//    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,8 +116,7 @@
 {
     [super viewWillAppear:animated];
     self.todaysPlan = [[PlanMaker sharedInstance]todaysPlan];
-    [self refreshHintView];
-    [self.tableView reloadData];
+    [self configTableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,176 +130,35 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger count = 2;
-    if (self.todaysPlan.learningPlan == nil) {
-        count--;
+- (void)configTableView {
+    [self refreshHintView];
+    _tableModel = [[HKVDefaultTableViewModel alloc]init];
+    _tableModel.tableView = self.tableView;
+    _tableModel.delegate = self;
+    self.tableView.delegate = _tableModel;
+    self.tableView.dataSource = _tableModel;
+    
+    HKVTableViewCellConfig *cellConfig = [[HKVTableViewCellConfig alloc]init];
+    cellConfig.className = NSStringFromClass([PlanningViewControllerCell class]);
+    if (self.todaysPlan.learningPlan) {
+        HKVTableViewSectionConfig *sectionLearningConfig = [[HKVTableViewSectionConfig alloc]init];
+        sectionLearningConfig.cellConfig = cellConfig;
+        sectionLearningConfig.sectionHeaderTitle = @"今日学习计划";
+        [_tableModel addNewSectionConfig:sectionLearningConfig];
+        [_tableModel appendDataAsNewSection:@[self.todaysPlan.learningPlan]];
     }
-    if (self.todaysPlan.reviewPlan.count == 0) {
-        count--;
+    if (self.todaysPlan.reviewPlan.count > 0) {
+        HKVTableViewSectionConfig *sectionReviewingConfig = [[HKVTableViewSectionConfig alloc]init];
+        sectionReviewingConfig.cellConfig = cellConfig;
+        sectionReviewingConfig.sectionHeaderTitle = @"今日复习计划";
+        [_tableModel addNewSectionConfig:sectionReviewingConfig];
+        [_tableModel appendDataAsNewSection:self.todaysPlan.reviewPlan.array];
     }
-    
-    return count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger numberOfSections = [tableView numberOfSections];
-    
-    if (numberOfSections == 2) {
-        switch (section) {
-            case 0:
-                return 1;
-            case 1:
-                return self.todaysPlan.reviewPlan.count;
-            default:
-                break;
-        }
-    }else if (numberOfSections == 1) {
-        if (self.todaysPlan.learningPlan != nil) {
-            return 1;
-        }else if (self.todaysPlan.reviewPlan.count != 0) {
-            return self.todaysPlan.reviewPlan.count;
-        }
-    }
-    
-    
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSDate *todaysDateWithoutTime = [[NSDate date]hkv_dateWithoutTime];
-    NSInteger numberOfSections = [self.tableView numberOfSections];
-    if (numberOfSections == 2) {
-        if (indexPath.section == 0) {
-            cell.textLabel.text = self.todaysPlan.learningPlan.title;
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
-            if ([self.todaysPlan.learningPlan.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
-            }else{
-                cell.accessoryView = nil;
-            }
-            cell.detailTextLabel.text = detailTxt;
-        }else{
-            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
-            cell.textLabel.text = [[wl valueForKey:@"title"] description];
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
-            if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
-            }else{
-                cell.accessoryView = nil;
-            }
-            cell.detailTextLabel.text = detailTxt;
-        }
-    }else if (numberOfSections == 1) {
-        if (self.todaysPlan.learningPlan != nil) {
-            cell.textLabel.text = self.todaysPlan.learningPlan.title;
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",self.todaysPlan.learningPlan.effectiveCount];
-            if ([self.todaysPlan.learningPlan.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
-            }else{
-                cell.accessoryView = nil;
-            }
-            cell.detailTextLabel.text = detailTxt;
-        }else if (self.todaysPlan.reviewPlan.count != 0) {
-            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
-            cell.textLabel.text = [[wl valueForKey:@"title"] description];
-            NSString *detailTxt = [NSString stringWithFormat:@"复习次数:%@",[[wl valueForKey:@"effectiveCount"] description]];
-            if ([wl.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
-                cell.accessoryView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Check"]];
-            }else{
-                cell.accessoryView = nil;
-            }
-            cell.detailTextLabel.text = detailTxt;
-        }
-    }
-    
-    
-    
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSInteger numOfSections = [tableView numberOfSections];
-    
-    if (numOfSections == 2) {
-        switch (section) {
-            case 1:
-                return @"今日复习计划";
-            case 0:
-                return @"今日学习计划";
-            default:
-                break;
-        }
-    }else if (numOfSections == 1) {
-        if (self.todaysPlan.learningPlan != nil) {
-            return @"今日学习计划";
-        }else if (self.todaysPlan.reviewPlan.count != 0) {
-            return @"今日复习计划";
-        }
-    }
-    return nil;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    WordListViewController *subVC = [[WordListViewController alloc]initWithNibName:@"WordListViewController" bundle:nil];
-    
-    NSInteger numOfSections = [tableView numberOfSections];
-    
+- (void)tableViewModel:(HKVDefaultTableViewModel *)model didSelectRowData:(WordList *)wl atIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *params = nil;
-    
-    if (numOfSections == 2) {
-        if (indexPath.section == 0) {
-//            subVC.wordList = self.todaysPlan.learningPlan;
-            params = @{@"wordList":self.todaysPlan.learningPlan};
-        }else{
-            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
-            params = @{@"wordList":wl};
-//            subVC.wordList = wl;
-        }
-    }else if (numOfSections == 1) {
-        if (self.todaysPlan.learningPlan != nil) {
-//            subVC.wordList = self.todaysPlan.learningPlan;
-            params = @{@"wordList":self.todaysPlan.learningPlan};
-        }else if (self.todaysPlan.reviewPlan.count != 0) {
-            WordList *wl = (self.todaysPlan.reviewPlan)[indexPath.row];
-//            subVC.wordList = wl;
-            params = @{@"wordList":wl};
-        }
-    }
+    params = @{@"wordList":wl};
     [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
 }
 
@@ -303,31 +185,8 @@
 - (void)shouldRefreshPlan:(NSNotification *)notification
 {
     self.todaysPlan = [[PlanMaker sharedInstance]todaysPlan];
-    [self.tableView reloadData];
-    [self refreshHintView];
+    [self configTableView];
 }
-
-//#pragma mark - GADBannerViewDelegate
-//- (void)adViewDidReceiveAd:(GADBannerView *)view
-//{
-//    [super adViewDidReceiveAd:view];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50);
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, -50);
-//    }];
-//}
-//
-//- (void)adView:(GADBannerView *)view
-//didFailToReceiveAdWithError:(GADRequestError *)error
-//{
-//    [super adView:view didFailToReceiveAdWithError:error];
-//    [UIView animateWithDuration:0.5 animations:^{
-//        self.tableView.frame = self.view.bounds;
-////        self.banner.transform = CGAffineTransformMakeTranslation(0, 0);
-//    }];
-//}
-
-
 
 
 

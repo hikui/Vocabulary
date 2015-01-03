@@ -26,7 +26,7 @@
 @end
 
 @class HKVDefaultTableViewModel;
-@protocol HKVDefaultTableViewModelDelegate <UITableViewDataSource, UITableViewDelegate>
+@protocol HKVDefaultTableViewModelDelegate <NSObject>
 
 @optional
 - (void)tableViewModel:(HKVDefaultTableViewModel *)model
@@ -60,6 +60,7 @@
 
 - (void)appendData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum;
 - (void)replaceData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum;
+- (void)appendDataAsNewSection:(NSArray *)data;
 - (void)removeDataAtSectionNum:(NSUInteger)sectionNum;
 - (void)clearData;
 

@@ -7,6 +7,8 @@
 //
 
 #import "HKVDefaultTableViewModel.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @implementation HKVTableViewCellConfig
 
@@ -52,8 +54,8 @@
 
 @interface HKVDefaultTableViewModel()
 
-@property (nonatomic, strong) NSMutableArray *sectionDataArray; //Array<Array>
-@property (nonatomic, strong) NSMutableArray *sectionConfigArray; //Array<SectionConfig>
+@property (nonatomic, strong) NSMutableArray *sectionDataArray; //MutableArray<MutableArray>
+@property (nonatomic, strong) NSMutableArray *sectionConfigArray; //MutableArray<SectionConfig>
 @property (nonatomic, strong) HKVTableViewSectionConfig *defaultSectionConfig;
 
 @end
@@ -97,6 +99,7 @@
     }
     NSMutableArray *sectionData = _sectionDataArray[sectionNum];
     [sectionData addObjectsFromArray:data];
+    [self.tableView reloadData];
 }
 - (void)replaceData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum {
     if(sectionNum > _sectionDataArray.count) {
@@ -110,17 +113,26 @@
     NSMutableArray *sectionData = _sectionDataArray[sectionNum];
     [sectionData removeAllObjects];
     [sectionData addObjectsFromArray:data];
+    [self.tableView reloadData];
 }
+
+- (void)appendDataAsNewSection:(NSArray *)data {
+    [_sectionDataArray addObject:[data mutableCopy]]; // 确保是mutable
+    [self.tableView reloadData];
+}
+
 - (void)removeDataAtSectionNum:(NSUInteger)sectionNum {
     if(sectionNum >= _sectionDataArray.count) {
         DDLogError(@"section number is invalid");
         return;
     }
     [_sectionDataArray removeObjectAtIndex:sectionNum];
+    [self.tableView reloadData];
 }
 
 - (void)clearData {
     [_sectionDataArray removeAllObjects];
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableView delegate and data source
@@ -151,14 +163,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([self.delegate respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
-        return [self.delegate numberOfSectionsInTableView:tableView];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate numberOfSectionsInTableView:tableView];
     }
     return _sectionDataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
-        return [self.delegate tableView:tableView numberOfRowsInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView numberOfRowsInSection:section];
     }
     if(section >= _sectionDataArray.count) {
         DDLogError(@"section number is invalid");
@@ -170,7 +182,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.delegate respondsToSelector:@selector(tableView:cellForRowAtIndexPath:)]) {
-        return [self.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView cellForRowAtIndexPath:indexPath];
     }
     NSInteger row = indexPath.row;
     NSInteger section = indexPath.section;
@@ -200,12 +212,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     static CGFloat _defaultHeight = 44.0;
     if ([self.delegate respondsToSelector:@selector(tableView:heightForRowAtIndexPath:)]) {
-        return [self.delegate tableView:tableView heightForRowAtIndexPath:indexPath];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView heightForRowAtIndexPath:indexPath];
     }
     HKVTableViewCellConfig *cellConfig = [self _cellConfigForIndexPath:indexPath];
     
-    Class cellClass = NSClassFromString(cellConfig.className);
-    if (!cellClass || cellClass ) {
+    Class<HKVDefaultTableViewModelCellProtocol> cellClass = NSClassFromString(cellConfig.className);
+    if (!cellClass) {
         DDLogError(@"class for name %@ doesn't exist", cellConfig.className);
         return _defaultHeight;
     }
@@ -213,7 +225,7 @@
         NSInteger row = indexPath.row;
         NSInteger section = indexPath.section;
         id data = _sectionDataArray[section][row];
-        return [[((NSObject *)cellClass) performSelector:@selector(heightForData:) withObject:data]floatValue];
+        return [cellClass heightForData:data];
     };
     return _defaultHeight;
 }
@@ -227,13 +239,13 @@
         return;
     }
     if ([self.delegate respondsToSelector:@selector(tableView:didSelectRowAtIndexPath:)]) {
-        return [self.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
     }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:titleForHeaderInSection:)]) {
-        return [self.delegate tableView:tableView titleForHeaderInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView titleForHeaderInSection:section];
     }
     HKVTableViewSectionConfig *sectionConfig = [self _sectionConfigForSection:section];
     return sectionConfig.sectionHeaderTitle;
@@ -241,7 +253,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:titleForFooterInSection:)]) {
-        return [self.delegate tableView:tableView titleForFooterInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView titleForFooterInSection:section];
     }
     HKVTableViewSectionConfig *sectionConfig = [self _sectionConfigForSection:section];
     return sectionConfig.sectionFooterTitle;
@@ -249,7 +261,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:viewForHeaderInSection:)]) {
-        return [self.delegate tableView:tableView viewForHeaderInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView viewForHeaderInSection:section];
     }
     HKVTableViewSectionConfig *sectionConfig = [self _sectionConfigForSection:section];
     return sectionConfig.sectionHeaderView;
@@ -257,7 +269,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:viewForFooterInSection:)]) {
-        return [self.delegate tableView:tableView viewForFooterInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView viewForFooterInSection:section];
     }
     HKVTableViewSectionConfig *sectionConfig = [self _sectionConfigForSection:section];
     return sectionConfig.sectionFooterView;
@@ -265,7 +277,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
-        return [self.delegate tableView:tableView heightForHeaderInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView heightForHeaderInSection:section];
     }
     UIView *headerView = [self tableView:tableView viewForHeaderInSection:section];
     if (!headerView) {
@@ -276,7 +288,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(tableView:heightForFooterInSection:)]) {
-        return [self.delegate tableView:tableView heightForFooterInSection:section];
+        return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView heightForFooterInSection:section];
     }
     UIView *footerView = [self tableView:tableView viewForFooterInSection:section];
     if (!footerView) {
