@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
-@interface WordListViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
+@interface WordListViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addWordButton;

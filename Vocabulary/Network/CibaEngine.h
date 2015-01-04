@@ -60,6 +60,12 @@
           outerOperation:(CibaNetworkOperation **)operation;
 
 
+/**
+ 通过dict填充word
+ 
+ @param word       目标word，必须要在main context中存在
+ @param resultDict 包含word信息的dict
+ */
 + (void)fillWord:(Word*)word withResultDict:(NSDictionary*)resultDict;
 
 @end

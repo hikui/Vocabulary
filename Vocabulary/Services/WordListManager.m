@@ -97,7 +97,7 @@
     NSString *wordListName = [self wordListNameWithTitle:title];
     
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        WordList *newList = [WordList MR_createInContext:localContext];
+        WordList *newList = [WordList MR_createEntityInContext:localContext];
         newList.title = wordListName;
         newList.addTime = [NSDate date];
         
@@ -114,7 +114,7 @@
             if (existingWord) {
                 [newList addWordsObject:existingWord];
             }else{
-                Word *newWord = [Word MR_createInContext:localContext];
+                Word *newWord = [Word MR_createEntityInContext:localContext];
                 newWord.key = lowercaseWordStr;
                 [newList addWordsObject:newWord];
                 [newWordsToBeIndexed addObject:newWord];
@@ -122,7 +122,7 @@
         }
         
         if (newList.words.count == 0) {
-            [newList MR_deleteInContext:localContext];
+            [newList MR_deleteEntityInContext:localContext];
             NSError *error = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
             if (completion) {
                 completion(error);
@@ -130,7 +130,7 @@
             return;
         }
         
-        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager indexNewWordsWithoutSaving:newWordsToBeIndexed inContext:localContext progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
@@ -185,14 +185,14 @@
             if (existingWord) {
                 [localWordList addWordsObject:existingWord];
             }else{
-                Word *newWord = [Word MR_createInContext:localContext];
+                Word *newWord = [Word MR_createEntityInContext:localContext];
                 newWord.key = lowercaseWordStr;
                 [localWordList addWordsObject:newWord];
                 [newWordsToBeIndexed addObject:newWord];
             }
         }
         
-        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager indexNewWordsWithoutSaving:newWordsToBeIndexed inContext:localContext progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
         if (completion) {

@@ -37,14 +37,26 @@
  */
 + (void)searchWord:(NSString *)key completion:(void(^)(NSArray *words)) completion;
 
+///**
+// 对给定的words进行易混淆词汇索引
+// 
+// @param newWords      单词集，必须是main context中已有的
+// @param progressBlock 进度回调
+// @param completion    完成回调
+// */
+//+ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
+
 /**
  对给定的words进行易混淆词汇索引
  
- @param newWords      单词集
+ 本方法不另起线程，仅在当前线程工作
+ 
+ @param newWords      单词集，可以是未保存的
+ @param context       单词集所在的context
  @param progressBlock 进度回调
  @param completion    完成回调
  */
-+ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
++ (void)indexNewWordsWithoutSaving:(NSArray *)newWords inContext:(NSManagedObjectContext *)context progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
 
 /**
  对数据库里所有的单词重新进行易混淆词汇索引
