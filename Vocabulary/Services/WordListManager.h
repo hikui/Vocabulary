@@ -36,6 +36,19 @@
                              wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion;
 
+/**
+ 从yaml中新建词汇列表
+ 
+ @param title         word list title
+ @param yamlContent   yaml格式的内容
+ @param progressBlock progress
+ @param completion    completion
+ */
++ (void)createWordListAsyncWithTitle:(NSString *)title
+                    yamlContent:(NSString *)yamlContent
+                  progressBlock:(HKVProgressCallback)progressBlock
+                     completion:(HKVErrorBlock)completion;
+
 + (void)deleteWordList:(WordList *)wordList;
 
 /**

@@ -48,14 +48,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-//    GuideViewController *gvc = [GuideViewController guideViewControllerForClass:[self class]];
-//    if (gvc != nil) {
-//        [self addChildViewController:gvc];
-//        [self.view addSubview:gvc.view];
-//        gvc.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-//        [gvc updateContentSize];
-//        [gvc didMoveToParentViewController:self];
-//    }
     GuideView *gv = [GuideView guideViewForClass:[self class]];
     if (gv != nil) {
         NSInteger guideVersion = gv.guide.guideVersion;
@@ -138,7 +130,7 @@
     NSArray *directoryContent = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
     
     for (NSString *fileName in directoryContent) {
-        if ([fileName hasSuffix:@".txt"]) {
+        if ([fileName hasSuffix:@".txt"] || [fileName hasSuffix:@".yaml"] ) {
             [self.fileList addObject:fileName];
         }
         DDLogDebug(@"%@",fileName);
@@ -153,7 +145,7 @@
     NSArray *directoryContent = [fileManager contentsOfDirectoryAtPath:path error:NULL];
     
     for (NSString *fileName in directoryContent) {
-        if ([fileName hasSuffix:@".txt"]) {
+        if ([fileName hasSuffix:@".txt"] || [fileName hasSuffix:@".yaml"] ) {
             NSString *fullPath = [path stringByAppendingPathComponent:fileName];
             [fileManager removeItemAtPath:fullPath error:nil];
         }
@@ -187,9 +179,8 @@
                 continue;
             }
             NSSet *wordSet = [WordListManager wordSetFromContent:content];
-            [WordListManager addWords:wordSet toWordList:self.wordList progressBlock:^(float progress) {
-                hud.detailsLabelText = @"正在索引易混淆单词";
-            } completion:^(NSError *error) {
+            hud.detailsLabelText = @"正在添加单词表";
+            [WordListManager addWords:wordSet toWordList:self.wordList progressBlock:nil completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
                         DDLogError(@"%@",[error localizedDescription]);
@@ -215,14 +206,7 @@
                 continue;
             }
             
-            NSSet *wordSet = [WordListManager wordSetFromContent:content];
-            NSString *wordListName = [fileName stringByDeletingPathExtension];
-            
-            [WordListManager createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:^(float progress) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    hud.detailsLabelText = @"正在索引易混淆单词";
-                });
-            } completion:^(NSError *error) {
+            void (^completionBlock)(NSError *error) = ^void(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
                         DDLogError(@"%@",[error localizedDescription]);
@@ -233,8 +217,17 @@
                         [self dismissViewControllerAnimated:YES completion:nil];
                     }
                 });
-                
-            }];
+            };
+            dispatch_async(dispatch_get_main_queue(), ^{
+                hud.detailsLabelText = @"正在添加单词表";
+            });
+            NSString *wordListName = [fileName stringByDeletingPathExtension];
+            if ([fileName hasPrefix:@".txt"]) {
+                NSSet *wordSet = [WordListManager wordSetFromContent:content];
+                [WordListManager createWordListAsyncWithTitle:wordListName wordSet:wordSet progressBlock:nil completion:completionBlock];
+            }else if ([fileName hasSuffix:@"yaml"]) {
+                [WordListManager createWordListAsyncWithTitle:wordListName yamlContent:content progressBlock:nil completion:completionBlock];
+            }
         }
     }
 }
