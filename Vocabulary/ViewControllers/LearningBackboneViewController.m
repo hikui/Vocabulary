@@ -25,7 +25,6 @@
 
 #import "LearningBackboneViewController.h"
 #import "WordDetailViewController.h"
-#import "SearchWordViewController.h"
 #import "VNavigationController.h"
 #import "NoteViewController.h"
 #import "EditWordDetailViewController.h"
@@ -39,8 +38,6 @@
 @property (nonatomic, weak) WordDetailViewController *currentShownViewController;
 
 - (void)shuffleWords;
-
-- (void)searchButtonOnPress:(id)sender;
 
 @end
 
@@ -246,14 +243,6 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
     }
 }
 
-- (void)searchButtonOnPress:(id)sender
-{
-    SearchWordViewController *svc = [[SearchWordViewController alloc]initWithNibName:nil bundle:nil];
-    svc.modalViewControllerMode = YES;
-    VNavigationController *nsvc = [[VNavigationController alloc]initWithRootViewController:svc];
-    nsvc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:nsvc animated:YES completion:nil];
-}
 
 - (void)refreshButtonOnPress:(id)sender
 {

@@ -62,4 +62,12 @@
     [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
 }
 
+- (BOOL)isModal {
+    // see http://stackoverflow.com/questions/2798653/is-it-possible-to-determine-whether-viewcontroller-is-presented-as-modal/16764496#16764496
+    
+    return self.presentingViewController.presentedViewController == self
+    || self.navigationController.presentingViewController.presentedViewController == self.navigationController
+    || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
+}
+
 @end

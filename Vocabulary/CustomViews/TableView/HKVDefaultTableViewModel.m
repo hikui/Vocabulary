@@ -74,6 +74,12 @@
     return self;
 }
 
+- (void)setTableView:(UITableView *)tableView {
+    _tableView = tableView;
+    tableView.dataSource = self;
+    tableView.delegate = self;
+}
+
 - (void)addNewSectionConfig:(HKVTableViewSectionConfig *)config {
     [_sectionConfigArray addObject:config];
 }
@@ -88,7 +94,7 @@
     [_sectionConfigArray removeAllObjects];
 }
 
-- (void)appendData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum {
+- (void)appendData:(NSArray *)data inSection:(NSUInteger)sectionNum {
     if(sectionNum > _sectionDataArray.count) {
         DDLogError(@"section number is invalid");
         return;
@@ -101,7 +107,7 @@
     [sectionData addObjectsFromArray:data];
     [self.tableView reloadData];
 }
-- (void)replaceData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum {
+- (void)replaceData:(NSArray *)data inSection:(NSUInteger)sectionNum {
     if(sectionNum > _sectionDataArray.count) {
         DDLogError(@"section number is invalid");
         return;
@@ -295,6 +301,24 @@
         return UITableViewAutomaticDimension;
     }
     return CGRectGetHeight(footerView.frame);
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(tableView:willDisplayCell:forRowAtIndexPath:)]) {
+        [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+        [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate scrollViewDidScroll:scrollView];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if ([self.delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate scrollViewWillBeginDragging:scrollView];
+    }
 }
 
 @end

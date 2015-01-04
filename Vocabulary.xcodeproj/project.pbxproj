@@ -39,7 +39,6 @@
 		7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */; };
 		7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E019F7A9A900672440 /* PlanningViewController.m */; };
 		7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E219F7A9A900672440 /* PreferenceViewController.m */; };
-		7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E419F7A9A900672440 /* SearchWordViewController.m */; };
 		7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E819F7A9A900672440 /* VBaseViewController.m */; };
 		7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EA19F7A9A900672440 /* VNavigationController.m */; };
 		7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EC19F7A9A900672440 /* VWebViewController.m */; };
@@ -51,7 +50,6 @@
 		7F43F73D19F7A9A900672440 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */; };
 		7F43F73E19F7A9A900672440 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */; };
 		7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F919F7A9A900672440 /* PlanningViewController.xib */; };
-		7F43F74019F7A9A900672440 /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */; };
 		7F43F74119F7A9A900672440 /* VWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FB19F7A9A900672440 /* VWebViewController.xib */; };
 		7F43F74219F7A9A900672440 /* WordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */; };
 		7F43F74319F7A9A900672440 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */; };
@@ -248,8 +246,6 @@
 		7F43F6E019F7A9A900672440 /* PlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningViewController.m; sourceTree = "<group>"; };
 		7F43F6E119F7A9A900672440 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
 		7F43F6E219F7A9A900672440 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
-		7F43F6E319F7A9A900672440 /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
-		7F43F6E419F7A9A900672440 /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
 		7F43F6E719F7A9A900672440 /* VBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBaseViewController.h; sourceTree = "<group>"; };
 		7F43F6E819F7A9A900672440 /* VBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseViewController.m; sourceTree = "<group>"; };
 		7F43F6E919F7A9A900672440 /* VNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationController.h; sourceTree = "<group>"; };
@@ -267,7 +263,6 @@
 		7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningBackboneViewController.xib; sourceTree = "<group>"; };
 		7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
 		7F43F6F919F7A9A900672440 /* PlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningViewController.xib; sourceTree = "<group>"; };
-		7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordViewController.xib; sourceTree = "<group>"; };
 		7F43F6FB19F7A9A900672440 /* VWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VWebViewController.xib; sourceTree = "<group>"; };
 		7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordDetailViewController.xib; sourceTree = "<group>"; };
 		7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
@@ -664,8 +659,6 @@
 				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
 				7F43F6E119F7A9A900672440 /* PreferenceViewController.h */,
 				7F43F6E219F7A9A900672440 /* PreferenceViewController.m */,
-				7F43F6E319F7A9A900672440 /* SearchWordViewController.h */,
-				7F43F6E419F7A9A900672440 /* SearchWordViewController.m */,
 				7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */,
 				7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */,
 				7F43F6EF19F7A9A900672440 /* WordListFromDiskViewController.h */,
@@ -693,7 +686,6 @@
 				7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */,
 				7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */,
 				7F43F6F919F7A9A900672440 /* PlanningViewController.xib */,
-				7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */,
 				7F43F6FB19F7A9A900672440 /* VWebViewController.xib */,
 				7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */,
 				7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */,
@@ -1168,7 +1160,6 @@
 				A46A8011163BDBAB00DF4696 /* greenButton.png in Resources */,
 				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
 				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
-				7F43F74019F7A9A900672440 /* SearchWordViewController.xib in Resources */,
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
 				EC2290091696B46700D7E0D8 /* splitline.png in Resources */,
 				EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */,
@@ -1280,7 +1271,6 @@
 				7F67A7DA1A47B6A40037F7F2 /* WordListManager.m in Sources */,
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
 				7F68EED31A26C73E00FB898F /* NSManagedObject+MagicalRecord.m in Sources */,
-				7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */,
 				7F43F70719F7A9A900672440 /* ExamContentView.m in Sources */,
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,

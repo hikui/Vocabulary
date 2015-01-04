@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WordManager.h"
 
-@interface LeftBarViewController : VBaseViewController<UIActionSheetDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate,UISearchDisplayDelegate,UIScrollViewDelegate>
-
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, weak) IBOutlet UITableView *searchResultTableView;
-@property (nonatomic, strong) NSArray *searchResult;
+@interface LeftBarViewController : VBaseViewController
 
 @end

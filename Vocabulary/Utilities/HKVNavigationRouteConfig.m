@@ -17,7 +17,6 @@
 #import "LearningBackboneViewController.h"
 #import "PlanningViewController.h"
 #import "PreferenceViewController.h"
-#import "SearchWordViewController.h"
 #import "WordDetailViewController.h"
 #import "WordListFromDiskViewController.h"
 #import "WordListViewController.h"
@@ -47,7 +46,6 @@ static const char *getPropertyType(objc_property_t property) {
 @property (nonatomic, strong, readwrite) NSURL *createWordListVC;
 @property (nonatomic, strong, readwrite) NSURL *existingWordsListsVC;
 @property (nonatomic, strong, readwrite) NSURL *PreferenceVC;
-@property (nonatomic, strong, readwrite) NSURL *searchWordVC;
 @property (nonatomic, strong, readwrite) NSURL *wordDetailVC;
 @property (nonatomic, strong, readwrite) NSURL *wordListFromDiskVC;
 @property (nonatomic, strong, readwrite) NSURL *wordListVC;
@@ -115,8 +113,6 @@ static const char *getPropertyType(objc_property_t property) {
              self.planningVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([PlanningViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
              self.PreferenceVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([PreferenceViewController class])},
-             
-             self.searchWordVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([SearchWordViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              
              self.wordDetailVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([WordDetailViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              

@@ -58,8 +58,8 @@
 - (void)addSectionConfigs:(NSArray *)configObjs; //Array<SectionConfig>
 - (void)resetSectionConfig;
 
-- (void)appendData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum;
-- (void)replaceData:(NSArray *)data atSectionNum:(NSUInteger)sectionNum;
+- (void)appendData:(NSArray *)data inSection:(NSUInteger)sectionNum;
+- (void)replaceData:(NSArray *)data inSection:(NSUInteger)sectionNum;
 - (void)appendDataAsNewSection:(NSArray *)data;
 - (void)removeDataAtSectionNum:(NSUInteger)sectionNum;
 - (void)clearData;
