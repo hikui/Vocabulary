@@ -1452,8 +1452,8 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "203fc44d-c2f0-4870-8b80-42c1e2b22bc1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "203fc44d-c2f0-4870-8b80-42c1e2b22bc1";
+				PROVISIONING_PROFILE = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

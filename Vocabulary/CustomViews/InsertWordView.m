@@ -30,7 +30,7 @@ NS_INLINE UIWindow * getMainWindow(){
 + (instancetype)newInstance {
    InsertWordView *instance = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
     NSAssert([instance isKindOfClass:[InsertWordView class]], @"Should be an InsertWordView");
-    [[NSNotificationCenter defaultCenter]addObserver:instance selector:@selector(keyboardIsShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:instance selector:@selector(keyboardIsShown:) name:UIKeyboardWillShowNotification object:nil];
     return instance;
 }
 
@@ -78,9 +78,14 @@ NS_INLINE UIWindow * getMainWindow(){
     targetKeyboardFrame = [self convertRect:targetKeyboardFrame fromView:nil];
     CGFloat contentMaxY = CGRectGetMaxY(self.confirmButton.frame) + 5; // relative y to wrapper view
     CGFloat wrapperOriginY = CGRectGetMinY(targetKeyboardFrame) - contentMaxY;
-    [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue] animations:^{
-        [self.wrapperView setY:wrapperOriginY];
-    }];
+    CGRect wrapperFrame = self.wrapperView.frame;
+    wrapperFrame.origin.y = wrapperOriginY;
+    //不dispatch_after的话会出现动画冲突现象（暂时不明原因）
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.wrapperView.frame = wrapperFrame;
+        } completion:nil];
+    });
 }
 
 - (IBAction)buttonAddOnTouch:(UIButton *)sender {
