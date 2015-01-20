@@ -16,13 +16,72 @@
 #import "VNavigationController.h"
 #import "WordDetailViewController.h"
 #import "PureColorImageGenerator.h"
+#import "HKVDefaultTableViewModel.h"
+#import "HKVBasicTableViewCell.h"
 
 #import "AppDelegate.h"
 
-@interface LeftBarViewController ()
+@interface LeftBarMenuTableCell : HKVBasicTableViewCell @end
 
-@property (nonatomic, strong) NSArray *rows;
+@implementation LeftBarMenuTableCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        UIImage *cellBGHighlighted = [PureColorImageGenerator generateOnePixelImageWithColor:RGBA(30, 33, 36, 1)];
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
+        UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, self.frame.size.width-20,self.frame.size.height)];
+        contentLabel.tag = 1000;
+        contentLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        contentLabel.backgroundColor = [UIColor clearColor];
+        contentLabel.font = [UIFont boldSystemFontOfSize:15];
+        contentLabel.textColor = [UIColor whiteColor];
+        [self.contentView addSubview:contentLabel];
+    }
+    return self;
+}
+
+- (void)bindData:(id)data {
+    [super bindData:data];
+    UILabel *contentLabel = (UILabel *)[self.contentView viewWithTag:1000];
+    contentLabel.text = (NSString *)data;
+}
+
++ (CGFloat)heightForData:(id)data {
+    return 44.0;
+}
+
+@end
+
+@interface LeftBarSearchTableCell : HKVBasicTableViewCell @end
+
+@implementation LeftBarSearchTableCell
+
+- (void)bindData:(id)data {
+    [super bindData:data];
+    Word *w = (Word *)data;
+    self.textLabel.text = w.key;
+}
+
++ (CGFloat)heightForData:(id)data {
+    return 60.0;
+}
+
+@end
+
+
+@interface LeftBarViewController ()<UIActionSheetDelegate,HKVDefaultTableViewModelDelegate,UISearchBarDelegate,UISearchDisplayDelegate,UIScrollViewDelegate>
+
+//@property (nonatomic, strong) NSArray *rows;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) HKVDefaultTableViewModel *menuTableModel;
+@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, weak) IBOutlet UITableView *searchResultTableView;
+@property (nonatomic, strong) HKVDefaultTableViewModel *searchTableModel;
+//@property (nonatomic, strong) NSArray *searchResult;
 
 @end
 
@@ -33,10 +92,9 @@
 {
     [super viewDidLoad];
     self.selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    self.rows = @[@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
+//    self.rows = @[@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"];
     self.searchResultTableView.hidden = YES;
     self.searchBar.backgroundColor = [UIColor clearColor];
-//    self.searchResultTableView.backgroundView = nil;
     self.searchResultTableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.searchResultTableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"CellSeparator.png"]];
     for (UIView *subview in [self.searchBar subviews]) {
@@ -45,6 +103,24 @@
             [subview removeFromSuperview];
         }
     }
+    [self _configTableModel];
+}
+
+- (void)_configTableModel {
+    _menuTableModel = [[HKVDefaultTableViewModel alloc]init];
+    HKVTableViewSectionConfig *menuTableSectionConfig = [[HKVTableViewSectionConfig alloc]init];
+    menuTableSectionConfig.cellConfig.className = NSStringFromClass([LeftBarMenuTableCell class]);
+    [_menuTableModel addNewSectionConfig:menuTableSectionConfig];
+    _menuTableModel.tableView = self.tableView;
+    _menuTableModel.delegate = self;
+    [_menuTableModel appendDataAsNewSection:@[@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"]];
+    
+    _searchTableModel = [[HKVDefaultTableViewModel alloc]init];
+    HKVTableViewSectionConfig *searchTableSectionConfig = [[HKVTableViewSectionConfig alloc]init];
+    searchTableSectionConfig.cellConfig.className = NSStringFromClass([LeftBarSearchTableCell class]);
+    [_searchTableModel addNewSectionConfig:searchTableSectionConfig];
+    _searchTableModel.tableView = self.searchResultTableView;
+    _searchTableModel.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,105 +141,43 @@
     self.searchBar.frame = searchBarFrame;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (tableView == self.tableView) {
-        return self.rows.count;
-    }else if(tableView == self.searchResultTableView){
-        return self.searchResult.count;
-    }
-    return 0;
-    
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"MenuCell";
-    static NSString *ResultCellIdentifier = @"ResultCell";
-    if (tableView == self.tableView) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            UIImage *cellBGHighlighted = [PureColorImageGenerator generateOnePixelImageWithColor:RGBA(30, 33, 36, 1)];
-            cell.contentView.backgroundColor = [UIColor clearColor];
-            cell.selectedBackgroundView = [[UIImageView alloc]initWithImage:cellBGHighlighted];
-            UILabel *contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, cell.frame.size.width-20,cell.frame.size.height)];
-            contentLabel.tag = 1000;
-            contentLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-            contentLabel.backgroundColor = [UIColor clearColor];
-            contentLabel.font = [UIFont boldSystemFontOfSize:15];
-            contentLabel.textColor = [UIColor whiteColor];
-            [cell.contentView addSubview:contentLabel];
-        }
-        UILabel *contentLabel = (UILabel *)[cell.contentView viewWithTag:1000];
-        contentLabel.text = self.rows[indexPath.row];
-        return cell;
-    }else if(tableView == self.searchResultTableView) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ResultCellIdentifier];
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ResultCellIdentifier];
-        }
-        cell.textLabel.text = ((Word *)self.searchResult[indexPath.row]).key;
-        return cell;
-    }
-    return nil;
-}
+#pragma mark - Table model delegate
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = [UIColor clearColor];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
     if (tableView == self.tableView) {
-        return 44;
-    }else if(tableView == self.searchResultTableView){
-        return 60;
+        cell.backgroundColor = [UIColor clearColor];
     }
-    return 44;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableViewModel:(HKVDefaultTableViewModel *)model didSelectRowData:(id)rowData atIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
-        if (indexPath.row != 1) {
+    // [@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"]]
+    if (model == self.menuTableModel) {
+        NSString *menuTitle = (NSString *)rowData;
+        IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
+        if (![menuTitle isEqualToString:@"添加词汇列表"]) {
             self.selectedIndexPath = indexPath;
         }
         
-        IIViewDeckController *viewDeckController = ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController;
-        if (indexPath.row == 0) {
+        if ([menuTitle isEqualToString:@"今日学习计划"]) {
             if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PlanningViewController class]]) {
                 [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC params:nil];
             }
-            [viewDeckController closeLeftView];
-        }else if (indexPath.row == 1) {
-            [tableView deselectRowAtIndexPath:indexPath animated:YES];
-            [tableView selectRowAtIndexPath:self.selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        } else if ([menuTitle isEqualToString:@"添加词汇列表"]) {
+            [model.tableView deselectRowAtIndexPath:indexPath animated:YES];
+            [model.tableView selectRowAtIndexPath:self.selectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择导入方式"
                                                                     delegate:self
                                                            cancelButtonTitle:@"取消"
                                                       destructiveButtonTitle:nil
                                                            otherButtonTitles:@"批量输入",@"从iTunes上传", nil];
-//            [actionSheet showInView:self.view];
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            UITableViewCell *cell = [model.tableView cellForRowAtIndexPath:indexPath];
             [actionSheet showFromRect:CGRectMake(0, 0, 300, cell.bounds.size.height) inView:cell animated:YES];
-        }else if (indexPath.row == 2) {
+        } else if ([menuTitle isEqualToString:@"已有词汇列表"]) {
             if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[ExistingWordListsViewController class]]) {
                 [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC params:nil];
             }
-            [viewDeckController closeLeftView];
-        }else if (indexPath.row == 3) {
+        } else if ([menuTitle isEqualToString:@"低熟悉度词汇"]) {
             if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[WordListViewController class]]) {
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
                 NSArray *result = [Word MR_findAllWithPredicate:predicate];
@@ -173,23 +187,23 @@
                 [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:@{@"title":@"低熟悉度词汇",@"topLevel":@(YES),@"wordArray":mResult}];
                 
             }
-            [viewDeckController closeLeftView];
-        }else if (indexPath.row == 4) {
+        } else if ([menuTitle isEqualToString:@"设置"]) {
             if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PreferenceViewController class]]) {
                 [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC params:nil];
                 
             }
+        }
+        
+        if (![menuTitle isEqualToString:@"添加词汇列表"]) {
             [viewDeckController closeLeftView];
         }
-    }else if(tableView == self.searchResultTableView){
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }else if (model == self.searchTableModel) {
+        [model.tableView deselectRowAtIndexPath:indexPath animated:YES];
         WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
-        lvc.word = self.searchResult[indexPath.row];
+        lvc.word = (Word *)rowData;
         VNavigationController *nlvc = [[VNavigationController alloc]initWithRootViewController:lvc];
-//        [self presentModalViewController:nlvc animated:YES];
         [self presentViewController:nlvc animated:YES completion:nil];
     }
-    
 }
 
 #pragma mark - action sheet delegate
@@ -198,11 +212,9 @@
     NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"批量输入"]) {
         CreateWordListViewController *vc = [[CreateWordListViewController alloc]initWithNibName:@"CreateWordListViewController" bundle:nil];
-//        [self presentModalViewController:vc animated:YES];
         [self presentViewController:vc animated:YES completion:nil];
     }else if ([title isEqualToString:@"从iTunes上传"]){
         WordListFromDiskViewController *fdvc =[[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
-//        [self presentModalViewController:fdvc animated:YES];
         [self presentViewController:fdvc animated:YES completion:nil];
     }
 }
@@ -239,8 +251,7 @@
         self.searchResultTableView.alpha = 0;
         self.searchResultTableView.hidden = YES;
     }];
-    self.searchResult = nil;
-    [self.searchResultTableView reloadData];
+    [_searchTableModel clearData];
     [searchBar resignFirstResponder];
 }
 
@@ -249,13 +260,11 @@
 {
     
     if (searchText.length == 0) {
-        self.searchResult = nil;
-        [self.searchResultTableView reloadData];
+        [_searchTableModel clearData];
         return;
     }
     [WordManager searchWord:searchText completion:^(NSArray *words) {
-        self.searchResult = words;
-        [self.searchResultTableView reloadData];
+        [_searchTableModel replaceData:words inSection:0];
     }];
 }
 

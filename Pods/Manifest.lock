@@ -1,0 +1,47 @@
+PODS:
+  - ActionSheetPicker-3.0 (1.2.0)
+  - BButton (4.0.2)
+  - CocoaLumberjack (2.0.0-rc):
+    - CocoaLumberjack/Default (= 2.0.0-rc)
+    - CocoaLumberjack/Extensions (= 2.0.0-rc)
+  - CocoaLumberjack/Core (2.0.0-rc)
+  - CocoaLumberjack/Default (2.0.0-rc):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.0-rc):
+    - CocoaLumberjack/Default
+  - LibYAML (0.1.4)
+  - MBProgressHUD (0.9)
+  - MKNetworkKit (0.87):
+    - Reachability (~> 3.1.0)
+  - PromiseKit/Promise (1.2)
+  - Reachability (3.1.1)
+  - SZTextView (1.1.10)
+  - ViewDeck (2.2.11)
+  - YAML-Framework (0.0.2):
+    - LibYAML (~> 0.1.4)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 1.2.0)
+  - BButton
+  - CocoaLumberjack (~> 2.0.0-beta3)
+  - MBProgressHUD
+  - MKNetworkKit (~> 0.87)
+  - PromiseKit/Promise
+  - SZTextView (~> 1.1.10)
+  - ViewDeck (~> 2.2.11)
+  - YAML-Framework (~> 0.0.2)
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: e261c5b5cf47e4b4efa8cb3d186be30d4b145b76
+  BButton: eab327e143be2730c81a22467cc016488a125162
+  CocoaLumberjack: 6186e27827fc574b50b16c10102fcc591437f06c
+  LibYAML: d447960375d9114187bfddba6e6c24d69bff11f8
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  MKNetworkKit: 83e6296a8d42e98a71880424a889773654846d74
+  PromiseKit: 89cb68ff4093e71221a63ca7272d427bf34c4560
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  SZTextView: 8f1126696c6d54e5f0d672bbecf259ef65b04aeb
+  ViewDeck: 2f38c054dfe8e69af4877c006785996faa277902
+  YAML-Framework: 65dfb647479445c4446681966064fcb56cc9fc7c
+
+COCOAPODS: 0.35.0

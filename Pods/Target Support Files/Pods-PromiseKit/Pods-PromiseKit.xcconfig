@@ -1,0 +1,1 @@
+PODS_PROMISEKIT_OTHER_LDFLAGS = -framework "Foundation"

@@ -27,6 +27,8 @@
 #import "WordManager.h"
 #import "NSString+VAdditions.h"
 #import "PlanMaker.h"
+#import "YAMLSerialization.h"
+#import "Note.h"
 
 @implementation WordListManager
 
@@ -95,9 +97,9 @@
     }
     
     NSString *wordListName = [self wordListNameWithTitle:title];
-    
+    __block NSError *createBlockError = nil;
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        WordList *newList = [WordList MR_createInContext:localContext];
+        WordList *newList = [WordList MR_createEntityInContext:localContext];
         newList.title = wordListName;
         newList.addTime = [NSDate date];
         
@@ -114,7 +116,7 @@
             if (existingWord) {
                 [newList addWordsObject:existingWord];
             }else{
-                Word *newWord = [Word MR_createInContext:localContext];
+                Word *newWord = [Word MR_createEntityInContext:localContext];
                 newWord.key = lowercaseWordStr;
                 [newList addWordsObject:newWord];
                 [newWordsToBeIndexed addObject:newWord];
@@ -122,18 +124,22 @@
         }
         
         if (newList.words.count == 0) {
-            [newList MR_deleteInContext:localContext];
-            NSError *error = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
-            if (completion) {
-                completion(error);
-            }
+            [newList MR_deleteEntityInContext:localContext];
+            createBlockError = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
             return;
         }
         
-        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager indexNewWordsWithoutSaving:newWordsToBeIndexed inContext:localContext progressBlock:progressBlock completion:nil];
         
     } completion:^(BOOL success, NSError *error) {
-        [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+        NSError *errorToEmit = success ? createBlockError : error;
+        if (success && createBlockError == nil) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+            
+        }
+        if (completion) {
+            completion(errorToEmit);
+        }
     }];
 }
 
@@ -141,14 +147,80 @@
                              wordSet:(NSSet *)wordSet
                           completion:(HKVErrorBlock)completion
 {
-    [WordListManager createWordListAsyncWithTitle:title wordSet:wordSet progressBlock:NULL completion:completion];
+    [WordListManager createWordListAsyncWithTitle:title wordSet:wordSet progressBlock:nil completion:completion];
+}
+
++ (void)createWordListAsyncWithTitle:(NSString *)title
+                    yamlContent:(NSString *)yamlContent
+                  progressBlock:(HKVProgressCallback)progressBlock
+                     completion:(HKVErrorBlock)completion {
+    NSError *yamlParseError = nil;
+    NSDictionary *dictFromYaml = [YAMLSerialization objectWithYAMLString:yamlContent options:kYAMLReadOptionStringScalars error:&yamlParseError];
+    if (!dictFromYaml || ![dictFromYaml isKindOfClass:[NSDictionary class]]) {
+        //没有单词
+        NSError *error = yamlParseError ? yamlParseError : [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
+        if (completion != NULL) {
+            completion(error);
+        }
+        return;
+    }
+    NSString *wordListName = [self wordListNameWithTitle:title];
+    __block NSError *createBlockError = nil;
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        // 检查dict合法性
+        WordList *wordList = [WordList MR_createEntityInContext:localContext];
+        wordList.title = wordListName;
+        [dictFromYaml enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
+            if (![key isKindOfClass:[NSString class]]) {
+                return;
+            }
+            NSString *definition = nil;
+            NSString *noteStr = nil;
+            if ([obj isKindOfClass:[NSString class]]) {
+                definition = (NSString *)obj;
+            }else if([obj isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *wordInfoDict = (NSDictionary *)obj;
+                definition = [wordInfoDict[@"definition"] description];
+                noteStr = [wordInfoDict[@"note"] description];
+            }else{
+                return;
+            }
+            Word *word = [Word MR_createEntityInContext:localContext];
+            word.acceptation = definition;
+            word.key = key;
+            if (noteStr) {
+                Note *note = [Note MR_createEntityInContext:localContext];
+                note.textNote = noteStr;
+                word.note = note;
+            }
+            if (definition.length > 0) {
+                word.manuallyInput = @(YES);
+            }
+            [wordList addWordsObject:word];
+        }];
+        if (wordList.words.count == 0) {
+            [wordList MR_deleteEntityInContext:localContext];
+            createBlockError = [[NSError alloc]initWithDomain:WordListManagerDomain code:WordListCreatorEmptyWordSetError userInfo:nil];
+            return;
+        }
+        [WordManager indexNewWordsWithoutSaving:[wordList.words allObjects] inContext:localContext progressBlock:progressBlock completion:nil];
+    } completion:^(BOOL contextDidSave, NSError *error) {
+        NSError *errorToEmit = contextDidSave ? createBlockError : error;
+        if (contextDidSave && createBlockError == nil) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+            
+        }
+        if (completion) {
+            completion(errorToEmit);
+        }
+    }];
 }
 
 + (void)deleteWordList:(WordList *)wordList {
     [[PlanMaker sharedInstance]removeWordListFromTodaysPlan:wordList]; //先从plan中移除，否则会崩溃
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         WordList *localWordList = [wordList MR_inContext:localContext];
-        [localWordList MR_deleteInContext:localContext];
+        [localWordList MR_deleteEntityInContext:localContext];
     }];
     [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:self userInfo:@{@"Action":@"Delete"}];
 }
@@ -185,14 +257,14 @@
             if (existingWord) {
                 [localWordList addWordsObject:existingWord];
             }else{
-                Word *newWord = [Word MR_createInContext:localContext];
+                Word *newWord = [Word MR_createEntityInContext:localContext];
                 newWord.key = lowercaseWordStr;
                 [localWordList addWordsObject:newWord];
                 [newWordsToBeIndexed addObject:newWord];
             }
         }
         
-        [WordManager asyncIndexNewWords:newWordsToBeIndexed progressBlock:progressBlock completion:completion];
+        [WordManager indexNewWordsWithoutSaving:newWordsToBeIndexed inContext:localContext progressBlock:progressBlock completion:completion];
         
     } completion:^(BOOL success, NSError *error) {
         if (completion) {

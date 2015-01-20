@@ -25,4 +25,6 @@
 
 - (void)hideMaskLayer;
 
+- (BOOL)isModal;
+
 @end

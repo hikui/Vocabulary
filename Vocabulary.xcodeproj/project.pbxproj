@@ -39,7 +39,6 @@
 		7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */; };
 		7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E019F7A9A900672440 /* PlanningViewController.m */; };
 		7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E219F7A9A900672440 /* PreferenceViewController.m */; };
-		7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E419F7A9A900672440 /* SearchWordViewController.m */; };
 		7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E819F7A9A900672440 /* VBaseViewController.m */; };
 		7F43F73519F7A9A900672440 /* VNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EA19F7A9A900672440 /* VNavigationController.m */; };
 		7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6EC19F7A9A900672440 /* VWebViewController.m */; };
@@ -51,7 +50,6 @@
 		7F43F73D19F7A9A900672440 /* LearningBackboneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */; };
 		7F43F73E19F7A9A900672440 /* LeftBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */; };
 		7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6F919F7A9A900672440 /* PlanningViewController.xib */; };
-		7F43F74019F7A9A900672440 /* SearchWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */; };
 		7F43F74119F7A9A900672440 /* VWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FB19F7A9A900672440 /* VWebViewController.xib */; };
 		7F43F74219F7A9A900672440 /* WordDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */; };
 		7F43F74319F7A9A900672440 /* WordListFromDiskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */; };
@@ -60,8 +58,6 @@
 		7F67A7D91A47B6A40037F7F2 /* PlanMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D41A47B6A40037F7F2 /* PlanMaker.m */; };
 		7F67A7DA1A47B6A40037F7F2 /* WordListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D61A47B6A40037F7F2 /* WordListManager.m */; };
 		7F67A7DB1A47B6A40037F7F2 /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D81A47B6A40037F7F2 /* WordManager.m */; };
-		7F67A7E11A47B6BD0037F7F2 /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */; };
-		7F67A7E21A47B6BD0037F7F2 /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E01A47B6BD0037F7F2 /* Guide.m */; };
 		7F67A7E51A47B7640037F7F2 /* HKVNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */; };
 		7F67A7EA1A47EEF70037F7F2 /* DummyViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */; };
 		7F67A7ED1A47EF0B0037F7F2 /* DummyViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */; };
@@ -127,6 +123,11 @@
 		A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800E163BDBAA00DF4696 /* greenButton@2x.png */; };
 		A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */; };
 		A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */; };
+		A46BDECF1A57D21900664F0D /* Guide.m in Sources */ = {isa = PBXBuildFile; fileRef = A46BDECE1A57D21900664F0D /* Guide.m */; };
+		A46BDED21A57D22C00664F0D /* ExamContent.m in Sources */ = {isa = PBXBuildFile; fileRef = A46BDED11A57D22C00664F0D /* ExamContent.m */; };
+		A46BDED61A57D24C00664F0D /* HKVTableViewBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A46BDED51A57D24C00664F0D /* HKVTableViewBase.m */; };
+		A46BDED91A57D32C00664F0D /* HKVDefaultTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A46BDED81A57D32C00664F0D /* HKVDefaultTableViewModel.m */; };
+		A46BDEDC1A5801CC00664F0D /* HKVBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A46BDEDB1A5801CC00664F0D /* HKVBasicTableViewCell.m */; };
 		A4754D301642A354005EB1E0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D2F1642A354005EB1E0 /* MessageUI.framework */; };
 		A4754D8F16466ECB005EB1E0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D8E16466ECB005EB1E0 /* StoreKit.framework */; };
 		A4754D9316466EE6005EB1E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4754D9216466EE6005EB1E0 /* AdSupport.framework */; };
@@ -245,8 +246,6 @@
 		7F43F6E019F7A9A900672440 /* PlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningViewController.m; sourceTree = "<group>"; };
 		7F43F6E119F7A9A900672440 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
 		7F43F6E219F7A9A900672440 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
-		7F43F6E319F7A9A900672440 /* SearchWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWordViewController.h; sourceTree = "<group>"; };
-		7F43F6E419F7A9A900672440 /* SearchWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordViewController.m; sourceTree = "<group>"; };
 		7F43F6E719F7A9A900672440 /* VBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBaseViewController.h; sourceTree = "<group>"; };
 		7F43F6E819F7A9A900672440 /* VBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseViewController.m; sourceTree = "<group>"; };
 		7F43F6E919F7A9A900672440 /* VNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VNavigationController.h; sourceTree = "<group>"; };
@@ -264,7 +263,6 @@
 		7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearningBackboneViewController.xib; sourceTree = "<group>"; };
 		7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftBarViewController.xib; sourceTree = "<group>"; };
 		7F43F6F919F7A9A900672440 /* PlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningViewController.xib; sourceTree = "<group>"; };
-		7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordViewController.xib; sourceTree = "<group>"; };
 		7F43F6FB19F7A9A900672440 /* VWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VWebViewController.xib; sourceTree = "<group>"; };
 		7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordDetailViewController.xib; sourceTree = "<group>"; };
 		7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListFromDiskViewController.xib; sourceTree = "<group>"; };
@@ -277,10 +275,6 @@
 		7F67A7D61A47B6A40037F7F2 /* WordListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListManager.m; sourceTree = "<group>"; };
 		7F67A7D71A47B6A40037F7F2 /* WordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordManager.h; sourceTree = "<group>"; };
 		7F67A7D81A47B6A40037F7F2 /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
-		7F67A7DD1A47B6BD0037F7F2 /* ExamContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamContent.h; sourceTree = "<group>"; };
-		7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
-		7F67A7DF1A47B6BD0037F7F2 /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
-		7F67A7E01A47B6BD0037F7F2 /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
 		7F67A7E31A47B7640037F7F2 /* HKVNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVNavigationManager.h; sourceTree = "<group>"; };
 		7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVNavigationManager.m; sourceTree = "<group>"; };
 		7F67A7E81A47EEF70037F7F2 /* DummyViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController1.h; sourceTree = "<group>"; };
@@ -396,6 +390,16 @@
 		A46A800E163BDBAA00DF4696 /* greenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButton@2x.png"; path = "artwork/greenButton@2x.png"; sourceTree = "<group>"; };
 		A46A800F163BDBAA00DF4696 /* greenButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenButtonHighlight.png; path = artwork/greenButtonHighlight.png; sourceTree = "<group>"; };
 		A46A8010163BDBAB00DF4696 /* greenButtonHighlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "greenButtonHighlight@2x.png"; path = "artwork/greenButtonHighlight@2x.png"; sourceTree = "<group>"; };
+		A46BDECD1A57D21900664F0D /* Guide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guide.h; sourceTree = "<group>"; };
+		A46BDECE1A57D21900664F0D /* Guide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guide.m; sourceTree = "<group>"; };
+		A46BDED01A57D22C00664F0D /* ExamContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamContent.h; sourceTree = "<group>"; };
+		A46BDED11A57D22C00664F0D /* ExamContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamContent.m; sourceTree = "<group>"; };
+		A46BDED41A57D24C00664F0D /* HKVTableViewBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVTableViewBase.h; sourceTree = "<group>"; };
+		A46BDED51A57D24C00664F0D /* HKVTableViewBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVTableViewBase.m; sourceTree = "<group>"; };
+		A46BDED71A57D32C00664F0D /* HKVDefaultTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVDefaultTableViewModel.h; sourceTree = "<group>"; };
+		A46BDED81A57D32C00664F0D /* HKVDefaultTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVDefaultTableViewModel.m; sourceTree = "<group>"; };
+		A46BDEDA1A5801CC00664F0D /* HKVBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVBasicTableViewCell.h; sourceTree = "<group>"; };
+		A46BDEDB1A5801CC00664F0D /* HKVBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVBasicTableViewCell.m; sourceTree = "<group>"; };
 		A4754D2F1642A354005EB1E0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A4754D541644BE33005EB1E0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A4754D8E16466ECB005EB1E0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -504,6 +508,7 @@
 		7F43F67E19F7A9A900672440 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				A46BDED31A57D23900664F0D /* TableView */,
 				7F43F67F19F7A9A900672440 /* CibaWebView.h */,
 				7F43F68019F7A9A900672440 /* CibaWebView.m */,
 				7F43F68119F7A9A900672440 /* ExamContentView.h */,
@@ -525,6 +530,8 @@
 		7F43F68419F7A9A900672440 /* GuideView */ = {
 			isa = PBXGroup;
 			children = (
+				A46BDECD1A57D21900664F0D /* Guide.h */,
+				A46BDECE1A57D21900664F0D /* Guide.m */,
 				7F43F68519F7A9A900672440 /* GuideView.h */,
 				7F43F68619F7A9A900672440 /* GuideView.m */,
 				7F43F68719F7A9A900672440 /* GuideView.xib */,
@@ -638,7 +645,6 @@
 		7F43F6D419F7A9A900672440 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7F67A7DC1A47B6BD0037F7F2 /* ViewModels */,
 				7F7CFCEC1A43E1AB008251DB /* Exam */,
 				7F7CFCE61A41800A008251DB /* BaseClasses */,
 				7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */,
@@ -653,8 +659,6 @@
 				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
 				7F43F6E119F7A9A900672440 /* PreferenceViewController.h */,
 				7F43F6E219F7A9A900672440 /* PreferenceViewController.m */,
-				7F43F6E319F7A9A900672440 /* SearchWordViewController.h */,
-				7F43F6E419F7A9A900672440 /* SearchWordViewController.m */,
 				7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */,
 				7F43F6EE19F7A9A900672440 /* WordDetailViewController.m */,
 				7F43F6EF19F7A9A900672440 /* WordListFromDiskViewController.h */,
@@ -682,7 +686,6 @@
 				7F43F6F719F7A9A900672440 /* LearningBackboneViewController.xib */,
 				7F43F6F819F7A9A900672440 /* LeftBarViewController.xib */,
 				7F43F6F919F7A9A900672440 /* PlanningViewController.xib */,
-				7F43F6FA19F7A9A900672440 /* SearchWordViewController.xib */,
 				7F43F6FB19F7A9A900672440 /* VWebViewController.xib */,
 				7F43F6FC19F7A9A900672440 /* WordDetailViewController.xib */,
 				7F43F6FD19F7A9A900672440 /* WordListFromDiskViewController.xib */,
@@ -702,17 +705,6 @@
 				7F67A7D81A47B6A40037F7F2 /* WordManager.m */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		7F67A7DC1A47B6BD0037F7F2 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				7F67A7DD1A47B6BD0037F7F2 /* ExamContent.h */,
-				7F67A7DE1A47B6BD0037F7F2 /* ExamContent.m */,
-				7F67A7DF1A47B6BD0037F7F2 /* Guide.h */,
-				7F67A7E01A47B6BD0037F7F2 /* Guide.m */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		7F67A7F41A47F3CF0037F7F2 /* TestViewControllers */ = {
@@ -851,6 +843,8 @@
 		7F7CFCEC1A43E1AB008251DB /* Exam */ = {
 			isa = PBXGroup;
 			children = (
+				A46BDED01A57D22C00664F0D /* ExamContent.h */,
+				A46BDED11A57D22C00664F0D /* ExamContent.m */,
 				7F7CFCED1A43E1AB008251DB /* ExamViewController.h */,
 				7F7CFCEE1A43E1AB008251DB /* ExamViewController.m */,
 				7F7CFCEF1A43E1AB008251DB /* ShowWrongWordsViewController.h */,
@@ -995,6 +989,19 @@
 				A46A7FCA1635909D00DF4696 /* audio.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		A46BDED31A57D23900664F0D /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				A46BDED41A57D24C00664F0D /* HKVTableViewBase.h */,
+				A46BDED51A57D24C00664F0D /* HKVTableViewBase.m */,
+				A46BDEDA1A5801CC00664F0D /* HKVBasicTableViewCell.h */,
+				A46BDEDB1A5801CC00664F0D /* HKVBasicTableViewCell.m */,
+				A46BDED71A57D32C00664F0D /* HKVDefaultTableViewModel.h */,
+				A46BDED81A57D32C00664F0D /* HKVDefaultTableViewModel.m */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		A4E6458F1A45830800FE5A4F /* Vocabulary Tests */ = {
@@ -1153,7 +1160,6 @@
 				A46A8011163BDBAB00DF4696 /* greenButton.png in Resources */,
 				A46A8012163BDBAB00DF4696 /* greenButton@2x.png in Resources */,
 				A46A8013163BDBAB00DF4696 /* greenButtonHighlight.png in Resources */,
-				7F43F74019F7A9A900672440 /* SearchWordViewController.xib in Resources */,
 				A46A8014163BDBAB00DF4696 /* greenButtonHighlight@2x.png in Resources */,
 				EC2290091696B46700D7E0D8 /* splitline.png in Resources */,
 				EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */,
@@ -1250,6 +1256,7 @@
 				7F68EED71A26C73E00FB898F /* NSManagedObjectContext+MagicalSaves.m in Sources */,
 				7F68EECF1A26C73E00FB898F /* NSString+MagicalDataImport.m in Sources */,
 				7F68EED51A26C73E00FB898F /* NSManagedObjectContext+MagicalObserving.m in Sources */,
+				A46BDED21A57D22C00664F0D /* ExamContent.m in Sources */,
 				7F68EECD1A26C73E00FB898F /* NSObject+MagicalDataImport.m in Sources */,
 				7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				A4E6459D1A467D5B00FE5A4F /* VBaseModel.m in Sources */,
@@ -1264,7 +1271,6 @@
 				7F67A7DA1A47B6A40037F7F2 /* WordListManager.m in Sources */,
 				7F43F73719F7A9A900672440 /* WordDetailViewController.m in Sources */,
 				7F68EED31A26C73E00FB898F /* NSManagedObject+MagicalRecord.m in Sources */,
-				7F43F73219F7A9A900672440 /* SearchWordViewController.m in Sources */,
 				7F43F70719F7A9A900672440 /* ExamContentView.m in Sources */,
 				A46A7E581630296800DF4696 /* main.m in Sources */,
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
@@ -1274,11 +1280,13 @@
 				7F68EED41A26C73E00FB898F /* NSManagedObject+MagicalRequests.m in Sources */,
 				7F68EEDC1A26C73E00FB898F /* MagicalRecord+Actions.m in Sources */,
 				A48BE2BC1A0631DC00FCEE1D /* UIColor+VAdditions.m in Sources */,
+				A46BDEDC1A5801CC00664F0D /* HKVBasicTableViewCell.m in Sources */,
 				7F43F71319F7A9A900672440 /* MigrationV1ToV4.xcmappingmodel in Sources */,
 				7F97FB051A490D8C000F0797 /* VImagePickerViewController.m in Sources */,
 				7F43F72D19F7A9A900672440 /* ExistingWordListsViewController.m in Sources */,
 				7F68EEDD1A26C73E00FB898F /* MagicalRecord+ErrorHandling.m in Sources */,
 				7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */,
+				A46BDECF1A57D21900664F0D /* Guide.m in Sources */,
 				7F68EEE11A26C73E00FB898F /* MagicalRecord+iCloud.m in Sources */,
 				7F68EEDB1A26C73E00FB898F /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				7F68EEDF1A26C73E00FB898F /* MagicalRecord+Setup.m in Sources */,
@@ -1301,8 +1309,8 @@
 				7F43F71B19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m in Sources */,
 				7F68EECE1A26C73E00FB898F /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */,
+				A46BDED61A57D24C00664F0D /* HKVTableViewBase.m in Sources */,
 				7F43F72B19F7A9A900672440 /* CreateWordListViewController.m in Sources */,
-				7F67A7E11A47B6BD0037F7F2 /* ExamContent.m in Sources */,
 				7F43F70C19F7A9A900672440 /* SimpleProgressBar.m in Sources */,
 				7F43F72119F7A9A900672440 /* PureColorImageGenerator.m in Sources */,
 				7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */,
@@ -1316,7 +1324,6 @@
 				7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */,
 				A489D71E1A0674340087C0AF /* NoteAttatchment.m in Sources */,
 				A40EAD551A550A4A00181ED6 /* UIView+VAdditions.m in Sources */,
-				7F67A7E21A47B6BD0037F7F2 /* Guide.m in Sources */,
 				A489D70F1A066CFB0087C0AF /* Note.m in Sources */,
 				7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */,
 				7F68EED21A26C73E00FB898F /* NSManagedObject+MagicalFinders.m in Sources */,
@@ -1327,6 +1334,7 @@
 				7F67A7D91A47B6A40037F7F2 /* PlanMaker.m in Sources */,
 				7F68EED91A26C73E00FB898F /* NSManagedObjectModel+MagicalRecord.m in Sources */,
 				7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */,
+				A46BDED91A57D32C00664F0D /* HKVDefaultTableViewModel.m in Sources */,
 				7F43F71A19F7A9A900672440 /* NSMutableString+HTMLEscape.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1444,8 +1452,8 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "203fc44d-c2f0-4870-8b80-42c1e2b22bc1";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "203fc44d-c2f0-4870-8b80-42c1e2b22bc1";
+				PROVISIONING_PROFILE = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

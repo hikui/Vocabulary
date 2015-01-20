@@ -30,7 +30,7 @@ NS_INLINE UIWindow * getMainWindow(){
 + (instancetype)newInstance {
    InsertWordView *instance = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
     NSAssert([instance isKindOfClass:[InsertWordView class]], @"Should be an InsertWordView");
-    [[NSNotificationCenter defaultCenter]addObserver:instance selector:@selector(keyboardIsShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:instance selector:@selector(keyboardIsShown:) name:UIKeyboardWillShowNotification object:nil];
     return instance;
 }
 
@@ -78,21 +78,19 @@ NS_INLINE UIWindow * getMainWindow(){
     targetKeyboardFrame = [self convertRect:targetKeyboardFrame fromView:nil];
     CGFloat contentMaxY = CGRectGetMaxY(self.confirmButton.frame) + 5; // relative y to wrapper view
     CGFloat wrapperOriginY = CGRectGetMinY(targetKeyboardFrame) - contentMaxY;
-    [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue] animations:^{
-        [self.wrapperView setY:wrapperOriginY];
-    }];
+    CGRect wrapperFrame = self.wrapperView.frame;
+    wrapperFrame.origin.y = wrapperOriginY;
+    //不dispatch_after的话会出现动画冲突现象（暂时不明原因）
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.wrapperView.frame = wrapperFrame;
+        } completion:nil];
+    });
 }
 
 - (IBAction)buttonAddOnTouch:(UIButton *)sender {
     NSString *key = [self.wordField.text hkv_trim];
     if (key.length > 0 && self.targetWordList != nil) {
-        /*
-         `asyncIndexNewWords` runs in a new thread along with a new NSManagedObjectContext, which is a child of MR_defaultContext and has nothing to do with the context of `saveWithBlockAndWait` below. Thus the word created in the block cannot be detected in the default context and its other children before `save` is called.
-         So we need to record the object id of the new word, then look for the entity in the default context by this id. Then we can run asyncIndexNewWords safely.
-         Remember, when a new NSManagedObject is created, its objectID property is a temporary id, which is useless in the outside world. We should call `obtainPermanentIDsForObjects` first to turn it to a permanent id.
-         */
-        __block NSError *e = nil;
-        __block NSManagedObjectID *objId = nil;
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
             Word *word = [Word MR_createEntityInContext:localContext];
             word.key = key;
@@ -102,23 +100,9 @@ NS_INLINE UIWindow * getMainWindow(){
             }
             WordList *localWordList = [self.targetWordList MR_inContext:localContext];
             [word addWordListsObject:localWordList];
-            if ([word.objectID isTemporaryID]) {
-                
-                [localContext obtainPermanentIDsForObjects:@[word] error:&e];
-                if (e) {
-                    [MagicalRecord handleErrors:e];
-                    return;
-                }
-                objId = word.objectID;
-            }
+            [WordManager indexNewWordsWithoutSaving:@[word] inContext:localContext progressBlock:nil completion:nil];
+            
         }];
-        Word *wordInMainThread = (Word *)[[NSManagedObjectContext MR_defaultContext] existingObjectWithID:objId error:&e];
-        if (e) {
-            [MagicalRecord handleErrors:e];
-            return;
-        }
-        
-        [WordManager asyncIndexNewWords:@[wordInMainThread] progressBlock:nil completion:nil];
         if (self.resultBlock) {
             self.resultBlock();
         }

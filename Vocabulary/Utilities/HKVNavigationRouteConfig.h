@@ -18,7 +18,6 @@
 @property (nonatomic, readonly) NSURL *createWordListVC;
 @property (nonatomic, readonly) NSURL *existingWordsListsVC;
 @property (nonatomic, readonly) NSURL *PreferenceVC;
-@property (nonatomic, readonly) NSURL *searchWordVC;
 @property (nonatomic, readonly) NSURL *wordDetailVC;
 @property (nonatomic, readonly) NSURL *wordListFromDiskVC;
 @property (nonatomic, readonly) NSURL *wordListVC;

@@ -51,7 +51,32 @@
     return self;
 }
 
-+ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion {
+//+ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion {
+//    BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
+//    if (!needIndex) {
+//        if (completion) {
+//            completion(nil);
+//        }
+//        return;
+//    }
+//    
+//    if (newWords.count == 0) {
+//        if (completion != NULL) {
+//            completion(nil);
+//        }
+//        return;
+//    }
+//    
+//    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+//        [self indexNewWordsWithoutSaving:newWords inContext:localContext progressBlock:progressBlock completion:nil];
+//    } completion:^(BOOL success, NSError *error) {
+//        if (completion) {
+//            completion(error);
+//        }
+//    }];
+//}
+
++ (void)indexNewWordsWithoutSaving:(NSArray *)newWords inContext:(NSManagedObjectContext *)context progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion; {
     BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
     if (!needIndex) {
         if (completion) {
@@ -67,40 +92,34 @@
         return;
     }
     
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        NSArray *allWords = [Word MR_findAllInContext:localContext];
-        NSUInteger totalNum = newWords.count;
-        NSUInteger finishedNum = 0;
-        for (Word *anNewWord in newWords) {
-            Word *anLocalNewWord = [anNewWord MR_inContext:localContext];
-            NSString *key1 = anLocalNewWord.key;
-            
-            for (Word *anExistingWord in allWords) {
-                // Don't need to fix temporary id bug, since these words are fetched in current context
-                NSString *key2 = anExistingWord.key;
-                if (![key1 isEqualToString:key2]) {
-                    @autoreleasepool {
-                        float distance = [self compareString:key1 withString:key2];
-                        NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-                        if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
-                            DDLogDebug(@"key1: %@, key2: %@",key1,key2);
-                            [anNewWord addSimilarWordsObject:anExistingWord];
-                        }
+    NSArray *allWords = [Word MR_findAllInContext:context];
+    NSUInteger totalNum = newWords.count;
+    NSUInteger finishedNum = 0;
+    for (Word *anNewWord in newWords) {
+        NSString *key1 = anNewWord.key;
+        for (Word *anExistingWord in allWords) {
+            NSString *key2 = anExistingWord.key;
+            if (![key1 isEqualToString:key2]) {
+                @autoreleasepool {
+                    float distance = [self compareString:key1 withString:key2];
+                    NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
+                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
+                        DDLogDebug(@"key1: %@, key2: %@",key1,key2);
+                        [anNewWord addSimilarWordsObject:anExistingWord];
                     }
                 }
-                finishedNum ++;
-                float progress = ((float)finishedNum)/totalNum;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (progressBlock != NULL) progressBlock(progress);
-                });
             }
-            
+            finishedNum ++;
+            float progress = ((float)finishedNum)/totalNum;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (progressBlock != NULL) progressBlock(progress);
+            });
         }
-    } completion:^(BOOL success, NSError *error) {
-        if (completion) {
-            completion(error);
-        }
-    }];
+        
+    }
+    if (completion) {
+        completion(nil);
+    }
 }
 
 + (void)reIndexForAllWithProgressCallback:(HKVProgressCallback)progressBlock completion:(HKVVoidBlock)completion

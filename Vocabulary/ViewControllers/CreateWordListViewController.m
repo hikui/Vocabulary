@@ -131,7 +131,12 @@
                                                          otherButtonTitles:nil];
                     [alert show];
                 }else{
-//                    abort();
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                                   message:@"发生了错误"
+                                                                  delegate:nil
+                                                         cancelButtonTitle:@"知道了"
+                                                         otherButtonTitles:nil];
+                    [alert show];
                 }
                 return;
             }else{

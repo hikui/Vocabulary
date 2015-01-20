@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "ExistingWordListsViewController.h"
 #import "Plan.h"
-@interface PlanningViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate>
+@interface PlanningViewController : VBaseViewController
 
 @property (nonatomic, strong) Plan *todaysPlan;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;

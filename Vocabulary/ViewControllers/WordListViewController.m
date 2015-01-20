@@ -248,28 +248,28 @@
 
 #pragma mark - alertview delegate
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:@"确定"]) {
-//        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-//        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
-        Word *w = [Word MR_createEntity];
-        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-            w.key = [[alertView textFieldAtIndex:0]text];
-            [w addWordListsObject:self.wordList];
-        }];
-        [self.wordArray addObject:w];
-        [_tableView beginUpdates];
-        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
-        [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [_tableView endUpdates];
-        
-        //后台做索引
-        [WordManager asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
-        
-    }
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+//    if ([buttonTitle isEqualToString:@"确定"]) {
+////        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
+////        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
+//        Word *w = [Word MR_createEntity];
+//        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+//            w.key = [[alertView textFieldAtIndex:0]text];
+//            [w addWordListsObject:self.wordList];
+//        }];
+//        [self.wordArray addObject:w];
+//        [_tableView beginUpdates];
+//        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
+//        [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [_tableView endUpdates];
+//        
+//        //后台做索引
+//        [WordManager asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
+//        
+//    }
+//}
 
 #pragma mark - actions
 - (void)revealLeftSidebar:(id)sender {

@@ -198,7 +198,11 @@
 
 // @Override
 - (void)back {
-    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
+    if ([self isModal]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
+    }
 }
 
 - (void)noteButtonOnClick {
