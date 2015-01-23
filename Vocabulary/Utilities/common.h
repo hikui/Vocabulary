@@ -39,8 +39,9 @@
 // 当PlanningViewController收到shouldRefreshTodaysPlanNotificationKey后，刷新plan
 #define kShouldRefreshTodaysPlanNotificationKey @"shouldRefreshTodaysPlanNotificationKey"
 
-// 当PlanMaker收到kWordListChangedNotificationKey后，强制新建一个plan
-#define kWordListChangedNotificationKey @"kWordListChangedNotificationKey"
+// 当PlanMaker收到kWordListDidChangeNotificationKey后，强制新建一个plan
+#define kWordListWillChangeNotificationKey @"kWordListWillChangeNotificationKey"
+#define kWordListDidChangeNotificationKey @"kWordListDidChangeNotificationKey"
 
 #define WordListManagerDomain @"WordListManagerDomain"
 #define WordListCreatorEmptyWordSetError -1

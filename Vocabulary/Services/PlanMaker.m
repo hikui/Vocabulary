@@ -31,7 +31,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onReceiveWordListChangeNotification:) name:kWordListChangedNotificationKey object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onReceiveWordListChangeNotification:) name:kWordListDidChangeNotificationKey object:nil];
     }
     return self;
 }
@@ -47,9 +47,9 @@
     if (plan == nil) {
         shouldMakeAPlan = YES;
     }
-//    if (plan.learningPlan == nil) {
-//        shouldMakeAPlan = YES;
-//    }
+    if (plan.learningPlan == nil && plan.reviewPlan.count == 0) {
+        shouldMakeAPlan = YES;
+    }
     NSDate *today = [[NSDate date]hkv_dateWithoutTime];
     NSDate *planCreateDate = [plan.createDate hkv_dateWithoutTime];
     if (planCreateDate == nil || [planCreateDate compare:today] == NSOrderedAscending) {

@@ -130,11 +130,14 @@
         }
         
         [WordManager indexNewWordsWithoutSaving:newWordsToBeIndexed inContext:localContext progressBlock:progressBlock completion:nil];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListWillChangeNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+        });
         
     } completion:^(BOOL success, NSError *error) {
         NSError *errorToEmit = success ? createBlockError : error;
         if (success && createBlockError == nil) {
-            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListDidChangeNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
             
         }
         if (completion) {
@@ -204,10 +207,13 @@
             return;
         }
         [WordManager indexNewWordsWithoutSaving:[wordList.words allObjects] inContext:localContext progressBlock:progressBlock completion:nil];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListWillChangeNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+        });
     } completion:^(BOOL contextDidSave, NSError *error) {
         NSError *errorToEmit = contextDidSave ? createBlockError : error;
         if (contextDidSave && createBlockError == nil) {
-            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kWordListDidChangeNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
             
         }
         if (completion) {
@@ -218,11 +224,14 @@
 
 + (void)deleteWordList:(WordList *)wordList {
     [[PlanMaker sharedInstance]removeWordListFromTodaysPlan:wordList]; //先从plan中移除，否则会崩溃
+
+    [[NSNotificationCenter defaultCenter]postNotificationName:kWordListWillChangeNotificationKey object:nil userInfo:@{@"Action":@"Add"}];
+
     [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         WordList *localWordList = [wordList MR_inContext:localContext];
         [localWordList MR_deleteEntityInContext:localContext];
     }];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kWordListChangedNotificationKey object:self userInfo:@{@"Action":@"Delete"}];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kWordListDidChangeNotificationKey object:self userInfo:@{@"Action":@"Delete"}];
 }
 
 + (void)addWords:(NSSet *)wordSet
