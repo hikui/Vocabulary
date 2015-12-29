@@ -142,6 +142,8 @@
 		A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD96169C46400069FEF7 /* blackToolbarBG.png */; };
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
+		A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */; };
+		A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
 		A4E645931A45830800FE5A4F /* Vocabulary_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E645921A45830800FE5A4F /* Vocabulary_Tests.m */; };
 		A4E6459A1A4583A000FE5A4F /* Exam_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E645991A4583A000FE5A4F /* Exam_Tests.m */; };
@@ -365,7 +367,7 @@
 		A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+VAdditions.m"; sourceTree = "<group>"; };
 		A40EAD561A5537E400181ED6 /* HKVCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HKVCategories.h; sourceTree = "<group>"; };
 		A42073621A3C82E800D6101B /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
-		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A46A7E471630296800DF4696 /* Vocabulary II.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vocabulary II.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46A7E4B1630296800DF4696 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A46A7E4D1630296800DF4696 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A46A7E4F1630296800DF4696 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -428,6 +430,9 @@
 		A48DCD96169C46400069FEF7 /* blackToolbarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackToolbarBG.png; path = artwork/blackToolbarBG.png; sourceTree = "<group>"; };
 		A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackToolbarBG@2x.png"; path = "artwork/blackToolbarBG@2x.png"; sourceTree = "<group>"; };
 		A48DCD9F169C57350069FEF7 /* CellSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellSeparator.png; path = artwork/CellSeparator.png; sourceTree = "<group>"; };
+		A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMOnlineConfig.h; sourceTree = "<group>"; };
+		A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMOnlineConfig.a; sourceTree = "<group>"; };
 		A4CD22C0181BD56F00FE29F7 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
 		A4E6458E1A45830800FE5A4F /* Vocabulary Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vocabulary Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E645911A45830800FE5A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -474,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */,
 				ECF8B8631688433300A608D7 /* Security.framework in Frameworks */,
 				ECF8B8611688432B00A608D7 /* SystemConfiguration.framework in Frameworks */,
 				ECF8B85F168842A500A608D7 /* CFNetwork.framework in Frameworks */,
@@ -635,6 +641,8 @@
 		7F43F6CD19F7A9A900672440 /* Analytics_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
+				A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */,
+				A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */,
 				7F43F74819F7AADC00672440 /* MobClick.h */,
 				7F43F6CF19F7A9A900672440 /* MobClickSocialAnalytics.h */,
 				7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */,
@@ -881,7 +889,7 @@
 		A46A7E481630296800DF4696 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A46A7E471630296800DF4696 /* Vocabulary.app */,
+				A46A7E471630296800DF4696 /* Vocabulary II.app */,
 				A4E6458E1A45830800FE5A4F /* Vocabulary Tests.xctest */,
 			);
 			name = Products;
@@ -933,6 +941,7 @@
 				A46A7E541630296800DF4696 /* InfoPlist.strings */,
 				A46A7E571630296800DF4696 /* main.m */,
 				A46A7E591630296800DF4696 /* Vocabulary-Prefix.pch */,
+				A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1063,23 +1072,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A46A7E461630296800DF4696 /* Vocabulary */ = {
+		A46A7E461630296800DF4696 /* Vocabulary II */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary" */;
+			buildConfigurationList = A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary II" */;
 			buildPhases = (
 				9BDAA56B0E67445AAC237F42 /* Check Pods Manifest.lock */,
 				A46A7E431630296800DF4696 /* Sources */,
 				A46A7E441630296800DF4696 /* Frameworks */,
 				A46A7E451630296800DF4696 /* Resources */,
 				E35EE715682344FC890F3EAB /* Copy Pods Resources */,
+				481659AFF72E9786C24A68AF /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Vocabulary;
+			name = "Vocabulary II";
 			productName = Vocabulary;
-			productReference = A46A7E471630296800DF4696 /* Vocabulary.app */;
+			productReference = A46A7E471630296800DF4696 /* Vocabulary II.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A4E6458D1A45830800FE5A4F /* Vocabulary Tests */ = {
@@ -1132,7 +1142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A46A7E461630296800DF4696 /* Vocabulary */,
+				A46A7E461630296800DF4696 /* Vocabulary II */,
 				A4E6458D1A45830800FE5A4F /* Vocabulary Tests */,
 			);
 		};
@@ -1183,6 +1193,7 @@
 				EC9D1F911699509600A8C5B9 /* checkmark@2x.png in Resources */,
 				A48DCD98169C46400069FEF7 /* blackToolbarBG.png in Resources */,
 				A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */,
+				A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */,
 				A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */,
 				A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */,
 				7F43F73F19F7A9A900672440 /* PlanningViewController.xib in Resources */,
@@ -1215,6 +1226,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		481659AFF72E9786C24A68AF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9BDAA56B0E67445AAC237F42 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1358,7 +1384,7 @@
 /* Begin PBXTargetDependency section */
 		A4E645951A45830800FE5A4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A46A7E461630296800DF4696 /* Vocabulary */;
+			target = A46A7E461630296800DF4696 /* Vocabulary II */;
 			targetProxy = A4E645941A45830800FE5A4F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1398,7 +1424,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "3291F703-0A90-4E3E-B5B0-592BD79CC255";
 				SDKROOT = iphoneos;
@@ -1421,7 +1447,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "9D89113F-AAE7-4B51-BE8E-CA66EEF29031";
 				SDKROOT = iphoneos;
@@ -1435,7 +1461,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1445,17 +1470,18 @@
 					"$(PROJECT_DIR)/Vocabulary/Vendors/**",
 				);
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "info.herkuang.Vocabulary-iPhone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1466,9 +1492,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1476,17 +1501,18 @@
 					"$(PROJECT_DIR)/Vocabulary/Vendors/**",
 				);
 				INFOPLIST_FILE = "Vocabulary/Vocabulary-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "info.herkuang.Vocabulary-iPhone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1576,7 +1602,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary" */ = {
+		A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary II" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A46A7E6C1630296800DF4696 /* Debug */,

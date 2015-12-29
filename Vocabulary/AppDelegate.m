@@ -31,6 +31,7 @@
 #import "HKVNavigationRouteConfig.h"
 #import "HKVNavigationManager.h"
 #import "VWebViewController.h"
+#import "UMOnlineConfig.h"
 
 static BOOL isRunningTests(void)
 {
@@ -57,7 +58,7 @@ static BOOL isRunningTests(void)
 
     //友盟统计
     [MobClick startWithAppkey:@"50b828715270152727000018" reportPolicy:REALTIME channelId:kChannelId];
-    [MobClick updateOnlineConfig];
+    [UMOnlineConfig updateOnlineConfigWithAppkey:@"50b828715270152727000018"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
 
     //CoreData stack
@@ -136,7 +137,7 @@ static BOOL isRunningTests(void)
 - (void)onlineConfigCallBack:(NSNotification*)notification
 {
     DDLogDebug(@"online config has fininshed and params = %@", notification.userInfo);
-    NSString* newHelpDocVersion = [MobClick getConfigParams:@"helpDocVersion"];
+    NSString* newHelpDocVersion = [UMOnlineConfig getConfigParams:@"helpDocVersion"];
     NSString* currentHelpVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"kCurrHelpDocVersion"];
     if (currentHelpVersion == nil) {
         [[NSUserDefaults standardUserDefaults] setObject:newHelpDocVersion forKey:@"kCurrHelpDocVersion"];

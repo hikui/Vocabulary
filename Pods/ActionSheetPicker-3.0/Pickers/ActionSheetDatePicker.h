@@ -48,18 +48,39 @@ typedef void(^ActionDateCancelBlock)(ActionSheetDatePicker *picker);
 @property (nonatomic, copy) ActionDateDoneBlock onActionSheetDone;
 @property (nonatomic, copy) ActionDateCancelBlock onActionSheetCancel;
 
-+ (id)showPickerWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate target:(id)target action:(SEL)action origin:(id)origin;
++ (instancetype)showPickerWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate target:(id)target action:(SEL)action origin:(id)origin;
 
-+ (id)showPickerWithTitle:(NSString *)title
++ (instancetype)showPickerWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate target:(id)target action:(SEL)action origin:(id)origin cancelAction:(SEL)cancelAction;
+
++ (instancetype)showPickerWithTitle:(NSString *)title
+           datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate
+              minimumDate:(NSDate *)minimumDate maximumDate:(NSDate *)maximumDate
+                   target:(id)target action:(SEL)action origin:(id)origin;
+
++ (instancetype)showPickerWithTitle:(NSString *)title
            datePickerMode:(UIDatePickerMode)datePickerMode
              selectedDate:(NSDate *)selectedDate
                 doneBlock:(ActionDateDoneBlock)doneBlock
               cancelBlock:(ActionDateCancelBlock)cancelBlock
                    origin:(UIView*)view;
 
++ (instancetype)showPickerWithTitle:(NSString *)title
+           datePickerMode:(UIDatePickerMode)datePickerMode
+             selectedDate:(NSDate *)selectedDate
+              minimumDate:(NSDate *)minimumDate
+              maximumDate:(NSDate *)maximumDate
+                doneBlock:(ActionDateDoneBlock)doneBlock
+              cancelBlock:(ActionDateCancelBlock)cancelBlock
+                   origin:(UIView*)view;
+
+
 - (id)initWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate target:(id)target action:(SEL)action origin:(id)origin;
 
-- (id)initWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate target:(id)target action:(SEL)action origin:(id)origin cancelAction:(SEL)cancelAction;
+- (instancetype)initWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate minimumDate:(NSDate *)minimumDate maximumDate:(NSDate *)maximumDate target:(id)target action:(SEL)action origin:(id)origin;
+
+- (instancetype)initWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate target:(id)target action:(SEL)action origin:(id)origin cancelAction:(SEL)cancelAction;
+
+- (instancetype)initWithTitle:(NSString *)title datePickerMode:(UIDatePickerMode)datePickerMode selectedDate:(NSDate *)selectedDate minimumDate:(NSDate *)minimumDate maximumDate:(NSDate *)maximumDate target:(id)target action:(SEL)action cancelAction:(SEL)cancelAction origin:(id)origin;
 
 
 - (instancetype)initWithTitle:(NSString *)title

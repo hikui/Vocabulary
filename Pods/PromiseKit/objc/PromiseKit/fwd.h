@@ -1,3 +1,7 @@
+#import <Foundation/NSObjCRuntime.h>
+
+@class NSError;
+@class NSString;
 @class NSOperationQueue;
 @class PMKPromise;
 
@@ -21,6 +25,12 @@ typedef void (^PromiseFulfiller)(id) PMK_DEPRECATED("Use PMKPromiseFulfiller");
 typedef void (^PromiseRejecter)(NSError *) PMK_DEPRECATED("Use PMKPromiseRejecter");
 typedef void (^PMKPromiseFulfiller)(id);
 typedef void (^PMKPromiseRejecter)(NSError *);
+typedef void (^PMKFulfiller)(id);
+typedef void (^PMKRejecter)(NSError *);
+typedef void (^PMKResolver)(id);
+typedef void (^PMKAdapter)(id, NSError *);
+typedef void (^PMKIntegerAdapter)(NSInteger, NSError *);
+typedef void (^PMKBooleanAdapter)(BOOL, NSError *);
 
 #define PMKErrorDomain @"PMKErrorDomain"
 #define PMKUnderlyingExceptionKey @"PMKUnderlyingExceptionKey"
@@ -29,6 +39,7 @@ typedef void (^PMKPromiseRejecter)(NSError *);
 #define PMKUnknownError 2
 #define PMKInvalidUsageError 3
 #define PMKAccessDeniedError 4
+#define PMKOperationFailed 5
 
 #define PMKURLErrorFailingURLResponseKey @"PMKURLErrorFailingURLResponseKey"
 #define PMKURLErrorFailingDataKey @"PMKURLErrorFailingDataKey"

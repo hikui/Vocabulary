@@ -29,6 +29,7 @@
 #import "WordManager.h"
 #import "AppDelegate.h"
 #import "PureColorImageGenerator.h"
+#import "UMOnlineConfig.h"
 
 @interface PreferenceViewController ()
 
@@ -194,7 +195,7 @@
     }else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             VWebViewController *hvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
-            NSURL *url = [NSURL URLWithString:[MobClick getConfigParams:@"helpUrl"]];
+            NSURL *url = [NSURL URLWithString:[UMOnlineConfig getConfigParams:@"helpUrl"]];
             hvc.requestURL = url;
             [self presentViewController:hvc animated:YES completion:nil];
         }else if (indexPath.row == 1){
