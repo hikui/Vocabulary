@@ -367,7 +367,7 @@
 		A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+VAdditions.m"; sourceTree = "<group>"; };
 		A40EAD561A5537E400181ED6 /* HKVCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HKVCategories.h; sourceTree = "<group>"; };
 		A42073621A3C82E800D6101B /* Model 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7.xcdatamodel"; sourceTree = "<group>"; };
-		A46A7E471630296800DF4696 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A46A7E471630296800DF4696 /* Vocabulary II.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vocabulary II.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46A7E4B1630296800DF4696 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A46A7E4D1630296800DF4696 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A46A7E4F1630296800DF4696 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -889,7 +889,7 @@
 		A46A7E481630296800DF4696 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A46A7E471630296800DF4696 /* Vocabulary.app */,
+				A46A7E471630296800DF4696 /* Vocabulary II.app */,
 				A4E6458E1A45830800FE5A4F /* Vocabulary Tests.xctest */,
 			);
 			name = Products;
@@ -1072,9 +1072,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A46A7E461630296800DF4696 /* Vocabulary */ = {
+		A46A7E461630296800DF4696 /* Vocabulary II */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary" */;
+			buildConfigurationList = A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary II" */;
 			buildPhases = (
 				9BDAA56B0E67445AAC237F42 /* Check Pods Manifest.lock */,
 				A46A7E431630296800DF4696 /* Sources */,
@@ -1087,9 +1087,9 @@
 			);
 			dependencies = (
 			);
-			name = Vocabulary;
+			name = "Vocabulary II";
 			productName = Vocabulary;
-			productReference = A46A7E471630296800DF4696 /* Vocabulary.app */;
+			productReference = A46A7E471630296800DF4696 /* Vocabulary II.app */;
 			productType = "com.apple.product-type.application";
 		};
 		A4E6458D1A45830800FE5A4F /* Vocabulary Tests */ = {
@@ -1142,7 +1142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A46A7E461630296800DF4696 /* Vocabulary */,
+				A46A7E461630296800DF4696 /* Vocabulary II */,
 				A4E6458D1A45830800FE5A4F /* Vocabulary Tests */,
 			);
 		};
@@ -1384,7 +1384,7 @@
 /* Begin PBXTargetDependency section */
 		A4E645951A45830800FE5A4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A46A7E461630296800DF4696 /* Vocabulary */;
+			target = A46A7E461630296800DF4696 /* Vocabulary II */;
 			targetProxy = A4E645941A45830800FE5A4F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1461,8 +1461,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Vocabulary/Vocabulary-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1476,11 +1476,12 @@
 					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "info.herkuang.Vocabulary-iPhone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "da2dcdd1-0ffb-48c3-aece-6c6761f4e843";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1506,11 +1507,12 @@
 					"$(PROJECT_DIR)/Vocabulary/Vendors/Analytics_iOS_SDK",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "info.herkuang.Vocabulary-iPhone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1600,7 +1602,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary" */ = {
+		A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary II" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A46A7E6C1630296800DF4696 /* Debug */,
