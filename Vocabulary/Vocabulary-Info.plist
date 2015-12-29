@@ -32,6 +32,8 @@
 	<true/>
 	<key>UILaunchImageFile~iphone</key>
 	<string>iPhoneLaunchImage.png</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
