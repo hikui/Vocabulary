@@ -143,6 +143,7 @@
 		A48DCD99169C46400069FEF7 /* blackToolbarBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */; };
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
 		A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */; };
+		A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
 		A4E645931A45830800FE5A4F /* Vocabulary_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E645921A45830800FE5A4F /* Vocabulary_Tests.m */; };
 		A4E6459A1A4583A000FE5A4F /* Exam_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E645991A4583A000FE5A4F /* Exam_Tests.m */; };
@@ -430,6 +431,8 @@
 		A48DCD97169C46400069FEF7 /* blackToolbarBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackToolbarBG@2x.png"; path = "artwork/blackToolbarBG@2x.png"; sourceTree = "<group>"; };
 		A48DCD9F169C57350069FEF7 /* CellSeparator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CellSeparator.png; path = artwork/CellSeparator.png; sourceTree = "<group>"; };
 		A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMOnlineConfig.h; sourceTree = "<group>"; };
+		A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMOnlineConfig.a; sourceTree = "<group>"; };
 		A4CD22C0181BD56F00FE29F7 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
 		A4E6458E1A45830800FE5A4F /* Vocabulary Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vocabulary Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E645911A45830800FE5A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -476,6 +479,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */,
 				ECF8B8631688433300A608D7 /* Security.framework in Frameworks */,
 				ECF8B8611688432B00A608D7 /* SystemConfiguration.framework in Frameworks */,
 				ECF8B85F168842A500A608D7 /* CFNetwork.framework in Frameworks */,
@@ -637,6 +641,8 @@
 		7F43F6CD19F7A9A900672440 /* Analytics_iOS_SDK */ = {
 			isa = PBXGroup;
 			children = (
+				A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */,
+				A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */,
 				7F43F74819F7AADC00672440 /* MobClick.h */,
 				7F43F6CF19F7A9A900672440 /* MobClickSocialAnalytics.h */,
 				7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */,
