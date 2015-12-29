@@ -1,47 +1,47 @@
 PODS:
-  - ActionSheetPicker-3.0 (1.2.0)
+  - ActionSheetPicker-3.0 (2.0.4)
   - BButton (4.0.2)
-  - CocoaLumberjack (2.0.0-rc):
-    - CocoaLumberjack/Default (= 2.0.0-rc)
-    - CocoaLumberjack/Extensions (= 2.0.0-rc)
-  - CocoaLumberjack/Core (2.0.0-rc)
-  - CocoaLumberjack/Default (2.0.0-rc):
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.0-rc):
+  - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - LibYAML (0.1.4)
-  - MBProgressHUD (0.9)
+  - MBProgressHUD (0.9.2)
   - MKNetworkKit (0.87):
     - Reachability (~> 3.1.0)
-  - PromiseKit/Promise (1.2)
+  - PromiseKit/Promise (1.6.0)
   - Reachability (3.1.1)
   - SZTextView (1.1.10)
-  - ViewDeck (2.2.11)
+  - ViewDeck (2.4.1)
   - YAML-Framework (0.0.2):
     - LibYAML (~> 0.1.4)
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0 (~> 1.2.0)
+  - ActionSheetPicker-3.0
   - BButton
-  - CocoaLumberjack (~> 2.0.0-beta3)
+  - CocoaLumberjack (~> 2.2.0)
   - MBProgressHUD
   - MKNetworkKit (~> 0.87)
   - PromiseKit/Promise
   - SZTextView (~> 1.1.10)
-  - ViewDeck (~> 2.2.11)
+  - ViewDeck (~> 2.4.1)
   - YAML-Framework (~> 0.0.2)
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: 6e0274e4298a81fc44516c238fe9df815084310f
+  ActionSheetPicker-3.0: 860466cb4a66854e6acb590071ecee404b48f49d
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
-  CocoaLumberjack: 04c5b9b7479dd4276a09700fcd6644423ea1751c
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
-  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
-  PromiseKit: a9719352886a62dacc4b03166ba9d3b671101bf1
+  PromiseKit: 6be651503d4af22830b5313be993c5a0ef77bf77
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   SZTextView: c814e6dcb2303e3e79feb0fd27cf44d74e3c59a6
-  ViewDeck: ce795f929d00d1e0fd63f61d79cc92a9ea050ec9
+  ViewDeck: e4c744cb5383cbae40cf286c6e7246df33962020
   YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b
 
 COCOAPODS: 0.39.0

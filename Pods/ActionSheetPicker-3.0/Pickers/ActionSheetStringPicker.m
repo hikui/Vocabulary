@@ -81,14 +81,14 @@
         stringPicker.showsSelectionIndicator = YES;
         stringPicker.userInteractionEnabled = YES;
     }
-    
+
     //need to keep a reference to the picker so we can clear the DataSource / Delegate when dismissing
     self.pickerView = stringPicker;
-    
+
     return stringPicker;
 }
 
-- (void)notifyTarget:(id)target didSucceedWithAction:(SEL)successAction origin:(id)origin {    
+- (void)notifyTarget:(id)target didSucceedWithAction:(SEL)successAction origin:(id)origin {
     if (self.onActionSheetDone) {
         id selectedObject = (self.data.count > 0) ? (self.data)[(NSUInteger) self.selectedIndex] : nil;
         _onActionSheetDone(self, self.selectedIndex, selectedObject);
@@ -101,7 +101,7 @@
 #pragma clang diagnostic pop
         return;
     }
-    NSLog(@"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker", object_getClassName(target), sel_getName(successAction));
+    NSLog(@"Invalid target/action ( %s / %s ) combination used for ActionSheetPicker and done block is nil.", object_getClassName(target), sel_getName(successAction));
 }
 
 - (void)notifyTarget:(id)target didCancelWithAction:(SEL)cancelAction origin:(id)origin {
@@ -143,8 +143,49 @@
 
     if ([obj respondsToSelector:@selector(description)])
         return [obj performSelector:@selector(description)];
-
+    
     return nil;
+}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    id obj = (self.data)[(NSUInteger) row];
+    
+    // return the object if it is already a NSString,
+    // otherwise, return the description, just like the toString() method in Java
+    // else, return nil to prevent exception
+    
+    if ([obj isKindOfClass:[NSString class]])
+        return [[NSAttributedString alloc] initWithString:obj attributes:self.pickerTextAttributes];
+    
+    if ([obj respondsToSelector:@selector(description)])
+        return [[NSAttributedString alloc] initWithString:[obj performSelector:@selector(description)] attributes:self.pickerTextAttributes];
+    
+    return nil;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    UILabel *pickerLabel = (UILabel *)view;
+    if (pickerLabel == nil) {
+        pickerLabel = [[UILabel alloc] init];
+    }
+    id obj = (self.data)[(NSUInteger) row];
+    
+    NSAttributedString *attributeTitle = nil;
+    // use the object if it is already a NSString,
+    // otherwise, use the description, just like the toString() method in Java
+    // else, use String with no text to ensure this delegate do not return a nil value.
+    
+    if ([obj isKindOfClass:[NSString class]])
+        attributeTitle = [[NSAttributedString alloc] initWithString:obj attributes:self.pickerTextAttributes];
+    
+    if ([obj respondsToSelector:@selector(description)])
+        attributeTitle = [[NSAttributedString alloc] initWithString:[obj performSelector:@selector(description)] attributes:self.pickerTextAttributes];
+    
+    if (attributeTitle == nil) {
+        attributeTitle = [[NSAttributedString alloc] initWithString:@"" attributes:self.pickerTextAttributes];
+    }
+    pickerLabel.attributedText = attributeTitle;
+    return pickerLabel;
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
