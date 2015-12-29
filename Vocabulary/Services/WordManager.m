@@ -101,12 +101,16 @@
             NSString *key2 = anExistingWord.key;
             if (![key1 isEqualToString:key2]) {
                 @autoreleasepool {
-                    float distance = [self compareString:key1 withString:key2];
-                    NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
-                        DDLogDebug(@"key1: %@, key2: %@",key1,key2);
+                    float similarity = [self similarityOfString:key1 toString:key2];
+                    if (similarity > 60) {
                         [anNewWord addSimilarWordsObject:anExistingWord];
                     }
+//                    float distance = [self compareString:key1 withString:key2];
+//                    NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
+//                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
+//                        DDLogDebug(@"key1: %@, key2: %@",key1,key2);
+//                        [anNewWord addSimilarWordsObject:anExistingWord];
+//                    }
                 }
             }
             finishedNum ++;
@@ -138,12 +142,17 @@
                 Word *w2 = allWords[j];
                 if (i != j) {
                     @autoreleasepool {
-                        float distance = [self compareString:w1.key withString:w2.key];
-                        NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
-                        if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
+                        float similarity = [self similarityOfString:w1.key toString:w2.key];
+                        if (similarity > 60) {
                             [w1 addSimilarWordsObject:w2];
                             [w2 addSimilarWordsObject:w1];
                         }
+//                        float distance = [self compareString:w1.key withString:w2.key];
+//                        NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
+//                        if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
+//                            [w1 addSimilarWordsObject:w2];
+//                            [w2 addSimilarWordsObject:w1];
+//                        }
                     }
                 }
             }
@@ -187,6 +196,20 @@
         });
     }];
     [self.queryOperationQueue addOperation:operation];
+}
+
+/**
+ Calculate the similarity.
+ 
+ @param ori  string1
+ @param dest string2
+ 
+ @return similarity in percentage
+ */
++ (float)similarityOfString:(NSString *)ori toString:(NSString *)dest {
+    unsigned long maxLen = MAX(ori.length, dest.length);
+    float editDistance = [self compareString:ori withString:dest];
+    return (editDistance / maxLen) * 100;
 }
 
 + (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString
