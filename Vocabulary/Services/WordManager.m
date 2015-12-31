@@ -207,9 +207,8 @@
  @return similarity in percentage
  */
 + (float)similarityOfString:(NSString *)ori toString:(NSString *)dest {
-    unsigned long maxLen = MAX(ori.length, dest.length);
     float editDistance = [self compareString:ori withString:dest];
-    return (editDistance / maxLen) * 100;
+    return (1 - (2 * editDistance / (ori.length + dest.length))) * 100;
 }
 
 + (float)compareString:(NSString *)originalString withString:(NSString *)comparisonString
