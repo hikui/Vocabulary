@@ -59,10 +59,6 @@
 		7F67A7DA1A47B6A40037F7F2 /* WordListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D61A47B6A40037F7F2 /* WordListManager.m */; };
 		7F67A7DB1A47B6A40037F7F2 /* WordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7D81A47B6A40037F7F2 /* WordManager.m */; };
 		7F67A7E51A47B7640037F7F2 /* HKVNavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */; };
-		7F67A7EA1A47EEF70037F7F2 /* DummyViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */; };
-		7F67A7ED1A47EF0B0037F7F2 /* DummyViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */; };
-		7F67A7F01A47EF1E0037F7F2 /* DummyViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */; };
-		7F67A7F31A47F3AA0037F7F2 /* TestBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */; };
 		7F67A7FB1A4800380037F7F2 /* HKVNavigationRouteConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F67A7FA1A4800380037F7F2 /* HKVNavigationRouteConfig.m */; };
 		7F68EEC91A26C73E00FB898F /* MagicalImportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE8F1A26C73E00FB898F /* MagicalImportFunctions.m */; };
 		7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F68EE911A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m */; };
@@ -145,10 +141,7 @@
 		A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */; };
 		A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
-		A4E645931A45830800FE5A4F /* Vocabulary_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E645921A45830800FE5A4F /* Vocabulary_Tests.m */; };
-		A4E6459A1A4583A000FE5A4F /* Exam_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E645991A4583A000FE5A4F /* Exam_Tests.m */; };
 		A4E6459D1A467D5B00FE5A4F /* VBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6459C1A467D5B00FE5A4F /* VBaseModel.m */; };
-		A4E6459F1A467F9C00FE5A4F /* Jsonify_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6459E1A467F9C00FE5A4F /* Jsonify_Tests.m */; };
 		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
 		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
 		EC2290091696B46700D7E0D8 /* splitline.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290071696B46700D7E0D8 /* splitline.png */; };
@@ -279,14 +272,6 @@
 		7F67A7D81A47B6A40037F7F2 /* WordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordManager.m; sourceTree = "<group>"; };
 		7F67A7E31A47B7640037F7F2 /* HKVNavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVNavigationManager.h; sourceTree = "<group>"; };
 		7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVNavigationManager.m; sourceTree = "<group>"; };
-		7F67A7E81A47EEF70037F7F2 /* DummyViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController1.h; sourceTree = "<group>"; };
-		7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController1.m; sourceTree = "<group>"; };
-		7F67A7EB1A47EF0B0037F7F2 /* DummyViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController2.h; sourceTree = "<group>"; };
-		7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController2.m; sourceTree = "<group>"; };
-		7F67A7EE1A47EF1E0037F7F2 /* DummyViewController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController3.h; sourceTree = "<group>"; };
-		7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController3.m; sourceTree = "<group>"; };
-		7F67A7F11A47F3AA0037F7F2 /* TestBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestBaseViewController.h; sourceTree = "<group>"; };
-		7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestBaseViewController.m; sourceTree = "<group>"; };
 		7F67A7F91A4800380037F7F2 /* HKVNavigationRouteConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKVNavigationRouteConfig.h; sourceTree = "<group>"; };
 		7F67A7FA1A4800380037F7F2 /* HKVNavigationRouteConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKVNavigationRouteConfig.m; sourceTree = "<group>"; };
 		7F68EE8E1A26C73E00FB898F /* MagicalImportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalImportFunctions.h; sourceTree = "<group>"; };
@@ -436,11 +421,8 @@
 		A4CD22C0181BD56F00FE29F7 /* nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "nav@2x.png"; path = "artwork/nav@2x.png"; sourceTree = "<group>"; };
 		A4E6458E1A45830800FE5A4F /* Vocabulary Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vocabulary Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4E645911A45830800FE5A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4E645921A45830800FE5A4F /* Vocabulary_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Vocabulary_Tests.m; sourceTree = "<group>"; };
-		A4E645991A4583A000FE5A4F /* Exam_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exam_Tests.m; sourceTree = "<group>"; };
 		A4E6459B1A467D5B00FE5A4F /* VBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBaseModel.h; sourceTree = "<group>"; };
 		A4E6459C1A467D5B00FE5A4F /* VBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseModel.m; sourceTree = "<group>"; };
-		A4E6459E1A467F9C00FE5A4F /* Jsonify_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jsonify_Tests.m; sourceTree = "<group>"; };
 		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -713,21 +695,6 @@
 				7F67A7D81A47B6A40037F7F2 /* WordManager.m */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		7F67A7F41A47F3CF0037F7F2 /* TestViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				7F67A7F11A47F3AA0037F7F2 /* TestBaseViewController.h */,
-				7F67A7F21A47F3AA0037F7F2 /* TestBaseViewController.m */,
-				7F67A7E81A47EEF70037F7F2 /* DummyViewController1.h */,
-				7F67A7E91A47EEF70037F7F2 /* DummyViewController1.m */,
-				7F67A7EB1A47EF0B0037F7F2 /* DummyViewController2.h */,
-				7F67A7EC1A47EF0B0037F7F2 /* DummyViewController2.m */,
-				7F67A7EE1A47EF1E0037F7F2 /* DummyViewController3.h */,
-				7F67A7EF1A47EF1E0037F7F2 /* DummyViewController3.m */,
-			);
-			name = TestViewControllers;
 			sourceTree = "<group>";
 		};
 		7F68EE8B1A26C73E00FB898F /* MagicalRecord */ = {
@@ -1016,10 +983,6 @@
 		A4E6458F1A45830800FE5A4F /* Vocabulary Tests */ = {
 			isa = PBXGroup;
 			children = (
-				7F67A7F41A47F3CF0037F7F2 /* TestViewControllers */,
-				A4E645991A4583A000FE5A4F /* Exam_Tests.m */,
-				A4E645921A45830800FE5A4F /* Vocabulary_Tests.m */,
-				A4E6459E1A467F9C00FE5A4F /* Jsonify_Tests.m */,
 				A4E645901A45830800FE5A4F /* Supporting Files */,
 			);
 			path = "Vocabulary Tests";
@@ -1369,13 +1332,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4E6459A1A4583A000FE5A4F /* Exam_Tests.m in Sources */,
-				7F67A7ED1A47EF0B0037F7F2 /* DummyViewController2.m in Sources */,
-				7F67A7F01A47EF1E0037F7F2 /* DummyViewController3.m in Sources */,
-				A4E6459F1A467F9C00FE5A4F /* Jsonify_Tests.m in Sources */,
-				7F67A7F31A47F3AA0037F7F2 /* TestBaseViewController.m in Sources */,
-				A4E645931A45830800FE5A4F /* Vocabulary_Tests.m in Sources */,
-				7F67A7EA1A47EEF70037F7F2 /* DummyViewController1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1482,6 +1438,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1513,6 +1470,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
