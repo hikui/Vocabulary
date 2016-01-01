@@ -40,51 +40,6 @@
     return _sharedObject;
 }
 
-//- (MKNetworkOperation*)requestContentOfWord:(NSString*)word
-//                        onCompletion:(CompleteBlockWithStr)completionBlock
-//                             onError:(MKNKErrorBlock)errorBlock
-//{
-//    MKNetworkOperation* op = [self operationWithPath:CIBA_URL(word)];
-//    [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
-//        NSData *jsonData = [completedOperation responseData];
-//        NSDictionary *resultDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
-//        if (resultDict == nil) {
-//            if (errorBlock) {
-//                errorBlock(nil);
-//            }
-//        }else{
-//            if (completionBlock) {
-//                completionBlock(resultDict);
-//            }
-//        }
-//
-//    } errorHandler:^(MKNetworkOperation* completedOperation, NSError* error) {
-//        if (errorBlock) {
-//            errorBlock(error);
-//        }
-//    }];
-//    [self enqueueOperation:op];
-//    return op;
-//}
-//
-//- (MKNetworkOperation*)requestPronWithURL:(NSString*)url
-//                         onCompletion:(CompleteBlockWithData)completionBlock
-//                              onError:(MKNKErrorBlock)errorBlock
-//{
-//    MKNetworkOperation* op = [[MKNetworkOperation alloc] initWithURLString:url params:nil httpMethod:@"GET"];
-//    [op addCompletionHandler:^(MKNetworkOperation* completedOperation) {
-//        NSData *data = [completedOperation responseData];
-//        if (completionBlock) {
-//            completionBlock(data);
-//        }
-//    } errorHandler:^(MKNetworkOperation* completedOperation, NSError* error) {
-//        if (errorBlock) {
-//            errorBlock(error);
-//        }
-//    }];
-//    [self enqueueOperation:op];
-//    return op;
-//}
 
 - (PMKPromise *)requestContentOfWord:(NSString*)word
                       outerOperation:(CibaNetworkOperation **)operation

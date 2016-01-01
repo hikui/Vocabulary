@@ -39,7 +39,6 @@
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
 @property (nonatomic, unsafe_unretained) BOOL shouldUpdateWordFamiliarity;
 
-//@property (nonatomic, strong) NSMutableSet *wordsWithNoInfoSet;
 @property (nonatomic, strong) NSMutableSet *networkOperationSet;
 
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
@@ -55,25 +54,6 @@
 @end
 
 @implementation ExamViewController
-
-//- (instancetype)initWithWordList:(WordList *)wordList
-//{
-//    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
-//    if (self) {
-//        _wordList = wordList;
-//        [self commonInit];
-//    }
-//    return self;
-//}
-//- (instancetype)initWithWordArray:(NSMutableArray *)wordArray
-//{
-//    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
-//    if (self) {
-//        _wordsArray = wordArray;
-//        [self commonInit];
-//    }
-//    return self;
-//}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -96,7 +76,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"评估";
+    self.navigationItem.title = @"评估";
     //adjust views
     _cursor1 = 0;
     _shouldUpdateWordFamiliarity = NO;
@@ -168,14 +148,9 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-//    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckNoPanning;
-}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckFullViewPanning;
     for (CibaNetworkOperation *operation in self.networkOperationSet) {
         [operation cancel];
     }
@@ -184,11 +159,6 @@
 - (BOOL)shouldAutorotate
 {
     return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

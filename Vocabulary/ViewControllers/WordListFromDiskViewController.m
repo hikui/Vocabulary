@@ -186,7 +186,6 @@
                         DDLogError(@"%@",[error localizedDescription]);
                     }
                     [hud hide:YES];
-//                    [((AppDelegate *)[UIApplication sharedApplication].delegate) refreshTodaysPlan];
                     [self dismissViewControllerAnimated:YES completion:nil];
                 });
             }];

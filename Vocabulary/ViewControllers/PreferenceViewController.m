@@ -57,20 +57,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"设置";
-    
-    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 40, 29);
-    
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//    
-//    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-//    [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
-    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem = menuBarButton;
+    self.navigationItem.title = @"设置";
     
     self.dayNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kDayNotificationTime];
     self.nightNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kNightNotificationTime];
@@ -204,7 +191,6 @@
                 controller.mailComposeDelegate = self;
                 [controller setSubject:@"词汇小助手反馈"];
                 [controller setToRecipients:@[@"hikuimiao@gmail.com"]];
-                //[controller setMessageBody:@"Hello there." isHTML:NO];
                 if (controller) {
                     [self presentViewController:controller animated:YES completion:nil];
                 }
@@ -216,10 +202,6 @@
     }
 }
 
-#pragma mark - actions
-//- (void)revealLeftSidebar:(id)sender {
-//    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-//}
 
 #pragma mark - private methods
 

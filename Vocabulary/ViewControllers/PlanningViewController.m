@@ -84,17 +84,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
-    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 40, 29);
-    
-    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem = menuBarButton;
-    
-    self.title = @"记词助手";
+    self.navigationItem.title = @"记词助手";
     
     //用于提示已经完成所有计划
     self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
@@ -163,9 +155,6 @@
 }
 
 #pragma mark - actions
-//- (void)revealLeftSidebar:(id)sender {
-//    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-//}
 
 - (void)refreshHintView
 {

@@ -43,18 +43,6 @@
 
 @implementation LearningBackboneViewController
 
-//
-//- (instancetype)initWithWords:(NSMutableArray *)words
-//{
-//    self = [super initWithNibName:@"LearningBackboneViewController" bundle:nil];
-//    if (self) {
-//        _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
-//        _words = [words mutableCopy];
-//        forward = true;
-//        firstAppear = YES;
-//    }
-//    return self;
-//}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,7 +62,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"浏览词汇";
+    self.navigationItem.title = @"浏览词汇";
     
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.view.backgroundColor = RGBA(227, 227, 227, 1);
@@ -96,7 +84,6 @@
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
         WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
         lvc.word = self.words[i];
-//        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:(self.words)[i]];
         if (lvc) {
             [self.learningViewControllerArray addObject:lvc];
         }

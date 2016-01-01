@@ -54,16 +54,6 @@
     return self;
 }
 
-//- (instancetype)initWithWord:(Word *)word
-//{
-//    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
-//    if (self) {
-//        _word = word;
-//        _shouldHideInfo = NO;
-//    }
-//    return self;
-//}
-
 
 - (void)viewDidLoad
 {
@@ -216,11 +206,7 @@
 
 - (IBAction)fullInfomation:(id)sender
 {
-//    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
     NSURL *url = [NSURL URLWithString:CIBA_URL([self.word.key hkv_stringByURLEncoding])];
-//    wvc.requestURL = url;
-//    //    [self presentModalViewController:wvc animated:YES];
-//    [self presentViewController:wvc animated:YES completion:nil];
     [self.navigationController.v_navigationManager commonPresentModalURL:url params:nil animate:YES];
 }
 

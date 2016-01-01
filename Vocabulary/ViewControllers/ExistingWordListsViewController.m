@@ -51,22 +51,11 @@
 {
     [super viewDidLoad];
     
-//    self.banner.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    CoreDataHelperV2 *helper = [CoreDataHelperV2 sharedInstance];
-//    self.managedObjectContext = helper.mainContext;
-    self.title = @"已有的列表";
+    self.navigationItem.title = @"已有的列表";
+
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.tableView.separatorColor = RGBA(210, 210, 210, 1);
     self.view.backgroundColor = RGBA(227, 227, 227, 1);
-    
-    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 40, 29);
-    
-    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem = menuBarButton;
     
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
@@ -81,12 +70,6 @@
     self.hintView.numberOfLines = 0;
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
-//    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-//    int num = [sectionInfo numberOfObjects];
-//    if (num == 0) {
-//        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"你还没有Word list哦" message:@"请先“增加word list”" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-//        [alert show];
-//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,10 +80,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    self.bannerFrame = CGRectMake(0, self.view.frame.size.height-50, 320, 50);
     [self refreshHintView];
-//    self.fetchedResultsController = nil;
-//    [self.tableView reloadData];
     [super viewWillAppear:animated];
 }
 
@@ -260,9 +240,6 @@
 
 
 #pragma mark - actions
-//- (void)revealLeftSidebar:(id)sender {
-//    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-//}
 
 - (void)editButtonItemPressed:(id)sender
 {

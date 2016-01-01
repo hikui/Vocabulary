@@ -54,8 +54,8 @@
 
 @interface HKVDefaultTableViewModel()
 
-@property (nonatomic, strong) NSMutableArray *sectionDataArray; //MutableArray<MutableArray>
-@property (nonatomic, strong) NSMutableArray *sectionConfigArray; //MutableArray<SectionConfig>
+@property (nonatomic, strong) NSMutableArray<NSMutableArray *> *sectionDataArray;
+@property (nonatomic, strong) NSMutableArray<NSMutableArray *> *sectionConfigArray;
 @property (nonatomic, strong) HKVTableViewSectionConfig *defaultSectionConfig;
 
 @end

@@ -59,21 +59,7 @@
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
-    if (self.topLevel) {
-        UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        menuButton.frame = CGRectMake(0, 0, 40, 29);
-        
-//        UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//
-        
-//        [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-        menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-//        [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
-        [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-        self.navigationItem.leftBarButtonItem = menuBarButton;
-    }else {
+    if (!self.topLevel) {
         [self showCustomBackButton];
     }
 }
@@ -119,11 +105,6 @@
 - (BOOL)shouldAutorotate
 {
     return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -235,9 +216,6 @@
 
 - (IBAction)btnAddWordOnPress:(id)sender
 {
-//    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
-//    [actions showInView:self.view];
-    
     InsertWordView *insertWordView = [InsertWordView newInstance];
     insertWordView.targetWordList = self.wordList;
     [insertWordView showWithResultBlock:^() {
@@ -245,36 +223,6 @@
         [self.tableView reloadData];
     }];
 }
-
-#pragma mark - alertview delegate
-
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-//    if ([buttonTitle isEqualToString:@"确定"]) {
-////        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-////        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
-//        Word *w = [Word MR_createEntity];
-//        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-//            w.key = [[alertView textFieldAtIndex:0]text];
-//            [w addWordListsObject:self.wordList];
-//        }];
-//        [self.wordArray addObject:w];
-//        [_tableView beginUpdates];
-//        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
-//        [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [_tableView endUpdates];
-//        
-//        //后台做索引
-//        [WordManager asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
-//        
-//    }
-//}
-
-#pragma mark - actions
-//- (void)revealLeftSidebar:(id)sender {
-//    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-//}
 
 #pragma mark - actionsheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -290,7 +238,6 @@
         }
         WordListFromDiskViewController *wfdvc = [[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
         wfdvc.wordList = self.wordList;
-//        [self presentModalViewController:wfdvc animated:YES];
         [self presentViewController:wfdvc animated:YES completion:nil];
     }
 }

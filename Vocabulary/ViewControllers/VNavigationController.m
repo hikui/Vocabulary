@@ -97,9 +97,7 @@
 
 - (instancetype)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
 {
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
     btn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
@@ -111,9 +109,7 @@
 
 - (instancetype)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action
 {
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [btn setImage:image forState:UIControlStateNormal];
     [btn sizeToFit];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];

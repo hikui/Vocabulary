@@ -80,15 +80,11 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[[DDFileLogger alloc] init]];
 
-//    LeftBarViewController* leftBarVC = [[LeftBarViewController alloc] initWithNibName:@"LeftBarViewController" bundle:nil];
-
-    //    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
     VNavigationController* planNav = [[VNavigationController alloc] init];
     VNavigationController* listNav = [[VNavigationController alloc] init];
     VNavigationController* addNav = [[VNavigationController alloc] init];
     VNavigationController* unfamiliarNav = [[VNavigationController alloc] init];
     VNavigationController* settingsNav = [[VNavigationController alloc] init];
-    
 
     configNavigationController(planNav);
     configNavigationController(listNav);
@@ -106,24 +102,18 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
                                                    params:nil];
     [settingsNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC
                                                  params:nil];
-    
+    planNav.tabBarItem.title = @"aaa";
+    listNav.tabBarItem.title = @"bbb";
+    addNav.tabBarItem.title = @"ccc";
+    unfamiliarNav.tabBarItem.title = @"ddd";
+    settingsNav.tabBarItem.title = @"eee";
     
     
     UITabBarController *tabbar = [[UITabBarController alloc]init];
     [tabbar setViewControllers:@[planNav,listNav,addNav,unfamiliarNav,settingsNav]];
     [tabbar setSelectedIndex:0];
     
-//    IIViewDeckController* viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
-//    viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
-//    viewDeckController.sizeMode = IIViewDeckViewSizeMode;
-//    if (IS_IPAD) {
-//        viewDeckController.leftSize = 300;
-//    }
-//    else {
-//        viewDeckController.leftSize = 140;
-//    }
-//    viewDeckController.delegate = self;
-//    self.viewDeckController = viewDeckController;
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];

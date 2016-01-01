@@ -21,18 +21,6 @@
 
 @implementation NoteViewController
 
-//- (instancetype)initWithWord:(Word *)word {
-//    self = [super init];
-//    if (self) {
-//        if (word.note) {
-//            _note = word.note;
-//        }else{
-//            _note = [Note MR_createEntity];
-//            word.note = _note;
-//        }
-//    }
-//    return self;
-//}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -48,7 +36,7 @@
         self.word.note = self.note;
     }
     
-    self.title = @"笔记";
+    self.navigationItem.title = @"笔记";
     
     self.view.backgroundColor = GlobalBackgroundColor;
     

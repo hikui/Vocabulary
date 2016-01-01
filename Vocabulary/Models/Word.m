@@ -55,11 +55,6 @@
     if (self.sentences.length != 0) {
         [jointStr appendFormat:@"%@\n",self.sentences];
     }
-//    if (self.similarWords.count == 0) {
-//        jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n%@%@",self.psEN,self.psUS,self.acceptation,self.sentences];
-//    }else{
-//        jointStr = [[NSMutableString alloc]initWithFormat:@"英[%@]\n美[%@]\n\n易混淆单词: %@\n\n%@%@",self.psEN,self.psUS,confusingWordsStr,self.acceptation,self.sentences];
-//    }
     
     [jointStr htmlUnescape];
     
