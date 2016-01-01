@@ -272,9 +272,9 @@
 //}
 
 #pragma mark - actions
-- (void)revealLeftSidebar:(id)sender {
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-}
+//- (void)revealLeftSidebar:(id)sender {
+//    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
+//}
 
 #pragma mark - actionsheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

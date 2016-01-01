@@ -1,5 +1,4 @@
 source 'https://github.com/CocoaPods/Specs.git'
-pod 'ViewDeck', '~> 2.4.1'
 pod 'MKNetworkKit', '~>0.87'
 pod 'MBProgressHUD'
 pod 'BButton'

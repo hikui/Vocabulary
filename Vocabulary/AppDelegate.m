@@ -24,7 +24,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LeftBarViewController.h"
 #import "PlanningViewController.h"
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
@@ -38,6 +37,19 @@ static BOOL isRunningTests(void)
     NSDictionary* environment = [[NSProcessInfo processInfo] environment];
     NSString* injectBundle = environment[@"XCInjectBundle"];
     return [[injectBundle pathExtension] isEqualToString:@"xctest"];
+}
+
+NS_INLINE void configNavigationController(UINavigationController *nav) {
+    [nav.v_navigationManager configRoute:^NSDictionary * {
+        return [HKVNavigationRouteConfig sharedInstance].route;
+    }];
+    
+    nav.v_navigationManager.onMatchFailureBlock = ^UIViewController * (HKVNavigationActionCommand * command)
+    {
+        VWebViewController* webViewController = [[VWebViewController alloc] initWithNibName:nil bundle:nil];
+        webViewController.requestURL = command.targetURL;
+        return webViewController;
+    };
 }
 
 @implementation AppDelegate
@@ -68,41 +80,52 @@ static BOOL isRunningTests(void)
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[[DDFileLogger alloc] init]];
 
-    LeftBarViewController* leftBarVC = [[LeftBarViewController alloc] initWithNibName:@"LeftBarViewController" bundle:nil];
+//    LeftBarViewController* leftBarVC = [[LeftBarViewController alloc] initWithNibName:@"LeftBarViewController" bundle:nil];
 
     //    PlanningViewController *pvc = [[PlanningViewController alloc]initWithNibName:@"PlanningViewController" bundle:nil];
-    VNavigationController* npvc = [[VNavigationController alloc] init];
+    VNavigationController* planNav = [[VNavigationController alloc] init];
+    VNavigationController* listNav = [[VNavigationController alloc] init];
+    VNavigationController* addNav = [[VNavigationController alloc] init];
+    VNavigationController* unfamiliarNav = [[VNavigationController alloc] init];
+    VNavigationController* settingsNav = [[VNavigationController alloc] init];
+    
 
-    // config HKVNavigationManager
-    npvc.v_navigationManager.navigationController = npvc;
-    [npvc.v_navigationManager configRoute:^NSDictionary * {
-        return [HKVNavigationRouteConfig sharedInstance].route;
-    }];
-
-    npvc.v_navigationManager.onMatchFailureBlock = ^UIViewController * (HKVNavigationActionCommand * command)
-    {
-        VWebViewController* webViewController = [[VWebViewController alloc] initWithNibName:nil bundle:nil];
-        webViewController.requestURL = command.targetURL;
-        return webViewController;
-    };
-
-    [npvc.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
-                                                       params:nil];
-
-    self.globalNavigationController = npvc;
-    IIViewDeckController* viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
-    viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
-    viewDeckController.sizeMode = IIViewDeckViewSizeMode;
-    if (IS_IPAD) {
-        viewDeckController.leftSize = 300;
-    }
-    else {
-        viewDeckController.leftSize = 140;
-    }
-    viewDeckController.delegate = self;
-    self.viewDeckController = viewDeckController;
+    configNavigationController(planNav);
+    configNavigationController(listNav);
+    configNavigationController(addNav);
+    configNavigationController(unfamiliarNav);
+    configNavigationController(settingsNav);
+    
+    [planNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
+                                             params:nil];
+    [listNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC
+                                             params:nil];
+    [addNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
+                                            params:nil];
+    [unfamiliarNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].wordListVC
+                                                   params:nil];
+    [settingsNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC
+                                                 params:nil];
+    
+    
+    
+    UITabBarController *tabbar = [[UITabBarController alloc]init];
+    [tabbar setViewControllers:@[planNav,listNav,addNav,unfamiliarNav,settingsNav]];
+    [tabbar setSelectedIndex:0];
+    
+//    IIViewDeckController* viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
+//    viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
+//    viewDeckController.sizeMode = IIViewDeckViewSizeMode;
+//    if (IS_IPAD) {
+//        viewDeckController.leftSize = 300;
+//    }
+//    else {
+//        viewDeckController.leftSize = 140;
+//    }
+//    viewDeckController.delegate = self;
+//    self.viewDeckController = viewDeckController;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = viewDeckController;
+    self.window.rootViewController = tabbar;
     [self.window makeKeyAndVisible];
     return YES;
 }

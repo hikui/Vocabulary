@@ -217,9 +217,9 @@
 }
 
 #pragma mark - actions
-- (void)revealLeftSidebar:(id)sender {
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-}
+//- (void)revealLeftSidebar:(id)sender {
+//    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
+//}
 
 #pragma mark - private methods
 

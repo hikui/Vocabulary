@@ -36,7 +36,6 @@
 		7F43F72B19F7A9A900672440 /* CreateWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */; };
 		7F43F72D19F7A9A900672440 /* ExistingWordListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */; };
 		7F43F72E19F7A9A900672440 /* LearningBackboneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */; };
-		7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */; };
 		7F43F73019F7A9A900672440 /* PlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E019F7A9A900672440 /* PlanningViewController.m */; };
 		7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E219F7A9A900672440 /* PreferenceViewController.m */; };
 		7F43F73419F7A9A900672440 /* VBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6E819F7A9A900672440 /* VBaseViewController.m */; };
@@ -236,8 +235,6 @@
 		7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ExistingWordListsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningBackboneViewController.h; sourceTree = "<group>"; };
 		7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LearningBackboneViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		7F43F6DD19F7A9A900672440 /* LeftBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftBarViewController.h; sourceTree = "<group>"; };
-		7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LeftBarViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7F43F6DF19F7A9A900672440 /* PlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningViewController.h; sourceTree = "<group>"; };
 		7F43F6E019F7A9A900672440 /* PlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PlanningViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7F43F6E119F7A9A900672440 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
@@ -648,8 +645,6 @@
 				7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */,
 				7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */,
 				7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */,
-				7F43F6DD19F7A9A900672440 /* LeftBarViewController.h */,
-				7F43F6DE19F7A9A900672440 /* LeftBarViewController.m */,
 				7F43F6DF19F7A9A900672440 /* PlanningViewController.h */,
 				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
 				7F43F6E119F7A9A900672440 /* PreferenceViewController.h */,
@@ -1310,7 +1305,6 @@
 				7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */,
 				7F68EED81A26C73E00FB898F /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				A489D70B1A066B720087C0AF /* Model.xcdatamodeld in Sources */,
-				7F43F72F19F7A9A900672440 /* LeftBarViewController.m in Sources */,
 				7F68EEDA1A26C73E00FB898F /* NSPersistentStore+MagicalRecord.m in Sources */,
 				7F68EEE21A26C73E00FB898F /* MagicalRecord.m in Sources */,
 				7F7CFCF91A43E1E9008251DB /* ExamTypeChoiceViewController.m in Sources */,

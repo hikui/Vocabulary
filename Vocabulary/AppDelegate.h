@@ -24,15 +24,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IIViewDeckController.h"
 #import "VNavigationController.h"
 
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,IIViewDeckControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) IIViewDeckController *viewDeckController;
 @property (strong, nonatomic) IBOutlet UIView *welcomeView;
-@property (strong, nonatomic) VNavigationController *globalNavigationController;
 
 @end

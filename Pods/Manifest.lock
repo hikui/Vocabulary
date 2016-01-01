@@ -16,7 +16,6 @@ PODS:
   - PromiseKit/Promise (1.6.0)
   - Reachability (3.1.1)
   - SZTextView (1.1.10)
-  - ViewDeck (2.4.1)
   - YAML-Framework (0.0.2):
     - LibYAML (~> 0.1.4)
 
@@ -28,7 +27,6 @@ DEPENDENCIES:
   - MKNetworkKit (~> 0.87)
   - PromiseKit/Promise
   - SZTextView (~> 1.1.10)
-  - ViewDeck (~> 2.4.1)
   - YAML-Framework (~> 0.0.2)
 
 SPEC CHECKSUMS:
@@ -41,7 +39,6 @@ SPEC CHECKSUMS:
   PromiseKit: 6be651503d4af22830b5313be993c5a0ef77bf77
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   SZTextView: c814e6dcb2303e3e79feb0fd27cf44d74e3c59a6
-  ViewDeck: e4c744cb5383cbae40cf286c6e7246df33962020
   YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b
 
 COCOAPODS: 0.39.0

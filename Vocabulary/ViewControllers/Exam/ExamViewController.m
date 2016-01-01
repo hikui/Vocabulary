@@ -27,8 +27,6 @@
 #import "ShowWrongWordsViewController.h"
 #import "ExamContentView.h"
 #import "CibaEngine.h"
-//#import "CibaXMLParser.h"
-#import "IIViewDeckController.h"
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "SimpleProgressBar.h"
@@ -172,12 +170,12 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckNoPanning;
+//    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckNoPanning;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckFullViewPanning;
+//    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckFullViewPanning;
     for (CibaNetworkOperation *operation in self.networkOperationSet) {
         [operation cancel];
     }
