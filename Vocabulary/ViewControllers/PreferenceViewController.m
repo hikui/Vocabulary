@@ -33,6 +33,8 @@
 
 @interface PreferenceViewController ()
 
+@property (nonatomic, strong) UITableView *tableView;
+
 - (void)notificationEnablerDidChange:(id)sender;
 - (void)soundEnablerDidChange:(id)sender;
 - (void)autoIndexEnablerDidChange:(id)sender;
@@ -45,11 +47,10 @@
 
 @implementation PreferenceViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _tableView = [[UITableView alloc]init];
     }
     return self;
 }
@@ -57,6 +58,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.frame = self.view.bounds;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.tableView];
     self.navigationItem.title = @"设置";
     
     self.dayNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kDayNotificationTime];

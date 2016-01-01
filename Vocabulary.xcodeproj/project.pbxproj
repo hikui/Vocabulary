@@ -144,6 +144,10 @@
 		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
 		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
 		A4F91F571C3621F800E37B1C /* UINavigationController+NavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F91F561C3621F800E37B1C /* UINavigationController+NavigationManager.m */; };
+		A4F91FB51C364EA200E37B1C /* UnfamiliarWordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F91FB41C364EA200E37B1C /* UnfamiliarWordListViewController.m */; };
+		A4F91FB81C3668D600E37B1C /* VRotatableButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F91FB71C3668D600E37B1C /* VRotatableButton.m */; };
+		A4F91FBB1C367AD700E37B1C /* ImportSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F91FBA1C367AD700E37B1C /* ImportSelectionView.m */; };
+		A4F91FBD1C367AE900E37B1C /* ImportSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F91FBC1C367AE900E37B1C /* ImportSelectionView.xib */; };
 		EC2290091696B46700D7E0D8 /* splitline.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290071696B46700D7E0D8 /* splitline.png */; };
 		EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290081696B46700D7E0D8 /* splitline@2x.png */; };
 		EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA716687AD3004887B4 /* libz.dylib */; };
@@ -425,6 +429,13 @@
 		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		A4F91F551C3621F800E37B1C /* UINavigationController+NavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+NavigationManager.h"; sourceTree = "<group>"; };
 		A4F91F561C3621F800E37B1C /* UINavigationController+NavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NavigationManager.m"; sourceTree = "<group>"; };
+		A4F91FB31C364EA200E37B1C /* UnfamiliarWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnfamiliarWordListViewController.h; sourceTree = "<group>"; };
+		A4F91FB41C364EA200E37B1C /* UnfamiliarWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnfamiliarWordListViewController.m; sourceTree = "<group>"; };
+		A4F91FB61C3668D600E37B1C /* VRotatableButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRotatableButton.h; sourceTree = "<group>"; };
+		A4F91FB71C3668D600E37B1C /* VRotatableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRotatableButton.m; sourceTree = "<group>"; };
+		A4F91FB91C367AD700E37B1C /* ImportSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportSelectionView.h; sourceTree = "<group>"; };
+		A4F91FBA1C367AD700E37B1C /* ImportSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSelectionView.m; sourceTree = "<group>"; };
+		A4F91FBC1C367AE900E37B1C /* ImportSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImportSelectionView.xib; sourceTree = "<group>"; };
 		D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC2290071696B46700D7E0D8 /* splitline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splitline.png; path = artwork/splitline.png; sourceTree = "<group>"; };
 		EC2290081696B46700D7E0D8 /* splitline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splitline@2x.png"; path = "artwork/splitline@2x.png"; sourceTree = "<group>"; };
@@ -511,6 +522,11 @@
 				7F18D0071A50F3080005CD07 /* InsertWordView.h */,
 				7F18D0081A50F3080005CD07 /* InsertWordView.m */,
 				7F18D00A1A50F3210005CD07 /* InsertWordView.xib */,
+				A4F91FB61C3668D600E37B1C /* VRotatableButton.h */,
+				A4F91FB71C3668D600E37B1C /* VRotatableButton.m */,
+				A4F91FB91C367AD700E37B1C /* ImportSelectionView.h */,
+				A4F91FBA1C367AD700E37B1C /* ImportSelectionView.m */,
+				A4F91FBC1C367AE900E37B1C /* ImportSelectionView.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -655,6 +671,8 @@
 				7F43F6F019F7A9A900672440 /* WordListFromDiskViewController.m */,
 				7F43F6F119F7A9A900672440 /* WordListViewController.h */,
 				7F43F6F219F7A9A900672440 /* WordListViewController.m */,
+				A4F91FB31C364EA200E37B1C /* UnfamiliarWordListViewController.h */,
+				A4F91FB41C364EA200E37B1C /* UnfamiliarWordListViewController.m */,
 				A489D7191A0670290087C0AF /* NoteViewController.h */,
 				A489D71A1A0670290087C0AF /* NoteViewController.m */,
 				7F7CFCDB1A41679C008251DB /* EditWordDetailViewController.h */,
@@ -1122,6 +1140,7 @@
 				7F7CFCDF1A41679C008251DB /* EditWordDetailViewController.xib in Resources */,
 				7F18D0061A50EFB30005CD07 /* ExamViewController.xib in Resources */,
 				A46A8002163BC7CA00DF4696 /* whiteButton@2x.png in Resources */,
+				A4F91FBD1C367AE900E37B1C /* ImportSelectionView.xib in Resources */,
 				A46A8003163BC7CA00DF4696 /* whiteButtonHighlight.png in Resources */,
 				A46A8004163BC7CA00DF4696 /* whiteButtonHighlight@2x.png in Resources */,
 				A46A8009163BCCE700DF4696 /* orangeButton.png in Resources */,
@@ -1276,7 +1295,9 @@
 				7F68EEDD1A26C73E00FB898F /* MagicalRecord+ErrorHandling.m in Sources */,
 				7F68EECB1A26C73E00FB898F /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				A46BDECF1A57D21900664F0D /* Guide.m in Sources */,
+				A4F91FB81C3668D600E37B1C /* VRotatableButton.m in Sources */,
 				7F68EEE11A26C73E00FB898F /* MagicalRecord+iCloud.m in Sources */,
+				A4F91FBB1C367AD700E37B1C /* ImportSelectionView.m in Sources */,
 				7F68EEDB1A26C73E00FB898F /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
 				7F68EEDF1A26C73E00FB898F /* MagicalRecord+Setup.m in Sources */,
 				A489D7151A066DAF0087C0AF /* Word.m in Sources */,
@@ -1322,6 +1343,7 @@
 				A48BE2B91A0604D600FCEE1D /* Plan.m in Sources */,
 				7F67A7D91A47B6A40037F7F2 /* PlanMaker.m in Sources */,
 				7F68EED91A26C73E00FB898F /* NSManagedObjectModel+MagicalRecord.m in Sources */,
+				A4F91FB51C364EA200E37B1C /* UnfamiliarWordListViewController.m in Sources */,
 				7F6BE4E119F9E6C5006606E6 /* NSString+VAdditions.m in Sources */,
 				A46BDED91A57D32C00664F0D /* HKVDefaultTableViewModel.m in Sources */,
 				7F43F71A19F7A9A900672440 /* NSMutableString+HTMLEscape.m in Sources */,

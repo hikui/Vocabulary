@@ -80,6 +80,7 @@
         self.beginStudyButton.enabled = NO;
         self.beginTestButton.enabled = NO;
     }
+    self.navigationItem.title = self.wordList.title;
     [self.tableView reloadData];
 }
 

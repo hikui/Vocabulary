@@ -31,6 +31,11 @@
 #import "HKVNavigationManager.h"
 #import "VWebViewController.h"
 #import "UMOnlineConfig.h"
+#import "Masonry.h"
+#import "VRotatableButton.h"
+#import "ImportSelectionView.h"
+#import "WordListFromDiskViewController.h"
+#import "CreateWordListViewController.h"
 
 static BOOL isRunningTests(void)
 {
@@ -51,6 +56,16 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
         return webViewController;
     };
 }
+
+@interface AppDelegate()
+
+@property (strong) UIViewController *placeholderVC; // placeholder for "add" tab
+@property (strong) UITabBarController *tabbarController;
+
+@property (strong) ImportSelectionView *importSelectionView;
+@property (strong) VRotatableButton *addButton;
+
+@end
 
 @implementation AppDelegate
 
@@ -79,16 +94,16 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     //Lumberjack
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[[DDFileLogger alloc] init]];
+    
+    self.placeholderVC = [[UIViewController alloc]init];
 
     VNavigationController* planNav = [[VNavigationController alloc] init];
     VNavigationController* listNav = [[VNavigationController alloc] init];
-    VNavigationController* addNav = [[VNavigationController alloc] init];
     VNavigationController* unfamiliarNav = [[VNavigationController alloc] init];
     VNavigationController* settingsNav = [[VNavigationController alloc] init];
 
     configNavigationController(planNav);
     configNavigationController(listNav);
-    configNavigationController(addNav);
     configNavigationController(unfamiliarNav);
     configNavigationController(settingsNav);
     
@@ -96,28 +111,72 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
                                              params:nil];
     [listNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC
                                              params:nil];
-    [addNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
-                                            params:nil];
-    [unfamiliarNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].wordListVC
+    [unfamiliarNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].unfamiliarWordListVC
                                                    params:nil];
     [settingsNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC
                                                  params:nil];
-    planNav.tabBarItem.title = @"aaa";
-    listNav.tabBarItem.title = @"bbb";
-    addNav.tabBarItem.title = @"ccc";
-    unfamiliarNav.tabBarItem.title = @"ddd";
-    settingsNav.tabBarItem.title = @"eee";
+    planNav.tabBarItem.title = @"今日计划";
+    listNav.tabBarItem.title = @"词汇列表";
+    self.placeholderVC.tabBarItem.title = @"";
+    unfamiliarNav.tabBarItem.title = @"生疏词汇";
+    settingsNav.tabBarItem.title = @"设置";
     
     
-    UITabBarController *tabbar = [[UITabBarController alloc]init];
-    [tabbar setViewControllers:@[planNav,listNav,addNav,unfamiliarNav,settingsNav]];
-    [tabbar setSelectedIndex:0];
+    UITabBarController *tabbarController = [[UITabBarController alloc]init];
+    tabbarController.delegate = self;
+    [tabbarController setViewControllers:@[planNav,listNav,self.placeholderVC,unfamiliarNav,settingsNav]];
+    [tabbarController setSelectedIndex:0];
+    tabbarController.tabBar.barTintColor = [UIColor whiteColor];
+    self.tabbarController = tabbarController;
     
-
+    VRotatableButton *addButton = [[VRotatableButton alloc]initWithFrame:CGRectMake(0, 0, 78, 48)];
+    addButton.rotatableImageView.image = [UIImage imageNamed:@"TabbarAddButtonIcon"];
+    [tabbarController.view addSubview:addButton];
+    addButton.center = tabbarController.tabBar.center;
+    addButton.backgroundColor = [UIColor clearColor];
+    [addButton addTarget:self action:@selector(addButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
+    self.addButton = addButton;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = tabbar;
+    self.window.rootViewController = tabbarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)addButtonOnTouch:(VRotatableButton *)sender {
+    if (self.importSelectionView == nil) {
+        self.importSelectionView = [ImportSelectionView importSelectionView];
+        __weak typeof(self) weakSelf = self;
+        self.importSelectionView.menuDidHideBlock = ^() {
+            weakSelf.addButton.active = NO;
+        };
+        [self.importSelectionView.importManuallyButton addTarget:self action:@selector(importManuallyButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
+        [self.importSelectionView.importFromiTunesButton addTarget:self action:@selector(importFromiTunesButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    if (sender.active) {
+        [self.tabbarController.view insertSubview:self.importSelectionView belowSubview:self.tabbarController.tabBar];
+        [self.importSelectionView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.bottom.mas_equalTo(0);
+        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.importSelectionView showMenu];
+        });
+    } else {
+        [self.importSelectionView hideMenu];
+    }
+}
+
+- (void)importFromiTunesButtonOnTouch:(id)sender {
+    WordListFromDiskViewController *wvc = [[WordListFromDiskViewController alloc]initWithNibName:nil bundle:nil];
+    [self.importSelectionView hideMenu];
+    [self.window.rootViewController presentViewController:wvc animated:YES completion:nil];
+    
+}
+
+- (void)importManuallyButtonOnTouch:(id)sender {
+    CreateWordListViewController *cvc = [[CreateWordListViewController alloc]initWithNibName:nil bundle:nil];
+    [self.importSelectionView hideMenu];
+    [self.window.rootViewController presentViewController:cvc animated:YES completion:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application
@@ -170,6 +229,14 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
+}
+
+#pragma mark - TabBarController delegate
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if (viewController == self.placeholderVC) {
+        return NO;
+    }
+    return YES;
 }
 
 @end
