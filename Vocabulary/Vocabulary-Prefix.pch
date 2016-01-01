@@ -29,5 +29,6 @@ static int ddLogLevel = DDLogLevelOff;
     #import "common.h"
     #import "VBaseViewController.h"
     #import "HKVCategories.h"
+    #import "UINavigationController+NavigationManager.h"
 #endif
 

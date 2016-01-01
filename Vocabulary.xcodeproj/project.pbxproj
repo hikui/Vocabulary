@@ -144,6 +144,7 @@
 		A4E6459D1A467D5B00FE5A4F /* VBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E6459C1A467D5B00FE5A4F /* VBaseModel.m */; };
 		A4F6CDFD166A15D900BC2B17 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */; };
 		A4F6CDFF166A15E400BC2B17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */; };
+		A4F91F571C3621F800E37B1C /* UINavigationController+NavigationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A4F91F561C3621F800E37B1C /* UINavigationController+NavigationManager.m */; };
 		EC2290091696B46700D7E0D8 /* splitline.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290071696B46700D7E0D8 /* splitline.png */; };
 		EC22900A1696B46700D7E0D8 /* splitline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC2290081696B46700D7E0D8 /* splitline@2x.png */; };
 		EC4BCEA816687AD3004887B4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4BCEA716687AD3004887B4 /* libz.dylib */; };
@@ -425,6 +426,8 @@
 		A4E6459C1A467D5B00FE5A4F /* VBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBaseModel.m; sourceTree = "<group>"; };
 		A4F6CDFC166A15D900BC2B17 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A4F6CDFE166A15E400BC2B17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		A4F91F551C3621F800E37B1C /* UINavigationController+NavigationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+NavigationManager.h"; sourceTree = "<group>"; };
+		A4F91F561C3621F800E37B1C /* UINavigationController+NavigationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NavigationManager.m"; sourceTree = "<group>"; };
 		D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC2290071696B46700D7E0D8 /* splitline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splitline.png; path = artwork/splitline.png; sourceTree = "<group>"; };
 		EC2290081696B46700D7E0D8 /* splitline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splitline@2x.png"; path = "artwork/splitline@2x.png"; sourceTree = "<group>"; };
@@ -607,6 +610,8 @@
 				A40EAD531A550A4A00181ED6 /* UIView+VAdditions.h */,
 				A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */,
 				A40EAD561A5537E400181ED6 /* HKVCategories.h */,
+				A4F91F551C3621F800E37B1C /* UINavigationController+NavigationManager.h */,
+				A4F91F561C3621F800E37B1C /* UINavigationController+NavigationManager.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1313,6 +1318,7 @@
 				7F43F73919F7A9A900672440 /* WordListViewController.m in Sources */,
 				A489D71E1A0674340087C0AF /* NoteAttatchment.m in Sources */,
 				A40EAD551A550A4A00181ED6 /* UIView+VAdditions.m in Sources */,
+				A4F91F571C3621F800E37B1C /* UINavigationController+NavigationManager.m in Sources */,
 				A489D70F1A066CFB0087C0AF /* Note.m in Sources */,
 				7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */,
 				7F68EED21A26C73E00FB898F /* NSManagedObject+MagicalFinders.m in Sources */,
