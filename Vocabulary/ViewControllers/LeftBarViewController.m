@@ -151,6 +151,8 @@
 
 - (void)tableViewModel:(HKVDefaultTableViewModel *)model didSelectRowData:(id)rowData atIndexPath:(NSIndexPath *)indexPath
 {
+    HKVNavigationManager *navigationManager = ((AppDelegate *)[UIApplication sharedApplication].delegate).globalNavigationController.v_navigationManager;
+    
     // [@"今日学习计划",@"添加词汇列表",@"已有词汇列表",@"低熟悉度词汇",@"设置"]]
     if (model == self.menuTableModel) {
         NSString *menuTitle = (NSString *)rowData;
@@ -160,8 +162,8 @@
         }
         
         if ([menuTitle isEqualToString:@"今日学习计划"]) {
-            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PlanningViewController class]]) {
-                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC params:nil];
+            if (![[navigationManager.navigationController.viewControllers lastObject] isMemberOfClass:[PlanningViewController class]]) {
+                [navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC params:nil];
             }
         } else if ([menuTitle isEqualToString:@"添加词汇列表"]) {
             [model.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -174,22 +176,22 @@
             UITableViewCell *cell = [model.tableView cellForRowAtIndexPath:indexPath];
             [actionSheet showFromRect:CGRectMake(0, 0, 300, cell.bounds.size.height) inView:cell animated:YES];
         } else if ([menuTitle isEqualToString:@"已有词汇列表"]) {
-            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[ExistingWordListsViewController class]]) {
-                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC params:nil];
+            if (![[navigationManager .navigationController.viewControllers lastObject] isMemberOfClass:[ExistingWordListsViewController class]]) {
+                [navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC params:nil];
             }
         } else if ([menuTitle isEqualToString:@"低熟悉度词汇"]) {
-            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[WordListViewController class]]) {
+            if (![[navigationManager .navigationController.viewControllers lastObject] isMemberOfClass:[WordListViewController class]]) {
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(lastVIewDate != nil AND ((familiarity <= 5) OR (familiarity <10 AND (NONE wordLists.effectiveCount<6))))"];
                 NSArray *result = [Word MR_findAllWithPredicate:predicate];
                 
                 NSMutableArray *mResult = [[NSMutableArray alloc]initWithArray:result];
                 
-                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:@{@"title":@"低熟悉度词汇",@"topLevel":@(YES),@"wordArray":mResult}];
+                [navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:@{@"title":@"低熟悉度词汇",@"topLevel":@(YES),@"wordArray":mResult}];
                 
             }
         } else if ([menuTitle isEqualToString:@"设置"]) {
-            if (![[[HKVNavigationManager sharedInstance].navigationController.viewControllers lastObject] isMemberOfClass:[PreferenceViewController class]]) {
-                [[HKVNavigationManager sharedInstance]commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC params:nil];
+            if (![[navigationManager .navigationController.viewControllers lastObject] isMemberOfClass:[PreferenceViewController class]]) {
+                [navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC params:nil];
                 
             }
         }

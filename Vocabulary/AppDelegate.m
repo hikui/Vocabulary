@@ -74,21 +74,22 @@ static BOOL isRunningTests(void)
     VNavigationController* npvc = [[VNavigationController alloc] init];
 
     // config HKVNavigationManager
-    [HKVNavigationManager sharedInstance].navigationController = npvc;
-    [[HKVNavigationManager sharedInstance] configRoute:^NSDictionary * {
+    npvc.v_navigationManager.navigationController = npvc;
+    [npvc.v_navigationManager configRoute:^NSDictionary * {
         return [HKVNavigationRouteConfig sharedInstance].route;
     }];
 
-    [HKVNavigationManager sharedInstance].onMatchFailureBlock = ^UIViewController * (HKVNavigationActionCommand * command)
+    npvc.v_navigationManager.onMatchFailureBlock = ^UIViewController * (HKVNavigationActionCommand * command)
     {
         VWebViewController* webViewController = [[VWebViewController alloc] initWithNibName:nil bundle:nil];
         webViewController.requestURL = command.targetURL;
         return webViewController;
     };
 
-    [[HKVNavigationManager sharedInstance] commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
+    [npvc.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
                                                        params:nil];
 
+    self.globalNavigationController = npvc;
     IIViewDeckController* viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:npvc leftViewController:leftBarVC rightViewController:nil];
     viewDeckController.centerhiddenInteractivity = IIViewDeckCenterHiddenNotUserInteractiveWithTapToClose;
     viewDeckController.sizeMode = IIViewDeckViewSizeMode;

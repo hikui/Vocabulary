@@ -59,7 +59,7 @@
 }
 
 - (void)back {
-    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
+    [self.navigationController.v_navigationManager commonPopAnimated:YES];
 }
 
 - (BOOL)isModal {

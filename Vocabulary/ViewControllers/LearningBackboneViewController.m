@@ -250,12 +250,12 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 }
 
 - (void)noteButtonOnClick {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.currentShownViewController.word} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.currentShownViewController.word} animate:YES];
 }
 
 - (void)btnManuallyInfoOnClick:(id)sender
 {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.currentShownViewController.word} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.currentShownViewController.word} animate:YES];
 }
 
 @end

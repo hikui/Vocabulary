@@ -172,7 +172,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:@{@"wordList":object} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:@{@"wordList":object} animate:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

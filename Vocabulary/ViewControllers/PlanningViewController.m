@@ -159,7 +159,7 @@
 - (void)tableViewModel:(HKVDefaultTableViewModel *)model didSelectRowData:(WordList *)wl atIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *params = nil;
     params = @{@"wordList":wl};
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
 }
 
 #pragma mark - actions
