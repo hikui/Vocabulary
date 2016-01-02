@@ -45,7 +45,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -81,6 +81,7 @@
         self.beginTestButton.enabled = NO;
     }
     self.navigationItem.title = self.wordList.title;
+    [self.tabBarController.navigationItem copyFrom:self.navigationItem];
     [self.tableView reloadData];
 }
 

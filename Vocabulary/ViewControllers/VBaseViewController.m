@@ -39,6 +39,11 @@
     _maskLayer.backgroundColor = RGBA(0, 0, 0, 0.5).CGColor;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tabBarController.navigationItem copyFrom:self.navigationItem];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

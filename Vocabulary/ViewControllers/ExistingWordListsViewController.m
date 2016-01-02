@@ -52,7 +52,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"已有的列表";
-
+    
     self.tableView.backgroundColor = RGBA(227, 227, 227, 1);
     self.tableView.separatorColor = RGBA(210, 210, 210, 1);
     self.view.backgroundColor = RGBA(227, 227, 227, 1);

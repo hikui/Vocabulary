@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HKVNavigationManager.h"
 #import "HKVNavigationRouteConfig.h"
+#import "UINavigationItem+Copying.h"
 @interface VBaseViewController : UIViewController
 
 /**

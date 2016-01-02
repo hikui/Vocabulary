@@ -32,4 +32,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) IBOutlet UIView *welcomeView;
 
+@property (strong, nonatomic) VNavigationController *globalNavigationController;
+
 @end

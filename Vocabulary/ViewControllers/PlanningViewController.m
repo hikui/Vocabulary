@@ -84,9 +84,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
-    self.navigationItem.title = @"记词助手";
     
     //用于提示已经完成所有计划
     self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];

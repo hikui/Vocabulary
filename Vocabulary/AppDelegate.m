@@ -36,6 +36,8 @@
 #import "ImportSelectionView.h"
 #import "WordListFromDiskViewController.h"
 #import "CreateWordListViewController.h"
+#import "UnfamiliarWordListViewController.h"
+#import "PreferenceViewController.h"
 
 static BOOL isRunningTests(void)
 {
@@ -95,36 +97,24 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [DDLog addLogger:[[DDFileLogger alloc] init]];
     
+    // tabbar controller
     self.placeholderVC = [[UIViewController alloc]init];
-
-    VNavigationController* planNav = [[VNavigationController alloc] init];
-    VNavigationController* listNav = [[VNavigationController alloc] init];
-    VNavigationController* unfamiliarNav = [[VNavigationController alloc] init];
-    VNavigationController* settingsNav = [[VNavigationController alloc] init];
-
-    configNavigationController(planNav);
-    configNavigationController(listNav);
-    configNavigationController(unfamiliarNav);
-    configNavigationController(settingsNav);
     
-    [planNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].planningVC
-                                             params:nil];
-    [listNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].existingWordsListsVC
-                                             params:nil];
-    [unfamiliarNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].unfamiliarWordListVC
-                                                   params:nil];
-    [settingsNav.v_navigationManager commonResetRootURL:[HKVNavigationRouteConfig sharedInstance].PreferenceVC
-                                                 params:nil];
-    planNav.tabBarItem.title = @"今日计划";
-    listNav.tabBarItem.title = @"词汇列表";
+    PlanningViewController *planVC = [[PlanningViewController alloc]initWithNibName:nil bundle:nil];
+    ExistingWordListsViewController *eVC = [[ExistingWordListsViewController alloc]initWithNibName:nil bundle:nil];
+    UnfamiliarWordListViewController *uVC = [[UnfamiliarWordListViewController alloc]initWithNibName:NSStringFromClass([WordListViewController class]) bundle:nil];
+    PreferenceViewController *pvc = [[PreferenceViewController alloc]initWithNibName:nil bundle:nil];
+    
+    planVC.tabBarItem.title = @"今日计划";
+    eVC.tabBarItem.title = @"词汇列表";
     self.placeholderVC.tabBarItem.title = @"";
-    unfamiliarNav.tabBarItem.title = @"生疏词汇";
-    settingsNav.tabBarItem.title = @"设置";
+    uVC.tabBarItem.title = @"生疏词汇";
+    pvc.tabBarItem.title = @"设置";
     
     
     UITabBarController *tabbarController = [[UITabBarController alloc]init];
     tabbarController.delegate = self;
-    [tabbarController setViewControllers:@[planNav,listNav,self.placeholderVC,unfamiliarNav,settingsNav]];
+    [tabbarController setViewControllers:@[planVC,eVC,self.placeholderVC,uVC,pvc]];
     [tabbarController setSelectedIndex:0];
     tabbarController.tabBar.barTintColor = [UIColor whiteColor];
     self.tabbarController = tabbarController;
@@ -134,10 +124,16 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     [tabbarController.view addSubview:addButton];
     addButton.center = tabbarController.tabBar.center;
     addButton.backgroundColor = [UIColor clearColor];
+    addButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [addButton addTarget:self action:@selector(addButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
     self.addButton = addButton;
+    
+    VNavigationController *globalNavigationController = [[VNavigationController alloc]initWithRootViewController:tabbarController];
+//    [HKVNavigationManager sharedInstance].navigationController = globalNavigationController;
+//    self.globalNavigationController = globalNavigationController;
+    configNavigationController(globalNavigationController);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = tabbarController;
+    self.window.rootViewController = globalNavigationController;
     [self.window makeKeyAndVisible];
     return YES;
 }

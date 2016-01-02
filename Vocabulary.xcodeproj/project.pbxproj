@@ -95,6 +95,7 @@
 		7F97FB051A490D8C000F0797 /* VImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */; };
 		7F97FB061A490D8C000F0797 /* VImagePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */; };
 		7FC476C719E8CC1600980F20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FC476C619E8CC1600980F20 /* Images.xcassets */; };
+		A40A42191C377FAB00B795E0 /* UINavigationItem+Copying.m in Sources */ = {isa = PBXBuildFile; fileRef = A40A42181C377FAB00B795E0 /* UINavigationItem+Copying.m */; };
 		A40EAD551A550A4A00181ED6 /* UIView+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */; };
 		A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4B1630296800DF4696 /* UIKit.framework */; };
 		A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46A7E4D1630296800DF4696 /* Foundation.framework */; };
@@ -350,6 +351,8 @@
 		7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VImagePickerViewController.m; sourceTree = "<group>"; };
 		7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VImagePickerViewController.xib; sourceTree = "<group>"; };
 		7FC476C619E8CC1600980F20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A40A42171C377FAB00B795E0 /* UINavigationItem+Copying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+Copying.h"; sourceTree = "<group>"; };
+		A40A42181C377FAB00B795E0 /* UINavigationItem+Copying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+Copying.m"; sourceTree = "<group>"; };
 		A40EAD531A550A4A00181ED6 /* UIView+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+VAdditions.h"; sourceTree = "<group>"; };
 		A40EAD541A550A4A00181ED6 /* UIView+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+VAdditions.m"; sourceTree = "<group>"; };
 		A40EAD561A5537E400181ED6 /* HKVCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HKVCategories.h; sourceTree = "<group>"; };
@@ -625,6 +628,8 @@
 				A40EAD561A5537E400181ED6 /* HKVCategories.h */,
 				A4F91F551C3621F800E37B1C /* UINavigationController+NavigationManager.h */,
 				A4F91F561C3621F800E37B1C /* UINavigationController+NavigationManager.m */,
+				A40A42171C377FAB00B795E0 /* UINavigationItem+Copying.h */,
+				A40A42181C377FAB00B795E0 /* UINavigationItem+Copying.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1304,6 +1309,7 @@
 				7F43F71C19F7A9A900672440 /* UIToolbar+VToolBar.m in Sources */,
 				7F43F70D19F7A9A900672440 /* VGradientView.m in Sources */,
 				7F68EEC91A26C73E00FB898F /* MagicalImportFunctions.m in Sources */,
+				A40A42191C377FAB00B795E0 /* UINavigationItem+Copying.m in Sources */,
 				7F68EED61A26C73E00FB898F /* NSManagedObjectContext+MagicalRecord.m in Sources */,
 				7F43F71719F7A9A900672440 /* CibaEngine.m in Sources */,
 				7F68EED11A26C73E00FB898F /* NSManagedObject+MagicalDataImport.m in Sources */,
