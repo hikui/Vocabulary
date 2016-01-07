@@ -31,6 +31,9 @@
 #import "VNavigationController.h"
 #import "SimpleProgressBar.h"
 #import "PlanMaker.h"
+#import "Masonry.h"
+
+static CGFloat NotificationViewHeight = 48;
 
 @interface ExamViewController ()
 
@@ -81,9 +84,15 @@
     _cursor1 = 0;
     _shouldUpdateWordFamiliarity = NO;
 
-    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
-    self.roundNotificatonView.center = center;
+//    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
+//    self.roundNotificatonView.center = center;
     [self.view addSubview:self.roundNotificatonView];
+    [self.roundNotificatonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).with.offset(-NotificationViewHeight);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@(NotificationViewHeight));
+    }];
     
     if (self.wordList != nil) {
         NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
@@ -321,14 +330,27 @@
         //显示提示
         [self.view bringSubviewToFront:self.roundNotificatonView];
         [UIView animateWithDuration:0.5 animations:^{
-            self.roundNotificatonView.transform = CGAffineTransformMakeTranslation(0, 0-self.roundNotificatonView.frame.origin.y);
+            [self.roundNotificatonView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view.mas_top).with.offset(0);
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.height.equalTo(@(NotificationViewHeight));
+            }];
+            [self.roundNotificatonView layoutIfNeeded];
         } completion:^(BOOL finished){
             if (finished) {
                 [UIView animateWithDuration:0.5 delay:3 options:UIViewAnimationOptionCurveLinear animations:^{
-                    self.roundNotificatonView.transform = CGAffineTransformMakeTranslation(0,0);
+                    [self.roundNotificatonView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(self.view.mas_top).with.offset(-NotificationViewHeight);
+                        make.left.equalTo(self.view.mas_left);
+                        make.right.equalTo(self.view.mas_right);
+                        make.height.equalTo(@(NotificationViewHeight));
+                    }];
+                    [self.roundNotificatonView layoutIfNeeded];
                 } completion:nil];
             }
         }];
+        
         
         //根据权值算法排序
         [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
