@@ -34,6 +34,7 @@
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
 #import "InsertWordView.h"
+#import "WordListCell.h"
 
 @interface WordListViewController ()
 
@@ -62,6 +63,7 @@
     if (!self.topLevel) {
 //        [self showCustomBackButton];
     }
+    [self.tableView registerNib:[UINib nibWithNibName:@"WordListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WordListCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,23 +129,31 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"WordListCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//    }
+//    Word *w = (self.wordArray)[indexPath.row];
+//    cell.textLabel.text = w.key;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
+//    //已学习过的但未完成艾宾浩斯学习的单词列表中熟悉度<=5的单词，或者已完成艾宾浩斯学习的单词列表中，熟悉度<10的单词，标记红色。
+//    //标记结果应与“低熟悉度词汇”一致
+//    if ((self.wordList != nil && [self.wordList.effectiveCount intValue]>0  && [w.familiarity intValue]<= 5) || ([self.wordList.effectiveCount intValue] >=6 && [w.familiarity intValue]<10)) {
+//        cell.textLabel.textColor = [UIColor redColor];
+//    }else{
+//        cell.textLabel.textColor = [UIColor blackColor];
+//    }
+    WordListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Word *w = (self.wordArray)[indexPath.row];
-    cell.textLabel.text = w.key;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
-    //已学习过的但未完成艾宾浩斯学习的单词列表中熟悉度<=5的单词，或者已完成艾宾浩斯学习的单词列表中，熟悉度<10的单词，标记红色。
-    //标记结果应与“低熟悉度词汇”一致
-    if ((self.wordList != nil && [self.wordList.effectiveCount intValue]>0  && [w.familiarity intValue]<= 5) || ([self.wordList.effectiveCount intValue] >=6 && [w.familiarity intValue]<10)) {
-        cell.textLabel.textColor = [UIColor redColor];
-    }else{
-        cell.textLabel.textColor = [UIColor blackColor];
-    }
+    cell.word = w.key;
+    cell.familiarity = (int)(roundf([w.familiarity intValue]/2.0));
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 46;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -219,6 +229,7 @@
 - (IBAction)btnAddWordOnPress:(id)sender
 {
     InsertWordView *insertWordView = [InsertWordView newInstance];
+    insertWordView.frame = self.view.bounds;
     insertWordView.targetWordList = self.wordList;
     [insertWordView showWithResultBlock:^() {
         [self updateWordArray];
