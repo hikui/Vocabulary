@@ -140,6 +140,7 @@
 		A48DCDA0169C57350069FEF7 /* CellSeparator.png in Resources */ = {isa = PBXBuildFile; fileRef = A48DCD9F169C57350069FEF7 /* CellSeparator.png */; };
 		A49B7C021C3E53C800997E08 /* WordListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A49B7C011C3E53C800997E08 /* WordListCell.m */; };
 		A49B7C061C3E5B3700997E08 /* WordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49B7C051C3E5B3700997E08 /* WordListCell.xib */; };
+		A49B7C091C3E6DA500997E08 /* PlanningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */; };
 		A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */; };
 		A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
@@ -425,6 +426,8 @@
 		A49B7C001C3E53C800997E08 /* WordListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCell.h; sourceTree = "<group>"; };
 		A49B7C011C3E53C800997E08 /* WordListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCell.m; sourceTree = "<group>"; };
 		A49B7C051C3E5B3700997E08 /* WordListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListCell.xib; sourceTree = "<group>"; };
+		A49B7C071C3E6DA500997E08 /* PlanningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningTableViewCell.h; sourceTree = "<group>"; };
+		A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningTableViewCell.m; sourceTree = "<group>"; };
 		A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMOnlineConfig.h; sourceTree = "<group>"; };
 		A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMOnlineConfig.a; sourceTree = "<group>"; };
@@ -671,6 +674,8 @@
 				7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */,
 				7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */,
 				7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */,
+				A49B7C071C3E6DA500997E08 /* PlanningTableViewCell.h */,
+				A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */,
 				7F43F6DF19F7A9A900672440 /* PlanningViewController.h */,
 				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
 				7F43F6E119F7A9A900672440 /* PreferenceViewController.h */,
@@ -1284,6 +1289,7 @@
 				7F68EECA1A26C73E00FB898F /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				A4E6459D1A467D5B00FE5A4F /* VBaseModel.m in Sources */,
 				7F7CFCF41A43E1AB008251DB /* ShowWrongWordsViewController.m in Sources */,
+				A49B7C091C3E6DA500997E08 /* PlanningTableViewCell.m in Sources */,
 				7F43F73619F7A9A900672440 /* VWebViewController.m in Sources */,
 				7F67A7DB1A47B6A40037F7F2 /* WordManager.m in Sources */,
 				A489D71B1A0670290087C0AF /* NoteViewController.m in Sources */,

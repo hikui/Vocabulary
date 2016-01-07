@@ -96,7 +96,7 @@
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-    btn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
     [btn sizeToFit];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self = [self initWithCustomView:btn];

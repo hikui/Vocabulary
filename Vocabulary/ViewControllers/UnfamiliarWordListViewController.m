@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.hidesBottomBarWhenPushed = NO;
+    self.navigationItem.rightBarButtonItems = nil;
     // Do any additional setup after loading the view.
 }
 

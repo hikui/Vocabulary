@@ -106,10 +106,14 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     PreferenceViewController *pvc = [[PreferenceViewController alloc]initWithNibName:nil bundle:nil];
     
     planVC.tabBarItem.title = @"今日计划";
+    planVC.tabBarItem.image = [UIImage imageNamed:@"plan-icon"];
     eVC.tabBarItem.title = @"词汇列表";
+    eVC.tabBarItem.image = [UIImage imageNamed:@"list-icon"];
     self.placeholderVC.tabBarItem.title = @"";
     uVC.tabBarItem.title = @"生疏词汇";
+    uVC.tabBarItem.image = [UIImage imageNamed:@"unfamiliar-words-icon"];
     pvc.tabBarItem.title = @"设置";
+    pvc.tabBarItem.image = [UIImage imageNamed:@"settings-icon"];
     
     
     UITabBarController *tabbarController = [[UITabBarController alloc]init];
