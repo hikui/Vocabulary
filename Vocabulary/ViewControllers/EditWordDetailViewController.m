@@ -23,7 +23,7 @@
     self.textView.text = self.word.acceptation;
     self.textView.backgroundColor = GlobalBackgroundColor;
     self.respondScrollView = self.textView;
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

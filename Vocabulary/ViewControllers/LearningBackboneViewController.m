@@ -78,7 +78,7 @@
     self.pageViewController.delegate = self;
     self.pageIndicator.text = [NSString stringWithFormat:@"%d/%lu",1,(unsigned long)self.words.count];
     
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {

@@ -22,7 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning

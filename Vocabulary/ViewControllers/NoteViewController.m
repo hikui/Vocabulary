@@ -40,7 +40,7 @@
     
     self.view.backgroundColor = GlobalBackgroundColor;
     
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
     
     UILabel *wordLabel = [[UILabel alloc]init];
     wordLabel.font = [UIFont boldSystemFontOfSize:26];

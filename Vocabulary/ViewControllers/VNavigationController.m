@@ -67,12 +67,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UINavigationBar *aNavigationBar = self.navigationBar;
-        if ([aNavigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [aNavigationBar setBackgroundImage:([[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0])
-                                 forBarMetrics:UIBarMetricsDefault];
-        }
+        [self commonInit];
     }
     return self;
 }
@@ -81,14 +76,15 @@
 {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
-        UINavigationBar *aNavigationBar = self.navigationBar;
-        if ([aNavigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [aNavigationBar setBackgroundImage:([[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0])
-                                 forBarMetrics:UIBarMetricsDefault];
-        }
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    [self.navigationBar setBackgroundImage:([[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0])
+                         forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 @end

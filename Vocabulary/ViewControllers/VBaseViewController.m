@@ -50,10 +50,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showCustomBackButton {
-    UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back)];
-    self.navigationItem.leftBarButtonItem = backButton;
-}
+//- (void)showCustomBackButton {
+////    UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back)];
+////    self.navigationItem.leftBarButtonItem = backButton;
+//}
 
 - (void)showMaskLayer {
     [self.view.layer addSublayer:_maskLayer];

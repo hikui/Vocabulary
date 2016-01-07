@@ -63,7 +63,7 @@
     }else{
         self.acceptationTextView.hidden = NO;
     }
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 }
 
 - (void)loadRightBarButtonItems {

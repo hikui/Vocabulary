@@ -60,7 +60,7 @@
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
     if (!self.topLevel) {
-        [self showCustomBackButton];
+//        [self showCustomBackButton];
     }
 }
 
