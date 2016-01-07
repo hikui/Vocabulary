@@ -36,6 +36,8 @@
 {
     [super viewDidLoad];
     self.navigationItem.title = @"错误单词";
+    self.navigationItem.rightBarButtonItems = nil;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(back)];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -126,7 +126,6 @@ static const char *getPropertyType(objc_property_t property) {
              
              self.editWordDetailVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([EditWordDetailViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
              self.unfamiliarWordListVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([UnfamiliarWordListViewController class]),HKVNavigationConfigXibNameKey:NSStringFromClass([WordListViewController class])}
-             
              };
 }
 
