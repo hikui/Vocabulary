@@ -21,11 +21,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     RAC(self.wordLabel, text) = RACObserve(self, word);
-    [[RACObserve(self, familiarity) map:^id(NSNumber *familarity) {
-        return [UIImage imageNamed:[NSString stringWithFormat:@"stars-%@",familarity]];
-    }] subscribeNext:^(UIImage *image) {
-        self.starsImageView.image = image;
-    }];
+    
+    RAC(self.starsImageView, image) =
+        [RACObserve(self, familiarity)
+         map:^id(NSNumber *familarity) {
+             return [UIImage imageNamed:[NSString stringWithFormat:@"stars-%@",familarity]];
+         }];
 }
 
 @end

@@ -30,6 +30,8 @@
 #import "PlanMaker.h"
 #import "NSDate+VAdditions.h"
 #import "HKVBasicTableViewCell.h"
+#import "PlanningTableViewCell.h"
+#import "Masonry.h"
 
 @interface PlanningViewControllerCell : HKVBasicTableViewCell
 
@@ -86,8 +88,8 @@
     [super viewDidLoad];
     
     //用于提示已经完成所有计划
-    self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
-    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.hintView = [[UILabel alloc]initWithFrame:self.view.bounds];
+//    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.hintView.font = [UIFont boldSystemFontOfSize:20];
     self.hintView.backgroundColor = GlobalBackgroundColor;
     self.hintView.shadowColor = [UIColor whiteColor];
@@ -96,6 +98,9 @@
     self.hintView.numberOfLines = 0;
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
+    [self.hintView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
     self.navigationItem.title = @"今日计划";
     
@@ -130,7 +135,8 @@
     self.tableView.dataSource = _tableModel;
     
     HKVTableViewCellConfig *cellConfig = [[HKVTableViewCellConfig alloc]init];
-    cellConfig.className = NSStringFromClass([PlanningViewControllerCell class]);
+    cellConfig.className = NSStringFromClass([PlanningTableViewCell class]);
+    cellConfig.xibName = NSStringFromClass([PlanningTableViewCell class]);
     if (self.todaysPlan.learningPlan) {
         HKVTableViewSectionConfig *sectionLearningConfig = [[HKVTableViewSectionConfig alloc]init];
         sectionLearningConfig.cellConfig = cellConfig;
@@ -162,7 +168,7 @@
     
     self.view.hidden = NO;
     if (wordListCount == 0) {
-        self.hintView.text = @"还没有词汇列表哦~\n点击左上角按钮选择添加词汇列表即可添加!";
+        self.hintView.text = @"还没有词汇列表，请点击下方+号添加！";
     }else if (self.todaysPlan.learningPlan == nil && self.todaysPlan.reviewPlan.count == 0) {
         self.hintView.text = @"恭喜你已经完成今日计划了!";
     }else{

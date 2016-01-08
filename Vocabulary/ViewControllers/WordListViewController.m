@@ -63,7 +63,7 @@
     if (!self.topLevel) {
 //        [self showCustomBackButton];
     }
-    [self.tableView registerNib:[UINib nibWithNibName:@"WordListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"WordListCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WordListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"$_WordListCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -129,7 +129,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"WordListCell";
+    static NSString *CellIdentifier = @"$_WordListCell";
     
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 //    if (cell == nil) {

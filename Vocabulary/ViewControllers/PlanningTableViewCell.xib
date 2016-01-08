@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="$_PlanningTableViewCell" id="9fG-PC-aJ3" customClass="PlanningTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9fG-PC-aJ3" id="re2-5k-H7n">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nhb-Z3-1b4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plan-not-done-icon" translatesAutoresizingMaskIntoConstraints="NO" id="fDv-VH-SsZ">
+                                <rect key="frame" x="20" y="9" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="Lpx-gu-OTL"/>
+                                    <constraint firstAttribute="width" constant="27" id="pWK-xn-f4q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVA-OK-h2f">
+                                <rect key="frame" x="67" y="12" width="233" height="25"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BVA-OK-h2f" firstAttribute="centerY" secondItem="fDv-VH-SsZ" secondAttribute="centerY" id="8cu-U6-lOZ"/>
+                            <constraint firstItem="BVA-OK-h2f" firstAttribute="leading" secondItem="fDv-VH-SsZ" secondAttribute="trailing" constant="20" id="UEZ-S2-rxg"/>
+                            <constraint firstAttribute="trailing" secondItem="BVA-OK-h2f" secondAttribute="trailing" constant="20" id="Wsb-yf-HY5"/>
+                            <constraint firstItem="fDv-VH-SsZ" firstAttribute="leading" secondItem="Nhb-Z3-1b4" secondAttribute="leading" constant="20" id="xoZ-9Y-xIh"/>
+                            <constraint firstItem="fDv-VH-SsZ" firstAttribute="centerY" secondItem="Nhb-Z3-1b4" secondAttribute="centerY" id="yYF-d1-fSY"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Nhb-Z3-1b4" firstAttribute="top" secondItem="re2-5k-H7n" secondAttribute="top" id="Ggv-vy-lxX"/>
+                    <constraint firstAttribute="bottom" secondItem="Nhb-Z3-1b4" secondAttribute="bottom" id="QPj-Cj-ahG"/>
+                    <constraint firstAttribute="trailing" secondItem="Nhb-Z3-1b4" secondAttribute="trailing" id="dbu-gY-swQ"/>
+                    <constraint firstItem="Nhb-Z3-1b4" firstAttribute="leading" secondItem="re2-5k-H7n" secondAttribute="leading" id="tIm-N5-5Cf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="statusImageView" destination="fDv-VH-SsZ" id="TJ9-bB-sO1"/>
+                <outlet property="wordListNameLabel" destination="BVA-OK-h2f" id="uGl-Dq-TTb"/>
+            </connections>
+            <point key="canvasLocation" x="208" y="243"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="plan-not-done-icon" width="29" height="29"/>
+    </resources>
+</document>

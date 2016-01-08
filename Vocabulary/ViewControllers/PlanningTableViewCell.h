@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HKVBasicTableViewCell.h"
 
-@interface PlanningTableViewCell : UITableViewCell
+@interface PlanningTableViewCell : HKVBasicTableViewCell
+
+@property (nonatomic, copy) NSString *wordListName;
+@property (nonatomic, assign) BOOL finished;
+@property (nonatomic, assign) int reviewCount;
 
 @end

@@ -29,6 +29,7 @@
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
 #import "WordListManager.h"
+#import "Masonry.h"
 
 @interface ExistingWordListsViewController ()
 
@@ -60,8 +61,8 @@
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
-    self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
-    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.hintView = [[UILabel alloc]initWithFrame:self.view.bounds];
+//    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.hintView.font = [UIFont boldSystemFontOfSize:20];
     self.hintView.backgroundColor = GlobalBackgroundColor;
     self.hintView.shadowColor = [UIColor whiteColor];
@@ -70,6 +71,9 @@
     self.hintView.numberOfLines = 0;
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
+    [self.hintView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -263,7 +267,7 @@
     
     self.view.hidden = NO;
     if (wordListCount == 0) {
-        self.hintView.text = @"还没有词汇列表哦~\n点击左上角按钮选择添加词汇列表即可添加!";
+        self.hintView.text = @"还没有词汇列表，请点击下方+号添加！";
     }else{
         self.hintView.hidden = YES;
     }

@@ -141,6 +141,7 @@
 		A49B7C021C3E53C800997E08 /* WordListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A49B7C011C3E53C800997E08 /* WordListCell.m */; };
 		A49B7C061C3E5B3700997E08 /* WordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49B7C051C3E5B3700997E08 /* WordListCell.xib */; };
 		A49B7C091C3E6DA500997E08 /* PlanningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */; };
+		A49B7C0E1C3F76B300997E08 /* PlanningTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49B7C0D1C3F76B300997E08 /* PlanningTableViewCell.xib */; };
 		A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */; };
 		A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
@@ -235,7 +236,7 @@
 		7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PureColorImageGenerator.h; sourceTree = "<group>"; };
 		7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PureColorImageGenerator.m; sourceTree = "<group>"; };
 		7F43F6BE19F7A9A900672440 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
-		7F43F6CF19F7A9A900672440 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		7F43F6CF19F7A9A900672440 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7F43F6D019F7A9A900672440 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		7F43F6D519F7A9A900672440 /* CreateWordListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWordListViewController.h; sourceTree = "<group>"; };
 		7F43F6D619F7A9A900672440 /* CreateWordListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWordListViewController.m; sourceTree = "<group>"; };
@@ -333,7 +334,7 @@
 		7F68EEC31A26C73E00FB898F /* MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecord.h; sourceTree = "<group>"; };
 		7F68EEC41A26C73E00FB898F /* MagicalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicalRecord.m; sourceTree = "<group>"; };
 		7F68EEC51A26C73E00FB898F /* MagicalRecordDeprecated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordDeprecated.h; sourceTree = "<group>"; };
-		7F68EEC61A26C73E00FB898F /* MagicalRecordLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordLogging.h; sourceTree = "<group>"; };
+		7F68EEC61A26C73E00FB898F /* MagicalRecordLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MagicalRecordLogging.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7F68EEC71A26C73E00FB898F /* MagicalRecordShorthand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicalRecordShorthand.h; sourceTree = "<group>"; };
 		7F68EEC81A26C73E00FB898F /* CoreData+MagicalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreData+MagicalRecord.h"; sourceTree = "<group>"; };
 		7F6BE4DF19F9E6C5006606E6 /* NSString+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VAdditions.h"; sourceTree = "<group>"; };
@@ -428,6 +429,7 @@
 		A49B7C051C3E5B3700997E08 /* WordListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListCell.xib; sourceTree = "<group>"; };
 		A49B7C071C3E6DA500997E08 /* PlanningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningTableViewCell.h; sourceTree = "<group>"; };
 		A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningTableViewCell.m; sourceTree = "<group>"; };
+		A49B7C0D1C3F76B300997E08 /* PlanningTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningTableViewCell.xib; sourceTree = "<group>"; };
 		A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMOnlineConfig.h; sourceTree = "<group>"; };
 		A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMOnlineConfig.a; sourceTree = "<group>"; };
@@ -674,10 +676,7 @@
 				7F43F6DA19F7A9A900672440 /* ExistingWordListsViewController.m */,
 				7F43F6DB19F7A9A900672440 /* LearningBackboneViewController.h */,
 				7F43F6DC19F7A9A900672440 /* LearningBackboneViewController.m */,
-				A49B7C071C3E6DA500997E08 /* PlanningTableViewCell.h */,
-				A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */,
-				7F43F6DF19F7A9A900672440 /* PlanningViewController.h */,
-				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
+				A49B7C0F1C3F791700997E08 /* PlanningViewController */,
 				7F43F6E119F7A9A900672440 /* PreferenceViewController.h */,
 				7F43F6E219F7A9A900672440 /* PreferenceViewController.m */,
 				7F43F6ED19F7A9A900672440 /* WordDetailViewController.h */,
@@ -1016,6 +1015,18 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
+		A49B7C0F1C3F791700997E08 /* PlanningViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A49B7C0D1C3F76B300997E08 /* PlanningTableViewCell.xib */,
+				A49B7C071C3E6DA500997E08 /* PlanningTableViewCell.h */,
+				A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */,
+				7F43F6DF19F7A9A900672440 /* PlanningViewController.h */,
+				7F43F6E019F7A9A900672440 /* PlanningViewController.m */,
+			);
+			name = PlanningViewController;
+			sourceTree = "<group>";
+		};
 		A4E6458F1A45830800FE5A4F /* Vocabulary Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,6 +1191,7 @@
 				EC9D1E9A1697CD5300A8C5B9 /* CellBG.png in Resources */,
 				EC9D1E9B1697CD5300A8C5B9 /* CellBG@2x.png in Resources */,
 				7F43F74119F7A9A900672440 /* VWebViewController.xib in Resources */,
+				A49B7C0E1C3F76B300997E08 /* PlanningTableViewCell.xib in Resources */,
 				EC9D1E9C1697CD5300A8C5B9 /* nav.png in Resources */,
 				EC9D1E9E1697CD5300A8C5B9 /* tableheader.png in Resources */,
 				7F43F74219F7A9A900672440 /* WordDetailViewController.xib in Resources */,

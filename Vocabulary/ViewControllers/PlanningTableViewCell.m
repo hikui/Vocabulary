@@ -7,11 +7,35 @@
 //
 
 #import "PlanningTableViewCell.h"
+#import "NSDate+VAdditions.h"
+
+@interface PlanningTableViewCell()
+
+@property (nonatomic, weak) IBOutlet UIImageView *statusImageView;
+@property (nonatomic, weak) IBOutlet UILabel *wordListNameLabel;
+
+@end
 
 @implementation PlanningTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+    self.backgroundView.backgroundColor = [UIColor greenColor];
+    
+}
+
+- (void)bindData:(id)data {
+    [super bindData:data];
+    WordList *wordList = (WordList *)data;
+    self.wordListNameLabel.text = wordList.title;
+    NSDate *todaysDateWithoutTime = [[NSDate date]hkv_dateWithoutTime];
+    if ([wordList.lastReviewTime compare:todaysDateWithoutTime] == NSOrderedDescending) {
+        self.statusImageView.image = [UIImage imageNamed:@"plan-done-icon"];
+    }else{
+        self.statusImageView.image = [UIImage imageNamed:@"plan-not-done-icon"];
+    }
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
