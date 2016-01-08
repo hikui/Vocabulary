@@ -43,18 +43,6 @@
 
 @implementation LearningBackboneViewController
 
-//
-//- (instancetype)initWithWords:(NSMutableArray *)words
-//{
-//    self = [super initWithNibName:@"LearningBackboneViewController" bundle:nil];
-//    if (self) {
-//        _learningViewControllerArray = [[NSMutableArray alloc]initWithCapacity:3];
-//        _words = [words mutableCopy];
-//        forward = true;
-//        firstAppear = YES;
-//    }
-//    return self;
-//}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,7 +62,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"浏览词汇";
+    self.navigationItem.title = @"浏览词汇";
     
     self.pageViewController = [[UIPageViewController alloc]initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.view.backgroundColor = RGBA(227, 227, 227, 1);
@@ -90,13 +78,12 @@
     self.pageViewController.delegate = self;
     self.pageIndicator.text = [NSString stringWithFormat:@"%d/%lu",1,(unsigned long)self.words.count];
     
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 
     [self shuffleWords];//每次都乱序
     for (int i = 0; i< MIN(self.words.count, 2); i++) {
         WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithNibName:nil bundle:nil];
         lvc.word = self.words[i];
-//        WordDetailViewController *lvc = [[WordDetailViewController alloc]initWithWord:(self.words)[i]];
         if (lvc) {
             [self.learningViewControllerArray addObject:lvc];
         }
@@ -108,7 +95,7 @@
 }
 
 - (void)loadRightBarButtonItems {
-    UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshWordData)];
+    UIBarButtonItem *refreshBtn = [VNavigationController generateItemWithType:VNavItemTypeRefresh target:self action:@selector(refreshButtonOnPress:)];
     UIBarButtonItem *noteBtn = [VNavigationController generateNoteItemWithTarget:self action:@selector(noteButtonOnClick)];
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(btnManuallyInfoOnClick:)];
     if ([self.currentShownViewController.word.manuallyInput boolValue]) {
@@ -120,7 +107,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self loadRightBarButtonItems];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -250,12 +243,12 @@ viewControllerBeforeViewController:(UIViewController *)viewController{
 }
 
 - (void)noteButtonOnClick {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.currentShownViewController.word} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.currentShownViewController.word} animate:YES];
 }
 
 - (void)btnManuallyInfoOnClick:(id)sender
 {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.currentShownViewController.word} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.currentShownViewController.word} animate:YES];
 }
 
 @end

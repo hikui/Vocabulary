@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "HKVNavigationManager.h"
 #import "HKVNavigationRouteConfig.h"
+#import "UINavigationItem+Copying.h"
 @interface VBaseViewController : UIViewController
 
-/**
- 显示自定义的返回按钮
- */
-- (void)showCustomBackButton;
+///**
+// 显示自定义的返回按钮
+// */
+//- (void)showCustomBackButton;
 
 /**
  自定义返回（用于Navigation）

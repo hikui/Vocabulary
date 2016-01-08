@@ -37,14 +37,6 @@
  */
 + (void)searchWord:(NSString *)key completion:(void(^)(NSArray *words)) completion;
 
-///**
-// 对给定的words进行易混淆词汇索引
-// 
-// @param newWords      单词集，必须是main context中已有的
-// @param progressBlock 进度回调
-// @param completion    完成回调
-// */
-//+ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion;
 
 /**
  对给定的words进行易混淆词汇索引

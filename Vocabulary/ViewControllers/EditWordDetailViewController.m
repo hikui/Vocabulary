@@ -19,11 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSAssert(self.word != nil, @"Should contain a word");
-    self.title = @"自定义解释";
+    self.navigationItem.title = @"自定义解释";
     self.textView.text = self.word.acceptation;
     self.textView.backgroundColor = GlobalBackgroundColor;
     self.respondScrollView = self.textView;
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

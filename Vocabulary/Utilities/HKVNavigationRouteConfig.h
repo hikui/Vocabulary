@@ -23,6 +23,7 @@
 @property (nonatomic, readonly) NSURL *wordListVC;
 @property (nonatomic, readonly) NSURL *noteVC;
 @property (nonatomic, readonly) NSURL *editWordDetailVC;
+@property (nonatomic, readonly) NSURL *unfamiliarWordListVC;
 
 @property (nonatomic, readonly) NSDictionary *route;
 

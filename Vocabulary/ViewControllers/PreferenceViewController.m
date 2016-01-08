@@ -33,6 +33,8 @@
 
 @interface PreferenceViewController ()
 
+@property (nonatomic, strong) UITableView *tableView;
+
 - (void)notificationEnablerDidChange:(id)sender;
 - (void)soundEnablerDidChange:(id)sender;
 - (void)autoIndexEnablerDidChange:(id)sender;
@@ -45,11 +47,10 @@
 
 @implementation PreferenceViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _tableView = [[UITableView alloc]init];
     }
     return self;
 }
@@ -57,20 +58,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"设置";
-    
-    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 40, 29);
-    
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//    
-//    [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-//    [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
-    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem = menuBarButton;
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.frame = self.view.bounds;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.tableView];
+    self.navigationItem.title = @"设置";
     
     self.dayNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kDayNotificationTime];
     self.nightNotificationTime = [[NSUserDefaults standardUserDefaults]objectForKey:kNightNotificationTime];
@@ -83,6 +77,7 @@
         self.nightNotificationTime = [format dateFromString:@"20:00"];
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -204,7 +199,6 @@
                 controller.mailComposeDelegate = self;
                 [controller setSubject:@"词汇小助手反馈"];
                 [controller setToRecipients:@[@"hikuimiao@gmail.com"]];
-                //[controller setMessageBody:@"Hello there." isHTML:NO];
                 if (controller) {
                     [self presentViewController:controller animated:YES completion:nil];
                 }
@@ -216,10 +210,6 @@
     }
 }
 
-#pragma mark - actions
-- (void)revealLeftSidebar:(id)sender {
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-}
 
 #pragma mark - private methods
 

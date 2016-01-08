@@ -51,31 +51,6 @@
     return self;
 }
 
-//+ (void)asyncIndexNewWords:(NSArray *)newWords progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion {
-//    BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
-//    if (!needIndex) {
-//        if (completion) {
-//            completion(nil);
-//        }
-//        return;
-//    }
-//    
-//    if (newWords.count == 0) {
-//        if (completion != NULL) {
-//            completion(nil);
-//        }
-//        return;
-//    }
-//    
-//    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-//        [self indexNewWordsWithoutSaving:newWords inContext:localContext progressBlock:progressBlock completion:nil];
-//    } completion:^(BOOL success, NSError *error) {
-//        if (completion) {
-//            completion(error);
-//        }
-//    }];
-//}
-
 + (void)indexNewWordsWithoutSaving:(NSArray *)newWords inContext:(NSManagedObjectContext *)context progressBlock:(HKVProgressCallback)progressBlock completion:(HKVErrorBlock)completion; {
     BOOL needIndex = [[NSUserDefaults standardUserDefaults]boolForKey:kAutoIndex];
     if (!needIndex) {
@@ -105,12 +80,6 @@
                     if (similarity > 60) {
                         [anNewWord addSimilarWordsObject:anExistingWord];
                     }
-//                    float distance = [self compareString:key1 withString:key2];
-//                    NSInteger lcs = [self longestCommonSubstringWithStr1:key1 str2:key2];
-//                    if (distance < 3 || ((float)lcs)/MAX(key1.length,key2.length)>0.5) {
-//                        DDLogDebug(@"key1: %@, key2: %@",key1,key2);
-//                        [anNewWord addSimilarWordsObject:anExistingWord];
-//                    }
                 }
             }
             finishedNum ++;
@@ -147,12 +116,6 @@
                             [w1 addSimilarWordsObject:w2];
                             [w2 addSimilarWordsObject:w1];
                         }
-//                        float distance = [self compareString:w1.key withString:w2.key];
-//                        NSInteger lcs = [self longestCommonSubstringWithStr1:w1.key str2:w2.key];
-//                        if (distance < 3 || ((float)lcs)/MAX(w1.key.length, w2.key.length)>0.5) {
-//                            [w1 addSimilarWordsObject:w2];
-//                            [w2 addSimilarWordsObject:w1];
-//                        }
                     }
                 }
             }
@@ -181,7 +144,6 @@
 
 - (void)searchWord:(NSString *)key completion:(void(^)(NSArray *words))completion
 {
-    //    dispatch_queue_t currentQ = dispatch_get_current_queue();
     
     [self.queryOperationQueue cancelAllOperations];
 

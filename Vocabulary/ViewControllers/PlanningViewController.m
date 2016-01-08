@@ -30,6 +30,8 @@
 #import "PlanMaker.h"
 #import "NSDate+VAdditions.h"
 #import "HKVBasicTableViewCell.h"
+#import "PlanningTableViewCell.h"
+#import "Masonry.h"
 
 @interface PlanningViewControllerCell : HKVBasicTableViewCell
 
@@ -85,20 +87,9 @@
 {
     [super viewDidLoad];
     
-    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    menuButton.frame = CGRectMake(0, 0, 40, 29);
-    
-    menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem = menuBarButton;
-    
-    self.title = @"记词助手";
-    
     //用于提示已经完成所有计划
-    self.hintView = [[UILabel alloc]initWithFrame:self.view.frame];
-    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.hintView = [[UILabel alloc]initWithFrame:self.view.bounds];
+//    self.hintView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.hintView.font = [UIFont boldSystemFontOfSize:20];
     self.hintView.backgroundColor = GlobalBackgroundColor;
     self.hintView.shadowColor = [UIColor whiteColor];
@@ -107,6 +98,11 @@
     self.hintView.numberOfLines = 0;
     self.hintView.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.hintView];
+    [self.hintView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    self.navigationItem.title = @"今日计划";
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldRefreshPlan:) name:kShouldRefreshTodaysPlanNotificationKey object:nil];
 
@@ -139,7 +135,8 @@
     self.tableView.dataSource = _tableModel;
     
     HKVTableViewCellConfig *cellConfig = [[HKVTableViewCellConfig alloc]init];
-    cellConfig.className = NSStringFromClass([PlanningViewControllerCell class]);
+    cellConfig.className = NSStringFromClass([PlanningTableViewCell class]);
+    cellConfig.xibName = NSStringFromClass([PlanningTableViewCell class]);
     if (self.todaysPlan.learningPlan) {
         HKVTableViewSectionConfig *sectionLearningConfig = [[HKVTableViewSectionConfig alloc]init];
         sectionLearningConfig.cellConfig = cellConfig;
@@ -159,13 +156,10 @@
 - (void)tableViewModel:(HKVDefaultTableViewModel *)model didSelectRowData:(WordList *)wl atIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *params = nil;
     params = @{@"wordList":wl};
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordListVC params:params animate:YES];
 }
 
 #pragma mark - actions
-- (void)revealLeftSidebar:(id)sender {
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
-}
 
 - (void)refreshHintView
 {
@@ -174,7 +168,7 @@
     
     self.view.hidden = NO;
     if (wordListCount == 0) {
-        self.hintView.text = @"还没有词汇列表哦~\n点击左上角按钮选择添加词汇列表即可添加!";
+        self.hintView.text = @"还没有词汇列表，请点击下方+号添加！";
     }else if (self.todaysPlan.learningPlan == nil && self.todaysPlan.reviewPlan.count == 0) {
         self.hintView.text = @"恭喜你已经完成今日计划了!";
     }else{

@@ -14,4 +14,6 @@
 @property (nonatomic, strong) id data;
 @property (nonatomic, weak) HKVDefaultTableViewModel *model;
 
++ (CGFloat)heightForData:(id)data;
+
 @end

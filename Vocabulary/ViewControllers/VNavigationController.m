@@ -67,12 +67,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UINavigationBar *aNavigationBar = self.navigationBar;
-        if ([aNavigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [aNavigationBar setBackgroundImage:([[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0])
-                                 forBarMetrics:UIBarMetricsDefault];
-        }
+        [self commonInit];
     }
     return self;
 }
@@ -81,14 +76,15 @@
 {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
-        UINavigationBar *aNavigationBar = self.navigationBar;
-        if ([aNavigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)])
-        {
-            [aNavigationBar setBackgroundImage:([[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0])
-                                 forBarMetrics:UIBarMetricsDefault];
-        }
+        [self commonInit];
     }
     return self;
+}
+
+- (void)commonInit {
+    [self.navigationBar setBackgroundImage:([[UIImage imageNamed:@"nav.png"] stretchableImageWithLeftCapWidth:7 topCapHeight:0])
+                         forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 @end
@@ -97,12 +93,10 @@
 
 - (instancetype)initVNavBarButtonItemWithTitle:(NSString *)title target:(id)target action:(SEL)action;
 {
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 10);
-    btn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    btn.titleLabel.font = [UIFont systemFontOfSize:18];
     [btn sizeToFit];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     self = [self initWithCustomView:btn];
@@ -111,9 +105,7 @@
 
 - (instancetype)initVNavBarButtonItemWithImage:(UIImage *)image target:(id)target action:(SEL)action
 {
-//    UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
     [btn setImage:image forState:UIControlStateNormal];
     [btn sizeToFit];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];

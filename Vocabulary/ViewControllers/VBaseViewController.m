@@ -39,16 +39,21 @@
     _maskLayer.backgroundColor = RGBA(0, 0, 0, 0.5).CGColor;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tabBarController.navigationItem copyFrom:self.navigationItem];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showCustomBackButton {
-    UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back)];
-    self.navigationItem.leftBarButtonItem = backButton;
-}
+//- (void)showCustomBackButton {
+////    UIBarButtonItem *backButton = [VNavigationController generateBackItemWithTarget:self action:@selector(back)];
+////    self.navigationItem.leftBarButtonItem = backButton;
+//}
 
 - (void)showMaskLayer {
     [self.view.layer addSublayer:_maskLayer];
@@ -59,7 +64,7 @@
 }
 
 - (void)back {
-    [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
+    [self.navigationController.v_navigationManager commonPopAnimated:YES];
 }
 
 - (BOOL)isModal {

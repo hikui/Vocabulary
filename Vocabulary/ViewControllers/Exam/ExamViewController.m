@@ -27,12 +27,13 @@
 #import "ShowWrongWordsViewController.h"
 #import "ExamContentView.h"
 #import "CibaEngine.h"
-//#import "CibaXMLParser.h"
-#import "IIViewDeckController.h"
 #import "AppDelegate.h"
 #import "VNavigationController.h"
 #import "SimpleProgressBar.h"
 #import "PlanMaker.h"
+#import "Masonry.h"
+
+static CGFloat NotificationViewHeight = 48;
 
 @interface ExamViewController ()
 
@@ -41,7 +42,6 @@
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
 @property (nonatomic, unsafe_unretained) BOOL shouldUpdateWordFamiliarity;
 
-//@property (nonatomic, strong) NSMutableSet *wordsWithNoInfoSet;
 @property (nonatomic, strong) NSMutableSet *networkOperationSet;
 
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
@@ -57,25 +57,6 @@
 @end
 
 @implementation ExamViewController
-
-//- (instancetype)initWithWordList:(WordList *)wordList
-//{
-//    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
-//    if (self) {
-//        _wordList = wordList;
-//        [self commonInit];
-//    }
-//    return self;
-//}
-//- (instancetype)initWithWordArray:(NSMutableArray *)wordArray
-//{
-//    self = [super initWithNibName:NSStringFromClass([self class]) bundle:nil];
-//    if (self) {
-//        _wordsArray = wordArray;
-//        [self commonInit];
-//    }
-//    return self;
-//}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -98,14 +79,20 @@
 {
     [super viewDidLoad];
     
-    self.title = @"评估";
+    self.navigationItem.title = @"评估";
     //adjust views
     _cursor1 = 0;
     _shouldUpdateWordFamiliarity = NO;
 
-    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
-    self.roundNotificatonView.center = center;
+//    CGPoint center = CGPointMake(self.view.bounds.size.width/2, 0 - self.roundNotificatonView.bounds.size.height/2);
+//    self.roundNotificatonView.center = center;
     [self.view addSubview:self.roundNotificatonView];
+    [self.roundNotificatonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).with.offset(-NotificationViewHeight);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.equalTo(@(NotificationViewHeight));
+    }];
     
     if (self.wordList != nil) {
         NSMutableArray *words = [[NSMutableArray alloc]initWithCapacity:self.wordList.words.count];
@@ -170,14 +157,9 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckNoPanning;
-}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    ((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController.panningMode = IIViewDeckFullViewPanning;
     for (CibaNetworkOperation *operation in self.networkOperationSet) {
         [operation cancel];
     }
@@ -186,11 +168,6 @@
 - (BOOL)shouldAutorotate
 {
     return YES;
-}
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -353,14 +330,27 @@
         //显示提示
         [self.view bringSubviewToFront:self.roundNotificatonView];
         [UIView animateWithDuration:0.5 animations:^{
-            self.roundNotificatonView.transform = CGAffineTransformMakeTranslation(0, 0-self.roundNotificatonView.frame.origin.y);
+            [self.roundNotificatonView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view.mas_top).with.offset(0);
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.height.equalTo(@(NotificationViewHeight));
+            }];
+            [self.roundNotificatonView layoutIfNeeded];
         } completion:^(BOOL finished){
             if (finished) {
                 [UIView animateWithDuration:0.5 delay:3 options:UIViewAnimationOptionCurveLinear animations:^{
-                    self.roundNotificatonView.transform = CGAffineTransformMakeTranslation(0,0);
+                    [self.roundNotificatonView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.top.equalTo(self.view.mas_top).with.offset(-NotificationViewHeight);
+                        make.left.equalTo(self.view.mas_left);
+                        make.right.equalTo(self.view.mas_right);
+                        make.height.equalTo(@(NotificationViewHeight));
+                    }];
+                    [self.roundNotificatonView layoutIfNeeded];
                 } completion:nil];
             }
         }];
+        
         
         //根据权值算法排序
         [self.examContentsQueue sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -450,13 +440,13 @@
     if (_shouldUpdateWordFamiliarity) {
         [self calculateFamiliarityForContentQueue:self.examContentsQueue];
         if (self.wrongWordsSet.count == 0) {
-            [[HKVNavigationManager sharedInstance]commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
+            [self.navigationController.v_navigationManager commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
         }else{
             NSMutableArray *wrongWordsArray = [[NSMutableArray alloc]init];
             for (Word *w in self.wrongWordsSet) {
                 [wrongWordsArray addObject:w];
             }
-            [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].showWrongWordsVC params:@{@"wordArray":wrongWordsArray} animate:YES];
+            [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].showWrongWordsVC params:@{@"wordArray":wrongWordsArray} animate:YES];
         }
     }else{
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"您还没背完一遍呢"
@@ -473,7 +463,7 @@
 {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
     if ([buttonTitle isEqualToString:@"确认作废"]) {
-        [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
+        [self.navigationController.v_navigationManager commonPopAnimated:YES];
     }
 }
 
