@@ -50,4 +50,8 @@
     [self.navigationController.v_navigationManager commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
 @end
