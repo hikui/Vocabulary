@@ -48,8 +48,6 @@ typedef NS_OPTIONS(NSInteger, ExamOption) {
 
 @property (nonatomic, assign) ExamOption examOption; //默认全选
 
-//- (instancetype)initWithWordList:(WordList *)wordList;
-//- (instancetype)initWithWordArray:(NSMutableArray *)wordArray;
 
 - (IBAction)rightButtonOnPress:(id)sender;
 - (IBAction)wrongButtonOnPress:(id)sender;

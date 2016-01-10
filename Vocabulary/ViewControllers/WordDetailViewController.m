@@ -54,16 +54,6 @@
     return self;
 }
 
-//- (instancetype)initWithWord:(Word *)word
-//{
-//    self = [super initWithNibName:@"WordDetailViewController" bundle:nil];
-//    if (self) {
-//        _word = word;
-//        _shouldHideInfo = NO;
-//    }
-//    return self;
-//}
-
 
 - (void)viewDidLoad
 {
@@ -73,7 +63,7 @@
     }else{
         self.acceptationTextView.hidden = NO;
     }
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 }
 
 - (void)loadRightBarButtonItems {
@@ -201,12 +191,12 @@
     if ([self isModal]) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
-        [[HKVNavigationManager sharedInstance]commonPopAnimated:YES];
+        [self.navigationController.v_navigationManager commonPopAnimated:YES];
     }
 }
 
 - (void)noteButtonOnClick {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.word} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].noteVC params:@{@"word":self.word} animate:YES];
 }
 
 - (IBAction)btnReadOnPressed:(id)sender
@@ -216,17 +206,13 @@
 
 - (IBAction)fullInfomation:(id)sender
 {
-//    VWebViewController *wvc = [[VWebViewController alloc]initWithNibName:@"VWebViewController" bundle:nil];
     NSURL *url = [NSURL URLWithString:CIBA_URL([self.word.key hkv_stringByURLEncoding])];
-//    wvc.requestURL = url;
-//    //    [self presentModalViewController:wvc animated:YES];
-//    [self presentViewController:wvc animated:YES completion:nil];
-    [[HKVNavigationManager sharedInstance]commonPresentModalURL:url params:nil animate:YES];
+    [self.navigationController.v_navigationManager commonPresentModalURL:url params:nil animate:YES];
 }
 
 - (IBAction)btnManuallyInfoOnClick:(id)sender
 {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.word} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].editWordDetailVC params:@{@"word":self.word} animate:YES];
 }
 
 @end

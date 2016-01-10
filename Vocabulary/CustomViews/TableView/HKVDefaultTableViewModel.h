@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *className;
 @property (nonatomic, copy) NSString *xibName;
+@property (nonatomic, copy) NSString *reuseIdentifier;
 
 @end
 

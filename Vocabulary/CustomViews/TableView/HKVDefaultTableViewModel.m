@@ -54,8 +54,8 @@
 
 @interface HKVDefaultTableViewModel()
 
-@property (nonatomic, strong) NSMutableArray *sectionDataArray; //MutableArray<MutableArray>
-@property (nonatomic, strong) NSMutableArray *sectionConfigArray; //MutableArray<SectionConfig>
+@property (nonatomic, strong) NSMutableArray<NSMutableArray *> *sectionDataArray;
+@property (nonatomic, strong) NSMutableArray<HKVTableViewSectionConfig *> *sectionConfigArray;
 @property (nonatomic, strong) HKVTableViewSectionConfig *defaultSectionConfig;
 
 @end
@@ -200,12 +200,19 @@
         DDLogError(@"class for name %@ doesn't exist", cellConfig.className);
         return nil; // 自然崩溃
     }
-    NSString *reuseIdentifier = [NSString stringWithFormat:@"$_%@",cellConfig.className];
+    NSString *reuseIdentifier = cellConfig.reuseIdentifier;
+    if (reuseIdentifier == nil) {
+        reuseIdentifier = [NSString stringWithFormat:@"$_%@",cellConfig.className];
+    }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell) {
-        cell = [[cellClass alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
-        if ([cell respondsToSelector:@selector(setMode:)]) {
-            [cell performSelector:@selector(setMode:) withObject:self];
+        if (cellConfig.xibName) {
+            cell = [[NSBundle mainBundle]loadNibNamed:cellConfig.xibName owner:nil options:nil][0];
+        } else {
+            cell = [[cellClass alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+        }
+        if ([cell respondsToSelector:@selector(setModel:)]) {
+            [cell performSelector:@selector(setModel:) withObject:self];
         }
     }
     id data = _sectionDataArray[section][row]; //如果越界，则自然崩溃

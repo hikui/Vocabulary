@@ -35,7 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"错误单词";
+    self.navigationItem.title = @"错误单词";
+    self.navigationItem.rightBarButtonItems = nil;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(back)];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -45,7 +47,11 @@
 
 // @Override
 - (void)back {
-    [[HKVNavigationManager sharedInstance]commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
+    [self.navigationController.v_navigationManager commonPopToURL:[HKVNavigationRouteConfig sharedInstance].wordListVC animate:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
 }
 
 @end

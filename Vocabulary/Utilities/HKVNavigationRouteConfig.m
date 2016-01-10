@@ -22,6 +22,7 @@
 #import "WordListViewController.h"
 #import "NoteViewController.h"
 #import "EditWordDetailViewController.h"
+#import "UnfamiliarWordListViewController.h"
 
 static const char *getPropertyType(objc_property_t property) {
     const char *attributes = property_getAttributes(property);
@@ -51,6 +52,7 @@ static const char *getPropertyType(objc_property_t property) {
 @property (nonatomic, strong, readwrite) NSURL *wordListVC;
 @property (nonatomic, strong, readwrite) NSURL *noteVC;
 @property (nonatomic, strong, readwrite) NSURL *editWordDetailVC;
+@property (nonatomic, strong, readwrite) NSURL *unfamiliarWordListVC;
 
 @end
 
@@ -123,8 +125,7 @@ static const char *getPropertyType(objc_property_t property) {
              self.noteVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([NoteViewController class])},
              
              self.editWordDetailVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([EditWordDetailViewController class]),HKVNavigationConfigXibNameKey:[NSNull null]},
-             
-             
+             self.unfamiliarWordListVC:@{HKVNavigationConfigClassNameKey:NSStringFromClass([UnfamiliarWordListViewController class]),HKVNavigationConfigXibNameKey:NSStringFromClass([WordListViewController class])}
              };
 }
 

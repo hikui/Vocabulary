@@ -34,6 +34,7 @@
 #import "VNavigationController.h"
 #import "PureColorImageGenerator.h"
 #import "InsertWordView.h"
+#import "WordListCell.h"
 
 @interface WordListViewController ()
 
@@ -45,7 +46,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -59,23 +60,10 @@
     UIBarButtonItem *editButtonItem = [[UIBarButtonItem alloc]initVNavBarButtonItemWithTitle:@"编辑" target:self action:@selector(editButtonItemPressed:)];
     self.navigationItem.rightBarButtonItem = editButtonItem;
     
-    if (self.topLevel) {
-        UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        menuButton.frame = CGRectMake(0, 0, 40, 29);
-        
-//        UIImage *buttonBgImage = [[UIImage imageNamed:@"barbutton.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
-//
-        
-//        [menuButton setBackgroundImage:buttonBgImage forState:UIControlStateNormal];
-        menuButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [menuButton setImage:[PureColorImageGenerator generateMenuImageWithTint:RGBA(255, 255, 255, 0.9)] forState:UIControlStateNormal];
-//        [menuButton setImage:[UIImage imageNamed:@"ButtonMenu.png"] forState:UIControlStateNormal];
-        [menuButton addTarget:self action:@selector(revealLeftSidebar:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *menuBarButton = [[UIBarButtonItem alloc]initWithCustomView:menuButton];
-        self.navigationItem.leftBarButtonItem = menuBarButton;
-    }else {
-        [self showCustomBackButton];
+    if (!self.topLevel) {
+//        [self showCustomBackButton];
     }
+    [self.tableView registerNib:[UINib nibWithNibName:@"WordListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"$_WordListCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -94,6 +82,8 @@
         self.beginStudyButton.enabled = NO;
         self.beginTestButton.enabled = NO;
     }
+    self.navigationItem.title = self.wordList.title;
+    [self.tabBarController.navigationItem copyFrom:self.navigationItem];
     [self.tableView reloadData];
 }
 
@@ -121,11 +111,6 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
@@ -144,29 +129,37 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"$_WordListCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//    }
+//    Word *w = (self.wordArray)[indexPath.row];
+//    cell.textLabel.text = w.key;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
+//    //已学习过的但未完成艾宾浩斯学习的单词列表中熟悉度<=5的单词，或者已完成艾宾浩斯学习的单词列表中，熟悉度<10的单词，标记红色。
+//    //标记结果应与“低熟悉度词汇”一致
+//    if ((self.wordList != nil && [self.wordList.effectiveCount intValue]>0  && [w.familiarity intValue]<= 5) || ([self.wordList.effectiveCount intValue] >=6 && [w.familiarity intValue]<10)) {
+//        cell.textLabel.textColor = [UIColor redColor];
+//    }else{
+//        cell.textLabel.textColor = [UIColor blackColor];
+//    }
+    WordListCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     Word *w = (self.wordArray)[indexPath.row];
-    cell.textLabel.text = w.key;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"熟悉度: %@/10",w.familiarity];
-    //已学习过的但未完成艾宾浩斯学习的单词列表中熟悉度<=5的单词，或者已完成艾宾浩斯学习的单词列表中，熟悉度<10的单词，标记红色。
-    //标记结果应与“低熟悉度词汇”一致
-    if ((self.wordList != nil && [self.wordList.effectiveCount intValue]>0  && [w.familiarity intValue]<= 5) || ([self.wordList.effectiveCount intValue] >=6 && [w.familiarity intValue]<10)) {
-        cell.textLabel.textColor = [UIColor redColor];
-    }else{
-        cell.textLabel.textColor = [UIColor blackColor];
-    }
+    cell.word = w.key;
+    cell.familiarity = (int)(roundf([w.familiarity intValue]/2.0));
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 46;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Word *w = (self.wordArray)[indexPath.row];
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].wordDetailVC params:@{@"word":w} animate:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -203,7 +196,7 @@
 #pragma mark - tool bar actions
 - (IBAction)btnBeginStudyOnPress:(id)sender
 {
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].learningBackboneVC params:@{@"words":[self.wordArray mutableCopy]} animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].learningBackboneVC params:@{@"words":[self.wordArray mutableCopy]} animate:YES];
 }
 - (IBAction)btnBeginTestOnPress:(id)sender
 {
@@ -214,7 +207,7 @@
         params = @{@"wordArray":self.wordArray};
     }
     
-    [[HKVNavigationManager sharedInstance]commonPushURL:[HKVNavigationRouteConfig sharedInstance].examTypeChoiceVC params:params animate:YES];
+    [self.navigationController.v_navigationManager commonPushURL:[HKVNavigationRouteConfig sharedInstance].examTypeChoiceVC params:params animate:YES];
 }
 
 - (void)editButtonItemPressed:(id)sender
@@ -235,45 +228,13 @@
 
 - (IBAction)btnAddWordOnPress:(id)sender
 {
-//    UIActionSheet *actions = [[UIActionSheet alloc]initWithTitle:@"选择增加方式" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"输入一个单词",@"从iTunes导入", nil];
-//    [actions showInView:self.view];
-    
     InsertWordView *insertWordView = [InsertWordView newInstance];
+    insertWordView.frame = self.view.bounds;
     insertWordView.targetWordList = self.wordList;
     [insertWordView showWithResultBlock:^() {
         [self updateWordArray];
         [self.tableView reloadData];
     }];
-}
-
-#pragma mark - alertview delegate
-
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-//{
-//    NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
-//    if ([buttonTitle isEqualToString:@"确定"]) {
-////        NSManagedObjectContext *ctx = [[CoreDataHelperV2 sharedInstance]mainContext];
-////        Word *w = [NSEntityDescription insertNewObjectForEntityForName:@"Word" inManagedObjectContext:ctx];
-//        Word *w = [Word MR_createEntity];
-//        [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-//            w.key = [[alertView textFieldAtIndex:0]text];
-//            [w addWordListsObject:self.wordList];
-//        }];
-//        [self.wordArray addObject:w];
-//        [_tableView beginUpdates];
-//        NSIndexPath *insertIndexPath = [NSIndexPath indexPathForRow:self.wordArray.count-1 inSection:0];
-//        [_tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-//        [_tableView endUpdates];
-//        
-//        //后台做索引
-//        [WordManager asyncIndexNewWords:@[w] progressBlock:nil completion:nil];
-//        
-//    }
-//}
-
-#pragma mark - actions
-- (void)revealLeftSidebar:(id)sender {
-    [((AppDelegate *)[UIApplication sharedApplication].delegate).viewDeckController toggleLeftViewAnimated:YES];
 }
 
 #pragma mark - actionsheet delegate
@@ -290,7 +251,6 @@
         }
         WordListFromDiskViewController *wfdvc = [[WordListFromDiskViewController alloc]initWithNibName:@"WordListFromDiskViewController" bundle:nil];
         wfdvc.wordList = self.wordList;
-//        [self presentModalViewController:wfdvc animated:YES];
         [self presentViewController:wfdvc animated:YES completion:nil];
     }
 }

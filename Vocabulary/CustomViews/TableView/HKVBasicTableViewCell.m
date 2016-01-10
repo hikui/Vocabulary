@@ -24,4 +24,8 @@
     self.data = data;
 }
 
++ (CGFloat)heightForData:(id)data {
+    return 44;
+}
+
 @end

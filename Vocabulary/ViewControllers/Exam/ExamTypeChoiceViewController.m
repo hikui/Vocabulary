@@ -22,7 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self showCustomBackButton];
+//    [self showCustomBackButton];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,7 +68,7 @@
     command.popTopBeforePush = YES;
     command.animate = YES;
     command.params = params;
-    [[HKVNavigationManager sharedInstance] executeCommand:command];
+    [self.navigationController.v_navigationManager  executeCommand:command];
 }
 
 @end
