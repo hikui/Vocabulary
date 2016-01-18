@@ -12,7 +12,7 @@
 
 + (instancetype)importSelectionView;
 
-@property (weak, readonly) UIButton *importFromiTunesButton;
+@property (weak, readonly) UIButton *importUsingWifi;
 @property (weak, readonly) UIButton *importManuallyButton;
 @property (nonatomic, copy) void (^menuDidHideBlock)();
 

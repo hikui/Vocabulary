@@ -9,3 +9,4 @@ pod 'PromiseKit/Promise'
 pod 'YAML-Framework', '~> 0.0.2'
 pod 'Masonry'
 pod 'ReactiveCocoa', '~> 2.5'
+pod "GCDWebServer", "~> 3.0"
