@@ -24,7 +24,7 @@
     self.navigationItem.leftBarButtonItem = doneButton;
     self.server = [[ImportingWebServer alloc]init];
     self.server.importingDelegate = self;
-    [self.server start];
+    [self.server startWithPort:53811 bonjourName:@"vocabulary-uploder"];
     self.labelURL.text = self.server.serverURL.absoluteString;
 }
 
