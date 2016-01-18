@@ -14,10 +14,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1H-ld-jw5">
                     <rect key="frame" x="85" y="568" width="150" height="94"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEa-xe-dbc">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEa-xe-dbc" userLabel="Import Using Wifi">
                             <rect key="frame" x="0.0" y="47" width="150" height="47"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="从iTunes导入">
+                            <state key="normal" title="使用WiFi导入">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -53,8 +53,8 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="bottomMarginConstraint" destination="aFr-o7-Cot" id="gah-YP-Ffq"/>
-                <outlet property="importFromiTunesButton" destination="mEa-xe-dbc" id="ufA-HU-KgR"/>
                 <outlet property="importManuallyButton" destination="5On-U8-49I" id="3nX-me-eOF"/>
+                <outlet property="importUsingWifi" destination="mEa-xe-dbc" id="DGN-2d-Tif"/>
                 <outlet property="wrapperView" destination="E1H-ld-jw5" id="vhQ-zM-bVQ"/>
                 <outletCollection property="gestureRecognizers" destination="S9h-cp-CE0" appends="YES" id="mib-N8-Ze8"/>
             </connections>

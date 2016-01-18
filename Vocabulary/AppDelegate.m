@@ -38,6 +38,7 @@
 #import "CreateWordListViewController.h"
 #import "UnfamiliarWordListViewController.h"
 #import "PreferenceViewController.h"
+#import "ImportUsingWifiViewController.h"
 
 static BOOL isRunningTests(void)
 {
@@ -150,7 +151,7 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
             weakSelf.addButton.active = NO;
         };
         [self.importSelectionView.importManuallyButton addTarget:self action:@selector(importManuallyButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
-        [self.importSelectionView.importFromiTunesButton addTarget:self action:@selector(importFromiTunesButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
+        [self.importSelectionView.importUsingWifi addTarget:self action:@selector(importUsingWifiButtonOnTouch:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     if (sender.active) {
@@ -166,8 +167,9 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     }
 }
 
-- (void)importFromiTunesButtonOnTouch:(id)sender {
-    WordListFromDiskViewController *wvc = [[WordListFromDiskViewController alloc]initWithNibName:nil bundle:nil];
+- (void)importUsingWifiButtonOnTouch:(id)sender {
+//    WordListFromDiskViewController *wvc = [[WordListFromDiskViewController alloc]initWithNibName:nil bundle:nil];
+    ImportUsingWifiViewController *wvc = [[ImportUsingWifiViewController alloc]initWithNibName:nil bundle:nil];
     [self.importSelectionView hideMenu];
     [self.window.rootViewController presentViewController:wvc animated:YES completion:nil];
     
