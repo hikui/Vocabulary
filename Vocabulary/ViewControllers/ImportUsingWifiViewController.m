@@ -9,7 +9,7 @@
 #import "ImportUsingWifiViewController.h"
 #import "ImportingWebServer.h"
 
-@interface ImportUsingWifiViewController ()
+@interface ImportUsingWifiViewController () <ImportingWebServerDelegate>
 
 @property (nonatomic, strong) ImportingWebServer *server;
 @property (nonatomic, weak) IBOutlet UILabel *labelURL;
@@ -20,13 +20,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonOnTouch:)];
+    self.navigationItem.leftBarButtonItem = doneButton;
     self.server = [[ImportingWebServer alloc]init];
+    self.server.importingDelegate = self;
     [self.server start];
     self.labelURL.text = self.server.serverURL.absoluteString;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [self.server stop];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,14 +47,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)webServerBeginsImportingWords:(ImportingWebServer *)webSrver {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"正在导入";
 }
-*/
+- (void)webServer:(ImportingWebServer *)webServer finishedImportingWithError:(NSError *)error {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
 
 @end

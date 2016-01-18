@@ -170,8 +170,9 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
 - (void)importUsingWifiButtonOnTouch:(id)sender {
 //    WordListFromDiskViewController *wvc = [[WordListFromDiskViewController alloc]initWithNibName:nil bundle:nil];
     ImportUsingWifiViewController *wvc = [[ImportUsingWifiViewController alloc]initWithNibName:nil bundle:nil];
+    VNavigationController *nwvc = [[VNavigationController alloc]initWithRootViewController:wvc];
     [self.importSelectionView hideMenu];
-    [self.window.rootViewController presentViewController:wvc animated:YES completion:nil];
+    [self.window.rootViewController presentViewController:nwvc animated:YES completion:nil];
     
 }
 

@@ -11,6 +11,12 @@
 #import "GCDWebServerURLEncodedFormRequest.h"
 #import "WordListManager.h"
 
+@interface ImportingWebServer()
+
+@property (nonatomic, strong) NSBundle *siteBundle;
+
+@end
+
 @implementation ImportingWebServer
 
 - (instancetype)init {
@@ -28,8 +34,9 @@
     if (siteBundle == nil) {
         return NO;
     }
+    self.siteBundle = siteBundle;
     
-    [self addGETHandlerForBasePath:@"/" directoryPath:[siteBundle resourcePath] indexFilename:nil cacheAge:3600 allowRangeRequests:NO];
+    [self addGETHandlerForBasePath:@"/" directoryPath:[siteBundle resourcePath] indexFilename:@"index.html" cacheAge:3600 allowRangeRequests:NO];
     
     __weak typeof(self) weakSelf = self;
     
@@ -48,7 +55,9 @@
     NSSet *wordSet = [WordListManager wordSetFromContent:content];
     
     if ([self.importingDelegate respondsToSelector:@selector(webServerBeginsImportingWords:)]) {
-        [self.importingDelegate webServerBeginsImportingWords:self];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.importingDelegate webServerBeginsImportingWords:self];
+        });
     }
     
     
@@ -61,7 +70,10 @@
             if (error) {
                 respBlock([GCDWebServerDataResponse responseWithJSONObject:@{@"error":[error localizedDescription]}]);
             } else {
-                respBlock([GCDWebServerDataResponse responseWithJSONObject:@{@"error":[NSNull null]}]);
+                NSString *successHTMLPath = [self.siteBundle pathForResource:@"success" ofType:@"html"];
+                NSData *htmlData = [[NSFileManager defaultManager]contentsAtPath:successHTMLPath];
+                NSString *html = [[NSString alloc]initWithData:htmlData encoding:NSUTF8StringEncoding];
+                respBlock([GCDWebServerDataResponse responseWithHTML:html]);
             }
         });
         
