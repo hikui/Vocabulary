@@ -47,6 +47,9 @@ static CGFloat NotificationViewHeight = 48;
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
 
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) ExamContentView *pickAnExamView;
+
+@property (nonatomic, strong) NSURLSession *requestSession;
+
 - (void)createExamContentsArray;
 - (void)shuffleMutableArray:(NSMutableArray *)array;
 - (void)prepareNextExamView;
@@ -73,6 +76,8 @@ static CGFloat NotificationViewHeight = 48;
     _wrongWordsSet = [[NSMutableSet alloc]init];
     _networkOperationSet = [[NSMutableSet alloc]init];
     _examOption = ExamOptionC2E | ExamOptionE2C | ExamOptionListening;
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    _requestSession = [NSURLSession sessionWithConfiguration:config];
 }
 
 - (void)viewDidLoad
@@ -137,32 +142,43 @@ static CGFloat NotificationViewHeight = 48;
 
 - (void)grabWordContent {
     CibaEngine *engine = [CibaEngine sharedInstance];
+    NSMutableArray *promises = [[NSMutableArray alloc]init];
     for (Word *aWord in self.wordsArray) {
         if ([aWord.hasGotDataFromAPI boolValue] || [aWord.manuallyInput boolValue]) {
             continue;
         }
         
-        CibaNetworkOperation *operation = nil;
-        [engine fillWord:aWord outerOperation:&operation].finally(^{
-            [self.networkOperationSet removeObject:operation];
-            if (self.networkOperationSet.count == 0) {
-                //all ok
-                [self createExamContentsArray];
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            }
-        });
-        if (operation) {
-            [self.networkOperationSet addObject:operation];
-        }
+        AnyPromise *promise = [engine fillWord:aWord URLSession:self.requestSession];
+        [promises addObject:promise];
+        
+//        CibaNetworkOperation *operation = nil;
+//        [engine fillWord:aWord outerOperation:&operation].finally(^{
+//            [self.networkOperationSet removeObject:operation];
+//            if (self.networkOperationSet.count == 0) {
+//                //all ok
+//                [self createExamContentsArray];
+//                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//            }
+//        });
+//        if (operation) {
+//            [self.networkOperationSet addObject:operation];
+//        }
     }
+    PMKWhen(promises).finally(^(){
+        [self createExamContentsArray];
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+
+    });
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    for (CibaNetworkOperation *operation in self.networkOperationSet) {
-        [operation cancel];
-    }
+    [self.requestSession getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+        for (NSURLSessionTask *task in dataTasks) {
+            [task cancel];
+        }
+    }];
 }
 
 - (BOOL)shouldAutorotate

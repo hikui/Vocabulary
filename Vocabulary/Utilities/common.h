@@ -42,12 +42,15 @@
 // 当PlanMaker收到kWordListChangedNotificationKey后，强制新建一个plan
 #define kWordListChangedNotificationKey @"kWordListChangedNotificationKey"
 
-#define WordListManagerDomain @"WordListManagerDomain"
-#define WordListCreatorEmptyWordSetError -1
-#define WordListCreatorNoTitleError -2
-#define CibaEngineDomain @"info.herkuang.vocabulary.CibaEngine"
-#define FillWordError -3
-#define FillWordPronError -4
+extern NSString * WordListManagerDomain;
+extern int WordListCreatorEmptyWordSetError;
+extern int WordListCreatorNoTitleError;
+
+extern NSString *CibaEngineDomain;
+extern int FillWordError;
+extern int FillWordPronError;
+extern int ParseJSONError;
+
 
 #define GlobalBackgroundColor RGBA(227,227,227,1)
 

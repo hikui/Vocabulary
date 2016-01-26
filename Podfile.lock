@@ -1,6 +1,5 @@
 PODS:
   - ActionSheetPicker-3.0 (2.0.4)
-  - BButton (4.0.2)
   - CocoaLumberjack (2.2.0):
     - CocoaLumberjack/Default (= 2.2.0)
     - CocoaLumberjack/Extensions (= 2.2.0)
@@ -9,16 +8,33 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
-  - GCDWebServer (3.3.1):
-    - GCDWebServer/Core (= 3.3.1)
-  - GCDWebServer/Core (3.3.1)
+  - GCDWebServer/CocoaLumberjack (3.3.2):
+    - CocoaLumberjack (~> 2)
+    - GCDWebServer/Core
+  - GCDWebServer/Core (3.3.2)
   - LibYAML (0.1.4)
   - Masonry (0.6.4)
   - MBProgressHUD (0.9.2)
-  - MKNetworkKit (0.87):
-    - Reachability (~> 3.1.0)
-  - PromiseKit/Promise (1.6.0)
-  - Reachability (3.1.1)
+  - OMGHTTPURLRQ (3.0.2):
+    - OMGHTTPURLRQ/RQ (= 3.0.2)
+  - OMGHTTPURLRQ/FormURLEncode (3.0.2)
+  - OMGHTTPURLRQ/RQ (3.0.2):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.0.2)
+  - PromiseKit (3.0.1):
+    - PromiseKit/Foundation (= 3.0.1)
+    - PromiseKit/QuartzCore (= 3.0.1)
+    - PromiseKit/UIKit (= 3.0.1)
+  - PromiseKit/CorePromise (3.0.1)
+  - PromiseKit/Foundation (3.0.1):
+    - OMGHTTPURLRQ (~> 3.0.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.0.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.0.1):
+    - PromiseKit/CorePromise
+  - Reachability (3.2)
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -26,36 +42,34 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - SZTextView (1.1.10)
+  - SZTextView (1.2.1)
   - YAML-Framework (0.0.2):
     - LibYAML (~> 0.1.4)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
-  - BButton
   - CocoaLumberjack (~> 2.2.0)
-  - GCDWebServer (~> 3.0)
+  - GCDWebServer/CocoaLumberjack (~> 3.0)
   - Masonry
   - MBProgressHUD
-  - MKNetworkKit (~> 0.87)
-  - PromiseKit/Promise
+  - PromiseKit (~> 3.0.1)
+  - Reachability (~> 3.2)
   - ReactiveCocoa (~> 2.5)
-  - SZTextView (~> 1.1.10)
+  - SZTextView (~> 1.2.1)
   - YAML-Framework (~> 0.0.2)
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 860466cb4a66854e6acb590071ecee404b48f49d
-  BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
-  GCDWebServer: 852ed5c1056df2f1ab3b32ec54a81d9730bd227f
+  GCDWebServer: 2a375ec42839a41d7187d04e5b688d32fa5c4cd5
   LibYAML: 3af2c5adf3a40dff936d087aa6a77edc10036bc5
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MKNetworkKit: 60ad3c83b62183e40ba75ce772c9427c25b520de
-  PromiseKit: 6be651503d4af22830b5313be993c5a0ef77bf77
-  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
+  OMGHTTPURLRQ: 8376dc887d76a5a7e2a67881dc788f917a2f437c
+  PromiseKit: 19d12914484a15c25a46f72fde38579204a5dac6
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  SZTextView: c814e6dcb2303e3e79feb0fd27cf44d74e3c59a6
+  SZTextView: 906df45afd3c1b24fc5252088d5ef8061513c238
   YAML-Framework: 6fe698e19d39d778829f5937e39d1e6bc12afd7b
 
 COCOAPODS: 0.39.0

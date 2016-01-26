@@ -82,3 +82,32 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/ActionSheetPicker_3_0.framework"
+  install_framework "Pods/CocoaLumberjack.framework"
+  install_framework "Pods/GCDWebServer.framework"
+  install_framework "Pods/LibYAML.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/Masonry.framework"
+  install_framework "Pods/OMGHTTPURLRQ.framework"
+  install_framework "Pods/PromiseKit.framework"
+  install_framework "Pods/Reachability.framework"
+  install_framework "Pods/ReactiveCocoa.framework"
+  install_framework "Pods/SZTextView.framework"
+  install_framework "Pods/YAML_Framework.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/ActionSheetPicker_3_0.framework"
+  install_framework "Pods/CocoaLumberjack.framework"
+  install_framework "Pods/GCDWebServer.framework"
+  install_framework "Pods/LibYAML.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/Masonry.framework"
+  install_framework "Pods/OMGHTTPURLRQ.framework"
+  install_framework "Pods/PromiseKit.framework"
+  install_framework "Pods/Reachability.framework"
+  install_framework "Pods/ReactiveCocoa.framework"
+  install_framework "Pods/SZTextView.framework"
+  install_framework "Pods/YAML_Framework.framework"
+fi

@@ -19,8 +19,6 @@ static int ddLogLevel = DDLogLevelOff;
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "MobClick.h"
-    #import "MKNetworkKit.h"
-    #import "Reachability.h"
     #import "MBProgressHUD.h"
     #import "CoreData+MagicalRecord.h"
     #import "Word.h"

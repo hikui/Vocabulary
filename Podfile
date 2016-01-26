@@ -1,12 +1,16 @@
 source 'https://github.com/CocoaPods/Specs.git'
-pod 'MKNetworkKit', '~>0.87'
+platform :ios, '8.0'
+use_frameworks!
+#pod 'MKNetworkKit', '~>0.87'
+
 pod 'MBProgressHUD'
-pod 'BButton'
+#pod 'BButton'
 pod 'CocoaLumberjack', '~> 2.2.0'
-pod 'SZTextView', '~> 1.1.10'
+pod 'SZTextView', '~> 1.2.1'
 pod 'ActionSheetPicker-3.0'
-pod 'PromiseKit/Promise'
+pod 'PromiseKit', '~> 3.0.1'
 pod 'YAML-Framework', '~> 0.0.2'
 pod 'Masonry'
 pod 'ReactiveCocoa', '~> 2.5'
-pod "GCDWebServer", "~> 3.0"
+pod "GCDWebServer/CocoaLumberjack", "~> 3.0"
+pod 'Reachability', '~> 3.2'
