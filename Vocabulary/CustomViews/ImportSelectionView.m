@@ -11,7 +11,7 @@
 @interface ImportSelectionView()
 
 @property (weak) IBOutlet UIView *wrapperView;
-@property (weak, readwrite) IBOutlet UIButton *importFromiTunesButton;
+@property (weak, readwrite) IBOutlet UIButton *importUsingWifi;
 @property (weak, readwrite) IBOutlet UIButton *importManuallyButton;
 
 @property (weak) IBOutlet NSLayoutConstraint *bottomMarginConstraint;
@@ -23,7 +23,7 @@
 
 
 + (instancetype)importSelectionView {
-    ImportSelectionView *view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass(self) owner:nil options:nil][0];
+    ImportSelectionView *view = [[NSBundle mainBundle]loadNibNamed:@"ImportSelectionView" owner:nil options:nil][0];
     return view;
 }
 
