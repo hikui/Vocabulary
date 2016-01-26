@@ -180,30 +180,6 @@
     }).finally(^(){
         [hud hide:YES afterDelay:0.4];
     });
-    
-    
-//    [engine fillWord:self.word outerOperation:&operation].then(^(){
-//        [hud hide:YES];
-//        [self refreshView];
-//        BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
-//        if (shouldPerformSound) {
-//            [self playSound];
-//        }
-//    }).catch(^(NSError *error){
-//        if ([error.domain isEqualToString:CibaEngineDomain] && error.code == FillWordPronError) {
-//            hud.detailsLabelText = @"语音加载失败";
-//            [hud hide:YES afterDelay:1.5];
-//            [self refreshView];
-//        }else{
-//            hud.detailsLabelText = @"词义加载失败";
-//            [hud hide:YES afterDelay:1.5];
-//            self.manuallyInputButton.hidden = NO;
-//            [self loadRightBarButtonItems];
-//        }
-//    });
-//    
-//    self.networkOperation = operation;
-
 }
 
 // @Override

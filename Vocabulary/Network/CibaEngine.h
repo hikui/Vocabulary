@@ -31,25 +31,6 @@
 
 + (id)sharedInstance;
 
-///**
-// Promise版的请求内容
-// 
-// 当请求被cancel时，会进入catch，传入的Error有{"Cause":"Cancel"}字样。
-// 
-// @param word      需要请求内容的单词
-// @param operation 请求operation的二级指针，用于外部操控operation（例如cancel等）
-// 
-// @return promise
-// */
-//- (PMKPromise *)requestContentOfWord:(NSString*)word
-//                      outerOperation:(CibaNetworkOperation **)operation;
-//
-//- (PMKPromise *)requestPronWithURL:(NSString*)url
-//                    outerOperation:(CibaNetworkOperation **)operation;
-//
-//
-//- (PMKPromise *)fillWord:(Word*)word
-//          outerOperation:(CibaNetworkOperation **)operation;
 
 - (AnyPromise *)requestContentOfWord:(NSString *)word URLSession:(NSURLSession *)session;
 - (AnyPromise *)requestPronWithURL:(NSString*)url URLSession:(NSURLSession *)session;
