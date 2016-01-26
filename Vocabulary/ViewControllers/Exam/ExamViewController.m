@@ -42,8 +42,6 @@ static CGFloat NotificationViewHeight = 48;
 @property (nonatomic, unsafe_unretained) ExamContent *currentExamContent;
 @property (nonatomic, unsafe_unretained) BOOL shouldUpdateWordFamiliarity;
 
-@property (nonatomic, strong) NSMutableSet *networkOperationSet;
-
 @property (nonatomic, strong) SimpleProgressBar *progressBar;
 
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) ExamContentView *pickAnExamView;
@@ -74,7 +72,6 @@ static CGFloat NotificationViewHeight = 48;
     _examContentsQueue = [[NSMutableArray alloc]init];
     _examViewReuseQueue = [[NSMutableArray alloc]initWithCapacity:2];
     _wrongWordsSet = [[NSMutableSet alloc]init];
-    _networkOperationSet = [[NSMutableSet alloc]init];
     _examOption = ExamOptionC2E | ExamOptionE2C | ExamOptionListening;
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     _requestSession = [NSURLSession sessionWithConfiguration:config];
@@ -128,16 +125,10 @@ static CGFloat NotificationViewHeight = 48;
     self.progressBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:self.progressBar];
     
-
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.detailsLabelText = @"正在取词";
     
     [self grabWordContent];
-    
-    if (self.networkOperationSet.count == 0) {
-        [self createExamContentsArray];
-    }else{
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.detailsLabelText = @"正在取词";
-    }
 }
 
 - (void)grabWordContent {
@@ -151,18 +142,6 @@ static CGFloat NotificationViewHeight = 48;
         AnyPromise *promise = [engine fillWord:aWord URLSession:self.requestSession];
         [promises addObject:promise];
         
-//        CibaNetworkOperation *operation = nil;
-//        [engine fillWord:aWord outerOperation:&operation].finally(^{
-//            [self.networkOperationSet removeObject:operation];
-//            if (self.networkOperationSet.count == 0) {
-//                //all ok
-//                [self createExamContentsArray];
-//                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//            }
-//        });
-//        if (operation) {
-//            [self.networkOperationSet addObject:operation];
-//        }
     }
     PMKWhen(promises).finally(^(){
         [self createExamContentsArray];
@@ -396,11 +375,11 @@ static CGFloat NotificationViewHeight = 48;
             };
             NSDate *lastReviewTime = self.wordList.lastReviewTime;
             if (lastReviewTime != nil) {
-                NSDateComponents *components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:lastReviewTime];
+                NSDateComponents *components = [[NSCalendar currentCalendar]components:(NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay) fromDate:lastReviewTime];
                 NSInteger lastReviewYear = components.year;
                 NSInteger lastReviewMonth = components.month;
                 NSInteger lastReviewDay = components.day;
-                components = [[NSCalendar currentCalendar]components:(NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit) fromDate:[NSDate date]];
+                components = [[NSCalendar currentCalendar]components:(NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay) fromDate:[NSDate date]];
                 NSInteger currYear = components.year;
                 NSInteger currMonth = components.month;
                 NSInteger currDay = components.day;
