@@ -1,9 +1,0 @@
-EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = -DHAVE_CONFIG_H $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/ActionSheetPicker_3_0.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/CocoaLumberjack.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/GCDWebServer.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/LibYAML.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MBProgressHUD.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Masonry.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/OMGHTTPURLRQ.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/PromiseKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Reachability.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/ReactiveCocoa.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SZTextView.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/YAML_Framework.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "ActionSheetPicker_3_0" -framework "CocoaLumberjack" -framework "GCDWebServer" -framework "LibYAML" -framework "MBProgressHUD" -framework "Masonry" -framework "OMGHTTPURLRQ" -framework "PromiseKit" -framework "Reachability" -framework "ReactiveCocoa" -framework "SZTextView" -framework "YAML_Framework"
-OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
-PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
-PODS_ROOT = ${SRCROOT}/Pods
-SWIFT_INSTALL_OBJC_HEADER = NO
