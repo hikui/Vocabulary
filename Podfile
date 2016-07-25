@@ -8,7 +8,7 @@ target 'Vocabulary II' do
     pod 'CocoaLumberjack', '~> 2.2.0'
     pod 'SZTextView', '~> 1.2.1'
     pod 'ActionSheetPicker-3.0'
-    pod 'PromiseKit', '~> 3.0.1'
+    pod 'PromiseKit', '~> 3.2.0'
     pod 'YAML-Framework', '~> 0.0.2'
     pod 'Masonry'
     pod 'ReactiveCocoa', '~> 2.5'

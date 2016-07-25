@@ -147,7 +147,7 @@ THE SOFTWARE.
 
 ## OMGHTTPURLRQ
 
-See README.markdown for full license text.
+https://github.com/mxcl/OMGHTTPURLRQ/blob/master/README.markdown
 
 ## PromiseKit
 
