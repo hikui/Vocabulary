@@ -1,16 +1,18 @@
+# 编译问题处理
+
+当你在编译出现问题时，请尝试删除Derived Data。
+
+方法：进入`Window->Projects`，找到你的工程，在Derived Data一行点击`Delete`
+
 # 注意事项
 业余项目，用于尝试iOS新版本的新功能，以及一些三方库。   
-软件在91助手上面发布，可搜索“记词助手”。 
 软件在AppStore发布，可搜索“记词助手”  
 
-不得将本软件直接用于毕业设计、大作业！！！
-
 # 技术要点
-* Xcode 6.0及以上
-* iOS 6.0及以上
+* Xcode 7.3及以上
+* iOS 8.0及以上
 * 使用了Core Data
 * 使用了金山词霸公开的API
-* 加了友盟的统计
 
 # 编译
 本工程使用cocoapods进行三方库管理。编译前请确保[安装了cocoapods](http://cocoapods.org)(可能需要翻墙)。
