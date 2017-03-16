@@ -34,12 +34,13 @@
 #import "Note.h"
 #import "EditWordDetailViewController.h"
 #import "NSString+VAdditions.h"
+#import <Reachability/Reachability.h>
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
 @interface WordDetailViewController ()
 
-@property (nonatomic, weak) CibaNetworkOperation *networkOperation;
+@property (nonatomic, strong) NSURLSession *requestSession;
 
 @end
 
@@ -50,6 +51,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _shouldHideInfo = NO;
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _requestSession = [NSURLSession sessionWithConfiguration:config];
     }
     return self;
 }
@@ -90,8 +93,11 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];    
-//    [[CibaEngine sharedInstance]cancelOperationOfWord:self.word];
-    [self.networkOperation cancel];
+    [self.requestSession getTasksWithCompletionHandler:^(NSArray<NSURLSessionDataTask *> * _Nonnull dataTasks, NSArray<NSURLSessionUploadTask *> * _Nonnull uploadTasks, NSArray<NSURLSessionDownloadTask *> * _Nonnull downloadTasks) {
+        for (NSURLSessionTask *task in dataTasks) {
+            [task cancel];
+        }
+    }];
     
 }
 
@@ -161,8 +167,8 @@
     CibaEngine *engine = [CibaEngine sharedInstance];
     self.manuallyInputButton.hidden = YES; //刷新时，关闭此按钮
     
-    CibaNetworkOperation *operation = nil;
-    [engine fillWord:self.word outerOperation:&operation].then(^(){
+
+    [engine fillWord:self.word URLSession:self.requestSession].then(^(){
         [hud hide:YES];
         [self refreshView];
         BOOL shouldPerformSound = [[NSUserDefaults standardUserDefaults]boolForKey:kPerformSoundAutomatically];
@@ -170,20 +176,10 @@
             [self playSound];
         }
     }).catch(^(NSError *error){
-        if ([error.domain isEqualToString:CibaEngineDomain] && error.code == FillWordPronError) {
-            hud.detailsLabelText = @"语音加载失败";
-            [hud hide:YES afterDelay:1.5];
-            [self refreshView];
-        }else{
-            hud.detailsLabelText = @"词义加载失败";
-            [hud hide:YES afterDelay:1.5];
-            self.manuallyInputButton.hidden = NO;
-            [self loadRightBarButtonItems];
-        }
+        hud.detailsLabelText = [error localizedDescription];
+    }).finally(^(){
+        [hud hide:YES afterDelay:0.4];
     });
-    
-    self.networkOperation = operation;
-
 }
 
 // @Override

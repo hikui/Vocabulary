@@ -25,20 +25,16 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "MKNetworkKit.h"
 #import "Word.h"
 
-@class BButton;
 @interface WordDetailViewController : VBaseViewController
 
 @property (nonatomic,strong) Word *word;
 @property (nonatomic,weak) IBOutlet UILabel *lblKey;
 @property (nonatomic,strong) AVAudioPlayer *player;
 @property (nonatomic,weak) IBOutlet UITextView *acceptationTextView;
-@property (nonatomic,weak) IBOutlet BButton *detailButton;
+@property (nonatomic,weak) IBOutlet UIButton *detailButton;
 @property (nonatomic,weak) IBOutlet UIButton *manuallyInputButton;
-@property (nonatomic,strong) MKNetworkOperation *downloadOp;
-@property (nonatomic,strong) MKNetworkOperation *voiceOp;
 @property (nonatomic,unsafe_unretained) BOOL shouldHideInfo;
 
 //- (instancetype)initWithWord:(Word *)word;

@@ -49,7 +49,7 @@
                                 <action selector="btnReadOnPressed:" destination="-1" eventType="touchUpInside" id="10"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13" customClass="BButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="13">
                             <rect key="frame" x="19" y="354" width="282" height="43"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="43" id="MmQ-K2-nKi"/>

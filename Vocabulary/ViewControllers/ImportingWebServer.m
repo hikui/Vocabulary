@@ -52,7 +52,7 @@
 //    respBlock([GCDWebServerDataResponse responseWithText:@"abcabc"]);
     NSString *title = request.arguments[@"title"];
     NSString *content = request.arguments[@"words"];
-    NSSet *wordSet = [WordListManager wordSetFromContent:content];
+    NSString *isYAML = request.arguments[@"isYAML"];
     
     if ([self.importingDelegate respondsToSelector:@selector(webServerBeginsImportingWords:)]) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -60,9 +60,7 @@
         });
     }
     
-    
-    
-    [WordListManager createWordListAsyncWithTitle:title wordSet:wordSet completion:^(NSError *error) {
+    void (^completionBlock)(NSError *error) = ^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if ([self.importingDelegate respondsToSelector:@selector(webServer:finishedImportingWithError:)]) {
                 [self.importingDelegate webServer:self finishedImportingWithError:error];
@@ -76,8 +74,18 @@
                 respBlock([GCDWebServerDataResponse responseWithHTML:html]);
             }
         });
+    };
+
+    
+    if([isYAML isEqualToString:@"on"]) {
+        [WordListManager createWordListAsyncWithTitle:title yamlContent:content progressBlock:nil completion:completionBlock];
+    } else {
+        NSSet *wordSet = [WordListManager wordSetFromContent:content];
         
-    }];
+        [WordListManager createWordListAsyncWithTitle:title wordSet:wordSet completion:completionBlock];
+    }
+    
+    
 }
 
 @end

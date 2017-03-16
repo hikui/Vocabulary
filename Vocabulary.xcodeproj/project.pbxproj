@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13F6169C5B3C436E888FC365 /* libPods.a */; };
+		3C19AD03B4192F12CB14E086 /* Pods_Vocabulary_II.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69621CF577E19DA4074F8447 /* Pods_Vocabulary_II.framework */; };
 		7F18D0061A50EFB30005CD07 /* ExamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F18D0051A50EFB30005CD07 /* ExamViewController.xib */; };
 		7F18D0091A50F3080005CD07 /* InsertWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F18D0081A50F3080005CD07 /* InsertWordView.m */; };
 		7F18D00B1A50F3210005CD07 /* InsertWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F18D00A1A50F3210005CD07 /* InsertWordView.xib */; };
@@ -26,7 +26,6 @@
 		7F43F71519F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F69F19F7A9A900672440 /* MigrationV3ToV4.xcmappingmodel */; };
 		7F43F71619F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A019F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel */; };
 		7F43F71719F7A9A900672440 /* CibaEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A319F7A9A900672440 /* CibaEngine.m */; };
-		7F43F71819F7A9A900672440 /* CibaNetworkOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A519F7A9A900672440 /* CibaNetworkOperation.m */; };
 		7F43F71919F7A9A900672440 /* NSDate+VAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6A919F7A9A900672440 /* NSDate+VAdditions.m */; };
 		7F43F71A19F7A9A900672440 /* NSMutableString+HTMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6AB19F7A9A900672440 /* NSMutableString+HTMLEscape.m */; };
 		7F43F71B19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F43F6AD19F7A9A900672440 /* UINavigationController+Rotation_IOS6.m */; };
@@ -147,6 +146,9 @@
 		A49B7C061C3E5B3700997E08 /* WordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49B7C051C3E5B3700997E08 /* WordListCell.xib */; };
 		A49B7C091C3E6DA500997E08 /* PlanningTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */; };
 		A49B7C0E1C3F76B300997E08 /* PlanningTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A49B7C0D1C3F76B300997E08 /* PlanningTableViewCell.xib */; };
+		A4A2542B1C57389E005B107D /* SearchWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A2542A1C57389E005B107D /* SearchWordsViewController.m */; };
+		A4A2542D1C573933005B107D /* SearchWordsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4A2542C1C573933005B107D /* SearchWordsViewController.xib */; };
+		A4A254321C5755F2005B107D /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A254311C5755F2005B107D /* common.m */; };
 		A4B12CE01C328A470015CCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */; };
 		A4B12CE31C3296940015CCD4 /* libUMOnlineConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */; };
 		A4CD22C1181BD56F00FE29F7 /* nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A4CD22C0181BD56F00FE29F7 /* nav@2x.png */; };
@@ -198,8 +200,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13F6169C5B3C436E888FC365 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		527127F11B3F2310405C9F93 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		1ABB219816C3844A1E0A844D /* Pods-Vocabulary II.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabulary II.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vocabulary II/Pods-Vocabulary II.release.xcconfig"; sourceTree = "<group>"; };
+		4674ED1C19DEA2FC40448D1B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FFEBE54104E6FA8D53EFF84 /* Pods-Vocabulary II.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabulary II.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vocabulary II/Pods-Vocabulary II.debug.xcconfig"; sourceTree = "<group>"; };
+		69621CF577E19DA4074F8447 /* Pods_Vocabulary_II.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vocabulary_II.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F18D0051A50EFB30005CD07 /* ExamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExamViewController.xib; sourceTree = "<group>"; };
 		7F18D0071A50F3080005CD07 /* InsertWordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertWordView.h; sourceTree = "<group>"; };
 		7F18D0081A50F3080005CD07 /* InsertWordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertWordView.m; sourceTree = "<group>"; };
@@ -227,8 +231,6 @@
 		7F43F6A019F7A9A900672440 /* MigrationV3_1ToV4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MigrationV3_1ToV4.xcmappingmodel; sourceTree = "<group>"; };
 		7F43F6A219F7A9A900672440 /* CibaEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaEngine.h; sourceTree = "<group>"; };
 		7F43F6A319F7A9A900672440 /* CibaEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaEngine.m; sourceTree = "<group>"; };
-		7F43F6A419F7A9A900672440 /* CibaNetworkOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CibaNetworkOperation.h; sourceTree = "<group>"; };
-		7F43F6A519F7A9A900672440 /* CibaNetworkOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CibaNetworkOperation.m; sourceTree = "<group>"; };
 		7F43F6A819F7A9A900672440 /* NSDate+VAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+VAdditions.h"; sourceTree = "<group>"; };
 		7F43F6A919F7A9A900672440 /* NSDate+VAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+VAdditions.m"; sourceTree = "<group>"; };
 		7F43F6AA19F7A9A900672440 /* NSMutableString+HTMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+HTMLEscape.h"; sourceTree = "<group>"; };
@@ -441,6 +443,10 @@
 		A49B7C071C3E6DA500997E08 /* PlanningTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanningTableViewCell.h; sourceTree = "<group>"; };
 		A49B7C081C3E6DA500997E08 /* PlanningTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanningTableViewCell.m; sourceTree = "<group>"; };
 		A49B7C0D1C3F76B300997E08 /* PlanningTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlanningTableViewCell.xib; sourceTree = "<group>"; };
+		A4A254291C57389E005B107D /* SearchWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchWordsViewController.h; sourceTree = "<group>"; };
+		A4A2542A1C57389E005B107D /* SearchWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchWordsViewController.m; sourceTree = "<group>"; };
+		A4A2542C1C573933005B107D /* SearchWordsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchWordsViewController.xib; sourceTree = "<group>"; };
+		A4A254311C5755F2005B107D /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = common.m; sourceTree = "<group>"; };
 		A4B12CDF1C328A470015CCD4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		A4B12CE11C3296890015CCD4 /* UMOnlineConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMOnlineConfig.h; sourceTree = "<group>"; };
 		A4B12CE21C3296940015CCD4 /* libUMOnlineConfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMOnlineConfig.a; sourceTree = "<group>"; };
@@ -459,7 +465,6 @@
 		A4F91FB71C3668D600E37B1C /* VRotatableButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRotatableButton.m; sourceTree = "<group>"; };
 		A4F91FB91C367AD700E37B1C /* ImportSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportSelectionView.h; sourceTree = "<group>"; };
 		A4F91FBA1C367AD700E37B1C /* ImportSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSelectionView.m; sourceTree = "<group>"; };
-		D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC2290071696B46700D7E0D8 /* splitline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splitline.png; path = artwork/splitline.png; sourceTree = "<group>"; };
 		EC2290081696B46700D7E0D8 /* splitline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splitline@2x.png"; path = "artwork/splitline@2x.png"; sourceTree = "<group>"; };
 		EC4BCEA716687AD3004887B4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -513,7 +518,7 @@
 				A46A7E6F16302A2C00DF4696 /* CoreData.framework in Frameworks */,
 				A46A7E4C1630296800DF4696 /* UIKit.framework in Frameworks */,
 				A46A7E4E1630296800DF4696 /* Foundation.framework in Frameworks */,
-				19A2348275C1499DA0A6D00B /* libPods.a in Frameworks */,
+				3C19AD03B4192F12CB14E086 /* Pods_Vocabulary_II.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,8 +612,6 @@
 			children = (
 				7F43F6A219F7A9A900672440 /* CibaEngine.h */,
 				7F43F6A319F7A9A900672440 /* CibaEngine.m */,
-				7F43F6A419F7A9A900672440 /* CibaNetworkOperation.h */,
-				7F43F6A519F7A9A900672440 /* CibaNetworkOperation.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				7F43F6B819F7A9A900672440 /* PureColorImageGenerator.h */,
 				7F43F6B919F7A9A900672440 /* PureColorImageGenerator.m */,
 				7F43F6BE19F7A9A900672440 /* common.h */,
+				A4A254311C5755F2005B107D /* common.m */,
 				7F67A7E31A47B7640037F7F2 /* HKVNavigationManager.h */,
 				7F67A7E41A47B7640037F7F2 /* HKVNavigationManager.m */,
 				7F67A7F91A4800380037F7F2 /* HKVNavigationRouteConfig.h */,
@@ -709,6 +713,9 @@
 				7F97FB031A490D8C000F0797 /* VImagePickerViewController.m */,
 				7F97FB041A490D8C000F0797 /* VImagePickerViewController.xib */,
 				A40D5AD21C4CC40C00A8A779 /* ImportWithWiFi */,
+				A4A254291C57389E005B107D /* SearchWordsViewController.h */,
+				A4A2542A1C57389E005B107D /* SearchWordsViewController.m */,
+				A4A2542C1C573933005B107D /* SearchWordsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -886,6 +893,15 @@
 			path = xibs;
 			sourceTree = "<group>";
 		};
+		890E3A36355E9F0A1EF4E55E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FFEBE54104E6FA8D53EFF84 /* Pods-Vocabulary II.debug.xcconfig */,
+				1ABB219816C3844A1E0A844D /* Pods-Vocabulary II.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A40D5AB21C4CC1BB00A8A779 /* Web */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,7 +931,7 @@
 				A4E6458F1A45830800FE5A4F /* Vocabulary Tests */,
 				A46A7E4A1630296800DF4696 /* Frameworks */,
 				A46A7E481630296800DF4696 /* Products */,
-				CF83C583E488831AC25676C1 /* Pods */,
+				890E3A36355E9F0A1EF4E55E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -944,7 +960,8 @@
 				A46A7E4B1630296800DF4696 /* UIKit.framework */,
 				A46A7E4D1630296800DF4696 /* Foundation.framework */,
 				A46A7E4F1630296800DF4696 /* CoreGraphics.framework */,
-				13F6169C5B3C436E888FC365 /* libPods.a */,
+				4674ED1C19DEA2FC40448D1B /* Pods.framework */,
+				69621CF577E19DA4074F8447 /* Pods_Vocabulary_II.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1075,15 +1092,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CF83C583E488831AC25676C1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				527127F11B3F2310405C9F93 /* Pods.debug.xcconfig */,
-				D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		ECB725B116D0C88100BAB36D /* guides */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,12 +1126,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A46A7E6B1630296800DF4696 /* Build configuration list for PBXNativeTarget "Vocabulary II" */;
 			buildPhases = (
-				9BDAA56B0E67445AAC237F42 /* Check Pods Manifest.lock */,
+				8612E80B83946F6C6B39C605 /* [CP] Check Pods Manifest.lock */,
 				A46A7E431630296800DF4696 /* Sources */,
 				A46A7E441630296800DF4696 /* Frameworks */,
 				A46A7E451630296800DF4696 /* Resources */,
-				E35EE715682344FC890F3EAB /* Copy Pods Resources */,
-				481659AFF72E9786C24A68AF /* Embed Pods Frameworks */,
+				D86E99107B98E19652B853CC /* [CP] Embed Pods Frameworks */,
+				7AE597B3F2B3A7E2F25AE242 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1255,6 +1263,7 @@
 				ECB725CD16D21C8F00BAB36D /* import_wordlist_itunes3@2x.png in Resources */,
 				ECB725CE16D21C8F00BAB36D /* import_wordlist_itunes4@2x.png in Resources */,
 				ECB725D316D21D5300BAB36D /* import_wordlist_itunes1.png in Resources */,
+				A4A2542D1C573933005B107D /* SearchWordsViewController.xib in Resources */,
 				ECB725D416D21D5300BAB36D /* import_wordlist_itunes2.png in Resources */,
 				7F97FB061A490D8C000F0797 /* VImagePickerViewController.xib in Resources */,
 				ECB725D516D21D5300BAB36D /* import_wordlist_itunes3.png in Resources */,
@@ -1273,48 +1282,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		481659AFF72E9786C24A68AF /* Embed Pods Frameworks */ = {
+		7AE597B3F2B3A7E2F25AE242 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vocabulary II/Pods-Vocabulary II-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9BDAA56B0E67445AAC237F42 /* Check Pods Manifest.lock */ = {
+		8612E80B83946F6C6B39C605 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
-		E35EE715682344FC890F3EAB /* Copy Pods Resources */ = {
+		D86E99107B98E19652B853CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vocabulary II/Pods-Vocabulary II-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1352,7 +1363,6 @@
 				A46A7E5C1630296800DF4696 /* AppDelegate.m in Sources */,
 				A489D7181A066DEA0087C0AF /* PronunciationData.m in Sources */,
 				7F67A7FB1A4800380037F7F2 /* HKVNavigationRouteConfig.m in Sources */,
-				7F43F71819F7A9A900672440 /* CibaNetworkOperation.m in Sources */,
 				7F68EED41A26C73E00FB898F /* NSManagedObject+MagicalRequests.m in Sources */,
 				7F68EEDC1A26C73E00FB898F /* MagicalRecord+Actions.m in Sources */,
 				A48BE2BC1A0631DC00FCEE1D /* UIColor+VAdditions.m in Sources */,
@@ -1367,6 +1377,7 @@
 				7F68EEE11A26C73E00FB898F /* MagicalRecord+iCloud.m in Sources */,
 				A4F91FBB1C367AD700E37B1C /* ImportSelectionView.m in Sources */,
 				7F68EEDB1A26C73E00FB898F /* NSPersistentStoreCoordinator+MagicalRecord.m in Sources */,
+				A4A254321C5755F2005B107D /* common.m in Sources */,
 				7F68EEDF1A26C73E00FB898F /* MagicalRecord+Setup.m in Sources */,
 				A489D7151A066DAF0087C0AF /* Word.m in Sources */,
 				7F43F71C19F7A9A900672440 /* UIToolbar+VToolBar.m in Sources */,
@@ -1393,6 +1404,7 @@
 				7F43F70C19F7A9A900672440 /* SimpleProgressBar.m in Sources */,
 				7F43F72119F7A9A900672440 /* PureColorImageGenerator.m in Sources */,
 				7F43F73119F7A9A900672440 /* PreferenceViewController.m in Sources */,
+				A4A2542B1C57389E005B107D /* SearchWordsViewController.m in Sources */,
 				7F68EED81A26C73E00FB898F /* NSManagedObjectContext+MagicalThreading.m in Sources */,
 				A489D70B1A066B720087C0AF /* Model.xcdatamodeld in Sources */,
 				7F68EEDA1A26C73E00FB898F /* NSPersistentStore+MagicalRecord.m in Sources */,
@@ -1505,7 +1517,7 @@
 		};
 		A46A7E6C1630296800DF4696 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 527127F11B3F2310405C9F93 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4FFEBE54104E6FA8D53EFF84 /* Pods-Vocabulary II.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
@@ -1537,7 +1549,7 @@
 		};
 		A46A7E6D1630296800DF4696 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D115E6E3B09BB8F8F5C1EE04 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 1ABB219816C3844A1E0A844D /* Pods-Vocabulary II.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
