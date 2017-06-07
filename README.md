@@ -9,8 +9,8 @@
 软件在AppStore发布，可搜索“记词助手”  
 
 # 技术要点
-* Xcode 7.3及以上
-* iOS 8.0及以上
+* Xcode 8.3及以上
+* iOS 9.0及以上
 * 使用了Core Data
 * 使用了金山词霸公开的API
 
