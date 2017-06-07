@@ -26,6 +26,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "WordList.h"
+#import "VBaseViewController.h"
 
 typedef NS_OPTIONS(NSInteger, ExamOption) {
     ExamOptionNone = 0,

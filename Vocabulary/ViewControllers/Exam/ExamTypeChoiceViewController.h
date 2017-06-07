@@ -7,6 +7,7 @@
 //
 
 #import "VBaseViewController.h"
+@class WordList;
 
 @interface ExamTypeChoiceViewController : VBaseViewController
 

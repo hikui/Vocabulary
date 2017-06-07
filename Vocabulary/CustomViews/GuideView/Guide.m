@@ -7,6 +7,7 @@
 //
 
 #import "Guide.h"
+#import "common.h"
 
 @interface Guide ()
 

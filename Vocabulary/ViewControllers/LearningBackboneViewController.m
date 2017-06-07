@@ -28,6 +28,9 @@
 #import "VNavigationController.h"
 #import "NoteViewController.h"
 #import "EditWordDetailViewController.h"
+#import "common.h"
+#import "MobClick.h"
+#import "UINavigationController+NavigationManager.h"
 
 @interface LearningBackboneViewController ()
 {

@@ -25,7 +25,10 @@
 
 //#import "MKNetworkEngine.h"
 //#import "CibaNetworkOperation.h"
-#import "PromiseKit.h"
+@import UIKit;
+
+@class AnyPromise;
+@class Word;
 
 @interface CibaEngine : NSObject
 

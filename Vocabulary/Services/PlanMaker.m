@@ -9,6 +9,9 @@
 #import "PlanMaker.h"
 #import "Plan.h"
 #import "NSDate+VAdditions.h"
+#import "common.h"
+#import "CoreData+MagicalRecord.h"
+#import "WordList.h"
 
 @interface PlanMaker ()
 

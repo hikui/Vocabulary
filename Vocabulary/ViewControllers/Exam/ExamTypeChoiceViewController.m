@@ -8,6 +8,7 @@
 
 #import "ExamTypeChoiceViewController.h"
 #import "ExamViewController.h"
+#import "UINavigationController+NavigationManager.h"
 
 @interface ExamTypeChoiceViewController ()
 

@@ -28,11 +28,12 @@
 }
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.wrapperView.layer.cornerRadius = 4;
 }
 
 - (IBAction)bgViewOnTap:(UIGestureRecognizer *)gestureRecognizer {
-    DDLogDebug(@"bgViewOnTap");
+//    DDLogDebug(@"bgViewOnTap");
     [self hideMenu];
 }
 

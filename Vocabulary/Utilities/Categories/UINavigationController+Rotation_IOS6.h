@@ -23,7 +23,7 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface UINavigationController (Rotation_IOS6)
 

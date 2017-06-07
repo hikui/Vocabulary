@@ -7,6 +7,8 @@
 //
 
 #import "UnfamiliarWordListViewController.h"
+#import "Word.h"
+#import "CoreData+MagicalRecord.h"
 
 @interface UnfamiliarWordListViewController ()
 

@@ -25,7 +25,14 @@
 
 #import "CibaEngine.h"
 //#import "JSONKit.h"
-#import <PromiseKit/NSURLConnection+AnyPromise.h>
+//#import <PromiseKit/NSURLConnection+AnyPromise.h>
+@import PromiseKit;
+#import "CoreData+MagicalRecord.h"
+#import "Word.h"
+#import "WordList.h"
+#import "PronunciationData.h"
+#import "common.h"
+#import "NSString+VAdditions.h"
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"search/%@", __W__]
 #define HostName @"hikuivocabulary.sinaapp.com"
 

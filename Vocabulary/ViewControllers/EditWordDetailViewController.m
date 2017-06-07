@@ -7,6 +7,9 @@
 //
 
 #import "EditWordDetailViewController.h"
+#import "Word.h"
+#import "CoreData+MagicalRecord.h"
+#import "common.h"
 
 @interface EditWordDetailViewController ()
 

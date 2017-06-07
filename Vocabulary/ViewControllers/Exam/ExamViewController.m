@@ -32,6 +32,14 @@
 #import "SimpleProgressBar.h"
 #import "PlanMaker.h"
 #import "Masonry.h"
+#import "common.h"
+#import "WordList.h"
+#import "Word.h"
+#import "PronunciationData.h"
+#import "UINavigationController+NavigationManager.h"
+#import "CoreData+MagicalRecord.h"
+@import MBProgressHUD;
+@import PromiseKit;
 
 static CGFloat NotificationViewHeight = 48;
 
@@ -143,7 +151,7 @@ static CGFloat NotificationViewHeight = 48;
         [promises addObject:promise];
         
     }
-    PMKWhen(promises).finally(^(){
+    PMKWhen(promises).always(^(){
         [self createExamContentsArray];
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 
@@ -321,7 +329,7 @@ static CGFloat NotificationViewHeight = 48;
     ExamContent * content = (self.examContentsQueue)[_cursor1];
     if (_cursor1 == 0) {
         //已经循环一遍了
-        DDLogDebug(@"已经循环一遍了");
+//        DDLogDebug(@"已经循环一遍了");
         //显示提示
         [self.view bringSubviewToFront:self.roundNotificatonView];
         [UIView animateWithDuration:0.5 animations:^{
@@ -403,7 +411,7 @@ static CGFloat NotificationViewHeight = 48;
     }
     ev.content = content;
     self.currentExamContent = content;
-    DDLogDebug(@"%d",[content weight]);
+//    DDLogDebug(@"%d",[content weight]);
     NSUInteger i = [self.examViewReuseQueue indexOfObject:ev];
     ExamContentView *oldView = (self.examViewReuseQueue)[++i%2];
     [oldView stopSound];

@@ -7,7 +7,7 @@
 //
 
 #import "VKeyboardAwarenessViewController.h"
-
+@class Word;
 @interface EditWordDetailViewController : VKeyboardAwarenessViewController
 
 @property (nonatomic, strong) Word *word;

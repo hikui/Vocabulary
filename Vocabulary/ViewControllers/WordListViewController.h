@@ -25,6 +25,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
+#import "VBaseViewController.h"
 @interface WordListViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

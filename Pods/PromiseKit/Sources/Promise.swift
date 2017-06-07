@@ -1,8 +1,10 @@
-import Dispatch
-import Foundation.NSError
+import class Dispatch.DispatchQueue
+import class Foundation.NSError
+import func Foundation.NSLog
+
 
 /**
- A *promise* represents the future value of a task.
+ A *promise* represents the future value of a (usually) asynchronous task.
 
  To obtain the value of a promise we call `then`.
 
@@ -11,184 +13,103 @@ import Foundation.NSError
  promise, et cetera.
 
  Promises start in a pending state and *resolve* with a value to become
- *fulfilled* or with an `ErrorType` to become rejected.
+ *fulfilled* or an `Error` to become rejected.
 
- - SeeAlso: [PromiseKit `then` Guide](http://promisekit.org/then/)
- - SeeAlso: [PromiseKit Chaining Guide](http://promisekit.org/chaining/)
-*/
-public class Promise<T> {
-    let state: State<Resolution<T>>
+ - SeeAlso: [PromiseKit `then` Guide](http://promisekit.org/docs/)
+ */
+open class Promise<T> {
+    let state: State<T>
 
     /**
-     Create a new pending promise.
+     Create a new, pending promise.
 
-     Use this method when wrapping asynchronous systems that do *not* use
-     promises so that they can be involved in promise chains.
-
-     Don’t use this method if you already have promises! Instead, just return
-     your promise!
-
-     The closure you pass is executed immediately on the calling thread.
-
-         func fetchKitten() -> Promise<UIImage> {
+         func fetchAvatar(user: String) -> Promise<UIImage> {
              return Promise { fulfill, reject in
-                 KittenFetcher.fetchWithCompletionBlock({ img, err in
-                     if err == nil {
-                         if img.size.width > 0 {
-                             fulfill(img)
-                         } else {
-                             reject(Error.ImageTooSmall)
-                         }
-                     } else {
-                         reject(err)
-                     }
-                 })
+                 MyWebHelper.GET("\(user)/avatar") { data, err in
+                     guard let data = data else { return reject(err) }
+                     guard let img = UIImage(data: data) else { return reject(MyError.InvalidImage) }
+                     guard let img.size.width > 0 else { return reject(MyError.ImageTooSmall) }
+                     fulfill(img)
+                 }
              }
          }
 
-     - Parameter resolvers: The provided closure is called immediately.
-     Inside, execute your asynchronous system, calling fulfill if it suceeds
-     and reject for any errors.
+     - Parameter resolvers: The provided closure is called immediately on the active thread; commence your asynchronous task, calling either fulfill or reject when it completes.
+     - Parameter fulfill: Fulfills this promise with the provided value.
+     - Parameter reject: Rejects this promise with the provided error.
 
-     - Returns: return A new promise.
+     - Returns: A new promise.
 
      - Note: If you are wrapping a delegate-based system, we recommend
-     to use instead: Promise.pendingPromise()
+     to use instead: `Promise.pending()`
 
-     - SeeAlso: http://promisekit.org/sealing-your-own-promises/
-     - SeeAlso: http://promisekit.org/wrapping-delegation/
-     - SeeAlso: init(resolver:)
-    */
-    public init(@noescape resolvers: (fulfill: (T) -> Void, reject: (ErrorType) -> Void) throws -> Void) {
+     - SeeAlso: http://promisekit.org/docs/sealing-promises/
+     - SeeAlso: http://promisekit.org/docs/cookbook/wrapping-delegation/
+     - SeeAlso: pending()
+     */
+    required public init(resolvers: (_ fulfill: @escaping (T) -> Void, _ reject: @escaping (Error) -> Void) throws -> Void) {
         var resolve: ((Resolution<T>) -> Void)!
-        state = UnsealedState(resolver: &resolve)
         do {
-            try resolvers(fulfill: { resolve(.Fulfilled($0)) }, reject: { error in
-                if self.pending {
-                    resolve(.Rejected(error, ErrorConsumptionToken(error)))
-                } else {
-                    NSLog("PromiseKit: Warning: reject called on already rejected Promise: %@", "\(error)")
-                }
+            state = UnsealedState(resolver: &resolve)
+            try resolvers({ resolve(.fulfilled($0)) }, { error in
+                #if !PMKDisableWarnings
+                    if self.isPending {
+                        resolve(Resolution(error))
+                    } else {
+                        NSLog("PromiseKit: warning: reject called on already rejected Promise: \(error)")
+                    }
+                #else
+                    resolve(Resolution(error))
+                #endif
             })
         } catch {
-            resolve(.Rejected(error, ErrorConsumptionToken(error)))
+            resolve(Resolution(error))
         }
     }
 
     /**
-     Create a new pending promise.
-
-     This initializer is convenient when wrapping asynchronous systems that
-     use common patterns. For example:
-
-         func fetchKitten() -> Promise<UIImage> {
-             return Promise { resolve in
-                 KittenFetcher.fetchWithCompletionBlock(resolve)
-             }
-         }
-
-     - SeeAlso: init(resolvers:)
-    */
-    public convenience init(@noescape resolver: ((T?, NSError?) -> Void) throws -> Void) {
-        self.init(sealant: { resolve in
-            try resolver { obj, err in
-                if let obj = obj {
-                    resolve(.Fulfilled(obj))
-                } else if let err = err {
-                    resolve(.Rejected(err, ErrorConsumptionToken(err as ErrorType)))
-                } else {
-                    resolve(.Rejected(Error.DoubleOhSux0r, ErrorConsumptionToken(Error.DoubleOhSux0r)))
-                }
-            }
-        })
+     Create an already fulfilled promise.
+    
+     To create a resolved `Void` promise, do: `Promise(value: ())`
+     */
+    required public init(value: T) {
+        state = SealedState(resolution: .fulfilled(value))
     }
 
     /**
-     Create a new pending promise.
-
-     This initializer is convenient when wrapping asynchronous systems that
-     use common patterns. For example:
-
-         func fetchKitten() -> Promise<UIImage> {
-             return Promise { resolve in
-                 KittenFetcher.fetchWithCompletionBlock(resolve)
-             }
-         }
-
-     - SeeAlso: init(resolvers:)
-    */
-    public convenience init(@noescape resolver: ((T, NSError?) -> Void) throws -> Void) {
-        self.init(sealant: { resolve in
-            try resolver { obj, err in
-                if let err = err {
-                    resolve(.Rejected(err, ErrorConsumptionToken(err)))
-                } else {
-                    resolve(.Fulfilled(obj))
-                }
-            }
-        })
-    }
-
-    /**
-     Create a new fulfilled promise.
-    */
-    public init(_ value: T) {
-        state = SealedState(resolution: .Fulfilled(value))
-    }
-
-    @available(*, unavailable, message="T cannot conform to ErrorType")
-    public init<T: ErrorType>(_ value: T) { abort() }
-
-    /**
-     Create a new rejected promise.
-    */
-    public init(error: ErrorType) {
-        /**
-          Implementation note, the error label is necessary to prevent:
-
-             let p = Promise(ErrorType())
-
-          Resulting in Promise<ErrorType>. The above @available annotation
-          does not help for some reason. A work-around is:
-
-             let p: Promise<Void> = Promise(ErrorType())
-        
-          But I can’t expect users to do this.
-        */
-        state = SealedState(resolution: .Rejected(error, ErrorConsumptionToken(error)))
+     Create an already rejected promise.
+     */
+    required public init(error: Error) {
+        state = SealedState(resolution: Resolution(error))
     }
 
     /**
      Careful with this, it is imperative that sealant can only be called once
      or you will end up with spurious unhandled-errors due to possible double
      rejections and thus immediately deallocated ErrorConsumptionTokens.
-    */
-    init(@noescape sealant: ((Resolution<T>) -> Void) throws -> Void) {
+     */
+    init(sealant: (@escaping (Resolution<T>) -> Void) -> Void) {
         var resolve: ((Resolution<T>) -> Void)!
         state = UnsealedState(resolver: &resolve)
-        do {
-            try sealant(resolve)
-        } catch {
-            resolve(.Rejected(error, ErrorConsumptionToken(error)))
-        }
+        sealant(resolve)
     }
 
     /**
-     A `typealias` for the return values of `pendingPromise()`. Simplifies declaration of properties that reference the values' containing tuple when this is necessary. For example, when working with multiple `pendingPromise()`s within the same scope, or when the promise initialization must occur outside of the caller's initialization.
+     A `typealias` for the return values of `pending()`. Simplifies declaration of properties that reference the values' containing tuple when this is necessary. For example, when working with multiple `pendingPromise(value: ())`s within the same scope, or when the promise initialization must occur outside of the caller's initialization.
 
          class Foo: BarDelegate {
-            var pendingPromise: Promise<Int>.PendingPromise?
+            var task: Promise<Int>.PendingTuple?
          }
 
-     - SeeAlso: pendingPromise()
+     - SeeAlso: pending()
      */
-    public typealias PendingPromise = (promise: Promise, fulfill: (T) -> Void, reject: (ErrorType) -> Void)
+    public typealias PendingTuple = (promise: Promise, fulfill: (T) -> Void, reject: (Error) -> Void)
 
     /**
-     Making promises that wrap asynchronous delegation systems or other larger asynchronous systems without a simple completion handler is easier with pendingPromise.
+     Making promises that wrap asynchronous delegation systems or other larger asynchronous systems without a simple completion handler is easier with pending.
 
          class Foo: BarDelegate {
-             let (promise, fulfill, reject) = Promise<Int>.pendingPromise()
+             let (promise, fulfill, reject) = Promise<Int>.pending()
     
              func barDidFinishWithResult(result: Int) {
                  fulfill(result)
@@ -203,397 +124,292 @@ public class Promise<T> {
        1) A promise
        2) A function that fulfills that promise
        3) A function that rejects that promise
-    */
-    public class func pendingPromise() -> PendingPromise {
+     */
+    public final class func pending() -> PendingTuple {
         var fulfill: ((T) -> Void)!
-        var reject: ((ErrorType) -> Void)!
-        let promise = Promise { fulfill = $0; reject = $1 }
+        var reject: ((Error) -> Void)!
+        let promise = self.init { fulfill = $0; reject = $1 }
         return (promise, fulfill, reject)
     }
 
-    func pipe(body: (Resolution<T>) -> Void) {
-        state.get { seal in
-            switch seal {
-            case .Pending(let handlers):
-                handlers.append(body)
-            case .Resolved(let resolution):
-                body(resolution)
-            }
-        }
-    }
-
-    private convenience init<U>(when: Promise<U>, body: (Resolution<U>, (Resolution<T>) -> Void) -> Void) {
-        self.init { resolve in
-            when.pipe { resolution in
-                body(resolution, resolve)
-            }
-        }
-    }
-
     /**
-     The provided closure is executed when this Promise is resolved.
+     The provided closure is executed when this promise is resolved.
 
-     - Parameter on: The queue on which body should be executed.
+     - Parameter on: The queue to which the provided closure dispatches.
      - Parameter body: The closure that is executed when this Promise is fulfilled.
      - Returns: A new promise that is resolved with the value returned from the provided closure. For example:
 
-           NSURLConnection.GET(url).then { (data: NSData) -> Int in
+           NSURLSession.GET(url).then { data -> Int in
                //…
                return data.length
            }.then { length in
                //…
            }
-
-     - SeeAlso: `thenInBackground`
-    */
-    public func then<U>(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (T) throws -> U) -> Promise<U> {
-        return Promise<U>(when: self) { resolution, resolve in
-            switch resolution {
-            case .Rejected(let error):
-                resolve(.Rejected((error.0, error.1)))
-            case .Fulfilled(let value):
-                contain_zalgo(q, rejecter: resolve) {
-                    resolve(.Fulfilled(try body(value)))
-                }
-            }
-        }
-    }
-
-    /**
-     The provided closure is executed when this Promise is resolved.
-
-     - Parameter on: The queue on which body should be executed.
-     - Parameter body: The closure that is executed when this Promise is fulfilled.
-     - Returns: A new promise that is resolved when the Promise returned from the provided closure resolves. For example:
-
-           NSURLSession.GET(url1).then { (data: NSData) -> Promise<NSData> in
-               //…
-               return NSURLSession.GET(url2)
-           }.then { data in
-               //…
-           }
-
-     - SeeAlso: `thenInBackground`
-    */
-    public func then<U>(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (T) throws -> Promise<U>) -> Promise<U> {
-        return Promise<U>(when: self) { resolution, resolve in
-            switch resolution {
-            case .Rejected(let error):
-                resolve(.Rejected((error.0, error.1)))
-            case .Fulfilled(let value):
-                contain_zalgo(q, rejecter: resolve) {
-                    let promise = try body(value)
-                    guard promise !== self else { throw Error.ReturnedSelf }
-                    promise.pipe(resolve)
-                }
-            }
-        }
-    }
-
-    @available(*, unavailable)
-    public func then<U>(on: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (T) throws -> Promise<U>?) -> Promise<U> { abort() }
-
-    /**
-     The provided closure is executed when this Promise is resolved.
-
-     - Parameter on: The queue on which body should be executed.
-     - Parameter body: The closure that is executed when this Promise is fulfilled.
-     - Returns: A new promise that is resolved when the AnyPromise returned from the provided closure resolves. For example:
-
-           NSURLSession.GET(url).then { (data: NSData) -> AnyPromise in
-               //…
-               return SCNetworkReachability()
-           }.then { _ in
-               //…
-           }
-
-     - SeeAlso: `thenInBackground`
-    */
-    public func then(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), body: (T) throws -> AnyPromise) -> Promise<AnyObject?> {
-        return Promise<AnyObject?>(when: self) { resolution, resolve in
-            switch resolution {
-            case .Rejected(let error):
-                resolve(.Rejected((error.0, error.1)))
-            case .Fulfilled(let value):
-                contain_zalgo(q, rejecter: resolve) {
-                    try body(value).pipe(resolve)
-                }
-            }
-        }
-    }
-
-    @available(*, unavailable)
-    public func then(on: dispatch_queue_t = PMKDefaultDispatchQueue(), body: (T) throws -> AnyPromise?) -> Promise<AnyObject?> { abort() }
-
-    /**
-     The provided closure is executed on the default background queue when this Promise is fulfilled.
-
-     This method is provided as a convenience for `then`.
-
-     - SeeAlso: `then`
-    */
-    public func thenInBackground<U>(body: (T) throws -> U) -> Promise<U> {
-        return then(on: dispatch_get_global_queue(0, 0), body)
-    }
-
-    /**
-     The provided closure is executed on the default background queue when this Promise is fulfilled.
-
-     This method is provided as a convenience for `then`.
-
-     - SeeAlso: `then`
-    */
-    public func thenInBackground<U>(body: (T) throws -> Promise<U>) -> Promise<U> {
-        return then(on: dispatch_get_global_queue(0, 0), body)
-    }
-
-    @available(*, unavailable)
-    public func thenInBackground<U>(body: (T) throws -> Promise<U>?) -> Promise<U> { abort() }
-
-    /**
-     The provided closure is executed when this promise is rejected.
-
-     Rejecting a promise cascades: rejecting all subsequent promises (unless
-     recover is invoked) thus you will typically place your catch at the end
-     of a chain. Often utility promises will not have a catch, instead
-     delegating the error handling to the caller.
-
-     The provided closure runs on PMKDefaultDispatchQueue by default.
-
-     - Parameter policy: The default policy does not execute your handler for cancellation errors. See registerCancellationError for more documentation.
-     - Parameter body: The handler to execute if this promise is rejected.
-     - SeeAlso: `errorOnQueue`
-    */
-    public func error(policy policy: ErrorPolicy = .AllErrorsExceptCancellation, _ body: (ErrorType) -> Void) {
-        errorOnQueue(policy: policy, body)
-    }
-
-    /**
-     The provided closure is executed when this promise is rejected.
-
-     Rejecting a promise cascades: rejecting all subsequent promises (unless
-     recover is invoked) thus you will typically place your catch at the end
-     of a chain. Often utility promises will not have a catch, instead
-     delegating the error handling to the caller.
-
-     The provided closure runs on PMKDefaultDispatchQueue by default.
-
-     - Parameter on: The queue on which body should be executed.
-     - Parameter policy: The default policy does not execute your handler for cancellation errors. See registerCancellationError for more documentation.
-     - Parameter body: The handler to execute if this promise is rejected.
-     - SeeAlso: `registerCancellationError`
      */
-    public func errorOnQueue(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), policy: ErrorPolicy = .AllErrorsExceptCancellation, _ body: (ErrorType) -> Void) {
-
-        func consume(error: ErrorType, _ token: ErrorConsumptionToken) {
-            token.consumed = true
-            body(error)
-        }
-
-        pipe { resolution in
-            switch (resolution, policy) {
-            case (let .Rejected(error, token), .AllErrorsExceptCancellation):
-                contain_zalgo(q) {
-                    guard let cancellableError = error as? CancellableErrorType where cancellableError.cancelled else {
-                        consume(error, token)
-                        return
-                    }
-                }
-            case (let .Rejected(error, token), _):
-                contain_zalgo(q) {
-                    consume(error, token)
-                }
-            case (.Fulfilled, _):
-                break
+    public func then<U>(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> U) -> Promise<U> {
+        return Promise<U> { resolve in
+            state.then(on: q, else: resolve) { value in
+                resolve(.fulfilled(try body(value)))
             }
         }
     }
 
     /**
-     Provides an alias for the `error` function for cases where the Swift
-     compiler cannot disambiguate from our `error` property. If you're
-     having trouble with `error`, before using this alias, first try 
-     being as explicit as possible with the types e.g.:
+     The provided closure executes when this promise resolves.
+     
+     This variant of `then` allows chaining promises, the promise returned by the provided closure is resolved before the promise returned by this closure resolves.
 
-         }.error { (error:ErrorType) -> Void in
-             //...
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter execute: The closure that executes when this promise fulfills.
+     - Returns: A new promise that resolves when the promise returned from the provided closure resolves. For example:
+
+           URLSession.GET(url1).then { data in
+               return CLLocationManager.promise()
+           }.then { location in
+               //…
+           }
+     */
+    public func then<U>(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> Promise<U>) -> Promise<U> {
+        var resolve: ((Resolution<U>) -> Void)!
+        let rv = Promise<U>{ resolve = $0 }
+        state.then(on: q, else: resolve) { value in
+            let promise = try body(value)
+            guard promise !== rv else { throw PMKError.returnedSelf }
+            promise.state.pipe(resolve)
+        }
+        return rv
+    }
+
+    /**
+     The provided closure executes when this promise resolves.
+
+     This variant of `then` allows returning a tuple of promises within provided closure. All of the returned
+     promises needs be fulfilled for this promise to be marked as resolved.
+
+     - Note: At maximum 5 promises may be returned in a tuple
+     - Note: If *any* of the tuple-provided promises reject, the returned promise is immediately rejected with that error.
+     - Warning: In the event of rejection the other promises will continue to resolve and, as per any other promise, will either fulfill or reject.
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter execute: The closure that executes when this promise fulfills.
+     - Returns: A new promise that resolves when all promises returned from the provided closure resolve. For example:
+
+           loginPromise.then { _ -> (Promise<Data>, Promise<UIImage>)
+               return (URLSession.GET(userUrl), URLSession.dataTask(with: avatarUrl).asImage())
+           }.then { userData, avatarImage in
+               //…
+           }
+     */
+    public func then<U, V>(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> (Promise<U>, Promise<V>)) -> Promise<(U, V)> {
+        return then(on: q, execute: body) { when(fulfilled: $0.0, $0.1) }
+    }
+
+    /// This variant of `then` allows returning a tuple of promises within provided closure.
+    public func then<U, V, X>(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> (Promise<U>, Promise<V>, Promise<X>)) -> Promise<(U, V, X)> {
+        return then(on: q, execute: body) { when(fulfilled: $0.0, $0.1, $0.2) }
+    }
+
+    /// This variant of `then` allows returning a tuple of promises within provided closure.
+    public func then<U, V, X, Y>(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> (Promise<U>, Promise<V>, Promise<X>, Promise<Y>)) -> Promise<(U, V, X, Y)> {
+        return then(on: q, execute: body) { when(fulfilled: $0.0, $0.1, $0.2, $0.3) }
+    }
+
+    /// This variant of `then` allows returning a tuple of promises within provided closure.
+    public func then<U, V, X, Y, Z>(on q: DispatchQueue = .default, execute body: @escaping (T) throws -> (Promise<U>, Promise<V>, Promise<X>, Promise<Y>, Promise<Z>)) -> Promise<(U, V, X, Y, Z)> {
+        return then(on: q, execute: body) { when(fulfilled: $0.0, $0.1, $0.2, $0.3, $0.4) }
+    }
+
+    /// utility function to serve `then` implementations with `body` returning tuple of promises
+    private func then<U, V>(on q: DispatchQueue, execute body: @escaping (T) throws -> V, when: @escaping (V) -> Promise<U>) -> Promise<U> {
+        return Promise<U> { resolve in
+            state.then(on: q, else: resolve) { value in
+                let promise = try body(value)
+
+                // since when(promise) switches to `zalgo`, we have to pipe back to `q`
+                when(promise).state.pipe(on: q, to: resolve)
+            }
+        }
+    }
+
+    /**
+     The provided closure executes when this promise rejects.
+
+     Rejecting a promise cascades: rejecting all subsequent promises (unless
+     recover is invoked) thus you will typically place your catch at the end
+     of a chain. Often utility promises will not have a catch, instead
+     delegating the error handling to the caller.
+
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter policy: The default policy does not execute your handler for cancellation errors.
+     - Parameter execute: The handler to execute if this promise is rejected.
+     - Returns: `self`
+     - SeeAlso: [Cancellation](http://promisekit.org/docs/)
+     - Important: The promise that is returned is `self`. `catch` cannot affect the chain, in PromiseKit 3 no promise was returned to strongly imply this, however for PromiseKit 4 we started returning a promise so that you can `always` after a catch or return from a function that has an error handler.
+     */
+    @discardableResult
+    public func `catch`(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) -> Void) -> Promise {
+        state.catch(on: q, policy: policy, else: { _ in }, execute: body)
+        return self
+    }
+
+    /**
+     The provided closure executes when this promise rejects.
+     
+     Unlike `catch`, `recover` continues the chain provided the closure does not throw. Use `recover` in circumstances where recovering the chain from certain errors is a possibility. For example:
+     
+         CLLocationManager.promise().recover { error in
+             guard error == CLError.unknownLocation else { throw error }
+             return CLLocation.Chicago
          }
 
-     Or even using verbose function syntax:
-
-         }.error({ (error:ErrorType) -> Void in
-             //...
-         })
-     
-     If you absolutely cannot get Swift to accept `error` then `onError`
-     may be used instead as it does the same thing.
-     
-     - Warning: This alias will be unavailable in PromiseKit 4.0.0
-     - SeeAlso: [https://github.com/mxcl/PromiseKit/issues/347](https://github.com/mxcl/PromiseKit/issues/347)
-    */
-    @available(*, deprecated, renamed="error", message="Temporary alias `onError` will eventually be removed and should only be used when the Swift compiler cannot be satisfied with `error`")
-    public func onError(policy policy: ErrorPolicy = .AllErrorsExceptCancellation, _ body: (ErrorType) -> Void) {
-        error(policy: policy, body)
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter policy: The default policy does not execute your handler for cancellation errors.
+     - Parameter execute: The handler to execute if this promise is rejected.
+     - SeeAlso: [Cancellation](http://promisekit.org/docs/)
+     */
+    public func recover(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) throws -> Promise) -> Promise {
+        var resolve: ((Resolution<T>) -> Void)!
+        let rv = Promise{ resolve = $0 }
+        state.catch(on: q, policy: policy, else: resolve) { error in
+            let promise = try body(error)
+            guard promise !== rv else { throw PMKError.returnedSelf }
+            promise.state.pipe(resolve)
+        }
+        return rv
     }
 
     /**
-     The provided closure is executed when this promise is rejected giving you
-     an opportunity to recover from the error and continue the promise chain.
-    */
-    public func recover(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (ErrorType) throws -> Promise) -> Promise {
-        return Promise(when: self) { resolution, resolve in
-            switch resolution {
-            case .Rejected(let error, let token):
-                contain_zalgo(q, rejecter: resolve) {
-                    token.consumed = true
-                    let promise = try body(error)
-                    guard promise !== self else { throw Error.ReturnedSelf }
-                    promise.pipe(resolve)
-                }
-            case .Fulfilled:
-                resolve(resolution)
-            }
-        }
-    }
+     The provided closure executes when this promise rejects.
 
-    @available(*, unavailable)
-    public func recover(on: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (ErrorType) throws -> Promise?) -> Promise { abort() }
+     Unlike `catch`, `recover` continues the chain provided the closure does not throw. Use `recover` in circumstances where recovering the chain from certain errors is a possibility. For example:
 
-    public func recover(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (ErrorType) throws -> T) -> Promise {
-        return Promise(when: self) { resolution, resolve in
-            switch resolution {
-            case .Rejected(let error, let token):
-                contain_zalgo(q, rejecter: resolve) {
-                    token.consumed = true
-                    resolve(.Fulfilled(try body(error)))
-                }
-            case .Fulfilled:
-                resolve(resolution)
+         CLLocationManager.promise().recover { error in
+             guard error == CLError.unknownLocation else { throw error }
+             return CLLocation.Chicago
+         }
+
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter policy: The default policy does not execute your handler for cancellation errors.
+     - Parameter execute: The handler to execute if this promise is rejected.
+     - SeeAlso: [Cancellation](http://promisekit.org/docs/)
+     */
+    public func recover(on q: DispatchQueue = .default, policy: CatchPolicy = .allErrorsExceptCancellation, execute body: @escaping (Error) throws -> T) -> Promise {
+        return Promise { resolve in
+            state.catch(on: q, policy: policy, else: resolve) { error in
+                resolve(.fulfilled(try body(error)))
             }
         }
     }
 
     /**
-     The provided closure is executed when this Promise is resolved.
+     The provided closure executes when this promise resolves.
 
-         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-         somePromise().then {
+         firstly {
+             UIApplication.shared.networkActivityIndicatorVisible = true
+         }.then {
              //…
          }.always {
-             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+             UIApplication.shared.networkActivityIndicatorVisible = false
+         }.catch {
+             //…
          }
 
-     - Parameter on: The queue on which body should be executed.
-     - Parameter body: The closure that is executed when this Promise is resolved.
-    */
-    public func always(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: () -> Void) -> Promise {
-        return Promise(when: self) { resolution, resolve in
-            contain_zalgo(q) {
-                body()
-                resolve(resolution)
-            }
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter execute: The closure that executes when this promise resolves.
+     - Returns: A new promise, resolved with this promise’s resolution.
+     */
+	@discardableResult
+    public func always(on q: DispatchQueue = .default, execute body: @escaping () -> Void) -> Promise {
+        state.always(on: q) { resolution in
+            body()
         }
+        return self
     }
 
-    @available(*, unavailable, renamed="ensure")
-    public func finally(on: dispatch_queue_t = PMKDefaultDispatchQueue(), body: () -> Void) -> Promise { abort() }
+    /**
+     Allows you to “tap” into a promise chain and inspect its result.
+     
+     The function you provide cannot mutate the chain.
+ 
+         NSURLSession.GET(/*…*/).tap { result in
+             print(result)
+         }
 
-    @available(*, unavailable, renamed="report")
-    public func catch_(policy policy: ErrorPolicy = .AllErrorsExceptCancellation, body: () -> Void) -> Promise { abort() }
-
-    @available(*, unavailable, renamed="pendingPromise")
-    public class func defer_() -> (promise: Promise, fulfill: (T) -> Void, reject: (ErrorType) -> Void) { abort() }
-
-    @available(*, deprecated, renamed="error")
-    public func report(policy policy: ErrorPolicy = .AllErrorsExceptCancellation, _ body: (ErrorType) -> Void) { error(policy: policy, body) }
-
-    @available(*, deprecated, renamed="always")
-    public func ensure(on q: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: () -> Void) -> Promise { return always(on: q, body) }
-}
-
-/**
- Zalgo is dangerous.
-
- Pass as the `on` parameter for a `then`. Causes the handler to be executed
- as soon as it is resolved. That means it will be executed on the queue it
- is resolved. This means you cannot predict the queue.
-
- In the case that the promise is already resolved the handler will be
- executed immediately.
-
- zalgo is provided for libraries providing promises that have good tests
- that prove unleashing zalgo is safe. You can also use it in your
- application code in situations where performance is critical, but be
- careful: read the essay at the provided link to understand the risks.
-
- - SeeAlso: http://blog.izs.me/post/59142742143/designing-apis-for-asynchrony
-*/
-public let zalgo: dispatch_queue_t = dispatch_queue_create("Zalgo", nil)
-
-/**
- Waldo is dangerous.
-
- Waldo is zalgo, unless the current queue is the main thread, in which case
- we dispatch to the default background queue.
-
- If your block is likely to take more than a few milliseconds to execute,
- then you should use waldo: 60fps means the main thread cannot hang longer
- than 17 milliseconds. Don’t contribute to UI lag.
-
- Conversely if your then block is trivial, use zalgo: GCD is not free and
- for whatever reason you may already be on the main thread so just do what
- you are doing quickly and pass on execution.
-
- It is considered good practice for asynchronous APIs to complete onto the
- main thread. Apple do not always honor this, nor do other developers.
- However, they *should*. In that respect waldo is a good choice if your
- then is going to take a while and doesn’t interact with the UI.
-
- Please note (again) that generally you should not use zalgo or waldo. The
- performance gains are neglible and we provide these functions only out of
- a misguided sense that library code should be as optimized as possible.
- If you use zalgo or waldo without tests proving their correctness you may
- unwillingly introduce horrendous, near-impossible-to-trace bugs.
-
- - SeeAlso: zalgo
-*/
-public let waldo: dispatch_queue_t = dispatch_queue_create("Waldo", nil)
-
-func contain_zalgo(q: dispatch_queue_t, block: () -> Void) {
-    if q === zalgo {
-        block()
-    } else if q === waldo {
-        if NSThread.isMainThread() {
-            dispatch_async(dispatch_get_global_queue(0, 0), block)
-        } else {
-            block()
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter execute: The closure that executes when this promise resolves.
+     - Returns: A new promise, resolved with this promise’s resolution.
+     */
+    @discardableResult
+    public func tap(on q: DispatchQueue = .default, execute body: @escaping (Result<T>) -> Void) -> Promise {
+        state.always(on: q) { resolution in
+            body(Result(resolution))
         }
-    } else {
-        dispatch_async(q, block)
+        return self
     }
-}
 
-func contain_zalgo<T>(q: dispatch_queue_t, rejecter resolve: (Resolution<T>) -> Void, block: () throws -> Void) {
-    contain_zalgo(q) {
-        do {
-            try block()
-        } catch {
-            resolve(.Rejected(error, ErrorConsumptionToken(error)))
-        }
-    }
-}
-
-
-extension Promise {
     /**
      Void promises are less prone to generics-of-doom scenarios.
      - SeeAlso: when.swift contains enlightening examples of using `Promise<Void>` to simplify your code.
-    */
+     */
     public func asVoid() -> Promise<Void> {
         return then(on: zalgo) { _ in return }
     }
-}
 
+//MARK: deprecations
+
+    @available(*, unavailable, renamed: "always()")
+    public func finally(on: DispatchQueue = DispatchQueue.main, execute body: () -> Void) -> Promise { fatalError() }
+
+    @available(*, unavailable, renamed: "always()")
+    public func ensure(on: DispatchQueue = DispatchQueue.main, execute body: () -> Void) -> Promise { fatalError() }
+
+    @available(*, unavailable, renamed: "pending()")
+    public class func `defer`() -> PendingTuple { fatalError() }
+
+    @available(*, unavailable, renamed: "pending()")
+    public class func `pendingPromise`() -> PendingTuple { fatalError() }
+
+    @available(*, unavailable, message: "deprecated: use then(on: .global())")
+    public func thenInBackground<U>(execute body: (T) throws -> U) -> Promise<U> { fatalError() }
+
+    @available(*, unavailable, renamed: "catch")
+    public func onError(policy: CatchPolicy = .allErrors, execute body: (Error) -> Void) { fatalError() }
+
+    @available(*, unavailable, renamed: "catch")
+    public func errorOnQueue(_ on: DispatchQueue, policy: CatchPolicy = .allErrors, execute body: (Error) -> Void) { fatalError() }
+
+    @available(*, unavailable, renamed: "catch")
+    public func error(policy: CatchPolicy, execute body: (Error) -> Void) { fatalError() }
+
+    @available(*, unavailable, renamed: "catch")
+    public func report(policy: CatchPolicy = .allErrors, execute body: (Error) -> Void) { fatalError() }
+
+    @available(*, unavailable, renamed: "init(value:)")
+    public init(_ value: T) { fatalError() }
+
+//MARK: disallow `Promise<Error>`
+
+    @available(*, unavailable, message: "cannot instantiate Promise<Error>")
+    public init<T: Error>(resolvers: (_ fulfill: (T) -> Void, _ reject: (Error) -> Void) throws -> Void) { fatalError() }
+
+    @available(*, unavailable, message: "cannot instantiate Promise<Error>")
+    public class func pending<T: Error>() -> (promise: Promise, fulfill: (T) -> Void, reject: (Error) -> Void) { fatalError() }
+
+//MARK: disallow returning `Error`
+
+    @available (*, unavailable, message: "instead of returning the error; throw")
+    public func then<U: Error>(on: DispatchQueue = .default, execute body: (T) throws -> U) -> Promise<U> { fatalError() }
+
+    @available (*, unavailable, message: "instead of returning the error; throw")
+    public func recover<T: Error>(on: DispatchQueue = .default, execute body: (Error) throws -> T) -> Promise { fatalError() }
+
+//MARK: disallow returning `Promise?`
+
+    @available(*, unavailable, message: "unwrap the promise")
+    public func then<U>(on: DispatchQueue = .default, execute body: (T) throws -> Promise<U>?) -> Promise<U> { fatalError() }
+
+    @available(*, unavailable, message: "unwrap the promise")
+    public func recover(on: DispatchQueue = .default, execute body: (Error) throws -> Promise?) -> Promise { fatalError() }
+}
 
 extension Promise: CustomStringConvertible {
     public var description: String {
@@ -602,110 +418,211 @@ extension Promise: CustomStringConvertible {
 }
 
 /**
- `firstly` can make chains more readable.
+ Judicious use of `firstly` *may* make chains more readable.
 
  Compare:
 
-     NSURLConnection.GET(url1).then {
-         NSURLConnection.GET(url2)
+     NSURLSession.GET(url1).then {
+         NSURLSession.GET(url2)
      }.then {
-         NSURLConnection.GET(url3)
+         NSURLSession.GET(url3)
      }
 
  With:
 
      firstly {
-         NSURLConnection.GET(url1)
+         NSURLSession.GET(url1)
      }.then {
-         NSURLConnection.GET(url2)
+         NSURLSession.GET(url2)
      }.then {
-         NSURLConnection.GET(url3)
+         NSURLSession.GET(url3)
      }
-*/
-public func firstly<T>(@noescape promise: () throws -> Promise<T>) -> Promise<T> {
+ */
+public func firstly<T>(execute body: () throws -> Promise<T>) -> Promise<T> {
+    return firstly(execute: body) { $0 }
+}
+
+/**
+ Judicious use of `firstly` *may* make chains more readable.
+ Firstly allows to return tuple of promises
+
+ Compare:
+
+     when(fulfilled: NSURLSession.GET(url1), NSURLSession.GET(url2)).then {
+         NSURLSession.GET(url3)
+     }.then {
+         NSURLSession.GET(url4)
+     }
+
+ With:
+
+     firstly {
+         (NSURLSession.GET(url1), NSURLSession.GET(url2))
+     }.then { _, _ in
+         NSURLSession.GET(url2)
+     }.then {
+         NSURLSession.GET(url3)
+     }
+
+ - Note: At maximum 5 promises may be returned in a tuple
+ - Note: If *any* of the tuple-provided promises reject, the returned promise is immediately rejected with that error.
+ */
+public func firstly<T, U>(execute body: () throws -> (Promise<T>, Promise<U>)) -> Promise<(T, U)> {
+    return firstly(execute: body) { when(fulfilled: $0.0, $0.1) }
+}
+
+/// Firstly allows to return tuple of promises
+public func firstly<T, U, V>(execute body: () throws -> (Promise<T>, Promise<U>, Promise<V>)) -> Promise<(T, U, V)> {
+    return firstly(execute: body) { when(fulfilled: $0.0, $0.1, $0.2) }
+}
+
+/// Firstly allows to return tuple of promises
+public func firstly<T, U, V, W>(execute body: () throws -> (Promise<T>, Promise<U>, Promise<V>, Promise<W>)) -> Promise<(T, U, V, W)> {
+    return firstly(execute: body) { when(fulfilled: $0.0, $0.1, $0.2, $0.3) }
+}
+
+/// Firstly allows to return tuple of promises
+public func firstly<T, U, V, W, X>(execute body: () throws -> (Promise<T>, Promise<U>, Promise<V>, Promise<W>, Promise<X>)) -> Promise<(T, U, V, W, X)> {
+    return firstly(execute: body) { when(fulfilled: $0.0, $0.1, $0.2, $0.3, $0.4) }
+}
+
+/// utility function to serve `firstly` implementations with `body` returning tuple of promises
+fileprivate func firstly<U, V>(execute body: () throws -> V, when: (V) -> Promise<U>) -> Promise<U> {
     do {
-        return try promise()
+        return when(try body())
     } catch {
         return Promise(error: error)
     }
 }
 
+@available(*, unavailable, message: "instead of returning the error; throw")
+public func firstly<T: Error>(execute body: () throws -> T) -> Promise<T> { fatalError() }
+
+@available(*, unavailable, message: "use DispatchQueue.promise")
+public func firstly<T>(on: DispatchQueue, execute body: () throws -> Promise<T>) -> Promise<T> { fatalError() }
+
 /**
- `firstly` can make chains more readable.
+ - SeeAlso: `DispatchQueue.promise(group:qos:flags:execute:)`
+ */
+@available(*, deprecated: 4.0, renamed: "DispatchQueue.promise")
+public func dispatch_promise<T>(_ on: DispatchQueue, _ body: @escaping () throws -> T) -> Promise<T> {
+    return Promise(value: ()).then(on: on, execute: body)
+}
 
- Compare:
 
-     SCNetworkReachability().then {
-         NSURLSession.GET(url2)
-     }.then {
-         NSURLSession.GET(url3)
-     }
-
- With:
-
-     firstly {
-         SCNetworkReachability()
-     }.then {
-         NSURLSession.GET(url2)
-     }.then {
-         NSURLSession.GET(url3)
-     }
+/**
+ The underlying resolved state of a promise.
+ - Remark: Same as `Resolution<T>` but without the associated `ErrorConsumptionToken`.
 */
-public func firstly(@noescape promise: () throws -> AnyPromise) -> Promise<AnyObject?> {
-    return Promise { resolve in
-        try promise().pipe(resolve)
+public enum Result<T> {
+    /// Fulfillment
+    case fulfilled(T)
+    /// Rejection
+    case rejected(Error)
+
+    init(_ resolution: Resolution<T>) {
+        switch resolution {
+        case .fulfilled(let value):
+            self = .fulfilled(value)
+        case .rejected(let error, _):
+            self = .rejected(error)
+        }
     }
-}
 
-@available(*, unavailable, message="Instead, throw")
-public func firstly<T: ErrorType>(@noescape promise: () throws -> Promise<T>) -> Promise<T> {
-    fatalError("Unavailable function")
-}
-
-
-public enum ErrorPolicy {
-    case AllErrors
-    case AllErrorsExceptCancellation
-}
-
-
-extension AnyPromise {
-    private func pipe(resolve: (Resolution<AnyObject?>) -> Void) -> Void {
-        pipe { (obj: AnyObject?) in
-            if let error = obj as? NSError {
-                resolve(.Rejected(error, ErrorConsumptionToken(error)))
-            } else {
-                // possibly the value of this promise is a PMKManifold, if so
-                // calling the objc `value` method will return the first item.
-                resolve(.Fulfilled(self.valueForKey("value")))
-            }
+    /**
+     - Returns: `true` if the result is `fulfilled` or `false` if it is `rejected`.
+     */
+    public var boolValue: Bool {
+        switch self {
+        case .fulfilled:
+            return true
+        case .rejected:
+            return false
         }
     }
 }
 
+/**
+ An object produced by `Promise.joint()`, along with a promise to which it is bound.
+
+ Joining with a promise via `Promise.join(_:)` will pipe the resolution of that promise to
+ the joint's bound promise.
+
+ - SeeAlso: `Promise.joint()`
+ - SeeAlso: `Promise.join(_:)`
+ */
+public class PMKJoint<T> {
+    fileprivate var resolve: ((Resolution<T>) -> Void)!
+}
 
 extension Promise {
-    @available(*, unavailable, message="T cannot conform to ErrorType")
-    public convenience init<T: ErrorType>(@noescape resolvers: (fulfill: (T) -> Void, reject: (ErrorType) -> Void) throws -> Void) { abort() }
+    /**
+     Provides a safe way to instantiate a `Promise` and resolve it later via its joint and another
+     promise.
 
-    @available(*, unavailable, message="T cannot conform to ErrorType")
-    public convenience init<T: ErrorType>(@noescape resolver: ((T?, NSError?) -> Void) throws -> Void) { abort() }
+         class Engine {
+            static func make() -> Promise<Engine> {
+                let (enginePromise, joint) = Promise<Engine>.joint()
+                let cylinder: Cylinder = Cylinder(explodeAction: {
 
-    @available(*, unavailable, message="T cannot conform to ErrorType")
-    public convenience init<T: ErrorType>(@noescape resolver: ((T, NSError?) -> Void) throws -> Void) { abort() }
+                    // We *could* use an IUO, but there are no guarantees about when
+                    // this callback will be called. Having an actual promise is safe.
 
-    @available(*, unavailable, message="T cannot conform to ErrorType")
-    public class func pendingPromise<T: ErrorType>() -> (promise: Promise, fulfill: (T) -> Void, reject: (ErrorType) -> Void) { abort() }
+                    enginePromise.then { engine in
+                        engine.checkOilPressure()
+                    }
+                })
 
-    @available (*, unavailable, message="U cannot conform to ErrorType")
-    public func then<U: ErrorType>(on: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (T) throws -> U) -> Promise<U> { abort() }
+                firstly {
+                    Ignition.default.start()
+                }.then { plugs in
+                    Engine(cylinders: [cylinder], sparkPlugs: plugs)
+                }.join(joint)
 
-    @available (*, unavailable, message="U cannot conform to ErrorType")
-    public func then<U: ErrorType>(on: dispatch_queue_t = PMKDefaultDispatchQueue(), _ body: (T) throws -> Promise<U>) -> Promise<U> { abort() }
+                return enginePromise
+            }
+         }
 
-    @available(*, unavailable, message="U cannot conform to ErrorType")
-    public func thenInBackground<U: ErrorType>(body: (T) throws -> U) -> Promise<U> { abort() }
+     - Returns: A new promise and its joint.
+     - SeeAlso: `Promise.join(_:)`
+     */
+    public final class func joint() -> (Promise<T>, PMKJoint<T>) {
+        let pipe = PMKJoint<T>()
+        let promise = Promise(sealant: { pipe.resolve = $0 })
+        return (promise, pipe)
+    }
 
-    @available(*, unavailable, message="U cannot conform to ErrorType")
-    public func thenInBackground<U: ErrorType>(body: (T) throws -> Promise<U>) -> Promise<U> { abort() }
+    /**
+     Pipes the value of this promise to the promise created with the joint.
+
+     - Parameter joint: The joint on which to join.
+     - SeeAlso: `Promise.joint()`
+     */
+    public func join(_ joint: PMKJoint<T>) {
+        state.pipe(joint.resolve)
+    }
+}
+
+
+extension Promise where T: Collection {
+    /**
+     Transforms a `Promise` where `T` is a `Collection` into a `Promise<[U]>`
+
+         URLSession.shared.dataTask(url: /*…*/).asArray().map { result in
+             return download(result)
+         }.then { images in
+             // images is `[UIImage]`
+         }
+
+     - Parameter on: The queue to which the provided closure dispatches.
+     - Parameter transform: The closure that executes when this promise resolves.
+     - Returns: A new promise, resolved with this promise’s resolution.
+     */
+    public func map<U>(on: DispatchQueue = .default, transform: @escaping (T.Iterator.Element) throws -> Promise<U>) -> Promise<[U]> {
+        return Promise<[U]> { resolve in
+            return state.then(on: zalgo, else: resolve) { tt in
+                when(fulfilled: try tt.map(transform)).state.pipe(resolve)
+            }
+        }
+    }
 }

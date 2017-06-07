@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @class Plan;
+@class WordList;
+
 @interface PlanMaker : NSObject
 
 + (PlanMaker *)sharedInstance;

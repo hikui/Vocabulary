@@ -27,6 +27,7 @@
 #import "WordListManager.h"
 #import "AppDelegate.h"
 #import "GuideView.h"
+@import MBProgressHUD;
 
 @interface WordListFromDiskViewController ()
 
@@ -133,7 +134,7 @@
         if ([fileName hasSuffix:@".txt"] || [fileName hasSuffix:@".yaml"] ) {
             [self.fileList addObject:fileName];
         }
-        DDLogDebug(@"%@",fileName);
+//        DDLogDebug(@"%@",fileName);
     }
 }
 
@@ -183,7 +184,7 @@
             [WordListManager addWords:wordSet toWordList:self.wordList progressBlock:nil completion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
-                        DDLogError(@"%@",[error localizedDescription]);
+//                        DDLogError(@"%@",[error localizedDescription]);
                     }
                     [hud hide:YES];
                     [self dismissViewControllerAnimated:YES completion:nil];
@@ -208,7 +209,7 @@
             void (^completionBlock)(NSError *error) = ^void(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error != nil) {
-                        DDLogError(@"%@",[error localizedDescription]);
+//                        DDLogError(@"%@",[error localizedDescription]);
                     }
                     totalCount--;
                     if (totalCount <= 0) {

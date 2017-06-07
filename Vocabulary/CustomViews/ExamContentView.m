@@ -25,6 +25,8 @@
 
 #import "ExamContentView.h"
 #import "NSMutableString+HTMLEscape.h"
+#import "Word.h"
+#import "PronunciationData.h"
 
 @implementation ExamContentView
 

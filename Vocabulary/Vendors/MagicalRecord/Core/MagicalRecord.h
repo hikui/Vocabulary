@@ -10,6 +10,8 @@
 
  @since Available in v2.3 and later.
  */
+@import Foundation;
+
 typedef NS_ENUM(NSUInteger, MagicalRecordVersionNumber)
 {
     /** Version 2.2.0 */

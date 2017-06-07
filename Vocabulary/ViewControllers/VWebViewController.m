@@ -24,6 +24,7 @@
 //
 
 #import "VWebViewController.h"
+@import MBProgressHUD;
 
 @interface VWebViewController ()
 
@@ -106,7 +107,7 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    DDLogDebug(@"error:%@",error);
+//    DDLogDebug(@"error:%@",error);
     [MBProgressHUD hideAllHUDsForView:self.webView animated:YES];
 }
 

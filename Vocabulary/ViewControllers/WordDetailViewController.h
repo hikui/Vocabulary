@@ -26,6 +26,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "Word.h"
+#import "VBaseViewController.h"
 
 @interface WordDetailViewController : VBaseViewController
 

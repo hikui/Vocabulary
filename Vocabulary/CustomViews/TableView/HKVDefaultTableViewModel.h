@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 缪和光. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface HKVTableViewCellConfig : NSObject<NSCopying>
 

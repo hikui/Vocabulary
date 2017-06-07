@@ -7,9 +7,12 @@
 //
 
 #import "NoteViewController.h"
+#import "Word.h"
 #import "Note.h"
 #import "VNavigationController.h"
 #import "AppDelegate.h"
+#import "CoreData+MagicalRecord.h"
+#import "common.h"
 
 @interface NoteViewController ()<UITextViewDelegate>
 
