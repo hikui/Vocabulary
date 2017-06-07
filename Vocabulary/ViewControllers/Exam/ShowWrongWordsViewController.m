@@ -25,6 +25,7 @@
 
 #import "ShowWrongWordsViewController.h"
 #import "VNavigationController.h"
+#import "UINavigationController+NavigationManager.h"
 
 @interface ShowWrongWordsViewController ()
 

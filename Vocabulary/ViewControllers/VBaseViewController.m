@@ -8,6 +8,8 @@
 
 #import "VBaseViewController.h"
 #import "VNavigationController.h"
+#import "common.h"
+#import "UINavigationController+NavigationManager.h"
 
 @interface VBaseViewController ()
 

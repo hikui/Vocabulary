@@ -8,6 +8,8 @@
 
 #import "CibaWebView.h"
 #import <QuartzCore/QuartzCore.h> 
+#import "common.h"
+@import MBProgressHUD;
 
 #define margin 15
 

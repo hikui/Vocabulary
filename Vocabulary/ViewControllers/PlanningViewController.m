@@ -32,6 +32,9 @@
 #import "HKVBasicTableViewCell.h"
 #import "PlanningTableViewCell.h"
 #import "Masonry.h"
+#import "common.h"
+#import "UINavigationController+NavigationManager.h"
+#import "CoreData+MagicalRecord.h"
 
 @interface PlanningViewControllerCell : HKVBasicTableViewCell
 

@@ -8,6 +8,7 @@
 
 #import "ImportUsingWifiViewController.h"
 #import "ImportingWebServer.h"
+@import MBProgressHUD;
 
 @interface ImportUsingWifiViewController () <ImportingWebServerDelegate>
 

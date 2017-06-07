@@ -24,6 +24,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "common.h"
+#import "WordList.h"
 
 @interface WordListManager : NSObject
 

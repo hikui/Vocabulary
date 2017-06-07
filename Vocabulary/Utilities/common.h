@@ -65,6 +65,8 @@ extern int ParseJSONError;
 #define GRATER_THAN_IOS_7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
 #define IOS6_7_DELTA(V,X,Y,W,H) if (GRATER_THAN_IOS_7) {CGRect f = V.frame;f.origin.x += X;f.origin.y += Y;f.size.width += W;f.size.height += H;V.frame=f;}
 
+@class Word;
+
 // block define
 typedef void (^HKVProgressCallback)(float progress);
 typedef void (^HKVVoidBlock)(void);

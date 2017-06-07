@@ -35,6 +35,10 @@
 #import "EditWordDetailViewController.h"
 #import "NSString+VAdditions.h"
 #import <Reachability/Reachability.h>
+#import "PronunciationData.h"
+#import "UINavigationController+NavigationManager.h"
+#import "common.h"
+@import PromiseKit;
 
 #define CIBA_URL(__W__) [NSString stringWithFormat:@"http://wap.iciba.com/cword/%@", __W__]
 
@@ -177,7 +181,7 @@
         }
     }).catch(^(NSError *error){
         hud.detailsLabelText = [error localizedDescription];
-    }).finally(^(){
+    }).always(^(){
         [hud hide:YES afterDelay:0.4];
     });
 }

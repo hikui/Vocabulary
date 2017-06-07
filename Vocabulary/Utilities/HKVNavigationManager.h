@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 缪和光. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import UIKit;
 
 extern NSString* const HKVNavigationConfigClassNameKey;
 extern NSString* const HKVNavigationConfigXibNameKey;

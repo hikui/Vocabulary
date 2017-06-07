@@ -25,6 +25,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WordList.h"
+#import "VBaseViewController.h"
+
 @interface LearningBackboneViewController : VBaseViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray *learningViewControllerArray;

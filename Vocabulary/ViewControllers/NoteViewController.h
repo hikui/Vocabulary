@@ -8,6 +8,8 @@
 
 #import "VKeyboardAwarenessViewController.h"
 
+@class Word;
+
 @interface NoteViewController : VKeyboardAwarenessViewController
 
 @property (nonatomic, strong) Word *word;

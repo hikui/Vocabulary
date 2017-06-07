@@ -96,7 +96,7 @@
 
 - (void)appendData:(NSArray *)data inSection:(NSUInteger)sectionNum {
     if(sectionNum > _sectionDataArray.count) {
-        DDLogError(@"section number is invalid");
+//        DDLogError(@"section number is invalid");
         return;
     }
     if (sectionNum == _sectionDataArray.count) {
@@ -109,7 +109,7 @@
 }
 - (void)replaceData:(NSArray *)data inSection:(NSUInteger)sectionNum {
     if(sectionNum > _sectionDataArray.count) {
-        DDLogError(@"section number is invalid");
+//        DDLogError(@"section number is invalid");
         return;
     }
     if (sectionNum == _sectionDataArray.count) {
@@ -129,7 +129,7 @@
 
 - (void)removeDataAtSectionNum:(NSUInteger)sectionNum {
     if(sectionNum >= _sectionDataArray.count) {
-        DDLogError(@"section number is invalid");
+//        DDLogError(@"section number is invalid");
         return;
     }
     [_sectionDataArray removeObjectAtIndex:sectionNum];
@@ -179,7 +179,7 @@
         return [(id<UITableViewDelegate,UITableViewDataSource>)self.delegate tableView:tableView numberOfRowsInSection:section];
     }
     if(section >= _sectionDataArray.count) {
-        DDLogError(@"section number is invalid");
+//        DDLogError(@"section number is invalid");
         return 0;
     }
     NSMutableArray *sectionData = _sectionDataArray[section];
@@ -197,7 +197,7 @@
     
     Class cellClass = NSClassFromString(cellConfig.className);
     if (!cellClass) {
-        DDLogError(@"class for name %@ doesn't exist", cellConfig.className);
+//        DDLogError(@"class for name %@ doesn't exist", cellConfig.className);
         return nil; // 自然崩溃
     }
     NSString *reuseIdentifier = cellConfig.reuseIdentifier;
@@ -231,7 +231,7 @@
     
     Class<HKVDefaultTableViewModelCellProtocol> cellClass = NSClassFromString(cellConfig.className);
     if (!cellClass) {
-        DDLogError(@"class for name %@ doesn't exist", cellConfig.className);
+//        DDLogError(@"class for name %@ doesn't exist", cellConfig.className);
         return _defaultHeight;
     }
     if ([((NSObject *)cellClass)respondsToSelector:@selector(heightForData:)]) {

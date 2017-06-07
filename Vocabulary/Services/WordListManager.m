@@ -29,6 +29,8 @@
 #import "PlanMaker.h"
 #import "YAMLSerialization.h"
 #import "Note.h"
+#import "Word.h"
+#import "CoreData+MagicalRecord.h"
 
 @implementation WordListManager
 

@@ -30,6 +30,8 @@
 #import "PureColorImageGenerator.h"
 #import "WordListManager.h"
 #import "Masonry.h"
+#import "UINavigationController+NavigationManager.h"
+#import "CoreData+MagicalRecord.h"
 
 @interface ExistingWordListsViewController ()
 

@@ -35,6 +35,7 @@
 #import "PureColorImageGenerator.h"
 #import "InsertWordView.h"
 #import "WordListCell.h"
+#import "UINavigationController+NavigationManager.h"
 
 @interface WordListViewController ()
 

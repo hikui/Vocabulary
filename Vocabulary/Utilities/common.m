@@ -1,3 +1,4 @@
+@import Foundation;
 
 NSString *WordListManagerDomain = @"info.herkuang.vocabulary.WordListManager";
 int WordListCreatorEmptyWordSetError = -1;

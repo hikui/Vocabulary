@@ -24,6 +24,8 @@
 //
 
 #import "WordManager.h"
+#import "CoreData+MagicalRecord.h"
+#import "Word.h"
 
 @interface WordManager ()
 

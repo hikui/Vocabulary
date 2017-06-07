@@ -23,7 +23,10 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+#import "VBaseViewController.h"
+
+@class WordList;
 
 @interface WordListFromDiskViewController : VBaseViewController <UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 

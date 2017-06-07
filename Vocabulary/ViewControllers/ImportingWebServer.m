@@ -10,6 +10,7 @@
 #import "GCDWebServerDataResponse.h"
 #import "GCDWebServerURLEncodedFormRequest.h"
 #import "WordListManager.h"
+@import CocoaLumberjack;
 
 @interface ImportingWebServer()
 
@@ -48,7 +49,7 @@
 }
 
 - (void)POST_wordlist_create:(GCDWebServerURLEncodedFormRequest *)request respBlock:(GCDWebServerCompletionBlock)respBlock{
-    DDLogDebug(@"%@",request.arguments);
+//    DDLogDebug(@"%@",request.arguments);
 //    respBlock([GCDWebServerDataResponse responseWithText:@"abcabc"]);
     NSString *title = request.arguments[@"title"];
     NSString *content = request.arguments[@"words"];

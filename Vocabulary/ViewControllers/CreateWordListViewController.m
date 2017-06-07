@@ -27,6 +27,7 @@
 #import "WordListManager.h"
 #import "AppDelegate.h"
 #import "SZTextView.h"
+@import MBProgressHUD;
 
 @interface CreateWordListViewController ()
 
@@ -115,7 +116,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if (error != NULL) {
-                DDLogError(@"%@",error);
+//                DDLogError(@"%@",error);
                 if (error.code == WordListCreatorEmptyWordSetError) {
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
                                                                    message:@"还没有单词哦"

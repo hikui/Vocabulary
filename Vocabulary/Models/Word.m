@@ -12,7 +12,7 @@
 #import "Word.h"
 #import "WordList.h"
 #import "NSMutableString+HTMLEscape.h"
-
+@import UIKit;
 
 @implementation Word
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class WordList;
 @interface InsertWordView : UIView
 
 @property (nonatomic, strong) WordList *targetWordList;

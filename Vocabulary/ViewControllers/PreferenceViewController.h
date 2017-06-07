@@ -23,8 +23,9 @@
 //  Copyright (c) 2012年 缪和光. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <MessageUI/MFMailComposeViewController.h>
+@import UIKit;
+@import MessageUI;
+#import "VBaseViewController.h"
 
 @interface PreferenceViewController : VBaseViewController<MFMailComposeViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 

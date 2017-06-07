@@ -39,6 +39,10 @@
 #import "UnfamiliarWordListViewController.h"
 #import "PreferenceViewController.h"
 #import "ImportUsingWifiViewController.h"
+#import "CoreData+MagicalRecord.h"
+#import "MobClick.h"
+#import "common.h"
+#import "UINavigationController+NavigationManager.h"
 
 static BOOL isRunningTests(void)
 {
@@ -95,9 +99,9 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"db.sqlite"];
 
     //Lumberjack
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    [DDLog addLogger:[[DDFileLogger alloc] init]];
-    
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+//    [DDLog addLogger:[[DDFileLogger alloc] init]];
+
     // tabbar controller
     self.placeholderVC = [[UIViewController alloc]init];
     
@@ -212,7 +216,7 @@ NS_INLINE void configNavigationController(UINavigationController *nav) {
 
 - (void)onlineConfigCallBack:(NSNotification*)notification
 {
-    DDLogDebug(@"online config has fininshed and params = %@", notification.userInfo);
+//    DDLogDebug(@"online config has fininshed and params = %@", notification.userInfo);
     NSString* newHelpDocVersion = [UMOnlineConfig getConfigParams:@"helpDocVersion"];
     NSString* currentHelpVersion = [[NSUserDefaults standardUserDefaults] stringForKey:@"kCurrHelpDocVersion"];
     if (currentHelpVersion == nil) {

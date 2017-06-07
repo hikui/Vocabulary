@@ -25,6 +25,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "VBaseViewController.h"
 
 @interface ExistingWordListsViewController : VBaseViewController<NSFetchedResultsControllerDelegate,UITableViewDataSource,UITableViewDelegate>
 {

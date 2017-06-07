@@ -25,6 +25,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "VBaseViewController.h"
 
 @interface VWebViewController : VBaseViewController <UIWebViewDelegate>
 

@@ -31,6 +31,8 @@
 #import "PureColorImageGenerator.h"
 #import "UMOnlineConfig.h"
 
+@import MBProgressHUD;
+
 @interface PreferenceViewController ()
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -319,16 +321,16 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
-            DDLogDebug(@"Mail cancelled");
+//            DDLogDebug(@"Mail cancelled");
             break;
         case MFMailComposeResultSaved:
-            DDLogDebug(@"Mail saved");
+//            DDLogDebug(@"Mail saved");
             break;
         case MFMailComposeResultSent:
-            DDLogDebug(@"Mail sent");
+//            DDLogDebug(@"Mail sent");
             break;
         case MFMailComposeResultFailed:
-            DDLogDebug(@"Mail sent failure: %@", [error localizedDescription]);
+//            DDLogDebug(@"Mail sent failure: %@", [error localizedDescription]);
             break;
         default:
             break;

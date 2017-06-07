@@ -8,6 +8,7 @@
 
 #import "PlanningTableViewCell.h"
 #import "NSDate+VAdditions.h"
+#import "WordList.h"
 
 @interface PlanningTableViewCell()
 
