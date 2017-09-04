@@ -67,7 +67,7 @@
 - (AnyPromise *)requestContentOfWord:(NSString *)word URLSession:(NSURLSession *)session; {
     word = [word hkv_trim];
     word = [word hkv_stringByURLEncoding];
-    NSString* urlString = [NSString stringWithFormat:@"http://%@/%@", HostName, CIBA_URL(word)];
+    NSString* urlString = [NSString stringWithFormat:@"https://%@/%@", HostName, CIBA_URL(word)];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     return [AnyPromise promiseWithResolverBlock:^(PMKResolver  _Nonnull resolve) {
         
